@@ -6,14 +6,17 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class consumerVo {
+public class CustomerVo {
+	// Table : customer
 	private String id;
 	private String pw;
 	private String name;
-	private Date birth_date;
+	private Date birthDate;
 	private String phone;
 	private String email;
 	private String gender;
 	private String dropout;
-	private Timestamp reg_date;
+	private Timestamp regDate;
+	// Table : favorite
+	private FavoriteVo favoriteVo;
 }
