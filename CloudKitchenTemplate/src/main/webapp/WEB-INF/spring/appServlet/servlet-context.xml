@@ -29,8 +29,12 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<!-- Scans all packages under "org.badgers" for beans (@Controller, @Service, @Component, etc.) -->
-	<context:component-scan base-package="com.badgers.controller" />
-	<context:component-scan base-package="com.badgers.service" />
+	<context:component-scan base-package="com.badgers.business.controller" />
+	<context:component-scan base-package="com.badgers.common.controller" />
+	<context:component-scan base-package="com.badgers.customer.controller" />
+	<context:component-scan base-package="com.badgers.business.service" />
+	<context:component-scan base-package="com.badgers.common.service" />
+	<context:component-scan base-package="com.badgers.customer.service" />
 	
 	<context:component-scan base-package="com.badgers.common" />
 </beans:beans>

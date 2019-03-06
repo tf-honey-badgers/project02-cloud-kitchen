@@ -7,13 +7,7 @@
 </head>
 <body>
 	<h1>
-		Hello world!  
+		Hello Node.js!  
 	</h1>
-
-	<P>  The time on the server is ${serverTime}. </P>
-	
-	<ul>
-		<li><a href="./sendNode.jsp">Go to SendNode.JSP</a></li>
-	</ul>
 </body>
 </html>

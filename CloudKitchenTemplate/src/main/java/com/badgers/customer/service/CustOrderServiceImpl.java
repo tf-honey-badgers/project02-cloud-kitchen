@@ -3,13 +3,13 @@ package com.badgers.customer.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.badgers.customer.persistence.CustomerMapper;
+import com.badgers.customer.persistence.CustOrderMapper;
 
 import lombok.Setter;
 
 @Service
-public class CustomerServiceImpl implements CustomerService {
+public class CustOrderServiceImpl implements CustOrderService {
 
 	@Setter(onMethod_ = @Autowired)
-	private CustomerMapper mapper;
+	private CustOrderMapper mapper;
 }
