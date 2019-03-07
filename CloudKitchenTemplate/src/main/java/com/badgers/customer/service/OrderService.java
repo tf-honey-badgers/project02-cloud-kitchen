@@ -1,5 +1,5 @@
 package com.badgers.customer.service;
 
-public interface CustOrderService {
+public interface OrderService {
 
 }

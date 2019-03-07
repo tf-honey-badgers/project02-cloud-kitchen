@@ -2,12 +2,12 @@ package com.badgers.customer.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.badgers.customer.persistence.CustomerMapper;
+import com.badgers.customer.persistence.OrderMapper;
 
 import lombok.Setter;
 
-public class CustomerServiceImpl implements CustomerService {
+public class OrderServiceImpl implements OrderService {
 
 	@Setter(onMethod_ = @Autowired)
-	private CustomerMapper mapper;
+	private OrderMapper mapper;
 }

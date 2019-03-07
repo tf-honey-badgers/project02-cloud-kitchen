@@ -38,9 +38,7 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
-	<mybatis-spring:scan base-package="com.badgers.business.persistence" />
-	<mybatis-spring:scan base-package="com.badgers.common.persistence" />
-	<mybatis-spring:scan base-package="com.badgers.customer.persistence" />
+	<mybatis-spring:scan base-package="com.badgers.persistence" />
 	
 	<context:component-scan base-package="com.badgers" />
 </beans>
