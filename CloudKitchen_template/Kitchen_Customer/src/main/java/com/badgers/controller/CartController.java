@@ -8,7 +8,7 @@ import com.badgers.service.PaymentService;
 import lombok.Setter;
 
 @Controller
-public class PaymentController {
+public class CartController {
 	
 	@Setter(onMethod_ = { @Autowired })
 	private PaymentService service;

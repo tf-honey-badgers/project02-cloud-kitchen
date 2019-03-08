@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.badgers.service.OrderService;
+import com.badgers.service.PaymentService;
 
 import lombok.Setter;
 
@@ -11,5 +12,8 @@ import lombok.Setter;
 public class OrderController {
 	
 	@Setter(onMethod_ = { @Autowired })
-	private OrderService service;
+	private OrderService oService;
+	
+	@Setter(onMethod_ = { @Autowired })
+	private PaymentService pService;
 }
