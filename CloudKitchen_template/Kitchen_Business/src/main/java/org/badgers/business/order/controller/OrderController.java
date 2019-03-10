@@ -1,14 +1,14 @@
-package org.badgers.controller;
+package org.badgers.business.order.controller;
 
-import org.badgers.service.BusinessService;
+import org.badgers.business.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import lombok.Setter;
 
 @Controller
-public class BusinessController {
+public class OrderController {
 
 	@Setter(onMethod_ = { @Autowired })
-	private BusinessService service;
+	private OrderService service;
 }

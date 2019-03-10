@@ -1,4 +1,4 @@
-package org.badgers.service;
+package org.badgers.business.order.service;
 
 import org.springframework.stereotype.Service;
 

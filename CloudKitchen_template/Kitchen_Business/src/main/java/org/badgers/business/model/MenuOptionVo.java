@@ -1,4 +1,4 @@
-package org.badgers.domain;
+package org.badgers.business.model;
 
 import lombok.Data;
 

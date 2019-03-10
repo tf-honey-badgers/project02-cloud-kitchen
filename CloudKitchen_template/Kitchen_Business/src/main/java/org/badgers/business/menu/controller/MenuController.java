@@ -1,14 +1,14 @@
-package org.badgers.controller;
+package org.badgers.business.menu.controller;
 
-import org.badgers.service.OrderService;
+import org.badgers.business.menu.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import lombok.Setter;
 
 @Controller
-public class OrderController {
-
+public class MenuController {
+	
 	@Setter(onMethod_ = { @Autowired })
-	private OrderService service;
+	private MenuService service;
 }
