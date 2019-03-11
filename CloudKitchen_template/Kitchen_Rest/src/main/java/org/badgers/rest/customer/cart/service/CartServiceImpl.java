@@ -56,7 +56,7 @@ public class CartServiceImpl implements CartService {
 				String newDetId = "cart_detail_" + currentDetIdx;
 				option.setId(newDetId);
 				option.setCartId(cartId);
-				returnVal = mapper.insertDetails(option);
+				returnVal = mapper.insertOption(option);
 //			System.out.println("RETURNVAL IS : " + returnVal);
 			}			
 		} catch (Exception e) {
@@ -98,7 +98,7 @@ public class CartServiceImpl implements CartService {
 		return result;
 	}
 
-	// 메뉴 업데이트 (수량을 0으로 만들 수는 없음)
+	// 메뉴 업데이트 (수량을 0으로 만들 수는 없음) -> 옵션은 업데이트 없다, 옵션을 새로 추가하거나 삭제하는 것만 있다
 	@Override
 	public int updateCart(CartVoExtend cart) {
 		int returnVal = 0;
@@ -107,25 +107,30 @@ public class CartServiceImpl implements CartService {
 			// cart 정보로 cart 테이블 수정
 			returnVal = mapper.updateCart(cart);
 //			System.out.println("RETURNVAL IS : " + returnVal);
-			
-			returnVal = updateOptions(cart.getOptions());
-//			System.out.println("RETURNVAL IS : " + returnVal);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return returnVal;
 	}
-
-	// 옵션 업데이트
+	
+	// 메뉴 삭제 (장바구니 항목 하나씩 삭제 (cartId 사용) OR 장바구니 항목 전체 삭제 (cartId 미사용))
+	@Transactional
 	@Override
-	public int updateOptions(List<CartDetailVo> options) {
+	public int deleteCart(String custId, String cartId) {
 		int returnVal = 0;
 		
 		try {
-			for(CartDetailVo option : options) {
-				returnVal = mapper.updateOptions(option);
-			}			
+			if(cartId != null) { // cartId 지정되었다면 특정 장바구니 항목 하나만 삭제
+				returnVal = deleteAllOptions(cartId);
+				returnVal = mapper.deleteCart(cartId);
+			} else { // cartId == null이면 장바구니 항목 전체 삭제
+				List<String> getCartIds = mapper.readCartIds(custId);
+				for(String id : getCartIds) {
+					returnVal = deleteAllOptions(id);	
+				}
+				returnVal = mapper.deleteAllCart(custId);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -133,16 +138,33 @@ public class CartServiceImpl implements CartService {
 		return returnVal;
 	}
 
-	// 메뉴 삭제 (하나씩 개별 삭제 OR 별도 버튼으로 전체 삭제)
+	// 옵션 하나 삭제
 	@Override
-	public int deleteCart(List<String> custIdList) {
-		return 0;
-	}
+	public int deleteOption(String cartId, String menuOptId) {
+		int returnVal = 0;
+		
+		try {
+			returnVal = mapper.deleteOption(cartId, menuOptId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return returnVal;
 
-	// 옵션 삭제
+	}
+	
+	// 옵션 전체 삭제
 	@Override
-	public int deleteOptions(String cartId) {
-		return 0;
+	public int deleteAllOptions(String cartId) {
+		int returnVal = 0;
+		
+		try {
+			returnVal = mapper.deleteAllOptions(cartId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return returnVal;
 	}
 
 }

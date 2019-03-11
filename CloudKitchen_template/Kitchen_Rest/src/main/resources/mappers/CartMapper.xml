@@ -25,7 +25,7 @@
 			WHERE TABLE_SCHEMA = 'honey_badgers' AND TABLE_NAME = 'cart_detail'
 	</select>
 	
-	<insert id="insertDetails">
+	<insert id="insertOption">
 		insert into honey_badgers.cart_detail
 			(id, cart_id, menu_opt_id, menu_id, menu_opt_name, menu_opt_price)
 			values
@@ -44,9 +44,25 @@
 		update honey_badgers.cart set quantity = #{quantity}, unit_price = #{unitPrice}, amount = #{amount} where id = #{id}
 	</update>
 	
-	<update id="updateOptions">
-		update honey_badgers.cart set quantity = #{quantity}, unit_price = #{unitPrice}, amount = #{amount} where id = #{id}
-	</update>
+	<delete id="deleteCart">
+		delete from honey_badgers.cart where cart_id = #{cartId}
+	</delete>
+	
+	<delete id="deleteAllCart">
+		delete from honey_badgers.cart where cust_id = #{custId}
+	</delete>
+	
+	<delete id="deleteOption">
+		delete from honey_badgers.cart_detail where cart_id = #{cartId} and menu_opt_id = #{menuOptId}
+	</delete>
+	
+	<delete id="deleteAllOptions">
+		delete from honey_badgers.cart_detail where cart_id = #{cartId}
+	</delete>
+	
+	<select id="readCartIds" resultType="String">
+		select id from honey_badgers.cart where cust_id = #{custId} 
+	</select>
 
 	
 <!-- 	<select id="read" resultType="org.badgers.domain.BoardVO">
