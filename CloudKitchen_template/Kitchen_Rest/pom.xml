@@ -193,6 +193,55 @@
 			<artifactId>xercesImpl</artifactId>
 			<version>2.9.1</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.mahout/mahout-core -->
+		<dependency>
+			<groupId>org.apache.mahout</groupId>
+			<artifactId>mahout-core</artifactId>
+			<version>0.9</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.mahout/mahout-math -->
+		<dependency>
+			<groupId>org.apache.mahout</groupId>
+			<artifactId>mahout-math</artifactId>
+			<version>0.13.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.mahout/mahout-hdfs -->
+		<dependency>
+			<groupId>org.apache.mahout</groupId>
+			<artifactId>mahout-hdfs</artifactId>
+			<version>0.13.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.mahout/mahout-integration -->
+		<!-- MySQLJDBCDataModel 객체 사용하는용도 -->
+		<dependency>
+			<groupId>org.apache.mahout</groupId>
+			<artifactId>mahout-integration</artifactId>
+			<version>0.13.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.5</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>jdk.tools</groupId>
+			<artifactId>jdk.tools</artifactId>
+			<scope>system</scope>
+			<version>1.7</version>
+			<systemPath>C:\Program Files\Java\jdk1.8.0_192\lib\tools.jar</systemPath>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>
