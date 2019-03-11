@@ -240,7 +240,7 @@
 			<artifactId>jdk.tools</artifactId>
 			<scope>system</scope>
 			<version>1.7</version>
-            <systemPath>C:\tools.jar</systemPath>
+			<systemPath>C:\tools.jar</systemPath>
 		</dependency>
 	</dependencies>
     <build>
