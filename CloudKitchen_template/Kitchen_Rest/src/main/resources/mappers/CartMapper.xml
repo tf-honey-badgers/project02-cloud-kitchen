@@ -5,7 +5,7 @@
 
 <mapper namespace="org.badgers.rest.customer.cart.persistence.CartMapper">
 	<!-- Auto-Increment의 다음 값을 반환한다 -->
-	<select id="getCartIdx">
+	<select id="getCartIdx" resultType="int">
 		SELECT `AUTO_INCREMENT`
 			FROM INFORMATION_SCHEMA.TABLES
 			WHERE TABLE_SCHEMA = 'honey_badgers' AND TABLE_NAME = 'cart';
@@ -19,7 +19,7 @@
 	</insert>
 	
 	<!-- Auto-Increment의 다음 값을 반환한다 -->
-	<select id="getDetIdx">
+	<select id="getDetIdx" resultType="int">
 		SELECT `AUTO_INCREMENT`
 			FROM INFORMATION_SCHEMA.TABLES
 			WHERE TABLE_SCHEMA = 'honey_badgers' AND TABLE_NAME = 'cart_detail';

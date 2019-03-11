@@ -39,6 +39,7 @@ public class CartServiceImpl implements CartService {
 				int currentDetIdx = mapper.getDetIdx();
 				String newDetId = "cart_detail_" + currentDetIdx;
 				option.setId(newDetId);
+				option.setCartId(newCartId);
 				System.out.println(option);
 				mapper.insertDetails(option);
 			}
