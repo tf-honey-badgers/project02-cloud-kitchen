@@ -14,6 +14,6 @@ public class CustomerVo {
 	private String phone;
 	private String email;
 	private String gender;
-	private String dropout;
+	private String status;
 	private Timestamp regDate;
 }
