@@ -194,7 +194,7 @@
 			<version>2.9.1</version>
 		</dependency>
 		
-				<!-- https://mvnrepository.com/artifact/org.apache.mahout/mahout-core -->
+		<!-- https://mvnrepository.com/artifact/org.apache.mahout/mahout-core -->
 		<dependency>
 			<groupId>org.apache.mahout</groupId>
 			<artifactId>mahout-core</artifactId>
@@ -233,6 +233,14 @@
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.5</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>jdk.tools</groupId>
+			<artifactId>jdk.tools</artifactId>
+			<scope>system</scope>
+			<version>1.7</version>
+			<systemPath>C:\Program Files\Java\jdk1.8.0_192\lib\tools.jar</systemPath>
 		</dependency>
 	</dependencies>
     <build>
