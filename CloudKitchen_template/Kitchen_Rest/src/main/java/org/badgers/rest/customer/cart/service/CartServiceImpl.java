@@ -21,23 +21,34 @@ public class CartServiceImpl implements CartService {
 	@Transactional
 	@Override
 	public int addCart(CartVoExtend cart) {
+		int returnVal = 0;
 		
 		try {
+			// cart 테이블에서 idx 값 가져와서 id 값 생성하기
+			int currentCartIdx = mapper.getCartIdx();
+			String newCartId = "cart_" + currentCartIdx;
+			cart.setId(newCartId);
+			
 			// cart 정보로 cart 테이블에 추가
 			mapper.insertCart(cart);
 			
 			// cart에 포함된 List<CartDetailVo>로 cart_detail 테이블에 추가
 			List<CartDetailVo> options = cart.getOptions();
 			for(CartDetailVo option : options) {
+				// cart_detail 테이블에서 idx 값 가져와서 id 값 생성하기
+				int currentDetIdx = mapper.getDetIdx();
+				String newDetId = "cart_detail_" + currentDetIdx;
+				option.setId(newDetId);
 				System.out.println(option);
 				mapper.insertDetails(option);
-			}			
+			}
+			
+			// 위 작업 모두 성공적으로 수행되었을 경우 1 반환
+			returnVal = 1;
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		
-		// 위 작업 2개 모두 성공적으로 수행되었을 경우 return 1; 하나라도 실패했을 경우 return 0
-		return 1;
+		}		
+		return returnVal;
 	}
 
 	// R : 장바구니 읽기 (페이지 로딩할 때 & 결제로 넘어갈 때)

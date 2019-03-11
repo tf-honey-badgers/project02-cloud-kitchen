@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.badgers.rest.customer.cart.persistence.CartMapper">
+	<!-- Auto-Increment의 다음 값을 반환한다 -->
+	<select id="getCartIdx">
+		SELECT `AUTO_INCREMENT`
+			FROM INFORMATION_SCHEMA.TABLES
+			WHERE TABLE_SCHEMA = 'honey_badgers' AND TABLE_NAME = 'cart';
+	</select>
+	
+	<insert id="insertCart">
+		insert into honey_badgers.cart
+			(id, cust_id, quantity, unit_price, amount, kitchen_name, biz_name, menu_id, menu_name)
+			values
+			(#{id}, #{cust_id}, #{quantity}, #{unit_price}, #{amount}, #{kitchen_name}, #{biz_name}, #{menu_id}, #{menu_name});
+	</insert>
+	
+	<!-- Auto-Increment의 다음 값을 반환한다 -->
+	<select id="getDetIdx">
+		SELECT `AUTO_INCREMENT`
+			FROM INFORMATION_SCHEMA.TABLES
+			WHERE TABLE_SCHEMA = 'honey_badgers' AND TABLE_NAME = 'cart_detail';
+	</select>
+	
+	<insert id="insertDetails">
+		insert into honey_badgers.cart_detail
+			(id, cart_id, menu_opt_id, menu_id, menu_opt_name, menu_opt_price)
+			values
+			(#{id}, #{cart_id}, #{menu_opt_id}, #{menu_id}, #{menu_opt_name}, #{menu_opt_price});
+	</insert>
+
+
+
+	
+<!-- 	<select id="read" resultType="org.badgers.domain.BoardVO">
+		select * from open.tbl_board where bno = #{bno}
+	</select>
+	
+	<update id="update">
+		update open.tbl_board set title = #{title}, content = #{content} where bno = #{bno}
+	</update>
+	
+	<delete id="delete">
+		delete from open.tbl_board where bno = #{bno}
+	</delete>
+	
+	<select id="getList" resultType="org.badgers.domain.BoardVO">
+		select * from open.tbl_board where bno > 0 order by bno desc
+	</select> -->
+</mapper>
