@@ -3,7 +3,7 @@ package org.badgers.rest.customer.order.controller;
 
 import org.badgers.rest.customer.order.service.CustOrderService;
 import org.badgers.rest.model.OrderInfoVO;
-import org.badgers.rest.model.OrderVo;
+import org.badgers.rest.model.OrderVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.Setter;
 
 @RestController
+@RequestMapping("/rest/order")
 public class CustOrderController {
 	
 	@Setter(onMethod_ = { @Autowired })
@@ -28,7 +29,7 @@ public class CustOrderController {
 		return "home";
 	}
 	
-	@GetMapping(value="/order/{orderId}",
+	@GetMapping(value="/{orderId}",
 			produces= {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_XHTML_XML_VALUE
@@ -49,7 +50,7 @@ public class CustOrderController {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_XHTML_XML_VALUE
 			})
-	public OrderVo test(
+	public OrderVO test(
 			@PathVariable("orderId") String orderId
 			) throws Exception{
 		System.out.println(orderId);
@@ -58,7 +59,15 @@ public class CustOrderController {
 		
 	}
 	
-	
+	@GetMapping(value="/tj/test/{orderId}")
+	public int testInsertOrder(
+			@PathVariable("orderId") String orderId
+			) {
+		System.out.println("tj의 orderID"+orderId);
+		
+		
+		return 0;
+	}
 	
 	
 }
