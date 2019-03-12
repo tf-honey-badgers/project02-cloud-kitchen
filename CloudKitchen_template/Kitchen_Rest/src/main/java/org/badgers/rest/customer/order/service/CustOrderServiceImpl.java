@@ -15,7 +15,7 @@ public class CustOrderServiceImpl implements CustOrderService {
 	CustOrderMapper mapper;
 	
 	@Override
-	@Transactional(rollbackFor=Exception.class)
+	@Transactional()
 	public int excuteOrder() throws Exception {
 		System.out.println("맨처음---------------------------------------------------------------------");
 		mapper.getOrderId();

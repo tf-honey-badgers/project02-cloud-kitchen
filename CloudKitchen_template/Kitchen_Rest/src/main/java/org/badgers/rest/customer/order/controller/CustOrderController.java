@@ -16,8 +16,9 @@ public class CustOrderController {
 	
 	
 	@RequestMapping(value = "/myhome", method = RequestMethod.GET)
-	public String test() throws Exception {
-		service.excuteOrder();
+	public String test() throws Exception{
+			service.excuteOrder();
+		
 		return "home";
 	}
 	
