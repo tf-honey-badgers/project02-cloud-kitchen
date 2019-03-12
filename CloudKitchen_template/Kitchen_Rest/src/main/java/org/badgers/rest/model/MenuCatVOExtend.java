@@ -3,10 +3,10 @@ package org.badgers.rest.model;
 import lombok.Data;
 
 @Data
-public class MenuCatVoExtend {
+public class MenuCatVOExtend {
 	private String mcNo;
 	private String mcName;
 	private String mcBizId;
 	private int mcIdx;
-	private MenuVoExtend mcMenuvo;
+	private MenuVOExtend mcMenuvo;
 }

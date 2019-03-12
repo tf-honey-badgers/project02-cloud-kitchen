@@ -3,11 +3,11 @@ package org.badgers.rest.model;
 import lombok.Data;
 
 @Data
-public class MenuOptionClVoExtend {
+public class MenuOptionClVOExtend {
 	private String mocNo;
 	private String mocName;
 	private String mocMenuOptType;
 	private String mocMenuCode;
 	private int mocIdx;
-	private MenuOptionVoExtend menuOptEx;
+	private MenuOptionVOExtend menuOptEx;
 }

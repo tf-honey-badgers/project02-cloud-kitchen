@@ -7,15 +7,15 @@
 	namespace="org.badgers.rest.customer.kitchen.persistence.KitchenMapper">
 
 	<select id="kitchenbranchList"
-		resultType="org.badgers.rest.model.KitchenBranchVo">
+		resultType="org.badgers.rest.model.KitchenBranchVO">
 		select * from kitchen_branch
 	</select>
 
-	<select id="bizList" resultType="org.badgers.rest.model.BizVo">
+	<select id="bizList" resultType="org.badgers.rest.model.BizVO">
 		select * from biz
 	</select>
 	
-	<resultMap id="MenuOptionEx" type="org.badgers.rest.model.MenuOptionVoExtend">
+	<resultMap id="MenuOptionEx" type="org.badgers.rest.model.MenuOptionVOExtend">
 		<result property="moCode" column="moCode"/>
 		<result property="moName" column="moName"/>
 		<result property="moAddPrice" column="moAddPrice"/>
@@ -23,7 +23,7 @@
 		<result property="moIdx" column="moIdx"/>
 	</resultMap>
 	
-	 <resultMap id="MenuOptionClVoEx" type="org.badgers.rest.model.MenuOptionClVoExtend">
+	 <resultMap id="MenuOptionClVoEx" type="org.badgers.rest.model.MenuOptionClVOExtend">
 		<result property="mocNo" column="mocNo"/>
 		<result property="mocName" column="mocName"/>
 		<result property="mocMenuOptType" column="mocMenuOptType"/>
@@ -32,7 +32,7 @@
 		<collection property="menuOptEx" resultMap="MenuOptionEx"/> 
 	</resultMap>
 	
- 	<resultMap id="MenuVoEx" type="org.badgers.rest.model.MenuVoExtend">
+ 	<resultMap id="MenuVoEx" type="org.badgers.rest.model.MenuVOExtend">
 		<result property="mCode" column="id"/>
 		<result property="mName" column="name"/>
 		<result property="mBasicPrice" column="basicPrice"/>
@@ -42,7 +42,7 @@
 		<collection property="menuOptCl" resultMap="MenuOptionClVoEx"/> 
 	</resultMap>
 
-	<resultMap id="MenuCatVoEx" type="org.badgers.rest.model.MenuCatVoExtend">
+	<resultMap id="MenuCatVoEx" type="org.badgers.rest.model.MenuCatVOExtend">
 		<result property="mcNo" column="mcNo"/>
 		<result property="mcName" column="mcName"/>
 		<result property="mcBizId" column="mcBizId"/>
@@ -50,7 +50,7 @@
 	 	<collection property="mcMenuvo" resultMap="MenuVoEx"/> 
 	</resultMap>
 	
- 	<resultMap id="bizvo" type="org.badgers.rest.model.BizVoExtend">
+ 	<resultMap id="bizvo" type="org.badgers.rest.model.BizVOExtend">
 		<result property="bizId" column="bizId" />
 		<result property="bizInfo" column="bizInfo" />
 		<result property="bizName" column="bizName" />
