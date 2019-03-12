@@ -1,4 +1,4 @@
-package org.badgers.rest.model;
+﻿package org.badgers.rest.model;
 
 import lombok.Data;
 

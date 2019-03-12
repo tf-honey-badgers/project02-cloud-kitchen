@@ -3,7 +3,7 @@ package org.badgers.rest.customer.cart.controller;
 import java.util.List;
 
 import org.badgers.rest.customer.cart.service.CartService;
-import org.badgers.rest.model.CartVoExtend;
+import org.badgers.rest.model.CartVOExtend;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class CartController {
 	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 	
 	@PostMapping("/cart")
-	public int addCart(@RequestBody CartVoExtend cart) {
+	public int addCart(@RequestBody CartVOExtend cart) {
 		logger.info("Adding " + cart.getCustId() + "'s new item to the 'cart' & 'cart_detail' tables!");
 		int returnVal = 0;
 		
@@ -43,9 +43,9 @@ public class CartController {
 	}
 	
 	@GetMapping("/cart/{custId}")
-	public List<CartVoExtend> readCart(@PathVariable("custId") String custId) {
+	public List<CartVOExtend> readCart(@PathVariable("custId") String custId) {
 		logger.info("Reading " + custId + "'s items from the 'cart' table!");
-		List<CartVoExtend> returnVal = null;
+		List<CartVOExtend> returnVal = null;
 		
 		try {
 			returnVal = service.readCart(custId);
@@ -53,7 +53,7 @@ public class CartController {
 			e.printStackTrace();
 		}
 		
-		for(CartVoExtend value : returnVal) {
+		for(CartVOExtend value : returnVal) {
 			logger.info(value.toString());			
 		}
 		
@@ -61,7 +61,7 @@ public class CartController {
 	}
 	
 	@PutMapping("/cart")
-	public int updateCart(@RequestBody CartVoExtend cart) {
+	public int updateCart(@RequestBody CartVOExtend cart) {
 		logger.info("Updating " + cart.getCustId() + "'s items in the 'cart' table!");
 		int returnVal = 0;
 		

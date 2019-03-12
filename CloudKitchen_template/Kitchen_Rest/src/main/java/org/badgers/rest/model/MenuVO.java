@@ -3,7 +3,7 @@ package org.badgers.rest.model;
 import lombok.Data;
 
 @Data
-public class MenuVo {
+public class MenuVO {
 	private String code;
 	private String name;
 	private int basicPrice;
