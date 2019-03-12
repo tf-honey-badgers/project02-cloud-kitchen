@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Home</title>
+	<title>rest-cart-test</title>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<style type="text/css">
 		.options { float: right; top: -100px;}
@@ -43,143 +43,109 @@
 		<li><input type="button" id="addCart" value="장바구니에 추가하기"></li>
 		<li><input type="button" id="readCart" value="장바구니 읽기하기"></li>
 		<li><input type="button" id="updateCart" value="장바구니 수정하기"></li>
+		<li><input type="button" id="deleteCart" value="장바구니 항목 1개 삭제하기"></li>
 		<li><input type="button" id="deleteAllCart" value="장바구니 전체 삭제하기"></li>
 	</ul>
+	
+	<div class="printArea"></div>
 </body>
 <script>
 	$(document).ready(function(e){
-		var inputOptions = [];
-		var flag = true;
-		var cur = 0;
+		var inputOptions = []; // 비동기 요청하면 List로 매핑되도록
+		var flag = true; // 옵션 정보 처리 시 사용할 무한루프 제어용
+		var cur = 0; // 옵션 정보 처리 시 현재 몇 번째 옵션 출력인지 표시용
 		
-
-		// 장바구니에 메뉴 추가하기
+		// 장바구니에 메뉴 추가하기 -> id="addCart" 버튼을 클릭했을 때 작동!
 		$('#addCart').on('click', () => {
-			
-			while(flag) {
+			while(flag) { // 3개의 옵션 정보를 생성하여 inputOptions 배열에 추가
 				optId = $('.menuOptId').eq(cur).val();
 				id = $('.menuId').eq(cur).val();
 				optName = $('.menuOptName').eq(cur).val();
 				optPrice = $('.menuOptPrice').eq(cur).val();
 				cur++;
 				
-				inputOptions.push({ id : null, cartId : null, menuOptId : optId, idx : 0, menuId : id, menuOptName : optName, menuOptPrice : optPrice });
+				inputOptions.push({ menuOptId : optId, menuId : id, menuOptName : optName, menuOptPrice : optPrice });
 				if(cur == 3) { flag = false; }
 			}
-			flag = true;
-	
-			var inputData = { id : null, custId : $('#custId').val(), quantity : $('#quantity').val(), unitPrice : $('#unitPrice').val(),
-					amount : $('#amount').val(), kitchenName : $('#kitchenName').val(), bizName : $('#bizName').val(),
-					menuId : $('#menuId').val(), menuName : $('#menuName').val(), idx : 0, options : inputOptions };
-	
-			console.log("출력하기 : ", inputData)
+			flag = true; // flag의 값 초기화 (위 무한반복문 탈출 후 다시 id="addCart" 버튼 누를 때를 대비)
+
+			// 비동기 요청하면 CartVOExtended에 매핑되도록
+			var inputData = {
+					custId : $('#custId').val()
+					, quantity : $('#quantity').val()
+					, unitPrice : $('#unitPrice').val()
+					, amount : $('#amount').val()
+					, kitchenName : $('#kitchenName').val()
+					, bizName : $('#bizName').val()
+					, menuId : $('#menuId').val()
+					, menuName : $('#menuName').val()
+					, options : inputOptions
+				};
+			console.log("INPUTDATA = 제대로 입력되었는지 확인하기 : ", inputData)
 			
+			// CartController로 비동기 요청하기
 			$.ajax({
-				type : 'POST',
-				url : '/cart',
-        		headers : {
+				type : 'POST'
+				, url : '/cart'
+        		, headers : {
         			'Accept' : 'application/json',
         			'Content-Type' : 'application/json'
-        		},
-				data : JSON.stringify(inputData),
+        		}
+				, data : JSON.stringify(inputData),
 	    		success : data => {
 					console.log(data);
-				},
-				error : data => {
+				}
+				, error : data => {
 					console.log('ERRoR oCCURRED');
 					console.log(data);
-				},
+				}
 			});
 		});
 		
 		// 장바구니 읽기
+		$('#readCart').on('click', () => {
+			$.get({
+				url : '/cart/tjtjtj'
+				, dataType : "json"
+				, success : data => {
+					console.log(data);
+					$('.printArea').text(data);
+				}
+			})
+			
+		});
 		
 		// 장바구니 수정하기
 		
 		// 장바구니에서 메뉴 삭제하기
-		
-		// 해당 가게에 정보 및 메뉴 불러오기
-		$('#bizinfo').on('click',function(e){
+		$('#deleteCart').on('click', () => {
 			$.ajax({
-        		type : "POST",
-        		url : "./kitchenbranch/bizinfo",
-/*         		data : {
-        			bizid : $('#"biz_id"').val()
-        		}, */
-        		error : function(data){
-        			console.log(data);
-        		},
-        		success : function(data){
-        			console.log(data);
-        		} // success
-        	});	// post ajax끝
-		});	// kitchenbranch clic 끝
-	
-		// 해당 지점에 가게 불러오기
-		$('#biz').on('click',function(e){
-			$.ajax({
-        		type : "POST", 
-        		url : "./kitchenbranch/bizlist",
-        		error : function(data){
-        			console.log(data);
-        		},
-        		success : function(data){
-        			console.log(data);
-        		} // success
-        	});	// post ajax끝
-		});	// kitchenbranch clic 끝
+				type : 'DELETE'
+				, url : '/cart' + '/yuni1010/cart_1'
+		    	, success : data => {
+					console.log(data);
+				}
+				, error : data => {
+					console.log('ERRoR oCCURRED');
+					console.log(data);
+				}
+			});
+		});
 		
-		// 키친 지점불러오기
-		$('#kitchenbranch').on('click',function(e){
+		// 장바구니에서 메뉴 전체 삭제하기
+		$('#deleteAllCart').on('click', () => {
 			$.ajax({
-        		type : "POST", 
-        		url : "./kitchenbranch/kitchenlist",
-        		error : function(data){
-        			console.log(data);
-        		},
-        		
-        		success : function(data){
-        			console.log(data);
-        		} // success
-        	});	// post ajax끝
-		});	// kitchenbranch clic 끝
-		
-		// 리뷰관련
-		$('#recommendation').on('click',function(e){
-			console.log($('#cust_Idx').val());
-			$.ajax({
-        		type : "POST", 
-        		url : "./review/recommendation",
-        		data : {
-        			idx : $('#cust_Idx').val()
-        		},
-        		error : function(data){
-        			console.log(data);
-        		},
-        		
-        		success : function(data){
-        			console.log(data);
-        		} // success
-        	});	// post ajax끝
-		});	// btn clic 끝
-		
-		
-		$('#review').on('click',function(e){
-
-			$.ajax({
-        		type : "POST", 
-        		url : "./review/list",
-        		error : function(data){
-        			console.log(data);
-        		},
-        		
-        		success : function(data){
-        			console.log(data);
-        		} // success
-        	});	// post ajax끝
-		});	// btn clic 끝
-
+				type : 'DELETE'
+				, url : '/cart' + '/tjtjtj'
+		    	, success : data => {
+					console.log(data);
+				}
+				, error : data => {
+					console.log('ERRoR oCCURRED');
+					console.log(data);
+				}
+			});
+		});
 	});
-	// 리뷰관련 끝
 </script>
 </html>
