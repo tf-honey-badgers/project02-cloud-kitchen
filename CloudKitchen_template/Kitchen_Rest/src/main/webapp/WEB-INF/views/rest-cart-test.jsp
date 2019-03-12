@@ -20,10 +20,10 @@
 	<ul class="options">
 		<c:forEach var="i" begin="1" end="5">
 			<li>옵션 ${i}번 추가하기</li>
-			<li>menuOptId : <input type="text" id="menuOptId" placeholder="String을 입력해주세요."></li>
-			<li>menuId : <input type="text" id="menuId" placeholder="String을 입력해주세요."></li>
-			<li>menuOptName : <input type="text" id="menuOptName" placeholder="String을 입력해주세요."></li>
-			<li>menuOptPrice : <input type="text" id="menuOptPrice" placeholder="int를 입력해주세요."></li>
+			<li>menuOptId : <input type="text" class="menuOptId" placeholder="String을 입력해주세요."></li>
+			<li>menuId : <input type="text" class="menuId" placeholder="String을 입력해주세요."></li>
+			<li>menuOptName : <input type="text" class="menuOptName" placeholder="String을 입력해주세요."></li>
+			<li>menuOptPrice : <input type="text" class="menuOptPrice" placeholder="int를 입력해주세요."></li>
 			<br>
 		</c:forEach>
 	</ul>
@@ -48,9 +48,24 @@
 </body>
 <script>
 	$(document).ready(function(e){
+		var inputOptions = [];
+		var flag = true;
+		var cur = 0;
+		
+		while(flag) {
+			if($('.menuOptId').eq(cur).val() === null) { flag = false; }
+			optId = $('.menuOptId').eq(cur).val();
+			id = $('.menuId').eq(cur).val();
+			optName = $('.menuOptName').eq(cur).val();
+			optPrice = $('.menuOptPrice').eq(cur).val();
+			cur++;
+			
+			inputOptions.push({ menuoptId : optId, menuId : id, menuOptName : optName, menuOptPrice : optPrice });
+		}
+
 		var inputData = { custId : $('#custId').val(), quantity : $('#quantity').val(), unitPrice : $('#unitPrice').val(),
 				amount : $('#amount').val(), kitchenName : $('#kitchenName').val(), bizName : $('#bizName').val(),
-				menuId : $('#menuId').val(), menuName : $('menuName').val() };
+				menuId : $('#menuId').val(), menuName : $('menuName').val(), options : inputOptions };
 
 		// 장바구니에 메뉴 추가하기
 		$('#addCart').on('click', () => {
