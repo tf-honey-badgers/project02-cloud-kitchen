@@ -3,10 +3,9 @@ package org.badgers.rest.model;
 import lombok.Data;
 
 @Data
-public class OrderOptionVo {
+public class KitchenBranchVO {
 	private String id;
 	private String name;
-	private int optPrice;
-	private String optCode;
-	private String detailNo;
+	private String address;
+	private int idx;
 }
