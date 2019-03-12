@@ -45,39 +45,18 @@
 	</update>
 	
 	<delete id="deleteCart">
-		delete from honey_badgers.cart where cart_id = #{cartId}
+		delete from honey_badgers.cart where id = #{cartId}
 	</delete>
 	
 	<delete id="deleteAllCart">
 		delete from honey_badgers.cart where cust_id = #{custId}
 	</delete>
 	
-	<delete id="deleteOption">
-		delete from honey_badgers.cart_detail where cart_id = #{cartId} and menu_opt_id = #{menuOptId}
-	</delete>
-	
-	<delete id="deleteAllOptions">
+	<delete id="deleteOptions">
 		delete from honey_badgers.cart_detail where cart_id = #{cartId}
 	</delete>
 	
 	<select id="readCartIds" resultType="String">
 		select id from honey_badgers.cart where cust_id = #{custId} 
 	</select>
-
-	
-<!-- 	<select id="read" resultType="org.badgers.domain.BoardVO">
-		select * from open.tbl_board where bno = #{bno}
-	</select>
-	
-	<update id="update">
-		update open.tbl_board set title = #{title}, content = #{content} where bno = #{bno}
-	</update>
-	
-	<delete id="delete">
-		delete from open.tbl_board where bno = #{bno}
-	</delete>
-	
-	<select id="getList" resultType="org.badgers.domain.BoardVO">
-		select * from open.tbl_board where bno > 0 order by bno desc
-	</select> -->
 </mapper>

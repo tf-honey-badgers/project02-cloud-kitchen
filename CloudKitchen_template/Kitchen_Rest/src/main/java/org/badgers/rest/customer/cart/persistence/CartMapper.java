@@ -17,14 +17,13 @@ public interface CartMapper {
 	public List<CartVoExtend> readCart(String custId) throws Exception;
 	public List<CartDetailVo> readOptions(String cartId) throws Exception;
 	
-	// CartServiceImpl의 updateCart & updateOptions에서 사용
+	// CartServiceImpl의 updateCart에서 사용
 	public int updateCart(CartVoExtend cart) throws Exception;
-	public int updateOption(CartDetailVo option) throws Exception;
 	
 	// CartServiceImpl의 deleteCart & deleteOptions에서 사용
 	public int deleteCart(String cartId) throws Exception;
 	public int deleteAllCart(String custId) throws Exception;
-	public int deleteOption(String cartId, String menuOptId) throws Exception;
-	public int deleteAllOptions(String cartId) throws Exception;
+	public int deleteOptions(String cartId) throws Exception;
 	public List<String> readCartIds(String custId) throws Exception;
+
 }
