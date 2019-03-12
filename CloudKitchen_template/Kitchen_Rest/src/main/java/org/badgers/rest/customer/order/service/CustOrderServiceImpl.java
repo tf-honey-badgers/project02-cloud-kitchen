@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.badgers.rest.customer.order.persistence.CustOrderMapper;
 import org.badgers.rest.model.OrderInfoVO;
+import org.badgers.rest.model.OrderVo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,7 +50,17 @@ public class CustOrderServiceImpl implements CustOrderService {
 	public OrderInfoVO getOrderInfo() throws Exception {
 		
 		OrderInfoVO vo= mapper.getOrderInfo();
+		
+		System.out.println(vo.getId());
 		return vo;
+	}
+	
+	public OrderVo test(String orderId) throws Exception{
+		OrderVo vo = mapper.test(orderId);
+		
+		vo.getId();
+		return mapper.test(orderId);
+		
 	}
 	
 
