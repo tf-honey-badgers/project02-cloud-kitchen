@@ -9,6 +9,5 @@ public interface CartMapper {
 	public void insertCart(CartVoExtend cart) throws Exception;
 	public void insertDetails(CartDetailVo option) throws Exception;
 	
-	public 
 	
 }
