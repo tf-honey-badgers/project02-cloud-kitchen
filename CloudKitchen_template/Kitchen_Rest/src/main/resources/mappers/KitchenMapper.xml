@@ -7,21 +7,21 @@
 	namespace="org.badgers.rest.customer.kitchen.persistence.KitchenMapper">
 
 	<select id="kitchenbranchList"
-		resultType="org.badgers.rest.model.KitchenBranchVo">
+		resultType="org.badgers.rest.model.KitchenBranchVO">
 		select * from kitchen_branch
 	</select>
 
-	<select id="bizList" resultType="org.badgers.rest.model.BizVo">
+	<select id="bizList" resultType="org.badgers.rest.model.BizVO">
 		select * from biz
 	</select>
-	<resultMap id="MenuCatVo" type="org.badgers.rest.model.MenuCatVo">
+	<resultMap id="MenuCatVo" type="org.badgers.rest.model.MenuCatVO">
 		<result property="no" column="id"/>
 		<result property="name" column="name"/>
 		<result property="bizId" column="biz_id"/>
 		<result property="bizId" column="idx"/>
 	</resultMap>
 
- 	<resultMap id="bizvo" type="org.badgers.rest.model.BizVo">
+ 	<resultMap id="bizvo" type="org.badgers.rest.model.BizVO">
 		<result property="bizId" column="biz_id" />
 		<result property="info" column="info" />
 		<result property="name" column="name" />
@@ -30,7 +30,7 @@
 		<result property="bizCatId" column="biz_cat_id" />
 		<result property="kitchenId" column="kitchen_id" />
 		<result property="idx" column="idx" />
-		<collection property="menucatvo" resultMap="MenuCatVo"/>
+		<collection property="menucatvo" resultMap="MenuCatVO"/>
 	</resultMap>
 
 	<select id="bizInfo" resultMap="bizvo">
