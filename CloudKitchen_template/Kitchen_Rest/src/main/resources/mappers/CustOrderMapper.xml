@@ -9,7 +9,7 @@
 	<select id="getOrderId" resultType="int">
 		select max(idx) from honey_badgers.order order by idx desc 
 	</select>
-	<insert id="initOrder">
+	<insert id="initOrder" parameterType="org.badgers.rest.model.CustomerVo">
 		insert into honey_badgers.order (id , phone , msg,
 		kitchen_name, cust_id)
 		values(#{id},#{phone},#{msg},
