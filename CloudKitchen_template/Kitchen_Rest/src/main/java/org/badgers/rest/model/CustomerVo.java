@@ -5,7 +5,7 @@ import java.util.Date;
 
 import lombok.Data;
 
-@Data
+ @Data
 public class CustomerVo {
 	private String id;
 	private String pw;
@@ -16,4 +16,5 @@ public class CustomerVo {
 	private String gender;
 	private String status;
 	private Timestamp regDate;
+	private String idx;
 }

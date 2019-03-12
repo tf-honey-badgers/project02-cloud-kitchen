@@ -6,6 +6,6 @@ import lombok.Data;
 public class KitchenBranchVo {
 	private String id;
 	private String name;
-	private String regionCode;
 	private String address;
+	private int idx;
 }
