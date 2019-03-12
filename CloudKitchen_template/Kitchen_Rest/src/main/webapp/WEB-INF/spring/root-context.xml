@@ -58,4 +58,7 @@
 	<mybatis-spring:scan base-package="org.badgers.rest.customer.member.persistence" />
 	<mybatis-spring:scan base-package="org.badgers.rest.customer.order.persistence" />
 	<mybatis-spring:scan base-package="org.badgers.rest.customer.review.persistence" />
+	
+<!-- 	<context:component-scan base-package="org.badgers.rest.customer.order.controller"></context:component-scan>
+	<context:component-scan base-package="org.badgers.rest.customer.order.service"></context:component-scan> -->
 </beans>

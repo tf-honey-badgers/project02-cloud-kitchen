@@ -13,7 +13,7 @@
 	<insert id="initOrder">
 		insert into honey_badgers.order (id , phone , msg,
 		kitchen_name, cust_id)
-		values('order_7','444-444-4444', '이쁘다 이쁘다 이브따 유니',
+		values('order_9','444-444-4444', '이쁘다 이쁘다 이브따 유니',
 		'종각점', 'tjtjtj');
 	</insert>
 	<insert id="initOrderDetail">
@@ -21,7 +21,7 @@
 		menu_price, biz_name, biz_id,
 		menu_id, order_id) values
 		('order_detail_1', 15000, '유니네 피자집',
-		'biz_2', 'menu_7','order_7');
+		'biz_2', 'menu_7','order_9');
 
 	</insert>
 	<insert id="initOrderMenuOption">
@@ -44,15 +44,15 @@
 	<update id="addOrderDetailTotalAmount">
 		update order_detail
 		set total_amt=
-		(menu_price+add_option_price) where order_id='order_7';
+		(menu_price+add_option_price) where order_id='order_9';
 
 	</update>
 	<update id="addOrderPayAmount">
 		update honey_badgers.order set pay_amt =(select
 		sum(total_amt) from
 		order_detail group by order_id having
-		order_id='order_7')
-		where id='order_7';
+		order_id='order_9')
+		where id='order_9';
 	</update>
 	<select id="getOrderInfo"
 		resultType="org.badgers.rest.model.OrderInfoVO">

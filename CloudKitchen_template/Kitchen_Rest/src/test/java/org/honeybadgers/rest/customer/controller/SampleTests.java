@@ -12,15 +12,18 @@ import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Log4j
-@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
+@ContextConfiguration(locations= {"file:src/main/webapp/WEB-INF/spring/root-context.xml",
+		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
 
 public class SampleTests {
-
+	
+	
 	@Setter(onMethod_ = {@Autowired})
 	private CustOrderService service;
 	
 	@Test
 	public void test() {
+		
 		try {
 			log.info("----------------------------------------");
 			service.excuteOrder();
