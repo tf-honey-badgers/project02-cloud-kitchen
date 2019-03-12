@@ -14,7 +14,6 @@
 	<select id="bizList" resultType="org.badgers.rest.model.BizVo">
 		select * from biz
 	</select>
-	
 	<resultMap id="MenuCatVo" type="org.badgers.rest.model.MenuCatVo">
 		<result property="no" column="id"/>
 		<result property="name" column="name"/>
