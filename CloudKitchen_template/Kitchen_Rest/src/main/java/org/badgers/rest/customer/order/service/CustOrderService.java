@@ -1,5 +1,12 @@
 package org.badgers.rest.customer.order.service;
 
-public interface CustOrderService {
+import org.badgers.rest.model.OrderInfoVO;
 
+public interface CustOrderService {
+	
+	public int excuteOrder() throws Exception;
+	
+	public OrderInfoVO getOrderInfo() throws Exception;
+
+	
 }

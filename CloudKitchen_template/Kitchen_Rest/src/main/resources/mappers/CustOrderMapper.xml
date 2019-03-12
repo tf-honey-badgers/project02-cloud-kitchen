@@ -3,6 +3,58 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.badgers.mapper.CustOrderMapper">
-	
+<mapper
+	namespace="org.badgers.rest.customer.order.persistence.CustOrderMapper">
+
+	<select id="getOrderId" resultType="int">
+		select max(idx) from honey_badgers.order order by idx desc ;
+	</select>
+	<insert id="initOrder">
+		insert into honey_badgers.order (id , phone , msg,
+		kitchen_name, cust_id)
+		values('order_12','444-444-4444', '이쁘다 이쁘다 이브따 유니',
+		'종각점', 'tjtjtj');
+	</insert>
+	<insert id="initOrderDetail">
+		insert into honey_badgers.order_detail (id,
+		menu_price, biz_name, biz_id,
+		menu_id, order_id) values
+		('order_detail_1', 15000, '유니네 피자집',
+		'biz_2', 'menu_7','order_12');
+
+	</insert>
+	<insert id="initOrderMenuOption">
+		insert into order_menu_option (id, name, opt_price,
+		opt_id, order_detail_id,
+		menu_id)
+		values('order_menu_option_12', '라지',
+		2000, 'menu_option_6' ,'order_detail_1', 'menu_7' );
+
+	</insert>
+	<update id="addOrderDetailOptionPrice">
+		update order_detail
+		set add_option_price =
+		(select
+		sum(opt_price) from order_menu_option group by order_detail_id having
+		order_detail_id= 'order_detail_1')
+		where id='order_detail_1';
+
+	</update>
+	<update id="addOrderDetailTotalAmount">
+		update order_detail
+		set total_amt=
+		(menu_price+add_option_price) where order_id='order_12';
+
+	</update>
+	<update id="addOrderPayAmount">
+		update honey_badgers.order set pay_amt =(select
+		sum(total_amt) from
+		order_detail group by order_id having
+		order_id='order_12')
+		where id='order_12';
+	</update>
+	<select id="getOrderInfo"
+		resultType="org.badgers.rest.model.OrderInfoVO">
+
+	</select>
 </mapper>
