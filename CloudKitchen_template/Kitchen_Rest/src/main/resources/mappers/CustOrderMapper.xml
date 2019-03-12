@@ -54,7 +54,7 @@
 		where id='order_12'
 	</update>
 	<select id="getOrderInfo"
-		resultType="org.badgers.rest.model.OrderInfoVO">
+		 resultType="java.util.HashMap">
 		select * from
 		(
 		select * from

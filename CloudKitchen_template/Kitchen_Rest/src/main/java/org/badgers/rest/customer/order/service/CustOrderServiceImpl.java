@@ -49,12 +49,11 @@ public class CustOrderServiceImpl implements CustOrderService {
 	}
 
 	@Override
-	public OrderInfoVO getOrderInfo() throws Exception {
+	public List<OrderInfoVO> getOrderInfo() throws Exception {
 		
-		OrderInfoVO vo= mapper.getOrderInfo();
+		List<OrderInfoVO> list= mapper.getOrderInfo();
 		
-		System.out.println(vo.getId());
-		return vo;
+		return list;
 	}
 	
 	public OrderVO test(String orderId) throws Exception{

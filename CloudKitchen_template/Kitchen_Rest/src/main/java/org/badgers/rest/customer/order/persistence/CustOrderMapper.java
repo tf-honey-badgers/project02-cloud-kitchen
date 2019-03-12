@@ -30,7 +30,7 @@ public interface CustOrderMapper {
 	public int addOrderPayAmount();
 	
 	//insert 된 order 튜플을  select 해서 customer Controller로 보내줌
-	public OrderInfoVO getOrderInfo();
+	public List<OrderInfoVO> getOrderInfo();
 	
 	public OrderVO test(@Param("orderId") String orderId);
 

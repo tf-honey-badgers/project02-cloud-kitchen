@@ -38,13 +38,13 @@ public class CustOrderController {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_XHTML_XML_VALUE
 			})
-	public OrderInfoVO getOrderInfo(
+	public List<OrderInfoVO> getOrderInfo(
 			@PathVariable("orderId") String orderId
 			) throws Exception{
 		System.out.println(orderId);
-//		OrderInfoVO  vo= service.getOrderInfo();
+		List<OrderInfoVO>  list = service.getOrderInfo();
 //		System.out.println(vo.getId());
-				return null;
+				return list;
 		
 	}
 	
