@@ -32,11 +32,11 @@
 			(#{id}, #{cartId}, #{menuOptId}, #{menuId}, #{menuOptName}, #{menuOptPrice})
 	</insert>
 
-	<select id="readCart" resultType="org.badgers.rest.model.CartVoExtend">
+	<select id="readCart" resultType="org.badgers.rest.model.CartVOExtend">
 		select * from honey_badgers.cart where cust_id = #{custId}
 	</select>
 
-	<select id="readOptions" resultType="org.badgers.rest.model.CartDetailVo">
+	<select id="readOptions" resultType="org.badgers.rest.model.CartDetailVO">
 		select * from honey_badgers.cart_detail where cart_id = #{cartId}
 	</select>
 

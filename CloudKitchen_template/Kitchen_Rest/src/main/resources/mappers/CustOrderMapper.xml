@@ -9,11 +9,11 @@
 	<select id="getOrderId" resultType="int">
 		select max(idx) from honey_badgers.order order by idx desc 
 	</select>
-	<insert id="initOrder">
+	<insert id="initOrder" parameterType="org.badgers.rest.model.CustomerVO">
 		insert into honey_badgers.order (id , phone , msg,
 		kitchen_name, cust_id)
-		values('order_12','444-444-4444', '이쁘다 이쁘다 이브따 유니',
-		'종각점', 'tjtjtj')
+		values(#{id},#{phone},#{msg},
+		#{kitchen_name}, #{cust_id});
 	</insert>
 	<insert id="initOrderDetail">
 		insert into honey_badgers.order_detail (id,
@@ -75,7 +75,7 @@
 
 	</select>
 	
-	<select id="test" resultType="org.badgers.rest.model.OrderVo">
+	<select id="test" resultType="org.badgers.rest.model.OrderVO">
 		select * from honey_badgers.order where id=#{orderId}
 	</select>
 	
