@@ -27,12 +27,7 @@
 		<beans:property name="contentType" value="UTF-8" />
 	</beans:bean>
 
-	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<beans:property name="dataSource" ref="dataSource" />
-	</beans:bean>
 	<tx:annotation-driven/>
-	
-	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
 	<!-- "org.badgers.rest" 하위 전체 스캔 -> 그 중에 @Controller, @Service 붙은 클래스만 인식하도록 -->
 	<context:component-scan base-package="org.badgers.rest.*">
