@@ -6,7 +6,7 @@ import org.badgers.rest.model.CartDetailVo;
 import org.badgers.rest.model.CartVoExtend;
 
 public interface CartMapper {
-
+	
 	// CartServiceImpl의 addCart & addOptions에서 사용
 	public int getCartIdx() throws Exception;
 	public int insertCart(CartVoExtend cart) throws Exception;

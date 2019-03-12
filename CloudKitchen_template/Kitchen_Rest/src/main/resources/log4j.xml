@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.badgers.controller">
+	<logger name="com.badgers.rest">
 		<level value="info" />
 	</logger>
 	
@@ -44,7 +44,7 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	
