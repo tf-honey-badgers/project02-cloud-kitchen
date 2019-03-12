@@ -7,4 +7,5 @@ public class MenuCatVo {
 	private String no;
 	private String name;
 	private String bizId;
+	private int idx;
 }
