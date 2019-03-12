@@ -18,7 +18,7 @@
 	</h1>
 
 	<ul class="options">
-		<c:forEach var="i" begin="1" end="5">
+		<c:forEach var="i" begin="1" end="3">
 			<li>옵션 ${i}번 추가하기</li>
 			<li>menuOptId : <input type="text" class="menuOptId" placeholder="String을 입력해주세요."></li>
 			<li>menuId : <input type="text" class="menuId" placeholder="String을 입력해주세요."></li>
@@ -52,23 +52,28 @@
 		var flag = true;
 		var cur = 0;
 		
-		while(flag) {
-			if($('.menuOptId').eq(cur).val() === null) { flag = false; }
-			optId = $('.menuOptId').eq(cur).val();
-			id = $('.menuId').eq(cur).val();
-			optName = $('.menuOptName').eq(cur).val();
-			optPrice = $('.menuOptPrice').eq(cur).val();
-			cur++;
-			
-			inputOptions.push({ menuoptId : optId, menuId : id, menuOptName : optName, menuOptPrice : optPrice });
-		}
-
-		var inputData = { custId : $('#custId').val(), quantity : $('#quantity').val(), unitPrice : $('#unitPrice').val(),
-				amount : $('#amount').val(), kitchenName : $('#kitchenName').val(), bizName : $('#bizName').val(),
-				menuId : $('#menuId').val(), menuName : $('menuName').val(), options : inputOptions };
 
 		// 장바구니에 메뉴 추가하기
 		$('#addCart').on('click', () => {
+			
+			while(flag) {
+				optId = $('.menuOptId').eq(cur).val();
+				id = $('.menuId').eq(cur).val();
+				optName = $('.menuOptName').eq(cur).val();
+				optPrice = $('.menuOptPrice').eq(cur).val();
+				cur++;
+				
+				inputOptions.push({ id : null, cartId : null, menuOptId : optId, idx : 0, menuId : id, menuOptName : optName, menuOptPrice : optPrice });
+				if(cur == 3) { flag = false; }
+			}
+			flag = true;
+	
+			var inputData = { id : null, custId : $('#custId').val(), quantity : $('#quantity').val(), unitPrice : $('#unitPrice').val(),
+					amount : $('#amount').val(), kitchenName : $('#kitchenName').val(), bizName : $('#bizName').val(),
+					menuId : $('#menuId').val(), menuName : $('#menuName').val(), idx : 0, options : inputOptions };
+	
+			console.log("출력하기 : ", inputData)
+			
 			$.ajax({
 				type : 'POST',
 				url : '/cart',
