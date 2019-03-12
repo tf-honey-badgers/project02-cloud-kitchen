@@ -27,11 +27,11 @@
 	</bean>
 	
 	<!-- PlatformTransactionManager -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<!-- <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<tx:annotation-driven/>
-	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy> -->
 	
 	
 	<!-- SqlSessionFactory & SqlSession for MyBatis -->
@@ -50,6 +50,7 @@
 	</bean>
 
 	
+	
 	<mybatis-spring:scan base-package="org.badgers.rest.business.member.persistence" />
 	<mybatis-spring:scan base-package="org.badgers.rest.business.menu.persistence" />
 	<mybatis-spring:scan base-package="org.badgers.rest.business.order.persistence" />
@@ -59,6 +60,4 @@
 	<mybatis-spring:scan base-package="org.badgers.rest.customer.order.persistence" />
 	<mybatis-spring:scan base-package="org.badgers.rest.customer.review.persistence" />
 	
-<!-- 	<context:component-scan base-package="org.badgers.rest.customer.order.controller"></context:component-scan>
-	<context:component-scan base-package="org.badgers.rest.customer.order.service"></context:component-scan> -->
 </beans>
