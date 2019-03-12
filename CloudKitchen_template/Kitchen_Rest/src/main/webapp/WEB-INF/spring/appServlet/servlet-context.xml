@@ -32,8 +32,4 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
-<<<<<<< HEAD
 </beans:beans>
-=======
-</beans:beans>
->>>>>>> 12d5f3853417a685c96307850f6401e8aceec468

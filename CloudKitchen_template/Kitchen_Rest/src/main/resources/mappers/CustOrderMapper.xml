@@ -7,12 +7,14 @@
 	namespace="org.badgers.rest.customer.order.persistence.CustOrderMapper">
 
 	<select id="getOrderId" resultType="int">
-		select max(idx) from honey_badgers.order order by idx desc ;
+		select max(idx) from
+		honey_badgers.order order by idx desc ;
 	</select>
 	<insert id="initOrder">
 		insert into honey_badgers.order (id , phone , msg,
 		kitchen_name, cust_id)
-		values('order_5','444-444-4444', '이쁘다 이쁘다 이브따 유니',
+		values('order_5','444-444-4444', '이쁘다 이쁘다 이브따
+		유니',
 		'종각점', 'tjtjtj');
 	</insert>
 	<insert id="initOrderDetail">
@@ -55,6 +57,24 @@
 	</update>
 	<select id="getOrderInfo"
 		resultType="org.badgers.rest.model.OrderInfoVO">
+
+		select * from
+		(
+		select * from
+		honey_badgers.order o,(
+		select order_detail_id, quantity, menu_price, add_option_price,
+		total_amt,biz_name,order_opt_id,order_opt_name,opt_price,opt_id
+		,d.order_id from (SELECT id as order_detail_id,quantity,
+		menu_price,add_option_price, total_amt, biz_name, order_id FROM
+		order_detail) d
+		LEFT JOIN (select id as order_opt_id, name as order_opt_name, opt_price,
+		opt_id, order_detail_id as order_opt_order_detail_id from
+		order_menu_option) p ON d.order_detail_id =
+		p.order_opt_order_detail_id
+		) k
+		where k.order_id = o.id
+		) l
+		where l.id=#{order_id};
 
 	</select>
 </mapper>
