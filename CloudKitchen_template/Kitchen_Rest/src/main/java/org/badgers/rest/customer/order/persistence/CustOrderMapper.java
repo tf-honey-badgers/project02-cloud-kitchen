@@ -8,6 +8,9 @@ import org.badgers.rest.model.OrderVO;
 
 public interface CustOrderMapper {
 	
+	public int insert1(String val);
+	public int insert2(String val);
+	
 	//order_id 생성
 	public int getOrderId();
 	

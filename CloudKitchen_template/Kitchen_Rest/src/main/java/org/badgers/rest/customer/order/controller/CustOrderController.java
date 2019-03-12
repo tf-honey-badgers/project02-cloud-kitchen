@@ -26,6 +26,15 @@ public class CustOrderController {
 	private CustOrderService service;
 	
 	
+	@RequestMapping(value = "/aaa", method = RequestMethod.GET)
+	public String testInsertAAA() throws Exception{
+			
+		service.insertAAA("123456789012345");
+		
+		return "home";
+	}
+	
+	
 	@RequestMapping(value = "/myhome", method = RequestMethod.GET)
 	public String test() throws Exception{
 			service.excuteOrder();

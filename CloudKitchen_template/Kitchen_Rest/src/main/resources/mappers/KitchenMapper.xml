@@ -10,7 +10,7 @@
 		resultType="org.badgers.rest.model.KitchenBranchVO">
 		select * from kitchen_branch
 	</select>
-
+<!-- 
 	<select id="bizList" resultType="org.badgers.rest.model.BizVO">
 		select * from biz
 	</select>
@@ -36,5 +36,5 @@
 	<select id="bizInfo" resultMap="org.badgers.rest.model.BizVO">
 		select * from biz
 	</select>
-
+ -->
 </mapper>

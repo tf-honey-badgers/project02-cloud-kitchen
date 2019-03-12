@@ -17,6 +17,14 @@ public class CustOrderServiceImpl implements CustOrderService {
 	@Inject
 	CustOrderMapper mapper;
 	
+	@Transactional()
+	public void insertAAA(String val) {
+		
+		mapper.insert1(val);
+		mapper.insert2(val);
+		
+	}
+	
 	@Override
 	@Transactional()
 	public int excuteOrder() throws Exception {
@@ -69,6 +77,7 @@ public class CustOrderServiceImpl implements CustOrderService {
 		
 		return mapper.getOrder();
 	}
+
 	
 
 }

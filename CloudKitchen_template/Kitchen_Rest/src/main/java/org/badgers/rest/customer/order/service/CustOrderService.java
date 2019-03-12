@@ -7,6 +7,8 @@ import org.badgers.rest.model.OrderVO;
 
 public interface CustOrderService {
 	
+	public void insertAAA(String val);
+	
 	public int excuteOrder() throws Exception;
 	
 	public List<OrderInfoVO> getOrderInfo() throws Exception;

@@ -5,7 +5,15 @@
 
 <mapper
 	namespace="org.badgers.rest.customer.order.persistence.CustOrderMapper">
-
+	
+	<insert id="insert1">
+	insert into tbl_1(val) values(#{val})
+	</insert>
+	
+	<insert id="insert2">
+	insert into tbl_2(val) values(#{val})
+	</insert>
+	
 	<select id="getOrderId" resultType="int">
 		select max(idx) from honey_badgers.order order by idx desc 
 	</select>
@@ -19,7 +27,7 @@
 		insert into honey_badgers.order_detail (id,
 		menu_price, biz_name, biz_id,
 		menu_id, order_id) values
-		('order_detail_1', 15000, '유니네 피자집',
+		('order_detail_20', 15000, '유니네 피자집',
 		'biz_2', 'menu_7','order_12')
 
 	</insert>
@@ -27,8 +35,8 @@
 		insert into order_menu_option (id, name, opt_price,
 		opt_id, order_detail_id,
 		menu_id)
-		values('order_menu_option_12', '라지',
-		2000, 'menu_option_6' ,'order_detail_1', 'menu_7' )
+		values('order_menu_option_15', '라지',
+		2000, 'menu_option_6' ,'order_detail_20', 'menu_7' )
 
 	</insert>
 	<update id="addOrderDetailOptionPrice">
@@ -36,8 +44,8 @@
 		set add_option_price =
 		(select
 		sum(opt_price) from order_menu_option group by order_detail_id having
-		order_detail_id= 'order_detail_1')
-		where id='order_detail_1'
+		order_detail_id= 'order_detail_20')
+		where id='order_detail_20'
 
 	</update>
 	<update id="addOrderDetailTotalAmount">
