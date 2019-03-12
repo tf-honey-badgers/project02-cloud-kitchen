@@ -1,5 +1,7 @@
 package org.badgers.rest.customer.order.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.badgers.rest.customer.order.persistence.CustOrderMapper;
@@ -61,6 +63,12 @@ public class CustOrderServiceImpl implements CustOrderService {
 		vo.getId();
 		return mapper.test(orderId);
 		
+	}
+
+	@Override
+	public List<OrderVo> getOrder() {
+		
+		return mapper.getOrder();
 	}
 	
 

@@ -1,11 +1,15 @@
 package org.badgers.rest.customer.order.controller;
 
 
+import java.util.List;
+
 import org.badgers.rest.customer.order.service.CustOrderService;
 import org.badgers.rest.model.OrderInfoVO;
 import org.badgers.rest.model.OrderVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,10 +48,10 @@ public class CustOrderController {
 	}
 	
 	
-	@GetMapping(value="/test/{orderId}",
+	@GetMapping(value="/test/order/{orderId}",
 			produces= {
-					MediaType.APPLICATION_JSON_UTF8_VALUE,
-					MediaType.APPLICATION_XHTML_XML_VALUE
+					//MediaType.APPLICATION_JSON_UTF8_VALUE,
+					//MediaType.APPLICATION_XHTML_XML_VALUE
 			})
 	public OrderVo test(
 			@PathVariable("orderId") String orderId
@@ -56,6 +60,12 @@ public class CustOrderController {
 		System.out.println("========================"+service.test(orderId).getKitchenName());
 				return service.test(orderId);
 		
+	}
+	
+	
+	@GetMapping(value="/test/order")
+	public ResponseEntity<List<OrderVo>>  getOrder(){
+		return new ResponseEntity<>(service.getOrder(), HttpStatus.OK);
 	}
 	
 	

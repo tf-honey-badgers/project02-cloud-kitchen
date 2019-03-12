@@ -1,5 +1,7 @@
 package org.badgers.rest.customer.order.persistence;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.badgers.rest.model.OrderInfoVO;
 import org.badgers.rest.model.OrderVo;
@@ -32,5 +34,6 @@ public interface CustOrderMapper {
 	
 	public OrderVo test(@Param("orderId") String orderId);
 
+	public List<OrderVo> getOrder(); 
 	
 }

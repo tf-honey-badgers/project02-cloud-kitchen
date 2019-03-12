@@ -78,4 +78,8 @@
 	<select id="test" resultType="org.badgers.rest.model.OrderVo">
 		select * from honey_badgers.order where id=#{orderId}
 	</select>
+	
+	<select id="getOrder" resultType="java.util.HashMap">
+		select * from honey_badgers.order
+	</select>
 </mapper>
