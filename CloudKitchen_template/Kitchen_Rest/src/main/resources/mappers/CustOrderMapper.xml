@@ -12,8 +12,8 @@
 	<insert id="initOrder">
 		insert into honey_badgers.order (id , phone , msg,
 		kitchen_name, cust_id)
-		values('order_12','444-444-4444', '이쁘다 이쁘다 이브따 유니',
-		'종각점', 'tjtjtj');
+		values(#{id},#{phone},#{msg},
+		#{kitchen_name}, #{cust_id});
 	</insert>
 	<insert id="initOrderDetail">
 		insert into honey_badgers.order_detail (id,
