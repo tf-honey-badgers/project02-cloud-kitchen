@@ -28,9 +28,9 @@
 			$.ajax({
         		type : "POST",
         		url : "./kitchenbranch/bizinfo",
-/*         		data : {
-        			bizid : $('#"biz_id"').val()
-        		}, */
+         		data : {
+         			bizIdx : $('#biz_id').val()
+        		},
         		error : function(data){
         			console.log(data);
         		},

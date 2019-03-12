@@ -32,9 +32,8 @@ public class KitchenController {
 	}
 	
 	@RequestMapping("/bizinfo")
-	public List<BizVo> bizInfo() {
-//	public List<BizVo> bizInfo(@RequestParam("bizid") String bizid) {
-		System.out.println("bizInfo : 컨트롤러");
-		return service.bizInfo();
+	public List<BizVo> bizInfo(@RequestParam("bizIdx") int bizIdx) {
+		System.out.println(bizIdx+" : 컨트롤러");
+		return service.bizInfo(bizIdx);
 	}
 }

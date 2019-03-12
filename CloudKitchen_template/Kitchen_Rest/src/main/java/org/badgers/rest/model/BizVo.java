@@ -11,6 +11,6 @@ public class BizVo {
 	private int minAmt;
 	private String bizCatId;
 	private String kitchenId;
-	private MenuCatVo menucatvo;
+	
 	private int idx;
 }

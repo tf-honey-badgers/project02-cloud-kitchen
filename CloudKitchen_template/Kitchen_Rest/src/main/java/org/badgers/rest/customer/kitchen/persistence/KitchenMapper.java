@@ -8,5 +8,5 @@ import org.badgers.rest.model.KitchenBranchVo;
 public interface KitchenMapper {
 	public List<KitchenBranchVo> kitchenbranchList();
 	public List<BizVo> bizList();
-	public List<BizVo> bizInfo();
+	public List<BizVo> bizInfo(int bizIdx);
 }

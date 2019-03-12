@@ -8,4 +8,5 @@ public class MenuOptionVo {
 	private String name;
 	private String addPrice;
 	private String optClNo;
+	private int idx;
 }
