@@ -25,13 +25,15 @@
 		<beans:property name="contentType" value="UTF-8" />
 	</beans:bean>
 
-	<!-- @Transactional 애너테이션 활성화 설정 -->
-		<!-- "tx:annotation-driven" -> "context:component-scan"와 함께 "servlet-context.xml"에 위치해야 사용할 수 있다! -->
-	<tx:annotation-driven transaction-manager="transactionManager"/>
+
 	
 	<!-- "org.badgers.rest" 하위 전체 스캔 -> 그 중에 @Controller, @Service 붙은 클래스만 인식하도록 -->
 	<context:component-scan base-package="org.badgers.rest.*">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
+<<<<<<< HEAD
 </beans:beans>
+=======
+</beans:beans>
+>>>>>>> 12d5f3853417a685c96307850f6401e8aceec468
