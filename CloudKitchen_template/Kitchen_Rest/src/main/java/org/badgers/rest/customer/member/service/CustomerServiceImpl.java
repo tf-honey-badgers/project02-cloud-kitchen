@@ -1,8 +1,11 @@
 package org.badgers.rest.customer.member.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.badgers.rest.customer.member.persistence.CustomerMapper;
+import org.badgers.rest.model.CartVOExtend;
 import org.badgers.rest.model.CustomerVO;
 import org.springframework.stereotype.Service;
 
@@ -75,10 +78,18 @@ public class CustomerServiceImpl implements CustomerService {
 		return mapper.delete(vo);
 
 	}
-
+	
+	
+	//비번 변경 
 	@Override
 	public int changePwd(String id, String pw) throws Exception {
 		
-		return 0;
+		return mapper.changePwd(id, pw);
+	}
+
+	//멤버리스트 
+	@Override
+	public List<CustomerVO> readMember(String id) throws Exception {
+		return mapper.readMember(id);	
 	}
 }
