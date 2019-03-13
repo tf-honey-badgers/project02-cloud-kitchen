@@ -1,5 +1,7 @@
 package org.badgers.rest.model;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -10,5 +12,5 @@ public class MenuVOExtend {
 	private String mPhoto;
 	private String menuCatCode;
 	private int mIdx;
-	private MenuOptionClVOExtend menuOptCl;
+	private List<MenuOptionClVOExtend> menuOptCl;
 }

@@ -29,7 +29,7 @@
 		<result property="mocMenuOptType" column="mocMenuOptType"/>
 		<result property="mocMenuCode" column="mocMenuCode"/>
 		<result property="mocIdx" column="mocIdx"/>
-		<collection property="menuOptEx" resultMap="MenuOptionEx"/> 
+		<collection property="menuOptEx" javaType="java.util.ArrayList" resultMap="MenuOptionEx"/> 
 	</resultMap>
 	
  	<resultMap id="MenuVoEx" type="org.badgers.rest.model.MenuVOExtend">
@@ -39,7 +39,7 @@
 		<result property="mPhoto" column="photo"/>
 		<result property="menuCatCode" column="menuCatCode"/>
 		<result property="mIdx" column="idx"/>
-		<collection property="menuOptCl" resultMap="MenuOptionClVoEx"/> 
+		<collection property="menuOptCl" javaType="java.util.ArrayList" resultMap="MenuOptionClVoEx"/> 
 	</resultMap>
 
 	<resultMap id="MenuCatVoEx" type="org.badgers.rest.model.MenuCatVOExtend">
@@ -47,7 +47,7 @@
 		<result property="mcName" column="mcName"/>
 		<result property="mcBizId" column="mcBizId"/>
 		<result property="mcIdx" column="mcIdx"/>
-	 	<collection property="mcMenuvo" resultMap="MenuVoEx"/> 
+	 	<collection property="mcMenuvo" javaType="java.util.ArrayList" resultMap="MenuVoEx"/> 
 	</resultMap>
 	
  	<resultMap id="bizvo" type="org.badgers.rest.model.BizVOExtend">
@@ -59,7 +59,7 @@
 		<result property="bizCatId" column="bizCatId" />
 		<result property="bizKitchenId" column="bizKitchenId" />
 		<result property="bizIdx" column="bizIdx" />
-		<collection property="bizMenucatvo" resultMap="MenuCatVoEx"/>
+		<collection property="bizMenucatvo" javaType="java.util.ArrayList" resultMap="MenuCatVoEx"/>
 	</resultMap>
 
 	<select id="bizInfo" resultMap="bizvo">

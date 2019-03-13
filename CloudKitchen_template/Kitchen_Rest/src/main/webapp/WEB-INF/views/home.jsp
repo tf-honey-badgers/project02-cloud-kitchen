@@ -13,23 +13,44 @@
 	Rest Test페이지 입니다.
 </h1>
 		custIdx : <input type="text" value="" id="cust_Idx">
-		bizId : <input type="text" value="" id="biz_id"><br><br>
+		bizIdx : <input type="text" value="" id="biz_idx"><br>
+		bizId : <input type="text" value="" id="biz_id"><br>
+		<br>
+		<br>
     	<input type="button" id="recommendation" value="추천받기">
     	<input type="button" id="review" value="리뷰내역">
     	<input type="button" id="kitchenbranch" value="지점보기">
     	<input type="button" id="biz" value="해당지점가게현황">
     	<input type="button" id="bizinfo" value="가게메뉴및정보">
+    	<input type="button" id="gpa" value="평점보기">
 </body>
 <script>
 	$(document).ready(function(e){
 		
 		// 해당 가게에 정보 및 메뉴 불러오기
+		$('#gpa').on('click',function(e){
+			$.ajax({
+        		type : "POST",
+        		url : "./review/gpa.json",
+         		data : {
+         			gpa : $('#biz_id').val()
+        		},
+        		error : function(data){
+        			console.log(data);
+        		},
+        		success : function(data){
+        			console.log(data);
+        		} // success
+        	});	// post ajax끝
+		});	// kitchenbranch clic 끝
+		
+		// 해당 가게에 정보 및 메뉴 불러오기
 		$('#bizinfo').on('click',function(e){
 			$.ajax({
         		type : "POST",
-        		url : "./kitchenbranch/bizinfo",
+        		url : "./kitchenbranch/bizinfo.json",
          		data : {
-         			bizIdx : $('#biz_id').val()
+         			bizIdx : $('#biz_idx').val()
         		},
         		error : function(data){
         			console.log(data);
@@ -44,7 +65,7 @@
 		$('#biz').on('click',function(e){
 			$.ajax({
         		type : "POST", 
-        		url : "./kitchenbranch/bizlist",
+        		url : "./kitchenbranch/bizlist.json",
         		error : function(data){
         			console.log(data);
         		},
@@ -58,7 +79,7 @@
 		$('#kitchenbranch').on('click',function(e){
 			$.ajax({
         		type : "POST", 
-        		url : "./kitchenbranch/kitchenlist",
+        		url : "./kitchenbranch/kitchenlist.json",
         		error : function(data){
         			console.log(data);
         		},
@@ -74,7 +95,7 @@
 			console.log($('#cust_Idx').val());
 			$.ajax({
         		type : "POST", 
-        		url : "./review/recommendation",
+        		url : "./review/recommendation.json",
         		data : {
         			idx : $('#cust_Idx').val()
         		},
@@ -93,7 +114,7 @@
 
 			$.ajax({
         		type : "POST", 
-        		url : "./review/list",
+        		url : "./review/list.json",
         		error : function(data){
         			console.log(data);
         		},

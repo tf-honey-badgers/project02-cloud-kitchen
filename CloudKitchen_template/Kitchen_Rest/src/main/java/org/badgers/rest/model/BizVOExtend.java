@@ -1,5 +1,7 @@
 package org.badgers.rest.model;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -11,6 +13,6 @@ public class BizVOExtend {
 	private int bizMinAmt;
 	private String bizCatId;
 	private String bizKitchenId;
-	private MenuCatVOExtend bizMenucatvo;
+	private List<MenuCatVOExtend> bizMenucatvo;
 	private int bizIdx;
 }

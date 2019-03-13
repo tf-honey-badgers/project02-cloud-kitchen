@@ -33,8 +33,8 @@ public class KitchenController {
 	
 	@RequestMapping("/bizinfo")
 //	public List<BizVO> bizInfo() {
-	public List<BizVO> bizInfo(@RequestParam("bizid") int bizid) {
+	public List<BizVO> bizInfo(@RequestParam("bizIdx") int bizIdx) {
 		System.out.println("bizInfo : 컨트롤러");
-		return service.bizInfo(bizid);
+		return service.bizInfo(bizIdx);
 	}
 }
