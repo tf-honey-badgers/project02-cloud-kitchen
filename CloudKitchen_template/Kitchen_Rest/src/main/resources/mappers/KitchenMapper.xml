@@ -33,8 +33,7 @@
 		<collection property="menucatvo" resultMap="MenuCatVO"/>
 	</resultMap>
 
-	<select id="bizInfo" resultMap="bizvo">
+	<select id="bizInfo" resultMap="org.badgers.rest.model.BizVO">
 		select * from biz
 	</select>
-
 </mapper>
