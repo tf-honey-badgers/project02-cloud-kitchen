@@ -87,12 +87,10 @@
 			$.ajax({
 				type : 'POST'
 				, url : '/cart'
-        		, headers : {
-        			'Accept' : 'application/json',
-        			'Content-Type' : 'application/json'
-        		}
-				, data : JSON.stringify(inputData),
-	    		success : data => {
+				, dataType : 'json'
+				, contentType : 'application/json'
+				, data : JSON.stringify(inputData)
+	    		, success : data => {
 					console.log(data);
 				}
 				, error : data => {
@@ -116,20 +114,38 @@
 		});
 		
 		// 장바구니 수정하기
+		$('#updateCart').on('click', () => {			
+			var updateData = {
+					id : 'cart_48'
+					, quantity : $("#quantity").val()
+					, unitPrice : $('#unitPrice').val()
+					, amount : $('#amount').val()
+				}
+			console.log("UPDATEDATA = 제대로 입력되었는지 확인하기 : ", updateData)			
+			
+			if(quant == 0) { // 수량을 0으로 지정하고 클릭했을 경우 지정된 메뉴와 옵션을 삭제한다
+				deleteOne();
+			} else {
+				$.ajax({
+					type : 'PUT'
+					, url : '/cart'
+					, dataType : 'json'
+					, contentType : 'application/json'
+					, data : JSON.stringify(updateData)
+				    , success : data => {
+						console.log(data);
+					}
+					, error : data => {
+						console.log('ERRoR oCCURRED');
+						console.log(data);
+					}
+				});				
+			}
+		});
 		
 		// 장바구니에서 메뉴 삭제하기
 		$('#deleteCart').on('click', () => {
-			$.ajax({
-				type : 'DELETE'
-				, url : '/cart' + '/yuni1010/cart_1'
-		    	, success : data => {
-					console.log(data);
-				}
-				, error : data => {
-					console.log('ERRoR oCCURRED');
-					console.log(data);
-				}
-			});
+			deleteOne();
 		});
 		
 		// 장바구니에서 메뉴 전체 삭제하기
@@ -146,6 +162,23 @@
 				}
 			});
 		});
+		
+		const custId = 'tjtjtj';
+		const cartId = 'cart_48';
+		
+		function deleteOne() {
+			$.ajax({
+				type : 'DELETE'
+				, url : '/cart/' + custId + '/' + cartId
+		    	, success : data => {
+					console.log(data);
+				}
+				, error : data => {
+					console.log('ERRoR oCCURRED');
+					console.log(data);
+				}
+			});
+		}
 	});
 </script>
 </html>

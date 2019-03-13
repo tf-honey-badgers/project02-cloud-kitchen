@@ -51,17 +51,8 @@ public class CartServiceImpl implements CartService {
 		List<CartVOExtend> results = null;
 		
 		results = mapper.readCart(custId);
-		for(CartVOExtend menu : results) {
-			menu.setOptions(readOptions(menu.getId()));
-		}
 		
 		return results;
-	}
-
-	// 옵션 읽기
-	@Override
-	public List<CartDetailVO> readOptions(String cartId) throws Exception {		
-		return mapper.readOptions(cartId);			
 	}
 
 	// 메뉴 업데이트 (수량을 0으로 만들 수는 없음) -> 옵션은 업데이트 없다

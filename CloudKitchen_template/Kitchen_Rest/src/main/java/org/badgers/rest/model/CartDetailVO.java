@@ -1,8 +1,12 @@
 ﻿package org.badgers.rest.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CartDetailVO {
 	private String id;
 	private String cartId; // FK -> cart 테이블 id 속성 참조
@@ -11,4 +15,11 @@ public class CartDetailVO {
 	private String menuId;
 	private String menuOptName;
 	private int menuOptPrice;
+	
+	public CartDetailVO(String optId, String menuId, String optName, int optPrice) {
+		this.menuOptId = optId;
+		this.menuId = menuId;
+		this.menuOptName = optName;
+		this.menuOptPrice = optPrice;
+	}
 }
