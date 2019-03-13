@@ -33,4 +33,9 @@ public class KitchenServiceImpl implements KitchenService {
 		System.out.println("bizInfo : 서비스");
 		return mapper.bizInfo(bizIdx);
 	}
+
+	@Override
+	public List<Object> getCategorization() {
+		return mapper.getCategorization();
+	}
 }

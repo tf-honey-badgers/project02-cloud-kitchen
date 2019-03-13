@@ -10,4 +10,5 @@ public interface KitchenMapper {
 	public List<KitchenBranchVO> kitchenbranchList();
 	public List<BizVO> bizList();
 	public List<BizVO> bizInfo(int bizIdx);
+	public List<Object> getCategorization();
 }

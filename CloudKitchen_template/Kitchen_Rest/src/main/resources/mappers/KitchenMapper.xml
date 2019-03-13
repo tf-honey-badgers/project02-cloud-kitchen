@@ -109,4 +109,10 @@
 			and moc.id = mo.opt_cl_id
 			and b.idx=#{bizIdx}
 	</select>
+	
+	
+	
+	<select id="getCategorization" resultType="org.badgers.rest.model.CommonCodeVOExtend">
+		select * from common_code where id like 'STR%'
+	</select>
 </mapper>

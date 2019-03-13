@@ -23,9 +23,28 @@
     	<input type="button" id="biz" value="해당지점가게현황">
     	<input type="button" id="bizinfo" value="가게메뉴및정보">
     	<input type="button" id="gpa" value="평점보기">
+    	<input type="button" id="categorization" value="메뉴분류">
 </body>
 <script>
 	$(document).ready(function(e){
+		
+		// 해당 가게에 정보 및 메뉴 불러오기
+		$('#categorization').on('click',function(e){
+			
+			$.ajax({
+        		type : "POST",
+        		url : "./kitchenbranch/categorization.json",
+/*          		data : {
+         			gpa : $('#biz_id').val()
+        		}, */
+        		error : function(data){
+        			console.log(data);
+        		},
+        		success : function(data){
+        			console.log(data);
+        		} // success
+        	});	// post ajax끝
+		});	// kitchenbranch clic 끝
 		
 		// 해당 가게에 정보 및 메뉴 불러오기
 		$('#gpa').on('click',function(e){

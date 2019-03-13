@@ -37,4 +37,9 @@ public class KitchenController {
 		System.out.println("bizInfo : 컨트롤러");
 		return service.bizInfo(bizIdx);
 	}
+	
+	@RequestMapping("/categorization")
+	public List<Object> getCategorization(){
+		return service.getCategorization();
+	}
 }
