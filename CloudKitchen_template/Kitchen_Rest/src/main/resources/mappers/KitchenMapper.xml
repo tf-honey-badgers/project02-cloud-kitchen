@@ -33,12 +33,12 @@
 	</resultMap>
 	
  	<resultMap id="MenuVoEx" type="org.badgers.rest.model.MenuVOExtend">
-		<result property="mCode" column="id"/>
-		<result property="mName" column="name"/>
-		<result property="mBasicPrice" column="basicPrice"/>
-		<result property="mPhoto" column="photo"/>
+		<result property="mCode" column="mCode"/>
+		<result property="mName" column="mName"/>
+		<result property="mBasicPrice" column="mBasicPrice"/>
+		<result property="mPhoto" column="mPhoto"/>
 		<result property="menuCatCode" column="menuCatCode"/>
-		<result property="mIdx" column="idx"/>
+		<result property="mIdx" column="mIdx"/>
 		<collection property="menuOptCl" javaType="java.util.ArrayList" resultMap="MenuOptionClVoEx"/> 
 	</resultMap>
 
