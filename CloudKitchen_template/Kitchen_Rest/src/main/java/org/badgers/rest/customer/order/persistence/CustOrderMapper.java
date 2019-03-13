@@ -1,8 +1,15 @@
 package org.badgers.rest.customer.order.persistence;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import org.badgers.rest.model.OrderInfoVO;
+import org.badgers.rest.model.OrderVO;
 
 public interface CustOrderMapper {
+	
+	public int insert1(String val);
+	public int insert2(String val);
 	
 	//order_id 생성
 	public int getOrderId();
@@ -26,7 +33,10 @@ public interface CustOrderMapper {
 	public int addOrderPayAmount();
 	
 	//insert 된 order 튜플을  select 해서 customer Controller로 보내줌
-	public OrderInfoVO getOrderInfo();
+	public List<OrderInfoVO> getOrderInfo();
+	
+	public OrderVO test(@Param("orderId") String orderId);
 
+	public List<OrderVO> getOrder(); 
 	
 }

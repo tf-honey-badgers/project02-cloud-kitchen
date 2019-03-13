@@ -1,24 +1,18 @@
 package org.badgers.rest.customer.member.controller;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-import org.badgers.rest.customer.cart.service.CartService;
-import org.badgers.rest.customer.member.persistence.CustomerMapper;
 import org.badgers.rest.customer.member.service.CustomerService;
-import org.badgers.rest.model.CartVoExtend;
-import org.badgers.rest.model.CustomerVo;
+import org.badgers.rest.model.CustomerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Setter;
@@ -34,7 +28,7 @@ public class CustomerController {
 
 	//회원가입
 	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> create(@RequestBody CustomerVo vo) throws Exception {
+	public ResponseEntity<String> create(@RequestBody CustomerVO vo) throws Exception {
 		boolean result = service.register(vo);
 		log.info("insert result : " + result);
 
@@ -44,8 +38,8 @@ public class CustomerController {
 	
 	//로긴
 	@GetMapping(value = "/login", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<CustomerVo> getInfo(HttpSession session) {
-		CustomerVo vo = (CustomerVo) session.getAttribute("login");
+	public ResponseEntity<CustomerVO> getInfo(HttpSession session) {
+		CustomerVO vo = (CustomerVO) session.getAttribute("login");
 		String id = "";
 		try {
 			id = vo.getId();
@@ -60,7 +54,7 @@ public class CustomerController {
 	// 수정
 
 	@PutMapping("/modify/{id}")
-	public int modify(@RequestBody CustomerVo vo) {
+	public int modify(@RequestBody CustomerVO vo) {
 
 		int returnVal = 0;
 
@@ -88,17 +82,17 @@ public class CustomerController {
 //	}
 	
 	@PutMapping("/modify/{idx}")
-	public int delete(@RequestBody CustomerVo vo) {
+	public int delete(@RequestBody CustomerVO vo) {
 
-		int returnVal = 0;
+		int returnValue = 0;
 
 		try {
-			returnVal = service.delete(vo);
+			returnValue = service.delete(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return returnVal;
+		return returnValue;
 	}
 	
 	

@@ -3,7 +3,7 @@ package org.badgers.rest.model;
 import lombok.Data;
 
 @Data
-public class BizVo {
+public class BizVO {
 	private String bizId;
 	private String info;
 	private String name;
@@ -11,6 +11,6 @@ public class BizVo {
 	private int minAmt;
 	private String bizCatId;
 	private String kitchenId;
-	private MenuCatVo menucatvo;
+	private MenuCatVO menucatvo;
 	private int idx;
 }

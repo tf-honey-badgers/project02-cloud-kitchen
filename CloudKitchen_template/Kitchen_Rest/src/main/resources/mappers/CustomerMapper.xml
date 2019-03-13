@@ -9,7 +9,7 @@
 
 	<!-- 회원 가입 -->
 	<insert id="register"
-		parameterType="org.badgers.rest.model.CustomerVo">
+		parameterType="org.badgers.rest.model.CustomerVO">
 
 		insert into honey_badgers.customer
 		(id, pw, name, birth_date, phone,
@@ -21,7 +21,7 @@
 
 	<!-- 로그인 -->
 	<select id="login"
-		resultType="org.badgers.rest.model.CustomerVo">
+		resultType="org.badgers.rest.model.CustomerVO">
 		select
 		id,pw
 		from
@@ -32,7 +32,7 @@
 
 	<!-- 회원정보 -->
 	<select id="selectById"
-		resultType="org.badgers.rest.model.CustomerVo">
+		resultType="org.badgers.rest.model.CustomerVO">
 		select * from honey_badgers.customer where id = #{id}
 	</select>
 

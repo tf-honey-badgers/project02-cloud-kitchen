@@ -5,12 +5,10 @@ import java.sql.Timestamp;
 import lombok.Data;
 
 @Data
-public class OrderVo {
-	private String code;
+public class OrderVO {
+	private String id;
 	private String phone;
 	private String msg;
-	private int totalAmt;
-	private int usePoint;
 	private int payAmt;
 	private String status;
 	private Timestamp time;

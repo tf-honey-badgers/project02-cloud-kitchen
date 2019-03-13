@@ -3,7 +3,7 @@ package org.badgers.rest.customer.cart.controller;
 import java.util.List;
 
 import org.badgers.rest.customer.cart.service.CartService;
-import org.badgers.rest.model.CartVoExtend;
+import org.badgers.rest.model.CartVOExtend;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +26,12 @@ public class CartController {
 	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 	
 	@PostMapping("/cart")
-	public int addCart(@RequestBody CartVoExtend cart) {
+	public int addCart(@RequestBody CartVOExtend cart) {
 		logger.info("Adding " + cart.getCustId() + "'s new item to the 'cart' & 'cart_detail' tables!");
 		int returnVal = 0;
 		
+		System.out.println("출력하기 : " + cart);
+			
 		try {
 			returnVal = service.addCart(cart);
 		} catch (Exception e) {
@@ -41,9 +43,9 @@ public class CartController {
 	}
 	
 	@GetMapping("/cart/{custId}")
-	public List<CartVoExtend> readCart(@PathVariable("custId") String custId) {
+	public List<CartVOExtend> readCart(@PathVariable("custId") String custId) {
 		logger.info("Reading " + custId + "'s items from the 'cart' table!");
-		List<CartVoExtend> returnVal = null;
+		List<CartVOExtend> returnVal = null;
 		
 		try {
 			returnVal = service.readCart(custId);
@@ -51,7 +53,7 @@ public class CartController {
 			e.printStackTrace();
 		}
 		
-		for(CartVoExtend value : returnVal) {
+		for(CartVOExtend value : returnVal) {
 			logger.info(value.toString());			
 		}
 		
@@ -59,7 +61,7 @@ public class CartController {
 	}
 	
 	@PutMapping("/cart")
-	public int updateCart(@RequestBody CartVoExtend cart) {
+	public int updateCart(@RequestBody CartVOExtend cart) {
 		logger.info("Updating " + cart.getCustId() + "'s items in the 'cart' table!");
 		int returnVal = 0;
 		
@@ -73,6 +75,7 @@ public class CartController {
 		return returnVal;
 	}
 	
+	// 장바구니 항목 하나만 삭제 (i.e. 장바구니의 특정 custId의 항목 중 특정 cartId를 가진 하나의 항목만 삭제한다)
 	@DeleteMapping("/cart/{custId}/{cartId}")
 	public int deleteCart(@PathVariable("custId") String custId, @PathVariable("cartId") String cartId) {
 		logger.info("Deleting " + custId + "'s item(s) from the 'cart' & 'cart_detail' tables!");
@@ -87,4 +90,21 @@ public class CartController {
 		logger.info(returnVal + "개 행을 삭제했습니다!");
 		return returnVal;
 	}
+	
+	// 장바구니 항목 전체 삭제 (i.e. 장바구니의 특정 custId의 항목을 모두 삭제)
+	@DeleteMapping("/cart/{custId}")
+	public int deleteAllCart(@PathVariable("custId") String custId) {
+		logger.info("Deleting " + custId + "'s item(s) from the 'cart' & 'cart_detail' tables!");
+		int returnVal = 0;
+		
+		try {
+			returnVal = service.deleteCart(custId, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		logger.info(returnVal + "개 행을 삭제했습니다!");
+		return returnVal;
+	}
+
 }

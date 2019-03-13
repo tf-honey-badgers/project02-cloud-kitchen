@@ -1,9 +1,12 @@
 package org.badgers.rest.customer.order.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.badgers.rest.customer.order.persistence.CustOrderMapper;
 import org.badgers.rest.model.OrderInfoVO;
+import org.badgers.rest.model.OrderVO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +16,14 @@ public class CustOrderServiceImpl implements CustOrderService {
 	
 	@Inject
 	CustOrderMapper mapper;
+	
+	@Transactional()
+	public void insertAAA(String val) {
+		
+		mapper.insert1(val);
+		mapper.insert2(val);
+		
+	}
 	
 	@Override
 	@Transactional()
@@ -46,11 +57,27 @@ public class CustOrderServiceImpl implements CustOrderService {
 	}
 
 	@Override
-	public OrderInfoVO getOrderInfo() throws Exception {
+	public List<OrderInfoVO> getOrderInfo() throws Exception {
 		
-		OrderInfoVO vo= mapper.getOrderInfo();
-		return vo;
+		List<OrderInfoVO> list= mapper.getOrderInfo();
+		
+		return list;
 	}
+	
+	public OrderVO test(String orderId) throws Exception{
+		OrderVO vo = mapper.test(orderId);
+		
+		vo.getId();
+		return mapper.test(orderId);
+		
+	}
+
+	@Override
+	public List<OrderVO> getOrder() {
+		
+		return mapper.getOrder();
+	}
+
 	
 
 }

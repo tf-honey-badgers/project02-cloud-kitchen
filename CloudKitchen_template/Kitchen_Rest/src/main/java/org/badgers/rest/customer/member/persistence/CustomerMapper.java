@@ -1,24 +1,24 @@
 package org.badgers.rest.customer.member.persistence;
 
-import org.badgers.rest.model.CustomerVo;
+import org.badgers.rest.model.CustomerVO;
 
 public interface CustomerMapper {
 
 	// 회원가입
-	public void register(CustomerVo vo);
+	public void register(CustomerVO vo);
 
 	// 로그인
 	
-	public CustomerVo login(String id, String pw);
+	public CustomerVO login(String id, String pw);
 	
 	//회원 정보
-	public CustomerVo selectById(String id);
+	public CustomerVO selectById(String id);
 	
 	// 회원 정보 수정
-	public int modify(CustomerVo vo);
+	public int modify(CustomerVO vo);
 	
 
 	// 회원 삭제 (코드 수정)
-	public int delete(CustomerVo vo);
+	public int delete(CustomerVO vo);
 
 }

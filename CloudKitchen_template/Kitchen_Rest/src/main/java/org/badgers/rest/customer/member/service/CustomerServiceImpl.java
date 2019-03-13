@@ -3,7 +3,7 @@ package org.badgers.rest.customer.member.service;
 import javax.inject.Inject;
 
 import org.badgers.rest.customer.member.persistence.CustomerMapper;
-import org.badgers.rest.model.CustomerVo;
+import org.badgers.rest.model.CustomerVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,7 +14,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	// 등록
 	@Override
-	public boolean register(CustomerVo vo) {
+	public boolean register(CustomerVO vo) {
 		System.out.println("등록");
 		try {
 			mapper.register(vo);
@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 		System.out.println("로긴");
 
 		String pwd = "";
-		CustomerVo vo = null;
+		CustomerVO vo = null;
 
 		try {
 			vo = mapper.selectById(id);
@@ -50,9 +50,9 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 // 
-	public CustomerVo selectById(String id) {
+	public CustomerVO selectById(String id) {
 		System.out.println("나와라");
-		CustomerVo vo = mapper.selectById(id);
+		CustomerVO vo = mapper.selectById(id);
 
 		try {
 			vo.setId(vo.getId());
@@ -72,7 +72,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	// 수정
 	@Override
-	public int modify(CustomerVo vo) throws Exception {
+	public int modify(CustomerVO vo) throws Exception {
 
 		return mapper.modify(vo); // cart 테이블에 수정된 행 개수 반환
 
@@ -80,7 +80,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	// 삭제
 	@Override
-	public int delete(CustomerVo vo) throws Exception {
+	public int delete(CustomerVO vo) throws Exception {
 
 		return mapper.delete(vo);
 
