@@ -62,12 +62,11 @@ public class ParamOrderVO extends OrderInfoVO{
 	
 	public OrderOptionVO getOrderOptionVO() {
 		OrderOptionVO vo = new OrderOptionVO();
-		vo.setId(super.getId());
-		vo.setName(super.getOrderOptName());
+		vo.setOptId(super.getId());
+		vo.setOptName(super.getOrderOptName());
 		vo.setOptPrice(super.getOptPrice());
 		vo.setOptId(super.getOptId());
 		vo.setOrderDetailId(super.getOrderDetailId());
-		vo.setMenuId(this.menuId);
 		
 		return vo;
 	}

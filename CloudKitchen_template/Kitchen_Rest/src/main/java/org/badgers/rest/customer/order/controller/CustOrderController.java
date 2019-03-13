@@ -70,6 +70,11 @@ public class CustOrderController {
 		return new ResponseEntity<>(service.getOrder(orderId), HttpStatus.OK);
 	}
 	
+	@GetMapping(value="/test/yuni")
+	public ResponseEntity<List<OrderVO>>  test1(String orderId){
+		return new ResponseEntity<>(service.getOrder(orderId), HttpStatus.OK);
+	}
+	
 	
 
 	
