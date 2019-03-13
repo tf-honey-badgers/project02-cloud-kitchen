@@ -1,5 +1,7 @@
 package org.badgers.rest.customer.member.controller;
 
+import java.util.List;
+
 import org.badgers.rest.customer.member.service.CustomerService;
 import org.badgers.rest.model.CustomerVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,34 +37,32 @@ public class CustomerController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	// 로그인 by Yuriel on 2019.03.13(WED)
+	// 로그인
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<String> login(@RequestBody String id, String pw) throws Exception {
+	public ResponseEntity<String> login(CustomerVO in) throws Exception {
 		 ResponseEntity<String> entity = null;
-		 
+		 if(entity ==null || ((CharSequence) entity).length()==0) {
+			 log.info("없다 없다");
+		 }
 		 try {
-		      entity = new ResponseEntity<>(service.login(id,pw), HttpStatus.OK);
+		      entity = new ResponseEntity<>(service.login(in.getId(), in.getPw()), HttpStatus.OK);
 
 		    } catch (Exception e) {
 		      e.printStackTrace();
 		      entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		    }
 
-		    return entity;
+		    return entity;	
 		  }
 		
 	
 	//마페지
 	@GetMapping(value = "/{id}/mypage", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<CustomerVO> selectById(@PathVariable("id") String id, @RequestBody CustomerVO vo) {
-		String my = "";	
-		try {
-			my = vo.getId();
-		} catch (Exception e) {
+	public ResponseEntity<List<CustomerVO>>  selectById(@PathVariable("id") String id) {
+		List<CustomerVO> list = service.selectById(id);
+			
 
-			e.printStackTrace();
-		}
-		return new ResponseEntity<>(service.selectById(id), HttpStatus.OK);
+		return new ResponseEntity<List<CustomerVO>>(list, HttpStatus.OK);
 	}
 	
 
@@ -75,7 +75,7 @@ public class CustomerController {
 		int returnVal = 0;
 
 		try {
-			returnVal = service.modify(vo);
+			returnVal 	= service.modify(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -83,7 +83,7 @@ public class CustomerController {
 		return returnVal;
 	}
 
-	
+	// 비번 변화
 	@PutMapping("/changePwd")
 	public int changePwd(@RequestBody CustomerVO input) {
 

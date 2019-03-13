@@ -12,8 +12,8 @@ public interface CustomerService {
 	// 로그인
 	public String login(String id, String pw);
 	
-	//회원 마이페이지 
-	public CustomerVO selectById(String id);
+	//회원 마이페이지
+	public List<CustomerVO> selectById(String id);
 
 	// 회원 정보 수정
 	public int  modify(CustomerVO vo) throws Exception;
