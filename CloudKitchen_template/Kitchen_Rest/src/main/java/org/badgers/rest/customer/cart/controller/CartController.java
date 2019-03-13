@@ -30,6 +30,8 @@ public class CartController {
 		logger.info("Adding " + cart.getCustId() + "'s new item to the 'cart' & 'cart_detail' tables!");
 		int returnVal = 0;
 		
+		System.out.println("출력하기 : " + cart);
+			
 		try {
 			returnVal = service.addCart(cart);
 		} catch (Exception e) {
@@ -73,6 +75,7 @@ public class CartController {
 		return returnVal;
 	}
 	
+	// 장바구니 항목 하나만 삭제 (i.e. 장바구니의 특정 custId의 항목 중 특정 cartId를 가진 하나의 항목만 삭제한다)
 	@DeleteMapping("/cart/{custId}/{cartId}")
 	public int deleteCart(@PathVariable("custId") String custId, @PathVariable("cartId") String cartId) {
 		logger.info("Deleting " + custId + "'s item(s) from the 'cart' & 'cart_detail' tables!");
@@ -87,4 +90,21 @@ public class CartController {
 		logger.info(returnVal + "개 행을 삭제했습니다!");
 		return returnVal;
 	}
+	
+	// 장바구니 항목 전체 삭제 (i.e. 장바구니의 특정 custId의 항목을 모두 삭제)
+	@DeleteMapping("/cart/{custId}")
+	public int deleteAllCart(@PathVariable("custId") String custId) {
+		logger.info("Deleting " + custId + "'s item(s) from the 'cart' & 'cart_detail' tables!");
+		int returnVal = 0;
+		
+		try {
+			returnVal = service.deleteCart(custId, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		logger.info(returnVal + "개 행을 삭제했습니다!");
+		return returnVal;
+	}
+
 }

@@ -109,5 +109,4 @@
 		and moc.id = mo.opt_cl_id
 		and b.idx=#{bizIdx}
 	</select>
-
 </mapper>
