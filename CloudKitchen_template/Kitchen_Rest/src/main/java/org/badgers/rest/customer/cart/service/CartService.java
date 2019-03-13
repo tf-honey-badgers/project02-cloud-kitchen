@@ -2,7 +2,6 @@ package org.badgers.rest.customer.cart.service;
 
 import java.util.List;
 
-import org.badgers.rest.model.CartDetailVO;
 import org.badgers.rest.model.CartVOExtend;
 
 public interface CartService {
@@ -12,9 +11,6 @@ public interface CartService {
 	
 // R : 메뉴 읽기 (페이지 로딩할 때 & 결제로 넘어갈 때)
 	public List<CartVOExtend> readCart(String custId) throws Exception;
-	
-	// 옵션 읽기
-	public List<CartDetailVO> readOptions(String cartId) throws Exception;
 	
 // U : 메뉴 업데이트 (수량을 0으로 만들 수는 없음)
 	public int updateCart(CartVOExtend cart) throws Exception;
