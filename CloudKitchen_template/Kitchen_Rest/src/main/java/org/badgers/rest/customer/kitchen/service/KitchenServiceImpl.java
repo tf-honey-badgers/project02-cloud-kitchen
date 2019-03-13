@@ -5,6 +5,7 @@ import java.util.List;
 import org.badgers.rest.customer.kitchen.persistence.KitchenMapper;
 import org.badgers.rest.model.BizVO;
 import org.badgers.rest.model.KitchenBranchVO;
+import org.badgers.rest.model.KitchenSelectCatVOExtend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +38,10 @@ public class KitchenServiceImpl implements KitchenService {
 	@Override
 	public List<Object> getCategorization() {
 		return mapper.getCategorization();
+	}
+
+	@Override
+	public List<KitchenSelectCatVOExtend> getCatKitchen(String comName) {
+		return mapper.getCatKitchen(comName);
 	}
 }

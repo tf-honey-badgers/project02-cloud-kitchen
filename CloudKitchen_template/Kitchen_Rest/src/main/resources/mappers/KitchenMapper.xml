@@ -115,4 +115,22 @@
 	<select id="getCategorization" resultType="org.badgers.rest.model.CommonCodeVOExtend">
 		select * from common_code where id like 'STR%'
 	</select>
+	
+	<select id="getCatKitchen" resultType="org.badgers.rest.model.KitchenSelectCatVOExtend">
+		select 
+			b.biz_id bizId,
+			b.info bizInfo,
+			b.name bizName,
+			b.like_cnt bizLikeCnt,
+			b.biz_cat_id bizCatId,
+			b.idx bizIdx,
+			
+			c.id comId,
+			c.name comName,
+			c.description comDisc,
+			c.idx comIdx 
+			
+		from biz b,common_code c
+		where c.id = b.biz_cat_id and c.name=#{menuCat}
+	</select>
 </mapper>

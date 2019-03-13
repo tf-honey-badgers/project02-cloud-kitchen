@@ -15,6 +15,7 @@
 		custIdx : <input type="text" value="" id="cust_Idx">
 		bizIdx : <input type="text" value="" id="biz_idx"><br>
 		bizId : <input type="text" value="" id="biz_id"><br>
+		카테고리명 : <input type="text" value="" id="comname"><br>
 		<br>
 		<br>
     	<input type="button" id="recommendation" value="추천받기">
@@ -24,6 +25,7 @@
     	<input type="button" id="bizinfo" value="가게메뉴및정보">
     	<input type="button" id="gpa" value="평점보기">
     	<input type="button" id="categorization" value="메뉴분류">
+    	<input type="button" id="nameclassification" value="메뉴카테고리분류">
 </body>
 <script>
 	$(document).ready(function(e){
@@ -37,23 +39,6 @@
 /*          		data : {
          			gpa : $('#biz_id').val()
         		}, */
-        		error : function(data){
-        			console.log(data);
-        		},
-        		success : function(data){
-        			console.log(data);
-        		} // success
-        	});	// post ajax끝
-		});	// kitchenbranch clic 끝
-		
-		// 해당 가게에 정보 및 메뉴 불러오기
-		$('#gpa').on('click',function(e){
-			$.ajax({
-        		type : "POST",
-        		url : "./review/gpa.json",
-         		data : {
-         			gpa : $('#biz_id').val()
-        		},
         		error : function(data){
         			console.log(data);
         		},
@@ -146,6 +131,42 @@
 
 	});
 	// 리뷰관련 끝
+			
+		// 해당 가게에 정보 및 메뉴 불러오기
+		$('#gpa').on('click',function(e){
+			$.ajax({
+        		type : "POST",
+        		url : "./review/gpa.json",
+         		data : {
+         			gpa : $('#biz_id').val()
+        		},
+        		error : function(data){
+        			console.log(data);
+        		},
+        		success : function(data){
+        			console.log(data[0].bizId);
+        			console.log(data[0].gpa);
+        			console.log(data[0].cnt);
+        			console.log('평점 : '+(data[0].gpa/data[0].cnt).toFixed(1));
+        		} // success
+        	});	// post ajax끝
+		});	// kitchenbranch clic 끝
+		
+		$('#nameclassification').on('click',function(e){
+			$.ajax({
+        		type : "POST",
+        		url : "./kitchenbranch/nameclassification.json",
+         		data : {
+         			comName : $('#comname').val()
+        		},
+        		error : function(data){
+        			console.log(data);
+        		},
+        		success : function(data){
+        			console.log(data);
+        		} // success
+        	});	// post ajax끝
+		});	// kitchenbranch clic 끝
 </script>
 	
 
