@@ -8,4 +8,5 @@ public class MenuOptionClVO {
 	private String name;
 	private String menuOptType;
 	private String menuCode;
+	private int idx;
 }
