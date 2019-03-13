@@ -14,26 +14,99 @@
 	<select id="bizList" resultType="org.badgers.rest.model.BizVO">
 		select * from biz
 	</select>
-	<resultMap id="MenuCatVo" type="org.badgers.rest.model.MenuCatVO">
-		<result property="no" column="id"/>
-		<result property="name" column="name"/>
-		<result property="bizId" column="biz_id"/>
-		<result property="bizId" column="idx"/>
+	
+	<resultMap id="MenuOptionEx" type="org.badgers.rest.model.MenuOptionVOExtend">
+		<result property="moCode" column="moCode"/>
+		<result property="moName" column="moName"/>
+		<result property="moAddPrice" column="moAddPrice"/>
+		<result property="moOptClNo" column="moOptClNo"/>
+		<result property="moIdx" column="moIdx"/>
+	</resultMap>
+	
+	 <resultMap id="MenuOptionClVoEx" type="org.badgers.rest.model.MenuOptionClVOExtend">
+		<result property="mocNo" column="mocNo"/>
+		<result property="mocName" column="mocName"/>
+		<result property="mocMenuOptType" column="mocMenuOptType"/>
+		<result property="mocMenuCode" column="mocMenuCode"/>
+		<result property="mocIdx" column="mocIdx"/>
+		<collection property="menuOptEx" javaType="java.util.ArrayList" resultMap="MenuOptionEx"/> 
+	</resultMap>
+	
+ 	<resultMap id="MenuVoEx" type="org.badgers.rest.model.MenuVOExtend">
+		<result property="mCode" column="id"/>
+		<result property="mName" column="name"/>
+		<result property="mBasicPrice" column="basicPrice"/>
+		<result property="mPhoto" column="photo"/>
+		<result property="menuCatCode" column="menuCatCode"/>
+		<result property="mIdx" column="idx"/>
+		<collection property="menuOptCl" javaType="java.util.ArrayList" resultMap="MenuOptionClVoEx"/> 
 	</resultMap>
 
- 	<resultMap id="bizvo" type="org.badgers.rest.model.BizVO">
-		<result property="bizId" column="biz_id" />
-		<result property="info" column="info" />
-		<result property="name" column="name" />
-		<result property="likeCnt" column="like_Cnt" />
-		<result property="minAmt" column="min_amt" />
-		<result property="bizCatId" column="biz_cat_id" />
-		<result property="kitchenId" column="kitchen_id" />
-		<result property="idx" column="idx" />
-		<collection property="menucatvo" resultMap="MenuCatVO"/>
+	<resultMap id="MenuCatVoEx" type="org.badgers.rest.model.MenuCatVOExtend">
+		<result property="mcNo" column="mcNo"/>
+		<result property="mcName" column="mcName"/>
+		<result property="mcBizId" column="mcBizId"/>
+		<result property="mcIdx" column="mcIdx"/>
+	 	<collection property="mcMenuvo" javaType="java.util.ArrayList" resultMap="MenuVoEx"/> 
+	</resultMap>
+	
+ 	<resultMap id="bizvo" type="org.badgers.rest.model.BizVOExtend">
+		<result property="bizId" column="bizId" />
+		<result property="bizInfo" column="bizInfo" />
+		<result property="bizName" column="bizName" />
+		<result property="bizLikeCnt" column="bizLikeCnt" />
+		<result property="bizMinAmt" column="bizMinAmt" />
+		<result property="bizCatId" column="bizCatId" />
+		<result property="bizKitchenId" column="bizKitchenId" />
+		<result property="bizIdx" column="bizIdx" />
+		<collection property="bizMenucatvo" javaType="java.util.ArrayList" resultMap="MenuCatVoEx"/>
 	</resultMap>
 
-	<select id="bizInfo" resultMap="org.badgers.rest.model.BizVO">
-		select * from biz
+	<select id="bizInfo" resultMap="bizvo">
+		select
+			b.biz_id bizId,
+			b.info bizInfo,
+			b.name bizName,
+			b.like_cnt bizLikeCnt,
+			b.min_amt bizMinAmt,
+			b.biz_cat_id bizCatId,
+			b.kitchen_id bizKitchenId,
+			b.idx bizIdx,
+		
+			mc.id mcNo,
+			mc.name mcName,
+			mc.biz_id mcBizId,
+			mc.idx mcIdx,
+		
+			m.id mCode,
+			m.name mName,
+			m.basic_price mBasicPrice,
+			m.photo mPhoto,
+			m.menu_cat_id menuCatCode,
+			m.idx mIdx,
+		
+			moc.id mocNo,
+			moc.name mocName,
+			moc.menu_opt_type mocMenuOptType,
+			moc.menu_id mocMenuCode,
+			moc.idx mocIdx,
+		
+			mo.id moCode,
+			mo.name moName,
+			mo.add_price moAddPrice,
+			mo.opt_cl_id moOptClNo,
+			mo.idx moIdx
+		
+		from biz b,
+			menu_category mc,
+			menu m,
+			menu_option_cl moc,
+			menu_option mo
+		
+		where b.biz_id = mc.biz_id 
+			and mc.id = m.menu_cat_id 
+			and m.id = moc.menu_id 
+			and moc.id = mo.opt_cl_id
+			and b.idx=#{bizIdx}
 	</select>
 </mapper>
