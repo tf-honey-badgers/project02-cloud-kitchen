@@ -1,6 +1,12 @@
 package org.badgers.rest.customer.member.controller;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
+
+import org.badgers.rest.customer.cart.service.CartService;
+import org.badgers.rest.customer.member.persistence.CustomerMapper;
 import org.badgers.rest.customer.member.service.CustomerService;
+import org.badgers.rest.model.CartVoExtend;
 import org.badgers.rest.model.CustomerVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,31 +15,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RestController
-
+@RequestMapping("/customer")
 @Log4j
 public class CustomerController {
-	
-	
-	@Autowired
+
+	@Setter(onMethod_ = { @Autowired })
 	private CustomerService service;
-	
-	
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String register() {
-		return "/register";
-	}
-	
-	// post 로 RequestMapping 역활
-	@PostMapping(value = "/register", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> create(@RequestBody CustomerVo vo) {
+
+	//회원가입
+	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<String> create(@RequestBody CustomerVo vo) throws Exception {
 		boolean result = service.register(vo);
 		log.info("insert result : " + result);
 
@@ -41,33 +42,67 @@ public class CustomerController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	//로긴
+	@GetMapping(value = "/login", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<CustomerVo> getInfo(HttpSession session) {
+		CustomerVo vo = (CustomerVo) session.getAttribute("login");
+		String id = "";
+		try {
+			id = vo.getId();
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		return new ResponseEntity<>(service.selectById(id), HttpStatus.OK);
+	}
 
 	
-	@GetMapping(value = "/login", consumes = "application/json")
-	public String login() {
-		return "login/login";
+	// 수정
+
+	@PutMapping("/modify/{id}")
+	public int modify(@RequestBody CustomerVo vo) {
+
+		int returnVal = 0;
+
+		try {
+			returnVal = service.modify(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return returnVal;
+	}
+
+	// 삭제
+//	@RequestMapping(method = { RequestMethod.PUT,
+//			RequestMethod.PATCH }, value = "/modify/{status}", consumes = "application/json", produces = {
+//					MediaType.TEXT_PLAIN_VALUE })
+//	public ResponseEntity<String> delete(@RequestBody CustomerVo vo, @PathVariable("status") String status)
+//			throws Exception {
+//		log.info(vo);
+//		
+//		vo.setStatus(vo.getStatus());
+//
+//		return service.delete(vo) ? new ResponseEntity<>("success", HttpStatus.OK)
+//				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//	}
+	
+	@PutMapping("/modify/{idx}")
+	public int delete(@RequestBody CustomerVo vo) {
+
+		int returnVal = 0;
+
+		try {
+			returnVal = service.delete(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return returnVal;
 	}
 	
 	
 	
 	
-	
-	
-	
-	
-//	@RequestMapping(method = { RequestMethod.PUT,
-//			RequestMethod.PATCH }, value = "/modify/{customer}", consumes = "application/json", produces = {
-//					MediaType.TEXT_PLAIN_VALUE })
-//	public ResponseEntity<String> modify(@RequestBody CustomerVo vo, @PathVariable("pw") String pw,@PathVariable("name") String name, @PathVariable("email") String email) {
-//		log.info(vo);
-//		vo.setPw(pw);
-//		vo.setName(name);
-//		vo.setEmail(email);
-//		
-//
-//		return service.modify(vo);
-//	}
-
-
 
 }

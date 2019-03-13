@@ -6,8 +6,6 @@ import org.badgers.rest.customer.member.persistence.CustomerMapper;
 import org.badgers.rest.model.CustomerVo;
 import org.springframework.stereotype.Service;
 
-
-
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -17,7 +15,7 @@ public class CustomerServiceImpl implements CustomerService {
 	// 등록
 	@Override
 	public boolean register(CustomerVo vo) {
-
+		System.out.println("등록");
 		try {
 			mapper.register(vo);
 		} catch (Exception e) {
@@ -30,69 +28,53 @@ public class CustomerServiceImpl implements CustomerService {
 
 	// 로긴
 	public boolean login(String id, String pw) {
-		String pwd = "";
-		
-		CustomerVo vo = mapper.selectById(id);
-		
-		if(vo != null) pwd = vo.getPw();
-		
-		return pwd.equals(pw); 
-	}
+		System.out.println("로긴");
 
-	
-	public CustomerVo selectById(String id) {
-		CustomerVo vo = mapper.selectById(id);
-		
-		
-		try{
+		String pwd = "";
+		CustomerVo vo = null;
+
+		try {
+			vo = mapper.selectById(id);
 			vo.setId(vo.getId());
 			vo.setPw(vo.getPw());
-			vo.setName(name);
-			
-		
-		}catch(Exception e) {
+		} catch (Exception e) {
+
 			e.printStackTrace();
 		}
-		
+
+		if (vo != null)
+			pwd = vo.getPw();
+
+		return pwd.equals(pw);
+
+	}
+
+// 
+	public CustomerVo selectById(String id) {
+		System.out.println("나와라");
+		CustomerVo vo = mapper.selectById(id);
+
+		try {
+			vo.setId(vo.getId());
+			vo.setPw(vo.getPw());
+			vo.setName(vo.getName());
+			vo.setBirthDate(vo.getBirthDate());
+			vo.setPhone(vo.getPhone());
+			vo.setEmail(vo.getEmail());
+			vo.setGender(vo.getGender());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return vo;
 	}
-	
-	//public Member selectById(String id) {
-		Member member = mapper.selectById(id);
-		
-		try {
-			member.setId(aes.decrypt(member.getId()));
-			member.setPassword(aes.decrypt(member.getPassword()));
-			member.setName(aes.decrypt(member.getName()));
-		} catch (UnsupportedEncodingException | GeneralSecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return member;
-	}
-	
-	
-	
-	
-	
-	
-	
+
 	// 수정
 	@Override
 	public int modify(CustomerVo vo) throws Exception {
 
-		int rowCnt = 0;
-		
-		try {
-			CustomerVo.setId(member.getId()));
-			member.setPassword(aes.encrypt(member.getPassword()));
-			member.setName(aes.encrypt(member.getName()));
-			rowCnt = mapper.update(member);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return rowCnt == 1;
+		return mapper.modify(vo); // cart 테이블에 수정된 행 개수 반환
 
 	}
 
@@ -103,5 +85,4 @@ public class CustomerServiceImpl implements CustomerService {
 		return mapper.delete(vo);
 
 	}
-
 }
