@@ -21,7 +21,7 @@ public class HomeController {
 	public String home() {
 		logger.info("Going to rest-cart-test.jsp");
 		
-		return "home";
+		return "rest-cart-test";
 	}
 	
 }

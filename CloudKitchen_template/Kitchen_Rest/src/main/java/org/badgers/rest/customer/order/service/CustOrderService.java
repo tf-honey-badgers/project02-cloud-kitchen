@@ -12,6 +12,7 @@ public interface CustOrderService {
 	public int excuteOrder() throws Exception;
 	
 	public List<OrderInfoVO> getOrderInfo() throws Exception;
+	
 	public OrderVO test(String orderId) throws Exception;
 	
 	public List<OrderVO> getOrder(); 

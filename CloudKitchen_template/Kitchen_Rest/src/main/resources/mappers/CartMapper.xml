@@ -32,13 +32,51 @@
 			(#{id}, #{cartId}, #{menuOptId}, #{menuId}, #{menuOptName}, #{menuOptPrice})
 	</insert>
 
-	<select id="readCart" resultType="org.badgers.rest.model.CartVOExtend">
-		select * from honey_badgers.cart where cust_id = #{custId}
+	<select id="readCart" resultMap="cartVo">
+		select 
+			CA.id cartId
+			, CA.cust_id custId
+			, CA.quantity quantity
+			, CA.unit_price unitPrice
+			, CA.amount amount
+			, CA.kitchen_name kitchenName
+			, CA.biz_name bizName
+			, CA.menu_id menuId
+			, CA.menu_name menuName
+			, DE.id detId
+			, DE.cart_id detCartId
+			, DE.menu_opt_id optId
+			, DE.menu_id detMenuId
+			, DE.menu_opt_name optName
+			, DE.menu_opt_price optPrice
+		from
+			honey_badgers.cart CA
+			, honey_badgers.cart_detail DE
+		where CA.cust_id = #{custId} and CA.id = DE.cart_id
 	</select>
-
-	<select id="readOptions" resultType="org.badgers.rest.model.CartDetailVO">
-		select * from honey_badgers.cart_detail where cart_id = #{cartId}
-	</select>
+	
+	<!-- id="readCart"용 Result Maps 2개 -->
+	 	<resultMap id="cartVo" type="org.badgers.rest.model.CartVOExtend">
+			<result property="id" column="cartId" />
+			<result property="custId" column="custId" />
+			<result property="quantity" column="quantity" />
+			<result property="unitPrice" column="unitPrice" />
+			<result property="amount" column="amount" />
+			<result property="kitchenName" column="kitchenName" />
+			<result property="bizName" column="bizName" />
+			<result property="menuId" column="menuId" />
+			<result property="menuName" column="menuName" />
+			<collection property="options" javaType="java.util.List" resultMap="detailVo"/>
+		</resultMap>
+	
+		<resultMap id="detailVo" type="org.badgers.rest.model.CartDetailVO">
+			<result property="id" column="detId"/>
+			<result property="cartId" column="detCartId"/>
+			<result property="menuOptId" column="optId"/>
+			<result property="menuId" column="detMenuId"/>
+			<result property="menuOptName" column="optName"/>
+			<result property="menuOptPrice" column="optPrice"/> 
+		</resultMap>
 
 	<update id="updateCart">
 		update honey_badgers.cart set quantity = #{quantity}, unit_price = #{unitPrice}, amount = #{amount} where id = #{id}

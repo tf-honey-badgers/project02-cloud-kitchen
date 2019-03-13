@@ -3,6 +3,54 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.badgers.mapper.CustomerMapper">
+<mapper
+	namespace="org.badgers.rest.customer.member.persistence.CustomerMapper">
+
+
+	<!-- 회원 가입 -->
+	<insert id="register"
+		parameterType="org.badgers.rest.model.CustomerVO">
+
+		insert into honey_badgers.customer
+		(id, pw, name, birth_date, phone,
+		email, gender)
+		values
+		(#{id},#{pw},#{name},#{birthDate},#{phone},#{email},#{gender})
+
+	</insert>
 	
+	<!-- 로그인 -->
+	<select id="login" resultType="org.badgers.rest.model.CustomerVO">
+		select id, pw from honey_badgers.customer where id = #{param1}
+	</select>
+
+	<!--마이 페이지 -->
+	<select id="selectById"
+		resultType="org.badgers.rest.model.CustomerVO">
+		select * from honey_badgers.customer where id = #{id}
+	</select>
+	
+	
+	
+
+
+	<!-- 회원 정보 수정 -->
+	<update id="modify">
+		update honey_badgers.customer set pw = #{pw}, name = #{name}, email = #{email} where id = #{id}
+	</update>
+
+
+
+	<!-- 비번 수정 -->
+	<update id="changePwd">
+		update honey_badgers.customer set pw = #{param2} where id = #{param1}
+	</update>
+
+
+	<!-- 회원 정보 삭제 -->
+	<update id="delete">
+		update honey_badgers.customer set status= #{status} where id=#{id}
+	</update>
+
+
 </mapper>
