@@ -29,21 +29,10 @@ public class CustomerServiceImpl implements CustomerService {
 	// 로긴
 	public boolean login(String id, String pw) {
 		System.out.println("로긴");
-
 		String pwd = "";
-		CustomerVO vo = null;
+		CustomerVO vo = mapper.selectById(id);
 
-		try {
-			vo = mapper.selectById(id);
-			vo.setId(vo.getId());
-			vo.setPw(vo.getPw());
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-
-		if (vo != null)
-			pwd = vo.getPw();
+		if (vo != null) pwd = vo.getPw();
 
 		return pwd.equals(pw);
 
@@ -53,19 +42,6 @@ public class CustomerServiceImpl implements CustomerService {
 	public CustomerVO selectById(String id) {
 		System.out.println("나와라");
 		CustomerVO vo = mapper.selectById(id);
-
-		try {
-			vo.setId(vo.getId());
-			vo.setPw(vo.getPw());
-			vo.setName(vo.getName());
-			vo.setBirthDate(vo.getBirthDate());
-			vo.setPhone(vo.getPhone());
-			vo.setEmail(vo.getEmail());
-			vo.setGender(vo.getGender());
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 		return vo;
 	}

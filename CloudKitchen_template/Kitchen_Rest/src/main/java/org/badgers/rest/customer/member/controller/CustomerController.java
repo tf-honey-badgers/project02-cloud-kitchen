@@ -37,10 +37,11 @@ public class CustomerController {
 	}
 	
 	//로긴
-	@GetMapping(value = "/login", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<CustomerVO> getInfo(HttpSession session) {
+	@GetMapping(value = "/login/{idx}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<CustomerVO> login(HttpSession session) {
 		CustomerVO vo = (CustomerVO) session.getAttribute("login");
-		String id = "";
+		String id = "zzz";
+		String pw = "1243";
 		try {
 			id = vo.getId();
 		} catch (Exception e) {
@@ -81,7 +82,7 @@ public class CustomerController {
 //				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 //	}
 	
-	@PutMapping("/modify/{idx}")
+	@PutMapping("/delete/{id}")
 	public int delete(@RequestBody CustomerVO vo) {
 
 		int returnValue = 0;

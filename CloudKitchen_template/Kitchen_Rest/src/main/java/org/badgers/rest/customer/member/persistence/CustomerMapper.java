@@ -7,10 +7,7 @@ public interface CustomerMapper {
 	// 회원가입
 	public void register(CustomerVO vo);
 
-	// 로그인
-	
-	public CustomerVO login(String id, String pw);
-	
+
 	//회원 정보
 	public CustomerVO selectById(String id);
 	
