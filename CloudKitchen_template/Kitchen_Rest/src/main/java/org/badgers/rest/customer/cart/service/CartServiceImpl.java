@@ -3,8 +3,8 @@ package org.badgers.rest.customer.cart.service;
 import java.util.List;
 
 import org.badgers.rest.customer.cart.persistence.CartMapper;
-import org.badgers.rest.model.CartDetailVo;
-import org.badgers.rest.model.CartVoExtend;
+import org.badgers.rest.model.CartDetailVO;
+import org.badgers.rest.model.CartVOExtend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +20,7 @@ public class CartServiceImpl implements CartService {
 	// 메뉴 추가 (한 번에 메뉴 하나 BUT 수량은 1개 이상 복수 추가 가능)
 	@Transactional
 	@Override
-	public int addCart(CartVoExtend cart) throws Exception { // controller에서 예외처리
+	public int addCart(CartVOExtend cart) throws Exception { // controller에서 예외처리
 		int addedCart = 0;
 		int addedOptions = 0;
 		
@@ -33,7 +33,7 @@ public class CartServiceImpl implements CartService {
 		addedCart = mapper.insertCart(cart);
 		
 		// cart에 포함된 List<CartDetailVo>로 cart_detail 테이블에 추가
-		for(CartDetailVo option : cart.getOptions()) {
+		for(CartDetailVO option : cart.getOptions()) {
 			// cart_detail 테이블에서 idx 값 가져와서 id 값 생성하기
 			int currentDetIdx = mapper.getDetIdx();
 			String newDetId = "cart_detail_" + currentDetIdx;
@@ -47,11 +47,11 @@ public class CartServiceImpl implements CartService {
 
 	// 메뉴 읽기 (페이지 로딩할 때 & 결제로 넘어갈 때)
 	@Override
-	public List<CartVoExtend> readCart(String custId) throws Exception {
-		List<CartVoExtend> results = null;
+	public List<CartVOExtend> readCart(String custId) throws Exception {
+		List<CartVOExtend> results = null;
 		
 		results = mapper.readCart(custId);
-		for(CartVoExtend menu : results) {
+		for(CartVOExtend menu : results) {
 			menu.setOptions(readOptions(menu.getId()));
 		}
 		
@@ -60,13 +60,13 @@ public class CartServiceImpl implements CartService {
 
 	// 옵션 읽기
 	@Override
-	public List<CartDetailVo> readOptions(String cartId) throws Exception {		
+	public List<CartDetailVO> readOptions(String cartId) throws Exception {		
 		return mapper.readOptions(cartId);			
 	}
 
 	// 메뉴 업데이트 (수량을 0으로 만들 수는 없음) -> 옵션은 업데이트 없다
 	@Override
-	public int updateCart(CartVoExtend cart) throws Exception {
+	public int updateCart(CartVOExtend cart) throws Exception {
 		return mapper.updateCart(cart); // cart 테이블에 수정된 행 개수 반환
 	}
 	
