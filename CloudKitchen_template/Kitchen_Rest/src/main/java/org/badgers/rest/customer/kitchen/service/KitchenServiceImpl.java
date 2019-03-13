@@ -29,8 +29,8 @@ public class KitchenServiceImpl implements KitchenService {
 	}
 	
 	@Override
-	public List<BizVO> bizInfo(){
+	public List<BizVO> bizInfo(int bizIdx){
 		System.out.println("bizInfo : 서비스");
-		return mapper.bizInfo();
+		return mapper.bizInfo(bizIdx);
 	}
 }
