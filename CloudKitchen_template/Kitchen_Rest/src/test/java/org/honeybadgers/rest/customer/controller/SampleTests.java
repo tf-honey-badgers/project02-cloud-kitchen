@@ -23,23 +23,13 @@ public class SampleTests {
 	@Setter(onMethod_ = {@Autowired})
 	private CustOrderService service;
 	
-	@Test
-	
-	public void test1() {
-		
-		
-		String val = "12345678901234567";
-		
-		service.insertAAA(val);
-		
-	}
 	
 	@Test
 	public void test() {
 		
 		try {
 			log.info("----------------------------------------");
-			service.excuteOrder();
+//			service.excuteOrder();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

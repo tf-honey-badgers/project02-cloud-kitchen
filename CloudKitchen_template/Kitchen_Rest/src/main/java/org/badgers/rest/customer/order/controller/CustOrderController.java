@@ -26,18 +26,9 @@ public class CustOrderController {
 	private CustOrderService service;
 	
 	
-	@RequestMapping(value = "/aaa", method = RequestMethod.GET)
-	public String testInsertAAA() throws Exception{
-			
-		service.insertAAA("123456789012345");
-		
-		return "home";
-	}
-	
-	
 	@RequestMapping(value = "/myhome", method = RequestMethod.GET)
 	public String test() throws Exception{
-			service.excuteOrder();
+//			service.excuteOrder();
 		
 		return "home";
 	}
@@ -51,7 +42,7 @@ public class CustOrderController {
 			@PathVariable("orderId") String orderId
 			) throws Exception{
 		System.out.println(orderId);
-		List<OrderInfoVO>  list = service.getOrderInfo();
+		List<OrderInfoVO>  list = service.getOrderInfo(orderId);
 //		System.out.println(vo.getId());
 				return list;
 		
@@ -67,16 +58,16 @@ public class CustOrderController {
 			@PathVariable("orderId") String orderId
 			) throws Exception{
 		System.out.println(orderId);
-		System.out.println("========================"+service.test(orderId).getKitchenName());
-				return service.test(orderId);
+		System.out.println("========================"+service.getOrderWithOrderId(orderId).getKitchenName());
+				return service.getOrderWithOrderId(orderId);
 		
 	}
 	
 
 	
 	@GetMapping(value="/test/order")
-	public ResponseEntity<List<OrderVO>>  getOrder(){
-		return new ResponseEntity<>(service.getOrder(), HttpStatus.OK);
+	public ResponseEntity<List<OrderVO>>  getOrder(String orderId){
+		return new ResponseEntity<>(service.getOrder(orderId), HttpStatus.OK);
 	}
 	
 	
