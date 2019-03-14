@@ -10,6 +10,5 @@ public class MenuOptionClVOExtend {
 	private String mocName;
 	private String mocMenuOptType;
 	private String mocMenuCode;
-	private int mocIdx;
 	private List<MenuOptionVOExtend> menuOptEx;
 }

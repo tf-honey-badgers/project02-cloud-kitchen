@@ -8,5 +8,4 @@ public class MenuOptionVOExtend {
 	private String moName;
 	private String moAddPrice;
 	private String moOptClNo;
-	private int moIdx;
 }

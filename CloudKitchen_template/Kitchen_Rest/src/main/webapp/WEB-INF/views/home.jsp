@@ -13,7 +13,6 @@
 	Rest Test페이지 입니다.
 </h1>
 		custIdx : <input type="text" value="" id="cust_Idx">
-		bizIdx : <input type="text" value="" id="biz_idx"><br>
 		bizId : <input type="text" value="" id="biz_id"><br>
 		카테고리명 : <input type="text" value="" id="comname"><br>
 		<br>
@@ -54,7 +53,7 @@
         		type : "POST",
         		url : "./kitchenbranch/bizinfo.json",
          		data : {
-         			bizIdx : $('#biz_idx').val()
+         			bizId : $('#biz_id').val()
         		},
         		error : function(data){
         			console.log(data);

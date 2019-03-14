@@ -20,7 +20,6 @@
 		<result property="moName" column="moName"/>
 		<result property="moAddPrice" column="moAddPrice"/>
 		<result property="moOptClNo" column="moOptClNo"/>
-		<result property="moIdx" column="moIdx"/>
 	</resultMap>
 	
 	 <resultMap id="MenuOptionClVoEx" type="org.badgers.rest.model.MenuOptionClVOExtend">
@@ -28,7 +27,6 @@
 		<result property="mocName" column="mocName"/>
 		<result property="mocMenuOptType" column="mocMenuOptType"/>
 		<result property="mocMenuCode" column="mocMenuCode"/>
-		<result property="mocIdx" column="mocIdx"/>
 		<collection property="menuOptEx" javaType="java.util.ArrayList" resultMap="MenuOptionEx"/> 
 	</resultMap>
 	
@@ -38,7 +36,6 @@
 		<result property="mBasicPrice" column="mBasicPrice"/>
 		<result property="mPhoto" column="mPhoto"/>
 		<result property="menuCatCode" column="menuCatCode"/>
-		<result property="mIdx" column="mIdx"/>
 		<collection property="menuOptCl" javaType="java.util.ArrayList" resultMap="MenuOptionClVoEx"/> 
 	</resultMap>
 
@@ -46,7 +43,6 @@
 		<result property="mcNo" column="mcNo"/>
 		<result property="mcName" column="mcName"/>
 		<result property="mcBizId" column="mcBizId"/>
-		<result property="mcIdx" column="mcIdx"/>
 	 	<collection property="mcMenuvo" javaType="java.util.ArrayList" resultMap="MenuVoEx"/> 
 	</resultMap>
 	
@@ -64,7 +60,7 @@
 
 	<select id="bizInfo" resultMap="bizvo">
 		select 
-
+			
 			b.biz_id bizId,
 			b.info bizInfo,
 			b.name bizName,
@@ -74,29 +70,25 @@
 			b.kitchen_id bizKitchenId,
 			b.idx bizIdx,
 
-			mc.id mcNo,
+			mc.idx mcNo,
 			mc.name mcName,
 			mc.biz_id mcBizId,
-			mc.idx mcIdx,
-
-			m.id mCode,
+			
+			m.idx mCode,
 			m.name mName,
 			m.basic_price mBasicPrice,
 			m.photo mPhoto,
-			m.menu_cat_id menuCatCode,
-			m.idx mIdx,
+			m.category_id menuCatCode,
 
-			moc.id mocNo,
+			moc.idx mocNo,
 			moc.name mocName,
 			moc.menu_opt_type mocMenuOptType,
 			moc.menu_id mocMenuCode,
-			moc.idx mocIdx,
 
-			mo.id moCode,
+			mo.idx moCode,
 			mo.name moName,
 			mo.add_price moAddPrice,
-			mo.opt_cl_id moOptClNo,
-			mo.idx moIdx
+			mo.opt_cl_id moOptClNo
 		
 		from biz b,
 			menu_category mc,
@@ -104,11 +96,11 @@
 			menu_option_cl moc,
 			menu_option mo
 			
-			where b.biz_id = mc.biz_id 
-			and mc.id = m.menu_cat_id 
-			and m.id = moc.menu_id 
-			and moc.id = mo.opt_cl_id
-		and b.idx=#{bizIdx}
+			where b.biz_id=mc.biz_id 
+			and mc.idx=m.category_id  
+			and m.idx = moc.menu_id 
+			and moc.idx = mo.opt_cl_id
+		and b.biz_id=#{bizId};
 	</select>
 	
 	
