@@ -3,27 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.badgers.rest.customer.cart.persistence.CartMapper">
-	<!-- Auto-Increment의 다음 값을 반환한다 -->
-	<select id="getCartIdx" resultType="int">
-		SELECT `AUTO_INCREMENT`
-			FROM INFORMATION_SCHEMA.TABLES
-			WHERE TABLE_SCHEMA = 'honey_badgers' AND TABLE_NAME = 'cart'
-	</select>
-	
+<mapper namespace="org.badgers.rest.customer.cart.persistence.CartMapper">	
 	<insert id="insertCart">
 		insert into honey_badgers.cart
-			(id, cust_id, quantity, unit_price, amount, kitchen_name, biz_name, menu_id, menu_name)
+			(id, cust_id, quantity, unit_price, total_amt, kitchen_name, biz_name, menu_id)
 			values
-			(#{id}, #{custId}, #{quantity}, #{unitPrice}, #{amount}, #{kitchenName}, #{bizName}, #{menuId}, #{menuName})
+			(#{id}, #{custId}, #{quantity}, #{unitPrice}, #{totalAmt}, #{kitchenName}, #{bizName}, #{menuId})
 	</insert>
-	
-	<!-- Auto-Increment의 다음 값을 반환한다 -->
-	<select id="getDetIdx" resultType="int">
-		SELECT `AUTO_INCREMENT`
-			FROM INFORMATION_SCHEMA.TABLES
-			WHERE TABLE_SCHEMA = 'honey_badgers' AND TABLE_NAME = 'cart_detail'
-	</select>
 	
 	<insert id="insertOption">
 		insert into honey_badgers.cart_detail
@@ -38,11 +24,10 @@
 			, CA.cust_id custId
 			, CA.quantity quantity
 			, CA.unit_price unitPrice
-			, CA.amount amount
+			, CA.total_amt totalAmount
 			, CA.kitchen_name kitchenName
 			, CA.biz_name bizName
 			, CA.menu_id menuId
-			, CA.menu_name menuName
 			, DE.id detId
 			, DE.cart_id detCartId
 			, DE.menu_opt_id optId
@@ -61,11 +46,10 @@
 			<result property="custId" column="custId" />
 			<result property="quantity" column="quantity" />
 			<result property="unitPrice" column="unitPrice" />
-			<result property="amount" column="amount" />
+			<result property="totalAmt" column="totalAmt" />
 			<result property="kitchenName" column="kitchenName" />
 			<result property="bizName" column="bizName" />
 			<result property="menuId" column="menuId" />
-			<result property="menuName" column="menuName" />
 			<collection property="options" javaType="java.util.List" resultMap="detailVo"/>
 		</resultMap>
 	
@@ -79,7 +63,7 @@
 		</resultMap>
 
 	<update id="updateCart">
-		update honey_badgers.cart set quantity = #{quantity}, unit_price = #{unitPrice}, amount = #{amount} where id = #{id}
+		update honey_badgers.cart set quantity = #{quantity}, unit_price = #{unitPrice}, total_amt = #{totalAmt} where id = #{id}
 	</update>
 	
 	<delete id="deleteCart">
@@ -89,12 +73,4 @@
 	<delete id="deleteAllCart">
 		delete from honey_badgers.cart where cust_id = #{custId}
 	</delete>
-	
-	<delete id="deleteOptions">
-		delete from honey_badgers.cart_detail where cart_id = #{cartId}
-	</delete>
-	
-	<select id="readCartIds" resultType="String">
-		select id from honey_badgers.cart where cust_id = #{custId} 
-	</select>
 </mapper>

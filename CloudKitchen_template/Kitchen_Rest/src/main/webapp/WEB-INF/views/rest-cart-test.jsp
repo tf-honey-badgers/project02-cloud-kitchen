@@ -20,23 +20,22 @@
 	<ul class="options">
 		<c:forEach var="i" begin="1" end="3">
 			<li>옵션 ${i}번 추가하기</li>
-			<li>menuOptId : <input type="text" class="menuOptId" placeholder="String을 입력해주세요."></li>
-			<li>menuId : <input type="text" class="menuId" placeholder="String을 입력해주세요."></li>
-			<li>menuOptName : <input type="text" class="menuOptName" placeholder="String을 입력해주세요."></li>
-			<li>menuOptPrice : <input type="text" class="menuOptPrice" placeholder="int를 입력해주세요."></li>
+			<li>menuOptId : <input type="text" class="menuOptId" value=5></li>
+			<li>menuId : <input type="text" class="menuId" value=20></li>
+			<li>menuOptName : <input type="text" class="menuOptName" value=라지></li>
+			<li>menuOptPrice : <input type="text" class="menuOptPrice" value=3000></li>
 			<br>
 		</c:forEach>
 	</ul>
 	
 	<ul>
-		<li>custId : <input type="text" id="custId" placeholder="String을 입력해주세요."></li>
-		<li>quantity : <input type="text" id="quantity" placeholder="int를 입력해주세요."></li>
-		<li>unitPrice : <input type="text" id="unitPrice" placeholder="int를 입력해주세요."></li>
-		<li>amount : <input type="text" id="amount" placeholder="int를 입력해주세요."></li>
-		<li>kitchenName : <input type="text" id="kitchenName" placeholder="String을 입력해주세요."></li>
-		<li>bizName : <input type="text" id="bizName" placeholder="String을 입력해주세요."></li>
-		<li>menuId : <input type="text" id="menuId" placeholder="String을 입력해주세요."></li>
-		<li>menuName : <input type="text" id="menuName" placeholder="String을 입력해주세요."></li>
+		<li>custId : <input type="text" id="custId" value="tjtjtj"></li>
+		<li>quantity : <input type="text" id="quantity" value=10></li>
+		<li>unitPrice : <input type="text" id="unitPrice" value=10000></li>
+		<li>totalAmt : <input type="text" id="amount" value=100000></li>
+		<li>kitchenName : <input type="text" id="kitchenName" value="St. Petersburg"></li>
+		<li>bizName : <input type="text" id="bizName" value="Original Vodka"></li>
+		<li>menuId : <input type="text" id="menuId" value=20></li>
 	</ul>
 		
 	<ul>
@@ -74,11 +73,10 @@
 					custId : $('#custId').val()
 					, quantity : $('#quantity').val()
 					, unitPrice : $('#unitPrice').val()
-					, amount : $('#amount').val()
+					, totalAmt : $('#totalAmt').val()
 					, kitchenName : $('#kitchenName').val()
 					, bizName : $('#bizName').val()
 					, menuId : $('#menuId').val()
-					, menuName : $('#menuName').val()
 					, options : inputOptions
 				};
 			console.log("INPUTDATA = 제대로 입력되었는지 확인하기 : ", inputData)

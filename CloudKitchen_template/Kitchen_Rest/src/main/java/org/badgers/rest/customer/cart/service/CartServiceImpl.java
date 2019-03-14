@@ -24,21 +24,11 @@ public class CartServiceImpl implements CartService {
 		int addedCart = 0;
 		int addedOptions = 0;
 		
-		// cart 테이블에서 idx 값 가져와서 id 값 생성하기
-		int currentCartIdx = mapper.getCartIdx();
-		String newCartId = "cart_" + currentCartIdx;
-		cart.setId(newCartId);
-		
 		// cart 정보로 cart 테이블에 추가
 		addedCart = mapper.insertCart(cart);
 		
 		// cart에 포함된 List<CartDetailVo>로 cart_detail 테이블에 추가
 		for(CartDetailVO option : cart.getOptions()) {
-			// cart_detail 테이블에서 idx 값 가져와서 id 값 생성하기
-			int currentDetIdx = mapper.getDetIdx();
-			String newDetId = "cart_detail_" + currentDetIdx;
-			option.setId(newDetId);
-			option.setCartId(newCartId);
 			addedOptions += mapper.insertOption(option);
 		}
 		
@@ -68,22 +58,11 @@ public class CartServiceImpl implements CartService {
 		int returnVal = 0;
 		
 		if(cartId != null) { // cartId != null이면 지정된 cartId를 가진 특정 장바구니 항목 하나만 삭제
-			returnVal += deleteOptions(cartId);
 			returnVal += mapper.deleteCart(cartId);
 		} else { // cartId == null이면 장바구니 항목 전체 삭제
-			List<String> getCartIds = mapper.readCartIds(custId);
-			for(String id : getCartIds) {
-				returnVal += deleteOptions(id);	
-			}
 			returnVal += mapper.deleteAllCart(custId);
 		}
 		
 		return returnVal; // cart_detail 테이블에서 삭제된 행 개수 + cart 테이블에서 삭제된 행 개수 반환
-	}
-	
-	// 옵션 전체 삭제
-	@Override
-	public int deleteOptions(String cartId) throws Exception {
-		return mapper.deleteOptions(cartId); // cart_detail 테이블에서 삭제한 행 개수 반환
 	}
 }
