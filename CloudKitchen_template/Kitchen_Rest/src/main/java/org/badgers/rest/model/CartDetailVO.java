@@ -8,15 +8,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CartDetailVO {
-	private String id;
-	private String cartId; // FK -> cart 테이블 id 속성 참조
-	private String menuOptId; // FK -> menu_option 테이블 id 속성 참조
-	private int idx;
+	private int id;
+	private int cartId; // FK -> cart 테이블 id 속성 참조
+	private int menuOptId; // FK -> menu_option 테이블 id 속성 참조
 	private String menuId;
 	private String menuOptName;
 	private int menuOptPrice;
 	
-	public CartDetailVO(String optId, String menuId, String optName, int optPrice) {
+	public CartDetailVO(int optId, String menuId, String optName, int optPrice) {
 		this.menuOptId = optId;
 		this.menuId = menuId;
 		this.menuOptName = optName;
