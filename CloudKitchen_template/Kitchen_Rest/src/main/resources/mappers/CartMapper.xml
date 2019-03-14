@@ -17,6 +17,10 @@
 			values
 			(#{id}, #{cartId}, #{menuOptId}, #{menuId}, #{menuOptName}, #{menuOptPrice})
 	</insert>
+	
+	<select id="getCartId" resultType="int">
+		SELECT LAST_INSERT_ID();
+	</select>
 
 	<select id="readCart" resultMap="cartVo">
 		select 

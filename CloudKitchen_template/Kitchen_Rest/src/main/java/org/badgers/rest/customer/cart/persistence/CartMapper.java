@@ -10,6 +10,7 @@ public interface CartMapper {
 	// CartServiceImpl의 addCart & addOptions에서 사용
 	public int insertCart(CartVOExtend cart) throws Exception;
 	public int insertOption(CartDetailVO option) throws Exception;
+	public int getCartId() throws Exception;
 	
 	// CartServiceImpl의 readCart & readOptions에서 사용
 	public List<CartVOExtend> readCart(String custId) throws Exception;

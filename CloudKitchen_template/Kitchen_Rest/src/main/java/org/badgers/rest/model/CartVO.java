@@ -11,5 +11,5 @@ public class CartVO {
 	private int totalAmt;
 	private String kitchenName;
 	private String bizName;
-	private int menuId; // FK -> menu 테이블 id 속성 참조
+	private int menuId; // FK -> menu 테이블 idx 속성 참조
 }

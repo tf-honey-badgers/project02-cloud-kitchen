@@ -66,7 +66,6 @@
 				inputOptions.push({ menuOptId : optId, menuId : id, menuOptName : optName, menuOptPrice : optPrice });
 				if(cur == 3) { flag = false; }
 			}
-			flag = true; // flag의 값 초기화 (위 무한반복문 탈출 후 다시 id="addCart" 버튼 누를 때를 대비)
 
 			// 비동기 요청하면 CartVOExtended에 매핑되도록
 			var inputData = {
@@ -84,7 +83,7 @@
 			// CartController로 비동기 요청하기
 			$.ajax({
 				type : 'POST'
-				, url : '/cart'
+				, url : '/cart/'
 				, dataType : 'json'
 				, contentType : 'application/json'
 				, data : JSON.stringify(inputData)
@@ -96,6 +95,11 @@
 					console.log(data);
 				}
 			});
+
+			// 초기화 (다시 id="addCart" 버튼 누를 때를 대비)
+			inputOptions = [];
+			flag = true;
+			cur = 0;
 		});
 		
 		// 장바구니 읽기
@@ -114,19 +118,19 @@
 		// 장바구니 수정하기
 		$('#updateCart').on('click', () => {			
 			var updateData = {
-					id : 'cart_48'
+					id : '20'
 					, quantity : $("#quantity").val()
 					, unitPrice : $('#unitPrice').val()
 					, amount : $('#amount').val()
 				}
-			console.log("UPDATEDATA = 제대로 입력되었는지 확인하기 : ", updateData)			
+			console.log("UPDATEDATA = 제대로 입력되었는지 확인하기 : ", updateData)
 			
-			if(quant == 0) { // 수량을 0으로 지정하고 클릭했을 경우 지정된 메뉴와 옵션을 삭제한다
+			if(updateData.quantity == 0) { // 수량을 0으로 지정하고 클릭했을 경우 지정된 메뉴와 옵션을 삭제한다
 				deleteOne();
 			} else {
 				$.ajax({
 					type : 'PUT'
-					, url : '/cart'
+					, url : '/cart/'
 					, dataType : 'json'
 					, contentType : 'application/json'
 					, data : JSON.stringify(updateData)
@@ -162,7 +166,7 @@
 		});
 		
 		const custId = 'tjtjtj';
-		const cartId = 'cart_48';
+		const cartId = '20';
 		
 		function deleteOne() {
 			$.ajax({
