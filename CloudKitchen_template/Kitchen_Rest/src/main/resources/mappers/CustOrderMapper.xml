@@ -5,89 +5,58 @@
 
 <mapper
 	namespace="org.badgers.rest.customer.order.persistence.CustOrderMapper">
-	
-	<insert id="insert1">
-	insert into tbl_1(val) values(#{val})
+
+	<insert id="initOrder"
+		parameterType="org.badgers.rest.model.CustomerVO">
+		insert into honey_badgers.order (
+		id , phone, address , msg, pay_amt, kitchen_name, cust_id)
+		values(#{id},#{phone},#{address},#{msg}, #{payAmt}, #{kitchenName}, #{custId});
 	</insert>
-	
-	<insert id="insert2">
-	insert into tbl_2(val) values(#{val})
-	</insert>
-	
-	<select id="getOrderId" resultType="int">
-		select max(idx) from honey_badgers.order order by idx desc 
-	</select>
-	<insert id="initOrder" parameterType="org.badgers.rest.model.CustomerVO">
-		insert into honey_badgers.order (id , phone , msg,
-		kitchen_name, cust_id)
-		values(#{id},#{phone},#{msg},
-		#{kitchen_name}, #{cust_id});
-	</insert>
+
 	<insert id="initOrderDetail">
-		insert into honey_badgers.order_detail (id,
-		menu_price, biz_name, biz_id,
-		menu_id, order_id) values
-		('order_detail_20', 15000, '유니네 피자집',
-		'biz_2', 'menu_7','order_12')
+		insert into honey_badgers.order_detail 
+			(id, quantity, menu_price, add_option_price, total_amt, biz_name, biz_id, menu_id, ,request_msg, order_id) 
+		values
+			(#{id}, #{quantity}, #{menuPrice},#{addOptionPrice}, #{totalAmt},#{bizName}, #{bizId}, #{menuId}, #{requestMsg}, #{orderId})
 
 	</insert>
 	<insert id="initOrderMenuOption">
-		insert into order_menu_option (id, name, opt_price,
-		opt_id, order_detail_id,
-		menu_id)
-		values('order_menu_option_15', '라지',
-		2000, 'menu_option_6' ,'order_detail_20', 'menu_7' )
+		insert into order_option 
+			(opt_name, opt_price, opt_id, order_detail_id)
+		values
+			(#{optName},#{optPrice},#{optId},#{orderDetailId})
 
 	</insert>
-	<update id="addOrderDetailOptionPrice">
-		update order_detail
-		set add_option_price =
-		(select
-		sum(opt_price) from order_menu_option group by order_detail_id having
-		order_detail_id= 'order_detail_20')
-		where id='order_detail_20'
 
-	</update>
-	<update id="addOrderDetailTotalAmount">
-		update order_detail
-		set total_amt=
-		(menu_price+add_option_price) where order_id='order_12'
-
-	</update>
-	<update id="addOrderPayAmount">
-		update honey_badgers.order set pay_amt =(select
-		sum(total_amt) from
-		order_detail group by order_id having
-		order_id='order_12')
-		where id='order_12'
-	</update>
 	<select id="getOrderInfo"
-		 resultType="java.util.HashMap">
+		resultType="org.badgers.rest.model.OrderInfoVO">
 		select * from
 		(
 		select * from
 		honey_badgers.order o,(
 		select order_detail_id, quantity, menu_price, add_option_price,
-		total_amt,biz_name,order_opt_id,order_opt_name,opt_price,opt_id
-		,d.order_id from (SELECT id as order_detail_id,quantity,
-		menu_price,add_option_price, total_amt, biz_name, order_id FROM
-		order_detail) d
-		LEFT JOIN (select id as order_opt_id, name as order_opt_name, opt_price,
-		opt_id, order_detail_id as order_opt_order_detail_id from
-		order_menu_option) p ON d.order_detail_id =
-		p.order_opt_order_detail_id
+		total_amt,biz_name,opt_name,opt_price,opt_id ,d.order_id from (SELECT
+		id as order_detail_id,quantity, menu_price,add_option_price,
+		total_amt, biz_name, order_id FROM order_detail) d
+		LEFT JOIN (select opt_name, opt_price, opt_id, order_detail_id as
+		order_opt_order_detail_id from order_menu_option) p ON
+		d.order_detail_id = p.order_opt_order_detail_id
 		) k
 		where k.order_id = o.id
 		) l
 		where l.id=#{orderId}
 
 	</select>
-	
+
+
+
 	<select id="test" resultType="org.badgers.rest.model.OrderVO">
-		select * from honey_badgers.order where id=#{orderId}
+		select * from honey_badgers.order
+		where id=#{orderId}
 	</select>
-	
-	<select id="getOrder" resultType="java.util.HashMap">
+
+	<select id="getOrder"
+		resultType="org.badgers.rest.model.OrderVO">
 		select * from honey_badgers.order
 	</select>
 </mapper>
