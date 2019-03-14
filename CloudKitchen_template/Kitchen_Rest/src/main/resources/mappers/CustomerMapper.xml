@@ -18,18 +18,32 @@
 		(#{id},#{pw},#{name},#{birthDate},#{phone},#{email},#{gender})
 
 	</insert>
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="org.badgers.rest.model.CustomerVO">
+		select id, pw from honey_badgers.customer where id = #{param1}
+	</select>
 
-
-	<!-- 로긴 -->
+	<!--마이 페이지 -->
 	<select id="selectById"
 		resultType="org.badgers.rest.model.CustomerVO">
 		select * from honey_badgers.customer where id = #{id}
 	</select>
+	
+	
+	
 
 
 	<!-- 회원 정보 수정 -->
 	<update id="modify">
 		update honey_badgers.customer set pw = #{pw}, name = #{name}, email = #{email} where id = #{id}
+	</update>
+
+
+
+	<!-- 비번 수정 -->
+	<update id="changePwd">
+		update honey_badgers.customer set pw = #{param2} where id = #{param1}
 	</update>
 
 
