@@ -12,6 +12,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,9 +72,11 @@ public class CustOrderController {
 		return new ResponseEntity<>(service.getOrder(orderId), HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/test/yuni")
-	public ResponseEntity<List<OrderVO>>  test1(String orderId){
-		return new ResponseEntity<>(service.getOrder(orderId), HttpStatus.OK);
+	@PostMapping("/test/yuni")
+	public ResponseEntity<?>  test1(@RequestBody OrderVO vo ){
+		System.out.println(vo);
+		
+		return new ResponseEntity<>(service.getOrder("order_1"), HttpStatus.OK);
 	}
 	
 	

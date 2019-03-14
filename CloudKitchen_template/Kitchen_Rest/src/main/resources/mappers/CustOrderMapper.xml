@@ -21,7 +21,7 @@
 
 	</insert>
 	<insert id="initOrderMenuOption">
-		insert into order_menu_option 
+		insert into order_option 
 			(opt_name, opt_price, opt_id, order_detail_id)
 		values
 			(#{optName},#{optPrice},#{optId},#{orderDetailId})
