@@ -5,13 +5,14 @@ import lombok.Data;
 @Data
 public class OrderDetailVO {
 	private String id;
-	private int quantity;
+	private String menuId;
+	private String menuName;
 	private int menuPrice;
 	private int addOptionPrice;
+	private int quantity;
 	private int totalAmt;
-	private String bizName;
 	private String bizId;
-	private String menuId;
+	private String bizName;
 	private String requestMsg;
 	private String orderId;
 	
