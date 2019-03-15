@@ -34,7 +34,7 @@ public class TestController {
 		System.out.println("======================================================================================");
 		System.out.println(order);
 		Map<String, Object> testmap = new LinkedHashMap<String, Object>();
-		testmap.put("8188", order);
+		testmap.put("orderInfo111", order);
 //		testmap.put("8888", order);
 //		testmap.put("8888", order);
 		service.test(testmap);
