@@ -9,6 +9,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
+<%-- <c:out value="test12345"></c:out> --%>
 <h1>
 	Rest Test페이지 입니다.
 </h1>
