@@ -37,8 +37,6 @@
 		delete from menu_category where idx=#{menuIdx}
 	</delete>
 	
-	<update id="">
-		
-	</update>
+	
 	
 </mapper>
