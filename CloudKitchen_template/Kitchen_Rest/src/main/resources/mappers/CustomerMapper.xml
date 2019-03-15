@@ -66,4 +66,44 @@
 	</update>
 
 
+<!--주문 내역   -->
+<select id="getOrderInfo"
+      parameterType="String"
+      resultType="org.badgers.rest.model.OrderInfoVO">
+      select orders.id, cust_id, phone, address, orders.time,
+      commoncode.name as status, kitchen_name, biz_name, method, menu_name,
+      menu_price, opt_name, opt_price, quantity, total_amt, pay_amt, msg,
+      request_msg
+      FROM honey_badgers.order as orders, order_payment as orderpayment,
+      common_code as commoncode,
+      (
+      select id, menu_id, menu_name, menu_price, add_option_price, quantity,
+      total_amt, biz_id, biz_name, request_msg, order_id, opt_id, opt_name,
+      opt_price, order_detail_id from order_detail as orderdetail
+      left outer join
+      (
+      select * from honey_badgers.order_option
+      ) as orderoption
+      on orderdetail.id = orderoption.order_detail_id
+
+      ) as orderdetailoption
+      where
+      orders.cust_id=#{cust_id}
+      and orders.id=orderpayment.id
+      and orders.status=commoncode.id
+      and orders.id=orderpayment.id
+      and orderdetailoption.order_id = orders.id
+      ;
+   </select>
+
+
+
+
+
+
+
+
+
+
+
 </mapper>

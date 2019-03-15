@@ -14,20 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
 
 @RestController
 @RequestMapping("/business")
-@Log4j
 public class BusinessController {
 
 	@Setter(onMethod_ = { @Autowired })
 	private BusinessService service;
 	
 	//마페지
-		@GetMapping(value = "/{bizId}/mypage", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-		public ResponseEntity<List<BizMemberVOExtend>>  selectById(@PathVariable("bizId") String biz_id) {
-			List<BizMemberVOExtend> list = service.selectById();
+		@GetMapping(value = "/{biz_id}/mypage", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+		public ResponseEntity<List<BizMemberVOExtend>>  selectById(@PathVariable("biz_id") String bizId) throws Exception {
+			List<BizMemberVOExtend> list = service.selectById(bizId);
 				
 
 			return new ResponseEntity<List<BizMemberVOExtend>>(list, HttpStatus.OK);

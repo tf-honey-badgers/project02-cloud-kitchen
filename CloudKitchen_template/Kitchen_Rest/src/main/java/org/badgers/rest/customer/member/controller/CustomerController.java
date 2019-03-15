@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.badgers.rest.customer.member.service.CustomerService;
 import org.badgers.rest.model.CustomerVO;
+import org.badgers.rest.model.OrderInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -70,7 +71,7 @@ public class CustomerController {
 
 	
 	// 수정
-	@PutMapping("/modify/{id}")
+	@PutMapping("/{id}/mypage/modify")
 	public int modify(@PathVariable("id")String id, @RequestBody CustomerVO vo) {
 
 		int returnVal = 0;
@@ -114,7 +115,14 @@ public class CustomerController {
 		return returnValue;
 	}
 	
-	
+	//마페지
+	@GetMapping(value = "/{cust_id}/mypage/orderinfo", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<List<OrderInfoVO>>  getOrderInfo(@PathVariable("cust_id")String custId) {
+		List<OrderInfoVO> list = service.getOrderInfo(custId);
+			
+
+		return new ResponseEntity<List<OrderInfoVO>>(list, HttpStatus.OK);
+	}
 	
 	
 

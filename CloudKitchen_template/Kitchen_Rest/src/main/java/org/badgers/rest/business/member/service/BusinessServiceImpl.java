@@ -38,9 +38,9 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	// 회원정보
 	@Override
-		public List<BizMemberVOExtend> selectById() {
+		public List<BizMemberVOExtend> selectById(String bizId) {
 			System.out.println("나와라=============");
-			List<BizMemberVOExtend> list = mapper.selectById();
+			List<BizMemberVOExtend> list = mapper.selectById(bizId);
 
 			return list;
 		}

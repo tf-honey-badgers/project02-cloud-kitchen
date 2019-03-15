@@ -10,7 +10,7 @@ public interface BusinessMapper {
 	public BizMemberVOExtend login(String bizId, String pw);
 
 	// 회원 정보
-	public List<BizMemberVOExtend> selectById();
+	public List<BizMemberVOExtend> selectById(String bizId);
 
 	// 사업자 정보 수정
 	public int modify(BizMemberVOExtend bizMvo);

@@ -13,6 +13,6 @@ public interface BusinessService {
 	public int modify(BizMemberVOExtend bizMvo) throws Exception;
 
 	// 회원 정보
-	public List<BizMemberVOExtend> selectById() ;
+	public List<BizMemberVOExtend> selectById(String bizId)throws Exception;
 
 }

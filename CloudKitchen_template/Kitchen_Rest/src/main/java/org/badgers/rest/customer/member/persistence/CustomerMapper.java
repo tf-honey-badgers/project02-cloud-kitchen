@@ -3,6 +3,7 @@ package org.badgers.rest.customer.member.persistence;
 import java.util.List;
 
 import org.badgers.rest.model.CustomerVO;
+import org.badgers.rest.model.OrderInfoVO;
 
 public interface CustomerMapper {
 
@@ -26,6 +27,9 @@ public interface CustomerMapper {
 	
 	//멤버 
 	public List<CustomerVO> readMember(String id) throws Exception;
+	
+	//주문내역
+	public List<OrderInfoVO> getOrderInfo(String custId);
 	
 
 }
