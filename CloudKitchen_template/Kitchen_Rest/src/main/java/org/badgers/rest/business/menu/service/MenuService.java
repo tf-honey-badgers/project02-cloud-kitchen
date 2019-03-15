@@ -9,8 +9,6 @@ import org.badgers.rest.model.MenuVOExtend;
 
 public interface MenuService {
 	public int addMenuCat(MenuCatVOExtend menuCatVoEx,MenuVOExtend menuVoEx,
-			List<MenuOptionClVOExtend> menuOptClVoEx,List<MenuOptionVOExtend> menuOptVoEx);
-/*	public int addMenu(MenuVOExtend menuVoEx);
-	public int addMenuOptionCl(MenuOptionClVOExtend menuOptClVoEx);
-	public int addMenuOption(MenuOptionVOExtend menuOptVoEx);*/
+			MenuOptionClVOExtend menuOptClVoEx,MenuOptionVOExtend menuOptVoEx);
+	public int deleteMenu(String menuIdx);
 }
