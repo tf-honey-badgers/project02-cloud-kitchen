@@ -13,6 +13,7 @@ public class BizVOExtend {
 	private int bizMinAmt;
 	private String bizCatId;
 	private String bizKitchenId;
+	private String bizLiveStrm;
 	private List<MenuCatVOExtend> bizMenucatvo;
 	private int bizIdx;
 }
