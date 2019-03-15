@@ -6,9 +6,8 @@ import lombok.Data;
 
 @Data
 public class MenuCatVOExtend {
-	private String mcNo;
+	private int mcNo;
 	private String mcName;
 	private String mcBizId;
-	private int mcIdx;
 	private List<MenuVOExtend> mcMenuvo;
 }

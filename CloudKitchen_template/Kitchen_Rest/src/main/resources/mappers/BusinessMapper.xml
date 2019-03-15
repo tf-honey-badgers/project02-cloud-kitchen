@@ -3,6 +3,40 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.badgers.mapper.BusinessMapper">
+<mapper namespace="org.badgers.rest.business.menu.persistence.MenuMapper">
+	
+	<insert id="addMenuCat" parameterType="org.badgers.rest.model.MenuCatVOExtend">
+		insert into menu_category (name,biz_id) values(#{mcName},#{mcBizId})
+		<selectKey resultType="int" keyProperty="mcNo" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+ 	<insert id="addMenu" parameterType="org.badgers.rest.model.MenuVOExtend">
+		insert into menu (name,basic_price,photo,category_id) values(#{mName},#{mBasicPrice},#{mPhoto},#{menuCatCode})
+		<selectKey resultType="int" keyProperty="mCode" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<insert id="addMenuOptionCl" parameterType="org.badgers.rest.model.MenuOptionClVOExtend">
+		insert into menu_option_cl (name,menu_opt_type,menu_id) values(#{mocName},#{mocMenuOptType},#{mocMenuCode})
+		<selectKey resultType="int" keyProperty="mocNo" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<insert id="addMenuOption" parameterType="org.badgers.rest.model.MenuOptionVOExtend">
+		insert into menu_option (name,add_price,opt_cl_id) values(#{moName},#{moAddPrice},#{moOptClNo})
+		<selectKey resultType="int" keyProperty="moCode" order="AFTER">
+			SELECT LAST_INSERT_ID() 
+		</selectKey>
+	</insert>
+	
+	<delete id="deleteMenu">
+		delete from menu_category where idx=#{menuIdx}
+	</delete>
+	
+	
 	
 </mapper>
