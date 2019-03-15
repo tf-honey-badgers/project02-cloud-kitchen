@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class FireBaseService {
 	
-	public void test(Map<String, Object> testmap) throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
+	public FirebaseResponse test(Map<String, Object> testmap) throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
 		
 		// get the base-url (ie: 'http://gamma.firebase.com/username')
 		String firebase_baseUrl = "https://honeybadgers-d29cf.firebaseio.com/";
@@ -75,6 +75,7 @@ public class FireBaseService {
 		 FirebaseResponse response = firebase.post(testmap);
 		System.out.println( "\n\nResult of POST (for the test-POST):\n" + response );
 		System.out.println("\n");
+		return response;
 	}
 	
 	
@@ -82,10 +83,10 @@ public class FireBaseService {
 	public FirebaseResponse getFirebase() throws FirebaseException, UnsupportedEncodingException {
 		String firebase_baseUrl = "https://honeybadgers-d29cf.firebaseio.com/";
 		Firebase firebase = new Firebase( firebase_baseUrl );
-		FirebaseResponse response = firebase.get("-La-XkSFc5066pxq48DE");
+		FirebaseResponse response = firebase.get("-La0QQcQz3h8eNmgA7ws");
 		
 		
-		return null;
+		return response;
 		
 	}
 	
