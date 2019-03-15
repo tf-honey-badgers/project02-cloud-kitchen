@@ -1,8 +1,17 @@
 package org.badgers.rest.customer.order.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import javax.inject.Inject;
 import javax.ws.rs.POST;
 
+import org.badgers.rest.customer.order.firebase.FirebaseException;
+import org.badgers.rest.customer.order.firebase.JacksonUtilityException;
 import org.badgers.rest.customer.order.service.CustOrderService;
+import org.badgers.rest.customer.order.service.FireBaseService;
+import org.badgers.rest.firebasetest.Order;
 import org.badgers.rest.model.OrderDetailVO;
 import org.badgers.rest.model.OrderInfoVO;
 import org.badgers.rest.model.OrderOptionVO;
@@ -10,21 +19,26 @@ import org.badgers.rest.model.OrderVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TestController {
 	
-	private CustOrderService service;
+	@Inject
+	private FireBaseService service;
 	
-	@PostMapping("/test/yuni")
-	public ResponseEntity<?> test (OrderVO vo1 , OrderDetailVO vo2 , OrderOptionVO vo3) {
+	@PostMapping("/test/firebase")
+	public ResponseEntity<?> test (@RequestBody Order order) throws UnsupportedEncodingException, FirebaseException, JacksonUtilityException {
 		
 		System.out.println("======================================================================================");
-		System.out.println(vo1);
-		System.out.println(vo2);
-		System.out.println(vo3);
-		return new ResponseEntity<>(service.getOrder("order_1"), HttpStatus.OK);
+		System.out.println(order);
+		Map<String, Object> testmap = new LinkedHashMap<String, Object>();
+		testmap.put("8188", order);
+//		testmap.put("8888", order);
+//		testmap.put("8888", order);
+		service.test(testmap);
+		return new ResponseEntity<>( HttpStatus.OK);
 		
 	}
 
