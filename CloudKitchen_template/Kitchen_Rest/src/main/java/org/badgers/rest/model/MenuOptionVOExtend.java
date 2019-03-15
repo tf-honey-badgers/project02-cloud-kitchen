@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class MenuOptionVOExtend {
-	private String moCode;
+	private int moCode;
 	private String moName;
 	private String moAddPrice;
-	private String moOptClNo;
+	private int moOptClNo;
 }

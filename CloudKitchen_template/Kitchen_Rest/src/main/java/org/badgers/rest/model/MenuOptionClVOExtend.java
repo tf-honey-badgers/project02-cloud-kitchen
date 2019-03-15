@@ -6,9 +6,9 @@ import lombok.Data;
 
 @Data
 public class MenuOptionClVOExtend {
-	private String mocNo;
+	private int mocNo;
 	private String mocName;
 	private String mocMenuOptType;
-	private String mocMenuCode;
+	private int mocMenuCode;
 	private List<MenuOptionVOExtend> menuOptEx;
 }

@@ -10,6 +10,6 @@ public class MenuVOExtend {
 	private String mName;
 	private int mBasicPrice;
 	private String mPhoto;
-	private String menuCatCode;
+	private int menuCatCode;
 	private List<MenuOptionClVOExtend> menuOptCl;
 }

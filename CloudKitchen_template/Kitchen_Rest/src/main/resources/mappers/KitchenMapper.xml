@@ -54,6 +54,7 @@
 		<result property="bizMinAmt" column="bizMinAmt" />
 		<result property="bizCatId" column="bizCatId" />
 		<result property="bizKitchenId" column="bizKitchenId" />
+		<result property="bizLiveStrm" column="bizLiveStrm" />
 		<result property="bizIdx" column="bizIdx" />
 		<collection property="bizMenucatvo" javaType="java.util.ArrayList" resultMap="MenuCatVoEx"/>
 	</resultMap>
@@ -68,8 +69,9 @@
 			b.min_amt bizMinAmt,
 			b.biz_cat_id bizCatId,
 			b.kitchen_id bizKitchenId,
+			b.biz_live_strm bizLiveStrm,
 			b.idx bizIdx,
-
+			
 			mc.idx mcNo,
 			mc.name mcName,
 			mc.biz_id mcBizId,
