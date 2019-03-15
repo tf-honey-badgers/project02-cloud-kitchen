@@ -22,7 +22,7 @@ public class BusinessController {
 	@Setter(onMethod_ = { @Autowired })
 	private BusinessService service;
 	
-	//마페지
+	//사업자 마이 페이지 정보 쭉쭉 
 		@GetMapping(value = "/{biz_id}/mypage", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 		public ResponseEntity<List<BizMemberVOExtend>>  selectById(@PathVariable("biz_id") String bizId) throws Exception {
 			List<BizMemberVOExtend> list = service.selectById(bizId);

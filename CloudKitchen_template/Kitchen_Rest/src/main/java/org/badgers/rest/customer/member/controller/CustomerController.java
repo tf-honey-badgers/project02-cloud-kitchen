@@ -59,7 +59,7 @@ public class CustomerController {
 		  }
 		
 	
-	//마페지
+	//개인정보 끌어오기 
 	@GetMapping(value = "/{id}/mypage", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<List<CustomerVO>>  selectById(@PathVariable("id") String id) {
 		List<CustomerVO> list = service.selectById(id);
@@ -71,7 +71,7 @@ public class CustomerController {
 
 
 	
-	// 수정
+	// 개인정보 수정
 	@PutMapping("/{id}/mypage/modify")
 	public int modify(@PathVariable("id")String id, @RequestBody CustomerVO vo) {
 
@@ -86,7 +86,7 @@ public class CustomerController {
 		return returnVal;
 	}
 
-	// 비번 변화
+	// 비번만  변화
 	@PutMapping("/changePwd")
 	public int changePwd(@RequestBody CustomerVO input) {
 
@@ -124,6 +124,8 @@ public class CustomerController {
 
 		return new ResponseEntity<List<OrderInfoVO>>(list, HttpStatus.OK);
 	}
+	
+	
 	
 	//찜  내역  보기 
 	@GetMapping(value = "/{cust_id}/mypage/favorite", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
