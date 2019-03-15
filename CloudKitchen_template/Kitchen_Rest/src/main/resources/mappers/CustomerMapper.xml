@@ -36,8 +36,21 @@
 
 	<!-- 회원 정보 수정 -->
 	<update id="modify">
-		update honey_badgers.customer set pw = #{pw}, name = #{name}, email = #{email} where id = #{id}
+		update honey_badgers.customer 
+		<trim prefix="SET" suffixOverrides=",">
+		<if test="pw != null and pw != ''">
+		pw = #{pw},
+		</if>
+		<if test="name != null and name != ''">
+		name = #{name},
+		</if>
+		<if test="email != null and email != ''">
+		email = #{email},
+		</if>
+		</trim>
+		where id = #{id}
 	</update>
+
 
 
 

@@ -41,15 +41,15 @@ public class CustomerServiceImpl implements CustomerService {
 			e.printStackTrace();
 		}
 
-		if (queryResult == null) {
-			returnVal = "NO_ACCT"; // "계정 없음" 메시지
-		} else {
-			if (pw.equals(queryResult.getPw())) {
-				returnVal = queryResult.getId(); // 아이디를 반환, 메시지가 아닌 아이디를 반환했다는 것 자체가 성공적인 로그인 인증을 의미
-			} else {
-				returnVal = "BAD_PWD"; // "비밀번호 틀림" 메시지
-			}
-		}
+//		if (queryResult == null) {
+//			returnVal = "NO_ACCT"; // "계정 없음" 메시지
+//		} else {
+//			if (pw.equals(queryResult.getPw())) {
+//				returnVal = queryResult.getId(); // 아이디를 반환, 메시지가 아닌 아이디를 반환했다는 것 자체가 성공적인 로그인 인증을 의미
+//			} else {
+//				returnVal = "BAD_PWD"; // "비밀번호 틀림" 메시지
+//			}
+//		}
 
 		return returnVal;
 	}

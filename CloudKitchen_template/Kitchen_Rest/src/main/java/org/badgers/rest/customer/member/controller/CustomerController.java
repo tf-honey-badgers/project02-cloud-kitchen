@@ -42,14 +42,15 @@ public class CustomerController {
 	public ResponseEntity<String> login(CustomerVO in) throws Exception {
 		 ResponseEntity<String> entity = null;
 		 if(entity ==null || ((CharSequence) entity).length()==0) {
-			 log.info("없다 없다");
+			 log.info("없다 없다====================");
 		 }
 		 try {
 		      entity = new ResponseEntity<>(service.login(in.getId(), in.getPw()), HttpStatus.OK);
-
+		      log.info("연결 ==================== ");
 		    } catch (Exception e) {
 		      e.printStackTrace();
 		      entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		      log.info("에러 에러=========================== ");
 		    }
 
 		    return entity;	
