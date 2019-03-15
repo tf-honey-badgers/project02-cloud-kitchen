@@ -1,17 +1,17 @@
 package org.badgers.rest.customer.order.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.badgers.rest.customer.order.persistence.CustOrderMapper;
 import org.badgers.rest.model.OrderDetailVO;
+import org.badgers.rest.model.OrderDetailVOExtend;
 import org.badgers.rest.model.OrderInfoVO;
 import org.badgers.rest.model.OrderOptionVO;
 import org.badgers.rest.model.OrderPaymentVO;
 import org.badgers.rest.model.OrderVO;
-import org.badgers.rest.model.ParamOrderVO;
+import org.badgers.rest.model.OrderVOExtend;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,68 +22,51 @@ public class CustOrderServiceImpl implements CustOrderService {
 	@Inject
 	CustOrderMapper mapper;
 	
-	@Transactional()
-	public void insertAAA(String val) {
-		
-		mapper.insert1(val);
-		mapper.insert2(val);
-		
-	}
-	
-	@Override
-	@Transactional()
-	public int excuteOrder(ParamOrderVO vo) throws Exception {
-		System.out.println("맨처음---------------------------------------------------------------------");
-		
-		//order_id 받아옴(idx)
-
-		
-		OrderVO orderVO=vo.getOrderVO();
-		OrderDetailVO orderDetailVO =vo.getOrderDetailVO();
-		OrderOptionVO orderOptionVO =vo.getOrderOptionVO();
-		OrderPaymentVO orderPaymentVO =vo.getOrderPaymentVO();
-		
-		
-		//기본 결제 정보 입력
-		mapper.addPayment(orderPaymentVO);
-		
-		
-		//order 기본 정보 입력
-		mapper.initOrder(orderVO);
-		System.out.println("1");
-		
-		//order_detail 기본 정보 입력
-		mapper.initOrderDetail(orderDetailVO);
-		System.out.println("2");
-		
-		//order_menu_option 기본 정보 입력(ex: 옵션 2개 추가 - 옵션은 0~ n개 사이) 
-		mapper.initOrderMenuOption(orderOptionVO);
-		System.out.println("3");
-		//order_detail 에 add_option_price 컬럼을 Update
-		
-		return 0;
-	}
-
 	@Override
 	public List<OrderInfoVO> getOrderInfo(String orderId) throws Exception {
 		
-		List<OrderInfoVO> list= mapper.getOrderInfo(orderId);
+		List<OrderInfoVO> list = mapper.getOrderInfo(orderId);
 		
 		return list;
 	}
 	
-	public OrderVO getOrderWithOrderId(String orderId) throws Exception{
-		OrderVO vo = mapper.test(orderId);
-		
-		vo.getId();
-		return mapper.test(orderId);
-		
-	}
-
+	//테스트 order
 	@Override
-	public List<OrderVO> getOrder(String orderId) {
+	@Transactional()
+	public int excuteOrder(OrderVOExtend vo) throws Exception {
+
+		//1. order INSERT
+		mapper.initOrder(vo);
 		
-		return mapper.getOrder(orderId);
+		//2. order_payment INSERT 
+		//2-1. order_payment 뽑아옴
+		OrderPaymentVO orderPaymentVO = vo.getOrderPayment();
+		//2-2. insert 수행
+		mapper.addPayment(orderPaymentVO);
+
+		//3. order_detail INSERT
+		//3-1. order_detail 배열 뽑아옴
+		OrderDetailVOExtend[] orderDetails =vo.getOrderDetails();
+		OrderDetailVOExtend orderDetailVOExtend = null;
+		//3-2. 배열에 든 모든 객체의 insert 수행
+		for(int i=0; i<orderDetails.length;i++) {
+			orderDetailVOExtend = orderDetails[i];
+			mapper.initOrderDetail(orderDetailVOExtend);
+			
+			//4. order_option INSERT
+			//4-1. order_option 배열 뽑아옴
+			OrderOptionVO[] orderOptions= orderDetailVOExtend.getOrderOptions();
+			OrderOptionVO orderOptionVO = null;
+			//4-2. 배열에 든 모든 객체의 insert 수행
+			for(int j=0; j<orderOptions.length; j++) {
+				orderOptionVO = orderOptions[j];
+				mapper.initOrderMenuOption(orderOptionVO);
+			}
+			
+		}
+
+		
+		return 1;
 	}
 
 
