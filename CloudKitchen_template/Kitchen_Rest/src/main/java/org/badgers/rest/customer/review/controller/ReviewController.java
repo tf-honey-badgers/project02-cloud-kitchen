@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.badgers.rest.customer.review.service.ReviewServiceImpl;
+import org.badgers.rest.model.GpaVOExtend;
 import org.badgers.rest.model.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,5 +32,11 @@ public class ReviewController {
 	@ResponseBody
 	public List<RecommendedItem> recommendation(@RequestParam("idx") Long cust_idx){
 		return service.recommendation(cust_idx);
+	}
+	
+	@RequestMapping("/gpa")
+	@ResponseBody
+	public List<GpaVOExtend> getGpa(@RequestParam("gpa") String bizId){
+		return service.getGpa(bizId);
 	}
 }

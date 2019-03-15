@@ -4,13 +4,11 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -27,15 +25,15 @@
 		<beans:property name="contentType" value="UTF-8" />
 	</beans:bean>
 
-    <!-- @Transactional 애너테이션 활성화 설정 -->
-        <!-- "tx:annotation-driven" -> "context:component-scan"와 함께 "servlet-context.xml"에 위치해야 사용할 수 있다! -->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-
-	
 	<!-- "org.badgers.rest" 하위 전체 스캔 -> 그 중에 @Controller, @Service 붙은 클래스만 인식하도록 -->
 	<context:component-scan base-package="org.badgers.rest.*">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+<<<<<<< HEAD
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 	<!-- <context:component-scan base-package="org.badgers.rest.**.*controller"/> -->
+=======
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+>>>>>>> develop
 </beans:beans>
