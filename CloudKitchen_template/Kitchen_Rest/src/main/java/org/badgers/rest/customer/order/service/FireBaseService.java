@@ -43,14 +43,14 @@ public class FireBaseService {
 
 
 		// "DELETE" (the fb4jDemo-root)
-//		FirebaseResponse response = firebase.delete();
+	//	FirebaseResponse response = firebase.delete();
 
 
 		// "PUT" (test-map into the fb4jDemo-root)
-//		Map<String, Object> dataMap = new LinkedHashMap<String, Object>();
-//		//dataMap.put 에 String, String 넣으면 json 타입으로 해서 들어감 
-//		dataMap.put( "haha",testmap);
-//		FirebaseResponse response = firebase.put( testmap );
+		Map<String, Object> dataMap = new LinkedHashMap<String, Object>();
+		//dataMap.put 에 String, String 넣으면 json 타입으로 해서 들어감 
+//		dataMap.put( "orderInfo",testmap);
+//		 response = firebase.put( dataMap );
 //		System.out.println( "\n\nResult of PUT (for the test-PUT to fb4jDemo-root):\n" + response );
 //		System.out.println("\n");
 		
@@ -68,7 +68,12 @@ public class FireBaseService {
 //		System.out.println("\n");
 		
 		// "POST" (test-map into a sub-node off of the fb4jDemo-root)
-		FirebaseResponse response = firebase.post( "test-POST1", testmap );
+		 Map<String, Object> dataMap2 = new LinkedHashMap<String, Object>();
+		 dataMap2.put("order", testmap);
+		 
+		 
+		 FirebaseResponse response = firebase.post( "2222", testmap );
+		 firebase.put( "2222", testmap );
 		System.out.println( "\n\nResult of POST (for the test-POST):\n" + response );
 		System.out.println("\n");
 	}

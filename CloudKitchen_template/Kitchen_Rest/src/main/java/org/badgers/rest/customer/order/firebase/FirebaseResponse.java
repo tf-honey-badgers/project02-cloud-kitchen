@@ -27,10 +27,15 @@ public class FirebaseResponse {
 		this.success = success;
 		this.code = code;
 		
+		System.out.println("         ------------------------------                                          난수                                          나와봐라                                                    \n   ");
+		System.out.println("here      :      "+body);
 		if( body == null ) {
 			LOGGER.info( "body was null; replacing with empty map" );
 			body = new LinkedHashMap<String, Object>();
+			System.out.println("skstn   1                       \n");
+			
 		}
+		System.out.println("               2  :                   \n");
 		this.body = body;
 		
 		if( rawBody == null ) {
