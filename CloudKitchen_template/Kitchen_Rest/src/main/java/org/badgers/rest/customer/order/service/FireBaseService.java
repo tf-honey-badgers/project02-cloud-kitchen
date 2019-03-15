@@ -72,12 +72,22 @@ public class FireBaseService {
 		 dataMap2.put("order", testmap);
 		 
 		 
-		 FirebaseResponse response = firebase.post( "2222", testmap );
-		 firebase.put( "2222", testmap );
+		 FirebaseResponse response = firebase.post(testmap);
 		System.out.println( "\n\nResult of POST (for the test-POST):\n" + response );
 		System.out.println("\n");
 	}
 	
+	
+	
+	public FirebaseResponse getFirebase() throws FirebaseException {
+		String firebase_baseUrl = "https://honeybadgers-d29cf.firebaseio.com/";
+		Firebase firebase = new Firebase( firebase_baseUrl );
+		FirebaseResponse response = firebase.get();
+		
+		
+		return null;
+		
+	}
 	
 	
 	

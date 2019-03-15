@@ -21,6 +21,8 @@ import org.badgers.rest.model.OrderVOExtend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,17 +39,15 @@ public class TestController {
 	private CustOrderService orderService;
 	
 	@PostMapping("/test/firebase")
-	public ResponseEntity<?> test (@RequestBody Order order) throws UnsupportedEncodingException, FirebaseException, JacksonUtilityException {
+	public ResponseEntity<?> test (@RequestBody OrderVOExtend order) throws UnsupportedEncodingException, FirebaseException, JacksonUtilityException {
 		
 		System.out.println("======================================================================================");
 		System.out.println(order);
 		Map<String, Object> testmap = new LinkedHashMap<String, Object>();
-		testmap.put("orderInfo111", order);
-//		testmap.put("8888", order);
-//		testmap.put("8888", order);
+		testmap.put(order.getId(), order);
+
 		service.test(testmap);
 		return new ResponseEntity<>( HttpStatus.OK);
-		
 	}
 
 	@PostMapping("/test/tj/order")
@@ -75,29 +75,42 @@ public class TestController {
 		
 		return new ResponseEntity<>( HttpStatus.OK);
 	}
+//	-La-R5VT6GS_qzWkVKBD
+	
+//	@GetMapping("/test/firebase/{orderid}")
+//	public ResponseEntity<?> test (@PathVariable) {
+//		
+//		System.out.println("======================================================================================");
+//		System.out.println(order);
+//		Map<String, Object> testmap = new LinkedHashMap<String, Object>();
+//		testmap.put(order.getId(), order);
+//
+//		service.test(testmap);
+//		return new ResponseEntity<>( HttpStatus.OK);
+//	}
 	
 	
 	
 }
 
 
-/*
- * { "id": "order20190315", "custId": "yuni1010", "phone": "010-1111-8888",
- * "address": "경기도 고양시 일산동구 마두1동 백마마을 202동 집", "msg": "많이 주세요 배고파요",
- * "kitchenName": "종각점", "payAmt": 26000, "orderPayment": {
- * "id":"order20190315", "amount": 26000, "method": "kakaoPay" },
- * "orderDetails": [{ "id": "orderdetailid20190315", "menuId": "menu_1",
- * "menuName": "떡볶이", "menuPrice": 3000, "addOptionPrice": 0, "quantity": 1,
- * "totalAmt": 3000, "bizId": "biz_1", "bizName": "태주네 떡볶이", "requestMsg":
- * "매우매우맵게 해주세요", "orderId":"order20190315", "orderOptions": [{ "optId":
- * "opt_03", "optName": "매우매움", "optPrice": 0,
- * "orderDetailId":"orderdetailid20190315" }] }, { "id":
- * "orderdetailid20190315", "menuId": "menu_7", "menuName": "피자", "menuPrice":
- * 13000, "addOptionPrice": 6000, "quantity": 1, "totalAmt": 19000, "bizId":
- * "biz_3", "bizName": "유니네 피자", "requestMsg": "피클 많이 주십쇼",
- * "orderId":"order20190315", "orderOptions": [{ "optId": "opt_1", "optName":
- * "치즈크러스트", "optPrice": 2000, "orderDetailId":"orderdetailid20190315" }, {
- * "optId": "opt_3", "optName": "페퍼로니 추가", "optPrice": 3000,
- * "orderDetailId":"orderdetailid20190315" }, { "optId": "opt_22", "optName":
- * "올리브 추가", "optPrice": 1000, "orderDetailId":"orderdetailid20190315" } ] } ] }
- */
+
+//  { "id": "order201903155", "custId": "yuni1010", "phone": "010-1111-8888",
+//  "address": "경기도 고양시 일산동구 마두1동 백마마을 202동 집", "msg": "많이 주세요 배고파요",
+//  "kitchenName": "종각점", "payAmt": 26000, "orderPayment": {
+//  "id":"order201903155", "amount": 26000, "method": "kakaoPay" },
+//  "orderDetails": [{ "id": "orderdetailid20190315", "menuId": "menu_1",
+//  "menuName": "떡볶이", "menuPrice": 3000, "addOptionPrice": 0, "quantity": 1,
+//  "totalAmt": 3000, "bizId": "biz_1", "bizName": "태주네 떡볶이", "requestMsg":
+//  "매우매우맵게 해주세요", "orderId":"order201903155", "orderOptions": [{ "optId":
+//  "opt_03", "optName": "매우매움", "optPrice": 0,
+//  "orderDetailId":"orderdetailid20190315" }] }, { "id":
+//  "orderdetailid20190315", "menuId": "menu_7", "menuName": "피자", "menuPrice":
+//  13000, "addOptionPrice": 6000, "quantity": 1, "totalAmt": 19000, "bizId":
+//  "biz_3", "bizName": "유니네 피자", "requestMsg": "피클 많이 주십쇼",
+//  "orderId":"order201903155", "orderOptions": [{ "optId": "opt_1", "optName":
+//  "치즈크러스트", "optPrice": 2000, "orderDetailId":"orderdetailid20190315" }, {
+//  "optId": "opt_3", "optName": "페퍼로니 추가", "optPrice": 3000,
+//  "orderDetailId":"orderdetailid20190315" }, { "optId": "opt_22", "optName":
+//  "올리브 추가", "optPrice": 1000, "orderDetailId":"orderdetailid20190315" } ] } ] }
+ 
