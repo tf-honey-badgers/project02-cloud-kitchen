@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.badgers.rest.customer.member.persistence.BusinessMapper">
+		
+		
+		<!-- 로그인 -->
+	<select id="login" resultType="org.badgers.rest.model.BizMemberVOExtend">
+		select biz_id, pw from honey_badgers.biz_member where biz_id = #{param1}
+	</select>
+	
+	<select id="selectById" resultMap="org.badgers.rest.model.BizMemberVO">
+		select 
+			BM.biz_id bizId
+			, BM.pw pw
+			, BM.name name
+			, BM.reg_no regNo
+			, BM.account account
+			, BZ.biz_id bizId
+			, BZ.info info
+			, BZ.name name
+			, BZ.like_cnt likeCnt
+			, BZ.biz_cat_id bizCatId
+			, BZ.kitchen_id kitchenId
+			, BZ.biz_live_strm bizLiveStrm
+		from
+			honey_badgers.biz_member BM
+			, honey_badgers.biz BZ
+		where BM.biz_id = BZ.biz_id and BM.biz_id=#{bizId};
+		
+			</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

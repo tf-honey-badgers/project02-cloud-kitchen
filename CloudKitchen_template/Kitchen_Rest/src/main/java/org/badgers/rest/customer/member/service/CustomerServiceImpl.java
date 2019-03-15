@@ -54,7 +54,8 @@ public class CustomerServiceImpl implements CustomerService {
 		return returnVal;
 	}
 
-// 
+// 회원정보
+	@Override
 	public List<CustomerVO> selectById(String id) {
 		System.out.println("나와라=============");
 		List<CustomerVO> list = mapper.selectById(id);
@@ -66,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public int modify(CustomerVO vo) throws Exception {
 
-		return mapper.modify(vo); // cart 테이블에 수정된 행 개수 반환
+		return mapper.modify(vo); // customer 테이블에 수정된 행 개수 반환
 
 	}
 

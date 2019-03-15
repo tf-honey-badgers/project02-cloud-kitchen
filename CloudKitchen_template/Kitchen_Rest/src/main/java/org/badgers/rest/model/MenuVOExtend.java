@@ -6,11 +6,10 @@ import lombok.Data;
 
 @Data
 public class MenuVOExtend {
-	private String mCode;
+	private int mCode;
 	private String mName;
 	private int mBasicPrice;
 	private String mPhoto;
-	private String menuCatCode;
-	private int mIdx;
+	private int menuCatCode;
 	private List<MenuOptionClVOExtend> menuOptCl;
 }

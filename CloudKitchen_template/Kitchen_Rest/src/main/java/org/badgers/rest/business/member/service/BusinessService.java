@@ -1,27 +1,18 @@
 package org.badgers.rest.business.member.service;
 
-import org.badgers.rest.model.CustomerVO;
+import java.util.List;
+
+import org.badgers.rest.model.BizMemberVOExtend;
 
 public interface BusinessService {
-	
-	//로그인 
-	public String login(String bizId, String pw);
-	
-	
-	// 정보수정 
-	public int  modify(CustomerVO vo) throws Exception;
-	
-	
-	// 사업자 탈퇴 
-	
-	
 
-		
+	// 로그인
+	public String login(String bizId, String pw) throws Exception;
 
-	
+	// 정보수정
+	public int modify(BizMemberVOExtend bizMvo) throws Exception;
 
-	
-	
-	
-	
+	// 회원 정보
+	public List<BizMemberVOExtend> selectById() ;
+
 }
