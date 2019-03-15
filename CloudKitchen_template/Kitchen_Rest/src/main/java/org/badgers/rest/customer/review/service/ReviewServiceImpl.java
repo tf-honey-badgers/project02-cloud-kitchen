@@ -13,6 +13,7 @@ import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.apache.mahout.cf.taste.recommender.Recommender;
 import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 import org.badgers.rest.customer.review.persistence.ReviewMapper;
+import org.badgers.rest.model.GpaVOExtend;
 import org.badgers.rest.model.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,7 +64,10 @@ public class ReviewServiceImpl implements ReviewService {
 			e.printStackTrace();
 		}
 		return null;
-		
-		
+	}
+
+	@Override
+	public List<GpaVOExtend> getGpa(String bizId) {
+		return review.getGpa(bizId);
 	}
 }
