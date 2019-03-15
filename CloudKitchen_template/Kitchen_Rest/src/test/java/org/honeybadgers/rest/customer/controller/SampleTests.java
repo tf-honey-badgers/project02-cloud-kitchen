@@ -1,6 +1,9 @@
 package org.honeybadgers.rest.customer.controller;
 
+import org.badgers.rest.customer.order.firebase.FirebaseException;
+import org.badgers.rest.customer.order.firebase.JacksonUtilityException;
 import org.badgers.rest.customer.order.service.CustOrderService;
+import org.badgers.rest.customer.order.service.FireBaseService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +24,14 @@ public class SampleTests {
 	
 	
 	@Setter(onMethod_ = {@Autowired})
-	private CustOrderService service;
+	private FireBaseService service;
 	
 	
 	@Test
-	public void test() {
+	public void test() throws FirebaseException, JacksonUtilityException {
 		
 		try {
 			log.info("----------------------------------------");
-//			service.excuteOrder();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
