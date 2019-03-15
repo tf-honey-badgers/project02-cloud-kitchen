@@ -23,35 +23,41 @@ public class MenuServiceImpl implements MenuService {
 
 	@Override
 	public int addMenuCat(MenuCatVOExtend menuCatVoEx,MenuVOExtend menuVoEx,
-			List<MenuOptionClVOExtend> menuOptClVoEx,List<MenuOptionVOExtend> menuOptVoEx) {
+			MenuOptionClVOExtend menuOptClVoEx,MenuOptionVOExtend menuOptVoEx) {
 		
+/*		System.out.println(menuCatVoEx);
+		System.out.println();
+		System.out.println(menuVoEx);
+		System.out.println();
+		System.out.println(menuOptClVoEx);*/
+		int result = 0;
 		mapper.addMenuCat(menuCatVoEx);
+		result++;
 		
 		menuVoEx.setMenuCatCode(menuCatVoEx.getMcNo());
 		mapper.addMenu(menuVoEx);
+		result++;
 		
-		List<Integer> optClIdx = new ArrayList<Integer>();
-		
-		for(int i=0;i<menuOptClVoEx.size();i++) {
-			MenuOptionClVOExtend menuOptClVoEx1 = new MenuOptionClVOExtend();
-			menuOptClVoEx1.setMocMenuCode(menuVoEx.getMCode());
-			menuOptClVoEx1.setMocName(menuOptClVoEx.get(i).getMocName());
-			menuOptClVoEx1.setMocMenuOptType(menuOptClVoEx.get(i).getMocMenuOptType());
-			mapper.addMenuOptionCl(menuOptClVoEx1);
-			optClIdx.add(menuOptClVoEx1.getMocNo());
-		}
-		
-		for(int i=0;i<optClIdx.size();i++) {
-			for(int y=0;y<menuOptVoEx.size();y++) {
-				MenuOptionVOExtend menuOptVoEx1 = new MenuOptionVOExtend();
-				menuOptVoEx1.setMoName(menuOptVoEx.get(y).getMoName());
-				menuOptVoEx1.setMoAddPrice(menuOptVoEx.get(y).getMoAddPrice());
-				menuOptVoEx1.setMoOptClNo(optClIdx.get(i));
-				mapper.addMenuOption(menuOptVoEx1);
+		for(int i=0;i<menuVoEx.getMenuOptCl().size();i++) {
+			menuVoEx.getMenuOptCl().get(i).setMocMenuCode(menuVoEx.getMCode());
+			mapper.addMenuOptionCl(menuVoEx.getMenuOptCl().get(i));
+			result++;
+			
+			for(int y=0;y<menuOptClVoEx.getMenuOptEx().size();y++) {
+				menuOptClVoEx.getMenuOptEx().get(y).setMoOptClNo(menuVoEx.getMenuOptCl().get(i).getMocNo());
+				mapper.addMenuOption(menuOptClVoEx.getMenuOptEx().get(y));
+				result++;
 			}
 		}
 		
-		return 0;
+		return result;
 	}
+
+	@Override
+	public int deleteMenu(String menuIdx) {
+		return mapper.deleteMenu(menuIdx);
+	}
+	
+	
 
 }

@@ -232,13 +232,19 @@ public class Firebase {
 		
 		// make the request
 		String url = this.buildFullUrlFromRelativePath( path );
+		System.out.println("------------------ path : "+path);
+		System.out.println("------------------ url : "+url);
+		
 		HttpPut request = new HttpPut( url );
 		request.setEntity( this.buildEntityFromDataMap( data ) );
 		HttpResponse httpResponse = this.makeRequest( request );
 		
+		System.out.println("=======================================================\n"+request+"   \n");
+		System.out.println("======================================================\n"+httpResponse);
+		
 		// process the response
 		FirebaseResponse response = this.processResponse( FirebaseRestMethod.PUT, httpResponse );
-		
+		System.out.println("+++++++++++++++++++++++++++++++++++++"+response);
 		return response;
 	}
 	
@@ -277,6 +283,7 @@ public class Firebase {
 		
 		// process the response
 		FirebaseResponse response = this.processResponse( FirebaseRestMethod.PUT, httpResponse );
+		
 		
 		return response;		
 	}
@@ -318,12 +325,16 @@ public class Firebase {
 		
 		// make the request
 		String url = this.buildFullUrlFromRelativePath( path );
+		
+		System.out.println("path===========  "+path);
 		HttpPost request = new HttpPost( url );
 		request.setEntity( this.buildEntityFromDataMap( data ) );
 		HttpResponse httpResponse = this.makeRequest( request );
 		
 		// process the response
 		FirebaseResponse response = this.processResponse( FirebaseRestMethod.POST, httpResponse );
+		
+		System.out.println("+++++++++++++++++++++++++++++++++++++\n"+response);
 		
 		return response;
 	}
@@ -430,6 +441,8 @@ public class Firebase {
 	private StringEntity buildEntityFromDataMap( Map<String, Object> dataMap ) throws FirebaseException, JacksonUtilityException {
 		
 		String jsonData = JacksonUtility.GET_JSON_STRING_FROM_MAP( dataMap );
+		System.out.println("------------------json--------------------------------");
+		System.out.println(jsonData+"\n");
 		
 		return this.buildEntityFromJsonData( jsonData );
 	}
@@ -521,7 +534,7 @@ public class Firebase {
 			throw new FirebaseException( msg, t );
 			
 		}
-			
+			System.out.println("------------------------------------------이거\n"+response);
 		return response;
 	}
 	
@@ -577,7 +590,6 @@ public class Firebase {
 		// get the response-body
 		Writer writer = new StringWriter();
 		if( entity != null ) {
-			
 			try {
 				
 				InputStream is = entity.getContent();
@@ -601,7 +613,6 @@ public class Firebase {
 		// convert response-body to map
 		Map<String, Object> body = null;
 		try {
-			
 			body = JacksonUtility.GET_JSON_STRING_AS_MAP( writer.toString() );
 			
 		} catch( JacksonUtilityException jue ) {
