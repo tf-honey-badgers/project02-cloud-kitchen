@@ -97,8 +97,12 @@
    </select>
 
 
+<select id="favorite" 
+resultType="org.badgers.rest.model.FavoriteVO">
+select * from honey_badgers.favorite where cust_id = #{custId}
 
 
+</select>
 
 
 

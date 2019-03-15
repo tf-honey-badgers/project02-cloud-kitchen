@@ -3,6 +3,7 @@ package org.badgers.rest.customer.member.persistence;
 import java.util.List;
 
 import org.badgers.rest.model.CustomerVO;
+import org.badgers.rest.model.FavoriteVO;
 import org.badgers.rest.model.OrderInfoVO;
 
 public interface CustomerMapper {
@@ -31,5 +32,7 @@ public interface CustomerMapper {
 	//주문내역
 	public List<OrderInfoVO> getOrderInfo(String custId);
 	
+	// 찜 내역 보기 
+	public List<FavoriteVO> favorite(String custId);
 
 }

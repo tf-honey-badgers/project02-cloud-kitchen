@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.badgers.rest.customer.member.persistence.CustomerMapper;
 import org.badgers.rest.model.CustomerVO;
+import org.badgers.rest.model.FavoriteVO;
 import org.badgers.rest.model.OrderInfoVO;
 import org.springframework.stereotype.Service;
 
@@ -97,8 +98,16 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public List<OrderInfoVO> getOrderInfo(String custId) {
-		System.out.println("나와라=============");
+		System.out.println("오더 정보 나와라=============");
 		List<OrderInfoVO> list = mapper.getOrderInfo(custId);
+
+		return list;
+	}
+
+	@Override
+	public List<FavoriteVO> favorite(String custId) {
+		System.out.println("찜 정보  나와라=============");
+		List<FavoriteVO> list = mapper.favorite(custId);
 
 		return list;
 	}
