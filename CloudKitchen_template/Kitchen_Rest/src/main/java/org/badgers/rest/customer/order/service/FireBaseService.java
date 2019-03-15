@@ -79,10 +79,10 @@ public class FireBaseService {
 	
 	
 	
-	public FirebaseResponse getFirebase() throws FirebaseException {
+	public FirebaseResponse getFirebase() throws FirebaseException, UnsupportedEncodingException {
 		String firebase_baseUrl = "https://honeybadgers-d29cf.firebaseio.com/";
 		Firebase firebase = new Firebase( firebase_baseUrl );
-		FirebaseResponse response = firebase.get();
+		FirebaseResponse response = firebase.get("-La-XkSFc5066pxq48DE");
 		
 		
 		return null;
