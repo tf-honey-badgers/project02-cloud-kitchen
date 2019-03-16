@@ -49,27 +49,73 @@
 		
 		해당메뉴의 옵션4-2 name : <input type="text" value="순살변경" name="menuOptVoEx[1].menu_option" id="menuOptVoName2"><br>
 		해당메뉴의 옵션4-2 add_price : <input type="text" value="2000" name="menuOptVoEx[1].menu_option" id="menuOptVoAddPrice2"><br>
-
-		<input type="button" id="RegisterMenu" value="메뉴등록"><br>
+		<input type="button" id="RegisterMenu" value="메뉴등록">
+		<input type="button" id="RegisterMenu" value="메뉴등록">
+		<input type="button" id="RegisterOnlyMenu" value="메뉴만등록"><br><br>
+		
 		삭제할 메뉴Idx : <input type="text" id="deleteMenuIdx"><input type="button" id="deleteMenu" value="메뉴삭제"><br>
 		삭제할 메뉴Idx : <input type="text" id="deleteMenuIdx"><input type="button" id="deleteMenu" value="메뉴옵션삭제"><br>
 
-		<input type="button" id="RegisterMenu" value="메뉴등록">
-		<input type="button" id="RegisterOnlyMenu" value="메뉴만등록">
 		<input type="text" value="" id="menuIdx"> <input type="button" id="RegisterOnlyOpt" value="옵션만등록"><br><br>
 		삭제할 메뉴Idx : <input type="text" id="deleteMenuIdx">
 		<input type="button" id="deleteMenu" value="메뉴삭제"><br><br>
 		삭제할 메뉴옵션Idx : <input type="text" id="deleteMenuOptIdx">
 		<input type="button" id="deleteOptMenu" value="메뉴옵션삭제"><br><br>
 		
-
-		변경할 메뉴Idx : <input type="text" id="updateMenuIdx"><input type="button" id="updateMenu" value="메뉴변경"><br><br>
-		변경할 메뉴옵션Idx : <input type="text" id="updateMenuOptIdx"><input type="button" id="updateOptMenu" value="메뉴옵션변경"><br><br>
-
+		변경할 메뉴Idx : <input type="text" id="updateMenuIdx"><br>
+		변경할 메뉴Name : <input type="text" id="updateMenuName" value=""><br>
+		변경할 메뉴Price : <input type="text" id="updateMenuPrice" value=""><br>
+		변경할 메뉴Photo : <input type="text" id="updateMenuPhoto" value=""><br>
+		<input type="button" id="updateMenu" value="메뉴변경"><br><br>
+		
+		변경할 메뉴옵션Idx : <input type="text" id="updateMenuOptIdx"><br>
+		변경할 메뉴옵션Name : <input type="text" id="updateMenuOptMenu" value=""><br>
+		변경할 메뉴옵션Price : <input type="text" id="updateMenuOptPrice" value=""><br>
+		<input type="button" id="updateMenuOpt" value="메뉴옵션변경"><br><br>
+		
 
 </body>
 <script>
 	$(document).ready(function(e){
+		
+		// 해당메뉴 옵션만 변경
+		$('#updateMenuOpt').on('click',function(e){
+			$.ajax({
+        		type : "POST",
+        		url : "./bizmenu/updateMenuOpt.json",
+         		data : {
+         			moCode : $('#updateMenuOptIdx').val(),
+         			moName : $('#updateMenuOptMenu').val(),
+         			moAddPrice : $('#updateMenuOptPrice').val()
+        		},
+        		error : function(data){
+        			console.log(data);
+        		},
+        		success : function(data){
+        			console.log(data);
+        		} // success
+        	});	// post ajax끝
+		});	// kitchenbranch clic 끝
+		
+		// 해당메뉴내용만 변경
+		$('#updateMenu').on('click',function(e){
+			$.ajax({
+        		type : "POST",
+        		url : "./bizmenu/updateMenu.json",
+         		data : {
+         			mCode : $('#updateMenuIdx').val(),
+         			mName : $('#updateMenuName').val(),
+         			mBasicPrice : $('#updateMenuPrice').val(),
+         			mPhoto : $('#updateMenuPhoto').val()
+        		},
+        		error : function(data){
+        			console.log(data);
+        		},
+        		success : function(data){
+        			console.log(data);
+        		} // success
+        	});	// post ajax끝
+		});	// kitchenbranch clic 끝
 		
 		// 해당메뉴에 옵션만 등록
 		$('#RegisterOnlyOpt').on('click',function(e){

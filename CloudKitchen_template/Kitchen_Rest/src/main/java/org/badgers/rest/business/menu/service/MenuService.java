@@ -15,5 +15,5 @@ public interface MenuService {
 	public int addOnlyMenu(MenuCatVOExtend menuCatVoEx,MenuVOExtend menuVoEx);
 	public int addOnlyOpt(int menuIdx, MenuVOExtend menuVoEx,MenuOptionClVOExtend menuOptClVoEx);
 	public int updateMenuInfo(MenuVOExtend menuVoEx);
-	public int updateOptInfo(MenuOptionVOExtend menuOptVoEx);
+	public int updateMenuOptInfo(MenuOptionVOExtend menuOptVoEx);
 }

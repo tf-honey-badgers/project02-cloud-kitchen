@@ -54,4 +54,16 @@ public class MenuController {
 			MenuOptionClVOExtend menuOptClVoEx) {
 		return  service.addOnlyOpt(menuIdx, menuVoEx,menuOptClVoEx);
 	}
+	
+	@RequestMapping("/updateMenu")
+	@ResponseBody
+	public int updateMenu(MenuVOExtend menuVoEx) {
+		return  service.updateMenuInfo(menuVoEx);
+	}
+	
+	@RequestMapping("/updateMenuOpt")
+	@ResponseBody
+	public int updateMenuOpt(MenuOptionVOExtend menuOptVoEx) {
+		return  service.updateMenuOptInfo(menuOptVoEx);
+	}
 }

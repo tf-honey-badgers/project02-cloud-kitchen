@@ -96,14 +96,12 @@ public class MenuServiceImpl implements MenuService {
 
 	@Override
 	public int updateMenuInfo(MenuVOExtend menuVoEx) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mapper.updateMenuInfo(menuVoEx);
 	}
 
 	@Override
-	public int updateOptInfo(MenuOptionVOExtend menuOptVoEx) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateMenuOptInfo(MenuOptionVOExtend menuOptVoEx) {
+		return mapper.updateMenuOptInfo(menuOptVoEx);
 	}
 
 }

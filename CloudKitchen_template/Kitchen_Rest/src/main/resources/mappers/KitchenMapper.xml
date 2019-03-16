@@ -92,17 +92,16 @@
 			mo.add_price moAddPrice,
 			mo.opt_cl_id moOptClNo
 		
-		from biz b,
-			menu_category mc,
-			menu m,
-			menu_option_cl moc,
-			menu_option mo
-			
-			where b.biz_id=mc.biz_id 
-			and mc.idx=m.category_id  
-			and m.idx = moc.menu_id 
-			and moc.idx = mo.opt_cl_id
-		and b.biz_id=#{bizId};
+		from biz b left outer JOIN menu_category mc
+		on b.biz_id = mc.biz_id
+		left outer join menu m
+		on mc.idx = m.category_id
+		left outer join menu_option_cl moc
+		on m.idx = moc.menu_id
+		left outer join menu_option mo
+		on moc.idx = mo.opt_cl_id
+		
+		where b.biz_id=#{bizId};
 	</select>
 	
 	
