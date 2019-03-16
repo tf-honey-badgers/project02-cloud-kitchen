@@ -54,9 +54,56 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public int deleteMenu(String menuIdx) {
+	public int deleteMenu(int menuIdx) {
 		return mapper.deleteMenu(menuIdx);
 	}
 
+	@Override
+	public int deleteMenuOpt(int menuOptIdx) {
+		return mapper.deleteMenuOpt(menuOptIdx);
+	}
+
+	@Override
+	public int addOnlyMenu(MenuCatVOExtend menuCatVoEx, MenuVOExtend menuVoEx) {
+		int result = 0;
+		mapper.addMenuCat(menuCatVoEx);
+		result++;
+		
+		menuVoEx.setMenuCatCode(menuCatVoEx.getMcNo());
+		mapper.addMenu(menuVoEx);
+		result++;
+		return result;
+	}
+
+	@Override
+	public int addOnlyOpt(int menuIdx, MenuVOExtend menuVoEx, MenuOptionClVOExtend menuOptClVoEx) {
+		int result = 0;
+		result++;
+		
+		for(int i=0;i<menuVoEx.getMenuOptCl().size();i++) {
+			menuVoEx.getMenuOptCl().get(i).setMocMenuCode(menuIdx);
+			mapper.addMenuOptionCl(menuVoEx.getMenuOptCl().get(i));
+			result++;
+			
+			for(int y=0;y<menuOptClVoEx.getMenuOptEx().size();y++) {
+				menuOptClVoEx.getMenuOptEx().get(y).setMoOptClNo(menuVoEx.getMenuOptCl().get(i).getMocNo());
+				mapper.addMenuOption(menuOptClVoEx.getMenuOptEx().get(y));
+				result++;
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public int updateMenuInfo(MenuVOExtend menuVoEx) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateOptInfo(MenuOptionVOExtend menuOptVoEx) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

@@ -49,20 +49,98 @@
 		
 		해당메뉴의 옵션4-2 name : <input type="text" value="순살변경" name="menuOptVoEx[1].menu_option" id="menuOptVoName2"><br>
 		해당메뉴의 옵션4-2 add_price : <input type="text" value="2000" name="menuOptVoEx[1].menu_option" id="menuOptVoAddPrice2"><br>
+<<<<<<< HEAD
 		<input type="button" id="RegisterMenu" value="메뉴등록"><br>
 		삭제할 메뉴Idx : <input type="text" id="deleteMenuIdx"><input type="button" id="deleteMenu" value="메뉴삭제"><br>
 		삭제할 메뉴Idx : <input type="text" id="deleteMenuIdx"><input type="button" id="deleteMenu" value="메뉴옵션삭제"><br>
+=======
+		<input type="button" id="RegisterMenu" value="메뉴등록">
+		<input type="button" id="RegisterOnlyMenu" value="메뉴만등록">
+		<input type="text" value="" id="menuIdx"> <input type="button" id="RegisterOnlyOpt" value="옵션만등록"><br><br>
+		삭제할 메뉴Idx : <input type="text" id="deleteMenuIdx">
+		<input type="button" id="deleteMenu" value="메뉴삭제"><br><br>
+		삭제할 메뉴옵션Idx : <input type="text" id="deleteMenuOptIdx">
+		<input type="button" id="deleteOptMenu" value="메뉴옵션삭제"><br><br>
+		
+		변경할 메뉴Idx : <input type="text" id="deleteMenuIdx"><input type="text" id="deleteMenuIdx">
+		<input type="button" id="deleteMenu" value="메뉴삭제"><br><br>
+		삭제할 메뉴옵션Idx : <input type="text" id="deleteMenuOptIdx">
+		<input type="button" id="deleteOptMenu" value="메뉴옵션삭제"><br><br>
+>>>>>>> efb8b9846a43ddc5a1a51a05f3442cf002d77925
 </body>
 <script>
 	$(document).ready(function(e){
 		
-		// 메뉴변경
-		$('#updateMenu').on('click',function(e){
+		// 해당메뉴에 옵션만 등록
+		$('#RegisterOnlyOpt').on('click',function(e){
 			$.ajax({
         		type : "POST",
-        		url : "./bizmenu/updateMenu.json",
+        		url : "./bizmenu/addOnlyOpt.json",
          		data : {
-         			menuIdx : $('#deleteMenuIdx').val()
+         			'menuIdx' : $('#menuIdx').val(),
+         			'menuOptCl[0].mocName' : $('#menuOptClVoName1').val(),
+         			'menuOptCl[0].mocMenuOptType' : $('#menuOptClVoMenuOptType1').val(),
+         			'menuOptCl[1].mocName' : $('#menuOptClVoName2').val(),
+         			'menuOptCl[1].mocMenuOptType' : $('#menuOptClVoMenuOptType2').val(),
+         			'menuOptEx[0].moName' : $('#menuOptVoName1').val(),
+         			'menuOptEx[0].moAddPrice' : $('#menuOptVoAddPrice1').val(),
+         			'menuOptEx[1].moName' : $('#menuOptVoName2').val(),
+         			'menuOptEx[1].moAddPrice' : $('#menuOptVoAddPrice2').val() 
+        		},
+        		error : function(data){
+        			console.log(data);
+        		},
+        		success : function(data){
+        			console.log(data);
+        		} // success
+        	});	// post ajax끝
+		});	// kitchenbranch clic 끝
+		
+		// 메뉴만 등록
+		$('#RegisterOnlyMenu').on('click',function(e){
+			$.ajax({
+        		type : "POST",
+        		url : "./bizmenu/addOnlyOpt.json",
+         		data : {
+          			'mcName' : $('#menuCategoryName').val(),
+         			'mcBizId' : $('#menuCategoryBizId').val(),
+         			'mName' : $('#menuVoName').val(),
+         			'mBasicPrice' : $('#menuVoBasicPrice').val(),
+         			'mPhoto' : $('#menuVoPhoto').val()
+        		},
+        		error : function(data){
+        			console.log(data);
+        		},
+        		success : function(data){
+        			console.log(data);
+        		} // success
+        	});	// post ajax끝
+		});	// kitchenbranch clic 끝
+		
+		// 메뉴옵션 삭제
+		$('#deleteOptMenu').on('click',function(e){
+			$.ajax({
+        		type : "POST",
+        		url : "./bizmenu/deleteMenuOpt.json",
+         		data : {
+         			menuOptIdx : $('#deleteMenuOptIdx').val()
+        		},
+        		error : function(data){
+        			console.log(data);
+        		},
+        		success : function(data){
+        			console.log(data);
+        		} // success
+        	});	// post ajax끝
+		});	// kitchenbranch clic 끝
+		
+		// 메뉴옵션 삭제
+		$('#deleteOptMenu').on('click',function(e){
+			$.ajax({
+        		type : "POST",
+        		url : "./bizmenu/deleteMenuOpt.json",
+         		data : {
+         			menuOptIdx : $('#deleteMenuOptIdx').val()
         		},
         		error : function(data){
         			console.log(data);
