@@ -57,10 +57,8 @@
 		삭제할 메뉴옵션Idx : <input type="text" id="deleteMenuOptIdx">
 		<input type="button" id="deleteOptMenu" value="메뉴옵션삭제"><br><br>
 		
-		변경할 메뉴Idx : <input type="text" id="deleteMenuIdx"><input type="text" id="deleteMenuIdx">
-		<input type="button" id="deleteMenu" value="메뉴삭제"><br><br>
-		삭제할 메뉴옵션Idx : <input type="text" id="deleteMenuOptIdx">
-		<input type="button" id="deleteOptMenu" value="메뉴옵션삭제"><br><br>
+		변경할 메뉴Idx : <input type="text" id="updateMenuIdx"><input type="button" id="updateMenu" value="메뉴변경"><br><br>
+		변경할 메뉴옵션Idx : <input type="text" id="updateMenuOptIdx"><input type="button" id="updateOptMenu" value="메뉴옵션변경"><br><br>
 </body>
 <script>
 	$(document).ready(function(e){
