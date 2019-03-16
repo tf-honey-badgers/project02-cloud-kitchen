@@ -49,6 +49,11 @@
 		
 		해당메뉴의 옵션4-2 name : <input type="text" value="순살변경" name="menuOptVoEx[1].menu_option" id="menuOptVoName2"><br>
 		해당메뉴의 옵션4-2 add_price : <input type="text" value="2000" name="menuOptVoEx[1].menu_option" id="menuOptVoAddPrice2"><br>
+
+		<input type="button" id="RegisterMenu" value="메뉴등록"><br>
+		삭제할 메뉴Idx : <input type="text" id="deleteMenuIdx"><input type="button" id="deleteMenu" value="메뉴삭제"><br>
+		삭제할 메뉴Idx : <input type="text" id="deleteMenuIdx"><input type="button" id="deleteMenu" value="메뉴옵션삭제"><br>
+
 		<input type="button" id="RegisterMenu" value="메뉴등록">
 		<input type="button" id="RegisterOnlyMenu" value="메뉴만등록">
 		<input type="text" value="" id="menuIdx"> <input type="button" id="RegisterOnlyOpt" value="옵션만등록"><br><br>
@@ -57,8 +62,11 @@
 		삭제할 메뉴옵션Idx : <input type="text" id="deleteMenuOptIdx">
 		<input type="button" id="deleteOptMenu" value="메뉴옵션삭제"><br><br>
 		
+
 		변경할 메뉴Idx : <input type="text" id="updateMenuIdx"><input type="button" id="updateMenu" value="메뉴변경"><br><br>
 		변경할 메뉴옵션Idx : <input type="text" id="updateMenuOptIdx"><input type="button" id="updateOptMenu" value="메뉴옵션변경"><br><br>
+
+
 </body>
 <script>
 	$(document).ready(function(e){
