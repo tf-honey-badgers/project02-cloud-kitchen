@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import org.badgers.rest.customer.member.persistence.CustomerMapper;
 import org.badgers.rest.model.CustomerVO;
+import org.badgers.rest.model.FavoriteVO;
+import org.badgers.rest.model.OrderInfoVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -54,7 +56,8 @@ public class CustomerServiceImpl implements CustomerService {
 		return returnVal;
 	}
 
-// 
+// 회원정보
+	@Override
 	public List<CustomerVO> selectById(String id) {
 		System.out.println("나와라=============");
 		List<CustomerVO> list = mapper.selectById(id);
@@ -66,7 +69,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public int modify(CustomerVO vo) throws Exception {
 
-		return mapper.modify(vo); // cart 테이블에 수정된 행 개수 반환
+		return mapper.modify(vo); // customer 테이블에 수정된 행 개수 반환
 
 	}
 
@@ -91,5 +94,21 @@ public class CustomerServiceImpl implements CustomerService {
 		List<CustomerVO> results = null;
 		results = mapper.readMember(id);
 		return results;
+	}
+
+	@Override
+	public List<OrderInfoVO> getOrderInfo(String custId) {
+		System.out.println("오더 정보 나와라=============");
+		List<OrderInfoVO> list = mapper.getOrderInfo(custId);
+
+		return list;
+	}
+
+	@Override
+	public List<FavoriteVO> favorite(String custId) {
+		System.out.println("찜 정보  나와라=============");
+		List<FavoriteVO> list = mapper.favorite(custId);
+
+		return list;
 	}
 }

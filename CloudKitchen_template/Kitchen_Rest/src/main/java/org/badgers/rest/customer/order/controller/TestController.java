@@ -6,17 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.ws.rs.POST;
 
 import org.badgers.rest.customer.order.firebase.FirebaseException;
+import org.badgers.rest.customer.order.firebase.FirebaseResponse;
 import org.badgers.rest.customer.order.firebase.JacksonUtilityException;
 import org.badgers.rest.customer.order.service.CustOrderService;
 import org.badgers.rest.customer.order.service.FireBaseService;
 import org.badgers.rest.firebasetest.Order;
-import org.badgers.rest.model.OrderDetailVO;
 import org.badgers.rest.model.OrderInfoVO;
-import org.badgers.rest.model.OrderOptionVO;
-import org.badgers.rest.model.OrderVO;
 import org.badgers.rest.model.OrderVOExtend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,7 +42,11 @@ public class TestController {
 		testmap.put("orderInfo111", order);
 //		testmap.put("8888", order);
 //		testmap.put("8888", order);
-		service.test(testmap);
+		
+		FirebaseResponse response =service.test(testmap);
+		response.getBody().get("name");
+		System.out.println("------------------------------------------------------");
+		System.out.println(response.getBody().get("name"));
 		return new ResponseEntity<>( HttpStatus.OK);
 		
 	}
