@@ -9,6 +9,6 @@ public interface CustOrderService {
 	
 	public List<OrderInfoVO> getOrderInfo(String orderId) throws Exception;
 	public int excuteOrder(OrderVOExtend vo) throws Exception;
-	
+	public void testTx();
 }
 

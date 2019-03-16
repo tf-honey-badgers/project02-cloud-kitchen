@@ -14,18 +14,8 @@ import org.badgers.rest.model.OrderVOExtend;
 public interface CustOrderMapper {
 	
 	
-	public int initOrder(OrderVO vo);
-	
-	public int initOrderDetail(OrderDetailVO vo);
-	
-	
 	//insert 된 order 튜플을  select 해서 customer Controller로 보내줌
 	public List<OrderInfoVO> getOrderInfo(String orderId);
-	
-	public OrderVO test(@Param("orderId") String orderId);
-
-	public List<OrderVO> getOrder(String orderId); 
-	
 	
 	//===========================================================
 	//order 기본 정보 입력
@@ -36,6 +26,10 @@ public interface CustOrderMapper {
 	public int initOrderDetail(OrderDetailVOExtend vo);
 	//order_menu_option 기본 정보 입력(ex: 옵션 2개 추가 - 옵션은 0~ n개 사이) 
 	public int initOrderMenuOption(OrderOptionVO vo);
+	
+	public void test1 () ;
+	public void test2 () ;
+
 	
 	
 }

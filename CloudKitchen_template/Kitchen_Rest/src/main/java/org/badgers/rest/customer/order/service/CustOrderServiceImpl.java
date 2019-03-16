@@ -30,7 +30,6 @@ public class CustOrderServiceImpl implements CustOrderService {
 		return list;
 	}
 	
-	//테스트 order
 	@Override
 	@Transactional()
 	public int excuteOrder(OrderVOExtend vo) throws Exception {
@@ -68,6 +67,16 @@ public class CustOrderServiceImpl implements CustOrderService {
 		
 		return 1;
 	}
+	
+	@Transactional
+	public void testTx() {
+		
+		mapper.test1();
+		
+		mapper.test2();
+	}
+	
+	
 
 
 }

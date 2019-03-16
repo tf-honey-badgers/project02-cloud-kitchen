@@ -13,8 +13,7 @@
 <h1>
 	Rest Test페이지 입니다.
 </h1>
-		custIdx : <input type="text" value="" id="cust_Idx">
-		bizIdx : <input type="text" value="" id="biz_idx"><br>
+		custIdx : <input type="text" value="" id="cust_Idx"><br>
 		bizId : <input type="text" value="" id="biz_id"><br>
 		카테고리명 : <input type="text" value="" id="comname"><br>
 		<br>
@@ -26,10 +25,64 @@
     	<input type="button" id="bizinfo" value="가게메뉴및정보">
     	<input type="button" id="gpa" value="평점보기">
     	<input type="button" id="categorization" value="메뉴분류">
-    	<input type="button" id="nameclassification" value="메뉴카테고리분류">
+    	<input type="button" id="nameclassification" value="메뉴카테고리분류"><br><br><br><br>
+    	
+    	1번항목(인기메뉴/일반메뉴/세트메뉴/음료/기타 등 카테고리를 입력해주세요)<br>
+    	메뉴 카테고리 name : <input type="text" value="인기메뉴" name="mcName" id="menuCategoryName"><br>
+    	메뉴 카테고리 biz_id: <input type="text" value="biz_4" name="mcBizId" id="menuCategoryBizId"><br><br>
+    	
+     	2번항목<br>
+    	메뉴 name : <input type="text" value="간장치킨" name="mName" id="menuVoName"><br>
+		메뉴 basic_price : <input type="text" value="16000" name="mBasicPrice" id="menuVoBasicPrice"><br>
+		메뉴 photo : <input type="text" value="없어" name="mPhoto" id="menuVoPhoto"><br>
+		
+		3번항목<br>
+		해당메뉴의 옵션3-1 cat name : <input type="text" value="반반" name="menuOptClVoEx[0].mocName" id="menuOptClVoName1"><br>
+		해당메뉴의 옵션3-1 cat menu_opt_type : <input type="text" value="OTP001" name="menuOptClVoEx[0].mocMenuOptType" id="menuOptClVoMenuOptType1"><br>
+		
+		해당메뉴의 옵션3-2 cat name : <input type="text" value="순살" name="menuOptClVoEx[1].mocName" id="menuOptClVoName2"><br>
+		해당메뉴의 옵션3-3 cat menu_opt_type : <input type="text" value="OTP001" name="menuOptClVoEx[1].mocMenuOptType" id="menuOptClVoMenuOptType2"><br>
+		
+		4번항목<br>
+		해당메뉴의 옵션4-1 name : <input type="text" value="간장반핫양념반" name="menuOptVoEx[0].moName" id="menuOptVoName1"><br>
+		해당메뉴의 옵션4-2 add_price : <input type="text" value="3000" name="menuOptVoEx[0].moAddPrice" id="menuOptVoAddPrice1"><br>
+		
+		해당메뉴의 옵션4-1 name : <input type="text" value="순살변경" name="menuOptVoEx[1].menu_option" id="menuOptVoName2"><br>
+		해당메뉴의 옵션4-2 add_price : <input type="text" value="2000" name="menuOptVoEx[1].menu_option" id="menuOptVoAddPrice2"><br>
+		<input type="button" id="RegisterMenu" value="메뉴등록">
 </body>
 <script>
 	$(document).ready(function(e){
+		
+		// 해당 가게에 정보 및 메뉴 불러오기
+		$('#RegisterMenu').on('click',function(e){
+			
+			$.ajax({
+        		type : "POST",
+        		url : "./bizmenu/addmenucat.json",
+         		data : {
+/*          			mcName : $('#menuCategoryName').val(),
+         			mcBizId : $('#menuCategoryBizId').val(),
+         			mName : $('#menuVoName').val(),
+         			mBasicPrice : $('#menuVoBasicPrice').val(),
+         			mPhoto : $('#menuVoPhoto').val(),
+         			menuOptClVoEx[0].mocName : $('#menuOptClVoName1').val(),
+         			menuOptClVoEx[0].mocMenuOptType : $('#menuOptClVoMenuOptType1').val(),
+         			menuOptClVoEx[1].mocName : $('#menuOptClVoName2').val(),
+         			menuOptClVoEx[1].mocMenuOptType : $('#menuOptClVoMenuOptType2').val(),
+         			menuOptVoEx[0].moName : $('#menuOptVoName1').val(),
+         			menuOptVoEx[0].menu_option : $('#menuOptVoAddPrice1').val(),
+         			menuOptVoEx[1].moName : $('#menuOptVoName2').val(),
+         			menuOptVoEx[1].menu_option : $('#menuOptVoAddPrice2').val() */
+        		}, 
+        		error : function(data){
+        			console.log(data);
+        		},
+        		success : function(data){
+        			console.log(data);
+        		} // success
+        	});	// post ajax끝
+		});	// kitchenbranch clic 끝
 		
 		// 해당 가게에 정보 및 메뉴 불러오기
 		$('#categorization').on('click',function(e){
@@ -55,7 +108,7 @@
         		type : "POST",
         		url : "./kitchenbranch/bizinfo.json",
          		data : {
-         			bizIdx : $('#biz_idx').val()
+         			bizId : $('#biz_id').val()
         		},
         		error : function(data){
         			console.log(data);

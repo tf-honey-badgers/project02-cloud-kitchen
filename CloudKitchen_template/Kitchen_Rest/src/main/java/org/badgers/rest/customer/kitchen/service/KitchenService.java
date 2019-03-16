@@ -10,7 +10,7 @@ public interface KitchenService {
 
 	public List<KitchenBranchVO> kitchenbranchList();
 	public List<BizVO> bizlist();
-	public List<BizVO> bizInfo(int bizIdx);
+	public List<BizVO> bizInfo(String bizId);
 	public List<Object> getCategorization();
 	public List<KitchenSelectCatVOExtend> getCatKitchen(String comName);
 }
