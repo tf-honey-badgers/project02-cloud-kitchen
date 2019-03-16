@@ -57,7 +57,6 @@ public class MenuServiceImpl implements MenuService {
 	public int deleteMenu(String menuIdx) {
 		return mapper.deleteMenu(menuIdx);
 	}
-	
-	
+
 
 }

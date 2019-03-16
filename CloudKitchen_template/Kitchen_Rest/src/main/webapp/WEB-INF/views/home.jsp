@@ -50,8 +50,8 @@
 		해당메뉴의 옵션4-2 name : <input type="text" value="순살변경" name="menuOptVoEx[1].menu_option" id="menuOptVoName2"><br>
 		해당메뉴의 옵션4-2 add_price : <input type="text" value="2000" name="menuOptVoEx[1].menu_option" id="menuOptVoAddPrice2"><br>
 		<input type="button" id="RegisterMenu" value="메뉴등록"><br>
-		삭제할 메뉴Idx : <input type="text" id="deleteMenuIdx"><br>
-		<input type="button" id="deleteMenu" value="메뉴등록"><br>
+		삭제할 메뉴Idx : <input type="text" id="deleteMenuIdx"><input type="button" id="deleteMenu" value="메뉴삭제"><br>
+		삭제할 메뉴Idx : <input type="text" id="deleteMenuIdx"><input type="button" id="deleteMenu" value="메뉴옵션삭제"><br>
 </body>
 <script>
 	$(document).ready(function(e){
