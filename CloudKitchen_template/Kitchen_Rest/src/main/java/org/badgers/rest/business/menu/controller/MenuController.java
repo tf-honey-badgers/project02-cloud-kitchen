@@ -32,7 +32,26 @@ public class MenuController {
 	
 	@RequestMapping("/deletemenu")
 	@ResponseBody
-	public int deleteMenu(@RequestParam("menuIdx") String menuIdx) {
+	public int deleteMenu(@RequestParam("menuIdx") int menuIdx) {
 		return service.deleteMenu(menuIdx);
+	}
+	
+	@RequestMapping("/deleteMenuOpt")
+	@ResponseBody
+	public int deleteMenuOpt(@RequestParam("menuOptIdx") int menuOptIdx) {
+		return service.deleteMenuOpt(menuOptIdx);
+	}
+	
+	@RequestMapping("/addOnlyMenu")
+	@ResponseBody
+	public int addOnlyMenu(MenuCatVOExtend menuCatVoEx,MenuVOExtend menuVoEx) {
+		return service.addOnlyMenu(menuCatVoEx, menuVoEx);
+	}
+	
+	@RequestMapping("/addOnlyOpt")
+	@ResponseBody
+	public int addOnlyOpt(@RequestParam("menuIdx") int menuIdx, MenuVOExtend menuVoEx,
+			MenuOptionClVOExtend menuOptClVoEx) {
+		return  service.addOnlyOpt(menuIdx, menuVoEx,menuOptClVoEx);
 	}
 }

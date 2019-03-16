@@ -28,7 +28,7 @@
 	<!-- "org.badgers.rest" 하위 전체 스캔 -> 그 중에 @Controller, @Service 붙은 클래스만 인식하도록 -->
 	<context:component-scan base-package="org.badgers.rest.*">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 	<!-- <context:component-scan base-package="org.badgers.rest.**.*controller"/> -->
 </beans:beans>
