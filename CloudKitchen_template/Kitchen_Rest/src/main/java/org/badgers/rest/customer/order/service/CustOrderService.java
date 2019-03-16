@@ -11,3 +11,4 @@ public interface CustOrderService {
 	public int excuteOrder(OrderVOExtend vo) throws Exception;
 	
 }
+
