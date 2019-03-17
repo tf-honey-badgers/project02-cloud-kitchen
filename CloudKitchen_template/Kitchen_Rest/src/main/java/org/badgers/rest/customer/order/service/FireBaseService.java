@@ -68,9 +68,9 @@ public class FireBaseService {
 //		System.out.println("\n");
 		
 		// "POST" (test-map into a sub-node off of the fb4jDemo-root)
-		 Map<String, Object> dataMap2 = new LinkedHashMap<String, Object>();
-		 dataMap2.put("order", testmap);
-		 
+//		 Map<String, Object> dataMap2 = new LinkedHashMap<String, Object>();
+//		 dataMap2.put("order", testmap);
+//		 
 		 
 		 FirebaseResponse response = firebase.post(testmap);
 		System.out.println( "\n\nResult of POST (for the test-POST):\n" + response );

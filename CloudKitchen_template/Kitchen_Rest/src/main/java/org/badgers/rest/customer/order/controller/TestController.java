@@ -1,6 +1,8 @@
 package org.badgers.rest.customer.order.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,20 +20,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.firebase.database.DatabaseReference;
+
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @RestController
+@RequiredArgsConstructor
 public class TestController {
 	
-	@Inject
-	private FireBaseService service;
+	private final FireBaseService service;
+	private final CustOrderService orderService;
+	private final DatabaseReference databaseReference;
 	
-	@Setter(onMethod_ = { @Autowired })
-	private CustOrderService orderService;
+	
+	@PostMapping("/test/firebase/{key}")
+	public ResponseEntity<?> test (@RequestBody OrderVOExtend vo, @PathVariable("key") String key) throws IOException {
+		
+		DatabaseReference ref = databaseReference.child(key);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put(key,"aaa");
+
+//		usersRef.setValueAsync(users);
+		ref.updateChildrenAsync(map);
+		
+		
+		return new ResponseEntity<>(vo, HttpStatus.OK);
+		
+	}
+	
+	
+	
 	
 	
 	@PostMapping("/test/firebase")
