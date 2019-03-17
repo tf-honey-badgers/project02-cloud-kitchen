@@ -10,5 +10,10 @@ import org.badgers.rest.model.MenuVOExtend;
 public interface MenuService {
 	public int addMenuCat(MenuCatVOExtend menuCatVoEx,MenuVOExtend menuVoEx,
 			MenuOptionClVOExtend menuOptClVoEx,MenuOptionVOExtend menuOptVoEx);
-	public int deleteMenu(String menuIdx);
+	public int deleteMenu(int menuIdx);
+	public int deleteMenuOpt(int menuOptIdx);
+	public int addOnlyMenu(MenuCatVOExtend menuCatVoEx,MenuVOExtend menuVoEx);
+	public int addOnlyOpt(int menuIdx, MenuVOExtend menuVoEx,MenuOptionClVOExtend menuOptClVoEx);
+	public int updateMenuInfo(MenuVOExtend menuVoEx);
+	public int updateMenuOptInfo(MenuOptionVOExtend menuOptVoEx);
 }

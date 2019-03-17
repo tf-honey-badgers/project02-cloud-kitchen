@@ -3,6 +3,8 @@ package org.badgers.rest.customer.member.service;
 import java.util.List;
 
 import org.badgers.rest.model.CustomerVO;
+import org.badgers.rest.model.FavoriteVO;
+import org.badgers.rest.model.OrderInfoVO;
 
 public interface CustomerService {
 
@@ -12,7 +14,7 @@ public interface CustomerService {
 	// 로그인
 	public String login(String id, String pw);
 	
-	//회원 마이페이지
+	//회원 정보
 	public List<CustomerVO> selectById(String id);
 
 	// 회원 정보 수정
@@ -26,6 +28,12 @@ public interface CustomerService {
 
 	// 회원 리스트 
 	public List<CustomerVO> readMember(String id) throws Exception;
+	
+	// 주문 내역 
+	public List<OrderInfoVO> getOrderInfo(String custId);
+	
+	// 찜 내역 보기 
+	public List<FavoriteVO> favorite(String custId);
 	
 	
 	
