@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@Slf4j
 @RequestMapping("/rest/order")
 public class CustOrderController {
 
@@ -25,7 +28,7 @@ public class CustOrderController {
 
 	@PostMapping("/")
 	public ResponseEntity<?> orderTest(@RequestBody OrderVOExtend order) throws Exception {
-
+		log.info("결과 {} : {}", 1 ,2 );
 		System.out.println("----------order-----------------");
 		System.out.println(order);
 		System.out.println("--------------------------------");
