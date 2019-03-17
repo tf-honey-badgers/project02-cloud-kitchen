@@ -3,9 +3,8 @@ package org.badgers.business.model;
 import lombok.Data;
 
 @Data
-public class MenuOptionClVo {
+public class MenuCatVO {
 	private String no;
 	private String name;
-	private String menuOptType;
-	private String menuCode;
+	private String bizId;
 }
