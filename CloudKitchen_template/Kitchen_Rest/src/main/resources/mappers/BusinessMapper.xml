@@ -37,6 +37,16 @@
 		delete from menu_category where idx=#{menuIdx}
 	</delete>
 	
+	<delete id="deleteMenuOpt">
+		delete from menu_option_cl where idx=#{menuOptIdx}
+	</delete>
 	
+	<update id="updateMenuInfo">
+		update menu set name=#{mName}, basic_price=#{mBasicPrice}, photo=#{mPhoto} where idx=#{mCode}; 
+	</update>
+	
+	<update id="updateMenuOptInfo">
+		update menu_option set name=#{moName}, add_price=#{moAddPrice} where idx=#{moCode}; 
+	</update>
 	
 </mapper>

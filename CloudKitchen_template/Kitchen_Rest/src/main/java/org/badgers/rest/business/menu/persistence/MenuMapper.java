@@ -11,5 +11,8 @@ public interface MenuMapper {
 	public int addMenu(MenuVOExtend menuVoEx);
 	public int addMenuOptionCl(MenuOptionClVOExtend menuOptClVoEx);
 	public int addMenuOption(MenuOptionVOExtend menuOptVoEx);
-	public int deleteMenu(String menuIdx);
+	public int deleteMenu(int menuIdx);
+	public int deleteMenuOpt(int menuOptIdx);
+	public int updateMenuInfo(MenuVOExtend menuVoEx);
+	public int updateMenuOptInfo(MenuOptionVOExtend menuOptVoEx);
 }
