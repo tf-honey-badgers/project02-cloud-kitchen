@@ -13,6 +13,6 @@ public interface BusinessMapper {
 	public List<BizMemberVOExtend> selectById(String bizId);
 
 	// 사업자 정보 수정
-	public int modify(BizMemberVOExtend bizMvo);
+	public int modify(BizMemberVOExtend mvo);
 
 }

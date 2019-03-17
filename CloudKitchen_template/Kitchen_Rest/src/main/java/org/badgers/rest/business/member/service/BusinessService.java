@@ -10,7 +10,7 @@ public interface BusinessService {
 	public String login(String bizId, String pw) throws Exception;
 
 	// 정보수정
-	public int modify(BizMemberVOExtend bizMvo) throws Exception;
+	public int modify(BizMemberVOExtend mvo) throws Exception;
 
 	// 회원 정보
 	public List<BizMemberVOExtend> selectById(String bizId)throws Exception;

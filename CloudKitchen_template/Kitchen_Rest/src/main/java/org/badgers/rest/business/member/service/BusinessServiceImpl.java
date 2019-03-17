@@ -15,7 +15,8 @@ public class BusinessServiceImpl implements BusinessService {
 
 	@Inject
 	private BusinessMapper mapper;
-
+	
+	// 로그인
 	@Override
 	public String login(String bizId, String pw) {
 		System.out.println("로그인 ========================================");
@@ -29,17 +30,17 @@ public class BusinessServiceImpl implements BusinessService {
 		}
 		return returnVal;
 	}
-
-	@Override
-	public int modify(BizMemberVOExtend bizMvo) throws Exception {
-		
-		return mapper.modify(bizMvo); // biz_member 테이블에 수정된 행 개수 반환
+	
+	// 사업자 mypage 정보 수정 
+	public int modify(BizMemberVOExtend mvo) throws Exception {
+		System.out.println("수정수정수정수정=====================");
+		return mapper.modify(mvo); 
 	}
 	
 	// 회원정보
 	@Override
 		public List<BizMemberVOExtend> selectById(String bizId) {
-			System.out.println("나와라=============");
+			System.out.println("사업자 정보 나와라=============");
 			List<BizMemberVOExtend> list = mapper.selectById(bizId);
 
 			return list;
