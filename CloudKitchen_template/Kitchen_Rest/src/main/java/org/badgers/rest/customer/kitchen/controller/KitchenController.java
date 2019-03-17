@@ -4,10 +4,16 @@ import java.util.List;
 
 import org.badgers.rest.customer.kitchen.service.KitchenServiceImpl;
 import org.badgers.rest.model.BizVO;
-import org.badgers.rest.model.KitchenBranchVO;
+import org.badgers.rest.model.BizVOExtend;
+import org.badgers.rest.model.KitchenBranchVOExtend;
 import org.badgers.rest.model.KitchenSelectCatVOExtend;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,22 +28,22 @@ public class KitchenController {
 	
 	// 지점목록
 	@RequestMapping("/kitchenlist")
-	public List<KitchenBranchVO> kitchenbranchList(){
+	public List<KitchenBranchVOExtend> kitchenbranchList(){
 		return service.kitchenbranchList();
 	}
 	
 	// 가게 목록
 	@RequestMapping("/bizlist")
-	public List<BizVO> bizlist(){
+	public List<BizVOExtend> bizlist(){
 		return service.bizlist();
 	}
 	
-	@RequestMapping("/bizinfo")
-//	public List<BizVO> bizInfo() {
-	public List<BizVO> bizInfo(@RequestParam("bizId") String bizId) {
-		System.out.println("bizInfo : 컨트롤러");
-		return service.bizInfo(bizId);
-	}
+//	@RequestMapping("/bizinfo")
+//	@Transactional
+//	public List<BizVOExtend> bizInfo(@RequestParam("bizId") String bizId) {
+//		System.out.println("bizInfo : 컨트롤러");
+//		return service.bizInfo(bizId);
+//	}
 	
 	@RequestMapping("/categorization")
 	public List<Object> getCategorization(){
@@ -48,4 +54,17 @@ public class KitchenController {
 	List<KitchenSelectCatVOExtend> getCatKitchen(@RequestParam("comName") String comName){
 		return service.getCatKitchen(comName);
 	}
+	
+	@RequestMapping(value="/bizinfo/{bizId}", method=RequestMethod.GET, produces="application/json")
+	@Transactional
+	public ResponseEntity<List<BizVOExtend>> bizInfo(@PathVariable("bizId") String bizId) {
+		System.out.println("bizInfo 컨트롤러 : "+bizId);
+		List<BizVOExtend> bizInfoList = service.bizInfo(bizId);
+		
+		if(bizInfoList.size() == 0) {
+			return new ResponseEntity<List<BizVOExtend>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<BizVOExtend>>(bizInfoList, HttpStatus.OK);
+	}
+	
 }

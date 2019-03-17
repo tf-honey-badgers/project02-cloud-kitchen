@@ -7,11 +7,11 @@
 	namespace="org.badgers.rest.customer.kitchen.persistence.KitchenMapper">
 
 	<select id="kitchenbranchList"
-		resultType="org.badgers.rest.model.KitchenBranchVO">
+		resultType="org.badgers.rest.model.KitchenBranchVOExtend">
 		select * from kitchen_branch
 	</select>
 
-	<select id="bizList" resultType="org.badgers.rest.model.BizVO">
+	<select id="bizList" resultType="org.badgers.rest.model.BizVOExtend">
 		select * from biz
 	</select>
 	
@@ -92,7 +92,7 @@
 			mo.add_price moAddPrice,
 			mo.opt_cl_id moOptClNo
 		
-		from biz b left outer JOIN menu_category mc
+		from biz b left outer join menu_category mc
 		on b.biz_id = mc.biz_id
 		left outer join menu m
 		on mc.idx = m.category_id
