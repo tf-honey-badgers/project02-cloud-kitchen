@@ -96,19 +96,24 @@
 	<update id="modify">
 		update honey_badgers.biz_member as BM join
 		       honey_badgers.biz as BZ  
-		 SET
+	<trim prefix="SET" suffixOverrides=",">
+	<if test="bizId != null and bizId != ''"> 
 		 		BM.biz_id =#{bizId},
-		 		
+		 			</if>
+		 		<if test="pw != null and pw != ''">
 				BM.pw = #{pw},
-			
+			</if>
 				BM.account = #{account},
-			
+			<if test="info != null and info != ''">
 				BZ.info = #{info},
-		
+			</if>
+		<if test="minAmt != null and minAmt != ''">
 				BZ.min_amt = #{minAmt},
-		
-				BZ.biz_live_strm =#{bizLiveStrm}
-	
+			</if>
+		<if test="bizLiveStrm != null and bizLiveStrm != ''">
+				BZ.biz_live_strm =#{bizLiveStrm},
+		</if>
+		</trim>
 		where 
 		BM.biz_id=#{bizId}
 		and
