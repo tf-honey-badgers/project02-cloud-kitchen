@@ -30,7 +30,6 @@ public class BusinessController {
 		@GetMapping(value = "/{biz_id}/mypage", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 		public ResponseEntity<List<BizMemberVOExtend>>  selectById(@PathVariable("biz_id") String bizId) throws Exception {
 			List<BizMemberVOExtend> list = service.selectById(bizId);
-				
 
 			return new ResponseEntity<List<BizMemberVOExtend>>(list, HttpStatus.OK);
 		}
