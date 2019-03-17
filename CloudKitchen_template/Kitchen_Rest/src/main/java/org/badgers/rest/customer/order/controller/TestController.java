@@ -36,24 +36,34 @@ public class TestController {
 	
 	private final FireBaseService service;
 	private final CustOrderService orderService;
-	private final DatabaseReference databaseReference;
+//	private final DatabaseReference databaseReference;
+	//이거 주석 풀면 qualify Exception
 	
-	
-	@PostMapping("/test/firebase/{key}")
-	public ResponseEntity<?> test (@RequestBody OrderVOExtend vo, @PathVariable("key") String key) throws IOException {
+	@PostMapping("/test/tj/fire/{key}")
+	public ResponseEntity<?> tjTest(@RequestBody Map map, @PathVariable("key") String key) throws UnsupportedEncodingException, FirebaseException, JacksonUtilityException{
 		
-		DatabaseReference ref = databaseReference.child(key);
+		service.putFirebase(key, map);
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put(key,"aaa");
+		return new ResponseEntity<>(map, HttpStatus.OK);
 
-//		usersRef.setValueAsync(users);
-		ref.updateChildrenAsync(map);
-		
-		
-		return new ResponseEntity<>(vo, HttpStatus.OK);
-		
 	}
+	
+	
+//	@PostMapping("/test/firebase/{key}")
+//	public ResponseEntity<?> test (@RequestBody OrderVOExtend vo, @PathVariable("key") String key) throws IOException {
+//		
+//		DatabaseReference ref = databaseReference.child(key);
+//		
+//		Map<String, Object> map = new HashMap<>();
+//		map.put(key,"aaa");
+//
+////		usersRef.setValueAsync(users);
+//		ref.updateChildrenAsync(map);
+//		
+//		
+//		return new ResponseEntity<>(vo, HttpStatus.OK);
+//		
+//	}
 	
 	
 	
