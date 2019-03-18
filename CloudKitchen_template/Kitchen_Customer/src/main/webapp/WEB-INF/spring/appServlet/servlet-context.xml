@@ -22,6 +22,9 @@
 		<beans:property name="contentType" value="UTF-8" />
 	</beans:bean>
 	
-	<context:component-scan base-package="org.badgers.controller" />
-	<context:component-scan base-package="org.badgers.service" />	
+	 <!-- ""org.badgers.customer.*"" 하위 전체 스캔 -> 그 중에 @Controller, @Service 붙은 클래스만 인식하도록 -->
+   <context:component-scan base-package="org.badgers.customer.*">
+      <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+      <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+   </context:component-scan>
 </beans:beans>
