@@ -12,7 +12,7 @@ public interface CustomerMapper {
 	public void register(CustomerVO vo);
 
 	// 로그인
-	public CustomerVO login(String id, String pw);
+	public CustomerVO login(String id);
 
 	//회원 정보
 	public List<CustomerVO> selectById(String id);	
