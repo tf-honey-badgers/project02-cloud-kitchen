@@ -91,9 +91,9 @@ public class FireBaseService {
 	}
 	
 	public FirebaseResponse putFirebase(String key, Map data) throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
-		String firebase_baseUrl = "https://honeybadgers-d29cf.firebaseio.com/";
+		String firebase_baseUrl = "https://honeybadgers-d29cf.firebaseio.com/"+key;
 		Firebase firebase = new Firebase( firebase_baseUrl );
-		FirebaseResponse response = firebase.put(key, data);
+		FirebaseResponse response = firebase.put(data);
 		
 		
 		return response;

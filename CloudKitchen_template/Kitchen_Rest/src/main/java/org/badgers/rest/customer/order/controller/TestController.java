@@ -11,6 +11,7 @@ import java.util.Map;
 import org.badgers.rest.customer.order.firebase.FirebaseException;
 import org.badgers.rest.customer.order.firebase.FirebaseResponse;
 import org.badgers.rest.customer.order.firebase.JacksonUtilityException;
+import org.badgers.rest.customer.order.firebase.Map_TO_Object;
 import org.badgers.rest.customer.order.service.CustOrderService;
 import org.badgers.rest.customer.order.service.FireBaseService;
 import org.badgers.rest.model.OrderInfoVO;
@@ -31,6 +32,8 @@ public class TestController {
 
 	private final FireBaseService service;
 	private final CustOrderService orderService;
+	
+	private final Map_TO_Object mto; 
 //	private final DatabaseReference databaseReference;
 	// 이거 주석 풀면 qualify Exception
 
