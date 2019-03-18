@@ -32,7 +32,6 @@ public class TestController {
 
 	private final FireBaseService service;
 	private final CustOrderService orderService;
-	
 	private final Map_TO_Object mto; 
 //	private final DatabaseReference databaseReference;
 	// 이거 주석 풀면 qualify Exception
@@ -41,28 +40,12 @@ public class TestController {
 	public ResponseEntity<?> tjTest(@RequestBody OrderVOExtend vo, @PathVariable("key") String key)
 			throws UnsupportedEncodingException, FirebaseException, JacksonUtilityException, NoSuchFieldException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
-		Map<String, Object> map = voToMap(vo);
+		Map<String, Object> map = mto.voToMap(vo);
 		service.putFirebase(key, map);
 
 		return new ResponseEntity<>(map, HttpStatus.OK);
 
 	}
-
-//	@PostMapping("/test/firebase/{key}")
-//	public ResponseEntity<?> test (@RequestBody OrderVOExtend vo, @PathVariable("key") String key) throws IOException {
-//		
-//		DatabaseReference ref = databaseReference.child(key);
-//		
-//		Map<String, Object> map = new HashMap<>();
-//		map.put(key,"aaa");
-//
-////		usersRef.setValueAsync(users);
-//		ref.updateChildrenAsync(map);
-//		
-//		
-//		return new ResponseEntity<>(vo, HttpStatus.OK);
-//		
-//	}
 
 	@PostMapping("/test/firebase")
 	public ResponseEntity<?> test(@RequestBody OrderVOExtend vo)
@@ -96,28 +79,10 @@ public class TestController {
 		System.out.println(order);
 		System.out.println("--------------------------------");
 
-//		orderService.excuteOrder(order);
+		orderService.excuteOrder(order);
 		List<OrderInfoVO> list = orderService.getOrderInfo(order.getId());
-		System.out.println("--------list-----------------------");
-		System.out.println(list.get(0));
-		/*
-		 * for(int i=0;i<order.getOrderDetails().length;i++) {
-		 * System.out.println("=========["+i+"]번째 주문메뉴 ===============");
-		 * System.out.println(order.getOrderDetails()[i].toString()); for(int j=0;
-		 * j<order.getOrderDetails()[i].getOrderOptions().length;j++) {
-		 * System.out.println("=========["+i+"]번째 주문메뉴의  "+j+" 번째 추가 옵션==============="
-		 * );
-		 * System.out.println(order.getOrderDetails()[i].getOrderOptions()[j].toString()
-		 * ); } }
-		 */
 
 		return new ResponseEntity<>(HttpStatus.OK);
-	}
-
-	@GetMapping("/test/tx")
-	public String txTest() {
-		orderService.testTx();
-		return "home";
 	}
 
 	@GetMapping("/test/getfirebase")
@@ -125,36 +90,7 @@ public class TestController {
 		service.getFirebase().getBody();
 		return new ResponseEntity<>(service.getFirebase().getBody(), HttpStatus.OK);
 	}
-//	-La-R5VT6GS_qzWkVKBD
-
-//	@GetMapping("/test/firebase/{orderid}")
-//	public ResponseEntity<?> test (@PathVariable) {
-//		
-//		System.out.println("======================================================================================");
-//		System.out.println(order);
-//		Map<String, Object> testmap = new LinkedHashMap<String, Object>();
-//		testmap.put(order.getId(), order);
-//
-//		service.test(testmap);
-//		return new ResponseEntity<>( HttpStatus.OK);
-//	}
-
-	private static Map<String, Object> voToMap(Object order)
-			throws NoSuchFieldException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-		Map<String, Object> map = new HashMap<>();
-
-		Field[] fields = order.getClass().getDeclaredFields();
-
-		for (Field field : fields) {
-			String filedName = field.getName();
-			String methodName = filedName.replaceFirst(filedName.substring(0, 1),
-					filedName.substring(0, 1).toUpperCase());
-
-			map.put(filedName, order.getClass().getDeclaredMethod("get" + methodName).invoke(order));
-		}
-
-		return map;
-	}
+	
 }
 
 //
