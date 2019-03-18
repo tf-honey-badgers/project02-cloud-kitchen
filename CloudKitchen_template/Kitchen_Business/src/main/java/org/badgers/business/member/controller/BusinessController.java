@@ -34,7 +34,6 @@ public class BusinessController {
 		}
 		
 		log.info("readBizMember DONE!!!!!");
-		System.out.println(returnVal);		
 		
 		mav.addObject("bizMember", returnVal);
 		mav.setViewName("mypage");

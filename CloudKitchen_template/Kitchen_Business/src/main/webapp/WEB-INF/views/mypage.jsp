@@ -30,7 +30,7 @@
             <!-- Header -->
             <jsp:include page="include/header.jsp" flush="false"></jsp:include>
             <!-- End Header -->
-
+			<!-- Main Content -->
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -47,19 +47,19 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">사업자 이름</label>
-                                                    <input type="text" class="form-control" disabled value="정원준">
+                                                    <input type="text" id="bizMemberName" class="form-control" disabled value="${bizMember.name}">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">사업자 아이디</label>
-                                                    <input type="text" class="form-control" disabled value="biz_4">
+                                                    <input type="text" id="bizId" class="form-control" disabled value="${bizMember.bizId}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">사업자 등록번호</label>
-                                                    <input type="text" class="form-control" disabled value="aBS-238iELx-24900">
+                                                    <input type="text" id="regNo" class="form-control" disabled value="${bizMember.regNo}">
                                                 </div>
                                             </div>
                                         </div>
@@ -67,17 +67,17 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">비밀번호</label>
-                                                    <input type="text" class="form-control" value="1234">
+                                                    <input type="password" id="pw" class="form-control" value="${bizMember.pw}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">계좌번호</label>
-                                                    <input type="text" class="form-control" value="193-128-13849854">
+                                                    <input type="text" id="account" class="form-control" value="${bizMember.account}">
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary pull-right">사업자 개인정보 업데이트</button>
+                                        <button type="button" id="changeProfile" class="btn btn-primary pull-right">사업자 개인정보 업데이트</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
@@ -96,19 +96,19 @@
                                             <div class="col-md-5">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">가게 이름</label>
-                                                    <input type="text" class="form-control" disabled value="원주니네 통닭">
+                                                    <input type="text" id="bizName" class="form-control" disabled value="${bizMember.biz.name}">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">찜 횟수</label>
-                                                    <input type="text" class="form-control" disabled value="100">
+                                                    <input type="text" id="favorites" class="form-control" disabled value="${bizMember.biz.likeCnt}">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">최소주문금액</label>
-                                                    <input type="email" class="form-control" value="2000000">
+                                                    <input type="text" id="minAmt" class="form-control" value="${bizMember.biz.minAmt}">
                                                 </div>
                                             </div>
                                         </div>
@@ -116,7 +116,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">생방송 키 코드</label>
-                                                    <input type="email" class="form-control" value="1234-5678-AFBEKX-63123Z">
+                                                    <input type="text" id="bizLiveStrm" class="form-control" value="${bizMember.biz.bizLiveStrm}">
                                                 </div>
                                             </div>
                                         </div>
@@ -124,21 +124,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">주소</label>
-                                                    <input type="text" class="form-control" disabled value="종로구 종각역 YMCA빌딩 7층 705호실">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">시 / 도</label>
-                                                    <input type="text" class="form-control" disabled value="서울특별시">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">우편번호</label>
-                                                    <input type="text" class="form-control" disabled value="12345">
+                                                    <input type="text" id="addr" class="form-control" disabled value="${bizMember.kb.address}">
                                                 </div>
                                             </div>
                                         </div>
@@ -148,12 +134,12 @@
                                                     <label>가게 설명문</label>
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating"></label>
-                                                        <textarea class="form-control" rows="5">여기는 200만원 이상 주문할 때만 배달 가능합니다. 200만원 미만을 주문하고 싶어하다면 직접 와서 찾아가세요. 좋은 하루되세요.</textarea>
+                                                        <textarea id="bizInfo" class="form-control" rows="5">${bizMember.biz.info}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary pull-right">가게 정보 업데이트</button>
+                                        <button type="button" id="changeBiz" class="btn btn-primary pull-right">가게 정보 업데이트</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
@@ -162,7 +148,7 @@
                     </div>
                 </div>
             </div>
-
+			<!-- End Main Content -->
             <!-- Footer -->
             <jsp:include page="include/footer.jsp" flush="false"></jsp:include>
             <!-- End Footer -->
@@ -292,7 +278,6 @@
                     if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
                         $('.fixed-plugin .dropdown').addClass('open');
                     }
-
                 }
 
                 $('.fixed-plugin a').click(function(event) {
@@ -444,12 +429,25 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function() {
-            // Javascript method's body can be found in assets/js/demos.js
-            md.initDashboardPageCharts();
-
-        });
+    <script type="text/javascript">
+    	$('#changeProfile').on('click', function() {
+    		console.log("mrow");
+    		$.ajax({
+        		url : '/business/member/' + $('#bizId')+ '/modify',
+        		type : 'POST',
+        		data : {pw : $('#pw'), account : $('#account')},
+        		error : function() {
+        			alert("사업자 정보를 수정하는데 에러가 발생했습니다.");
+            		console.log("test");
+        		},
+        		success : function(data) {
+        			alert("성공적으로 사업자 정보를 수정했습니다.");
+            		console.log("lion");
+        		}
+    		});
+    	});
+    	
+    	/* , biz : {minAmt : $('#minAmt'), bizLiveStrm : $('#bizLiveStrm'), info : $('#bizInfo')} */
     </script>
 </body>
 </html>
