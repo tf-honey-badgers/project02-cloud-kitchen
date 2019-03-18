@@ -8,8 +8,8 @@ public interface BusinessService {
 	public BizMemberVOExtend readBizMember(String bizId)throws Exception;
 
 	// 정보수정
-	public int updateBizMember(BizMemberVOExtend mvo) throws Exception;
+	public void updateBizMember(BizMemberVOExtend mvo) throws Exception;
 
 	// 로그인
-	public int login(String bizId, String pw) throws Exception;
+	public String login(BizMemberVOExtend bizMember) throws Exception;
 }
