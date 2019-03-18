@@ -6,9 +6,11 @@ import lombok.Data;
 public class OrderInfoVO {
 	private String id;
 	private String custId;
+	private String orderdetailId;
 	private String phone;
 	private String address;
 	private String time;
+	private String statusCode;
 	private String status;
 	private String kitchenName;
 	private String bizName; 

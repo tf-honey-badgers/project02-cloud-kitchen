@@ -23,4 +23,12 @@ public class CustFireBaseService {
 		
 		return response;
 	}
+	
+	public FirebaseResponse patchOrder(String key, Map data) throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
+		String firebase_baseUrl = this.firebase_baseUrl+key;
+		Firebase firebase = new Firebase( firebase_baseUrl );
+		FirebaseResponse response = firebase.patch(data);
+		
+		return response;
+	}
 }
