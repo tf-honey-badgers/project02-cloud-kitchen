@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <div class="sidebar" data-color="azure" data-background-color="white"
-	data-image="/resources/img/sidebar-1.jpg">
+	data-image="/business/resources/img/sidebar-1.jpg">
 	<!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
