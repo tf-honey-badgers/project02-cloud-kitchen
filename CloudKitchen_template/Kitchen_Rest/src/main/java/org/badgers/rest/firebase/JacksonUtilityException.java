@@ -1,4 +1,4 @@
-package org.badgers.rest.customer.order.firebase;
+package org.badgers.rest.firebase;
 
 import org.apache.log4j.Logger;
 

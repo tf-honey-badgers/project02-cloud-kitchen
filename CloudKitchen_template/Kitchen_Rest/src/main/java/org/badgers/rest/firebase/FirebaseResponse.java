@@ -1,4 +1,4 @@
-package org.badgers.rest.customer.order.firebase;
+package org.badgers.rest.firebase;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
