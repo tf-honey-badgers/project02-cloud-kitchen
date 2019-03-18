@@ -27,9 +27,4 @@ public interface CustOrderMapper {
 	//order_menu_option 기본 정보 입력(ex: 옵션 2개 추가 - 옵션은 0~ n개 사이) 
 	public int initOrderMenuOption(OrderOptionVO vo);
 	
-	public void test1 () ;
-	public void test2 () ;
-
-	
-	
 }

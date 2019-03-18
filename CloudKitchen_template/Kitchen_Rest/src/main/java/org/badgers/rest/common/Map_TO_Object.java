@@ -1,19 +1,12 @@
-package org.badgers.rest.customer.order.firebase;
+package org.badgers.rest.common;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.springframework.stereotype.Component;
-
-@Component
 public class Map_TO_Object {
-	public Map<String, Object> voToMap(Object order)
+	public static  Map<String, Object> voToMap(Object order)
 			throws NoSuchFieldException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 		Map<String, Object> map = new HashMap<>();
 
