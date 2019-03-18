@@ -24,7 +24,8 @@ public class MenuController {
 	@ResponseBody
 	public List<?> bizGetMenu(ModelAndView mav, @PathVariable("bizId") String bizId) {
 		System.out.println(bizId);
-		return service.bizGetMenu(bizId);
 //		mav.addObject("bizMenu", service.bizGetMenu(bizId));
+		return service.bizGetMenu(bizId);
 	}
+	
 }
