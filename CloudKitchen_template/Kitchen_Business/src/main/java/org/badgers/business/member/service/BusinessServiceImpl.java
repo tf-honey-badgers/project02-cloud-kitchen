@@ -1,8 +1,5 @@
 package org.badgers.business.member.service;
 
-import java.util.List;
-
-import org.badgers.business.model.BizMemberVO;
 import org.badgers.business.model.BizMemberVOExtend;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
