@@ -5,13 +5,6 @@
 
 <mapper	namespace="org.badgers.rest.business.member.persistence.BusinessMapper">
 
-	<!-- 로그인 -->
-	<select id="login" resultType="org.badgers.rest.model.BizMemberVOExtend">
-		select biz_id, pw
-		from honey_badgers.biz_member
-		where biz_id = #{param1}
-	</select>
-
 	<!-- 마이페이지 정보 -->
 	<select id="selectById" resultMap="BizMemberVOExtend">
 		select
@@ -102,5 +95,12 @@
 		where BM.biz_id = BZ.biz_id
 		and BM.biz_id=#{bizId};
 	</update>
+
+	<!-- 로그인 -->
+	<select id="login" resultType="org.badgers.rest.model.BizMemberVOExtend">
+		select biz_id, pw
+		from honey_badgers.biz_member
+		where biz_id = #{param1}
+	</select>
 
 </mapper>
