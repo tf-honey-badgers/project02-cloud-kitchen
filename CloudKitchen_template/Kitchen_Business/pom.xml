@@ -32,6 +32,11 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 				
 		<!-- AspectJ -->
 		<dependency>
@@ -106,7 +111,7 @@
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
-			<version>2.1</version>
+			<version>2.2</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -130,6 +135,13 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
+		<!-- Spring-tx -> @Transactional 사용에 필요 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
 		<!-- Lombok -> getter & setter 대체용 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -144,12 +156,42 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.8</version>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.9.8</version>
+		</dependency>
+		<dependency>
+        	<groupId>com.fasterxml.jackson.core</groupId>
+        	<artifactId>jackson-core</artifactId>
+         	<version>2.9.8</version>
+		</dependency>
+		
+		<dependency>
+        	<groupId>aopalliance</groupId>
+         	<artifactId>aopalliance</artifactId>
+         	<version>1.0</version>
+      	</dependency>
+		
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.6</version>
+		</dependency>
 		
 		<!-- 외부파서 -> URI에 한글 사용 시 처리에 필요 -->
 		<dependency>
 			<groupId>xerces</groupId>
 			<artifactId>xercesImpl</artifactId>
 			<version>2.9.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>jdk.tools</groupId>
+			<artifactId>jdk.tools</artifactId>
+			<scope>system</scope>
+			<version>1.7</version>
+			<systemPath>C:\tools.jar</systemPath>
 		</dependency>
 	</dependencies>
     <build>

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.badgers.rest.customer.member.service.CustomerService;
 import org.badgers.rest.model.CustomerVO;
+import org.badgers.rest.model.FavoriteVO;
+import org.badgers.rest.model.OrderInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -38,26 +40,34 @@ public class CustomerController {
 	}
 	
 	// 로그인
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<String> login(CustomerVO in) throws Exception {
-		 ResponseEntity<String> entity = null;
-		 if(entity ==null || ((CharSequence) entity).length()==0) {
-			 log.info("없다 없다====================");
-		 }
-		 try {
-		      entity = new ResponseEntity<>(service.login(in.getId(), in.getPw()), HttpStatus.OK);
-		      log.info("연결 ==================== ");
-		    } catch (Exception e) {
-		      e.printStackTrace();
-		      entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		      log.info("에러 에러=========================== ");
-		    }
+	@PostMapping(value = "/")
+	public ResponseEntity<String> login(@RequestBody CustomerVO cvo) throws Exception {
+			ResponseEntity<String> entity = null;
+		 
+		 System.out.println(cvo.getId());
 
-		    return entity;	
-		  }
+		 try {
+			 int returnVal = service.login(cvo.getId(), cvo.getPw());
+			 if(returnVal == 1) { // 정상처리, 아이디를 다시 돌려보낸다 -> 프런트 도메인에서 로그인 처리할 것
+				 entity = new ResponseEntity<String>(cvo.getId(), HttpStatus.OK);
+			 } else if (returnVal == -1) { // 아이디는 맞지만 비번 틀림
+				 entity = new ResponseEntity<String>("PW_BAD", HttpStatus.BAD_REQUEST);
+			 } else if (returnVal == -2) { // 아이디가 존재하지 않는다
+				 entity = new ResponseEntity<String>("NO_ID", HttpStatus.BAD_REQUEST);
+			 }
+			 log.info("연결 ==================== ");
+		 } catch (Exception e) {
+			 e.printStackTrace();
+			 entity = new ResponseEntity<String>("SERVER_ERROR", HttpStatus.SERVICE_UNAVAILABLE);
+			 log.info("에러 에러=========================== ");
+		 }
+		 
+		 return entity;	
+	}
+		  
 		
 	
-	//마페지
+	//개인정보 끌어오기 
 	@GetMapping(value = "/{id}/mypage", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<List<CustomerVO>>  selectById(@PathVariable("id") String id) {
 		List<CustomerVO> list = service.selectById(id);
@@ -69,8 +79,8 @@ public class CustomerController {
 
 
 	
-	// 수정
-	@PutMapping("/modify/{id}")
+	// 개인정보 수정
+	@PutMapping("/{id}/mypage/modify")
 	public int modify(@PathVariable("id")String id, @RequestBody CustomerVO vo) {
 
 		int returnVal = 0;
@@ -84,7 +94,7 @@ public class CustomerController {
 		return returnVal;
 	}
 
-	// 비번 변화
+	// 비번만  변화
 	@PutMapping("/changePwd")
 	public int changePwd(@RequestBody CustomerVO input) {
 
@@ -113,6 +123,26 @@ public class CustomerController {
 
 		return returnValue;
 	}
+	
+	//주문 내역  보기 
+	@GetMapping(value = "/{cust_id}/mypage/orderinfo", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<List<OrderInfoVO>>  getOrderInfo(@PathVariable("cust_id")String custId) {
+		List<OrderInfoVO> list = service.getOrderInfo(custId);
+			
+
+		return new ResponseEntity<List<OrderInfoVO>>(list, HttpStatus.OK);
+	}
+	
+	
+	
+	//찜  내역  보기 
+	@GetMapping(value = "/{cust_id}/mypage/favorite", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<List<FavoriteVO>>  favorite(@PathVariable("cust_id")String custId) {
+			List<FavoriteVO> list = service.favorite(custId);
+				
+
+			return new ResponseEntity<List<FavoriteVO>>(list, HttpStatus.OK);
+		}
 	
 	
 	

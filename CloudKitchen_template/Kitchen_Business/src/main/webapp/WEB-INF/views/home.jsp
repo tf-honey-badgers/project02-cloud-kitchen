@@ -11,5 +11,9 @@
 	</h1>
 
 	<P>  The time on the server is ${serverTime}. </P>
+	
+	<ul>
+		<li><a href="/business/member/biz_1">사업자 ID biz_1 보기 (마이페이지로 이동)</a></li>
+	</ul>
 </body>
 </html>

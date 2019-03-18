@@ -20,17 +20,33 @@
 	</insert>
 	
 	<insert id="addMenuOptionCl" parameterType="org.badgers.rest.model.MenuOptionClVOExtend">
-		insert into menu_category (name,menu_opt_type,menu_id) values(#{mocName},#{mocMenuOptType},#{mocMenuCode})
+		insert into menu_option_cl (name,menu_opt_type,menu_id) values(#{mocName},#{mocMenuOptType},#{mocMenuCode})
 		<selectKey resultType="int" keyProperty="mocNo" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>
 	
 	<insert id="addMenuOption" parameterType="org.badgers.rest.model.MenuOptionVOExtend">
-		insert into menu_category (name,add_price,opt_cl_id) values(#{moName},#{moAddPrice},#{moOptClNo})
+		insert into menu_option (name,add_price,opt_cl_id) values(#{moName},#{moAddPrice},#{moOptClNo})
 		<selectKey resultType="int" keyProperty="moCode" order="AFTER">
 			SELECT LAST_INSERT_ID() 
 		</selectKey>
 	</insert>
+	
+	<delete id="deleteMenu">
+		delete from menu_category where idx=#{menuIdx}
+	</delete>
+	
+	<delete id="deleteMenuOpt">
+		delete from menu_option_cl where idx=#{menuOptIdx}
+	</delete>
+	
+	<update id="updateMenuInfo">
+		update menu set name=#{mName}, basic_price=#{mBasicPrice}, photo=#{mPhoto} where idx=#{mCode}; 
+	</update>
+	
+	<update id="updateMenuOptInfo">
+		update menu_option set name=#{moName}, add_price=#{moAddPrice} where idx=#{moCode}; 
+	</update>
 	
 </mapper>

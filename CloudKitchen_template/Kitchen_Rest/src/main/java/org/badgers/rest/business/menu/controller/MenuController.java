@@ -9,6 +9,7 @@ import org.badgers.rest.model.MenuOptionVOExtend;
 import org.badgers.rest.model.MenuVOExtend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,16 +22,48 @@ public class MenuController {
 	@Setter(onMethod_ = { @Autowired })
 	private MenuService service;
 	
-	@RequestMapping("/addmenucat")
+	@RequestMapping("/addmenu")
 	@ResponseBody
-	public int addMenuCat(MenuCatVOExtend menuCatVoEx,MenuVOExtend menuVoEx,
-			List<MenuOptionClVOExtend> menuOptClVoEx,List<MenuOptionVOExtend> menuOptVoEx) {
-
-		System.out.println(menuCatVoEx);
-		System.out.println(menuVoEx);
-		System.out.println(menuOptClVoEx);
-		System.out.println(menuOptVoEx);
+	public int addMenu(MenuCatVOExtend menuCatVoEx,MenuVOExtend menuVoEx,
+			MenuOptionClVOExtend menuOptClVoEx,MenuOptionVOExtend menuOptVoEx) {
 		
-		 return  service.addMenuCat(menuCatVoEx,menuVoEx,menuOptClVoEx,menuOptVoEx);
+		return  service.addMenuCat(menuCatVoEx,menuVoEx,menuOptClVoEx,menuOptVoEx);
+	}
+	
+	@RequestMapping("/deletemenu")
+	@ResponseBody
+	public int deleteMenu(@RequestParam("menuIdx") int menuIdx) {
+		return service.deleteMenu(menuIdx);
+	}
+	
+	@RequestMapping("/deleteMenuOpt")
+	@ResponseBody
+	public int deleteMenuOpt(@RequestParam("menuOptIdx") int menuOptIdx) {
+		return service.deleteMenuOpt(menuOptIdx);
+	}
+	
+	@RequestMapping("/addOnlyMenu")
+	@ResponseBody
+	public int addOnlyMenu(MenuCatVOExtend menuCatVoEx,MenuVOExtend menuVoEx) {
+		return service.addOnlyMenu(menuCatVoEx, menuVoEx);
+	}
+	
+	@RequestMapping("/addOnlyOpt")
+	@ResponseBody
+	public int addOnlyOpt(@RequestParam("menuIdx") int menuIdx, MenuVOExtend menuVoEx,
+			MenuOptionClVOExtend menuOptClVoEx) {
+		return  service.addOnlyOpt(menuIdx, menuVoEx,menuOptClVoEx);
+	}
+	
+	@RequestMapping("/updateMenu")
+	@ResponseBody
+	public int updateMenu(MenuVOExtend menuVoEx) {
+		return  service.updateMenuInfo(menuVoEx);
+	}
+	
+	@RequestMapping("/updateMenuOpt")
+	@ResponseBody
+	public int updateMenuOpt(MenuOptionVOExtend menuOptVoEx) {
+		return  service.updateMenuOptInfo(menuOptVoEx);
 	}
 }
