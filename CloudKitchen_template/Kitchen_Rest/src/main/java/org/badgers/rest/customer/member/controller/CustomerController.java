@@ -40,23 +40,31 @@ public class CustomerController {
 	}
 	
 	// 로그인
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<String> login(CustomerVO in) throws Exception {
-		 ResponseEntity<String> entity = null;
-		 if(entity ==null || ((CharSequence) entity).length()==0) {
-			 log.info("없다 없다====================");
-		 }
-		 try {
-		      entity = new ResponseEntity<>(service.login(in.getId(), in.getPw()), HttpStatus.OK);
-		      log.info("연결 ==================== ");
-		    } catch (Exception e) {
-		      e.printStackTrace();
-		      entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		      log.info("에러 에러=========================== ");
-		    }
+	@PostMapping(value = "/")
+	public ResponseEntity<String> login(@RequestBody CustomerVO cvo) throws Exception {
+			ResponseEntity<String> entity = null;
+		 
+		 System.out.println(cvo.getId());
 
-		    return entity;	
-		  }
+		 try {
+			 int returnVal = service.login(cvo.getId(), cvo.getPw());
+			 if(returnVal == 1) { // 정상처리, 아이디를 다시 돌려보낸다 -> 프런트 도메인에서 로그인 처리할 것
+				 entity = new ResponseEntity<String>(cvo.getId(), HttpStatus.OK);
+			 } else if (returnVal == -1) { // 아이디는 맞지만 비번 틀림
+				 entity = new ResponseEntity<String>("PW_BAD", HttpStatus.BAD_REQUEST);
+			 } else if (returnVal == -2) { // 아이디가 존재하지 않는다
+				 entity = new ResponseEntity<String>("NO_ID", HttpStatus.BAD_REQUEST);
+			 }
+			 log.info("연결 ==================== ");
+		 } catch (Exception e) {
+			 e.printStackTrace();
+			 entity = new ResponseEntity<String>("SERVER_ERROR", HttpStatus.SERVICE_UNAVAILABLE);
+			 log.info("에러 에러=========================== ");
+		 }
+		 
+		 return entity;	
+	}
+		  
 		
 	
 	//개인정보 끌어오기 

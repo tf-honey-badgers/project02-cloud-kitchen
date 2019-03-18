@@ -1,7 +1,6 @@
 package org.badgers.business.model;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import lombok.Data;
 
@@ -14,7 +13,7 @@ public class BizMemberVOExtend {
 	private Timestamp joinDate; // 가입일
 	private String account; // 계좌번호
 	private BizVO biz; //biz 가게소개글, 상호명, 가게 카테고리 등등 가게 정보 
-	private List<CommonCodeVO> cc; // 상태코드 아이디, 이름, 설명
+	private CommonCodeVO cc; // 상태코드 아이디, 이름, 설명
 	private KitchenBranchVO kb; // 키친 아이디, 이름, 지역코드, 주소
 	
 	// biz 테이블 수정용으로 필요 (없으면 update 호출 시 에러)
