@@ -27,7 +27,7 @@
 					<p>Typography</p>
 			</a></li>
 			<li class="nav-item "><a class="nav-link" href="#">
-					<i class="material-icons">video camera</i>
+					<i class="material-icons">camera</i>
 					<p>Live Streaming</p>
 			</a></li>
 			<li class="nav-item "><a class="nav-link" href="#">
@@ -35,7 +35,7 @@
 					<p>Notifications</p>
 			</a></li>
 			<li class="nav-item "><a class="nav-link" href="#">
-					<i class="material-icons">setting</i>
+					<i class="fa fa-cog fa-2x"> </i>
 					<p>Settings</p>
 			</a></li>
 		</ul>
