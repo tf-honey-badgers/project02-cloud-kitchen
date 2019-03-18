@@ -28,4 +28,5 @@ public class MenuController {
 		return service.bizGetMenu(bizId);
 	}
 	
+	
 }
