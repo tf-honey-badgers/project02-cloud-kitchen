@@ -111,7 +111,7 @@
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
-			<version>2.1</version>
+			<version>2.2</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -132,6 +132,13 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- Spring-tx -> @Transactional 사용에 필요 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
@@ -177,6 +184,14 @@
 			<groupId>xerces</groupId>
 			<artifactId>xercesImpl</artifactId>
 			<version>2.9.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>jdk.tools</groupId>
+			<artifactId>jdk.tools</artifactId>
+			<scope>system</scope>
+			<version>1.7</version>
+			<systemPath>C:\tools.jar</systemPath>
 		</dependency>
 	</dependencies>
     <build>
