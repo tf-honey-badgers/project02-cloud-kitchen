@@ -2,6 +2,7 @@ package org.badgers.rest.customer.order.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -38,17 +39,18 @@ public class TestController {
 	private final FireBaseService service;
 	private final CustOrderService orderService;
 	
-	private final Map_TO_Object maptoobject; 
+	private final Map_TO_Object mto; 
 //	private final DatabaseReference databaseReference;
 	//이거 주석 풀면 qualify Exception
 	
 	@PostMapping("/test/tj/fire/{key}")
-	public ResponseEntity<?> tjTest(@RequestBody Map map,OrderVOExtend vo, @PathVariable("key") String key) throws UnsupportedEncodingException, FirebaseException, JacksonUtilityException{
+	public ResponseEntity<?> tjTest(@RequestBody HashMap<String, Object> map,OrderVOExtend vo, @PathVariable("key") String key) throws UnsupportedEncodingException, FirebaseException, JacksonUtilityException, IllegalAccessException, InvocationTargetException{
 		
-		System.out.println(".......................................................................");
+		System.out.println("..................................                     1.....................................");
+		vo = (OrderVOExtend) mto.setData(vo, map);
 		System.out.println(vo);
 		
-		System.out.println(".......................................................................");
+		System.out.println("..................................                  2.....................................");
 		System.out.println(".......................................................................");
 		
 		
