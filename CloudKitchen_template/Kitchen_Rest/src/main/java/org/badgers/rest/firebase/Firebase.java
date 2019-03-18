@@ -1,4 +1,4 @@
-package org.badgers.rest.customer.order.firebase;
+package org.badgers.rest.firebase;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
