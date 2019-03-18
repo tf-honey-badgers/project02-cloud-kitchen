@@ -37,7 +37,7 @@ public class BusinessController {
 		System.out.println(returnVal);		
 		
 		mav.addObject("bizMember", returnVal);
-		mav.setViewName("index");
+		mav.setViewName("mypage");
 		
 		return mav;
 	}
