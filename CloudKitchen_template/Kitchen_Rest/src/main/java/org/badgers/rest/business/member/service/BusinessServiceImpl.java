@@ -15,7 +15,7 @@ public class BusinessServiceImpl implements BusinessService {
 	// 회원정보
 	@Override
 	public BizMemberVOExtend selectById(String bizId) throws Exception {
-		System.out.println("사업자 정보 나와라=============");
+		System.out.println("Kitchen_Rest 사업자 개인정보 읽기...............................");
 		
 		BizMemberVOExtend bizMember = mapper.selectById(bizId);
 		
