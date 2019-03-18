@@ -15,10 +15,10 @@
 	<%-- <jsp:include page="/WEB-INF/customers/resources/img/favicon.ico" /> --%>
     <!-- Favicons-->
     <link rel="shortcut icon" href="/customers/resources/img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" type="/customers/resources/image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="/customers/resources/image/x-icon" sizes="72x72" href="/customer/customers/resources/img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="/customers/resources/image/x-icon" sizes="114x114" href="/customer/customers/resources/img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="/customers/resources/image/x-icon" sizes="144x144" href="/customer/customers/resources/img/apple-touch-icon-144x144-precomposed.png">
+    <link rel="apple-touch-icon" type="/customers/resources/image/x-icon" href="/customers/resources/img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="/customers/resources/image/x-icon" sizes="72x72" href="/customers/resources/img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="/customers/resources/image/x-icon" sizes="114x114" href="/customers/resources/img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="/customers/resources/image/x-icon" sizes="144x144" href="/customers/resources/img/apple-touch-icon-144x144-precomposed.png">
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
@@ -42,7 +42,7 @@
 </head>
  
 <body>
-
+<!--  로딩중 -->
    <div id="preloader">
         <div class="sk-spinner sk-spinner-wave" id="status">
             <div class="sk-rect1"></div>
@@ -54,64 +54,66 @@
     </div> 
     
     <!-- End Preload -->
- <!-- Header -->
-  
-            <jsp:include page="/WEB-INF/views/include/header.jsp" flush="false"/>
+ <!--헤더 -->
+  			<!-- 위쪽 헤더바  -->
+            <jsp:include page="include/header.jsp" flush="false"/>
+            <!--  영상 및 주문  -->
+		    <jsp:include page="include/header2.jsp" flush="false"/>
 
 
 
-
-<!-- Content ================================================== -->
+<!-- 본문 ================================================== -->
     <div class="container margin_60">
 
         <div class="main_title">
-            <h2 class="nomargin_top" style="padding-top:0">How it works</h2>
+            <h2 class="nomargin_top" style="padding-top:0">클라우드 키친이란?</h2>
             <p>
-                Cum doctus civibus efficiantur in imperdiet deterruisset.
+               한곳에서 ~~~~~~~~
             </p>
         </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="box_home" id="one">
                     <span>1</span>
-                    <h3>Search by address</h3>
+                    <h3>주소 찾기</h3>
                     <p>
-                        Find all restaurants available in your zone.
+                       	근처 클라우드 키친 찾기 
                     </p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="box_home" id="two">
                     <span>2</span>
-                    <h3>Choose a restaurant</h3>
+                    <h3>가게 선택 </h3>
                     <p>
-                        We have more than 1000s of menus online.
+                     	다양한 가게에서 선택 
                     </p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="box_home" id="three">
                     <span>3</span>
-                    <h3>Pay by card or cash</h3>
+                    <h3>결제 종류 선택</h3>
                     <p>
-                        It's quick, easy and totally secure.
+                   			 빠르고 간편하게 결제
                     </p>
                 </div>
             </div>
+            
             <div class="col-md-3">
                 <div class="box_home" id="four">
                     <span>4</span>
-                    <h3>Delivery or takeaway</h3>
+                    <h3>집앞까지 배달합니다.</h3>
                     <p>
-                        You are lazy? Are you backing home?
+                      		배달 얍 
                     </p>
                 </div>
             </div>
         </div><!-- End row -->
 
         <div id="delivery_time" class="hidden-xs">
-            <strong><span>2</span><span>5</span></strong>
-            <h4>The minutes that usually takes to deliver!</h4>
+            <strong><span>3</span><span>0</span></strong>
+            <h4>평균 배송 소요 </h4>
         </div>
     </div><!-- End container -->
 
@@ -119,15 +121,13 @@
         <div class="container margin_60">
 
             <div class="main_title">
-                <h2 class="nomargin_top">Choose from Most Popular</h2>
-                <p>
-                    Cum doctus civibus efficiantur in imperdiet deterruisset.
-                </p>
+                <h2 class="nomargin_top">인기 메뉴 </h2>
+               
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-                    <a href="detail_page.html" class="strip_list">
+                    <a href="detail_page.jsp" class="strip_list">
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
                             <div class="thumb_strip">
@@ -136,20 +136,19 @@
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
                             </div>
-                            <h3>Taco Mexican</h3>
+                            <h3>유니네 피자집</h3>
                             <div class="type">
-                                Mexican / American
+                                	이태리 / 피자
                             </div>
                             <div class="location">
-                                135 Newtownards Road, Belfast, BT4. <span class="opening">Opens at 17:00</span>
+                                		주소를 적으세요 <span class="opening">오픈 09:00</span>
                             </div>
                             <ul>
-                                <li>Take away<i class="icon_check_alt2 ok"></i></li>
-                                <li>Delivery<i class="icon_check_alt2 ok"></i></li>
+                               		<li>배달<i class="icon_check_alt2 ok"></i></li>
                             </ul>
                         </div><!-- End desc-->
                     </a><!-- End strip_list-->
-                    <a href="detail_page.html" class="strip_list">
+                    <a href="/detail_page.jsp" class="strip_list">
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
                             <div class="thumb_strip">
@@ -158,20 +157,20 @@
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
                             </div>
-                            <h3>Naples Pizza</h3>
+                            <h3>태주네 떡볶이</h3>
                             <div class="type">
-                                Italian / Pizza
+                             		 한국 /분식
                             </div>
                             <div class="location">
                                 135 Newtownards Road, Belfast, BT4. <span class="opening">Opens at 17:00</span>
                             </div>
                             <ul>
-                                <li>Take away<i class="icon_check_alt2 ok"></i></li>
-                                <li>Delivery<i class="icon_check_alt2 ok"></i></li>
+                               
+                                <li>배달<i class="icon_check_alt2 ok"></i></li>
                             </ul>
                         </div><!-- End desc-->
                     </a><!-- End strip_list-->
-                    <a href="detail_page.html" class="strip_list">
+                    <a href="detail_page.jsp" class="strip_list">
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
                             <div class="thumb_strip">
@@ -180,22 +179,22 @@
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
                             </div>
-                            <h3>Japan Food</h3>
+                            <h3>종혀니네 햄버거</h3>
                             <div class="type">
-                                Sushi / Japanese
+                                	한국 / 패스트 푸드
                             </div>
                             <div class="location">
                                 135 Newtownards Road, Belfast, BT4. <span class="opening">Opens at 17:00</span>
                             </div>
                             <ul>
-                                <li>Take away<i class="icon_check_alt2 ok"></i></li>
-                                <li>Delivery<i class="icon_check_alt2 ok"></i></li>
+                               
+                                <li>배달<i class="icon_check_alt2 ok"></i></li>
                             </ul>
                         </div><!-- End desc-->
                     </a><!-- End strip_list-->
                 </div><!-- End col-md-6-->
                 <div class="col-md-6">
-                    <a href="detail_page.html" class="strip_list">
+                    <a href="/detail_page.jsp" class="strip_list">
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
                             <div class="thumb_strip">
@@ -204,20 +203,20 @@
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
                             </div>
-                            <h3>Sushi Gold</h3>
+                            <h3>원주니네 통닭</h3>
                             <div class="type">
-                                Sushi / Japanese
+                                	한국  / 치킨
                             </div>
                             <div class="location">
                                 135 Newtownards Road, Belfast, BT4. <span class="opening">Opens at 17:00</span>
                             </div>
                             <ul>
-                                <li>Take away<i class="icon_check_alt2 ok"></i></li>
-                                <li>Delivery<i class="icon_close_alt2 no"></i></li>
+                   
+                                <li>배달<i class="icon_close_alt2 no"></i></li>
                             </ul>
                         </div><!-- End desc-->
                     </a><!-- End strip_list-->
-                    <a href="detail_page.html" class="strip_list">
+                    <a href="/detail_page.jsp" class="strip_list">
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
                             <div class="thumb_strip">
@@ -226,20 +225,20 @@
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
                             </div>
-                            <h3>Dragon Tower</h3>
+                            <h3>명주니네 카레</h3>
                             <div class="type">
-                                Chinese / Thai
+                                	인도 / 카레
                             </div>
                             <div class="location">
                                 135 Newtownards Road, Belfast, BT4. <span class="opening">Opens at 17:00</span>
                             </div>
                             <ul>
-                                <li>Take away<i class="icon_check_alt2 ok"></i></li>
-                                <li>Delivery<i class="icon_check_alt2 ok"></i></li>
+                                
+                                <li>배달<i class="icon_check_alt2 ok"></i></li>
                             </ul>
                         </div><!-- End desc-->
                     </a><!-- End strip_list-->
-                    <a href="detail_page.html" class="strip_list">
+                    <a href="/detail_page.jsp" class="strip_list">
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
                             <div class="thumb_strip">
@@ -248,16 +247,16 @@
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
                             </div>
-                            <h3>China Food</h3>
+                            <h3>계정이 안맞대자나 </h3>
                             <div class="type">
-                                Chinese / Vietnam
+                               		아저씨야 변화없으면 500원
                             </div>
                             <div class="location">
                                 135 Newtownards Road, Belfast, BT4. <span class="opening">Opens at 17:00</span>
                             </div>
                             <ul>
-                                <li>Take away<i class="icon_check_alt2 ok"></i></li>
-                                <li>Delivery<i class="icon_check_alt2 ok"></i></li>
+                              
+                                <li>배달<i class="icon_check_alt2 ok"></i></li>
                             </ul>
                         </div><!-- End desc-->
                     </a><!-- End strip_list-->
@@ -316,9 +315,9 @@
     </div><!-- End container -->
     
     <!-- Footer 시작  -->
-<jsp:include page="/WEB-INF/views/include/footer.jsp" flush="false"/>
+<jsp:include page="include/footer.jsp" flush="false"/>
 <!-- Footer 끝  -->
-
+			
 
  <div class="layer"></div><!-- Mobile menu overlay mask -->
 
