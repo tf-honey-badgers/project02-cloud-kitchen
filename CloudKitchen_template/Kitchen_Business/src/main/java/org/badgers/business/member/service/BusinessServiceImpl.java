@@ -1,41 +1,41 @@
 package org.badgers.business.member.service;
 
-import java.util.List;
-
+import org.badgers.business.model.BizMemberVOExtend;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class BusinessServiceImpl {
-	@SuppressWarnings("rawtypes")
-	public static void main(String[] args) {
+public class BusinessServiceImpl implements BusinessService {
+	
+	// 회원 정보
+	public BizMemberVOExtend readBizMember(String bizId) throws Exception {
+		System.out.println("Kitchen_Business 사업자 개인정보 읽기...............................");
+		
 		RestTemplate restTemplate = new RestTemplate();
 		
-		System.out.println("started.........");
-		
 		try {
-			String url = "http://localhost:12007/business/biz_1/mypage";
-			ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, List.class);
-		
-			System.out.println("here I am");
+			String url = "http://localhost:12007/business/" + bizId + "/mypage";
 			
-			List<?> bizMember = responseEntity.getBody();
-
-			for(int i = 0; i < bizMember.size(); i++) {
-				System.out.println(bizMember.get(i));
-			}
+			ResponseEntity<BizMemberVOExtend> responseEntity =
+					restTemplate.getForEntity(url, org.badgers.business.model.BizMemberVOExtend.class);
+			
+			System.out.println(responseEntity.getBody());
 
 		}catch(Exception e){
 			e.getStackTrace();
 		}
+		
+		return null;
 	}
-	
-//	// 로그인
-//	@GetMapping(value = "/{biz_id}")
-//	public ResponseEntity<String> login(BizMemberVOExtend biz) throws Exception {}
-//	
-//	// 개인정보 수정
-//	@PutMapping("/{biz_id}/mypage/modify")
-//	public int modify(@PathVariable("biz_id")String bizId ,@RequestBody BizMemberVOExtend mvo) {}
+
+	// 정보수정
+	public int updateBizMember(BizMemberVOExtend mvo) throws Exception {
+		return 0;
+	}
+
+	// 로그인
+	public int login(String bizId, String pw) throws Exception{
+		return 0;
+	}
 }
