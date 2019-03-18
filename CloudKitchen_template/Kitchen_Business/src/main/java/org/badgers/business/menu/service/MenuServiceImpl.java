@@ -9,27 +9,24 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class MenuServiceImpl implements MenuService {
 	
-	public List<?> bizGetMenu(String bizId){
-		
+	
+	@Override
+	public List<?> bizGetMenu(String bizId) {
 		RestTemplate restTemplate = new RestTemplate();
 		
 		try {
-			String url = "http://localhost/controller/";
+			String url = "http://localhost:80/";
 			ResponseEntity<List> menuResponseEntity = restTemplate.getForEntity
 					(url+"kitchenbranch/bizinfo/"+bizId, List.class);
 			
 			List<?> menuVoEx = menuResponseEntity.getBody();
-			
-			System.out.println(menuResponseEntity);
-			
 			return menuVoEx;
-			
+
 		}catch(Exception e){
 			e.getStackTrace();
-			
 		}
-		
 		return null;
 	}
-
+	
+	
 }

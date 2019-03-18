@@ -2,34 +2,33 @@ package org.badgers.business.member.service;
 
 import java.util.List;
 
+import org.badgers.business.model.BizMemberVO;
+import org.badgers.business.model.BizMemberVOExtend;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class BusinessServiceImpl {
-	@SuppressWarnings("rawtypes")
-	public static void main(String[] args) {
-		RestTemplate restTemplate = new RestTemplate();
-		
-		System.out.println("started.........");
-		
-		try {
-			String url = "http://localhost:12007/business/biz_1/mypage";
-			ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, List.class);
-		
-			System.out.println("here I am");
-			
-			List<?> bizMember = responseEntity.getBody();
+public class BusinessServiceImpl implements BusinessService{
 
-			for(int i = 0; i < bizMember.size(); i++) {
-				System.out.println(bizMember.get(i));
-			}
-
-		}catch(Exception e){
-			e.getStackTrace();
-		}
+	@Override
+	public ResponseEntity<BizMemberVO> readBizMember(String bizId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	@Override
+	public ResponseEntity<String> login(BizMemberVOExtend biz) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResponseEntity<Integer> updateBizMember(String bizId, BizMemberVOExtend biz) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 //	// 로그인
 //	@GetMapping(value = "/{biz_id}")
