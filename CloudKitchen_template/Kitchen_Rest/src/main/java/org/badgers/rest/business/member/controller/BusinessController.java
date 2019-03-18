@@ -35,17 +35,17 @@ public class BusinessController {
 	
 	// 개인정보 수정
 	@PutMapping("/{biz_id}/mypage/modify")
-	public int modify(@PathVariable("biz_id")String bizId, @RequestBody BizMemberVOExtend mvo) {
+	public ResponseEntity<Integer> modify(@PathVariable("biz_id")String bizId, @RequestBody BizMemberVOExtend mvo) {
 
 		int returnVal = 0;
 
 		try {
-			returnVal 	= service.modify(mvo);
+			returnVal = service.modify(mvo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return returnVal;
+		return new ResponseEntity<Integer>(returnVal, HttpStatus.OK);
 	}
 	
 	// 로그인

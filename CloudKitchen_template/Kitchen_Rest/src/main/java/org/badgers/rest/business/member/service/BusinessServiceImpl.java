@@ -39,7 +39,7 @@ public class BusinessServiceImpl implements BusinessService {
 		
 		try {
 			queryResult = mapper.login(bizId);
-			if(queryResult.getPw() == pw) {
+			if(queryResult.getPw().equals(pw)) {
 				returnVal = 1; // 입력한 비번 == DB 비번
 			} else {
 				returnVal = -1; // 입력한 비번 != DB 비번
