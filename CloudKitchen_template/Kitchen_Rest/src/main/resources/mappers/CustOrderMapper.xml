@@ -6,23 +6,13 @@
 <mapper
 	namespace="org.badgers.rest.customer.order.persistence.CustOrderMapper">
 	
-	<insert id="test1">
-		insert into tbl_1 values('12345678901234')
-	
-	</insert>
-	
-	<insert id="test2">
-		insert into tbl_2 values('12345678901234')
-	
-	</insert>
-	
 	<insert id="initOrder"
 		parameterType="org.badgers.rest.model.OrderVOExtend">
 		insert into honey_badgers.order (
 		id ,cust_id, phone,
-		address , msg, kitchen_name, pay_amt, firebase_key)
+		address , msg, kitchen_name, pay_amt)
 		values(#{id},#{custId},#{phone},#{address}, #{msg}, #{kitchenName},
-		#{payAmt}, #{firebaseKey});
+		#{payAmt});
 	</insert>
 
 	<insert id="addPayment"

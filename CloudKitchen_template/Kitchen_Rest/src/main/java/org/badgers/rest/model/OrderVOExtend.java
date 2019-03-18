@@ -14,7 +14,6 @@ public class OrderVOExtend {
 	private String kitchenName;
 	private int payAmt;
 	private String status;
-	private String firebaseKey;
 	private OrderPaymentVO orderPayment;
 	private OrderDetailVOExtend[] orderDetails;
 }
