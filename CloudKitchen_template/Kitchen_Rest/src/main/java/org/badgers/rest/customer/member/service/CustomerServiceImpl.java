@@ -31,30 +31,27 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	// 로그인 by Yuriel on 2019.03.13(WED)
-	public String login(String id, String pw) {
+	public int login(String id, String pw) {
 		System.out.println("로그인 ========================================");
 
-		String returnVal = "";
+		int returnVal = 0;
 		CustomerVO queryResult = null;
 
 		try {
-			queryResult = mapper.login(id, pw);
+			queryResult = mapper.login(id);
+			if(queryResult.getPw() == pw) {
+				returnVal = 1; // 입력한 비번 == DB 비번
+			} else {
+				returnVal = -1; // 입력한 비번 != DB 비번
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			returnVal = -2; // DB에 입력한 ID 없음 에러
 		}
-
-//		if (queryResult == null) {
-//			returnVal = "NO_ACCT"; // "계정 없음" 메시지
-//		} else {
-//			if (pw.equals(queryResult.getPw())) {
-//				returnVal = queryResult.getId(); // 아이디를 반환, 메시지가 아닌 아이디를 반환했다는 것 자체가 성공적인 로그인 인증을 의미
-//			} else {
-//				returnVal = "BAD_PWD"; // "비밀번호 틀림" 메시지
-//			}
-//		}
-
+		
 		return returnVal;
 	}
+	
 
 // 회원정보
 	@Override
