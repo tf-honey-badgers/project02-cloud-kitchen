@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import org.badgers.rest.customer.order.firebase.FirebaseException;
 import org.badgers.rest.customer.order.firebase.FirebaseResponse;
 import org.badgers.rest.customer.order.firebase.JacksonUtilityException;
+import org.badgers.rest.customer.order.firebase.Map_TO_Object;
 import org.badgers.rest.customer.order.service.CustOrderService;
 import org.badgers.rest.customer.order.service.FireBaseService;
 import org.badgers.rest.model.OrderInfoVO;
@@ -36,11 +37,20 @@ public class TestController {
 	
 	private final FireBaseService service;
 	private final CustOrderService orderService;
+	
+	private final Map_TO_Object maptoobject; 
 //	private final DatabaseReference databaseReference;
 	//이거 주석 풀면 qualify Exception
 	
 	@PostMapping("/test/tj/fire/{key}")
-	public ResponseEntity<?> tjTest(@RequestBody Map map, @PathVariable("key") String key) throws UnsupportedEncodingException, FirebaseException, JacksonUtilityException{
+	public ResponseEntity<?> tjTest(@RequestBody Map map,OrderVOExtend vo, @PathVariable("key") String key) throws UnsupportedEncodingException, FirebaseException, JacksonUtilityException{
+		
+		System.out.println(".......................................................................");
+		System.out.println(vo);
+		
+		System.out.println(".......................................................................");
+		System.out.println(".......................................................................");
+		
 		
 		service.putFirebase(key, map);
 		
