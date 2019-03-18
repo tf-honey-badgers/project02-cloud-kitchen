@@ -21,7 +21,7 @@
 					<i class="material-icons">person</i>
 					<p>마이페이지</p>
 			</a></li>
-			<li class="nav-item "><a class="nav-link" href="#">
+			<li class="nav-item "><a class="nav-link" href="menu/update/biz_2">
 					<i class="material-icons">library_books</i>
 					<p>메뉴관리</p>
 			</a></li>

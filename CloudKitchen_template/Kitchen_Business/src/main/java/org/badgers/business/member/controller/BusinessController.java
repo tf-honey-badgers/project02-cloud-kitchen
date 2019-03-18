@@ -42,7 +42,7 @@ public class BusinessController {
 		return mav;
 	}
 	
-	// bizId, pw, account, info, minAmt, bizLiveStrm 수정 가능!
+	// pw, account, info, minAmt, bizLiveStrm 수정 가능!
 	@PostMapping("/{bizId}/modify")
 	public ModelAndView updateBizMember(ModelAndView mav, @RequestBody BizMemberVOExtend bizMember) {
 		
