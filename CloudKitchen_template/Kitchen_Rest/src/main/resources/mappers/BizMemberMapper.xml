@@ -100,7 +100,7 @@
 	<select id="login" resultType="org.badgers.rest.model.BizMemberVOExtend">
 		select biz_id, pw
 		from honey_badgers.biz_member
-		where biz_id = #{param1}
+		where biz_id = #{bizId}
 	</select>
 
 </mapper>
