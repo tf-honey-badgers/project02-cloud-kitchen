@@ -1,4 +1,4 @@
-package org.badgers.business;
+package org.badgers.business.member.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
