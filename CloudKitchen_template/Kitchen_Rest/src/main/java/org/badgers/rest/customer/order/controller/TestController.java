@@ -1,13 +1,12 @@
 package org.badgers.rest.customer.order.controller;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.inject.Inject;
 
 import org.badgers.rest.customer.order.firebase.FirebaseException;
 import org.badgers.rest.customer.order.firebase.FirebaseResponse;
@@ -16,7 +15,6 @@ import org.badgers.rest.customer.order.service.CustOrderService;
 import org.badgers.rest.customer.order.service.FireBaseService;
 import org.badgers.rest.model.OrderInfoVO;
 import org.badgers.rest.model.OrderVOExtend;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,30 +23,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.firebase.database.DatabaseReference;
-
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 @RestController
 @RequiredArgsConstructor
 public class TestController {
-	
+
 	private final FireBaseService service;
 	private final CustOrderService orderService;
 //	private final DatabaseReference databaseReference;
-	//이거 주석 풀면 qualify Exception
-	
+	// 이거 주석 풀면 qualify Exception
+
 	@PostMapping("/test/tj/fire/{key}")
-	public ResponseEntity<?> tjTest(@RequestBody Map map, @PathVariable("key") String key) throws UnsupportedEncodingException, FirebaseException, JacksonUtilityException{
-		
+	public ResponseEntity<?> tjTest(@RequestBody OrderVOExtend vo, @PathVariable("key") String key)
+			throws UnsupportedEncodingException, FirebaseException, JacksonUtilityException, NoSuchFieldException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+
+		Map<String, Object> map = voToMap(vo);
 		service.putFirebase(key, map);
-		
+
 		return new ResponseEntity<>(map, HttpStatus.OK);
 
 	}
-	
-	
+
 //	@PostMapping("/test/firebase/{key}")
 //	public ResponseEntity<?> test (@RequestBody OrderVOExtend vo, @PathVariable("key") String key) throws IOException {
 //		
@@ -64,43 +60,39 @@ public class TestController {
 //		return new ResponseEntity<>(vo, HttpStatus.OK);
 //		
 //	}
-	
-	
-	
-	
-	
+
 	@PostMapping("/test/firebase")
-	public ResponseEntity<?> test (@RequestBody OrderVOExtend vo) throws FirebaseException, JacksonUtilityException, Exception {
-		
+	public ResponseEntity<?> test(@RequestBody OrderVOExtend vo)
+			throws FirebaseException, JacksonUtilityException, Exception {
+
 		System.out.println("======================================================================================");
 		System.out.println(vo);
 		Map<String, Object> testmap = new LinkedHashMap<String, Object>();
 		testmap.put(vo.getId(), vo);
 
-		//firebase 에 insert 함 
-		FirebaseResponse response =service.test(testmap);  
-		//firebase insert한 결과 로  key 반환
-		String firebaseKey= (String) response.getBody().get("name");
-		//vo에  firebaseKey 넣어줌 
+		// firebase 에 insert 함
+		FirebaseResponse response = service.test(testmap);
+		// firebase insert한 결과 로 key 반환
+		String firebaseKey = (String) response.getBody().get("name");
+		// vo에 firebaseKey 넣어줌
 		vo.setFirebaseKey(firebaseKey);
-		
+
 		orderService.excuteOrder(vo);
-		
+
 		List<OrderInfoVO> list = orderService.getOrderInfo(vo.getId());
 		System.out.println("--------list-----------------------");
 		System.out.println(list.get(0));
-		
-		
+
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
 	@PostMapping("/test/tj/order")
-	public ResponseEntity<?> orderTest (@RequestBody OrderVOExtend order) throws Exception{
-		
+	public ResponseEntity<?> orderTest(@RequestBody OrderVOExtend order) throws Exception {
+
 		System.out.println("----------order-----------------");
 		System.out.println(order);
 		System.out.println("--------------------------------");
-		
+
 //		orderService.excuteOrder(order);
 		List<OrderInfoVO> list = orderService.getOrderInfo(order.getId());
 		System.out.println("--------list-----------------------");
@@ -115,24 +107,23 @@ public class TestController {
 		 * System.out.println(order.getOrderDetails()[i].getOrderOptions()[j].toString()
 		 * ); } }
 		 */
-		
-		
-		return new ResponseEntity<>( HttpStatus.OK);
+
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
-	   @GetMapping("/test/tx")
-	   public String txTest() {
-		   orderService.testTx();
-	      return "home";
-	   }
-	   
-	   @GetMapping("/test/getfirebase")
-	   public ResponseEntity<?> getFirebase() throws UnsupportedEncodingException, FirebaseException {
-		   service.getFirebase().getBody();
-	      return new ResponseEntity<>(service.getFirebase().getBody(),HttpStatus.OK);
-	   }
+
+	@GetMapping("/test/tx")
+	public String txTest() {
+		orderService.testTx();
+		return "home";
+	}
+
+	@GetMapping("/test/getfirebase")
+	public ResponseEntity<?> getFirebase() throws UnsupportedEncodingException, FirebaseException {
+		service.getFirebase().getBody();
+		return new ResponseEntity<>(service.getFirebase().getBody(), HttpStatus.OK);
+	}
 //	-La-R5VT6GS_qzWkVKBD
-	
+
 //	@GetMapping("/test/firebase/{orderid}")
 //	public ResponseEntity<?> test (@PathVariable) {
 //		
@@ -144,8 +135,23 @@ public class TestController {
 //		service.test(testmap);
 //		return new ResponseEntity<>( HttpStatus.OK);
 //	}
-	
-	
+
+	private static Map<String, Object> voToMap(Object order)
+			throws NoSuchFieldException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+		Map<String, Object> map = new HashMap<>();
+
+		Field[] fields = order.getClass().getDeclaredFields();
+
+		for (Field field : fields) {
+			String filedName = field.getName();
+			String methodName = filedName.replaceFirst(filedName.substring(0, 1),
+					filedName.substring(0, 1).toUpperCase());
+
+			map.put(filedName, order.getClass().getDeclaredMethod("get" + methodName).invoke(order));
+		}
+
+		return map;
+	}
 }
 
 //
@@ -229,6 +235,3 @@ public class TestController {
 //        }
 //    ]
 //}
-
-
- 
