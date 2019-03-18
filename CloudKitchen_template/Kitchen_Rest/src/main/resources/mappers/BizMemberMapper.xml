@@ -41,9 +41,9 @@
 		<result property="name" column="bname" />
 		<result property="regNo" column="regNo" />
 		<result property="account" column="account" />
-		<collection property="biz" javaType="java.util.List" resultMap="BizVO" />
-		<collection property="cc" javaType="java.util.List" resultMap="CommonCodeVO" />
-		<collection property="kb" javaType="java.util.List" resultMap="KitchenBranchVO" />
+		<collection property="biz" resultMap="BizVO" />
+		<collection property="cc" resultMap="CommonCodeVO" />
+		<collection property="kb" resultMap="KitchenBranchVO" />
 	</resultMap>
 
 	<resultMap id="BizVO" type="org.badgers.rest.model.BizVO">

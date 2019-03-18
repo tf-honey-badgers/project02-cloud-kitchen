@@ -12,29 +12,21 @@ import org.springframework.web.client.RestTemplate;
 public class BusinessServiceImpl implements BusinessService{
 
 	@Override
-	public ResponseEntity<BizMemberVO> readBizMember(String bizId) throws Exception {
+	public BizMemberVOExtend readBizMember(String bizId) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResponseEntity<String> login(BizMemberVOExtend biz) throws Exception {
+	public int updateBizMember(BizMemberVOExtend mvo) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 	@Override
-	public ResponseEntity<Integer> updateBizMember(String bizId, BizMemberVOExtend biz) throws Exception {
+	public int login(String bizId, String pw) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
-	
-//	// 로그인
-//	@GetMapping(value = "/{biz_id}")
-//	public ResponseEntity<String> login(BizMemberVOExtend biz) throws Exception {}
-//	
-//	// 개인정보 수정
-//	@PutMapping("/{biz_id}/mypage/modify")
-//	public int modify(@PathVariable("biz_id")String bizId ,@RequestBody BizMemberVOExtend mvo) {}
 }
