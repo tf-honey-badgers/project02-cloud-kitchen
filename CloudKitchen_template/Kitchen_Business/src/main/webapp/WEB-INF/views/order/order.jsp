@@ -16,21 +16,19 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="/business/resources/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="/business/resources/demo/demo.css" rel="stylesheet" />
 </head>
 
 <body class="">
 	<!-- Preload -->
-	<jsp:include page="include/preload.jsp" flush="false"></jsp:include>
+	<jsp:include page="../include/preload.jsp" flush="false"></jsp:include>
 	<!-- End Preload -->
    	 <div class="wrapper ">
         <!-- Sidebar -->
-        <jsp:include page="include/sidebar.jsp" flush="false"></jsp:include>
+        <jsp:include page="../include/sidebar.jsp" flush="false"></jsp:include>
         <!-- End Sidebar -->
         <div class="main-panel">
             <!-- Header -->
-            <jsp:include page="include/header.jsp" flush="false"></jsp:include>
+            <jsp:include page="../include/header.jsp" flush="false"></jsp:include>
             <!-- End Header -->
             <div class="content">
       <!-- End Navbar -->
@@ -303,8 +301,6 @@
   <script src="/business/resources/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="/business/resources/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
-  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="/business/resources/demo/demo.js"></script>
   <script>
     $(document).ready(function() {
       $().ready(function() {
