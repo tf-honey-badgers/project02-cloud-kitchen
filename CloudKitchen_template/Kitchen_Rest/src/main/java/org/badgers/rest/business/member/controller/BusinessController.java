@@ -83,7 +83,6 @@ public class BusinessController {
 
 		 try {
 			 String returnVal = service.findBizId(biz.getRegNo(), biz.getAccount());
-			 System.out.println("THIS IS " + returnVal);
 			 if(returnVal == null) { entity = new ResponseEntity<String>("NO_ID", HttpStatus.BAD_REQUEST); }
 			 else { entity = new ResponseEntity<String>(returnVal, HttpStatus.OK); }
 		 } catch (Exception e) {
