@@ -12,7 +12,7 @@
 <body>
 <!-- 위쪽 헤더바  -->
     <jsp:include page="include/header.jsp"/>
- 	 
+ 	 <!--  -->
     <!-- 헤드 끝 -->
 <br><br><br><br><br><br><br><br><br>
     <div class="col-md-6">
