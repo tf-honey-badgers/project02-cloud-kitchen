@@ -4,7 +4,6 @@ import org.badgers.customer.model.CustomerVO;
 
 public interface CustomerService {
 
-	
 	//회원 정보
 	public CustomerVO readCustomer(String id)throws Exception;
 	
