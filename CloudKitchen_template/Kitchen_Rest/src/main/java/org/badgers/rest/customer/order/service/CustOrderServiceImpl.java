@@ -55,6 +55,8 @@ public class CustOrderServiceImpl implements CustOrderService {
 			//4. order_option INSERT
 			//4-1. order_option 배열 뽑아옴
 			OrderOptionVO[] orderOptions= orderDetailVOExtend.getOrderOptions();
+			if(orderOptions==null)
+				continue;
 			OrderOptionVO orderOptionVO = null;
 			//4-2. 배열에 든 모든 객체의 insert 수행
 			for(int j=0; j<orderOptions.length; j++) {
