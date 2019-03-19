@@ -12,4 +12,6 @@ public interface BusinessService {
 
 	// 로그인
 	public String login(BizMemberVOExtend bizMember) throws Exception;
+	
+	public String findBizId(BizMemberVOExtend bizMember) throws Exception;
 }

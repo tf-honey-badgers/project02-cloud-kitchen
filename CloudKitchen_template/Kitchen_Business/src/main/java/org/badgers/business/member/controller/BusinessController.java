@@ -91,4 +91,22 @@ public class BusinessController {
 		
 		return mav;
 	}
+	
+	@PostMapping("/findId")
+	public ModelAndView findBizId(ModelAndView mav, @RequestBody BizMemberVOExtend bizMember) {
+		
+		String res = "";
+		try {
+			res = service.findBizId(bizMember);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		log.info("retrieved BizId");
+		
+		mav.addObject("foundId", res);
+		mav.setViewName("mypage");
+		
+		return mav;
+	}	
 }

@@ -12,4 +12,7 @@ public interface BusinessMapper {
 
 	// 로그인
 	public BizMemberVOExtend login(String bizId);
+	
+	// ID 찾기
+	public String findId(String regNo, String account);
 }
