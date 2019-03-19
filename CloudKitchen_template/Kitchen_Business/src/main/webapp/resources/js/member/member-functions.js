@@ -59,21 +59,21 @@ $(document).ready(function() {
         			})
         		, error : function(data) {
         			$("#myId input").remove();
-	        			$("#myId h2").replaceWith("<h5>서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.</h5>");
-	        			$('#myId h5:eq(1)').remove();
-	        			$('#myId #getId').remove();
+	        		$("#myId h2").replaceWith("<h5>서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.</h5>");
+	        		$('#myId h5:eq(1)').remove();
+	        		$('#myId #getId').remove();
         		}
         		, success : function(data) {
         			if(data != "") {
-		        			$("#myId input").remove();
-		        			$("#myId h2").replaceWith("<h5>성공적으로 사업자 ID를 찾았습니다.</h5>");
-		        			$('#myId h5:eq(1)').text("사업자 ID는 " + data + "입니다.");
-		        			$('#myId #getId').replaceWith('<button type="button" id="goLogin" class="btn btn-submit">로그인하러 가기</button>');		        				
+		        		$("#myId input").remove();
+		        		$("#myId h2").replaceWith("<h5>성공적으로 사업자 ID를 찾았습니다.</h5>");
+		        		$('#myId h5:eq(1)').text("사업자 ID는 " + data + "입니다.");
+		        		$('#myId #getId').replaceWith('<button type="button" id="goLogin" class="btn btn-submit">로그인하러 가기</button>');		        				
         			} else {
 	        			$("#myId input").remove();
-		        			$("#myId h2").replaceWith("<h5>사업자 ID를 찾는데 실패했습니다.</h5>");
-		        			$('#myId h5:eq(1)').text("사업자 등록번호, 계좌번호를 다시 확인하시고 다시 입력해주세요.");
-		        			$('#myId #getId').remove();
+		        		$("#myId h2").replaceWith("<h5>사업자 ID를 찾는데 실패했습니다.</h5>");
+		        		$('#myId h5:eq(1)').text("사업자 등록번호, 계좌번호를 다시 확인하시고 다시 입력해주세요.");
+		        		$('#myId #getId').remove();
         			}
         		}
     		});
