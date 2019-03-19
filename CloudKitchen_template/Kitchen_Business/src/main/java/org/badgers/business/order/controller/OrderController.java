@@ -44,7 +44,7 @@ public class OrderController {
 				.build();
 		factory.setHttpClient(httpClient); // 동기실행에 사용될 HttpClient 세팅
 		RestTemplate restTemplate = new RestTemplate(factory);
-		String url = "http://127.0.0.1:3000/controller/rest/cust/order/restTemplateTest3"; // 예제니까 애초에 때려박음..
+		String url = "http://127.0.0.1/controller/rest/cust/order/ltj"; // 예제니까 애초에 때려박음..
 		Object obj = restTemplate.postForObject(url,vo, OrderVOExtend.class );
 		System.out.println(obj);
 

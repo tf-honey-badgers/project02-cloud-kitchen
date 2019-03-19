@@ -3,14 +3,28 @@ package org.badgers.rest.common;
 import org.badgers.rest.model.OrderInfoVO;
 
 public class CreateFireBasePath {
-	public static StringBuffer[] getPath(String key, OrderInfoVO ov) {
-		StringBuffer[] paths = { new StringBuffer(), new StringBuffer() };
+	public static StringBuffer getOrderPath(String key, OrderInfoVO vo) {
+		StringBuffer path = new StringBuffer();
 
-		paths[0].append(ov.getBizId() + '/' + key + '/' + ov.getOrderdetailId() + '/')
-				.append(ov.getOptName() != null ? ov.getOptName().replaceAll(" ", "") : "없음");
+		path.append(vo.getBizId() + '/' + key + '/' + vo.getOrderdetailId() + '/')
+				.append(vo.getOptName() != null ? vo.getOptName().replaceAll(" ", "") : "없음");
 
-		paths[1].append(ov.getBizId() + '/' + key + "/status");
+		return path;
+	}
+	
+	public static StringBuffer getStatusPath(String key, OrderInfoVO vo) {
+		StringBuffer path = new StringBuffer();
 
-		return paths;
+		path.append(vo.getBizId() + '/' + key + "/status");
+
+		return path;
+	}
+	
+	public static StringBuffer getStatusPath(String bizId, String key) {
+		StringBuffer path = new StringBuffer();
+
+		path.append(bizId + '/' + key + "/status");
+
+		return path;
 	}
 }

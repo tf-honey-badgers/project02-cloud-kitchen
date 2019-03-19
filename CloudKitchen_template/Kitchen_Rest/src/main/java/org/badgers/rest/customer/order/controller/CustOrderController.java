@@ -35,7 +35,7 @@ public class CustOrderController {
 			throws JacksonUtilityException, Exception, FirebaseException {
 
 		// 1. mysql insert
-		orderService.excuteOrder(vo);
+//		orderService.excuteOrder(vo);
 
 		// 2. mysql select
 		List<OrderInfoVO> list = orderService.getOrderInfo(vo.getId());
@@ -43,15 +43,17 @@ public class CustOrderController {
 		// 3. firebase insert
 		Map<String, Object> map = null;
 
-		StringBuffer[] paths = null;
+		StringBuffer orderPath = null;
+		StringBuffer statusPath = null;
 
 		for (OrderInfoVO listElement : list) {
-			paths = CreateFireBasePath.getPath(key, listElement);
+			orderPath = CreateFireBasePath.getOrderPath(key, listElement);
+			statusPath = CreateFireBasePath.getStatusPath(key, listElement);
 			map = Map_TO_Object.voToMap(listElement);
 			//가게별 주문 정보 insert
-			firebaseService.putOrder(paths[0], map);
+			firebaseService.putOrder(orderPath, map);
 			//가게별 주문 정보 상태(status) insert
-			firebaseService.putOrder(paths[1], "{\"status\":\"ORD001\"}");
+			firebaseService.putOrder(statusPath, "{\"status\":\"ORD001\"}");
 		}
 
 		return new ResponseEntity<>(list, HttpStatus.OK);

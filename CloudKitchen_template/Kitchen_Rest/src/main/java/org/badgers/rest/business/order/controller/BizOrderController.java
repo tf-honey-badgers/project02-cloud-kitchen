@@ -1,9 +1,7 @@
 package org.badgers.rest.business.order.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.badgers.rest.business.order.service.BizOrderService;
+import org.badgers.rest.common.CreateFireBasePath;
 import org.badgers.rest.business.order.service.BizFireBaseService;
 import org.badgers.rest.firebase.FirebaseException;
 import org.badgers.rest.firebase.JacksonUtilityException;
@@ -31,13 +29,9 @@ public class BizOrderController {
 			@PathVariable("status") String status
 			) throws Exception, FirebaseException, JacksonUtilityException{
 		
-//		System.out.println(status+","+orderId+","+bizId);
 		
-//		bizOrderService.updateOrderStatus(status, bizId, orderId);
-		String key = orderId;
-		Map<String, Object> data = new HashMap<>();
-		data.put("orderDetails/0/menuprice", status);
-		fireBaseService.patchOrderStatus(key, data);
+		bizOrderService.updateOrderStatus(status, bizId, orderId);
+		fireBaseService.patchOrderStatus(CreateFireBasePath.getStatusPath(bizId, orderId), "{\"status\":\""+status+"\"}");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
