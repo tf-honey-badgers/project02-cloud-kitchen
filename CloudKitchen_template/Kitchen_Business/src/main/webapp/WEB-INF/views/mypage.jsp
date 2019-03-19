@@ -153,13 +153,15 @@
                 </div>
             </div>
 			<!-- End Main Content -->
-            <!-- Modal -->
+            <!-- Login Modal -->
             <jsp:include page="include/loginModal.jsp" flush="false"></jsp:include>
-            <!-- End Modal -->
+            <!-- End Login Modal -->
+			<!-- Find ID / Find PW Modal -->
+            <jsp:include page="include/finderModal.jsp" flush="false"></jsp:include>
+            <!-- End Find ID / Find PW Modal -->
             <!-- Footer -->
             <jsp:include page="include/footer.jsp" flush="false"></jsp:include>
             <!-- End Footer -->
-            
         </div>
     </div>
     <div class="fixed-plugin">
@@ -437,37 +439,13 @@
             });
         });
     </script>
+    <!-- Business Member 관련 각종 JavaScript 함수 모음 -->
+    <script src="/business/resources/js/member/member-functions.js" type="text/javascript"></script>
+    
+    
     <script type="text/javascript">
-    	$('#changeAccount').on('click', function() {
-    		$.ajax({
-        		url : '/business/member/' + $('#bizId').val() + '/modify'
-        		, type : 'POST'
-				, contentType : 'application/json'
-        		, data : JSON.stringify({bizId : $('#bizId').val(), account : $('#account').val()})
-        		, error : function() { alert("사업자 계좌번호를 수정하는데 에러가 발생했습니다."); }
-        		, success : function() { alert("성공적으로 사업자 계좌번호를 수정했습니다."); }
-    		});
-    	});
-    	
-    	$('#changeBiz').on('click', function() {
-    		$.ajax({
-        		url : '/business/member/' + $('#bizId').val() + '/modify'
-        		, type : 'POST'
-				, contentType : 'application/json'
-        		, data : JSON.stringify({
-        				bizId : $('#bizId').val()
-        				, minAmt : $('#minAmt').val()
-        				, bizLiveStrm : $('#bizLiveStrm').val()
-        				, info : $('#bizInfo').val()
-        			})
-        		, error : function() { alert("가게 정보를 수정하는데 에러가 발생했습니다."); }
-        		, success : function() { alert("성공적으로 가게 정보를 수정했습니다."); }
-    		});
-    	});
-    	
-    	$('.modal-popup .close-link').click(function(event){
-    		event.preventDefault();
-    		$('.modal').modal('hide');
+    	$('#findPw').on('click', function() {
+    		
     	});
     </script>
     

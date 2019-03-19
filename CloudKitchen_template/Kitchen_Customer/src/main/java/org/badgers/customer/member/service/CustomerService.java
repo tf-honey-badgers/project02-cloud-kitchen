@@ -9,5 +9,8 @@ public interface CustomerService {
 	public CustomerVO readCustomer(String id)throws Exception;
 	
 	//로그인 
-	public String login(CustomerVO vo) throws Exception;
+	public String login(CustomerVO customer) throws Exception;
+	
+	// 정보수정
+	public void updateCustomer(CustomerVO cvo) throws Exception;
 }

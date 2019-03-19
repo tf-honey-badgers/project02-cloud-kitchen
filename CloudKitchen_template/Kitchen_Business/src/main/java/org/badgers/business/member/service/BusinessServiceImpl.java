@@ -20,17 +20,13 @@ public class BusinessServiceImpl implements BusinessService {
 		
 		BizMemberVOExtend returnVal = null;
 		
-		try {
-			String url = "http://localhost:12007/business/" + bizId + "/mypage";
-			
-			ResponseEntity<BizMemberVOExtend> responseEntity =
-					restTemplate.getForEntity(url, org.badgers.business.model.BizMemberVOExtend.class);
-			
-			if(responseEntity.getStatusCode() == HttpStatus.OK) {
-				returnVal = responseEntity.getBody();
-			}
-		}catch(Exception e){
-			e.getStackTrace();
+		String url = "http://localhost:12007/business/" + bizId + "/mypage";
+		
+		ResponseEntity<BizMemberVOExtend> responseEntity =
+				restTemplate.getForEntity(url, org.badgers.business.model.BizMemberVOExtend.class);
+		
+		if(responseEntity.getStatusCode() == HttpStatus.OK) {
+			returnVal = responseEntity.getBody();
 		}
 		
 		return returnVal;
@@ -42,14 +38,8 @@ public class BusinessServiceImpl implements BusinessService {
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
-		try {
-			String url = "http://localhost:12007/business/" + mvo.getBizId() + "/mypage/modify";
-			
-			restTemplate.put(url, mvo);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		String url = "http://localhost:12007/business/" + mvo.getBizId() + "/mypage/modify";
+		restTemplate.put(url, mvo);
 	}
 
 	// 로그인
@@ -60,16 +50,29 @@ public class BusinessServiceImpl implements BusinessService {
 		
 		String res = "";
 		
-		try {
-			String url = "http://localhost:12007/business/";
-			
-			ResponseEntity<String> responseEntity = 
-					restTemplate.postForEntity(url, bizMember, String.class);
-			res = responseEntity.getBody();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		String url = "http://localhost:12007/business/";
+		
+		ResponseEntity<String> responseEntity = 
+				restTemplate.postForEntity(url, bizMember, String.class);
+		res = responseEntity.getBody();
 		
 		return res;
 	}
+	
+	public String findBizId(BizMemberVOExtend bizMember) throws Exception {
+		log.info("Kitchen_Business 사업자 ID 찾기...............................");
+		
+		RestTemplate restTemplate = new RestTemplate();
+
+		String res = "";
+		
+		String url = "http://localhost:12007/business/findId";
+		
+		ResponseEntity<String> responseEntity = 
+				restTemplate.postForEntity(url, bizMember, String.class);
+		res = responseEntity.getBody();
+		
+		return res;
+	}
+
 }

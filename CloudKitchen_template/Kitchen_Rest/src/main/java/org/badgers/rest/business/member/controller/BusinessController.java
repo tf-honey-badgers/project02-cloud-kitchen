@@ -49,7 +49,7 @@ public class BusinessController {
 	}
 	
 	// 로그인
-	@PostMapping(value = "/")
+	@PostMapping("/")
 	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend biz) throws Exception {
 		 ResponseEntity<String> entity = null;
 		 
@@ -72,5 +72,24 @@ public class BusinessController {
 		 }
 		 
 		 return entity;	
+	}
+	
+	// ID 찾기
+	@PostMapping("/findId")
+	public ResponseEntity<String> findId(@RequestBody BizMemberVOExtend biz) throws Exception {
+		 ResponseEntity<String> entity = null;
+		 
+		 log.info("Kitchen_Rest 사업자 ID 찾기...............................");
+
+		 try {
+			 String returnVal = service.findBizId(biz.getRegNo(), biz.getAccount());
+			 if(returnVal == null) { entity = new ResponseEntity<String>("NO_ID", HttpStatus.BAD_REQUEST); }
+			 else { entity = new ResponseEntity<String>(returnVal, HttpStatus.OK); }
+		 } catch (Exception e) {
+			 e.printStackTrace();
+			 entity = new ResponseEntity<String>("SERVER_ERROR", HttpStatus.SERVICE_UNAVAILABLE);
+		 }
+		 
+		 return entity;
 	}
 }
