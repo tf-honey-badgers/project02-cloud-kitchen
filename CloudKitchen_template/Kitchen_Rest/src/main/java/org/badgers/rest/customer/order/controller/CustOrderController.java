@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/rest/cust/order")
+@RequestMapping("/cust/order")
 @RequiredArgsConstructor
 public class CustOrderController {
 

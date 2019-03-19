@@ -30,10 +30,9 @@ public class OrderController {
 	@Inject
 	RestTemplate restTemplate;
 	
-	@GetMapping("test/yuni")
+	@GetMapping("/main")
 	public String test(OrderVO vo) {
 
-	
 		
 		return "yuni";
 	}

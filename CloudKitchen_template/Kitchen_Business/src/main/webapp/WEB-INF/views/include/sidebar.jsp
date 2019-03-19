@@ -13,7 +13,7 @@
 	</div>
 	<div class="sidebar-wrapper">
 		<ul class="nav">
-			<li class="nav-item active "><a class="nav-link" href="/">
+			<li class="nav-item active "><a class="nav-link" href="/business/">
 					<i class="material-icons">home</i>
 					<p>메인</p>
 			</a></li>
@@ -29,9 +29,9 @@
 					<i class="material-icons">camera</i>
 					<p>마케팅관리</p>
 			</a></li>
-			<li class="nav-item "><a class="nav-link" href="#">
+			<li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/order/main">
 					<i class="material-icons">notifications</i>
-					<p>사업현황</p>
+					<p>주문현황</p>
 			</a></li>
 			<li class="nav-item "><a class="nav-link" href="#">
 					<i class="fa fa-cog fa-2x"> </i>

@@ -17,7 +17,7 @@ import com.google.firebase.FirebaseException;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("rest/biz/order")
+@RequestMapping("/biz/order")
 @RequiredArgsConstructor
 public class BizOrderController {
 
