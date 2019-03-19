@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
@@ -36,21 +38,15 @@ public class OrderController {
 		return "yuni";
 	}
 	
-	@PostMapping("test/yuni")
-	public String test2(@RequestBody OrderVOExtend vo) {
+	@PutMapping("/{bizId}/{orderId}/{status}")
+	public String test2(
+			@PathVariable("bizId") String bizId, 
+			@PathVariable("orderId") String orderId, 
+			@PathVariable("status") String status) {
 		
-		System.out.println(vo);
-
-//		HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-//		factory.setReadTimeout(5000); // 읽기시간초과, ms
-//		factory.setConnectTimeout(3000); // 연결시간초과, ms
-//		HttpClient httpClient = HttpClientBuilder.create().setMaxConnTotal(100) // connection pool 적용
-//				.setMaxConnPerRoute(5) // connection pool 적용
-//				.build();
-//		factory.setHttpClient(httpClient); // 동기실행에 사용될 HttpClient 세팅
-//		RestTemplate restTemplate = new RestTemplate(factory);
-		String url = "http://127.0.0.1:3000/controller/rest/cust/order/ltj"; // 예제니까 애초에 때려박음..
-		Object obj = restTemplate.postForObject(url,vo, OrderVOExtend.class );
+		String url = "http://127.0.0.1:3000/controller/rest/biz/order/"+bizId+"/"+orderId+"/"+status; 
+		Object obj = restTemplate.getForEntity(url, String.class);
+		System.out.println("=============================================================");
 		System.out.println(obj);
 
 		return "yuni";

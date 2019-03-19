@@ -1,19 +1,18 @@
 package org.badgers.business.model;
 
-import java.sql.Timestamp;
 
 import lombok.Data;
 
 @Data
 public class OrderVO {
-	private String code;
+	
+	private String id;
+	private String custId;
 	private String phone;
+	private String address;
 	private String msg;
-	private int totalAmt;
-	private int usePoint;
+	private String kitchenName;
 	private int payAmt;
 	private String status;
-	private Timestamp time;
-	private String kitchenName;
-	private String custId;
+	
 }
