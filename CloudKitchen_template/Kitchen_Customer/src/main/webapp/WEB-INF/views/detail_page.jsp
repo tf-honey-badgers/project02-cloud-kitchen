@@ -77,15 +77,8 @@
                     <li class="submenu">
                     <a href="javascript:void(0);" class="show-submenu">Restaurants<i class="icon-down-open-mini"></i></a>
                     <ul>
-                        <li><a href="list_page.html">Row listing</a></li>
-                        <li><a href="grid_list.html">Grid listing</a></li>
-                        <li><a href="map_listing.html">Map listing</a></li>
-                        <li><a href="detail_page.html">Restaurant Menu</a></li>
-                        <li><a href="submit_restaurant.html">Submit Restaurant</a></li>
-                        <li><a href="cart.html">Order step 1</a></li>
-                        <li><a href="cart_2.html">Order step 2</a></li>
-                        <li><a href="cart_3.html">Order step 3</a></li>
-                        <li><a href="cart_datepicker.html">Order Date/Time picker</a></li>
+                        <li><a href="list_page.jsp">Row listing</a></li>
+                        <li><a href="grid_list.jsp">Grid listing</a></li>
                     </ul>
                     </li>
                     <li><a href="about.html">About us</a></li>

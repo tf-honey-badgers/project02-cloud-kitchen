@@ -3,7 +3,7 @@ package org.badgers.customer.model;
 import lombok.Data;
 
 @Data
-public class BizVo {
+public class BizVO {
 	private String bizId;
 	private String info;
 	private String name;

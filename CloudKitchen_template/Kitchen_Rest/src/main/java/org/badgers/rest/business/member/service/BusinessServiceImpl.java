@@ -51,4 +51,17 @@ public class BusinessServiceImpl implements BusinessService {
 		
 		return returnVal;
 	}
+	
+	// ID 찾기
+	public String findBizId(String regNo, String account) throws Exception {
+		String returnVal = "";
+		
+		try {
+			returnVal = mapper.findId(regNo, account);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return returnVal;
+	}
 }

@@ -22,7 +22,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/customer")
 @Log4j
 public class CustomerController {
 
@@ -69,11 +69,11 @@ public class CustomerController {
 	
 	//개인정보 끌어오기 
 	@GetMapping(value = "/{id}/mypage", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<List<CustomerVO>>  selectById(@PathVariable("id") String id) {
-		List<CustomerVO> list = service.selectById(id);
+	public ResponseEntity<CustomerVO>  selectById(@PathVariable("id") String id) throws Exception{
+		CustomerVO vo = service.selectById(id);
 			
 
-		return new ResponseEntity<List<CustomerVO>>(list, HttpStatus.OK);
+		return new ResponseEntity<CustomerVO>(vo, HttpStatus.OK);
 	}
 	
 

@@ -15,7 +15,7 @@ public interface CustomerMapper {
 	public CustomerVO login(String id);
 
 	//회원 정보
-	public List<CustomerVO> selectById(String id);	
+	public CustomerVO selectById(String id) throws Exception;	
 	
 	// 회원 정보 수정
 	public int modify(CustomerVO vo);

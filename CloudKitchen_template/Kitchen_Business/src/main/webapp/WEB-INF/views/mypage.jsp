@@ -153,13 +153,15 @@
                 </div>
             </div>
 			<!-- End Main Content -->
-            <!-- Modal -->
+            <!-- Login Modal -->
             <jsp:include page="include/loginModal.jsp" flush="false"></jsp:include>
-            <!-- End Modal -->
+            <!-- End Login Modal -->
+			<!-- Find ID / Find PW Modal -->
+            <jsp:include page="include/finderModal.jsp" flush="false"></jsp:include>
+            <!-- End Find ID / Find PW Modal -->
             <!-- Footer -->
             <jsp:include page="include/footer.jsp" flush="false"></jsp:include>
             <!-- End Footer -->
-            
         </div>
     </div>
     <div class="fixed-plugin">
@@ -437,39 +439,61 @@
             });
         });
     </script>
-    <script type="text/javascript">
-    	$('#changeAccount').on('click', function() {
-    		$.ajax({
-        		url : '/business/member/' + $('#bizId').val() + '/modify'
-        		, type : 'POST'
-				, contentType : 'application/json'
-        		, data : JSON.stringify({bizId : $('#bizId').val(), account : $('#account').val()})
-        		, error : function() { alert("사업자 계좌번호를 수정하는데 에러가 발생했습니다."); }
-        		, success : function() { alert("성공적으로 사업자 계좌번호를 수정했습니다."); }
-    		});
-    	});
-    	
-    	$('#changeBiz').on('click', function() {
-    		$.ajax({
-        		url : '/business/member/' + $('#bizId').val() + '/modify'
-        		, type : 'POST'
-				, contentType : 'application/json'
-        		, data : JSON.stringify({
-        				bizId : $('#bizId').val()
-        				, minAmt : $('#minAmt').val()
-        				, bizLiveStrm : $('#bizLiveStrm').val()
-        				, info : $('#bizInfo').val()
-        			})
-        		, error : function() { alert("가게 정보를 수정하는데 에러가 발생했습니다."); }
-        		, success : function() { alert("성공적으로 가게 정보를 수정했습니다."); }
-    		});
-    	});
-    	
-    	$('.modal-popup .close-link').click(function(event){
-    		event.preventDefault();
-    		$('.modal').modal('hide');
-    	});
-    </script>
+	    <script type="text/javascript">
+	    	$('#changeAccount').on('click', function() {
+	    		$.ajax({
+	        		url : '/business/member/' + $('#bizId').val() + '/modify'
+	        		, type : 'POST'
+					, contentType : 'application/json'
+	        		, data : JSON.stringify({bizId : $('#bizId').val(), account : $('#account').val()})
+	        		, error : function() { alert("사업자 계좌번호를 수정하는데 에러가 발생했습니다."); }
+	        		, success : function() { alert("성공적으로 사업자 계좌번호를 수정했습니다."); }
+	    		});
+	    	});
+	    	
+	    	$('#changeBiz').on('click', function() {
+	    		$.ajax({
+	        		url : '/business/member/' + $('#bizId').val() + '/modify'
+	        		, type : 'POST'
+					, contentType : 'application/json'
+	        		, data : JSON.stringify({
+	        				bizId : $('#bizId').val()
+	        				, minAmt : $('#minAmt').val()
+	        				, bizLiveStrm : $('#bizLiveStrm').val()
+	        				, info : $('#bizInfo').val()
+	        			})
+	        		, error : function() { alert("가게 정보를 수정하는데 에러가 발생했습니다."); }
+	        		, success : function() { alert("성공적으로 가게 정보를 수정했습니다."); }
+	    		});
+	    	});
+	    	
+	    	$('body').on('click', '.modal-popup .close-link', function(event){
+	    		event.preventDefault();
+	    		$('.modal').modal('hide');
+	    	});
+	    	
+	    	$('#findId').on('click', function(event) {
+	    		event.preventDefault();
+	    		$('.modal').modal('hide');
+	    		$('#finder_ID').modal('show');
+		    	$('#getId').on('click', function() {
+		    		$.ajax({
+		        		url : '/business/member/findId'
+		        		, type : 'POST'
+						, contentType : 'application/json'
+		        		, data : JSON.stringify({
+		        				regNo : $('#myId input:eq(0)').val()
+		        				, account : $('#myId input:eq(1)').val()
+		        			})
+		        		, error : function() { alert("사업자 ID를 찾는데 에러가 발생했습니다."); }
+		        		, success : function() { alert("성공적으로 사업자 ID를 찾았습니다. ID는 ${foundId}입니다."); }
+		    		});
+		    	})
+	    	});
+	    	$('#findPw').on('click', function() {
+	    		
+	    	});
+	    </script>
     
     <c:if test="${not empty message}">
     	<script>
