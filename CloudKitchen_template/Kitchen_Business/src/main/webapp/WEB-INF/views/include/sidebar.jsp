@@ -17,7 +17,7 @@
 					<i class="material-icons">home</i>
 					<p>메인</p>
 			</a></li>
-			<li class="nav-item "><a class="nav-link" href="#">
+			<li class="nav-item "><a class="nav-link" href="/business/member/biz_1/main">
 					<i class="material-icons">person</i>
 					<p>마이페이지</p>
 			</a></li>
