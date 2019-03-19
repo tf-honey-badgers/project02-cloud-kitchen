@@ -21,7 +21,7 @@
     
 </head>
 
-<body class="">
+<body>
     <div class="wrapper ">
         <!-- Sidebar -->
         <jsp:include page="include/sidebar.jsp" flush="false"></jsp:include>
@@ -449,5 +449,11 @@
     	
     	/* , biz : {minAmt : $('#minAmt'), bizLiveStrm : $('#bizLiveStrm'), info : $('#bizInfo')} */
     </script>
+    
+    <c:if test="${not empty message}">
+    	<script>
+    		$(document).ready(function() { alert("${message}"); });
+    	</script>
+	</c:if>
 </body>
 </html>

@@ -32,8 +32,13 @@ public class BusinessController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(returnVal);
 		
-		log.info("readBizMember DONE!!!!!");
+		if(returnVal != null) { log.info("readBizMember DONE!!!!!"); }
+		else {
+			log.info("Failed to readBizMember. REST server may be offline.");
+			mav.addObject("message", "Failed to read biz member data. REST server may be offline.");
+		}
 		
 		mav.addObject("bizMember", returnVal);
 		mav.setViewName("mypage");
