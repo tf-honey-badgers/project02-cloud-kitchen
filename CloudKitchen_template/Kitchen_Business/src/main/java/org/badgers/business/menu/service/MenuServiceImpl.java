@@ -27,6 +27,23 @@ public class MenuServiceImpl implements MenuService {
 		}
 		return null;
 	}
-	
-	
-}
+
+	@Override
+	public List<?> getMenuInfo(int mIdx) {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		try {
+			String url = "http://localhost:80/";
+			ResponseEntity<List> menuResponseEntity = restTemplate.getForEntity
+					(url+"kitchenbranch/menuinfo/"+mIdx, List.class);
+			
+			List<?> menuOptVoEx = menuResponseEntity.getBody();
+			return menuOptVoEx;
+
+		}catch(Exception e){
+			e.getStackTrace();
+		}
+		return null;
+	}
+	}
+

@@ -1,8 +1,50 @@
-$(document).ready(function() {
-	
-		
+$(document)
+		.ready(
+				function() {
 
-					$('.navbar-brand').text("메뉴 수정하기");
+			 		$('table tbody tr td .menu-option-select').on('click', function(e) {
+						e.preventDefault();
+						$('.menuModal').css('display', 'block');
+						
+						$.ajax({
+			        		type : "GET",
+			        		url : "../../menu/menuinfo/"+$(this).parent().parent().children().eq(0).text()+".json",
+//			         		data : {
+//			         			mIdx : 
+//			        		},
+			        		error : function(data){
+			        			console.log(data);
+			        		},
+			        		success(data){
+			        			for(let i of data[0].menuOptCl){
+			        				console.log(i)
+			        			}
+			        			for(let i=0;i<data[0].menuOptCl.length;i++){
+			        				$('<tr><td>'+data.menuOptCl[i].mocNo+'</td>'
+			        												+'<td>'+data[0].menuOptCl[i].mocName+'</td></tr>'
+			        											).appendTo('.menuModalOpt')
+			        				
+			        				if(data[0].menuOptCl[i].mocMenuOptType == 'OPT001'){
+				        				$('.menuModalOpt').append('<td>기본 단일</td>');
+				        				
+			        				}else if(data[0].menuOptCl[i].mocMenuOptType == 'OPT002'){
+			        					$('.menuModalOpt').append('<td>기본 다중</td>');
+			        					
+			        				}else if(data[0].menuOptCl[i].mocMenuOptType == 'OPT003'){
+			        					$('.menuModalOpt').append('<td>추가 단일</td>');
+			        					
+			        				}else if(data[0].menuOptCl[i].mocMenuOptType == 'OPT004'){
+			        					$('.menuModalOpt').append('<td>추가 다중</td>');
+			        				}
+			        				
+			        			} // 옵션분류 for
+			        		} // success
+			        	});	// post ajax끝
+					}); 
+				
+					$('.menuModalClose').on('click', function() {
+						$('.menuModal').css('display', 'none');
+						});
 
 					$()
 							.ready(
