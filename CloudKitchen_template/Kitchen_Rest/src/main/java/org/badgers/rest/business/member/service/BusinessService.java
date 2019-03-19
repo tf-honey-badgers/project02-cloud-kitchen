@@ -13,4 +13,6 @@ public interface BusinessService {
 	// 로그인
 	public int login(String bizId, String pw) throws Exception;
 
+	// ID 찾기
+	public String findBizId(String regNo, String account) throws Exception;
 }
