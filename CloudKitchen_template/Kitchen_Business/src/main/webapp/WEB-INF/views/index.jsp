@@ -22,6 +22,9 @@
 </head>
 
 <body class="">
+	<!-- Preload -->
+	<jsp:include page="include/preload.jsp" flush="false"></jsp:include>
+	<!-- End Preload -->
     <div class="wrapper ">
         <!-- Sidebar -->
         <jsp:include page="include/sidebar.jsp" flush="false"></jsp:include>

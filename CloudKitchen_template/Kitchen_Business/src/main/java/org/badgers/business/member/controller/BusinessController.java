@@ -50,6 +50,8 @@ public class BusinessController {
 	@PostMapping("/{bizId}/modify")
 	public ModelAndView updateBizMember(ModelAndView mav, @RequestBody BizMemberVOExtend bizMember) {
 		
+		System.out.println(bizMember);
+		
 		try {
 			service.updateBizMember(bizMember);
 		} catch (Exception e) {
@@ -58,7 +60,7 @@ public class BusinessController {
 		
 		log.info("updateBizMember DONE!!!!!");
 		
-		mav.setViewName("index");
+		mav.setViewName("mypage");
 		
 		return mav;
 	}

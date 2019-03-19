@@ -22,6 +22,9 @@
 </head>
 
 <body>
+	<!-- Preload -->
+	<jsp:include page="include/preload.jsp" flush="false"></jsp:include>
+	<!-- End Preload -->
     <div class="wrapper ">
         <!-- Sidebar -->
         <jsp:include page="include/sidebar.jsp" flush="false"></jsp:include>
@@ -67,7 +70,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">비밀번호</label>
-                                                    <input type="password" id="pw" class="form-control" value="${bizMember.pw}">
+                                                    <input type="password" id="pw" class="form-control" disabled value="********************">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -77,7 +80,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="button" id="changeProfile" class="btn btn-primary pull-right">사업자 개인정보 업데이트</button>
+							            <button type="button" id="changePw" class="btn btn-primary pull-left">사업자 비밀번호 수정</button>
+                                        <button type="button" id="changeAccount" class="btn btn-primary pull-right">사업자 계좌번호 수정</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
@@ -149,6 +153,9 @@
                 </div>
             </div>
 			<!-- End Main Content -->
+            <!-- Modal -->
+            <jsp:include page="include/loginModal.jsp" flush="false"></jsp:include>
+            <!-- End Modal -->
             <!-- Footer -->
             <jsp:include page="include/footer.jsp" flush="false"></jsp:include>
             <!-- End Footer -->
@@ -260,6 +267,7 @@
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="/business/resources/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
     <script>
+    	/* 브라우저 사이즈 변경에 따른 반응형 처리 */
         $(document).ready(function() {
             $().ready(function() {
                 $sidebar = $('.sidebar');
@@ -430,24 +438,37 @@
         });
     </script>
     <script type="text/javascript">
-    	$('#changeProfile').on('click', function() {
-    		console.log("mrow");
+    	$('#changeAccount').on('click', function() {
     		$.ajax({
-        		url : '/business/member/' + $('#bizId')+ '/modify',
-        		type : 'POST',
-        		data : {pw : $('#pw'), account : $('#account')},
-        		error : function() {
-        			alert("사업자 정보를 수정하는데 에러가 발생했습니다.");
-            		console.log("test");
-        		},
-        		success : function(data) {
-        			alert("성공적으로 사업자 정보를 수정했습니다.");
-            		console.log("lion");
-        		}
+        		url : '/business/member/' + $('#bizId').val() + '/modify'
+        		, type : 'POST'
+				, contentType : 'application/json'
+        		, data : JSON.stringify({bizId : $('#bizId').val(), account : $('#account').val()})
+        		, error : function() { alert("사업자 계좌번호를 수정하는데 에러가 발생했습니다."); }
+        		, success : function() { alert("성공적으로 사업자 계좌번호를 수정했습니다."); }
     		});
     	});
     	
-    	/* , biz : {minAmt : $('#minAmt'), bizLiveStrm : $('#bizLiveStrm'), info : $('#bizInfo')} */
+    	$('#changeBiz').on('click', function() {
+    		$.ajax({
+        		url : '/business/member/' + $('#bizId').val() + '/modify'
+        		, type : 'POST'
+				, contentType : 'application/json'
+        		, data : JSON.stringify({
+        				bizId : $('#bizId').val()
+        				, minAmt : $('#minAmt').val()
+        				, bizLiveStrm : $('#bizLiveStrm').val()
+        				, info : $('#bizInfo').val()
+        			})
+        		, error : function() { alert("가게 정보를 수정하는데 에러가 발생했습니다."); }
+        		, success : function() { alert("성공적으로 가게 정보를 수정했습니다."); }
+    		});
+    	});
+    	
+    	$('.modal-popup .close-link').click(function(event){
+    		event.preventDefault();
+    		$('.modal').modal('hide');
+    	});
     </script>
     
     <c:if test="${not empty message}">
