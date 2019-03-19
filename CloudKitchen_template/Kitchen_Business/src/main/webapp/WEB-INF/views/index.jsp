@@ -448,11 +448,9 @@
                     </div>
                 </div>
             </div>
-
             <!-- Footer -->
             <jsp:include page="include/footer.jsp" flush="false"></jsp:include>
             <!-- End Footer -->
-            
         </div>
     </div>
     <div class="fixed-plugin">
