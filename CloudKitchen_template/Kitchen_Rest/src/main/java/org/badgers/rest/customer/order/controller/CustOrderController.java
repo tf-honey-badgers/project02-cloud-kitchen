@@ -32,13 +32,19 @@ public class CustOrderController {
 	@PostMapping("/{key}")
 	public ResponseEntity<?> registOrder(@RequestBody OrderVOExtend vo, @PathVariable("key") String key)
 			throws JacksonUtilityException, Exception, FirebaseException {
+		System.out.println(vo);
 
+		
+		
 		// 1. mysql insert
-//		orderService.excuteOrder(vo);
+		orderService.excuteOrder(vo);
 
 		// 2. mysql select
 		List<OrderInfoVO> list = orderService.getOrderInfo(vo.getId());
-
+		System.out.println("vovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovo");
+		System.out.println(vo);
+		System.out.println("listlistlistlistlistlistlistlistlistlistlistlistlistlistlistlistlistlistlistlistlist");
+		System.out.println(list);
 		// 3. firebase insert
 		Map<String, Object> map = null;
 

@@ -1,11 +1,11 @@
 package org.badgers.customer.model;
 
 
+
 import lombok.Data;
 
 @Data
-public class OrderVO {
-	
+public class OrderVOExtend {
 	private String id;
 	private String custId;
 	private String phone;
@@ -14,5 +14,6 @@ public class OrderVO {
 	private String kitchenName;
 	private int payAmt;
 	private String status;
-	
+	private OrderPaymentVO orderPayment;
+	private OrderDetailVOExtend[] orderDetails;
 }
