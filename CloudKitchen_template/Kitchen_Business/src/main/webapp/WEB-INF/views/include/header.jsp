@@ -26,6 +26,10 @@
 				</div>
 			</form>
 			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#login_2">
+						<i class="material-icons">lock</i>
+						<p class="d-lg-none d-md-block">Login</p>
+				</a></li>
 				<li class="nav-item"><a class="nav-link" href="#pablo"> <i
 						class="material-icons">dashboard</i>
 						<p class="d-lg-none d-md-block">Stats</p>
