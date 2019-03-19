@@ -34,7 +34,7 @@ public class OrderController {
 	public String test(OrderVO vo) {
 
 		
-		return "yuni";
+		return "/order/order";
 	}
 	
 	@PutMapping("/{bizId}/{orderId}/{status}")
