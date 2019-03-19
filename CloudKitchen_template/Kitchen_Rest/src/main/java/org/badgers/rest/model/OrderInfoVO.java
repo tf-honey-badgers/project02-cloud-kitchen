@@ -13,6 +13,7 @@ public class OrderInfoVO {
 	private String statusCode;
 	private String status;
 	private String kitchenName;
+	private String bizId;
 	private String bizName; 
 	private String method; 
 	private String menuName;
