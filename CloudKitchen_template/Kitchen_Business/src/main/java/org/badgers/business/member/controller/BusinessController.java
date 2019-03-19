@@ -23,7 +23,7 @@ public class BusinessController {
 	@Setter(onMethod_ = { @Autowired })
 	private BusinessService service;
 	
-	@GetMapping("/{bizId}")
+	@GetMapping("/{bizId}/main")
 	public ModelAndView readBizMember(ModelAndView mav, @PathVariable("bizId") String bizId) {		
 		BizMemberVOExtend returnVal = null;
 		
