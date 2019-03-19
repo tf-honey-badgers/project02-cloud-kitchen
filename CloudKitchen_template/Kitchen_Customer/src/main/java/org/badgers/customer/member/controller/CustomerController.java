@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,12 +23,12 @@ public class CustomerController {
 	private CustomerService service;
 	
 	@GetMapping("/{id}")
-	public ModelAndView readCustomerMember(ModelAndView mav, @PathVariable("id") String id) {
+	public ModelAndView readCustomer(ModelAndView mav, @PathVariable("id") String id) {
 		
 		CustomerVO returnVal = null;
 		
 		try {
-			returnVal = service.readCustomerMember(id);
+			returnVal = service.readCustomer(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -34,13 +36,38 @@ public class CustomerController {
 		log.info("이용자 개인정보 GET");
 		System.out.println(returnVal);		
 		
-		mav.addObject("vo", returnVal);
+		mav.addObject("customer", returnVal);
 		mav.setViewName("mypage");
 		
 		return mav;
 	}
 	
-	
+	@PostMapping("/")
+	public ModelAndView login(ModelAndView mav, @RequestBody CustomerVO customer) {
+		
+		String msg = "";
+		
+		try {
+			msg = service.login(customer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(msg == "PW_BAD") {
+			msg = "비밀번호가 틀렸습니다.";
+		} else if(msg == "NO_ID") {
+			msg = "존재하지 않는 아이디입니다.";
+		} else if(msg == "SERVER_ERROR") {
+			msg = "서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.";
+		} else {
+			// 로그인을 유지하기 위한 쿠키 생성
+			msg = "성공적으로 로그인했습니다.";
+		}
+
+		mav.addObject("msg", msg);
+		
+		return mav;
+	}
 	
 	
 	

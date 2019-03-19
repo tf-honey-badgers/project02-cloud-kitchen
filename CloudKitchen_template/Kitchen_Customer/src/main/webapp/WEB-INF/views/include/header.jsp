@@ -14,31 +14,31 @@
     
     <!-- End Preload -->
 <!-- Favicons-->
-    <link rel="shortcut icon" href="/customers/resources/img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" type="/customers/resources/image/x-icon" href="/customers/resources/img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="/customers/resources/image/x-icon" sizes="72x72" href="/customers/resources/img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="/customers/resources/image/x-icon" sizes="114x114" href="/customers/resources/img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="/customers/resources/image/x-icon" sizes="144x144" href="/customers/resources/img/apple-touch-icon-144x144-precomposed.png">
+    <link rel="shortcut icon" href="/customer/sresources/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="/customer/resources/image/x-icon" href="/customer/resources/img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="/customer/resources/image/x-icon" sizes="72x72" href="/customer/resources/img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="/customer/resources/image/x-icon" sizes="114x114" href="/customer/resources/img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="/customer/resources/image/x-icon" sizes="144x144" href="/customer/resources/img/apple-touch-icon-144x144-precomposed.png">
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 
     <!-- BASE CSS -->
-    <link href="/customers/resources/css/animate.min.css" rel="stylesheet">
-    <link href="/customers/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/customers/resources/css/menu.css" rel="stylesheet">
-    <link href="/customers/resources/css/style.css" rel="stylesheet">
-    <link href="/customers/resources/css/responsive.css" rel="stylesheet">
-    <link href="/customers/resources/css/elegant_font/elegant_font.min.css" rel="stylesheet">
-    <link href="/customers/resources/css/fontello/css/fontello.min.css" rel="stylesheet">
-    <link href="/customers/resources/css/magnific-popup.css" rel="stylesheet">
-    <link href="/customers/resources/css/pop_up.css" rel="stylesheet">
+    <link href="/customer/resources/css/animate.min.css" rel="stylesheet">
+    <link href="/customer/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/customer/resources/css/menu.css" rel="stylesheet">
+    <link href="/customer/resources/css/style.css" rel="stylesheet">
+    <link href="/customer/resources/css/responsive.css" rel="stylesheet">
+    <link href="/customer/resources/css/elegant_font/elegant_font.min.css" rel="stylesheet">
+    <link href="/customer/resources/css/fontello/css/fontello.min.css" rel="stylesheet">
+    <link href="/customer/resources/css/magnific-popup.css" rel="stylesheet">
+    <link href="/customer/resources/css/pop_up.css" rel="stylesheet">
 
     <!-- YOUR CUSTOM CSS -->
-    <link href="/customers/resources/css/custom.css" rel="stylesheet">
+    <link href="/customer/resources/css/custom.css" rel="stylesheet">
 
     <!-- Modernizr -->
-    <script src="/customers/resources/js/modernizr.js"></script>
+    <script src="/customer/resources/js/modernizr.js"></script>
 
 
  <!-- Header ================================================== -->
@@ -47,15 +47,15 @@
         <div class="row">
             <div class="col--md-4 col-sm-4 col-xs-4">
                 <a href="#" id="logo">
-                <img src="/customers/resources/img/logo.png" width="190" height="23" alt="" data-retina="true" class="hidden-xs">
-                <img src="/customers/resources/img/logo_mobile.png" width="59" height="23" alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm">
+                <img src="/customer/resources/img/logo.png" width="190" height="23" alt="" data-retina="true" class="hidden-xs">
+                <img src="/customer/resources/img/logo_mobile.png" width="59" height="23" alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm">
                 </a>
             </div>
             <nav class="col--md-8 col-sm-8 col-xs-8">
             <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
             <div class="main-menu">
                 <div id="header_menu">
-                    <img src="/customers/resources/img/logo.png" width="190" height="23" alt="" data-retina="true">
+                    <img src="/customer/resources/img/logo.png" width="190" height="23" alt="" data-retina="true">
                 </div>
                 <a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
                 <ul>
@@ -144,9 +144,9 @@
     </div><!-- End Register modal -->
 
     <!-- COMMON SCRIPTS -->
-    <script src="/customers/resources/js/jquery-2.2.4.min.js"></script>
-    <script src="/customers/resources/js/common_scripts_min.js"></script>
-    <script src="/customers/resources/js/functions.js"></script>
-    <script src="/customers/resources/assets/validate.js"></script>
+    <script src="/customer/resources/js/jquery-2.2.4.min.js"></script>
+    <script src="/customer/resources/js/common_scripts_min.js"></script>
+    <script src="/customer/resources/js/functions.js"></script>
+    <script src="/customer/resources/assets/validate.js"></script>
   <!-- SPECIFIC SCRIPTS -->
   

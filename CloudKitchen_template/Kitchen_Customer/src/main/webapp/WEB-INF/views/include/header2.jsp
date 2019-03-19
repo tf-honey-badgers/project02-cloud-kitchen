@@ -20,7 +20,7 @@
             </form>
         </div><!-- End sub_content -->
     </div>
-    <img src="/customers/resources/img/video_fix.png" alt="" class="header-video--media" data-video-src="" data-teaser-source="/customers/resources/video/intro" data-provider="" data-video-width="1920" data-video-height="960">
+    <img src="/customer/resources/img/video_fix.png" alt="" class="header-video--media" data-video-src="" data-teaser-source="/customer/resources/video/intro" data-provider="" data-video-width="1920" data-video-height="960">
     <div id="count" class="hidden-xs">
         <ul>
             <li><span class="number">2650</span> Restaurant</li>

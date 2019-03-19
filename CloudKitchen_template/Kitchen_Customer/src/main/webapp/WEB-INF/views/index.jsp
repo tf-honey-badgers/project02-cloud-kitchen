@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -95,7 +95,7 @@
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
                             <div class="thumb_strip">
-                                <img src="/customers/resources/img/thumb_restaurant.jpg" alt="">
+                                <img src="/customer/resources/img/thumb_restaurant.jpg" alt="">
                             </div>
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -116,7 +116,7 @@
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
                             <div class="thumb_strip">
-                                <img src="/customers/resources/img/thumb_restaurant_2.jpg" alt="">
+                                <img src="/customer/resources/img/thumb_restaurant_2.jpg" alt="">
                             </div>
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -138,7 +138,7 @@
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
                             <div class="thumb_strip">
-                                <img src="/customers/resources/img/thumb_restaurant_3.jpg" alt="">
+                                <img src="/customer/resources/img/thumb_restaurant_3.jpg" alt="">
                             </div>
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -162,7 +162,7 @@
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
                             <div class="thumb_strip">
-                                <img src="/customers/resources/img/thumb_restaurant_4.jpg" alt="">
+                                <img src="/customer/resources/img/thumb_restaurant_4.jpg" alt="">
                             </div>
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -184,7 +184,7 @@
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
                             <div class="thumb_strip">
-                                <img src="/customers/resources/img/thumb_restaurant_5.jpg" alt="">
+                                <img src="/customer/resources/img/thumb_restaurant_5.jpg" alt="">
                             </div>
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -206,7 +206,7 @@
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
                             <div class="thumb_strip">
-                                <img src="/customers/resources/img/thumb_restaurant_6.jpg" alt="">
+                                <img src="/customer/resources/img/thumb_restaurant_6.jpg" alt="">
                             </div>
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -238,7 +238,7 @@
         </div><!-- End container -->
     </div><!-- End hight_light -->
 
-    <section class="parallax-window" data-parallax="scroll" data-image-src="/customers/resources/img/bg_office.jpg" data-natural-width="1200" data-natural-height="600">
+    <section class="parallax-window" data-parallax="scroll" data-image-src="/customer/resources/img/bg_office.jpg" data-natural-width="1200" data-natural-height="600">
         <div class="parallax-content">
             <div class="sub_content">
                 <i class="icon_mug"></i>
@@ -261,15 +261,15 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-2">
                 <a class="box_work" href="submit_restaurant.html">
-                    <img src="/customers/resources/img/submit_restaurant.jpg" width="848" height="480" alt="" class="img-responsive">
-                    <h3>Submit your Restaurant<span>Start to earn customers</span></h3>
+                    <img src="/customer/resources/img/submit_restaurant.jpg" width="848" height="480" alt="" class="img-responsive">
+                    <h3>Submit your Restaurant<span>Start to earn customer</span></h3>
                     <p>Lorem ipsum dolor sit amet, ut virtute fabellas vix, no pri falli eloquentiam adversarium. Ea legere labore eam. Et eum sumo ocurreret, eos ei saepe oratio omittantur, legere eligendi partiendo pro te.</p>
                     <div class="btn_1">Read more</div>
                 </a>
             </div>
             <div class="col-md-4">
                 <a class="box_work" href="submit_driver.html">
-                    <img src="/customers/resources/img/delivery.jpg" width="848" height="480" alt="" class="img-responsive">
+                    <img src="/customer/resources/img/delivery.jpg" width="848" height="480" alt="" class="img-responsive">
                     <h3>We are looking for a Driver<span>Start to earn money</span></h3>
                     <p>Lorem ipsum dolor sit amet, ut virtute fabellas vix, no pri falli eloquentiam adversarium. Ea legere labore eam. Et eum sumo ocurreret, eos ei saepe oratio omittantur, legere eligendi partiendo pro te.</p>
                     <div class="btn_1">Read more</div>
@@ -282,7 +282,7 @@
 <jsp:include page="include/footer.jsp" flush="false"/>
 <!-- Footer 끝  -->
 
-   <script src="/customers/resources/js/video_header.js"></script>
+   <script src="/customer/resources/js/video_header.js"></script>
     <script>
         $(document).ready(function() {
             'use strict';

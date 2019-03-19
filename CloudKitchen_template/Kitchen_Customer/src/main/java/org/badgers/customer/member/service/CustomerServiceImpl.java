@@ -12,26 +12,47 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class CustomerServiceImpl implements CustomerService {
 
-	@Override
-	public CustomerVO readCustomerMember(String id) throws Exception {
+	// 이용자 정보
+	public CustomerVO readCustomer(String id) throws Exception {
 		log.info("Customer 이용자 개인정보 읽기...............................");
-		RestTemplate restTemplate = new RestTemplate();
-		CustomerVO returnVal = null;
 		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		CustomerVO returnVal = null;
+
 		try {
-			String url = "http://localhost:12007/customers/" + id + "/mypage";
-			
-			ResponseEntity<CustomerVO> responseEntity =
+			String url = "http://localhost:12007/customer/" + id + "/mypage";
+
+			ResponseEntity<CustomerVO> responseEntity = 
 					restTemplate.getForEntity(url, org.badgers.customer.model.CustomerVO.class);
-			
-			if(responseEntity.getStatusCode() == HttpStatus.OK) {
+
+			if (responseEntity.getStatusCode() == HttpStatus.OK) {
 				returnVal = responseEntity.getBody();
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.getStackTrace();
 		}
-		
+
 		return returnVal;
+	}
+
+	// 로그인
+	public String login(CustomerVO customer) throws Exception {
+		
+		RestTemplate restTemplate = new RestTemplate();
+
+		String res = "";
+		
+		try {
+			String url = "http://localhost:12007/customer/";
+
+			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
+			res = responseEntity.getBody();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return res;
 	}
 
 }
