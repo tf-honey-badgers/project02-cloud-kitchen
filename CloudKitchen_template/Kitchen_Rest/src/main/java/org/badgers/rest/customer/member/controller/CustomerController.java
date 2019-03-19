@@ -22,7 +22,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/customer")
 @Log4j
 public class CustomerController {
 
