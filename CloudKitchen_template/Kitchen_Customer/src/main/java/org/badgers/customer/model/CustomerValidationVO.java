@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import lombok.Data;
 
 @Data
-public class CustomerValidationVo {
+public class CustomerValidationVO {
 	private int no;
 	private String custId;
 	private String validCode;

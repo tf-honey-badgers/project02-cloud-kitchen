@@ -32,19 +32,25 @@ public class BusinessController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(returnVal);
 		
-		log.info("readBizMember DONE!!!!!");
-		System.out.println(returnVal);		
+		if(returnVal != null) { log.info("readBizMember DONE!!!!!"); }
+		else {
+			log.info("Failed to readBizMember. REST server may be offline.");
+			mav.addObject("message", "Failed to read biz member data. REST server may be offline.");
+		}
 		
 		mav.addObject("bizMember", returnVal);
-		mav.setViewName("index");
+		mav.setViewName("mypage");
 		
 		return mav;
 	}
 	
-	// bizId, pw, account, info, minAmt, bizLiveStrm 수정 가능!
+	// pw, account, info, minAmt, bizLiveStrm 수정 가능!
 	@PostMapping("/{bizId}/modify")
 	public ModelAndView updateBizMember(ModelAndView mav, @RequestBody BizMemberVOExtend bizMember) {
+		
+		System.out.println(bizMember);
 		
 		try {
 			service.updateBizMember(bizMember);
@@ -54,7 +60,7 @@ public class BusinessController {
 		
 		log.info("updateBizMember DONE!!!!!");
 		
-		mav.setViewName("index");
+		mav.setViewName("mypage");
 		
 		return mav;
 	}

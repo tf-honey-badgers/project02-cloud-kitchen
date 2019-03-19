@@ -7,7 +7,7 @@
             <div class="col-md-4 col-sm-3">
                 <h3>Secure payments with</h3>
                 <p>
-                    <img src="/resources/img/cards.png" alt="" class="img-responsive">
+                    <img src="/customers/resources/img/cards.png" alt="" class="img-responsive">
                        
                 </p>
             </div>

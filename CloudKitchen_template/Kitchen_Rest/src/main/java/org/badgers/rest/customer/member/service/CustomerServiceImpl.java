@@ -55,11 +55,11 @@ public class CustomerServiceImpl implements CustomerService {
 
 // 회원정보
 	@Override
-	public List<CustomerVO> selectById(String id) {
+	public CustomerVO selectById(String id) throws Exception {
 		System.out.println("나와라=============");
-		List<CustomerVO> list = mapper.selectById(id);
+		CustomerVO vo = mapper.selectById(id);
 
-		return list;
+		return vo;
 	}
 
 	// 수정

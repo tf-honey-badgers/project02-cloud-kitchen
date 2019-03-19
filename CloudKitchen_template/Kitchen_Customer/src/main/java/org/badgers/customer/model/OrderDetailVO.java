@@ -3,7 +3,7 @@ package org.badgers.customer.model;
 import lombok.Data;
 
 @Data
-public class OrderDetailVo {
+public class OrderDetailVO {
 	private String no;
 	private int quantity;
 	private int totalAmt;

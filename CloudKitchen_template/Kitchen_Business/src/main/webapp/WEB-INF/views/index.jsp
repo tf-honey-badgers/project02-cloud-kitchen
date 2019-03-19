@@ -22,6 +22,9 @@
 </head>
 
 <body class="">
+	<!-- Preload -->
+	<jsp:include page="include/preload.jsp" flush="false"></jsp:include>
+	<!-- End Preload -->
     <div class="wrapper ">
         <!-- Sidebar -->
         <jsp:include page="include/sidebar.jsp" flush="false"></jsp:include>
@@ -734,5 +737,11 @@
 
         });
     </script>
+    
+    <c:if test="${not empty message}">
+    	<script>
+    		$(document).ready(function() { alert("${message}"); });
+    	</script>
+	</c:if>
 </body>
 </html>
