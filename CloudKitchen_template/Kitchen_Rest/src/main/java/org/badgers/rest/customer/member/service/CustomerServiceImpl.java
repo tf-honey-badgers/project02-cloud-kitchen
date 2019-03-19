@@ -57,9 +57,9 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public CustomerVO selectById(String id) throws Exception {
 		System.out.println("나와라=============");
-		CustomerVO vo = mapper.selectById(id);
+		CustomerVO customer = mapper.selectById(id);
 
-		return vo;
+		return customer;
 	}
 
 	// 수정
