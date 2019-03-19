@@ -71,6 +71,7 @@ public class CustomerController {
 		return mav;
 	}
 	
+	//회원정보 수정
 	@PostMapping("/{id}/modify")
 	public ModelAndView updateCustomer(ModelAndView mav, @RequestBody CustomerVO customer) {
 			System.out.println(customer);
@@ -86,9 +87,23 @@ public class CustomerController {
 		mav.setViewName("mypage");
 		
 		return mav;
+			
+	}
+	
+	// 회원가입 
+	@PostMapping("/new")
+	public ModelAndView register(ModelAndView mav, @RequestBody CustomerVO vo) {
+		System.out.println(vo);
 		
+		try {
+			service.register(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		
+		log.info("회원 가입 성공 ");
+
+		return mav;
 	}
 	
 	

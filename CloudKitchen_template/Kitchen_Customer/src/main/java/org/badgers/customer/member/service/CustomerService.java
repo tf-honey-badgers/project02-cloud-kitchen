@@ -13,4 +13,7 @@ public interface CustomerService {
 	
 	// 정보수정
 	public void updateCustomer(CustomerVO cvo) throws Exception;
+	
+	//회원가입 
+	public String register(CustomerVO vo)throws Exception;
 }

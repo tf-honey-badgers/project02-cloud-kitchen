@@ -114,19 +114,19 @@
         <div class="modal-dialog">
             <div class="modal-content modal-popup">
                 <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-                <form action="#" class="popup-form" id="myRegister">
+               <form name="register" id="register"> 
                     <div class="login_icon"><i class="icon_lock_alt"></i></div>
-                    <input type="text" class="form-control form-white" placeholder="아이디">
-                    <input type="password" class="form-control form-white" placeholder="비밀번호" id="password1">
-                    <input type="password" class="form-control form-white" placeholder="비밀번호 재확인" id="password2">
-                    <input type="text" class="form-control form-white" placeholder="이름">
-                    <input type="text" class="form-control form-white" placeholder="생년 월일">
-                    <input type="text" class="form-control form-white" placeholder="휴대폰 번호">
-                    <input type="email" class="form-control form-white" placeholder="Email">
+                    <input type="text" class="form-control form-white" id="id" placeholder="아이디">
+                    <input type="password" class="form-control form-white" id="pw" placeholder="비밀번호" id="password1">
+                    <input type="password" class="form-control form-white" id="pw"placeholder="비밀번호 재확인" id="password2">
+                    <input type="text" class="form-control form-white" id="name "placeholder="이름">
+                    <input type="text" class="form-control form-white" id="birthDate" placeholder="생년 월일">
+                    <input type="text" class="form-control form-white" id="phone" placeholder="휴대폰 번호">
+                    <input type="email" class="form-control form-white" id="email" placeholder="Email">
                     <div>
 
-                        <input type="radio" name="gender" value="남" style="width:23px;height:23px"><span style="font-size: 30px; color: white; padding-right: 100px;">남</span>
-                        <input type="radio" name="gender" value="여" style="width:23px;height:23px"><span style="font-size: 30px; color: white">여</span>
+                        <input type="radio"  name="gender" value="남" style="width:23px;height:23px"><span style="font-size: 30px; color: white; padding-right: 100px;">남</span>
+                        <input type="radio"  name="gender" value="여" style="width:23px;height:23px"><span style="font-size: 30px; color: white">여</span>
                     </div>
 
 
@@ -137,7 +137,7 @@
                             <label for="check_2"><span>I Agree to the <strong>Terms &amp; Conditions</strong></span></label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-submit">회원가입</button>
+                    <input type="button" value="회원 가입" onclick="formSubmit()" />
                 </form>
             </div>
         </div>
@@ -169,3 +169,50 @@
         });
     });
     </script>
+     <script type="text/javascript">
+
+  
+/* 	$('#register').on('click', function() {
+		$.ajax({
+    		url : '/customer/new'
+    		, type : 'POST'
+			, contentType : 'application/json'
+    		, data : JSON.stringify({
+    				id : $('#id').val(),
+    				 pw : $('#pw').val()
+    				, name : $('#name').val()
+    				, birthDate : $('#birthDate').val()
+    				, phone : $('#phone').val()
+    				, email : $('#email').val()
+    			})
+    		, error : function() { alert("회원 가입 실패."); }
+    		, success : function() { alert("성공적으로 회원 가입을 완료했습니다."); }
+		});
+	}); */
+	function formSubmit() {
+	    var params = jQuery("#register").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+	    jQuery.ajax({
+	        url: '/customer/new',
+	        type: 'POST',
+	        data:params,
+	        contentType: 'application/json',
+	        dataType: 'html',
+	        error : function() { alert("회원 가입 실패."); },
+	        success : function() { alert("성공적으로 회원 가입을 완료했습니다."); }
+	        });
+	    }
+	
+	    
+	
+	
+    </script>
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    

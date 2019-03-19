@@ -62,12 +62,32 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		try {
 			String url = "http://localhost:12007/customer/" + cvo.getId() + "/mypage/modify";
-			
+						 
 			restTemplate.put(url, cvo);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+
+	public String register(CustomerVO vo) {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		System.out.println("회원가입");
+		
+		String sign = "";
+		
+		try {
+			String url = "http://localhost:12007/customer/new";
+			
+			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);
+			sign = responseEntity.getBody();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return sign;
 	}
 
 }
