@@ -9,7 +9,6 @@
 	<select id="selectById" resultMap="BizMemberVOExtend">
 		select
 			BM.biz_id bizId
-			, BM.pw pw
 			, BM.name bname
 			, BM.reg_no regNo
 			, BM.account account
@@ -37,7 +36,6 @@
 	<!-- id="selectById"용 Result Maps 2개 -->
 	<resultMap id="BizMemberVOExtend" type="org.badgers.rest.model.BizMemberVOExtend">
 		<result property="bizId" column="bizId" />
-		<result property="pw" column="pw" />
 		<result property="name" column="bname" />
 		<result property="regNo" column="regNo" />
 		<result property="account" column="account" />
@@ -103,4 +101,9 @@
 		where biz_id = #{bizId}
 	</select>
 
+	<select id="findId" resultType="String">
+		select biz_id
+		from honey_badgers.biz_member
+		where reg_no = #{param1} and account = #{param2}
+	</select>
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.Setter;
@@ -22,9 +23,8 @@ public class BusinessController {
 	@Setter(onMethod_ = { @Autowired })
 	private BusinessService service;
 	
-	@GetMapping("/{bizId}")
-	public ModelAndView readBizMember(ModelAndView mav, @PathVariable("bizId") String bizId) {
-		
+	@GetMapping("/{bizId}/main")
+	public ModelAndView readBizMember(ModelAndView mav, @PathVariable("bizId") String bizId) {		
 		BizMemberVOExtend returnVal = null;
 		
 		try {
@@ -32,8 +32,13 @@ public class BusinessController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(returnVal);
 		
-		log.info("readBizMember DONE!!!!!");
+		if(returnVal != null) { log.info("readBizMember DONE!!!!!"); }
+		else {
+			log.info("Failed to readBizMember. REST server may be offline.");
+			mav.addObject("message", "Failed to read biz member data. REST server may be offline.");
+		}
 		
 		mav.addObject("bizMember", returnVal);
 		mav.setViewName("mypage");
@@ -43,8 +48,8 @@ public class BusinessController {
 	
 	// pw, account, info, minAmt, bizLiveStrm 수정 가능!
 	@PostMapping("/{bizId}/modify")
-	public ModelAndView updateBizMember(ModelAndView mav, @RequestBody BizMemberVOExtend bizMember) {
-		
+	@ResponseBody
+	public void updateBizMember(@RequestBody BizMemberVOExtend bizMember) {
 		try {
 			service.updateBizMember(bizMember);
 		} catch (Exception e) {
@@ -52,15 +57,11 @@ public class BusinessController {
 		}
 		
 		log.info("updateBizMember DONE!!!!!");
-		
-		mav.setViewName("index");
-		
-		return mav;
 	}
 	
 	@PostMapping("/")
-	public ModelAndView login(ModelAndView mav, @RequestBody BizMemberVOExtend bizMember) {
-		
+	@ResponseBody
+	public String login(@RequestBody BizMemberVOExtend bizMember) {
 		String msg = "";
 		
 		try {
@@ -80,8 +81,22 @@ public class BusinessController {
 			msg = "성공적으로 로그인했습니다.";
 		}
 
-		mav.addObject("msg", msg);
+		return msg;
+	}
+	
+	@PostMapping("/findId")
+	@ResponseBody
+	public String findBizId(@RequestBody BizMemberVOExtend bizMember) {
+		String res = "";
 		
-		return mav;
+		try {
+			res = service.findBizId(bizMember);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		log.info("retrieved BizId");
+		
+		return res;
 	}
 }
