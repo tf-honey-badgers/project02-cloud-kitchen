@@ -81,7 +81,7 @@ public class CustomerController {
 			e.printStackTrace();
 		}
 		
-		log.info("updateBizMember DONE!!!!!");
+		log.info("회원 정보 수정 완료 ");
 		
 		mav.setViewName("mypage");
 		
