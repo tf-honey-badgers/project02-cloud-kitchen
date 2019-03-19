@@ -69,11 +69,11 @@ public class CustomerController {
 	
 	//개인정보 끌어오기 
 	@GetMapping(value = "/{id}/mypage", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<CustomerVO>  selectById(@PathVariable("id") String id) throws Exception{
-		CustomerVO vo = service.selectById(id);
+	public ResponseEntity<CustomerVO>  selectById(@PathVariable("id") String id) throws Exception {
+		CustomerVO customer = service.selectById(id);
 			
 
-		return new ResponseEntity<CustomerVO>(vo, HttpStatus.OK);
+		return new ResponseEntity<CustomerVO>(customer, HttpStatus.OK);
 	}
 	
 

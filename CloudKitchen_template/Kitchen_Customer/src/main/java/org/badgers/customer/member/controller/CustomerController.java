@@ -22,6 +22,7 @@ public class CustomerController {
 	@Setter(onMethod_ = { @Autowired })
 	private CustomerService service;
 	
+	// 조회
 	@GetMapping("/{id}")
 	public ModelAndView readCustomer(ModelAndView mav, @PathVariable("id") String id) {
 		
@@ -42,6 +43,7 @@ public class CustomerController {
 		return mav;
 	}
 	
+	// 로그인
 	@PostMapping("/")
 	public ModelAndView login(ModelAndView mav, @RequestBody CustomerVO customer) {
 		
@@ -69,8 +71,25 @@ public class CustomerController {
 		return mav;
 	}
 	
-	
-	
+	@PostMapping("/{id}/modify")
+	public ModelAndView updateCustomer(ModelAndView mav, @RequestBody CustomerVO customer) {
+			System.out.println(customer);
+		
+		try {
+			service.updateCustomer(customer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		log.info("회원 정보 수정 완료 ");
+		
+		mav.setViewName("mypage");
+		
+		return mav;
+		
+		
+		
+	}
 	
 	
 	
