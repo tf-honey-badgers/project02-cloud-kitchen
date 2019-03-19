@@ -3,9 +3,9 @@ package org.badgers.customer.model;
 import lombok.Data;
 
 @Data
-public class MenuOptionVo {
+public class MenuVO {
 	private String code;
 	private String name;
-	private String addPrice;
-	private String optClNo;
+	private int basicPrice;
+	private String menuCatCode;
 }
