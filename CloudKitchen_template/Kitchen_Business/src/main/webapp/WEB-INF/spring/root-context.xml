@@ -12,5 +12,9 @@
 
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
  		<property name="requestFactory" ref="restTemplateBuilder"></property>
-   </bean>
+	</bean>
+   
+	<context:component-scan base-package="org.badgers.business.*">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
 </beans>
