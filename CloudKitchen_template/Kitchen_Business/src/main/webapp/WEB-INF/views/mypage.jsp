@@ -80,7 +80,7 @@
                                                 </div>
                                             </div>
                                         </div>
-							            <button type="button" id="changePw" class="btn btn-primary pull-left">사업자 비밀번호 수정</button>
+							            <button type="button" class="changePw btn btn-primary pull-left">사업자 비밀번호 수정</button>
                                         <button type="button" id="changeAccount" class="btn btn-primary pull-right">사업자 계좌번호 수정</button>
                                         <div class="clearfix"></div>
                                     </form>

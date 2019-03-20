@@ -56,7 +56,6 @@ public class BusinessServiceImpl implements BusinessService {
 	public String verify(BizMemberVOExtend mvo) throws Exception {
 		String returnVal = "";
 		
-		System.out.println("THIS IS THE BIZID SO SUCK IT YOU! " + mvo.getBizId());
 		try {
 			returnVal = mapper.verify(mvo);
 		} catch (Exception e) {
