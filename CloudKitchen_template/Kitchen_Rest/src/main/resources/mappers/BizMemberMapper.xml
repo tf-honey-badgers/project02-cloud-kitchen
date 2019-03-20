@@ -101,9 +101,12 @@
 		where biz_id = #{bizId}
 	</select>
 
-	<select id="findId" resultType="String">
+	<select id="verify" resultType="String">
 		select biz_id
 		from honey_badgers.biz_member
-		where reg_no = #{param1} and account = #{param2}
+		where reg_no = #{regNo} and account = #{account}
+		<if test="bizId != null and bizId != ''"> 
+			and biz_id =#{bizId}
+		</if>
 	</select>
 </mapper>

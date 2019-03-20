@@ -52,12 +52,13 @@ public class BusinessServiceImpl implements BusinessService {
 		return returnVal;
 	}
 	
-	// ID 찾기
-	public String findBizId(String regNo, String account) throws Exception {
+	// ID 찾기 & 본인인증하기
+	public String verify(BizMemberVOExtend mvo) throws Exception {
 		String returnVal = "";
 		
+		System.out.println("THIS IS THE BIZID SO SUCK IT YOU! " + mvo.getBizId());
 		try {
-			returnVal = mapper.findId(regNo, account);
+			returnVal = mapper.verify(mvo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

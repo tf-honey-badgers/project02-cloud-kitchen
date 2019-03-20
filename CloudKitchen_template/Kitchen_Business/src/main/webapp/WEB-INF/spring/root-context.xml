@@ -14,8 +14,6 @@
  		<property name="requestFactory" ref="restTemplateBuilder"></property>
    </bean>
 
-
-
 	<context:component-scan
 		base-package="org.badgers.business.*">
 		<context:include-filter type="annotation"
