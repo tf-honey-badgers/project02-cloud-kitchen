@@ -32,18 +32,11 @@
 
 <div id="menuModal" class="menuModal">
 	<div class="menuModalOpt">
-		<table>
-			<thead class="text-primary">
-				<th>옵션번호</th>
-				<th>옵션이름</th>
-				<th>메뉴이름</th>
-				<th>메뉴가격</th>
-				<th>옵션</th>
-			</thead>
-		<tbody></tbody>
-		</table>
 		<span class="menuModalClose">&times;</span>
-		<button id="updateMenuBtn">메뉴변경</button>
+		<h3>변경</h3>
+		<table class="menuOpt">
+		</table>
+		<div class="modelBtnArea"><button id="updateMenuBtn">메뉴변경</button></div>
 	</div>
 </div>
 

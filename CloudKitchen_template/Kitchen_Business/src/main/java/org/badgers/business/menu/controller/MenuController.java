@@ -20,7 +20,7 @@ public class MenuController {
 	@Setter(onMethod_ = { @Autowired })
 	private MenuServiceImpl service;
 	
-	@RequestMapping(value="/update/{bizId}", method=RequestMethod.GET)
+	@RequestMapping(value="/main/{bizId}", method=RequestMethod.GET)
 	public ModelAndView bizGetMenu(ModelAndView mav, @PathVariable("bizId") String bizId) {
 		mav.addObject("bizMenu", service.bizGetMenu(bizId));
 		mav.setViewName("menuupdate");
@@ -28,9 +28,10 @@ public class MenuController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/menuinfo/{mIdx}", method=RequestMethod.GET)
+	@RequestMapping(value="/main/update/{mIdx}", method=RequestMethod.GET)
 	@ResponseBody
 	public List<?> getMenuInfo(@PathVariable("mIdx") int mIdx){
+		System.out.println(mIdx);
 		return service.getMenuInfo(mIdx);
 	}
 }
