@@ -24,6 +24,16 @@ public class CustFireBaseService {
 
 		return response;
 	}
+	
+	public FirebaseResponse testPutOrder(Map data)
+			throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
+		String firebase_baseUrl = this.firebase_baseUrl;
+		Firebase firebase = new Firebase(firebase_baseUrl);
+		FirebaseResponse response = firebase.put(data);
+
+		return response;
+	}
+	
 
 	public FirebaseResponse putOrder(StringBuffer key, String jsonData)
 			throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {

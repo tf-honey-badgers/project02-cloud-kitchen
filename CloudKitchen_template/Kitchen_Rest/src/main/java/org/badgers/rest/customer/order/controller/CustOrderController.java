@@ -49,19 +49,17 @@ public class CustOrderController {
 		// 3. firebase insert
 		Map<String, OrderAlarmVO> map = null;
 		map = ToOrderAlarmVO.toOrderAlarmVO(list);
-
+		firebaseService.testPutOrder(map);
 		StringBuffer orderPath = null;
 		StringBuffer statusPath = null;
 
-		for (OrderInfoVO listElement : list) {
-			orderPath = CreateFireBasePath.getOrderPath(key, listElement);
-			statusPath = CreateFireBasePath.getStatusPath(key, listElement);
-			map = Map_TO_Object.voToMap(listElement);
-			//가게별 주문 정보 insert
-			firebaseService.putOrder(orderPath, map);
-			//가게별 주문 정보 상태(status) insert
-			firebaseService.putOrder(statusPath, "{\"status\":\"ORD001\"}");
-		}
+//		while(map.) {
+//			orderPath = CreateFireBasePath.getOrderPath(key, listElement);
+//			//가게별 주문 정보 insert
+//			firebaseService.putOrder(orderPath, map);
+//			//가게별 주문 정보 상태(status) insert
+//			firebaseService.putOrder(statusPath, "{\"status\":\"ORD001\"}");
+//		}
 
 //		return new ResponseEntity<>(list, HttpStatus.OK);
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -69,3 +67,13 @@ public class CustOrderController {
 	}
 
 }
+
+//for (OrderInfoVO listElement : list) {
+//	orderPath = CreateFireBasePath.getOrderPath(key, listElement);
+//	statusPath = CreateFireBasePath.getStatusPath(key, listElement);
+//	map = Map_TO_Object.voToMap(listElement);
+//	//가게별 주문 정보 insert
+//	firebaseService.putOrder(orderPath, map);
+//	//가게별 주문 정보 상태(status) insert
+//	firebaseService.putOrder(statusPath, "{\"status\":\"ORD001\"}");
+//}
