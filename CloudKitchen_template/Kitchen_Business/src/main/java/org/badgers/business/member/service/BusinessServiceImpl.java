@@ -54,11 +54,11 @@ public class BusinessServiceImpl implements BusinessService {
 		return res;
 	}
 	
-	public String findBizId(BizMemberVOExtend bizMember) throws Exception {
+	public String verify(BizMemberVOExtend bizMember) throws Exception {
 		log.info("Kitchen_Business 사업자 ID 찾기...............................");
 		
 		String res = "";
-		String url = "http://localhost:12007/business/findId";
+		String url = "http://localhost:12007/business/verify";
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, bizMember, String.class);
 		res = responseEntity.getBody();

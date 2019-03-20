@@ -84,13 +84,13 @@ public class BusinessController {
 		return msg;
 	}
 	
-	@PostMapping("/findId")
+	@PostMapping("/verify")
 	@ResponseBody
-	public String findBizId(@RequestBody BizMemberVOExtend bizMember) {
+	public String verify(@RequestBody BizMemberVOExtend bizMember) {
 		String res = "";
 		
 		try {
-			res = service.findBizId(bizMember);
+			res = service.verify(bizMember);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
