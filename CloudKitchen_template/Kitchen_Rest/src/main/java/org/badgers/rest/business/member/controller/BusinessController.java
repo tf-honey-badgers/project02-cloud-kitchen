@@ -74,15 +74,15 @@ public class BusinessController {
 		 return entity;	
 	}
 	
-	// ID 찾기
-	@PostMapping("/findId")
-	public ResponseEntity<String> findId(@RequestBody BizMemberVOExtend biz) throws Exception {
+	// ID 찾기 & 본인인증하기
+	@PostMapping("/verify")
+	public ResponseEntity<String> verify(@RequestBody BizMemberVOExtend mvo) throws Exception {
 		 ResponseEntity<String> entity = null;
 		 
 		 log.info("Kitchen_Rest 사업자 ID 찾기...............................");
 
 		 try {
-			 String returnVal = service.findBizId(biz.getRegNo(), biz.getAccount());
+			 String returnVal = service.verify(mvo);
 			 if(returnVal == null) { entity = new ResponseEntity<String>("NO_ID", HttpStatus.BAD_REQUEST); }
 			 else { entity = new ResponseEntity<String>(returnVal, HttpStatus.OK); }
 		 } catch (Exception e) {
