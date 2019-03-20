@@ -68,7 +68,7 @@ public class BusinessController {
 		log.info("updateBizMember DONE!!!!!");
 	}
 	
-	@PostMapping("/")
+	@PostMapping(value = "/", produces = "text/plain; charset=utf-8")
 	@ResponseBody
 	public String login(@RequestBody BizMemberVOExtend mvo) {
 		log.info("Kitchen_Business 사업자 로그인...............................");
@@ -79,25 +79,22 @@ public class BusinessController {
 		try {				
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
 			msg = responseEntity.getBody();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("I am here - 2");
 		
-		if(msg == "PW_BAD") {
+		if(msg.equals("BAD_PW")) {
 			msg = "비밀번호가 틀렸습니다.";
-		} else if(msg == "NO_ID") {
+		} else if(msg.equals("NO_ID")) {
 			msg = "존재하지 않는 아이디입니다.";
-		} else if(msg == "SERVER_ERROR") {
+		} else if(msg.equals("SERVER_ERROR") || msg.equals("")) {
 			msg = "서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.";
 		} else {
 			// 로그인을 유지하기 위한 쿠키 생성
 			msg = "성공적으로 로그인했습니다.";
 		}
 
-		System.out.println("I am here - 3");
-		System.out.println(msg);
+		log.info(msg);
 		return msg;
 	}
 	
