@@ -443,7 +443,11 @@
     <script src="/business/resources/js/member/member-functions.js" type="text/javascript"></script>
     
     <script type="text/javascript">
-
+	    $(document).ready(function() {
+	    	/* 사이드바 하이라이트된 바꾸기 */
+	    	$('.nav-item').removeClass('active');
+	    	$('.nav-item.sidebar-mypage').addClass('active');
+	    });
     </script>
     
     <c:if test="${not empty message}">
