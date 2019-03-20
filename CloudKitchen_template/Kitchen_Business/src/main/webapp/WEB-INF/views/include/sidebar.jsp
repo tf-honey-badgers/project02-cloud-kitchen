@@ -13,27 +13,27 @@
 	</div>
 	<div class="sidebar-wrapper">
 		<ul class="nav">
-			<li class="nav-item active "><a class="nav-link" href="/business/">
+			<li class="nav-item active sidebar-home"><a class="nav-link" href="/business/">
 					<i class="material-icons">home</i>
 					<p>메인</p>
 			</a></li>
-			<li class="nav-item "><a class="nav-link" href="/business/member/biz_1/main">
+			<li class="nav-item sidebar-mypage"><a class="nav-link" href="/business/member/biz_1/main">
 					<i class="material-icons">person</i>
 					<p>마이페이지</p>
 			</a></li>
-			<li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/menu/main/biz_2">
+			<li class="nav-item sidebar-menu"><a class="nav-link" href="${pageContext.request.contextPath}/menu/main/biz_2">
 					<i class="material-icons">library_books</i>
 					<p>메뉴관리</p>
 			</a></li>
-			<li class="nav-item "><a class="nav-link" href="#">
+			<li class="nav-item sidebar-marketing"><a class="nav-link" href="#">
 					<i class="material-icons">camera</i>
 					<p>마케팅관리</p>
 			</a></li>
-			<li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/order/main">
+			<li class="nav-item sidebar-orders"><a class="nav-link" href="${pageContext.request.contextPath}/order/main">
 					<i class="material-icons">notifications</i>
 					<p>주문현황</p>
 			</a></li>
-			<li class="nav-item "><a class="nav-link" href="#">
+			<li class="nav-item sidebar-settings"><a class="nav-link" href="#">
 					<i class="fa fa-cog fa-2x"> </i>
 					<p>환경설정</p>
 			</a></li>

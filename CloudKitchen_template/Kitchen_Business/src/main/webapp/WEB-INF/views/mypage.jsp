@@ -80,7 +80,7 @@
                                                 </div>
                                             </div>
                                         </div>
-							            <button type="button" id="changePw" class="btn btn-primary pull-left">사업자 비밀번호 수정</button>
+							            <button type="button" class="changePw btn btn-primary pull-left">사업자 비밀번호 수정</button>
                                         <button type="button" id="changeAccount" class="btn btn-primary pull-right">사업자 계좌번호 수정</button>
                                         <div class="clearfix"></div>
                                     </form>
@@ -443,9 +443,11 @@
     <script src="/business/resources/js/member/member-functions.js" type="text/javascript"></script>
     
     <script type="text/javascript">
-    	$('#findPw').on('click', function() {
-    		
-    	});
+	    $(document).ready(function() {
+	    	/* 사이드바 하이라이트된 바꾸기 */
+	    	$('.nav-item').removeClass('active');
+	    	$('.nav-item.sidebar-mypage').addClass('active');
+	    });
     </script>
     
     <c:if test="${not empty message}">

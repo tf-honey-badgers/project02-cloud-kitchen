@@ -14,5 +14,5 @@ public interface BusinessMapper {
 	public BizMemberVOExtend login(String bizId);
 	
 	// ID 찾기
-	public String findId(String regNo, String account);
+	public String verify(BizMemberVOExtend mvo);
 }
