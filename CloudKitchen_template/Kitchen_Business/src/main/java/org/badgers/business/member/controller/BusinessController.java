@@ -69,6 +69,7 @@ public class BusinessController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("I am here - 2");
 		
 		if(msg == "PW_BAD") {
 			msg = "비밀번호가 틀렸습니다.";
@@ -81,6 +82,8 @@ public class BusinessController {
 			msg = "성공적으로 로그인했습니다.";
 		}
 
+		System.out.println("I am here - 3");
+		System.out.println(msg);
 		return msg;
 	}
 	

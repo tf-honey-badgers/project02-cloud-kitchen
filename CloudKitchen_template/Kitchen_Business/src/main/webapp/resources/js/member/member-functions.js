@@ -43,6 +43,29 @@ $(document).ready(function() {
 				'<button type="button" id="getId" class="btn btn-submit">ID 찾기</button>');
 	});
 	
+	/* 로그인 절차 */
+	$('#myLogin button').on('click', function() {
+		$.ajax({
+    		url : 'http://localhost:12001/business/member/'
+    		, type : 'POST'
+			, contentType : 'application/json'
+			, dataType : 'text/plain;charset=UTF-8'
+    		, data : JSON.stringify({
+    				bizId : $('#myLogin input:eq(0)').val()
+    				, pw : $('#myLogin input:eq(1)').val()
+    			})
+    		, error : function(data) {
+    			console.log(data);
+    		}
+    		, success : function(data) {
+    			alert(data);
+    			md.showNotification('top', 'center', 'info', '로그인했습니다.');
+    			$('.modal').modal('hide');
+    			$('#myLogin input').val("");
+    		}
+		});
+	})
+	
 	/* ID 찾기 인증 절차 */
 	$('#findId').on('click', function(event) {
 		event.preventDefault();

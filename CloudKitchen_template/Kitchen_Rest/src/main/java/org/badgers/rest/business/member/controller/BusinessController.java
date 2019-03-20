@@ -52,8 +52,6 @@ public class BusinessController {
 	@PostMapping("/")
 	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend biz) throws Exception {
 		 ResponseEntity<String> entity = null;
-		 
-		 System.out.println(biz.getBizId());
 
 		 try {
 			 int returnVal = service.login(biz.getBizId(), biz.getPw());
@@ -70,7 +68,7 @@ public class BusinessController {
 			 entity = new ResponseEntity<String>("SERVER_ERROR", HttpStatus.SERVICE_UNAVAILABLE);
 			 log.info("에러 에러=========================== ");
 		 }
-		 
+
 		 return entity;	
 	}
 	
