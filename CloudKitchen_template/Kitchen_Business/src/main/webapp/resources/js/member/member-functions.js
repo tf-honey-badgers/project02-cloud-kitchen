@@ -1,5 +1,5 @@
 /* 사업자 관련 각종 JavaScript 함수 모음 (로그인, 개인정보 수정 등) */
-$(document).ready(function() {
+$(document).ready(function() {	
 	/* 사용자 정보 중 계좌정보 수정하기 */
 	$('#changeAccount').on('click', function() {
 		$.ajax({
@@ -49,7 +49,7 @@ $(document).ready(function() {
     		url : 'http://localhost:12001/business/member/'
     		, type : 'POST'
 			, contentType : 'application/json'
-			, dataType : 'text/plain;charset=UTF-8'
+			, dataType : 'text'
     		, data : JSON.stringify({
     				bizId : $('#myLogin input:eq(0)').val()
     				, pw : $('#myLogin input:eq(1)').val()
@@ -58,8 +58,11 @@ $(document).ready(function() {
     			console.log(data);
     		}
     		, success : function(data) {
-    			alert(data);
-    			md.showNotification('top', 'center', 'info', '로그인했습니다.');
+    			if(data == "성공적으로 로그인했습니다.") {
+    				md.showNotification('top', 'center', 'info', '로그인했습니다.');    				
+    			} else {
+    				md.showNotification('top', 'center', 'danger', data);    				
+    			}
     			$('.modal').modal('hide');
     			$('#myLogin input').val("");
     		}
@@ -82,7 +85,7 @@ $(document).ready(function() {
         			})
         		, error : function(data) {
         			$("#myId input").remove();
-	        		$("#myId h2").replaceWith("<h5>서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.</h5>");
+	        		$("#myId h2").replaceWith("<h5>에러가 발생했습니다. 조금 있다가 다시 시도해주세요.</h5>");
 	        		$('#myId h5:eq(1)').remove();
 	        		$('#myId #getId').remove();
         		}
@@ -123,7 +126,7 @@ $(document).ready(function() {
         			})
         		, error : function(data) {
         			$("#myId input").remove();
-	        		$("#myId h2").replaceWith("<h5>서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.</h5>");
+	        		$("#myId h2").replaceWith("<h5>에러가 발생했습니다. 조금 있다가 다시 시도해주세요.</h5>");
 	        		$('#myId h5:eq(1)').remove();
 	        		$('#myId #getId').remove();
         		}
@@ -183,14 +186,14 @@ $(document).ready(function() {
     				, pw : pwOrg
     			})
     		, error : function() {
-    			$("#myId h2").replaceWith("<h5>서버에 에러가 발생했습니다. <br> 조금 있다가 다시 시도해주세요.</h5>");
+    			$("#myId h2").replaceWith("<h5>에러가 발생했습니다. <br> 조금 있다가 다시 시도해주세요.</h5>");
     			$("#myId input").remove();
     			$('#myId label').remove();
         		$('#myId h5:eq(1)').remove();
         		$('#myId #getId').remove();
     		}
     		, success : function() {
-    			md.showNotification('top', 'center', 'info', '성공적으로 비밀번호를 수정했습니다.');
+    			md.showNotification('bottom', 'right', 'info', '성공적으로 비밀번호를 수정했습니다.');
     			$('.modal').modal('hide');
     			$('#myLogin input').val("");
     			$('#myId').text("");
