@@ -442,11 +442,8 @@
     <!-- Business Member 관련 각종 JavaScript 함수 모음 -->
     <script src="/business/resources/js/member/member-functions.js" type="text/javascript"></script>
     
-    
     <script type="text/javascript">
-    	$('#findPw').on('click', function() {
-    		
-    	});
+
     </script>
     
     <c:if test="${not empty message}">
