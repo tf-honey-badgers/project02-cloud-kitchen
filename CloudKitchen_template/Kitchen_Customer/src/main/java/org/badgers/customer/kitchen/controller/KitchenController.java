@@ -38,13 +38,14 @@ public class KitchenController {
 			e.printStackTrace();
 		}
 		
-		if(returnVal != null) { log.info("readBizMain DONE!!!!!"); }
+		if(returnVal != null) {
+			log.info("readBizMain DONE!!!!!");
+			mav.addObject("bizMember", returnVal.get(0));
+		}
 		else {
 			log.info("Failed to readBizMain. REST server may be offline.");
 			mav.addObject("message", "Failed to read biz main data. REST server may be offline.");
-		}
-		
-		mav.addObject("bizMember", returnVal[0]);
+		}		
 		mav.setViewName("detail_page");
 		
 		return mav;

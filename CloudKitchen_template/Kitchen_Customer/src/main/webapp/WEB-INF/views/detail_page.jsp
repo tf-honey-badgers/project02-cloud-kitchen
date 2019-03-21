@@ -965,7 +965,7 @@
 
     <c:if test="${not empty message}">
     	<script>
-    		$(document).ready(function() { md.showNotification('top', 'center', 'danger', '${message}'); });
+    		$(document).ready(function() { alert('${message}'); });
     	</script>
 	</c:if>
 </body>
