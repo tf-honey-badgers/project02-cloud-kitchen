@@ -31,24 +31,24 @@ public class BusinessServiceImpl implements BusinessService {
 		
 	// 로그인
 	@Override
-	public int login(String bizId, String pw) {
+	public String login(String bizId, String pw) {
 		System.out.println("로그인 ========================================");
 
-		int returnVal = 0;
+		String returnVal = "";
 		BizMemberVOExtend queryResult = null;
 		
 		try {
 			queryResult = mapper.login(bizId);
 			if(queryResult.getPw().equals(pw)) {
-				returnVal = 1; // 입력한 비번 == DB 비번
+				returnVal = queryResult.getBizId(); // 입력한 비번 == DB 비번
 			} else {
-				returnVal = -1; // 입력한 비번 != DB 비번
+				returnVal = "BAD_PW"; // 입력한 비번 != DB 비번
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			returnVal = -2; // DB에 입력한 ID 없음 에러
+			returnVal = "NO_ID"; // DB에 입력한 ID 없음 표시
 		}
-		
+
 		return returnVal;
 	}
 	
@@ -56,7 +56,6 @@ public class BusinessServiceImpl implements BusinessService {
 	public String verify(BizMemberVOExtend mvo) throws Exception {
 		String returnVal = "";
 		
-		System.out.println("THIS IS THE BIZID SO SUCK IT YOU! " + mvo.getBizId());
 		try {
 			returnVal = mapper.verify(mvo);
 		} catch (Exception e) {
