@@ -56,6 +56,7 @@ public class KitchenController {
 		return service.getCatKitchen(comName);
 	}
 	
+	//해당 가게의 메뉴정보를 싹다보여줌
 	@RequestMapping(value="/bizinfo/{bizId}", method=RequestMethod.GET, produces="application/json")
 	@Transactional
 	public ResponseEntity<List<BizVOExtend>> bizInfo(@PathVariable("bizId") String bizId) {
@@ -68,6 +69,7 @@ public class KitchenController {
 		return new ResponseEntity<List<BizVOExtend>>(bizInfoList, HttpStatus.OK);
 	}
 	
+	//해당 메뉴에 대한 옵션만 받아옴
 	@RequestMapping(value="/menuinfo/{mIdx}", method=RequestMethod.GET, produces="application/json")
 	@Transactional
 	public ResponseEntity<List<MenuVOExtend>> menuInfo(@PathVariable("mIdx") int mIdx) {
