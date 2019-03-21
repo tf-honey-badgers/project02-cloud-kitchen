@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class BizVOExtend {
-
 	private String bizId; // 사업자 아이디 
 	private String bizInfo; // 가게 소개 
 	private String bizName;  // 가게 상호명 

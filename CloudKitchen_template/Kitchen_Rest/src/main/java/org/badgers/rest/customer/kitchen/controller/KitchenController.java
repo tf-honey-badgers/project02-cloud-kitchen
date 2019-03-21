@@ -3,7 +3,6 @@ package org.badgers.rest.customer.kitchen.controller;
 import java.util.List;
 
 import org.badgers.rest.customer.kitchen.service.KitchenServiceImpl;
-import org.badgers.rest.model.BizVO;
 import org.badgers.rest.model.BizVOExtend;
 import org.badgers.rest.model.KitchenBranchVOExtend;
 import org.badgers.rest.model.KitchenSelectCatVOExtend;
