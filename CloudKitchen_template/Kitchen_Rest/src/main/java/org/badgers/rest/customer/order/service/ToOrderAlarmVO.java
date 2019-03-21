@@ -1,4 +1,4 @@
-package org.badgers.rest.common;
+package org.badgers.rest.customer.order.service;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -6,11 +6,13 @@ import java.util.Map;
 
 import org.badgers.rest.model.OrderAlarmVO;
 import org.badgers.rest.model.OrderInfoVO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ToOrderAlarmVO {
 
 	
-	public static Map<String, Map<String, OrderAlarmVO>> toOrderAlarmVO(LinkedList<OrderInfoVO> list) {
+	public Map<String, Map<String, OrderAlarmVO>> toOrderAlarmVO(LinkedList<OrderInfoVO> list) {
 		
 		Map<String, Map<String, OrderAlarmVO>> bizAndOrder = new HashMap<>();
 		Map<String, OrderAlarmVO> orderAndAlarm = new HashMap<>();

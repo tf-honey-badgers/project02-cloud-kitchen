@@ -26,4 +26,19 @@ public class OrderInfoVO {
 	private String msg;
 	private String requestMsg;
 
+	
+	
+		public OrderAlarmVO toOrderAlarmVO() {
+			StringBuffer optName = new StringBuffer();
+			optName.append(this.optName);
+			OrderAlarmMenuVO menu = new OrderAlarmMenuVO(this.menuName, optName, this.quantity);
+			return new OrderAlarmVO(this.id, this.address, this.time, this.statusCode, this.status, menu);
+		}
+		
+		public OrderAlarmMenuVO toOrderAlarmMenuVO() {
+			StringBuffer optName = new StringBuffer();
+			optName.append(this.optName);
+			return new OrderAlarmMenuVO(this.menuName, optName, this.quantity);
+		}
+		
 }

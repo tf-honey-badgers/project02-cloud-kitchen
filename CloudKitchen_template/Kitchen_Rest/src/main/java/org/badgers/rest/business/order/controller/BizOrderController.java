@@ -2,7 +2,6 @@ package org.badgers.rest.business.order.controller;
 
 import org.badgers.rest.business.order.service.BizFireBaseService;
 import org.badgers.rest.business.order.service.BizOrderService;
-import org.badgers.rest.common.CreateFireBasePath;
 import org.badgers.rest.firebase.JacksonUtilityException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +32,6 @@ public class BizOrderController {
 		
 		
 		bizOrderService.updateOrderStatus(status, bizId, orderId);
-		fireBaseService.patchOrderStatus(CreateFireBasePath.getStatusPath(bizId, orderId), "{\"status\":\""+status+"\"}");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

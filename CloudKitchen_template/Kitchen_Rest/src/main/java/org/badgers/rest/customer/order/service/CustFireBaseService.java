@@ -16,34 +16,6 @@ public class CustFireBaseService {
 
 	String firebase_baseUrl = "https://honeybadgers-d29cf.firebaseio.com/";
 
-	public FirebaseResponse testPutOrder(StringBuffer key, Map data)
-			throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
-		String firebase_baseUrl = this.firebase_baseUrl + key;
-		Firebase firebase = new Firebase(firebase_baseUrl);
-		FirebaseResponse response = firebase.put(data);
-
-		return response;
-	}
-	
-	public FirebaseResponse testPutOrder(Map data)
-			throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
-		String firebase_baseUrl = this.firebase_baseUrl;
-		Firebase firebase = new Firebase(firebase_baseUrl);
-		FirebaseResponse response = firebase.put(data);
-
-		return response;
-	}
-	
-	public FirebaseResponse testPutOrder(String key, Map data)
-			throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
-		String firebase_baseUrl = this.firebase_baseUrl+"/"+key;
-		Firebase firebase = new Firebase(firebase_baseUrl);
-		FirebaseResponse response = firebase.put(data);
-
-		return response;
-	}
-	
-
 	public FirebaseResponse putOrder(StringBuffer key, String jsonData)
 			throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
 		String firebase_baseUrl = this.firebase_baseUrl + key;
@@ -53,7 +25,7 @@ public class CustFireBaseService {
 		return response;
 	}
 	
-	public FirebaseResponse patchOrderStatus(String key, Map data) throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
+	public FirebaseResponse insertOrder(String key, Map data) throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
 		String firebase_baseUrl = this.firebase_baseUrl+"/"+key;
 		Firebase firebase = new Firebase( firebase_baseUrl );
 		FirebaseResponse response = firebase.patch(data);
