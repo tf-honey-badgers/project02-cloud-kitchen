@@ -33,6 +33,6 @@ public interface CustomerMapper {
 	public List<OrderInfoVO> getOrderInfo(String custId);
 	
 	// 찜 내역 보기 
-	public List<FavoriteVO> favorite(String custId);
+	public List<FavoriteVO> favorite (String custId);
 
 }

@@ -138,10 +138,10 @@ public class CustomerController {
 	//찜  내역  보기 
 	@GetMapping(value = "/{cust_id}/mypage/favorite", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<List<FavoriteVO>>  favorite(@PathVariable("cust_id")String custId) {
-			List<FavoriteVO> list = service.favorite(custId);
+			List<FavoriteVO> favorite = service.favorite(custId);
 				
 
-			return new ResponseEntity<List<FavoriteVO>>(list, HttpStatus.OK);
+			return new ResponseEntity<List<FavoriteVO>>(favorite, HttpStatus.OK);
 		}
 	
 	

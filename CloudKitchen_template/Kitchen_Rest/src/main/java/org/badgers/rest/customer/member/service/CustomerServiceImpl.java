@@ -104,8 +104,8 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public List<FavoriteVO> favorite(String custId) {
 		System.out.println("찜 정보  나와라=============");
-		List<FavoriteVO> list = mapper.favorite(custId);
+		List<FavoriteVO> favorite = mapper.favorite(custId);
 
-		return list;
+		return favorite;
 	}
 }
