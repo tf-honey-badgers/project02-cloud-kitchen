@@ -6,6 +6,7 @@ import org.badgers.rest.customer.kitchen.persistence.KitchenMapper;
 import org.badgers.rest.model.BizVOExtend;
 import org.badgers.rest.model.KitchenBranchVOExtend;
 import org.badgers.rest.model.KitchenSelectCatVOExtend;
+import org.badgers.rest.model.MenuVOExtend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +44,10 @@ public class KitchenServiceImpl implements KitchenService {
 	@Override
 	public List<KitchenSelectCatVOExtend> getCatKitchen(String comName) {
 		return mapper.getCatKitchen(comName);
+	}
+
+	@Override
+	public List<MenuVOExtend> getMenu(int mIdx) {
+		return mapper.getMenu(mIdx);
 	}
 }

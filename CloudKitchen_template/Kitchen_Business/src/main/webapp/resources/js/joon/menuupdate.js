@@ -1,8 +1,76 @@
-$(document).ready(function() {
-	
-		
+$(document)
+		.ready(
+				function() {
+					
+			 		$('table tbody tr td .menu-option-select').on('click', function(e) {
+						e.preventDefault();
+						$('.menuModalOpt table').empty();
+						$('.menuModal').css('display', 'block');
+						
+						let menuNo = $(this).parent().parent().children().eq(0).text();
+						let menuPhoto = $(this).parent().parent().children().eq(1).text();
+						let menuName = $(this).parent().parent().children().eq(2).text();
+						let menuPrice = $(this).parent().parent().children().eq(3).text();
 
-					$('.navbar-brand').text("메뉴 수정하기");
+						$.ajax({
+			        		type : "GET",
+			        		url : "../../menu/main/update/"+$(this).parent().parent().children().eq(0).text()+".json",
+//			         		data : {
+//			         			mIdx : 
+//			        		},
+			        		error : function(data){
+			        			console.log(data);
+			        		},
+			        		success(data){
+			        			console.log(data);
+		        				$('.menuOpt').append('<tr class="menuSelect">'
+		        						+'<th class="menuNo">'+$('.text-primary tr th').eq(0).text()+'</th>'
+		        						+'<th>'+$('.text-primary tr th').eq(1).text()+'</th>'
+		        						+'<th>'+$('.text-primary tr th').eq(2).text()+'</th>'
+		        						+'<th class="menuCat">'+$('.text-primary tr th').eq(3).text()+'</th>'
+		        						+'</tr>');
+		        				
+		        				$('.menuOpt').append('<tr class="menuVal">'
+		        						+'<td class="menuNo">'+menuNo+'</td>'
+		        						+'<td>'+menuPhoto+'</td>'
+		        						+'<td>'+menuName+'</td>'
+		        						+'<td class="menuCat">'+menuPrice+'</td>'
+		        						+'</tr><tr></tr>');
+
+			        			for(let i of data[0].menuOptCl){
+			        				$('.menuOpt').append('<tr class="menuOptSelect">'
+			        						+'<th class="optNo">옵션번호 : '+i.mocNo+'</th>'
+			        						+'<th>'+i.mocName+'</th>'
+			        						+'<th>옵션분류번호 : '+i.mocMenuOptType+'</th>'
+			        						+'<th class="optNoCl">참조메뉴번호 : '+i.mocMenuCode+'</th>'
+			        						+'</tr>');
+			        				
+			        				for(let j of i.menuOptEx){
+			        					if(i.mocMenuOptType == 'OPT001' || i.mocMenuOptType == 'OPT003'){
+			        						$('.menuOpt').append('<tr class="menuOptVal">'
+			        								+'<td class="optNo">'+j.moCode+'</td>'
+			        								+'<td><input type="text" value="'+j.moName+'"></td>'
+			        								+'<td><input type="text" value="'+j.moAddPrice+'"></td>'
+			        								+'<td class="optNoCl">'+j.moOptClNo+'</td>'
+			        								+'</tr><tr></tr>');
+			        					
+			        					} else if(i.mocMenuOptType == 'OPT002' || i.mocMenuOptType == 'OPT004'){
+			        						$('.menuOpt').append('<tr class="menuOptVal">'
+			        								+'<td class="optNo">'+j.moCode+'</td>'
+			        								+'<td><input type="text" value="'+j.moName+'"></td>'
+			        								+'<td><input type="text" value="'+j.moAddPrice+'"></td>'
+			        								+'<td class="optNoCl">'+j.moOptClNo+'</td>'
+			        								+'</tr><tr></tr>');
+			        					}
+			        				}
+			        			} // 옵션분류 for
+			        		} // success
+			        	});	// post ajax끝
+					}); 
+				
+					$('.menuModalClose').on('click', function() {
+						$('.menuModal').css('display', 'none');
+						});
 
 					$()
 							.ready(

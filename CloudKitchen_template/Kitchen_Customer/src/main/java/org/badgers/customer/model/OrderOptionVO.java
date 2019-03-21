@@ -4,9 +4,8 @@ import lombok.Data;
 
 @Data
 public class OrderOptionVO {
-	private String id;
-	private String name;
+	private String optId;
+	private String optName;
 	private int optPrice;
-	private String optCode;
-	private String detailNo;
+	private String orderDetailId;
 }

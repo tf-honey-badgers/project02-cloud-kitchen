@@ -21,7 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerVO returnVal = null;
 
 		try {
-			String url = "http://localhost:12007/customer/" + id + "/mypage";
+			String url = "http://localhost:3000/customer/" + id + "/mypage";
 
 			ResponseEntity<CustomerVO> responseEntity = 
 					restTemplate.getForEntity(url, org.badgers.customer.model.CustomerVO.class);

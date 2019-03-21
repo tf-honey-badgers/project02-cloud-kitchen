@@ -80,7 +80,7 @@
                                                 </div>
                                             </div>
                                         </div>
-							            <button type="button" id="changePw" class="btn btn-primary pull-left">사업자 비밀번호 수정</button>
+							            <button type="button" class="changePw btn btn-primary pull-left">사업자 비밀번호 수정</button>
                                         <button type="button" id="changeAccount" class="btn btn-primary pull-right">사업자 계좌번호 수정</button>
                                         <div class="clearfix"></div>
                                     </form>
@@ -153,13 +153,15 @@
                 </div>
             </div>
 			<!-- End Main Content -->
-            <!-- Modal -->
+            <!-- Login Modal -->
             <jsp:include page="include/loginModal.jsp" flush="false"></jsp:include>
-            <!-- End Modal -->
+            <!-- End Login Modal -->
+			<!-- Find ID / Find PW Modal -->
+            <jsp:include page="include/finderModal.jsp" flush="false"></jsp:include>
+            <!-- End Find ID / Find PW Modal -->
             <!-- Footer -->
             <jsp:include page="include/footer.jsp" flush="false"></jsp:include>
             <!-- End Footer -->
-            
         </div>
     </div>
     <div class="fixed-plugin">
@@ -437,38 +439,15 @@
             });
         });
     </script>
+    <!-- Business Member 관련 각종 JavaScript 함수 모음 -->
+    <script src="/business/resources/js/member/member-functions.js" type="text/javascript"></script>
+    
     <script type="text/javascript">
-    	$('#changeAccount').on('click', function() {
-    		$.ajax({
-        		url : '/business/member/' + $('#bizId').val() + '/modify'
-        		, type : 'POST'
-				, contentType : 'application/json'
-        		, data : JSON.stringify({bizId : $('#bizId').val(), account : $('#account').val()})
-        		, error : function() { alert("사업자 계좌번호를 수정하는데 에러가 발생했습니다."); }
-        		, success : function() { alert("성공적으로 사업자 계좌번호를 수정했습니다."); }
-    		});
-    	});
-    	
-    	$('#changeBiz').on('click', function() {
-    		$.ajax({
-        		url : '/business/member/' + $('#bizId').val() + '/modify'
-        		, type : 'POST'
-				, contentType : 'application/json'
-        		, data : JSON.stringify({
-        				bizId : $('#bizId').val()
-        				, minAmt : $('#minAmt').val()
-        				, bizLiveStrm : $('#bizLiveStrm').val()
-        				, info : $('#bizInfo').val()
-        			})
-        		, error : function() { alert("가게 정보를 수정하는데 에러가 발생했습니다."); }
-        		, success : function() { alert("성공적으로 가게 정보를 수정했습니다."); }
-    		});
-    	});
-    	
-    	$('.modal-popup .close-link').click(function(event){
-    		event.preventDefault();
-    		$('.modal').modal('hide');
-    	});
+	    $(document).ready(function() {
+	    	/* 사이드바 하이라이트된 바꾸기 */
+	    	$('.nav-item').removeClass('active');
+	    	$('.nav-item.sidebar-mypage').addClass('active');
+	    });
     </script>
     
     <c:if test="${not empty message}">
