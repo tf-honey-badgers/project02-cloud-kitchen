@@ -47,12 +47,23 @@ public class CustOrderController {
 		
 		
 		// 3. firebase insert
-		Map<String, OrderAlarmVO> map = null;
+		Map<String, Map<String,OrderAlarmVO>> map = null;
 		map = ToOrderAlarmVO.toOrderAlarmVO(list);
-		firebaseService.testPutOrder(map);
+//		firebaseService.testPutOrder(map);
+		firebaseService.patchOrderStatus(key, map);
 		StringBuffer orderPath = null;
 		StringBuffer statusPath = null;
-
+		orderPath=new StringBuffer();
+		Iterator it = map.keySet().iterator();
+		while(it.hasNext()) {
+			String bizId = (String)it.next();
+			Map map2=map.get(bizId);
+			Iterator it2 = map2.keySet().iterator();
+			orderPath.append(bizId+"/");
+			firebaseService.testPutOrder(orderPath,map.get(bizId));
+			orderPath.delete(0, orderPath.length());
+		}
+		
 //		while(map.) {
 //			orderPath = CreateFireBasePath.getOrderPath(key, listElement);
 //			//가게별 주문 정보 insert
