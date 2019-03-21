@@ -960,6 +960,10 @@
 	
 	$(document).ready(function() {
     	console.log('${bizMember}');
+    	console.log('${bizMember.bizId}');
+    	console.log('${bizMember.bizInfo}');
+    	console.log('${bizMember.bizMenuCatVo[0].mcNo}');
+
 	});
 </script>
 
