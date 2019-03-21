@@ -2,6 +2,53 @@ $(document)
 		.ready(
 				function() {
 					
+					$('#updateMenuBtn').on('click',function(e){
+						
+						let menuOptSel = $('.menuOptSelect');
+						let menuOptAll = $('.optAll');
+						
+						// 카테고리용
+						let menuOptCl = new Array();
+						let menuOptClsub = new Object();
+						
+						// 카테고리 안의 옵션용
+						let menuOpt = new Array();
+						let menuOptsub = new Object();
+						
+						for(let i=0;i<$('.menuOptSelect').length;i++){
+							menuOptClsub.mocNo = menuOptSel[i].childNodes[0].innerHTML;
+							menuOptClsub.mocName = menuOptSel[i].childNodes[1].innerHTML;
+							menuOptClsub.mocMenuOptType = menuOptSel[i].childNodes[2].innerHTML;
+							menuOptClsub.mocMenuCode = menuOptSel[i].childNodes[3].innerHTML;
+							
+							for(let j=0;j<menuOptAll.length;j++){
+								if(menuOptSel[i].childNodes[0].innerHTML == menuOptAll[j].children[3].innerHTML){
+//									console.log(menuOptSel[i].childNodes[0].innerHTML+","+menuOptAll[j].children[3].innerHTML);
+									
+									menuOptsub.moCode = menuOptAll[j].children[0].innerHTML;
+									menuOptsub.moName = menuOptAll[j].children[1].children[0].value;
+									menuOptsub.moAddPrice = menuOptAll[j].children[2].children[0].value;
+									menuOptsub.moOptClNo = menuOptAll[j].children[3].innerHTML;
+									menuOpt.push(menuOptsub);
+									console.log(menuOptsub);
+								}// menuOptAll if end
+							} // menuOptAll end
+							console.log("---------------------------------------------");
+							
+						} // menuOptSelect end
+						menuOptCl.push(menuOpt);
+						
+						
+						let menu = new Object();
+						menu.mcode = $('.menuVal').children().eq(0).text();
+						menu.mphoto = $('.menuVal').children().eq(1).text();
+						menu.mname = $('.menuVal').children().eq(2).children().val();
+						menu.mbasicPrice = $('.menuVal').children().eq(3).children().val();
+						menu.menuOptCl = menuOptCl;
+						
+//						console.log(menu);
+					}); // click end
+					
 			 		$('table tbody tr td .menu-option-select').on('click', function(e) {
 						e.preventDefault();
 						$('.menuModalOpt table').empty();
@@ -11,7 +58,7 @@ $(document)
 						let menuPhoto = $(this).parent().parent().children().eq(1).text();
 						let menuName = $(this).parent().parent().children().eq(2).text();
 						let menuPrice = $(this).parent().parent().children().eq(3).text();
-
+						
 						$.ajax({
 			        		type : "GET",
 			        		url : "../../menu/main/update/"+$(this).parent().parent().children().eq(0).text()+".json",
@@ -33,34 +80,50 @@ $(document)
 		        				$('.menuOpt').append('<tr class="menuVal">'
 		        						+'<td class="menuNo">'+menuNo+'</td>'
 		        						+'<td>'+menuPhoto+'</td>'
-		        						+'<td>'+menuName+'</td>'
-		        						+'<td class="menuCat">'+menuPrice+'</td>'
-		        						+'</tr><tr></tr>');
+		        						+'<td><input type="text" value="'+menuName+'"></td>'
+		        						+'<td><input type="text" value="'+menuPrice+'"></td>'
+		        						+'</tr>');
 
 			        			for(let i of data[0].menuOptCl){
 			        				$('.menuOpt').append('<tr class="menuOptSelect">'
-			        						+'<th class="optNo">옵션번호 : '+i.mocNo+'</th>'
+			        						+'<th class="">'+i.mocNo+'</th>'
 			        						+'<th>'+i.mocName+'</th>'
-			        						+'<th>옵션분류번호 : '+i.mocMenuOptType+'</th>'
-			        						+'<th class="optNoCl">참조메뉴번호 : '+i.mocMenuCode+'</th>'
+			        						+'<th>'+i.mocMenuOptType+'</th>'
+			        						+'<th class="optNoCl">'+i.mocMenuCode+'</th>'
 			        						+'</tr>');
 			        				
 			        				for(let j of i.menuOptEx){
-			        					if(i.mocMenuOptType == 'OPT001' || i.mocMenuOptType == 'OPT003'){
-			        						$('.menuOpt').append('<tr class="menuOptVal">'
-			        								+'<td class="optNo">'+j.moCode+'</td>'
-			        								+'<td><input type="text" value="'+j.moName+'"></td>'
-			        								+'<td><input type="text" value="'+j.moAddPrice+'"></td>'
-			        								+'<td class="optNoCl">'+j.moOptClNo+'</td>'
-			        								+'</tr><tr></tr>');
+			        					if(i.mocMenuOptType == 'OPT001'){
+			        						$('.menuOpt').append('<tr class="menuOptVal1 optAll">'
+			        								+'<td class="optNo1">'+j.moCode+'</td>'
+			        								+'<td class="optNo1"><input type="text" value="'+j.moName+'"></td>'
+			        								+'<td class="optNo1"><input type="text" value="'+j.moAddPrice+'"></td>'
+			        								+'<td class="optNo1" id="optNoCl">'+j.moOptClNo+'</td>'
+			        								+'</tr>');
+			        						
+			        					} else if(i.mocMenuOptType == 'OPT002'){
+			        						$('.menuOpt').append('<tr class="menuOptVal2 optAll">'
+			        								+'<td class="optNo2">'+j.moCode+'</td>'
+			        								+'<td class="optNo2"><input type="text" value="'+j.moName+'"></td>'
+			        								+'<td class="optNo2"><input type="text" value="'+j.moAddPrice+'"></td>'
+			        								+'<td class="optNo2" id="optNoCl">'+j.moOptClNo+'</td>'
+			        								+'</tr>');
 			        					
-			        					} else if(i.mocMenuOptType == 'OPT002' || i.mocMenuOptType == 'OPT004'){
-			        						$('.menuOpt').append('<tr class="menuOptVal">'
-			        								+'<td class="optNo">'+j.moCode+'</td>'
-			        								+'<td><input type="text" value="'+j.moName+'"></td>'
-			        								+'<td><input type="text" value="'+j.moAddPrice+'"></td>'
-			        								+'<td class="optNoCl">'+j.moOptClNo+'</td>'
-			        								+'</tr><tr></tr>');
+			        					} else if(i.mocMenuOptType == 'OPT003'){
+			        						$('.menuOpt').append('<tr class="menuOptVal3 optAll">'
+			        								+'<td class="optNo3">'+j.moCode+'</td>'
+			        								+'<td class="optNo3"><input type="text" value="'+j.moName+'"></td>'
+			        								+'<td class="optNo3"><input type="text" value="'+j.moAddPrice+'"></td>'
+			        								+'<td class="optNo3">'+j.moOptClNo+'</td>'
+			        								+'</tr>');
+			        						
+			        					} else if(i.mocMenuOptType == 'OPT004'){
+			        						$('.menuOpt').append('<tr class="menuOptVal4 optAll">'
+			        								+'<td class="optNo4">'+j.moCode+'</td>'
+			        								+'<td class="optNo4"><input type="text" value="'+j.moName+'"></td>'
+			        								+'<td class="optNo4"><input type="text" value="'+j.moAddPrice+'"></td>'
+			        								+'<td class="optNo4">'+j.moOptClNo+'</td>'
+			        								+'</tr>');
 			        					}
 			        				}
 			        			} // 옵션분류 for
