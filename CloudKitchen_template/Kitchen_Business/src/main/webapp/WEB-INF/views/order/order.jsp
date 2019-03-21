@@ -36,9 +36,7 @@
             <div class="card">
                 <div class="card-header card-header-primary">
                     <h3 class="card-title">Notifications</h3>
-                    <p class="card-category">Handcrafted by our friend
-                        <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the
-                        <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a>
+                    <p class="card-category">주문 실시간 알림
                     </p>
                 </div>
                 <div class="card-body">
@@ -46,14 +44,7 @@
                         <div class="col-md-6">
                             <h4 class="card-title">Notifications Style</h4>
                       
-                            
-                            <div class="alert alert-success alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">hhh</span>
-                            </div>
+                         
                                  <div class="alert alert-success alert-with-icon" data-notify="container">
                                 <i class="material-icons" data-notify="icon">add_alert</i>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -278,7 +269,7 @@
 
         	  }, {
         	    type: type[color],
-        	    timer: 3000,
+        	    timer: 200000,
         	    placement: {
         	      from: from,
         	      align: align
@@ -300,9 +291,49 @@
 		  firebase.initializeApp(config);
 		  
 		  // biz_1이라는 사업자에 들어온 order 정보 중  time으로 orderby 하여 가장 최근에 들어온 주문 1개만 받을 수 있도록 제한함  
-		  var dbRef = firebase.database().ref('biz_2').orderByChild('time').limitToLast(1);
+		  var dbRef = firebase.database().ref('biz_1').orderByChild('time');
+/* 		  var dbRef = firebase.database().ref('biz_2').orderByChild('time').limitToLast(1); */
+		  
 		  var orderId;
-		  var obj = dbRef.on('value', function(snapshot){
+		  var orderInfo;
+		  
+		  
+		  dbRef.on('value', function(snapshot){
+		  var obj = snapshot.val()
+		  console.log(obj)
+		 
+		  var n=1;
+		  for(var i in obj){
+					orderId = Object.keys(obj)[n];
+					orderInfo = obj[Object.keys(obj)[n++]];
+					console.log('orderId        : ',orderId)
+					console.log('orderInfo      : ', orderInfo)
+					notifyOrder('bottom','right',orderId)
+					
+				$('body').on('click','#'+orderId+' .confirm',function(e){
+		
+				 
+				 alert(orderId+'먹히나')
+				})
+				
+				$('body').on('click', '#'+orderId+' span.alertTitle', function (e) {
+					console.log(e)
+					 
+					$('#'+orderId+' .msg').toggle();
+          
+    			  })
+				  
+				  
+			}
+			  
+			  
+		 })
+		  
+		  
+		  
+		  
+		  
+/* 		  var obj = dbRef.on('value', function(snapshot){
 				console.log('새로들어온 주문 있음')		
 				var obj=snapshot.val()
 				var orderId = Object.keys(obj)[0];
@@ -313,7 +344,24 @@
 				
 				//알람 팝업이후 알림창에 넣어 주기 
 				
-  		});
+				
+			 $('body').on('click','#'+orderId+' .confirm',function(){
+				 
+				 alert('gkgkgkgk')
+			 })
+				
+  		}); */
+		  /* 
+                            <div class="alert alert-success alert-with-icon" data-notify="container">
+                                <i class="material-icons" data-notify="icon">add_alert</i>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <i class="material-icons">close</i>
+                                </button>
+                                <span data-notify="message">hhh</span>
+                            </div>
+		  
+		  */
+		  
 		  
     </script>
 </body>

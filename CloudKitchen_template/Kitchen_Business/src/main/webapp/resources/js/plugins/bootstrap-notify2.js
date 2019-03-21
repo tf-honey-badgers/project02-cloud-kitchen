@@ -64,13 +64,13 @@
     onClose: null,
     onClosed: null,
     icon_type: 'class',
-    template: '<div data-notify="container" class="col-6 col-md-3 alert alert-{0} alterOrd" role="alert">'
+    template: '<div id="{4}" data-notify="container" class="col-6 col-md-3 alert alert-{0} alterOrd" role="alert">'
       +'<button type="button" aria-hidden="true" class="close" ><i class="material-icons" data-notify="dismiss">close</i></button>'
       +'<i data-notify="icon" class="material-icons"></i><span class="alertTitle" data-notify="title"><a href="#">새로운 주문이 들어왔습니다</a></span><div>{3},{4},{5}</div> '
       +'<span class="msg" data-notify="message" style="display:none">{2}</span>'
       +'<div class="progress" data-notify="progressbar">'
       +'<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div>'
-      +'<span class=" float-right"><a class=" btn btn-primary btn-sm">주문접수</a><a class="btn btn-primary btn-sm">주문거절</a></span>'
+      +'<span class=" float-right"><a class=" btn btn-primary btn-sm confirm">주문접수</a><a class="btn btn-primary btn-sm reject">주문거절</a></span>'
       /*+'<a href="{3}" target="{4}" data-notify="url">눌러봐</a></div>'*/
   };
 
@@ -109,10 +109,7 @@
 
   function Notify(element, content, options) {
     // Setup Content of Notify
-      console.log('options  :',options)
       
-      console.log('content  :', content)
-       /*console.log('element',    element)*/
     var contentObj = {
       content: {
         message: typeof content === 'object' ? content.message : content,
@@ -153,7 +150,6 @@
   $.extend(Notify.prototype, {
     init: function() {
       var self = this;
-        console.log(this)
       this.buildNotify();
       if (this.settings.content.icon) {
         this.setIcon();
@@ -165,7 +161,6 @@
       this.placement();
       this.bind();
         
-        console.log(this.$ele)
       this.notify = {
         $ele: this.$ele,
           
@@ -176,9 +171,7 @@
           } else {
             commands = command;
           }
-            console.log(commands)
           for (var cmd in commands) {
-              console.log(cmd)
             switch (cmd) {
               case "type":
                 this.$ele.removeClass('alert-' + self.settings.type);
