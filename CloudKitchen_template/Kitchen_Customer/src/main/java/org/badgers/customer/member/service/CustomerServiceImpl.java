@@ -21,7 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerVO returnVal = null;
 
 		try {
-			String url = "http://localhost:12007/customer/" + id + "/mypage";
+			String url = "http://localhost:3000/customer/" + id + "/mypage";
 
 			ResponseEntity<CustomerVO> responseEntity = 
 					restTemplate.getForEntity(url, org.badgers.customer.model.CustomerVO.class);
@@ -53,6 +53,21 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 
 		return res;
+	}
+
+	//개인정보 수정  비번 , 이름 , 이메일 바꿀수 있음 
+	public void updateCustomer(CustomerVO cvo) throws Exception {
+		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		try {
+			String url = "http://localhost:12007/customer/" + cvo.getId() + "/mypage/modify";
+			
+			restTemplate.put(url, cvo);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

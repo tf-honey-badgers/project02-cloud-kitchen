@@ -7,11 +7,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+ 		<property name="requestFactory" ref="restTemplateBuilder"></property>
+	</bean>
+   
 	<context:component-scan base-package="org.badgers.business.*">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
-		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-	</context:component-scan>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
 </beans>

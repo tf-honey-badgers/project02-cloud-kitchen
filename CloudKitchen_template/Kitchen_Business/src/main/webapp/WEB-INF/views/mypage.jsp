@@ -80,7 +80,7 @@
                                                 </div>
                                             </div>
                                         </div>
-							            <button type="button" id="changePw" class="btn btn-primary pull-left">사업자 비밀번호 수정</button>
+							            <button type="button" class="changePw btn btn-primary pull-left">사업자 비밀번호 수정</button>
                                         <button type="button" id="changeAccount" class="btn btn-primary pull-right">사업자 계좌번호 수정</button>
                                         <div class="clearfix"></div>
                                     </form>
@@ -439,61 +439,16 @@
             });
         });
     </script>
-	    <script type="text/javascript">
-	    	$('#changeAccount').on('click', function() {
-	    		$.ajax({
-	        		url : '/business/member/' + $('#bizId').val() + '/modify'
-	        		, type : 'POST'
-					, contentType : 'application/json'
-	        		, data : JSON.stringify({bizId : $('#bizId').val(), account : $('#account').val()})
-	        		, error : function() { alert("사업자 계좌번호를 수정하는데 에러가 발생했습니다."); }
-	        		, success : function() { alert("성공적으로 사업자 계좌번호를 수정했습니다."); }
-	    		});
-	    	});
-	    	
-	    	$('#changeBiz').on('click', function() {
-	    		$.ajax({
-	        		url : '/business/member/' + $('#bizId').val() + '/modify'
-	        		, type : 'POST'
-					, contentType : 'application/json'
-	        		, data : JSON.stringify({
-	        				bizId : $('#bizId').val()
-	        				, minAmt : $('#minAmt').val()
-	        				, bizLiveStrm : $('#bizLiveStrm').val()
-	        				, info : $('#bizInfo').val()
-	        			})
-	        		, error : function() { alert("가게 정보를 수정하는데 에러가 발생했습니다."); }
-	        		, success : function() { alert("성공적으로 가게 정보를 수정했습니다."); }
-	    		});
-	    	});
-	    	
-	    	$('body').on('click', '.modal-popup .close-link', function(event){
-	    		event.preventDefault();
-	    		$('.modal').modal('hide');
-	    	});
-	    	
-	    	$('#findId').on('click', function(event) {
-	    		event.preventDefault();
-	    		$('.modal').modal('hide');
-	    		$('#finder_ID').modal('show');
-		    	$('#getId').on('click', function() {
-		    		$.ajax({
-		        		url : '/business/member/findId'
-		        		, type : 'POST'
-						, contentType : 'application/json'
-		        		, data : JSON.stringify({
-		        				regNo : $('#myId input:eq(0)').val()
-		        				, account : $('#myId input:eq(1)').val()
-		        			})
-		        		, error : function() { alert("사업자 ID를 찾는데 에러가 발생했습니다."); }
-		        		, success : function() { alert("성공적으로 사업자 ID를 찾았습니다. ID는 ${foundId}입니다."); }
-		    		});
-		    	})
-	    	});
-	    	$('#findPw').on('click', function() {
-	    		
-	    	});
-	    </script>
+    <!-- Business Member 관련 각종 JavaScript 함수 모음 -->
+    <script src="/business/resources/js/member/member-functions.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+	    $(document).ready(function() {
+	    	/* 사이드바 하이라이트된 바꾸기 */
+	    	$('.nav-item').removeClass('active');
+	    	$('.nav-item.sidebar-mypage').addClass('active');
+	    });
+    </script>
     
     <c:if test="${not empty message}">
     	<script>
