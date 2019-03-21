@@ -1,21 +1,18 @@
 package org.badgers.rest.customer.order.persistence;
 
-import java.util.List;
+import java.util.LinkedList;
 
-import org.apache.ibatis.annotations.Param;
-import org.badgers.rest.model.OrderDetailVO;
 import org.badgers.rest.model.OrderDetailVOExtend;
 import org.badgers.rest.model.OrderInfoVO;
 import org.badgers.rest.model.OrderOptionVO;
 import org.badgers.rest.model.OrderPaymentVO;
-import org.badgers.rest.model.OrderVO;
 import org.badgers.rest.model.OrderVOExtend;
 
 public interface CustOrderMapper {
 	
 	
 	//insert 된 order 튜플을  select 해서 customer Controller로 보내줌
-	public List<OrderInfoVO> getOrderInfo(String orderId);
+	public LinkedList<OrderInfoVO> getOrderInfo(String orderId);
 	
 	//===========================================================
 	//order 기본 정보 입력
