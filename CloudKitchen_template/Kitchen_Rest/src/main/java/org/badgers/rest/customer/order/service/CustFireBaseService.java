@@ -36,9 +36,9 @@ public class CustFireBaseService {
 	
 	public FirebaseResponse testPutOrder(String key, Map data)
 			throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
-		String firebase_baseUrl = this.firebase_baseUrl;
+		String firebase_baseUrl = this.firebase_baseUrl+"/"+key;
 		Firebase firebase = new Firebase(firebase_baseUrl);
-		FirebaseResponse response = firebase.put(key, data);
+		FirebaseResponse response = firebase.put(data);
 
 		return response;
 	}
@@ -54,9 +54,9 @@ public class CustFireBaseService {
 	}
 	
 	public FirebaseResponse patchOrderStatus(String key, Map data) throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
-		String firebase_baseUrl = this.firebase_baseUrl;
+		String firebase_baseUrl = this.firebase_baseUrl+"/"+key;
 		Firebase firebase = new Firebase( firebase_baseUrl );
-		FirebaseResponse response = firebase.patch(firebase_baseUrl,data);
+		FirebaseResponse response = firebase.patch(data);
 		
 		return response;
 	}
