@@ -28,12 +28,11 @@ public class MenuController {
 	
 	@RequestMapping(value="/main/{bizId}", method=RequestMethod.GET)	
 	public ModelAndView bizGetMenu(ModelAndView mav, @PathVariable("bizId") String bizId) {
-		
+		System.out.println(bizId);
 		try {
-			String url = "http://localhost:80";
+			String url = "http://localhost:80/";
 			ResponseEntity<List> menuResponseEntity = restTemplate.getForEntity
 					(url+"rest/kitchenbranch/bizinfo/"+bizId, List.class);
-			
 			List<?> menuVoEx = menuResponseEntity.getBody();
 			mav.addObject("bizMenu", menuVoEx);
 			mav.setViewName("menuupdate");
@@ -71,7 +70,7 @@ public class MenuController {
 		try {
 			String url = "http://localhost:80";
 			ResponseEntity<?> menuResponseEntity = restTemplate.getForEntity
-					(url+"rest/kitchenbranch/menuinfo/"+updateMenuInfo, List.class);
+					(url+"rest/kitchenbranch/menuupdate/"+updateMenuInfo, List.class);
 			
 			int menuOptVoEx = (int) menuResponseEntity.getBody();
 			return menuOptVoEx;
