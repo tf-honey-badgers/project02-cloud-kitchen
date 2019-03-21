@@ -15,6 +15,28 @@
 
  */
 
+/* ==============================================
+	Preload
+=============================================== */
+$(document).ready(function() { // makes sure the whole site is loaded
+	$('#status').fadeOut(); // will first fade out the loading animation
+	$('#preloader').delay(250).fadeOut('slow'); // will fade out the white DIV that covers the website.
+	$('body').delay(250).css({'overflow':'visible'});
+	$('#sub_content').addClass('animated zoomIn');
+	$(window).scroll();
+	$('.number').each(function () {
+		$(this).prop('Counter',0).animate({
+			Counter: $(this).text()
+		}, {
+			duration: 2000,
+			easing: 'swing',
+			step: function (now) {
+				$(this).text(Math.ceil(now));
+			}
+		});
+	});
+});
+
 (function() {
   isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
@@ -163,10 +185,11 @@ md = {
       $sidebar.append(sidebar_container);
     }
   },
-      showNotification: function(from, align, type, message) {
-    type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
 
-    color = Math.floor((Math.random() * 6) + 1);
+  showNotification: function(from, align, type, message) {
+/*    type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
+
+    color = Math.floor((Math.random() * 6) + 1);*/
 
     $.notify({
       icon: "add_alert",
@@ -731,6 +754,3 @@ function debounce(func, wait, immediate) {
     if (immediate && !timeout) func.apply(context, args);
   };
 };
-
-
- 

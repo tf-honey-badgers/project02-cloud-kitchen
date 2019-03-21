@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="/business/resources/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+    <link href="/business/resources/css/order.css?v=2.1.1" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -111,35 +111,35 @@
                                     <i class="material-icons">close</i>
                                 </button>
                                 <span>
-                                    <b> Info - </b> This is a regular notification made with ".alert-info"</span>
+                                    <b> 주문 대기 상태 - </b></span>
                             </div>
                             <div class="alert alert-success">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <i class="material-icons">close</i>
                                 </button>
                                 <span>
-                                    <b> Success - </b> This is a regular notification made with ".alert-success"</span>
+                                    <b> 주문 접수 상태</b></span>
                             </div>
                             <div class="alert alert-warning">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <i class="material-icons">close</i>
                                 </button>
                                 <span>
-                                    <b> Warning - </b> This is a regular notification made with ".alert-warning"</span>
+                                    <b> 조리 중 상태</b> </span>
                             </div>
                             <div class="alert alert-danger">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <i class="material-icons">close</i>
                                 </button>
                                 <span>
-                                    <b> Danger - </b> This is a regular notification made with ".alert-danger"</span>
+                                    <b> 주문 취소 및 거부 상태</b> </span>
                             </div>
                             <div class="alert alert-primary">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <i class="material-icons">close</i>
                                 </button>
                                 <span>
-                                    <b> Primary - </b> This is a regular notification made with ".alert-primary"</span>
+                                    <b> 조리 완료 상태 </b> </span>
                             </div>
                         </div>
                     </div>
@@ -149,7 +149,6 @@
                         <div class="row">
                             <div class="col-md-6 ml-auto mr-auto text-center">
                             
-                             <h1 id="bigOne"></h1>
                        <!--         <h4 class="card-title">
                                     Notifications Places
                                     <p class="category">Click to view notifications</p>
@@ -268,9 +267,7 @@
         /* 1. 알람 함수 -------------------------------------------------------- */
         function notifyOrder (from, align, orderId) {
         	  type = ['', 'info'/*, 'danger', 'success', 'warning', 'rose', 'primary'*/];
-
         	  color = Math.floor((Math.random() * 6) + 1);
-
         	  $.notify({
         	    icon: "add_alert",
         	    title: orderId,
@@ -281,7 +278,7 @@
 
         	  }, {
         	    type: type[color],
-        	    timer: 2000000,
+        	    timer: 3000,
         	    placement: {
         	      from: from,
         	      align: align
@@ -302,12 +299,20 @@
 		  };
 		  firebase.initializeApp(config);
 		  
-		  var bigOne = document.getElementById('bigOne')
-		  var dbRef = firebase.database().ref('biz');
-		  
+		  // biz_1이라는 사업자에 들어온 order 정보 중  time으로 orderby 하여 가장 최근에 들어온 주문 1개만 받을 수 있도록 제한함  
+		  var dbRef = firebase.database().ref('biz_2').orderByChild('time').limitToLast(1);
+		  var orderId;
 		  var obj = dbRef.on('value', function(snapshot){
-				console.log('있음')		
-				console.log(snapshot.val())
+				console.log('새로들어온 주문 있음')		
+				var obj=snapshot.val()
+				var orderId = Object.keys(obj)[0];
+				var orderInfo = obj[Object.keys(obj)[0]];
+				console.log(orderId)
+				console.log(orderInfo)
+				notifyOrder('bottom','right',orderId)
+				
+				//알람 팝업이후 알림창에 넣어 주기 
+				
   		});
 		  
     </script>
