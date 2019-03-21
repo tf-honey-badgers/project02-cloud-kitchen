@@ -37,7 +37,7 @@
 }(function($) {
   // Create the defaults once
   var defaults = {
-    element: 'body',
+    element: 'div[id="notifydiv"]',
     position: null,
     type: "info",
     allow_dismiss: true,
@@ -66,7 +66,7 @@
     icon_type: 'class',
     template: '<div id="{4}" data-notify="container" class="col-6 col-md-3 alert alert-{0} alterOrd" role="alert">'
       +'<button type="button" aria-hidden="true" class="close" ><i class="material-icons" data-notify="dismiss">close</i></button>'
-      +'<i data-notify="icon" class="material-icons"></i><span class="alertTitle" data-notify="title"><a href="#">새로운 주문이 들어왔습니다</a></span><div>{3},{4},{5}</div> '
+      +'<i data-notify="icon" class="material-icons"></i><span class="alertTitle" data-notify="title"><a href="#">새로운 주문이 들어왔습니다</a></span><div>{4}</div> '
       +'<span class="msg" data-notify="message" style="display:none">{2}</span>'
       +'<div class="progress" data-notify="progressbar">'
       +'<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div>'

@@ -200,6 +200,7 @@
     </footer>-->
         </div>
     </div>
+    <div id="notifydiv"></div>
     <!--   Core JS Files   -->
     <script src="/business/resources/js/core/jquery.min.js"></script>
     <script src="/business/resources/js/core/popper.min.js"></script>
@@ -269,7 +270,7 @@
 
         	  }, {
         	    type: type[color],
-        	    timer: 200000,
+        	    timer: 600000,
         	    placement: {
         	      from: from,
         	      align: align
@@ -306,8 +307,8 @@
 		  for(var i in obj){
 					orderId = Object.keys(obj)[n];
 					orderInfo = obj[Object.keys(obj)[n++]];
-					console.log('orderId        : ',orderId)
-					console.log('orderInfo      : ', orderInfo)
+			/* 		console.log('orderId        : ',orderId)
+					console.log('orderInfo      : ', orderInfo) */
 					notifyOrder('bottom','right',orderId)
 					
 				$('body').on('click','#'+orderId+' .confirm',function(e){
@@ -317,9 +318,11 @@
 				})
 				
 				$('body').on('click', '#'+orderId+' span.alertTitle', function (e) {
-					console.log(e)
+					console.log('이벤트 ')
+					console.log($(this).parent().offset())
+					console.log($(this).parent().siblings())
 					 
-					$('#'+orderId+' .msg').toggle();
+					$(this).siblings('.msg').toggle();
           
     			  })
 				  
