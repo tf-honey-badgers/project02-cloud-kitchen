@@ -40,7 +40,7 @@
 		</ul>
 	</div>
 </div>
-
+<!-- 
  <script>
         $(document).ready(function() {
             $().ready(function() {
@@ -212,4 +212,4 @@
             });
         });
 
-    </script>
+    </script> -->
