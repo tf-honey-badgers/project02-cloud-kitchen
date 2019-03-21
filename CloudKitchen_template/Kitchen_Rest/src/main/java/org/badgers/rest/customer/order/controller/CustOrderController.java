@@ -35,56 +35,29 @@ public class CustOrderController {
 	@PostMapping("/{key}")
 	public ResponseEntity<?> registOrder(@RequestBody OrderVOExtend vo, @PathVariable("key") String key)
 			throws JacksonUtilityException, Exception, FirebaseException {
-		System.out.println(vo);
-
-		
-		
 		// 1. mysql insert
 //		orderService.excuteOrder(vo);
 
 		// 2. mysql select
 		LinkedList<OrderInfoVO> list = orderService.getOrderInfo(vo.getId());
-		
-		
+		if(list==null) {throw new Exception();}
 		// 3. firebase insert
-		Map<String, Map<String,OrderAlarmVO>> map = null;
-		map = ToOrderAlarmVO.toOrderAlarmVO(list);
-//		firebaseService.testPutOrder(map);
-		firebaseService.patchOrderStatus(key, map);
-		StringBuffer orderPath = null;
-		StringBuffer statusPath = null;
-		orderPath=new StringBuffer();
-		Iterator it = map.keySet().iterator();
-		while(it.hasNext()) {
-			String bizId = (String)it.next();
-			Map map2=map.get(bizId);
-			Iterator it2 = map2.keySet().iterator();
-			orderPath.append(bizId+"/");
-			firebaseService.testPutOrder(orderPath,map.get(bizId));
-			orderPath.delete(0, orderPath.length());
-		}
+		Map<String, Map<String,OrderAlarmVO>> map = ToOrderAlarmVO.toOrderAlarmVO(list);
+		String orderPath = null;
 		
-//		while(map.) {
-//			orderPath = CreateFireBasePath.getOrderPath(key, listElement);
-//			//가게별 주문 정보 insert
-//			firebaseService.putOrder(orderPath, map);
-//			//가게별 주문 정보 상태(status) insert
-//			firebaseService.putOrder(statusPath, "{\"status\":\"ORD001\"}");
-//		}
+		Iterator it = map.keySet().iterator();
+		
+		while(it.hasNext()) {
+			//가게별 주문 정보 insert
+			orderPath = (String)it.next();
+			firebaseService.patchOrderStatus(orderPath, map.get(orderPath));
+			
+			//가게별 주문 정보 상태(status) insert
+		}
 
-//		return new ResponseEntity<>(list, HttpStatus.OK);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(list, HttpStatus.OK);
 
 	}
 
 }
 
-//for (OrderInfoVO listElement : list) {
-//	orderPath = CreateFireBasePath.getOrderPath(key, listElement);
-//	statusPath = CreateFireBasePath.getStatusPath(key, listElement);
-//	map = Map_TO_Object.voToMap(listElement);
-//	//가게별 주문 정보 insert
-//	firebaseService.putOrder(orderPath, map);
-//	//가게별 주문 정보 상태(status) insert
-//	firebaseService.putOrder(statusPath, "{\"status\":\"ORD001\"}");
-//}
