@@ -269,8 +269,6 @@
         function notifyOrder (from, align, orderId) {
         	  type = ['', 'info'/*, 'danger', 'success', 'warning', 'rose', 'primary'*/];
 
-        	  color = Math.floor((Math.random() * 6) + 1);
-
         	  $.notify({
         	    icon: "add_alert",
         	    title: orderId,
@@ -303,11 +301,30 @@
 		  firebase.initializeApp(config);
 		  
 		  var bigOne = document.getElementById('bigOne')
-		  var dbRef = firebase.database().ref('biz');
+		  var dbRef = firebase.database().ref('biz_1').orderByChild('time').limitToLast(1);
+		  var orderId;
+		  
 		  
 		  var obj = dbRef.on('value', function(snapshot){
 				console.log('있음')		
-				console.log(snapshot.val())
+				/* var obj= JSON.stringify(snapshot.val()) */
+				/* console.log(snapshot.val()) */
+				var obj=snapshot.val()
+				console.log('===---------------------------------------------')
+				console.log(obj)
+				
+				for( var key in obj ) {
+					console.log('====================',key)
+					orderId= key
+					console.log(orderId)
+					
+					
+					  var orderInfo = firebase.database().ref('biz_1').child(key);
+					  orderInfo.on('value', function(snapshot){
+					  console.log('.....................................1         ',snapshot.val())
+						  
+					  })
+				}
   		});
 		  
     </script>

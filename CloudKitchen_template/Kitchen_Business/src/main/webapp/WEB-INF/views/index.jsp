@@ -748,7 +748,7 @@
 			/* 사이드바 하이라이트된 항목 바꾸기 */
 			$('.nav-item').removeClass('active');
 			$('.nav-item.sidebar-home').addClass('active');
-		}
+		});
 	</script>
 </body>
 </html>
