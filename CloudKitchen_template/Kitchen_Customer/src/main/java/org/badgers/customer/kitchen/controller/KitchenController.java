@@ -46,7 +46,7 @@ public class KitchenController {
 			log.info("Failed to readBizMain. REST server may be offline.");
 			mav.addObject("message", "Failed to read biz main data. REST server may be offline.");
 		}		
-		mav.setViewName("detail_page");
+		mav.setViewName("bizMenu");
 		
 		return mav;
 	}

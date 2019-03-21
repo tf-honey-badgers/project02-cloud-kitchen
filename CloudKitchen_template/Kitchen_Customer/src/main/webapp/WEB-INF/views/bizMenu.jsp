@@ -962,8 +962,9 @@
     	console.log('${bizMember}');
     	console.log('${bizMember.bizId}');
     	console.log('${bizMember.bizInfo}');
-    	console.log('${bizMember.bizMenuCatVo[0].mcNo}');
-
+    	console.log('${bizMember.bizMenuCatVo[0].mcName}');
+    	console.log('${bizMember.bizMenuCatVo[1].mcName}');
+    	console.log('${bizMember.bizMenuCatVo}');
 	});
 </script>
 
