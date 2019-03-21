@@ -1,14 +1,17 @@
 package org.badgers.rest.customer.order.controller;
 
-import java.util.List;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 
 import org.badgers.rest.common.CreateFireBasePath;
 import org.badgers.rest.common.Map_TO_Object;
+import org.badgers.rest.common.ToOrderAlarmVO;
 import org.badgers.rest.customer.order.service.CustFireBaseService;
 import org.badgers.rest.customer.order.service.CustOrderService;
 import org.badgers.rest.firebase.FirebaseException;
 import org.badgers.rest.firebase.JacksonUtilityException;
+import org.badgers.rest.model.OrderAlarmVO;
 import org.badgers.rest.model.OrderInfoVO;
 import org.badgers.rest.model.OrderVOExtend;
 import org.springframework.http.HttpStatus;
@@ -32,33 +35,24 @@ public class CustOrderController {
 	@PostMapping("/{key}")
 	public ResponseEntity<?> registOrder(@RequestBody OrderVOExtend vo, @PathVariable("key") String key)
 			throws JacksonUtilityException, Exception, FirebaseException {
-		System.out.println(vo);
-
-		
-		
 		// 1. mysql insert
-		orderService.excuteOrder(vo);
+//		orderService.excuteOrder(vo);
 
 		// 2. mysql select
-		List<OrderInfoVO> list = orderService.getOrderInfo(vo.getId());
-		System.out.println("vovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovovo");
-		System.out.println(vo);
-		System.out.println("listlistlistlistlistlistlistlistlistlistlistlistlistlistlistlistlistlistlistlistlist");
-		System.out.println(list);
+		LinkedList<OrderInfoVO> list = orderService.getOrderInfo(vo.getId());
+		if(list==null) {throw new Exception();}
 		// 3. firebase insert
-		Map<String, Object> map = null;
-
-		StringBuffer orderPath = null;
-		StringBuffer statusPath = null;
-
-		for (OrderInfoVO listElement : list) {
-			orderPath = CreateFireBasePath.getOrderPath(key, listElement);
-			statusPath = CreateFireBasePath.getStatusPath(key, listElement);
-			map = Map_TO_Object.voToMap(listElement);
+		Map<String, Map<String,OrderAlarmVO>> map = ToOrderAlarmVO.toOrderAlarmVO(list);
+		String orderPath = null;
+		
+		Iterator it = map.keySet().iterator();
+		
+		while(it.hasNext()) {
 			//가게별 주문 정보 insert
-			firebaseService.putOrder(orderPath, map);
+			orderPath = (String)it.next();
+			firebaseService.patchOrderStatus(orderPath, map.get(orderPath));
+			
 			//가게별 주문 정보 상태(status) insert
-			firebaseService.putOrder(statusPath, "{\"status\":\"ORD001\"}");
 		}
 
 		return new ResponseEntity<>(list, HttpStatus.OK);
@@ -66,3 +60,4 @@ public class CustOrderController {
 	}
 
 }
+

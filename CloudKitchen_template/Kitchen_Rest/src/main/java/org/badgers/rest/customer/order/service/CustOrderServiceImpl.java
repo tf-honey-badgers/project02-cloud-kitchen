@@ -1,16 +1,15 @@
 package org.badgers.rest.customer.order.service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.badgers.rest.customer.order.persistence.CustOrderMapper;
-import org.badgers.rest.model.OrderDetailVO;
 import org.badgers.rest.model.OrderDetailVOExtend;
 import org.badgers.rest.model.OrderInfoVO;
 import org.badgers.rest.model.OrderOptionVO;
 import org.badgers.rest.model.OrderPaymentVO;
-import org.badgers.rest.model.OrderVO;
 import org.badgers.rest.model.OrderVOExtend;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,9 +22,9 @@ public class CustOrderServiceImpl implements CustOrderService {
 	CustOrderMapper mapper;
 	
 	@Override
-	public List<OrderInfoVO> getOrderInfo(String orderId) throws Exception {
+	public LinkedList<OrderInfoVO> getOrderInfo(String orderId) throws Exception {
 		
-		List<OrderInfoVO> list = mapper.getOrderInfo(orderId);
+		LinkedList<OrderInfoVO> list = mapper.getOrderInfo(orderId);
 		
 		return list;
 	}

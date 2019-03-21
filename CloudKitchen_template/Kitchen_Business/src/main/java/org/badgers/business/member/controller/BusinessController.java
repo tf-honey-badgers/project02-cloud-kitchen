@@ -3,7 +3,6 @@ package org.badgers.business.member.controller;
 import javax.inject.Inject;
 
 import org.badgers.business.model.BizMemberVOExtend;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,12 +28,11 @@ public class BusinessController {
 		log.info("Kitchen_Business 사업자 개인정보 읽기...............................");
 		
 		BizMemberVOExtend returnVal = null;
-		String url = "http://localhost:12007/business/" + bizId + "/mypage";
+		String url = "http://localhost:12007/rest/business/" + bizId + "/mypage";
 		
 		try {
 			ResponseEntity<BizMemberVOExtend> responseEntity = restTemplate.getForEntity(url, org.badgers.business.model.BizMemberVOExtend.class);
-			
-			if(responseEntity.getStatusCode() == HttpStatus.OK) { returnVal = responseEntity.getBody(); }
+			returnVal = responseEntity.getBody(); // if not HttpStatus.OK -> 위줄에서 바로 예외 발생하여 실행 안된다. 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -59,7 +57,7 @@ public class BusinessController {
 		log.info("Kitchen_Business 사업자 개인정보 수정...............................");
 
 		try {	
-			String url = "http://localhost:12007/business/" + mvo.getBizId() + "/mypage/modify";
+			String url = "http://localhost:12007/rest/business/" + mvo.getBizId() + "/mypage/modify";
 			restTemplate.put(url, mvo);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -74,7 +72,7 @@ public class BusinessController {
 		log.info("Kitchen_Business 사업자 로그인...............................");
 
 		String msg = "";
-		String url = "http://localhost:12007/business/";
+		String url = "http://localhost:12007/rest/business/";
 		
 		try {				
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
@@ -104,7 +102,7 @@ public class BusinessController {
 		log.info("Kitchen_Business 사업자 ID 찾기...............................");
 
 		String res = "";
-		String url = "http://localhost:12007/business/verify";
+		String url = "http://localhost:12007/rest/business/verify";
 		
 		try {			
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
