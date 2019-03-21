@@ -9,7 +9,7 @@ import org.badgers.rest.model.OrderInfoVO;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ToOrderAlarmVO {
+public class ToOrderAlarmVOService {
 
 	
 	public Map<String, Map<String, OrderAlarmVO>> toOrderAlarmVO(LinkedList<OrderInfoVO> list) {

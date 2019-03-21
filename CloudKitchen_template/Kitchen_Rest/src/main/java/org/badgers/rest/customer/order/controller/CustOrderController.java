@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.badgers.rest.customer.order.service.CustFireBaseService;
 import org.badgers.rest.customer.order.service.CustOrderService;
-import org.badgers.rest.customer.order.service.ToOrderAlarmVO;
+import org.badgers.rest.customer.order.service.ToOrderAlarmVOService;
 import org.badgers.rest.firebase.FirebaseException;
 import org.badgers.rest.firebase.JacksonUtilityException;
 import org.badgers.rest.model.OrderAlarmVO;
@@ -29,7 +29,7 @@ public class CustOrderController {
 
 	private final CustFireBaseService firebaseService;
 	private final CustOrderService orderService;
-	private final ToOrderAlarmVO toOrderAlarmVO;
+	private final ToOrderAlarmVOService toOrderAlarmVOService;
 
 	@PostMapping("/{key}")
 	public ResponseEntity<?> registOrder(@RequestBody OrderVOExtend vo, @PathVariable("key") String key)
@@ -41,7 +41,7 @@ public class CustOrderController {
 		LinkedList<OrderInfoVO> list = orderService.getOrderInfo(vo.getId());
 		if(list==null) {throw new Exception();}
 		// 3. firebase insert
-		Map<String, Map<String,OrderAlarmVO>> map = toOrderAlarmVO.toOrderAlarmVO(list);
+		Map<String, Map<String,OrderAlarmVO>> map = toOrderAlarmVOService.toOrderAlarmVO(list);
 		String orderPath = null;
 		
 		Iterator it = map.keySet().iterator();
