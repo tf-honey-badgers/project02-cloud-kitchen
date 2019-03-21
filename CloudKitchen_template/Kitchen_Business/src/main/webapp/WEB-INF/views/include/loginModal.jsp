@@ -13,7 +13,7 @@
 				<input type="text" class="form-control form-white" placeholder="비밀번호">
 				<div class="text-left">
 					<a id="findId" href="#" style="font-size: 13px;">아이디를 잊으셨나요?</a> <br/>
-					<a id="findPw" href="#" style="font-size: 13px;">비밀번호를 잊으셨나요?</a>
+					<a class="changePw" href="#" style="font-size: 13px;">비밀번호를 잊으셨나요?</a>
 				</div>
 				<button type="button" class="btn btn-submit">로그인</button>
 			</form>
