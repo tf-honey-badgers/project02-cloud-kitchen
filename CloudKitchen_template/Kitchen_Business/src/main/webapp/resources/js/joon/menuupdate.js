@@ -9,35 +9,31 @@ $(document)
 						
 						// 카테고리용
 						let menuOptCl = new Array();
-						let menuOptClsub = new Object();
-						
-						// 카테고리 안의 옵션용
-						let menuOpt = new Array();
-						let menuOptsub = new Object();
 						
 						for(let i=0;i<$('.menuOptSelect').length;i++){
+							let menuOptClsub = new Object();
+							
 							menuOptClsub.mocNo = menuOptSel[i].childNodes[0].innerHTML;
 							menuOptClsub.mocName = menuOptSel[i].childNodes[1].innerHTML;
 							menuOptClsub.mocMenuOptType = menuOptSel[i].childNodes[2].innerHTML;
 							menuOptClsub.mocMenuCode = menuOptSel[i].childNodes[3].innerHTML;
 							
+							// 카테고리 안의 옵션용
+							let menuOpt = new Array();
+							
 							for(let j=0;j<menuOptAll.length;j++){
 								if(menuOptSel[i].childNodes[0].innerHTML == menuOptAll[j].children[3].innerHTML){
-//									console.log(menuOptSel[i].childNodes[0].innerHTML+","+menuOptAll[j].children[3].innerHTML);
-									
+									let menuOptsub = new Object();
 									menuOptsub.moCode = menuOptAll[j].children[0].innerHTML;
 									menuOptsub.moName = menuOptAll[j].children[1].children[0].value;
 									menuOptsub.moAddPrice = menuOptAll[j].children[2].children[0].value;
 									menuOptsub.moOptClNo = menuOptAll[j].children[3].innerHTML;
 									menuOpt.push(menuOptsub);
-									console.log(menuOptsub);
 								}// menuOptAll if end
 							} // menuOptAll end
-							console.log("---------------------------------------------");
-							
+							menuOptClsub.menuOptEx = menuOpt;
+							menuOptCl.push(menuOptClsub);
 						} // menuOptSelect end
-						menuOptCl.push(menuOpt);
-						
 						
 						let menu = new Object();
 						menu.mcode = $('.menuVal').children().eq(0).text();
@@ -45,8 +41,25 @@ $(document)
 						menu.mname = $('.menuVal').children().eq(2).children().val();
 						menu.mbasicPrice = $('.menuVal').children().eq(3).children().val();
 						menu.menuOptCl = menuOptCl;
+						console.log(menu);
 						
-//						console.log(menu);
+						$.ajax({
+			        		type : "POST",
+			        		dataType : 'json',
+			        		url : "../../menu/main/menuupdate",
+			        		traditional : true,
+			         		data : {
+			         			'updateMenu' : JSON.stringify(menu)
+			        		},
+			        		error : function(data){
+			        			console.log(data);
+			        		},
+			        		success(data){
+			        			console.log(data);
+			        			
+			        		}
+						});
+						
 					}); // click end
 					
 			 		$('table tbody tr td .menu-option-select').on('click', function(e) {
