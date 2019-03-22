@@ -16,6 +16,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String home() {
+		logger.info("Kitchen Customer Domain online");
 		
 		return "main";
 	}	

@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-		
-         
+
+	        
 <!--  로딩중 -->
    <div id="preloader">
         <div class="sk-spinner sk-spinner-wave" id="status">
@@ -21,25 +22,26 @@
     <link rel="apple-touch-icon" type="/customer/resources/image/x-icon" sizes="114x114" href="/customer/resources/img/apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon" type="/customer/resources/image/x-icon" sizes="144x144" href="/customer/resources/img/apple-touch-icon-144x144-precomposed.png">
 
-    <!-- GOOGLE WEB FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 
-    <!-- BASE CSS -->
-    <link href="/customer/resources/css/animate.min.css" rel="stylesheet">
-    <link href="/customer/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/customer/resources/css/menu.css" rel="stylesheet">
-    <link href="/customer/resources/css/style.css" rel="stylesheet">
-    <link href="/customer/resources/css/responsive.css" rel="stylesheet">
-    <link href="/customer/resources/css/elegant_font/elegant_font.min.css" rel="stylesheet">
-    <link href="/customer/resources/css/fontello/css/fontello.min.css" rel="stylesheet">
-    <link href="/customer/resources/css/magnific-popup.css" rel="stylesheet">
-    <link href="/customer/resources/css/pop_up.css" rel="stylesheet">
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 
-    <!-- YOUR CUSTOM CSS -->
-    <link href="/customer/resources/css/custom.css" rel="stylesheet">
+<!-- BASE CSS -->
+<link href="/customer/resources/css/animate.min.css" rel="stylesheet">
+<link href="/customer/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/customer/resources/css/menu.css" rel="stylesheet">
+<link href="/customer/resources/css/style.css" rel="stylesheet">
+<link href="/customer/resources/css/responsive.css" rel="stylesheet">
+<link href="/customer/resources/css/elegant_font/elegant_font.min.css" rel="stylesheet">
+<link href="/customer/resources/css/fontello/css/fontello.min.css" rel="stylesheet">
+<link href="/customer/resources/css/magnific-popup.css" rel="stylesheet">
+<link href="/customer/resources/css/pop_up.css" rel="stylesheet">
 
-    <!-- Modernizr -->
-    <script src="/customer/resources/js/modernizr.js"></script>
+<!-- YOUR CUSTOM CSS -->
+<link href="/customer/resources/css/custom.css" rel="stylesheet">
+
+<!-- Modernizr -->
+<script src="/customer/resources/js/modernizr.js"></script>
 
 
  <!-- Header ================================================== -->
@@ -73,8 +75,6 @@
              
                     <li><a href="#0" data-toggle="modal" data-target="#login_2">로그인</a></li>
                
-               		
-               
                     <li><a href="#0" data-toggle="modal" data-target="#register">회원가입</a></li>
                     
                     <li><a href="#0">마이 페이지</a></li>
@@ -104,32 +104,33 @@
         <jsp:include page="finderModal.jsp" flush="false"/>
         <!-- Find ID / Find PW Modal END -->
 
-    
+<!-- COMMON SCRIPTS -->
+<script src="/customer/resources/js/jquery-2.2.4.min.js"></script>
+<script src="/customer/resources/js/common_scripts_min.js"></script>
+<script src="/customer/resources/js/functions.js"></script>
+<script src="/customer/resources/assets/validate.js"></script>
 
-    <!-- COMMON SCRIPTS -->
-    <script src="/customer/resources/js/jquery-2.2.4.min.js"></script>
-    <script src="/customer/resources/js/common_scripts_min.js"></script>
-    <script src="/customer/resources/js/functions.js"></script>
-    <script src="/customer/resources/assets/validate.js"></script>
-  <!-- SPECIFIC SCRIPTS -->
-  <script type="text/javascript">
-    $(document).ready(function() { // makes sure the whole site is loaded
-        $('#status').fadeOut(); // will first fade out the loading animation
-        $('#preloader').delay(250).fadeOut('slow'); // will fade out the white DIV that covers the website.
-        $('body').delay(250).css({'overflow':'visible'});
-        $('#sub_content').addClass('animated zoomIn');
-        $(window).scroll();
-        $('.number').each(function () {
-            $(this).prop('Counter',0).animate({
-                Counter: $(this).text()
-            }, {
-                duration: 2000,
-                easing: 'swing',
-                step: function (now) {
-                    $(this).text(Math.ceil(now));
-                }
-            });
-        });
-    });
-    </script>
-    <!-- Header End -->
+<!-- SPECIFIC SCRIPTS -->
+<script type="text/javascript">
+	$(document).ready(function() { // makes sure the whole site is loaded
+		$('#status').fadeOut(); // will first fade out the loading animation
+		$('#preloader').delay(250).fadeOut('slow'); // will fade out the white DIV that covers the website.
+		$('body').delay(250).css({
+			'overflow' : 'visible'
+		});
+		$('#sub_content').addClass('animated zoomIn');
+		$(window).scroll();
+		$('.number').each(function() {
+			$(this).prop('Counter', 0).animate({
+				Counter : $(this).text()
+			}, {
+				duration : 2000,
+				easing : 'swing',
+				step : function(now) {
+					$(this).text(Math.ceil(now));
+				}
+			});
+		});
+	});
+</script>
+<!-- Header End -->
