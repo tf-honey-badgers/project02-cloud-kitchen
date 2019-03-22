@@ -20,7 +20,7 @@
 			<div id="thumb"><img src="/customer/resources/img/thumb_restaurant.jpg" alt=""></div>
 	                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="detail_page_2.html">Read 98 reviews</a></small>)</div>
 	                    <h1>${bizMember.bizName}</h1>
-	                    <div><strong>최소 주문 금액:</strong> ${bizMember.bizMinAmt}.</div>
+	                    <div><strong>최소 주문 금액:</strong> ${bizMember.bizMinAmt}원</div>
 	    </div><!-- End sub_content -->
 	</div><!-- End subheader -->
 	</section><!-- End section -->
@@ -86,32 +86,32 @@
 											</figure>
 											<h5 style="padding-top: 10px;">${loop.index+1}. ${dish.mname}</h5>
 										</td>
-										<td><strong>${dish.mbasicPrice} 원</strong></td>
+										<td data-value="${dish.mbasicPrice}"><strong>${dish.mbasicPrice} 원</strong></td>
 										<td class="options">
 											<div class="dropdown dropdown-options">
 												<a href="#" id="addCart" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
 												<div class="dropdown-menu">
 													<c:forEach var="extras" items="${dish.menuOptCl}">
-														<div class="optionsExist">
+														<div>
 															<h5>${extras.mocName}</h5>
 															<c:if test="${extras.mocMenuOptType == 'OPT001'}">
 																<c:forEach var="option" items="${extras.menuOptEx}">
-																	<label> <input type="radio" value="option1" name="${extras.menuOptEx}" required="required">${option.moName} <span>+ ${option.moAddPrice} 원</span> </label>
+																	<label> <input type="radio" value="option1" name="${extras.menuOptEx}" required="required">${option.moName} <span data-value="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
 																</c:forEach>
 															</c:if>
 															<c:if test="${extras.mocMenuOptType == 'OPT002'}">
 																<c:forEach var="option" items="${extras.menuOptEx}">
-																	<label> <input type="checkbox" value="option1" name="${extras.menuOptEx}" required="required">${option.moName} <span>+ ${option.moAddPrice} 원</span> </label>
+																	<label> <input type="checkbox" value="option1" name="${extras.menuOptEx}" required="required">${option.moName} <span data-value="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
 																</c:forEach>
 															</c:if>
 															<c:if test="${extras.mocMenuOptType == 'OPT003'}">
 																<c:forEach var="option" items="${extras.menuOptEx}">
-																	<label> <input type="radio" value="option1" name="${extras.menuOptEx}">${option.moName} <span>+ ${option.moAddPrice} 원</span> </label>
+																	<label> <input type="radio" value="option1" name="${extras.menuOptEx}">${option.moName} <span data-value="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
 																</c:forEach>
 															</c:if>
 															<c:if test="${extras.mocMenuOptType == 'OPT004'}">
 																<c:forEach var="option" items="${extras.menuOptEx}">
-																	<label> <input type="checkbox" value="option1" name="${extras.menuOptEx}">${option.moName} <span>+ ${option.moAddPrice} 원</span> </label>
+																	<label> <input type="checkbox" value="option1" name="${extras.menuOptEx}">${option.moName} <span data-value="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
 																</c:forEach>
 															</c:if>														
 														</div>
@@ -247,16 +247,37 @@
 				});
 
 		$(document).ready(function() {
+			/* 옵션이 없는 메뉴는 "+" 클릭하면 장바구니에 추가하도록 */
 			for(var i = 0; i < $('.dropdown-menu').size(); i++) {
 				if($('.dropdown-menu').eq(i).children('div').length == 0) {
-					console.log('asdfasdfasdf');
+					// 옵션이 없으니까 옵션용 팝업을 보여주는 대신 곧바로 카트에 추가할 수 있다 (옵션용 팝업 속 "Add to cart" 버튼과 똑같다)
 					$('.dropdown-menu').eq(i).siblings('a').removeClass('dropdown-toggle').addClass('add_to_basket').removeAttr('data-toggle');
 				}
 			}
 			
+			/* "Add to cart" 버튼을 클릭하면 선택한 메뉴와 옵션 정보와 가격을 장바구니에 추가하고 Rest도메인을 호출하여 DB에 입력하도록 */
+			$('.add_to_basket').on('click', function(event) {
+				event.preventDefault();
+			/* 선택한 메뉴의 가격 (옵션 제외) */
+				const menuPrice = $(this).parents('td').siblings('td:eq(1)').attr('data-value');
+			/* 선택한 옵션들 (input tag) */
+				const checkedOptions = $(this).siblings('div').children().children('input:checked');
+			/* 선택한 옵션을 담을 배열 */
+				let optArr = [];
+			/* 메뉴와 옵션의 가격 총 합 */
+				let totalPrice = 0;
+				
+			/* 선택한 각 옵션의 가격을 optArr 배열에 담는다 */
+				$.each(checkedOptions, function(index, item) {
+					optArr.push(checkedOptions.eq(index).siblings('span').attr('data-value'));
+				})
 			
-			$('.add_to_basket').on('click', function() {
-				console.log('mrow');				
+			/* 메뉴 가격과 각 옵션의 가격을 더해서 가격 총 합을 구한다 */
+				totalPrice += parseInt(menuPrice);
+				$.each(optArr, function(index, item) {
+					totalPrice += parseInt(item);
+				})
+				console.log(totalPrice);
 			})
 		});
 	</script>
