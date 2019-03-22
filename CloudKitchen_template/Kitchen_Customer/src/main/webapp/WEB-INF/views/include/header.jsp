@@ -110,6 +110,9 @@
 <script src="/customer/resources/js/functions.js"></script>
 <script src="/customer/resources/assets/validate.js"></script>
 
+<!-- Customer Member 관련 각종 JavaScript 함수 모음 -->
+<script src="/customer/resources/js/member.js" type="text/javascript"></script>
+
 <!-- SPECIFIC SCRIPTS -->
 <script type="text/javascript">
 	$(document).ready(function() { // makes sure the whole site is loaded

@@ -29,7 +29,7 @@
                             <label for="check_2"><span>I Agree to the <strong>Terms &amp; Conditions</strong></span></label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-submit">회원가입</button>
+                    <button type="button" class="btn btn-submit">회원가입</button>
                 </form>
             </div>
         </div>

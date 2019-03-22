@@ -31,24 +31,24 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	// 로그인 by Yuriel on 2019.03.13(WED)
-	public int login(String id, String pw) {
+	public String login(String id, String pw) {
 		System.out.println("로그인 ========================================");
 
-		int returnVal = 0;
+		String returnVal = "";
 		CustomerVO queryResult = null;
 
 		try {
 			queryResult = mapper.login(id);
-			if(queryResult.getPw() == pw) {
-				returnVal = 1; // 입력한 비번 == DB 비번
+			if(queryResult.getPw().equals(pw)) {
+				returnVal = queryResult.getId(); // 입력한 비번 == DB 비번
 			} else {
-				returnVal = -1; // 입력한 비번 != DB 비번
+				returnVal = "BAD_PW"; // 입력한 비번 != DB 비번
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			returnVal = -2; // DB에 입력한 ID 없음 에러
+			returnVal = "NO_ID"; // DB에 입력한 ID 없음 표시
 		}
-		
+
 		return returnVal;
 	}
 	
