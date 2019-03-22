@@ -165,20 +165,10 @@ public class CustomerController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	// 찜 내역 보기 
-	@GetMapping(value = "/{cust_id}/mypage/favorite")
+	@GetMapping(value = "/{custId}/mypage/favorite")
 	public ModelAndView readFavorite (ModelAndView mav, @PathVariable("custId") String custId) {
 		log.info("사용자 찜 내역 보기================================");
 		List<FavoriteVO> favorite = null;
@@ -195,10 +185,33 @@ public class CustomerController {
 		}
 		System.out.println(favorite);
 		
-		mav.addObject("List<favorite>",favorite);
-		mav.setViewName("orderinfo");
+		mav.addObject("list",favorite);
+		mav.setViewName("favorite");
 		
 		
 		return mav;
 }
+	
+	//ID 찾기 
+	@PostMapping("/verify")
+	@ResponseBody
+	public String verify(@RequestBody CustomerVO vo) {
+		log.info("Kitchen_Business 사용자 ID 찾기...............................");
+
+		String res = "";
+		String url = "http://localhost:12007/rest/customer/verify";
+		
+		try {			
+			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);
+			res = responseEntity.getBody();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		log.info("retrieved customer id");
+		return res;
+	}
+	
+	
+	
 }

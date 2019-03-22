@@ -8,15 +8,23 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 리스트</title>
+
+<script type="text/javascript">
+
+var custId = '${custId}';
+
+</script>
 </head>
 <body>
-<script type="text/javascript" src="/customer/resources/js/member.js"></script>
-
+<!--나중에 뺼 js  -->
+<!-- <script type="text/javascript" src="/customer/resources/js/member.js"></script> -->
+<br><br>
 	<!-- 위쪽 헤더바  -->
 	<jsp:include page="include/header.jsp" />
 	<!-- 헤드 끝 -->
-	<br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br>
 	<h2>주문 리스트</h2>
+	<br><br>
 		<table>
 		<thead>
 			<tr>
@@ -46,14 +54,12 @@
 		
 		<script>
 		 var tbody = $('tbody');
+		 
 		$(document).ready(function(){
-			makeList();
-		});
-		
-		function makeList(){
-			tbody.empty();
+			alert('start')
 			
-			memberService.getList(function(list){
+			$.getJSON( 'http://localhost:12007/rest/customer/${custId}/mypage/orderinfo', function(list){
+				
 				for(var i = 0, len = list.length || 0 ; i < len; i++){
 					var tr = $('<tr></tr>');
 					var id = $('<td id="'+ list[i].id +'">' + list[i].id + '</td>');
@@ -79,7 +85,9 @@
 					console.log(list[i]);
 				}
 			});
-		} 
+		 
+		
+		});
 		
 		</script>
 		

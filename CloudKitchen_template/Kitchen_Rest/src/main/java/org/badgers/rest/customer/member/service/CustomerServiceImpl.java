@@ -92,7 +92,9 @@ public class CustomerServiceImpl implements CustomerService {
 		results = mapper.readMember(id);
 		return results;
 	}
-
+	
+	
+	//주문 정보 
 	@Override
 	public List<OrderInfoVO> getOrderInfo(String custId) {
 		System.out.println("오더 정보 나와라=============");
@@ -100,7 +102,8 @@ public class CustomerServiceImpl implements CustomerService {
 
 		return list;
 	}
-
+	
+	//찜정보
 	@Override
 	public List<FavoriteVO> favorite(String custId) {
 		System.out.println("찜 정보  나와라=============");
@@ -108,4 +111,19 @@ public class CustomerServiceImpl implements CustomerService {
 
 		return favorite;
 	}
+	
+	// ID 찾기 & 본인인증하기
+		public String verify(CustomerVO vo) throws Exception {
+			String returnVal = "";
+			
+			try {
+				returnVal = mapper.verify(vo);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return returnVal;
+		}
+	
+	
 }

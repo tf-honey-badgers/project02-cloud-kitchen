@@ -36,6 +36,8 @@ public interface CustomerService {
 	// 찜 내역 보기 
 	public List<FavoriteVO> favorite(String custId);
 	
+	//ID 찾기
+	public String verify(CustomerVO vo)throws Exception;
 	
 	
 }

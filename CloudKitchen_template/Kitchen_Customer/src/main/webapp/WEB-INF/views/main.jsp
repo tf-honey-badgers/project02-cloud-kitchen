@@ -282,6 +282,9 @@
 <jsp:include page="include/footer.jsp" flush="false"/>
 <!-- Footer 끝  -->
 
+	<!-- Customer Member 관련 각종 JavaScript 함수 모음 -->
+    <script src="/customer/resources/js/member.js" type="text/javascript"></script>
+    
    <script src="/customer/resources/js/video_header.js"></script>
     <script>
         $(document).ready(function() {
