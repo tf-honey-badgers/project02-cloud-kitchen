@@ -76,6 +76,7 @@
 							</tr>
 						</tbody>
 					</table>
+					${list}
 				</div>
 			</div>
 		</div>
