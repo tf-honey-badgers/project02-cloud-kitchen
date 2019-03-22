@@ -20,26 +20,17 @@ public class ToOrderAlarmVOService {
 		Map<String, Map<String, OrderAlarmVO>> bizAndOrder = new HashMap<>();
 		Map<String, OrderAlarmVO> orderAndAlarm = new HashMap<>();
 		//리스트의 첫번째 VO를 꺼낸다
-		OrderInfoVO orderInfoVO = list.pop();
+		OrderInfoVO orderInfoVO;
 		//첫번째 VO를 AlarmVO로 만든다
-		OrderAlarmVO orderAlarmVO =orderInfoVO.toOrderAlarmVO();
-		//("order_id"=AlarmVO) 형식으로 넣는다
-		orderAndAlarm.put(orderInfoVO.getId(), orderAlarmVO);
-		//(biz_id,("order_id"=AlarmVO) 로 넣는다
-		bizAndOrder.put(orderInfoVO.getBizId(), orderAndAlarm);
-		log.info(":::::::::::::::::::::::::beforeList:::::::::::::::::::::::::");
+		OrderAlarmVO orderAlarmVO;
 		
 		int size = list.size();
 		
 		for(int i = 0; i<size; i++) {
 			//리스트에서 다음 VO를 꺼낸다
 			orderInfoVO = list.pop();
-			log.info(":::::::::::::::::::::::::beforeList:::::::::::::::::::::::::");
-			log.info(list);
 			
 			list.add(orderInfoVO);
-			log.info(":::::::::::::::::::::::::afterList:::::::::::::::::::::::::");
-			log.info(list);
 			//새로 꺼낸 VO의 BizId와 일치하는 VO를 꺼내온다
 			Map<String, OrderAlarmVO> innerMap= bizAndOrder.get(orderInfoVO.getBizId());
 			//OrderAlarmVO innerAlarmVO = innerMap.get(orderInfoVO.getId());

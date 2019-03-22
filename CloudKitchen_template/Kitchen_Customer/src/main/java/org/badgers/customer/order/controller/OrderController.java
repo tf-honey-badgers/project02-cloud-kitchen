@@ -39,9 +39,6 @@ public class OrderController {
 		
 		ResponseEntity<OrderInfoVO[]> responses  = restTemplate.postForEntity(url,vo, OrderInfoVO[].class);
 		List<OrderInfoVO> list =Arrays.asList(responses.getBody());
-		System.out.println("==============================================================================");
-		System.out.println(list);
-		System.out.println("==============================================================================");
 		model.addAttribute("list", list);
 		return "order_3_confirm";
 	}
