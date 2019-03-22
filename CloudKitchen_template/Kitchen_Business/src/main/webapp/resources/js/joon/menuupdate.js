@@ -42,14 +42,14 @@ $(document)
 						menu.mbasicPrice = $('.menuVal').children().eq(3).children().val();
 						menu.menuOptCl = menuOptCl;
 						console.log(menu);
-						
+
 						$.ajax({
 			        		type : "POST",
 			        		dataType : 'json',
-			        		url : "../../menu/main/menuupdate",
+			        		url : "../menu/main/menuupdate",
 			        		traditional : true,
 			         		data : {
-			         			'updateMenu' : JSON.stringify(menu)
+			         			"updateMenu" : JSON.stringify(menu)
 			        		},
 			        		error : function(data){
 			        			console.log(data);
@@ -74,10 +74,11 @@ $(document)
 						
 						$.ajax({
 			        		type : "GET",
-			        		url : "../../menu/main/update/"+$(this).parent().parent().children().eq(0).text()+".json",
-//			         		data : {
-//			         			mIdx : 
-//			        		},
+			        		url : "../menu/main/update",
+			        		dataType : "json",
+			         		data : {
+			         			mIdx : $(this).parent().parent().children().eq(0).text()
+			        		},
 			        		error : function(data){
 			        			console.log(data);
 			        		},

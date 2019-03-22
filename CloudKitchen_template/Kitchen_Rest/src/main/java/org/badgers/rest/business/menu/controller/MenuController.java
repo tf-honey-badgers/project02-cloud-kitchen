@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -71,17 +73,19 @@ public class MenuController {
 	}
 	
 	
-//	@RequestMapping(value="/menuupdate/{updateMenu}")
-//	@Transactional
-////	public ResponseEntity<int> menuUpdate(@RequestParam("updateMenu") List<?> updateMenuInfo){
-//	public ResponseEntity menuUpdate(@RequestParam("updateMenu") List<?> updateMenuInfo){
-//		System.out.println(updateMenuInfo);
-//		
+	@RequestMapping(value="/menuupdate/{updateMenu}", method=RequestMethod.GET, produces="application/json")
+	@Transactional
+//	public ResponseEntity<int> menuUpdate(@RequestParam("updateMenu") List<?> updateMenuInfo){
+	public ResponseEntity<Integer> menuUpdate(@PathVariable("updateMenu") String updateMenuInfo){
+		System.out.println("MenuUpdate Rest Controller : "+updateMenuInfo);
+		
 //		int result = service.updateMenu(updateMenuInfo);
-//		
-//		if(result == 0) {
-//			return new ResponseEntity(HttpStatus.NOT_FOUND);
-//		}
-//		return new ResponseEntity(result, HttpStatus.OK);
-//	}
+		int result = 1;
+		
+		if(result == 0) {
+			return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Integer>(result, HttpStatus.OK); 
+//		return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+	}
 }
