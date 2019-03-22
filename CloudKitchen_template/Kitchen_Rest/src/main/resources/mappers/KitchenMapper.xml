@@ -104,8 +104,6 @@
 		where b.biz_id=#{bizId};
 	</select>
 	
-	
-	
 	<select id="getCategorization" resultType="org.badgers.rest.model.CommonCodeVOExtend">
 		select * from common_code where id like 'STR%'
 	</select>
