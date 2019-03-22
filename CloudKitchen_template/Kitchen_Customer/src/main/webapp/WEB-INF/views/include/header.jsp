@@ -2,28 +2,24 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- Preload -->
-<div id="preloader">
-	<div class="sk-spinner sk-spinner-wave" id="status">
-		<div class="sk-rect1"></div>
-		<div class="sk-rect2"></div>
-		<div class="sk-rect3"></div>
-		<div class="sk-rect4"></div>
-		<div class="sk-rect5"></div>
-	</div>
-</div>
-<!-- End Preload -->
+<!-- Preload =============================================== -->
+   <div id="preloader">
+        <div class="sk-spinner sk-spinner-wave" id="status">
+            <div class="sk-rect1"></div>
+            <div class="sk-rect2"></div>
+            <div class="sk-rect3"></div>
+            <div class="sk-rect4"></div>
+            <div class="sk-rect5"></div>
+        </div>
+    </div> 
+<!-- End Preload =============================================== -->
 
 <!-- Favicons-->
 <link rel="shortcut icon" href="/customer/resources/img/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" type="/customer/resources/img/x-icon"
-	href="/customer/resources/img/apple-touch-icon-57x57-precomposed.png">
-<link rel="apple-touch-icon" type="/customer/resources/img/x-icon" sizes="72x72"
-	href="/customer/resources/img/apple-touch-icon-72x72-precomposed.png">
-<link rel="apple-touch-icon" type="/customer/resources/img/x-icon" sizes="114x114"
-	href="/customer/resources/img/apple-touch-icon-114x114-precomposed.png">
-<link rel="apple-touch-icon" type="/customer/resources/img/x-icon" sizes="144x144"
-	href="/customer/resources/img/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon" type="/customer/resources/img/x-icon" href="/customer/resources/img/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon" type="/customer/resources/img/x-icon" sizes="72x72" href="/customer/resources/img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon" type="/customer/resources/img/x-icon" sizes="114x114" href="/customer/resources/img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon" type="/customer/resources/img/x-icon" sizes="144x144" href="/customer/resources/img/apple-touch-icon-144x144-precomposed.png">
 
 <!-- GOOGLE WEB FONT -->
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
@@ -39,11 +35,11 @@
 <link href="/customer/resources/css/magnific-popup.css" rel="stylesheet">
 <link href="/customer/resources/css/pop_up.css" rel="stylesheet">
 
+<!-- Radio and check inputs -->
+<link href="/customer/resources/css/skins/square/grey.css" rel="stylesheet">
+
 <!-- YOUR CUSTOM CSS -->
 <link href="/customer/resources/css/custom.css" rel="stylesheet">
-
-<!-- Modernizr -->
-<script src="/customer/resources/js/modernizr.js"></script>
 
 <!-- Header ================================================== -->
 <header>
@@ -141,34 +137,3 @@
 		</div>
 	</div>
 </div> <!-- End Register modal -->
-
-<!-- COMMON SCRIPTS -->
-<script src="/customer/resources/js/jquery-2.2.4.min.js"></script>
-<script src="/customer/resources/js/common_scripts_min.js"></script>
-<script src="/customer/resources/js/functions.js"></script>
-<script src="/customer/resources/assets/validate.js"></script>
-
-<!-- SPECIFIC SCRIPTS -->
-<script type="text/javascript">
-	$(document).ready(function() { // makes sure the whole site is loaded
-		$('#status').fadeOut(); // will first fade out the loading animation
-		$('#preloader').delay(250).fadeOut('slow'); // will fade out the white DIV that covers the website.
-		$('body').delay(250).css({
-			'overflow' : 'visible'
-		});
-		$('#sub_content').addClass('animated zoomIn');
-		$(window).scroll();
-		$('.number').each(function() {
-			$(this).prop('Counter', 0).animate({
-				Counter : $(this).text()
-			}, {
-				duration : 2000,
-				easing : 'swing',
-				step : function(now) {
-					$(this).text(Math.ceil(now));
-				}
-			});
-		});
-	});
-</script>
-<!-- Header End -->

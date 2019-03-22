@@ -18,6 +18,6 @@ public class HomeController {
 	public String home() {
 		logger.info("Kitchen Customer Domain online");
 		
-		return "index";
+		return "main";
 	}	
 }
