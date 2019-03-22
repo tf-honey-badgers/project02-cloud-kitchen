@@ -31,24 +31,24 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	// 로그인 by Yuriel on 2019.03.13(WED)
-	public int login(String id, String pw) {
+	public String login(String id, String pw) {
 		System.out.println("로그인 ========================================");
 
-		int returnVal = 0;
+		String returnVal = "";
 		CustomerVO queryResult = null;
 
 		try {
 			queryResult = mapper.login(id);
-			if(queryResult.getPw() == pw) {
-				returnVal = 1; // 입력한 비번 == DB 비번
+			if(queryResult.getPw().equals(pw)) {
+				returnVal = queryResult.getId(); // 입력한 비번 == DB 비번
 			} else {
-				returnVal = -1; // 입력한 비번 != DB 비번
+				returnVal = "BAD_PW"; // 입력한 비번 != DB 비번
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			returnVal = -2; // DB에 입력한 ID 없음 에러
+			returnVal = "NO_ID"; // DB에 입력한 ID 없음 표시
 		}
-		
+
 		return returnVal;
 	}
 	
@@ -92,7 +92,9 @@ public class CustomerServiceImpl implements CustomerService {
 		results = mapper.readMember(id);
 		return results;
 	}
-
+	
+	
+	//주문 정보 
 	@Override
 	public List<OrderInfoVO> getOrderInfo(String custId) {
 		System.out.println("오더 정보 나와라=============");
@@ -100,12 +102,28 @@ public class CustomerServiceImpl implements CustomerService {
 
 		return list;
 	}
-
+	
+	//찜정보
 	@Override
 	public List<FavoriteVO> favorite(String custId) {
 		System.out.println("찜 정보  나와라=============");
-		List<FavoriteVO> list = mapper.favorite(custId);
+		List<FavoriteVO> favorite = mapper.favorite(custId);
 
-		return list;
+		return favorite;
 	}
+	
+	// ID 찾기 & 본인인증하기
+		public String verify(CustomerVO vo) throws Exception {
+			String returnVal = "";
+			
+			try {
+				returnVal = mapper.verify(vo);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return returnVal;
+		}
+	
+	
 }
