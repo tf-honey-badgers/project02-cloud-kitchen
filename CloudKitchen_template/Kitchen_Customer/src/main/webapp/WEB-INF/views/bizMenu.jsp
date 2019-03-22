@@ -49,11 +49,9 @@
 				</p>
 				<div class="box_style_1">
 					<ul id="cat_nav">
-						<li><a href="#starters" class="active">Starters <span>(141)</span></a></li>
-						<li><a href="#main_courses">Main Courses <span>(20)</span></a></li>
-						<li><a href="#beef">Beef <span>(12)</span></a></li>
-						<li><a href="#desserts">Desserts <span>(11)</span></a></li>
-						<li><a href="#drinks">Drinks <span>(20)</span></a></li>
+						<c:forEach var="menu" items="${bizMember.bizMenuCatVo}" varStatus="loop">
+							<li><a href="#${loop.index + 100}">${menu.mcName} <span>(141)</span></a></li>
+						</c:forEach>
 					</ul>
 				</div> <!-- End box_style_1 -->
 				<div class="box_style_2 hidden-xs" id="help">
@@ -69,9 +67,8 @@
 			<div class="col-md-6">
 				<div class="box_style_2" id="main_menu">
 					<h2 class="inner">Menu</h2>
-					
-					<c:forEach var="menu" items="${bizMember.bizMenuCatVo}">
-						<h3 class="nomargin_top" id="starters">${menu.mcName}</h3>
+					<c:forEach var="menu" items="${bizMember.bizMenuCatVo}" varStatus="loop">
+						<h3 class="nomargin_top" id="${loop.index + 100}">${menu.mcName}</h3>
 						<table class="table table-striped cart-list">
 							<thead>
 								<tr>
@@ -87,7 +84,7 @@
 											<figure class="thumb_menu_list">
 												<img src="/customer/resources/img/menu-thumb-1.jpg"	alt="thumb">
 											</figure>
-											<h5>${loop.index+1}. ${dish.mname}</h5>
+											<h5 style="padding-top: 10px;">${loop.index+1}. ${dish.mname}</h5>
 										</td>
 										<td><strong>${dish.mbasicPrice} 원</strong></td>
 										<td class="options">
@@ -167,18 +164,6 @@
 								</tr>
 							</tbody>
 						</table>
-						<hr>
-						<div class="row" id="options_2">
-							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-								<label><input type="radio" value="" checked
-									name="option_2" class="icheck">Delivery</label>
-							</div>
-							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-								<label><input type="radio" value="" name="option_2"
-									class="icheck">Take Away</label>
-							</div>
-						</div>
-						<!-- Edn options 2 -->
 
 						<hr>
 						<table class="table table_summary">
