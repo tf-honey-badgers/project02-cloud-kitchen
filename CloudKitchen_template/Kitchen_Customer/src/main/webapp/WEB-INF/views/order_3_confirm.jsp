@@ -11,7 +11,8 @@
 	<!-- 위쪽 헤더바  -->
 	<jsp:include page="include/header.jsp" flush="false" />
 	<!-- 주문 헤더 -->
-	<jsp:include page="include/header_order_TEST.jsp" flush="false" />
+	<jsp:include page="include/header_order.jsp" flush="false" />
+	
 	<div id="position">
 		<div class="container">
 			<ul>

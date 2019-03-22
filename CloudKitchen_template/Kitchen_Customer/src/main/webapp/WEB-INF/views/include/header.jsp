@@ -34,8 +34,11 @@
     <link href="/customer/resources/css/magnific-popup.css" rel="stylesheet">
     <link href="/customer/resources/css/pop_up.css" rel="stylesheet">
 
+    <link href="/customer/resources/css/skins/square/grey.css" rel="stylesheet">
+    
     <!-- YOUR CUSTOM CSS -->
     <link href="/customer/resources/css/custom.css" rel="stylesheet">
+    
 
     <!-- Modernizr -->
     <script src="/customer/resources/js/modernizr.js"></script>

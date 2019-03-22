@@ -30,20 +30,21 @@
 	<div class="container margin_60_35">
 		<div class="row">
 			<div class="col-md-3">
+
 				<div class="box_style_2 hidden-xs info">
 					<h4 class="nomargin_top">
-						Delivery time <i class="icon_quotations pull-left"></i>
+						Delivery time <i class="icon_clock_alt pull-right"></i>
 					</h4>
 					<p>Lorem ipsum dolor sit amet, in pri partem essent. Qui
 						debitis meliore ex, tollit debitis conclusionemque te eos.</p>
 					<hr>
 					<h4>
-						Secure payment <i class="icon_creditcard pull-left"></i>
+						Secure payment <i class="icon_creditcard pull-right"></i>
 					</h4>
 					<p>Lorem ipsum dolor sit amet, in pri partem essent. Qui
 						debitis meliore ex, tollit debitis conclusionemque te eos.</p>
 				</div>
-				<!-- End box_style_2 -->
+				<!-- End box_style_1 -->
 
 				<div class="box_style_2 hidden-xs" id="help">
 					<i class="icon_lifesaver"></i>
@@ -53,70 +54,37 @@
 					<a href="tel://004542344599" class="phone">+45 423 445 99</a> <small>Monday
 						to Friday 9.00am - 7.30pm</small>
 				</div>
+
 			</div>
 			<!-- End col-md-3 -->
 
 			<div class="col-md-6">
-				<div class="box_style_2">
-					<h2 class="inner">Payment methods</h2>
-					<div class="payment_select">
-						<label><input type="radio" value="" checked
-							name="payment_method" class="icheck">Credit card</label> <i
-							class="icon_creditcard"></i>
+				<div class="box_style_2" id="order_process">
+					<h2 class="inner">주문 정보 입력</h2>
+					<div class="form-group">
+						<label>이름</label> <input type="text" class="form-control"
+							id="firstname_order" name="firstname_order" placeholder="이름">
+					</div>
+
+					<div class="form-group">
+						<label>연락 받을 번호</label> <input type="text" id="tel_order"
+							name="tel_order" class="form-control" placeholder="연락 받을 번호">
 					</div>
 					<div class="form-group">
-						<label>Name on card</label> <input type="text"
-							class="form-control" id="name_card_order" name="name_card_order"
-							placeholder="First and last name">
+						<label>배달 주소</label> <span>(회원 주소와 동일)</span> <input
+							type="checkbox" class="icheck"> <input type="text"
+							id="address_order" name="address_order" class="form-control"
+							placeholder="배달 주소">
 					</div>
-					<div class="form-group">
-						<label>Card number</label> <input type="text" id="card_number"
-							name="card_number" class="form-control" placeholder="Card number">
-					</div>
+					<hr>
 					<div class="row">
-						<div class="col-md-6">
-							<label>Expiration date</label>
-							<div class="row">
-								<div class="col-md-6 col-sm-6">
-									<div class="form-group">
-										<input type="text" id="expire_month" name="expire_month"
-											class="form-control" placeholder="mm">
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-6">
-									<div class="form-group">
-										<input type="text" id="expire_year" name="expire_year"
-											class="form-control" placeholder="yyyy">
-									</div>
-								</div>
-							</div>
+						<div class="col-md-12">
+
+							<label>주문 요청 사항</label>
+							<textarea class="form-control" style="height: 150px"
+								placeholder="주문 요청 사항" name="notes" id="notes"></textarea>
+
 						</div>
-						<div class="col-md-6 col-sm-12">
-							<div class="form-group">
-								<label>Security code</label>
-								<div class="row">
-									<div class="col-md-4 col-sm-6">
-										<div class="form-group">
-											<input type="text" id="ccv" name="ccv" class="form-control"
-												placeholder="CCV">
-										</div>
-									</div>
-									<div class="col-md-8 col-sm-6">
-										<img src="/customer/resources/img/icon_ccv.gif" width="50" height="29" alt="ccv"><small>Last
-											3 digits</small>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End row -->
-					<div class="payment_select" id="paypal">
-						<label><input type="radio" value="" name="payment_method"
-							class="icheck">Pay with paypal</label>
-					</div>
-					<div class="payment_select nomargin">
-						<label><input type="radio" value="" name="payment_method"
-							class="icheck">Pay with cash</label> <i class="icon_wallet"></i>
 					</div>
 				</div>
 				<!-- End box_style_1 -->
@@ -127,34 +95,34 @@
 				<div class="theiaStickySidebar">
 					<div id="cart_box">
 						<h3>
-							Your order <i class="icon_cart_alt pull-left"></i>
+							Your order <i class="icon_cart_alt pull-right"></i>
 						</h3>
 						<table class="table table_summary">
 							<tbody>
 								<tr>
 									<td><a href="#0" class="remove_item"><i
 											class="icon_minus_alt"></i></a> <strong>1x</strong> Enchiladas</td>
-									<td><strong class="pull-left">$11</strong></td>
+									<td><strong class="pull-right">$11</strong></td>
 								</tr>
 								<tr>
 									<td><a href="#0" class="remove_item"><i
 											class="icon_minus_alt"></i></a> <strong>2x</strong> Burrito</td>
-									<td><strong class="pull-left">$14</strong></td>
+									<td><strong class="pull-right">$14</strong></td>
 								</tr>
 								<tr>
 									<td><a href="#0" class="remove_item"><i
 											class="icon_minus_alt"></i></a> <strong>1x</strong> Chicken</td>
-									<td><strong class="pull-left">$20</strong></td>
+									<td><strong class="pull-right">$20</strong></td>
 								</tr>
 								<tr>
 									<td><a href="#0" class="remove_item"><i
 											class="icon_minus_alt"></i></a> <strong>2x</strong> Corona Beer</td>
-									<td><strong class="pull-left">$9</strong></td>
+									<td><strong class="pull-right">$9</strong></td>
 								</tr>
 								<tr>
 									<td><a href="#0" class="remove_item"><i
 											class="icon_minus_alt"></i></a> <strong>2x</strong> Cheese Cake</td>
-									<td><strong class="pull-left">$12</strong></td>
+									<td><strong class="pull-right">$12</strong></td>
 								</tr>
 							</tbody>
 						</table>
@@ -174,32 +142,36 @@
 						<table class="table table_summary">
 							<tbody>
 								<tr>
-									<td>Subtotal <span class="pull-left">$56</span>
+									<td>Subtotal <span class="pull-right">$56</span>
 									</td>
 								</tr>
 								<tr>
-									<td>Delivery fee <span class="pull-left">$10</span>
+									<td>Delivery fee <span class="pull-right">$10</span>
 									</td>
 								</tr>
 								<tr>
-									<td class="total">TOTAL <span class="pull-left">$66</span>
+									<td class="total">TOTAL <span class="pull-right">$66</span>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 						<hr>
-						<a class="btn_full" href="cart_3.html">Confirm your order</a>
+						<a class="btn_full" href="payment">Go to Payment</a> <a
+							class="btn_full_outline" href="detail_page.html"><i
+							class="icon-right"></i> Add other items</a>
 					</div>
 					<!-- End cart_box -->
 				</div>
 				<!-- End theiaStickySidebar -->
 			</div>
 			<!-- End col-md-3 -->
+
 		</div>
 		<!-- End row -->
 	</div>
 	<!-- End container -->
 	<!-- End Content =============================================== -->
+
 	<!-- Footer 시작  -->
 	<jsp:include page="include/footer.jsp" flush="false" />
 	<!-- Footer 끝  -->
