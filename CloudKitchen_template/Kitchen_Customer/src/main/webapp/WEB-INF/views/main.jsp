@@ -65,7 +65,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <a href="${pageContext.request.contextPath}/kitchen/biz_4/main" class="strip_list">
+                    <a href="${pageContext.request.contextPath}/kitchen/biz_2/main" class="strip_list">
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
                             <div class="thumb_strip"><img src="/customer/resources/img/thumb_restaurant.jpg" alt=""></div>

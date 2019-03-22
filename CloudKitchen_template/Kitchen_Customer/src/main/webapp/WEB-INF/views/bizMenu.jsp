@@ -89,10 +89,10 @@
 										<td><strong>${dish.mbasicPrice} 원</strong></td>
 										<td class="options">
 											<div class="dropdown dropdown-options">
-												<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
+												<a href="#" id="addCart" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
 												<div class="dropdown-menu">
 													<c:forEach var="extras" items="${dish.menuOptCl}">
-														<div>
+														<div class="optionsExist">
 															<h5>${extras.mocName}</h5>
 															<c:if test="${extras.mocMenuOptType == 'OPT001'}">
 																<c:forEach var="option" items="${extras.menuOptEx}">
@@ -247,7 +247,17 @@
 				});
 
 		$(document).ready(function() {
-			console.log('${bizMember}');
+			for(var i = 0; i < $('.dropdown-menu').size(); i++) {
+				if($('.dropdown-menu').eq(i).children('div').length == 0) {
+					console.log('asdfasdfasdf');
+					$('.dropdown-menu').eq(i).siblings('a').removeClass('dropdown-toggle').addClass('add_to_basket').removeAttr('data-toggle');
+				}
+			}
+			
+			
+			$('.add_to_basket').on('click', function() {
+				console.log('mrow');				
+			})
 		});
 	</script>
 
