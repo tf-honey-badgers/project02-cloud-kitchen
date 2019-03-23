@@ -222,8 +222,8 @@
             //init DateTimePickers
             md.initFormExtendedDatetimepickers();
             $('body').on('click','.ordTgg', function(event){
-            	if (event.target != event.currentTarget){
-            		console.log('다름');
+            	if (event.target.tagName == 'INPUT'){
+            		console.log('안 돼 돌아가');
             		return;  
             	}
                 $(this).siblings('.detailOrder').stop().slideToggle();
