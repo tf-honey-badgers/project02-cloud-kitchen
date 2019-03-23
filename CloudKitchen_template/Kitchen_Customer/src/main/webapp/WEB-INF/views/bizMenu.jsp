@@ -310,14 +310,16 @@
 				// CartController로 비동기 요청하기
  				$.ajax({
 					type : 'POST'
-					, url : 'http://localhost:12004/customer/kitchen/cart'
+					, url : 'http://localhost:12004/customer/kitchen/cart/add'
 					, dataType : 'json'
 					, contentType : 'application/json'
 					, data : JSON.stringify(inputData)
-		    		, success : data => {
+		    		, success : function(data) {
+		    			console.log("AAA");
 						console.log(data);
 					}
-					, error : data => {
+					, error : function(data) {
+						console.log("ZZZ");
 						console.log('ERRoR oCCURRED');
 						console.log(data);
 					}
