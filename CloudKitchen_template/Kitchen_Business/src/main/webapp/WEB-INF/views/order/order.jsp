@@ -221,10 +221,13 @@
         $(document).ready(function() {
             //init DateTimePickers
             md.initFormExtendedDatetimepickers();
-            $('body').on('click','.ORD', function(event){
-                $(this).children('.detailOrder').slideToggle();
-                event.stopPropagation();
-                console.log(event);
+            $('body').on('click','.ordTgg', function(event){
+            	if (event.target != event.currentTarget){
+            		console.log('다름');
+            		return;  
+            	}
+                $(this).siblings('.detailOrder').stop().slideToggle();
+                
             })
 		  
             
@@ -285,7 +288,7 @@
 			  console.log(orderInfo)
 			  
 			  $('<div id="'+orderId+'" class="ORD" value="'+'" >'
-			  	+'<div class="alert alert-info"> '
+			  	+'<div class="alert alert-info ordTgg"> '
 				+'<span style="display:inline-block"><b>[주문번호]&nbsp;</b>'+orderId+'</span>'
 				+'<span class="float-right">'
 				+'<input type="button" class="btn btn-primary btn-sm" value="접수">'
