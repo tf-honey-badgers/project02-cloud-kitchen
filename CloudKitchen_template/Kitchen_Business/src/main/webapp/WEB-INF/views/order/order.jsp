@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel="apple-touch-icon" sizes="76x76" href="/business/resources/img/apple-icon.png">
     <link rel="icon" type="image/png" href="/business/resources/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -41,119 +42,88 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6">
-                            <h4 class="card-title">Notifications Style</h4>
-                      
-                         
-                                 <div class="alert alert-success alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                            </div>
-                                 <div class="alert alert-success alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                            </div>
-                                 <div class="alert alert-success alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                            </div>
-                                 <div class="alert alert-success alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                            </div>
-                                 <div class="alert alert-info alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                            </div>
-                                 <div class="alert alert-info alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                            </div>
-                                 <div class="alert alert-info alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <h4 class="card-title">Notification states</h4>
-                            <div class="alert alert-info">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span>
-                                    <b> 주문 대기 상태 - </b></span>
-                            </div>
-                            <div class="alert alert-success">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span>
-                                    <b> 주문 접수 상태</b></span>
-                            </div>
-                            <div class="alert alert-warning">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span>
-                                    <b> 조리 중 상태</b> </span>
-                            </div>
-                            <div class="alert alert-danger">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span>
-                                    <b> 주문 취소 및 거부 상태</b> </span>
-                            </div>
-                            <div class="alert alert-primary">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span>
-                                    <b> 조리 완료 상태 </b> </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="places-buttons">
-                        <div class="row">
-                            <div class="col-md-6 ml-auto mr-auto text-center">
+                        <div id="orderList" class="col-md-6" >
+                            <h4 class="card-title">주문 리스트</h4>
+                            <div class="orderListWrap common">
                             
-                       <!--         <h4 class="card-title">
-                                    Notifications Places
-                                    <p class="category">Click to view notifications</p>
-                                </h4>-->
+	                          
+	                            <div class="alert alert-success alert-with-icon" data-notify="container">
+	                                <i class="material-icons" data-notify="icon">add_alert</i>
+	                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	                                    <i class="material-icons">close</i>
+	                                </button>
+	                                <span data-notify="message">hhh</span>
+	                            </div>
+	                                 
+	                                 <div class="alert alert-success alert-with-icon" data-notify="container">
+	                                <i class="material-icons" data-notify="icon">add_alert</i>
+	                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	                                    <i class="material-icons">close</i>
+	                                </button>
+	                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
+	                            </div>
+	                                 <div class="alert alert-success alert-with-icon" data-notify="container">
+	                                <i class="material-icons" data-notify="icon">add_alert</i>
+	                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	                                    <i class="material-icons">close</i>
+	                                </button>
+	                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
+	                            </div>
+	                                 <div class="alert alert-success alert-with-icon" data-notify="container">
+	                                <i class="material-icons" data-notify="icon">add_alert</i>
+	                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	                                    <i class="material-icons">close</i>
+	                                </button>
+	                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
+	                            </div>
+	                                 <div class="alert alert-success alert-with-icon" data-notify="container">
+	                                <i class="material-icons" data-notify="icon">add_alert</i>
+	                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	                                    <i class="material-icons">close</i>
+	                                </button>
+	                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
+	                            </div>
+	                                 <div class="alert alert-warning alert-with-icon" data-notify="container">
+	                                <i class="material-icons" data-notify="icon">add_alert</i>
+	                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	                                    <i class="material-icons">close</i>
+	                                </button>
+	                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
+	                            </div>
+	                                 <div class="alert alert-warning alert-with-icon" data-notify="container">
+	                                <i class="material-icons" data-notify="icon">add_alert</i>
+	                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	                                    <i class="material-icons">close</i>
+	                                </button>
+	                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
+	                            </div>
+	                                 <div class="alert alert-warning alert-with-icon" data-notify="container">
+	                                <i class="material-icons" data-notify="icon">add_alert</i>
+	                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	                                    <i class="material-icons">close</i>
+	                                </button>
+	                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
+	                            </div>
                             </div>
+                            
                         </div>
-                        <div class="row">
-
-                            <div class="col-md-4">
-                                <button class="btn btn-primary btn-block" onclick="notifyOrder('bottom','right','order12345')">Bottom Right</button>
-                            </div>
+                        
+                        
+                        
+                        
+                        
+                        <!-- ================================================================================================ -->
+                        
+                        <div id="waitArea" class="col-md-6" >
+                            <h4 class="card-title">주문 대기 현황</h4>
+                            <div class="waitAreaWrap common">
+                            
+	                        </div>
                         </div>
+                        
                     </div>
                 </div>
+   
                 <!---->
             </div>
             <!--card End-->
@@ -251,6 +221,12 @@
         $(document).ready(function() {
             //init DateTimePickers
             md.initFormExtendedDatetimepickers();
+            $('body').on('click','.ORD', function(event){
+                $(this).children('.detailOrder').slideToggle();
+                event.stopPropagation();
+                console.log(event);
+            })
+		  
             
     
         });
@@ -292,78 +268,47 @@
 		  firebase.initializeApp(config);
 		  
 		  // biz_1이라는 사업자에 들어온 order 정보 중  time으로 orderby 하여 가장 최근에 들어온 주문 1개만 받을 수 있도록 제한함  
-		  var dbRef = firebase.database().ref('biz_1').orderByChild('time');
-/* 		  var dbRef = firebase.database().ref('biz_2').orderByChild('time').limitToLast(1); */
+		  var dbRef = firebase.database().ref('biz_1').orderByChild('time').limitToLast(1);
 		  
+		  
+/* 		  var dbRef = firebase.database().ref('biz_2').orderByChild('time').limitToLast(1); */
 		  var orderId;
 		  var orderInfo;
 		  
-		  
+		  var n=0
 		  dbRef.on('value', function(snapshot){
 		  var obj = snapshot.val()
 		  console.log(obj)
-		 
-		  var n=1;
-		  for(var i in obj){
-					orderId = Object.keys(obj)[n];
-					orderInfo = obj[Object.keys(obj)[n++]];
-			/* 		console.log('orderId        : ',orderId)
-					console.log('orderInfo      : ', orderInfo) */
-					notifyOrder('bottom','right',orderId)
-					
-				$('body').on('click','#'+orderId+' .confirm',function(e){
-		
-				 
-				 alert(orderId+'먹히나')
-				})
-				
-				$('body').on('click', '#'+orderId+' span.alertTitle', function (e) {
-					console.log('이벤트 ')
-					console.log($(this).parent().offset())
-					console.log($(this).parent().siblings())
-					 
-					$(this).siblings('.msg').toggle();
-          
-    			  })
-				  
-				  
-			}
+			  orderId = Object.keys(obj)[0];
+			  orderInfo = obj[Object.keys(obj)[0]];
+			  console.log(orderId)
+			  console.log(orderInfo)
 			  
+			  $('<div id="'+orderId+'" class="ORD" value="'+'" >'
+			  	+'<div class="alert alert-info"> '
+				+'<span style="display:inline-block"><b>[주문번호]&nbsp;</b>'+orderId+'</span>'
+				+'<span class="float-right">'
+				+'<input type="button" class="btn btn-primary btn-sm" value="접수">'
+				+'<input type="button" class="btn btn-primary btn-sm" value="취소">'
+				+'</span></div>'
+				+'<div class="detailOrder alert alert-light bg-light" style="border: 1px solid black; display: none;">'
+				+'<h4 class="alert-heading font-weight-bold">주문 상세</h4>'
+			  	+'<table><tbody><tr><th scope="row">주소</th>'
+			  	+'<td class="pl-2">'+'</td></tr>'
+			  	+'<tr><th scope="row" >주문 시간</th>'
+			  	+'<td class="pl-2">'+'</td></tr>'
+			  	+'<tr><th scope="row">요청사항</th><td class="pl-2">'+'</td></tr></tbody></table>'
+			  	+'<table class="table table-striped table-hover"><thead class="thead-dark"><th scope="col">메뉴 이름</th><th scope="col">옵션</th><th scope="col">수량</th></thead> <tbody>'
+			  	+'<tr><td>'+'</td><td>'+'</td><td>'+'</td></tr>'
+			  	+'<tr><td>'+'</td><td>'+'</td><td>'+'</td></tr></tbody></table></div></div>'
+			  )
+				.appendTo('.waitAreaWrap')
 			  
 		 })
 		  
+		 
+		 
 		  
-		  
-		  
-		  
-/* 		  var obj = dbRef.on('value', function(snapshot){
-				console.log('새로들어온 주문 있음')		
-				var obj=snapshot.val()
-				var orderId = Object.keys(obj)[0];
-				var orderInfo = obj[Object.keys(obj)[0]];
-				console.log(orderId)
-				console.log(orderInfo)
-				notifyOrder('bottom','right',orderId)
-				
-				//알람 팝업이후 알림창에 넣어 주기 
-				
-				
-			 $('body').on('click','#'+orderId+' .confirm',function(){
-				 
-				 alert('gkgkgkgk')
-			 })
-				
-  		}); */
-		  /* 
-                            <div class="alert alert-success alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">hhh</span>
-                            </div>
-		  
-		  */
 		  
 		  
     </script>

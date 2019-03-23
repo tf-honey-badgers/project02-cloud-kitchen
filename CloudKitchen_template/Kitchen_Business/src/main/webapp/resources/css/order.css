@@ -4583,6 +4583,7 @@ tbody.collapse.show {
   background-clip: border-box;
   border: 1px solid #eeeeee;
   border-radius: 0.25rem;
+  height: 48rem;
 }
 
 .card>hr {
@@ -18820,3 +18821,10 @@ Copyright (c) 2015 Daniel Eden
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+
+.common{
+	border:1px solid grey; 
+	height:40rem;
+	overflow: auto;
+}
