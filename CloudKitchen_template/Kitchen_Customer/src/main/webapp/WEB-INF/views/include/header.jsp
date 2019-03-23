@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!--  로딩중 -->
+<!-- Preload =============================================== -->
    <div id="preloader">
         <div class="sk-spinner sk-spinner-wave" id="status">
             <div class="sk-rect1"></div>
@@ -11,8 +12,8 @@
             <div class="sk-rect5"></div>
         </div>
     </div> 
-    
-    <!-- End Preload -->
+<!-- End Preload =============================================== -->
+
 <!-- Favicons-->
     <link rel="shortcut icon" href="/customer/sresources/img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" type="/customer/resources/image/x-icon" href="/customer/resources/img/apple-touch-icon-57x57-precomposed.png">
@@ -34,8 +35,11 @@
     <link href="/customer/resources/css/magnific-popup.css" rel="stylesheet">
     <link href="/customer/resources/css/pop_up.css" rel="stylesheet">
 
+    <link href="/customer/resources/css/skins/square/grey.css" rel="stylesheet">
+    
     <!-- YOUR CUSTOM CSS -->
     <link href="/customer/resources/css/custom.css" rel="stylesheet">
+    
 
     <!-- Modernizr -->
     <script src="/customer/resources/js/modernizr.js"></script>
@@ -101,15 +105,38 @@
                     <input type="text" class="form-control form-white" placeholder="아이디">
                     <input type="text" class="form-control form-white" placeholder="비밀번호">
                     <div class="text-left">
-                        <a href="#">아이디 or 비밀번호 찾기 </a>
-                    </div>
-                    <button type="submit" class="btn btn-submit">Submit</button>
+                        <a id="findId" href="#" style="font-size: 13px;">아이디를 잊으셨나요?</a> <br/>
+				    	<a class="changePw" href="#" style="font-size: 13px;">비밀번호를 잊으셨나요?</a>
+                     </div>
+                    <button type="button" class="btn btn-submit">로그인</button>
                 </form>
             </div>
         </div>
     </div><!-- End modal -->
 
-    <!-- Register modal -->
+
+<!-- Find modal -->
+<div class="modal fade" id="finder" tabindex="-1" role="dialog"
+	aria-labelledby="myLogin" aria-hidden="true">
+	<div class="modal-dialog" style="margin-top: 151px;">
+		<div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;
+					text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
+			<a href="#" class="close-link"><i class="material-icons">close</i></a>
+			<form action="#" class="popup-form" id="myId">
+				<div class="login_icon" style="margin-top: 20px; margin-bottom: 10px;"><i class="material-icons" style="width: 60px; font-size: 60px;">lock_alt</i></div>
+				<h2>ID 찾기</h2>
+				<h5>ID를 찾으려면 본인인증을 해주세요.</h5>
+				<input type="text" class="form-control form-white" placeholder="이름">
+				<input type="text" class="form-control form-white" placeholder="이메일">
+				<button type="button" id="getId" class="btn btn-submit">ID 찾기</button>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- End Find Modal -->
+
+
+<!-- Register modal -->
     <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myRegister" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content modal-popup">
@@ -137,36 +164,9 @@
                             <label for="check_2"><span>I Agree to the <strong>Terms &amp; Conditions</strong></span></label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-submit">회원가입</button>
+                    <button type="button" class="btn btn-submit">회원가입</button>
                 </form>
             </div>
         </div>
     </div><!-- End Register modal -->
 
-    <!-- COMMON SCRIPTS -->
-    <script src="/customer/resources/js/jquery-2.2.4.min.js"></script>
-    <script src="/customer/resources/js/common_scripts_min.js"></script>
-    <script src="/customer/resources/js/functions.js"></script>
-    <script src="/customer/resources/assets/validate.js"></script>
-  <!-- SPECIFIC SCRIPTS -->
-  <script type="text/javascript">
-    $(document).ready(function() { // makes sure the whole site is loaded
-        $('#status').fadeOut(); // will first fade out the loading animation
-        $('#preloader').delay(250).fadeOut('slow'); // will fade out the white DIV that covers the website.
-        $('body').delay(250).css({'overflow':'visible'});
-        $('#sub_content').addClass('animated zoomIn');
-        $(window).scroll();
-        $('.number').each(function () {
-            $(this).prop('Counter',0).animate({
-                Counter: $(this).text()
-            }, {
-                duration: 2000,
-                easing: 'swing',
-                step: function (now) {
-                    $(this).text(Math.ceil(now));
-                }
-            });
-        });
-    });
-    </script>
-    <!-- Header End -->

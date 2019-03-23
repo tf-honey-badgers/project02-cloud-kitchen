@@ -43,7 +43,7 @@
 		<result property="mcNo" column="mcNo"/>
 		<result property="mcName" column="mcName"/>
 		<result property="mcBizId" column="mcBizId"/>
-	 	<collection property="mcMenuvo" javaType="java.util.ArrayList" resultMap="MenuVoEx"/> 
+	 	<collection property="mcMenuVo" javaType="java.util.ArrayList" resultMap="MenuVoEx"/> 
 	</resultMap>
 	
  	<resultMap id="bizvo" type="org.badgers.rest.model.BizVOExtend">
@@ -56,7 +56,7 @@
 		<result property="bizKitchenId" column="bizKitchenId" />
 		<result property="bizLiveStrm" column="bizLiveStrm" />
 		<result property="bizIdx" column="bizIdx" />
-		<collection property="bizMenucatvo" javaType="java.util.ArrayList" resultMap="MenuCatVoEx"/>
+		<collection property="bizMenuCatVo" javaType="java.util.ArrayList" resultMap="MenuCatVoEx"/>
 	</resultMap>
 
 	<select id="bizInfo" resultMap="bizvo">
@@ -103,8 +103,6 @@
 		
 		where b.biz_id=#{bizId};
 	</select>
-	
-	
 	
 	<select id="getCategorization" resultType="org.badgers.rest.model.CommonCodeVOExtend">
 		select * from common_code where id like 'STR%'

@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/order")
 public class Payment_temp {
 
+	@RequestMapping("/orderinfo")
+	public String orderInfo() {
+		return "order_1_orderinfo";
+	}
+	
 	@RequestMapping("/payment")
 	public String payment() {
 		return "order_2_payment";

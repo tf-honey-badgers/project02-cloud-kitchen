@@ -3,6 +3,7 @@ package org.badgers.rest.customer.member.controller;
 import java.util.List;
 
 import org.badgers.rest.customer.member.service.CustomerService;
+import org.badgers.rest.model.BizMemberVOExtend;
 import org.badgers.rest.model.CustomerVO;
 import org.badgers.rest.model.FavoriteVO;
 import org.badgers.rest.model.OrderInfoVO;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +32,7 @@ public class CustomerController {
 	private CustomerService service;
 
 	//회원가입
-	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
+	@PostMapping(value = "/register", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> register(@RequestBody CustomerVO vo) throws Exception {
 		boolean result = service.register(vo);
 		log.info("insert result : " + result);
@@ -42,25 +44,11 @@ public class CustomerController {
 	// 로그인
 	@PostMapping(value = "/")
 	public ResponseEntity<String> login(@RequestBody CustomerVO cvo) throws Exception {
-			ResponseEntity<String> entity = null;
+		 String returnVal = service.login(cvo.getId(), cvo.getPw());
 		 
 		 System.out.println(cvo.getId());
 
-		 try {
-			 int returnVal = service.login(cvo.getId(), cvo.getPw());
-			 if(returnVal == 1) { // 정상처리, 아이디를 다시 돌려보낸다 -> 프런트 도메인에서 로그인 처리할 것
-				 entity = new ResponseEntity<String>(cvo.getId(), HttpStatus.OK);
-			 } else if (returnVal == -1) { // 아이디는 맞지만 비번 틀림
-				 entity = new ResponseEntity<String>("PW_BAD", HttpStatus.BAD_REQUEST);
-			 } else if (returnVal == -2) { // 아이디가 존재하지 않는다
-				 entity = new ResponseEntity<String>("NO_ID", HttpStatus.BAD_REQUEST);
-			 }
-			 log.info("연결 ==================== ");
-		 } catch (Exception e) {
-			 e.printStackTrace();
-			 entity = new ResponseEntity<String>("SERVER_ERROR", HttpStatus.SERVICE_UNAVAILABLE);
-			 log.info("에러 에러=========================== ");
-		 }
+		 ResponseEntity<String> entity = new ResponseEntity<String>(returnVal, HttpStatus.OK);
 		 
 		 return entity;	
 	}
@@ -125,6 +113,7 @@ public class CustomerController {
 	}
 	
 	//주문 내역  보기 
+	@CrossOrigin("http://localhost:12004") //크로스 도메인 처리 
 	@GetMapping(value = "/{cust_id}/mypage/orderinfo", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<List<OrderInfoVO>>  getOrderInfo(@PathVariable("cust_id")String custId) {
 		List<OrderInfoVO> list = service.getOrderInfo(custId);
@@ -136,16 +125,29 @@ public class CustomerController {
 	
 	
 	//찜  내역  보기 
+	@CrossOrigin("http://localhost:12004") //크로스 도메인 처리 
 	@GetMapping(value = "/{cust_id}/mypage/favorite", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<List<FavoriteVO>>  favorite(@PathVariable("cust_id")String custId) {
-			List<FavoriteVO> list = service.favorite(custId);
+			List<FavoriteVO> favorite = service.favorite(custId);
 				
 
-			return new ResponseEntity<List<FavoriteVO>>(list, HttpStatus.OK);
+			return new ResponseEntity<List<FavoriteVO>>(favorite, HttpStatus.OK);
 		}
 	
 	
-	
+	// ID 찾기 & 본인인증하기
+		@PostMapping("/verify")
+		public ResponseEntity<String> verify(@RequestBody CustomerVO vo) throws Exception {
+			 ResponseEntity<String> entity = null;
+			 
+			 log.info("Kitchen_Rest 사용자 ID 찾기...............................");
+
+			 String returnVal = service.verify(vo);
+			 if(returnVal == null) { entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST); }
+			 else { entity = new ResponseEntity<String>(returnVal, HttpStatus.OK); }
+			 
+			 return entity;
+		}
 	
 
 }

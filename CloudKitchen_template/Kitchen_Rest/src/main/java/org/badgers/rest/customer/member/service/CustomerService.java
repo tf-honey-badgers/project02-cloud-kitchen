@@ -12,7 +12,7 @@ public interface CustomerService {
 	public boolean register(CustomerVO vo) throws Exception;
 
 	// 로그인
-	public int login(String id, String pw)throws Exception;
+	public String login(String id, String pw)throws Exception;
 
 	
 	//회원 정보
@@ -36,6 +36,8 @@ public interface CustomerService {
 	// 찜 내역 보기 
 	public List<FavoriteVO> favorite(String custId);
 	
+	//ID 찾기
+	public String verify(CustomerVO vo)throws Exception;
 	
 	
 }

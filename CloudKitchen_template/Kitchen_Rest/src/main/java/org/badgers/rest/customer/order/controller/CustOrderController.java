@@ -2,6 +2,7 @@ package org.badgers.rest.customer.order.controller;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.badgers.rest.customer.order.service.CustFireBaseService;
@@ -53,7 +54,6 @@ public class CustOrderController {
 			
 			//가게별 주문 정보 상태(status) insert
 		}
-
 		return new ResponseEntity<>(list, HttpStatus.OK);
 
 	}

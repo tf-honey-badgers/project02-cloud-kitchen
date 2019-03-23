@@ -96,14 +96,22 @@
       ;
    </select>
 
-
+<!--찜내역 보기  -->
 <select id="favorite" 
 resultType="org.badgers.rest.model.FavoriteVO">
 select * from honey_badgers.favorite where cust_id = #{custId}
 
-
 </select>
 
+<!-- id 찾기  -->
+<select id="verify" resultType="String">
+		select id
+		from honey_badgers.customer
+		where name = #{name} and email = #{email}
+		<if test="id != null and id != ''"> 
+			and id =#{id}
+		</if>
+	</select>
 
 
 
