@@ -5,10 +5,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.badgers.customer.model.BizVOExtend;
+import org.badgers.customer.model.CartVOExtend;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +26,7 @@ public class KitchenController {
 	RestTemplate restTemplate;
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@GetMapping(value = "/{bizId}/main", produces="application/json")
+	@GetMapping(value = "/{bizId}/main", produces = "application/json")
 	public ModelAndView readBizMain(ModelAndView mav, @PathVariable("bizId") String bizId) {		
 		log.info("Kitchen_Customer 메뉴 읽기...............................");
 		
@@ -47,7 +49,15 @@ public class KitchenController {
 			mav.addObject("message", "Failed to read biz main data. REST server may be offline.");
 		}		
 		mav.setViewName("bizMenu");
-		
 		return mav;
+	}
+	
+	@PostMapping(value = "/cart", produces = "application/json")
+	public CartVOExtend addCart(CartVOExtend cart) {
+		log.info("Kitchen_Customer 카트 DB에 추가하기");
+		
+		log.info("Kitchen_Customer 카트 읽어오기");
+		
+		return cart;
 	}
 }

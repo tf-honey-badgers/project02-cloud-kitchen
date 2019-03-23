@@ -1,6 +1,3 @@
-console.log("Member module..........")
-
-
 $(document).ready(function(){
 	
 	/* modal의 "X" 버튼을 눌러 닫을 때 modal을 숨기고 초기화하기 */
