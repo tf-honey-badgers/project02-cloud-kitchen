@@ -67,13 +67,14 @@
 					</div>
 
 					<div class="form-group">
-						<label>연락 받을 번호</label> <input type="text" id="tel_order"
-							name="tel_order" class="form-control" placeholder="연락 받을 번호">
+						<label>연락 받을 번호</label> <span>(회원 번호와 동일)</span> <input
+							type="checkbox" id="defaultPhone" class="icheck"> <input type="text" id="phone"
+							name="phone" class="form-control" placeholder="연락 받을 번호">
 					</div>
 					<div class="form-group">
 						<label>배달 주소</label> <span>(회원 주소와 동일)</span> <input
-							type="checkbox" class="icheck"> <input type="text"
-							id="address_order" name="address_order" class="form-control"
+							type="checkbox" id="defaultAddress" class="icheck"> <input type="text"
+							id="address" name="address" class="form-control"
 							placeholder="배달 주소">
 					</div>
 					<hr>
@@ -175,5 +176,36 @@
 	<!-- Footer 시작  -->
 	<jsp:include page="include/footer.jsp" flush="false" />
 	<!-- Footer 끝  -->
+	
+	<!-- Script 시작 -->
+	<script>
+		$(document).ready(function(){
+			/* 회원 번호 사용 */
+			defaultPhoneInit();
+			/* 회원 주소 사용 */
+			defaultAddressInit();
+		})
+		
+		function defaultPhoneInit(){
+			$('#defaultPhone').siblings().click(function(){
+				if($(this).parent().hasClass('checked')){
+					$('#phone').val('${phone}');
+					return;
+				}
+				$('#phone').val('');
+			})
+		}
+		
+		function defaultAddressInit(){
+			$('#defaultAddress').siblings().click(function(){
+				if($(this).parent().hasClass('checked')){
+					$('#address').val('${address}');
+					return;
+				}
+				$('#address').val('');
+			})
+		}
+	</script>
+	<!-- Script 끝 -->
 </body>
 </html>

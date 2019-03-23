@@ -36,7 +36,6 @@ public class OrderController {
 	public String registOrder(@RequestBody OrderVOExtend vo, Model model) {
 		
 		String url = "http://127.0.0.1:3000/rest/cust/order/"+vo.getId();
-		
 		ResponseEntity<OrderInfoVO[]> responses  = restTemplate.postForEntity(url,vo, OrderInfoVO[].class);
 		List<OrderInfoVO> list =Arrays.asList(responses.getBody());
 		model.addAttribute("list", list);
