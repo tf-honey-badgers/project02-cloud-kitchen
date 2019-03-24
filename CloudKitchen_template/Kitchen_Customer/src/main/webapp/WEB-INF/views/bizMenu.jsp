@@ -84,9 +84,9 @@
 											<figure class="thumb_menu_list">
 												<img src="/customer/resources/img/menu-thumb-1.jpg"	alt="thumb">
 											</figure>
-											<h5 style="padding-top: 10px;">${loop.index+1}. ${dish.mname}</h5>
+											<h5 style="padding-top: 10px;" data-id="${dish.mcode}">${loop.index+1}. ${dish.mname}</h5>
 										</td>
-										<td data-value="${dish.mbasicPrice}"><strong>${dish.mbasicPrice} 원</strong></td>
+										<td data-price="${dish.mbasicPrice}"><strong>${dish.mbasicPrice} 원</strong></td>
 										<td class="options">
 											<div class="dropdown dropdown-options">
 												<a href="#" id="addCart" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
@@ -96,22 +96,22 @@
 															<h5>${extras.mocName}</h5>
 															<c:if test="${extras.mocMenuOptType == 'OPT001'}">
 																<c:forEach var="option" items="${extras.menuOptEx}">
-																	<label> <input type="radio" value="option1" name="${extras.menuOptEx}" required="required">${option.moName} <span data-value="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
+																	<label> <input type="radio" data-name="${option.moName}" data-id="${option.moCode}" name="${extras.mocName}" required>${option.moName} <span data-price="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
 																</c:forEach>
 															</c:if>
 															<c:if test="${extras.mocMenuOptType == 'OPT002'}">
 																<c:forEach var="option" items="${extras.menuOptEx}">
-																	<label> <input type="checkbox" value="option1" name="${extras.menuOptEx}" required="required">${option.moName} <span data-value="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
+																	<label> <input type="checkbox" data-name="${option.moName}" data-id="${option.moCode}" name="${extras.mocName}" required>${option.moName} <span data-price="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
 																</c:forEach>
 															</c:if>
 															<c:if test="${extras.mocMenuOptType == 'OPT003'}">
 																<c:forEach var="option" items="${extras.menuOptEx}">
-																	<label> <input type="radio" value="option1" name="${extras.menuOptEx}">${option.moName} <span data-value="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
+																	<label> <input type="radio" data-name="${option.moName}" data-id="${option.moCode}" name="${extras.mocName}">${option.moName} <span data-price="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
 																</c:forEach>
 															</c:if>
 															<c:if test="${extras.mocMenuOptType == 'OPT004'}">
 																<c:forEach var="option" items="${extras.menuOptEx}">
-																	<label> <input type="checkbox" value="option1" name="${extras.menuOptEx}">${option.moName} <span data-value="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
+																	<label> <input type="checkbox" data-name="${option.moName}" data-id="${option.moCode}" name="${extras.mocName}">${option.moName} <span data-price="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
 																</c:forEach>
 															</c:if>														
 														</div>
@@ -257,8 +257,10 @@
 			/* "Add to cart" 버튼을 클릭하면 선택한 메뉴와 옵션 정보와 가격을 장바구니에 추가하고 Rest도메인을 호출하여 DB에 입력하도록 */
 			$('.add_to_basket').on('click', function(event) {
 				event.preventDefault();
+			/* 선택한 메뉴의 ID */
+				const menuId = $(this).parents('td').siblings('td:eq(0)').children('h5').attr('data-id');
 			/* 선택한 메뉴의 가격 (옵션 제외) */
-				const menuPrice = $(this).parents('td').siblings('td:eq(1)').attr('data-value');
+				const menuPrice = $(this).parents('td').siblings('td:eq(1)').attr('data-price');
 			/* 선택한 옵션들 (input tag) */
 				const checkedOptions = $(this).siblings('div').children().children('input:checked');
 			/* 선택한 옵션을 담을 배열 */
@@ -268,7 +270,7 @@
 				
 			/* 선택한 각 옵션의 가격을 optArr 배열에 담는다 */
 				$.each(checkedOptions, function(index, item) {
-					optArr.push(checkedOptions.eq(index).siblings('span').attr('data-value'));
+					optArr.push(checkedOptions.eq(index).siblings('span').attr('data-price'));
 				})
 			
 			/* 메뉴 가격과 각 옵션의 가격을 더해서 가격 총 합을 구한다 */
@@ -277,7 +279,52 @@
 					totalPrice += parseInt(item);
 				})
 				console.log(totalPrice);
-			})
+				console.log($(this).siblings('div').children().children('input:checked').length);
+
+			/* 선택한 옵션의 개수를 cur변수의 값으로 삼는다. */
+				let cur = $(this).siblings('div').children().children('input:checked').length; // 브라우저 콘솔에서 작업용 : $('.add_to_basket').eq(0).siblings('div').children().children('input:checked')
+			/* 옵션 정보를 담을 배열 (List<CartDetailVO>에 매핑) */
+				let inputOptions = [];
+				for(let i = 0; i < cur; i++) {
+					id = menuId;
+					optName = $(this).siblings('div').children().children('input:checked').eq(i).attr('data-name');
+					optId = $(this).siblings('div').children().children('input:checked').eq(i).attr('data-id');
+					optPrice = $(this).siblings('div').children().children('input:checked').eq(i).siblings('span').attr('data-price');
+					
+					inputOptions.push({ menuOptId : optId, menuId : id, menuOptName : optName, menuOptPrice : optPrice });
+				}
+
+				// 비동기 요청하면 CartVOExtended에 매핑되도록
+				var inputData = {
+						custId : 'tjtjtj'
+						, quantity : 1
+						, unitPrice : menuPrice
+						, totalAmt : totalPrice
+						, kitchenName : '예테버리'
+						, bizName : 'biz_2'
+						, menuId : menuId
+						, options : inputOptions
+					};
+				console.log("INPUTDATA = 제대로 입력되었는지 확인하기 : ", inputData)
+				
+				// CartController로 비동기 요청하기
+ 				$.ajax({
+					type : 'POST'
+					, url : 'http://localhost:12004/customer/kitchen/cart/add'
+					, dataType : 'json'
+					, contentType : 'application/json'
+					, data : JSON.stringify(inputData)
+		    		, success : function(data) {
+		    			console.log("AAA");
+						console.log(data);
+					}
+					, error : function(data) {
+						console.log("ZZZ");
+						console.log('ERRoR oCCURRED');
+						console.log(data);
+					}
+				});
+			});
 		});
 	</script>
 
