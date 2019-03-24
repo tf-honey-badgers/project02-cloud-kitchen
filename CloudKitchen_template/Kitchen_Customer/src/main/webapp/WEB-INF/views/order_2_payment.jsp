@@ -188,7 +188,7 @@
 							</tbody>
 						</table>
 						<hr>
-						<a class="btn_full" href="cart_3.html">Confirm your order</a>
+						<a class="btn_full" href="confirm">Confirm your order</a>
 					</div>
 					<!-- End cart_box -->
 				</div>

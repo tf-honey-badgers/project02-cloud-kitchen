@@ -12,7 +12,7 @@
 	<jsp:include page="include/header.jsp" flush="false" />
 	<!-- 주문 헤더 -->
 	<jsp:include page="include/header_order.jsp" flush="false" />
-
+<form action="payment" method="post">
 	<div id="position">
 		<div class="container">
 			<ul>
@@ -61,11 +61,11 @@
 			<div class="col-md-6">
 				<div class="box_style_2" id="order_process">
 					<h2 class="inner">주문 정보 입력</h2>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label>이름</label> <input type="text" class="form-control"
 							id="firstname_order" name="firstname_order" placeholder="이름">
-					</div>
-
+					</div> -->
+			
 					<div class="form-group">
 						<label>연락 받을 번호</label> <span>(회원 번호와 동일)</span> <input
 							type="checkbox" id="defaultPhone" class="icheck"> <input type="text" id="phone"
@@ -157,8 +157,8 @@
 							</tbody>
 						</table>
 						<hr>
-						<a class="btn_full" href="payment">Go to Payment</a> <a
-							class="btn_full_outline" href="detail_page.html"><i
+						<button class="btn_full">Go to Payment</button>
+						<a class="btn_full_outline" href="detail_page.html"><i
 							class="icon-right"></i> Add other items</a>
 					</div>
 					<!-- End cart_box -->
@@ -172,7 +172,7 @@
 	</div>
 	<!-- End container -->
 	<!-- End Content =============================================== -->
-
+</form>
 	<!-- Footer 시작  -->
 	<jsp:include page="include/footer.jsp" flush="false" />
 	<!-- Footer 끝  -->
