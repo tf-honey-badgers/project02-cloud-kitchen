@@ -1,13 +1,14 @@
 package org.badgers.business.menu.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.badgers.business.menu.service.MenuServiceImpl;
+import org.badgers.business.model.MenuVOExtend;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,25 +65,29 @@ public class MenuController {
 		return null;
 	}
 	
-	@RequestMapping(value="/main/menuupdate", method=RequestMethod.GET)
+	@RequestMapping(value="/main/menuupdate", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public int updateMenu(@RequestParam("updateMenu") String updateMenuInfo) {
-		System.out.println(updateMenuInfo);
-		
+	public int updateMenu(@RequestParam("updateMenu") List menuUpdateInfo) {
+		List updateMenu = new ArrayList(menuUpdateInfo);
+		System.out.println("받아온 정보 : "+updateMenu);
+		int result = 0;
 		try {
 			System.out.println("MenuUpdate Front Controller1");
-			String url = "http://localhost:80/rest";
+			String url = "http://localhost:80/rest/bizmenu/menuupdate";
 			
-			ResponseEntity<?> updateResponseEntity = restTemplate.getForEntity
-					(url+"/bizmenu/menuupdate/"+updateMenuInfo, int.class);
+			ResponseEntity updateResponseEntity = restTemplate.postForEntity
+					(url,updateMenu,int.class);
+			
 			System.out.println("MenuUpdate Front Controller2");
 			
-			int result = (int) updateResponseEntity.getBody();
+			result = (int) updateResponseEntity.getBody();
+			System.out.println(result);
 			return result;
 			
 		}catch(Exception e){
 			e.getStackTrace();
 		}
+		
 		return 0;
 		
 	}
