@@ -129,6 +129,7 @@
             
             //주문상세 보기 toggle 
              $('body').on('click','.ordTgg', function(event){
+            	 console.log($(this).parent().siblings().find('.detailOrder').hide())
                 $(this).siblings('.detailOrder').stop().slideToggle();
                 
             }) 
