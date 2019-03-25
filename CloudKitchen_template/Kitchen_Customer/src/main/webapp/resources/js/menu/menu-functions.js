@@ -108,13 +108,68 @@ $(document).ready(function() {
 	
 	/* 주문할 메뉴 전체선택하기 */
 	$('.table_summary th:eq(0) input').on('click', function() {
-		console.log("mrow");
 		$('.cartTable .check-order').prop('checked', $('.table_summary th:eq(0) input').prop('checked'));
+	});
+	/* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
+	$('.cartTable .check-order').on('click', function() {
+		if($('.table_summary th:eq(0) input').prop('checked') == true) {
+			$('.table_summary th:eq(0) input').prop('checked', false);
+		}
 	});
 	
 	/* 삭제할 메뉴 전체선택하기 */
 	$('.table_summary th:eq(2) input').on('click', function() {
 		console.log("mrow");
 		$('.cartTable .check-delete').prop('checked', $('.table_summary th:eq(2) input').prop('checked'));
+	});
+	/* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
+	$('.cartTable .check-delete').on('click', function() {
+		if($('.table_summary th:eq(2) input').prop('checked') == true) {
+			$('.table_summary th:eq(2) input').prop('checked', false);
+		}
+	});
+	
+	/* 카트의 id="deleteCart" 클릭하면 선택된 항목 삭제하기 */
+	$('#deleteCart').on('click', function() {
+		const checked = $('.cartTable .check-delete:checked');
+		let cartId = [];
+		for(let i = 0; i < checked.length; i++) {
+			cartId[i] = checked.parent().siblings('.cartData').attr('data-cart-id');
+		}
+		
+ 		$.ajax({
+			type : 'POST'
+			, url : 'http://localhost:3001/customer/kitchen/cart/delete'
+			, dataType : 'json'
+			, contentType : 'application/json'
+			, data : JSON.stringify({
+					custId : 'tjtjtj'
+					, cartIds : cartId
+				})
+	   		, success : function(data) {
+	   			$('.cartTable').empty();
+	   			cartTotal = 0;
+				for(let i = 0; i < data.length; i++) {
+	    			$('.cartTable').append('<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
+	    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
+	    					data[i].name + '<strong class="pull-right">' + data[i].totalAmt + '원</strong></td>' +
+	    					'<td style="width: 10%;"><input type="checkbox" class="pull-right"></td></tr>');
+	    			if(data[i].options != null) {
+		    			for(let j = 0; j < data[i].options.length; j++) {
+			    			$('.cartTable').append('<tr><td style="width: 10%;"></td>' +
+			    					'<td style="font-size: 11px">' + data[i].options[j].menuOptName + '</td>' +
+			    					'<td style="width: 10%;"></td></tr>');			    				
+		    			}
+	    			}
+	    			cartTotal += data[i].totalAmt;
+				}
+				console.log(cartTotal);
+				$('.total span').text(cartTotal + '원');
+			}
+			, error : function(data) {
+				console.log('ERRoR oCCURRED');
+				console.log(data);
+			}
+		});
 	});
 });

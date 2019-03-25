@@ -142,8 +142,11 @@
 							<thead>
 								<tr>
 									<th style="width: 10%;"><input type="checkbox"></th>
-									<th style="width: 80px;">전체선택</th>
-									<th style="text-align: right; width: 15%;" colspan="2"><input type="checkbox"></th>
+									<th style="width: 80px;">
+										전체선택
+										<a class="btn_intro pull-right" id="deleteCart" >삭제하기</a>
+									</th>
+									<th style="text-align: right; width: 10%;" colspan="2"><input type="checkbox"></th>
 								</tr>							
 							</thead>
 							<tbody class="cartTable">
@@ -151,7 +154,7 @@
 									<tr>
 										<td style="width: 10%;"><input class="check-order" type="checkbox"></td>
 										<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.name}<strong class="pull-right">${cart.totalAmt}원</strong></td>
-										<td style="width: 10%;"><input class="check-delete" type="checkbox" class="pull-right"></td>
+										<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox" class="pull-right"></td>
 									</tr>
 									<c:forEach var="options" items="${cart.options}">									
 										<tr>
