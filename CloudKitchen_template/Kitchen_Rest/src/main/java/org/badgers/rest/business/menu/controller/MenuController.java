@@ -1,5 +1,6 @@
 package org.badgers.rest.business.menu.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.badgers.rest.business.menu.service.MenuService;
@@ -8,7 +9,14 @@ import org.badgers.rest.model.MenuOptionClVOExtend;
 import org.badgers.rest.model.MenuOptionVOExtend;
 import org.badgers.rest.model.MenuVOExtend;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -65,5 +73,22 @@ public class MenuController {
 	@ResponseBody
 	public int updateMenuOpt(MenuOptionVOExtend menuOptVoEx) {
 		return  service.updateMenuOptInfo(menuOptVoEx);
+	}
+	
+	@RequestMapping(value="/menuupdate", method=RequestMethod.POST)	
+	@Transactional
+	@ResponseBody
+//	public ResponseEntity menuUpdate(@RequestBody List updateMenuInfo){
+	public ResponseEntity<?> menuUpdate(@RequestBody List<String> updateMenuInfo){
+		System.out.println("MenuUpdate Rest Controller : "+updateMenuInfo);
+		
+//		int result = service.updateMenu(updateMenuInfo);
+		int result = 1;
+		
+		if(result == 0) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(result, HttpStatus.OK); 
+//		return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 	}
 }

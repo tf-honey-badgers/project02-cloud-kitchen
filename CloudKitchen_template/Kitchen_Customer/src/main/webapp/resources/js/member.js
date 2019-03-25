@@ -1,6 +1,3 @@
-console.log("Member module..........")
-
-
 $(document).ready(function(){
 	
 	/* modal의 "X" 버튼을 눌러 닫을 때 modal을 숨기고 초기화하기 */
@@ -44,6 +41,20 @@ $(document).ready(function(){
     		}
 		});
 	})
+	
+	// 회원가입 절차 
+	$('#register button').on('click',function(){
+		
+		
+		
+		
+	});
+	
+	
+	
+	
+	
+	
 	
 	/* ID 찾기 인증 절차 */
 	$('#findId').on('click', function(event) {

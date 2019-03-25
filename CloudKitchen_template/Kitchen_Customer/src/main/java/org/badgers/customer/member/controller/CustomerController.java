@@ -120,11 +120,11 @@ public class CustomerController {
 	}	
 	
 	// 회원 가입 
-	@PostMapping(value="/new", produces = "text/plain; charset=utf-8")
+	@PostMapping(value="/register", produces = "text/plain; charset=utf-8")
 	@ResponseBody
 	public String register(@RequestBody CustomerVO customer) {
 		String msg = "";
-		String url = "http://localhost:12007/rest/customer/new";
+		String url = "http://localhost:12007/rest/customer/register";
 		
 		try {
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);

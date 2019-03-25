@@ -13,10 +13,10 @@ $(document)
 						for(let i=0;i<$('.menuOptSelect').length;i++){
 							let menuOptClsub = new Object();
 							
-							menuOptClsub.mocNo = menuOptSel[i].childNodes[0].innerHTML;
+							menuOptClsub.mocNo = parseInt(menuOptSel[i].childNodes[0].innerHTML);
 							menuOptClsub.mocName = menuOptSel[i].childNodes[1].innerHTML;
 							menuOptClsub.mocMenuOptType = menuOptSel[i].childNodes[2].innerHTML;
-							menuOptClsub.mocMenuCode = menuOptSel[i].childNodes[3].innerHTML;
+							menuOptClsub.mocMenuCode = parseInt(menuOptSel[i].childNodes[3].innerHTML);
 							
 							// 카테고리 안의 옵션용
 							let menuOpt = new Array();
@@ -24,10 +24,10 @@ $(document)
 							for(let j=0;j<menuOptAll.length;j++){
 								if(menuOptSel[i].childNodes[0].innerHTML == menuOptAll[j].children[3].innerHTML){
 									let menuOptsub = new Object();
-									menuOptsub.moCode = menuOptAll[j].children[0].innerHTML;
+									menuOptsub.moCode = parseInt(menuOptAll[j].children[0].innerHTML);
 									menuOptsub.moName = menuOptAll[j].children[1].children[0].value;
-									menuOptsub.moAddPrice = menuOptAll[j].children[2].children[0].value;
-									menuOptsub.moOptClNo = menuOptAll[j].children[3].innerHTML;
+									menuOptsub.moAddPrice = parseInt(menuOptAll[j].children[2].children[0].value);
+									menuOptsub.moOptClNo = parseInt(menuOptAll[j].children[3].innerHTML);
 									menuOpt.push(menuOptsub);
 								}// menuOptAll if end
 							} // menuOptAll end
@@ -36,27 +36,25 @@ $(document)
 						} // menuOptSelect end
 						
 						let menu = new Object();
-						menu.mcode = $('.menuVal').children().eq(0).text();
-						menu.mphoto = $('.menuVal').children().eq(1).text();
-						menu.mname = $('.menuVal').children().eq(2).children().val();
-						menu.mbasicPrice = $('.menuVal').children().eq(3).children().val();
+						menu.mCode = parseInt($('.menuVal').children().eq(0).text());
+						menu.mPhoto = $('.menuVal').children().eq(1).text();
+						menu.mName = $('.menuVal').children().eq(2).children().val();
+						menu.mBasicPrice = parseInt($('.menuVal').children().eq(3).children().val());
 						menu.menuOptCl = menuOptCl;
 						console.log(menu);
-						
+
 						$.ajax({
 			        		type : "POST",
 			        		dataType : 'json',
-			        		url : "../../menu/main/menuupdate",
-			        		traditional : true,
+			        		url : "../menu/main/menuupdate",
 			         		data : {
-			         			'updateMenu' : JSON.stringify(menu)
+			         			"updateMenu" : JSON.stringify(menu)
 			        		},
 			        		error : function(data){
 			        			console.log(data);
 			        		},
 			        		success(data){
 			        			console.log(data);
-			        			
 			        		}
 						});
 						
@@ -74,15 +72,15 @@ $(document)
 						
 						$.ajax({
 			        		type : "GET",
-			        		url : "../../menu/main/update/"+$(this).parent().parent().children().eq(0).text()+".json",
-//			         		data : {
-//			         			mIdx : 
-//			        		},
+			        		url : "../menu/main/update",
+			        		dataType : "json",
+			         		data : {
+			         			mIdx : $(this).parent().parent().children().eq(0).text()
+			        		},
 			        		error : function(data){
 			        			console.log(data);
 			        		},
 			        		success(data){
-			        			console.log(data);
 		        				$('.menuOpt').append('<tr class="menuSelect">'
 		        						+'<th class="menuNo">'+$('.text-primary tr th').eq(0).text()+'</th>'
 		        						+'<th>'+$('.text-primary tr th').eq(1).text()+'</th>'

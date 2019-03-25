@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
-
+<%@page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,7 @@
 <link rel="icon" type="image/png"
 	href="/business/resources/img/favicon.png">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>${bizMenu[0].bizName}- 메뉴 수정</title>
+<title>${bizMenu[0].bizName} - 메뉴 수정</title>
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
 	name='viewport' />
@@ -29,7 +29,6 @@
 </head>
 
 <body class="">
-
 <div id="menuModal" class="menuModal">
 	<div class="menuModalOpt">
 		<span class="menuModalClose">&times;</span>
@@ -54,7 +53,7 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header card-header-primary">
-									<h4 class="card-title ">${bizMenu[0].bizMenucatvo[0].mcName}</h4>
+									<h4 class="card-title ">${bizMenu[0].bizMenuCatVo[0].mcName}</h4>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -68,7 +67,7 @@
 											</thead>
 											<tbody>
 												<c:forEach var="menu"
-													items="${bizMenu[0].bizMenucatvo[0].mcMenuvo}">
+													items="${bizMenu[0].bizMenuCatVo[0].mcMenuVo}">
 													<tr>
 														<td>${menu.mcode}</td>
 														<td>${menu.mphoto}</td>
@@ -86,8 +85,8 @@
 								</div>
 							</div>
 						</div>
-
-						<c:forEach var="menucat" items="${bizMenu[0].bizMenucatvo}"
+						
+						<c:forEach var="menucat" items="${bizMenu[0].bizMenuCatVo}"
 							begin="1">
 							<div class="col-md-12">
 								<div class="card card-plain">
@@ -105,7 +104,7 @@
 													<th>옵션</th>
 												</thead>
 												<tbody>
-													<c:forEach var="menu" items="${menucat.mcMenuvo}">
+													<c:forEach var="menu" items="${menucat.mcMenuVo}">
 														<tr>
 															<td>${menu.mcode}</td>
 															<td>${menu.mphoto}</td>

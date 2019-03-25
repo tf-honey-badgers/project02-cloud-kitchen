@@ -32,7 +32,7 @@ public class CustomerController {
 	private CustomerService service;
 
 	//회원가입
-	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
+	@PostMapping(value = "/register", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> register(@RequestBody CustomerVO vo) throws Exception {
 		boolean result = service.register(vo);
 		log.info("insert result : " + result);
@@ -44,25 +44,11 @@ public class CustomerController {
 	// 로그인
 	@PostMapping(value = "/")
 	public ResponseEntity<String> login(@RequestBody CustomerVO cvo) throws Exception {
-			ResponseEntity<String> entity = null;
+		 String returnVal = service.login(cvo.getId(), cvo.getPw());
 		 
 		 System.out.println(cvo.getId());
 
-		 try {
-			 int returnVal = service.login(cvo.getId(), cvo.getPw());
-			 if(returnVal == 1) { // 정상처리, 아이디를 다시 돌려보낸다 -> 프런트 도메인에서 로그인 처리할 것
-				 entity = new ResponseEntity<String>(cvo.getId(), HttpStatus.OK);
-			 } else if (returnVal == -1) { // 아이디는 맞지만 비번 틀림
-				 entity = new ResponseEntity<String>("PW_BAD", HttpStatus.BAD_REQUEST);
-			 } else if (returnVal == -2) { // 아이디가 존재하지 않는다
-				 entity = new ResponseEntity<String>("NO_ID", HttpStatus.BAD_REQUEST);
-			 }
-			 log.info("연결 ==================== ");
-		 } catch (Exception e) {
-			 e.printStackTrace();
-			 entity = new ResponseEntity<String>("SERVER_ERROR", HttpStatus.SERVICE_UNAVAILABLE);
-			 log.info("에러 에러=========================== ");
-		 }
+		 ResponseEntity<String> entity = new ResponseEntity<String>(returnVal, HttpStatus.OK);
 		 
 		 return entity;	
 	}

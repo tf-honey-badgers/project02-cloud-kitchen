@@ -104,4 +104,9 @@ public class MenuServiceImpl implements MenuService {
 		return mapper.updateMenuOptInfo(menuOptVoEx);
 	}
 
+	@Override
+	public int updateMenu(List<?> updateMenuInfo) {
+		return 0;
+	}
+
 }
