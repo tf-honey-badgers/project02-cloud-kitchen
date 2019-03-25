@@ -45,7 +45,7 @@
 		<div class="row">
 			<div class="col-md-2">
 				<p>
-					<a href="list_page.html" class="btn_side">Back to search</a>
+					<a href="javascript:history.back()" class="btn_side">Back to search</a>
 				</p>
 				<div class="box_style_1">
 					<ul id="cat_nav">
