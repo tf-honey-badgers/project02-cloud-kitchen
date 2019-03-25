@@ -36,7 +36,7 @@ public class CustomerController {
 		log.info("사용자 개인정보 읽기...............................");
 		
 		CustomerVO returnVal = null;
-		String url = "http://localhost:12007/rest/customer/" + id + "/mypage";
+		String url = "http://localhost/rest/customer/" + id + "/mypage";
 		
 		try {
 			ResponseEntity<CustomerVO> responseEntity = 
@@ -69,7 +69,7 @@ public class CustomerController {
 	public String login(@RequestBody CustomerVO customer) {
 		
 		String msg = "";
-		String url = "http://localhost:12007/rest/customer/";
+		String url = "http://localhost/rest/customer/";
 		
 		try {
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
@@ -102,7 +102,7 @@ public class CustomerController {
 		log.info("Kitchen_Business 사용자 개인정보 수정...............................");
 		
 		try {
-			String url = "http://localhost:12007/rest/customer/" + cvo.getId() + "/mypage/modify";
+			String url = "http://localhost/rest/customer/" + cvo.getId() + "/mypage/modify";
 			restTemplate.put(url, cvo);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -124,7 +124,7 @@ public class CustomerController {
 	@ResponseBody
 	public String register(@RequestBody CustomerVO customer) {
 		String msg = "";
-		String url = "http://localhost:12007/rest/customer/register";
+		String url = "http://localhost/rest/customer/register";
 		
 		try {
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
@@ -143,7 +143,7 @@ public class CustomerController {
 		log.info("사용자 주문 내역 보기================================");
 		
 		List<OrderInfoVO> list = null;
-		String url = "http://localhost:12007/rest/customer/" + custId + "/mypage/orderinfo";
+		String url = "http://localhost/rest/customer/" + custId + "/mypage/orderinfo";
 		try {
 			ResponseEntity<OrderInfoVO> responseEntity =
 					restTemplate.getForEntity(url,org.badgers.customer.model.OrderInfoVO.class);
@@ -172,7 +172,7 @@ public class CustomerController {
 	public ModelAndView readFavorite (ModelAndView mav, @PathVariable("custId") String custId) {
 		log.info("사용자 찜 내역 보기================================");
 		List<FavoriteVO> favorite = null;
-		String url = "http://localhost:12007/rest/customer/" + custId + "/mypage/favorite";
+		String url = "http://localhost/rest/customer/" + custId + "/mypage/favorite";
 		try {
 			ResponseEntity<FavoriteVO> responseEntity =
 					restTemplate.getForEntity(url,org.badgers.customer.model.FavoriteVO.class);
@@ -199,7 +199,7 @@ public class CustomerController {
 		log.info("Kitchen_Business 사용자 ID 찾기...............................");
 
 		String res = "";
-		String url = "http://localhost:12007/rest/customer/verify";
+		String url = "http://localhost/rest/customer/verify";
 		
 		try {			
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);

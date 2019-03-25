@@ -29,7 +29,7 @@ public class KitchenController {
 		log.info("Kitchen_Customer 메뉴 읽기...............................");
 		
 		List<BizVOExtend> returnVal = null;
-		String url = "http://localhost:12007/rest/kitchenbranch/bizinfo/" + bizId;
+		String url = "http://localhost/rest/kitchenbranch/bizinfo/" + bizId;
 		
 		try {
 			ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, java.util.List.class);

@@ -70,9 +70,9 @@
         <!--container-fluid-->
     </div>
     
-  			<!-- Footer -->
+  			<%-- <!-- Footer -->
             <jsp:include page="../include/footer.jsp" flush="false"></jsp:include>
-            <!-- End Footer -->
+            <!-- End Footer --> --%>
         </div>
     </div>
     <div id="notifydiv"></div>
