@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	/* 페이지 로딩 후 카트에 총 금액 표시하기 */
+/* 페이지 로딩 후 카트에 총 금액 표시하기 */
 	var cartTotal = 0;
 	for(var i = 0; i < $('.menuData').size(); i++) {
 		var price = $('.menuData').eq(i).children('strong:eq(1)').text();
@@ -7,21 +7,21 @@ $(document).ready(function() {
 	}
 	$('.total span').text(cartTotal + '원');
 	
-	/* 옵션 없는 메뉴는 "+" 클릭하면 장바구니에 추가하도록 */
+/* 옵션 없는 메뉴는 "+" 클릭하면 장바구니에 추가하도록 */
 	for(var i = 0; i < $('.dropdown-menu').size(); i++) {
 		if($('.dropdown-menu').eq(i).children('div').length == 0) {
-			// 옵션이 없으니까 옵션용 팝업을 보여주는 대신 곧바로 카트에 추가할 수 있다 (옵션용 팝업 속 "Add to cart" 버튼과 똑같다)
+		// 옵션이 없으니까 옵션용 팝업을 보여주는 대신 곧바로 카트에 추가할 수 있다 (옵션용 팝업 속 "Add to cart" 버튼과 똑같다)
 			$('.dropdown-menu').eq(i).siblings('a').removeClass('dropdown-toggle').addClass('add_to_basket').removeAttr('data-toggle');
 		}
 	}
 	
-	/* "Add to cart" 버튼을 클릭하면 선택한 메뉴와 옵션 정보를 DB에 입력하고 이후 DB에서 카트 정보를 읽어와 카트에 표시하기 */
+/* "Add to cart" 버튼을 클릭하면 선택한 메뉴와 옵션을 DB에 입력하고 이후 DB에서 카트 정보를 읽어와 표시하기 */
 	$('.add_to_basket').on('click', function(event) {
 		event.preventDefault();
+		
 	/* 필수선택 옵션을 선택했는지 확인한다 */
 		const divs = $(this).siblings('div');
 		for(let i = 0; i < divs.length; i++) {
-			console.log("what");
 			if(divs.eq(i).children().children('input').attr('data-required') == "yes") {
 				if(divs.eq(i).children().children('input:checked').length == 0) {
 					alert("필수 선택 옵션을 선택하셔야 합니다.");
@@ -60,7 +60,7 @@ $(document).ready(function() {
 			
 			inputOptions.push({ menuOptId : optId, menuId : id, menuOptName : optName, menuOptPrice : optPrice });
 		}
-		// 비동기 요청하면 CartVOExtended에 매핑되도록
+	// 비동기 요청하면 CartVOExtended에 매핑되도록 JavaScript 객체 생성
 		var inputData = {
 				custId : 'tjtjtj'
 				, quantity : 1
@@ -72,10 +72,9 @@ $(document).ready(function() {
 				, options : inputOptions
 			};
 		
-		// CartController로 비동기 요청하기
  		$.ajax({
 			type : 'POST'
-			, url : 'http://localhost:3001/customer/kitchen/cart/add'
+			, url : 'http://localhost:3001/customer/kitchen/cart'
 			, dataType : 'json'
 			, contentType : 'application/json'
 			, data : JSON.stringify(inputData)
@@ -96,7 +95,6 @@ $(document).ready(function() {
 	    			}
 	    			cartTotal += data[i].totalAmt;
 				}
-				console.log(cartTotal);
 				$('.total span').text(cartTotal + '원');
 			}
 			, error : function(data) {
@@ -106,40 +104,38 @@ $(document).ready(function() {
 		});
 	});
 	
-	/* 주문할 메뉴 전체선택하기 */
+/* 주문할 메뉴 전체선택하기 */
 	$('.table_summary th:eq(0) input').on('click', function() {
 		$('.cartTable .check-order').prop('checked', $('.table_summary th:eq(0) input').prop('checked'));
 	});
-	/* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
+/* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
 	$('.cartTable .check-order').on('click', function() {
 		if($('.table_summary th:eq(0) input').prop('checked') == true) {
 			$('.table_summary th:eq(0) input').prop('checked', false);
 		}
 	});
-	
-	/* 삭제할 메뉴 전체선택하기 */
+/* 삭제할 메뉴 전체선택하기 */
 	$('.table_summary th:eq(2) input').on('click', function() {
-		console.log("mrow");
 		$('.cartTable .check-delete').prop('checked', $('.table_summary th:eq(2) input').prop('checked'));
 	});
-	/* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
+/* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
 	$('.cartTable .check-delete').on('click', function() {
 		if($('.table_summary th:eq(2) input').prop('checked') == true) {
 			$('.table_summary th:eq(2) input').prop('checked', false);
 		}
 	});
 	
-	/* 카트의 id="deleteCart" 클릭하면 선택된 항목 삭제하기 */
+/* 카트의 id="deleteCart" 클릭하면 선택된 항목 삭제하기 */
 	$('#deleteCart').on('click', function() {
 		const checked = $('.cartTable .check-delete:checked');
 		let cartId = [];
 		for(let i = 0; i < checked.length; i++) {
-			cartId[i] = checked.parent().siblings('.cartData').attr('data-cart-id');
+			cartId[i] = checked.eq(i).parent().siblings('.menuData').attr('data-cart-id');
 		}
 		
  		$.ajax({
-			type : 'POST'
-			, url : 'http://localhost:3001/customer/kitchen/cart/delete'
+			type : 'DELETE'
+			, url : 'http://localhost:3001/customer/kitchen/cart'
 			, dataType : 'json'
 			, contentType : 'application/json'
 			, data : JSON.stringify({
@@ -163,8 +159,33 @@ $(document).ready(function() {
 	    			}
 	    			cartTotal += data[i].totalAmt;
 				}
-				console.log(cartTotal);
 				$('.total span').text(cartTotal + '원');
+			}
+			, error : function(data) {
+				console.log('ERRoR oCCURRED');
+				console.log(data);
+			}
+		});
+	});
+	
+/* 카트의 id="orderNow" 클릭하면 선택된 항목 주문하기 */
+	$('#orderNow').on('click', function() {
+		const checked = $('.cartTable .check-order:checked');
+		let cartId = [];
+		for(let i = 0; i < checked.length; i++) {
+			cartId[i] = checked.eq(i).parent().siblings('.menuData').attr('data-cart-id');
+		}
+		
+ 		$.ajax({
+			type : 'POST'
+			, url : 'http://localhost:3001/customer/kitchen/cart/order'
+			, dataType : 'json'
+			, contentType : 'application/json'
+			, data : JSON.stringify({
+					cartIds : cartId
+				})
+	   		, success : function(data) {
+	   			console.log(data);
 			}
 			, error : function(data) {
 				console.log('ERRoR oCCURRED');

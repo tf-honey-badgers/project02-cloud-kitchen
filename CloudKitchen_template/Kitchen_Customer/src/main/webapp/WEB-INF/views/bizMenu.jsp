@@ -119,7 +119,7 @@
 															</c:if>														
 														</div>
 													</c:forEach>
-													<a href="#0" class="add_to_basket">Add to cart</a>													
+													<a class="add_to_basket">Add to cart</a>													
 												</div>
 											</div>
 										</td>
@@ -154,7 +154,7 @@
 									<tr>
 										<td style="width: 10%;"><input class="check-order" type="checkbox"></td>
 										<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.name}<strong class="pull-right">${cart.totalAmt}원</strong></td>
-										<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox" class="pull-right"></td>
+										<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td>
 									</tr>
 									<c:forEach var="options" items="${cart.options}">									
 										<tr>
@@ -176,7 +176,7 @@
 							</tbody>
 						</table>
 						<hr>
-						<a class="btn_full" href="cart.html">Order now</a>
+						<a class="btn_full" id="orderNow">Order now</a>
 					</div> <!-- End cart_box -->
 				</div> <!-- End theiaStickySidebar -->
 			</div> <!-- End col-md-4 -->
