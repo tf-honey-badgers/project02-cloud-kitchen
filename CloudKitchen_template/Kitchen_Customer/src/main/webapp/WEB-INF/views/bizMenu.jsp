@@ -300,7 +300,7 @@
 						, quantity : 1
 						, unitPrice : menuPrice
 						, totalAmt : totalPrice
-						, kitchenName : '예테버리'
+						, kitchenName : '스톡홀름 1호점'
 						, bizName : 'biz_2'
 						, menuId : menuId
 						, options : inputOptions
@@ -315,11 +315,9 @@
 					, contentType : 'application/json'
 					, data : JSON.stringify(inputData)
 		    		, success : function(data) {
-		    			console.log("AAA");
 						console.log(data);
 					}
 					, error : function(data) {
-						console.log("ZZZ");
 						console.log('ERRoR oCCURRED');
 						console.log(data);
 					}

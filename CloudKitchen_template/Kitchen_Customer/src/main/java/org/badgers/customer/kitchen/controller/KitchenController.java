@@ -1,13 +1,12 @@
 package org.badgers.customer.kitchen.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.badgers.customer.model.BizVOExtend;
 import org.badgers.customer.model.CartVOExtend;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,7 +55,7 @@ public class KitchenController {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PostMapping(value = "/cart/add", produces = "application/json")
-	public Map<String, Object> addCart(@RequestBody CartVOExtend cart) {
+	public ResponseEntity<List<CartVOExtend>> addCart(@RequestBody CartVOExtend cart) {
 		log.info("Kitchen_Customer 카트 DB에 추가하기");
 		
 		List<CartVOExtend> returnVal = null;
@@ -72,7 +71,6 @@ public class KitchenController {
 			url += cart.getCustId();
 			ResponseEntity<List> readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class);
 			returnVal = readMenuFromCart.getBody();
-			System.out.println(readMenuFromCart);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -83,9 +81,6 @@ public class KitchenController {
 			log.info("Failed to add selected menu to cart.");
 		}
 		
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("result", returnVal);
-
-		return result;
+		return new ResponseEntity<>(returnVal, HttpStatus.OK);
 	}
 }
