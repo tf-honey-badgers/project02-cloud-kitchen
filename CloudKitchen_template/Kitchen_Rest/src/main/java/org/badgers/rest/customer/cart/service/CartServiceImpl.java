@@ -30,9 +30,11 @@ public class CartServiceImpl implements CartService {
 		int id = mapper.getCartId();
 		
 		// cart에 포함된 List<CartDetailVo>로 cart_detail 테이블에 추가
-		for(CartDetailVO option : cart.getOptions()) {
-			option.setCartId(id);
-			addedOptions += mapper.insertOption(option);
+		if(cart.getOptions() != null) {
+			for(CartDetailVO option : cart.getOptions()) {
+				option.setCartId(id);
+				addedOptions += mapper.insertOption(option);
+			}
 		}
 		
 		return addedCart + addedOptions; // cart 테이블에 추가한 행 개수 + cart_detail 테이블에 추가한 행 개수 반환
@@ -41,11 +43,16 @@ public class CartServiceImpl implements CartService {
 	// 메뉴 읽기 (페이지 로딩할 때 & 결제로 넘어갈 때)
 	@Override
 	public List<CartVOExtend> readCart(String custId) throws Exception {
-		List<CartVOExtend> results = null;
+		List<CartVOExtend> returnVal = null;
 		
-		results = mapper.readCart(custId);
+		returnVal = mapper.readCart(custId);
 		
-		return results;
+		for(int i = 0; i < returnVal.size(); i++) {
+			List<CartDetailVO> options = mapper.readOptions(returnVal.get(i).getId());
+			returnVal.get(i).setOptions(options);
+		}
+		
+		return returnVal;
 	}
 
 	// 메뉴 업데이트 (수량을 0으로 만들 수는 없음) -> 옵션은 업데이트 없다

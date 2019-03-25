@@ -16,6 +16,7 @@ public class CartVOExtend {
 	private String kitchenName;
 	private String bizName;
 	private int menuId; // FK -> menu 테이블 id 속성 참조
+	private String name; // menu 테이블 이름
 	
 	private List<CartDetailVO> options;
 }
