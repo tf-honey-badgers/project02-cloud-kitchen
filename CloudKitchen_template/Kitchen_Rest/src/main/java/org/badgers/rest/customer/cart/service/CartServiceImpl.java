@@ -30,9 +30,11 @@ public class CartServiceImpl implements CartService {
 		int id = mapper.getCartId();
 		
 		// cart에 포함된 List<CartDetailVo>로 cart_detail 테이블에 추가
-		for(CartDetailVO option : cart.getOptions()) {
-			option.setCartId(id);
-			addedOptions += mapper.insertOption(option);
+		if(cart.getOptions() != null) {
+			for(CartDetailVO option : cart.getOptions()) {
+				option.setCartId(id);
+				addedOptions += mapper.insertOption(option);
+			}			
 		}
 		
 		return addedCart + addedOptions; // cart 테이블에 추가한 행 개수 + cart_detail 테이블에 추가한 행 개수 반환
