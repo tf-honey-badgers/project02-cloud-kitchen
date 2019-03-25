@@ -41,7 +41,7 @@ public class KitchenController {
 			returnBiz = responseEntity.getBody();
 			
 			log.info("Kitchen_Customer 카트 읽기");
-			url = "http://localhost:12007/rest/cart/" + "tjtjtj"; // 현재 로그인되어 있는 사용자 ID를 사용
+			url = "http://localhost/rest/cart/" + "tjtjtj"; // 현재 로그인되어 있는 사용자 ID를 사용
 			ResponseEntity<List> readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class);
 			returnCart = readMenuFromCart.getBody();
 		} catch (Exception e) {
@@ -66,7 +66,7 @@ public class KitchenController {
 		log.info("Kitchen_Customer 카트 DB에 추가하기");
 		
 		List<CartVOExtend> returnVal = null;
-		String url = "http://localhost:12007/rest/cart/";
+		String url = "http://localhost/rest/cart/";
 		
 		System.out.println(cart);
 		
