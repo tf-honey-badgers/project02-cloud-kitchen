@@ -128,4 +128,32 @@ public class KitchenController {
 			log.info("Receiving order request : " + cartIds.get(i));
 		}
 	}
+	
+	@GetMapping(value = "/{bizId}/reviews", produces = "application/json")
+	public ModelAndView readBizReviews(ModelAndView mav, @PathVariable("bizId") String bizId) {		
+		log.info("Kitchen_Customer 리뷰 읽기...............................");
+		
+		/*
+		 * List<BizVOExtend> returnBiz = null; List<CartVOExtend> returnCart = null;
+		 * String url = "http://localhost/rest/kitchenbranch/bizinfo/" + bizId;
+		 * 
+		 * try { ResponseEntity<List> responseEntity = restTemplate.getForEntity(url,
+		 * java.util.List.class); returnBiz = responseEntity.getBody();
+		 * 
+		 * log.info("Kitchen_Customer 카트 읽기"); url = "http://localhost/rest/cart/" +
+		 * "tjtjtj"; // 현재 로그인되어 있는 사용자 ID를 사용 ResponseEntity<List> readMenuFromCart =
+		 * restTemplate.getForEntity(url, java.util.List.class); returnCart =
+		 * readMenuFromCart.getBody(); } catch (Exception e) { e.printStackTrace(); }
+		 * 
+		 * if(returnBiz != null) { log.info("readBizMain DONE!!!!!");
+		 * mav.addObject("bizMember", returnBiz.get(0)); mav.addObject("cart",
+		 * returnCart); } else {
+		 * log.info("Failed to readBizMain. REST server may be offline.");
+		 * mav.addObject("message",
+		 * "Failed to read biz main data. REST server may be offline."); }
+		 */
+		
+		mav.setViewName("reviews");
+		return mav;
+	}
 }
