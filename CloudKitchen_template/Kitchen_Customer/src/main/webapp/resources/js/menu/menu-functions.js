@@ -75,7 +75,7 @@ $(document).ready(function() {
 		// CartController로 비동기 요청하기
  		$.ajax({
 			type : 'POST'
-			, url : 'http://localhost:12004/customer/kitchen/cart/add'
+			, url : 'http://localhost:3001/customer/kitchen/cart/add'
 			, dataType : 'json'
 			, contentType : 'application/json'
 			, data : JSON.stringify(inputData)
