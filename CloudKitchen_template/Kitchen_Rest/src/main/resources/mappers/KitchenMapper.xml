@@ -60,8 +60,7 @@
 	</resultMap>
 
 	<select id="bizInfo" resultMap="bizvo">
-		select 
-			
+		select
 			b.biz_id bizId,
 			b.info bizInfo,
 			b.name bizName,
@@ -93,15 +92,17 @@
 			mo.opt_cl_id moOptClNo
 		
 		from biz b left outer join menu_category mc
-		on b.biz_id = mc.biz_id
-		left outer join menu m
-		on mc.idx = m.category_id
-		left outer join menu_option_cl moc
-		on m.idx = moc.menu_id
-		left outer join menu_option mo
-		on moc.idx = mo.opt_cl_id
+			on b.biz_id = mc.biz_id
+			left outer join menu m
+			on mc.idx = m.category_id
+			left outer join menu_option_cl moc
+			on m.idx = moc.menu_id
+			left outer join menu_option mo
+			on moc.idx = mo.opt_cl_id
 		
-		where b.biz_id=#{bizId};
+		where b.biz_id=#{bizId}
+		
+		order by mcNo asc, mocMenuOptType asc, mocMenuCode asc;
 	</select>
 	
 	<select id="getCategorization" resultType="org.badgers.rest.model.CommonCodeVOExtend">
