@@ -16,7 +16,7 @@ public class BizFireBaseService {
 	
 	String firebase_baseUrl = "https://honeybadgers-d29cf.firebaseio.com/";
 	
-	public FirebaseResponse patchOrderStatus(StringBuffer key, String jsonData) throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
+	public FirebaseResponse patchOrderStatus(String key, String jsonData) throws FirebaseException, UnsupportedEncodingException, JacksonUtilityException {
 		String firebase_baseUrl = this.firebase_baseUrl+key;
 		Firebase firebase = new Firebase( firebase_baseUrl );
 		FirebaseResponse response = firebase.patch(jsonData);

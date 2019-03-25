@@ -51,6 +51,9 @@
                         </div>
                         
                         
+                        
+                        
+                        
                         <!-- ================================================================================================ -->
                         
                         <div id="waitArea" class="col-md-6" >
@@ -70,9 +73,9 @@
         <!--container-fluid-->
     </div>
     
-  			<%-- <!-- Footer -->
+  			<!-- Footer -->
             <jsp:include page="../include/footer.jsp" flush="false"></jsp:include>
-            <!-- End Footer --> --%>
+            <!-- End Footer -->
         </div>
     </div>
     <div id="notifydiv"></div>
@@ -132,26 +135,18 @@
                 $(this).siblings('.detailOrder').stop().slideToggle();
                 
             }) 
-            
-            var url='';
-            var bizId='';
-            var orderId='';
-            var status='';
              
             
             //주문 접수 눌렀을 때
             $('body').on('click', '.confirm', function(e){
             	//부모에게 물려받은 이벤트 멈춰버림 
             	e.stopPropagation();
-            	$(this).siblings().css({display:'none'})
+            	console.log($(this).siblings().css({display:'none'}))
+            	
             	$(this).parents('div[class="alert alert-info ordTgg"]').removeClass('alert-info').addClass('alert-success');
             	$(this).removeClass('btn-primary confirm').addClass('btn-warning cooking')
             	$(this).attr({'value': '조리시작'})
-            	$(this).parents('div[class="ORD"]').appendTo('.orderListWrap')
-            	orderId=$(this).parents('div.ORD').attr('id')
-            	status='ORD002'
-            	url='biz_1/'+orderId+'/'+status
-            	updateStatus(url)
+            	console.log($(this).parents('div[class="ORD"]').appendTo('.orderListWrap'))
             });
             // 조리시작 눌렀을 때
              $('body').on('click', '.cooking', function(e){
@@ -159,22 +154,12 @@
             	 console.log($(this).parents('div[class="alert ordTgg alert-success"]').removeClass('alert-success').addClass('alert-warning'))
             	 $(this).removeClass('btn-warning cooking').addClass('btn-danger complete')
             	 $(this).attr({'value': '조리완료'})
-            	 orderId=$(this).parents('div.ORD').attr('id')
-            	 status='ORD003'
-            	 url='biz_1/'+orderId+'/'+status
-            	 updateStatus(url)
-            	 
-            	 
             	 
              });
              //조리완료 눌렀을때
              $('body').on('click', '.complete', function(e){
             	 e.stopPropagation();
-            	 status='ORD004'
-                 url='biz_1/'+orderId+'/'+status
-                 updateStatus(url)
             	 $(this).parents('div.ORD').remove()
-                	 
              });
 		  
             
@@ -201,6 +186,8 @@
 /* 		  var dbRef = firebase.database().ref('biz_2').orderByChild('time').limitToLast(1); */
 
 
+     	  var orderId;
+		  var orderInfo;
 		  
 		  //
 		  var n=0
@@ -211,8 +198,8 @@
 		  
 		  //
 		  for(var i  in obj){
-			  var orderId = Object.keys(obj)[n];
-			  var orderInfo = obj[Object.keys(obj)[n++]];
+			  orderId = Object.keys(obj)[n];
+			  orderInfo = obj[Object.keys(obj)[n++]];
 			  console.log(orderId)
 			  
 			  
@@ -227,9 +214,9 @@
 		 		  
 		 		  if(localStorage.getItem(orderId)!=orderId){
 					console.log('.......................................')
-			  		//localStorage.setItem(orderId, orderId);
+			  		localStorage.setItem(orderId, orderId);
 			  		
-					  $('<div id="'+orderId+'" class="ORD" >'
+					  $('<div id="'+orderId+'" class="ORD" value="'+'" >'
 							  	+'<div class="alert alert-info ordTgg"> '
 								+'<span style="display:inline-block"><b>[주문번호]&nbsp;</b>'+orderId+'</span>'
 								+'<span class="float-right">'
@@ -257,7 +244,7 @@
 			  
 			 
 			  
-			 // console.log(orderInfo)
+			  console.log(orderInfo)
 			  //
 		  }
 			  
@@ -265,13 +252,7 @@
 		 
 		 /* --------------------------------------------------------------------- */
 		 
-		 function updateStatus(url){
-			  //order/{bizId}/{orderId}/{status}
-			  
-			  $.ajax(url, {
-				  method: "put",
-				  dataType: "json"
-				});
+		 function changeStatusBtn(){
 			  
 		  }
 		  

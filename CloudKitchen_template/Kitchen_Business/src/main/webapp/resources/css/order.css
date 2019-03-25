@@ -4583,6 +4583,7 @@ tbody.collapse.show {
   background-clip: border-box;
   border: 1px solid #eeeeee;
   border-radius: 0.25rem;
+  height: 48rem;
 }
 
 .card>hr {
@@ -18820,3 +18821,27 @@ Copyright (c) 2015 Daniel Eden
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+
+.common{
+	border:1px solid grey; 
+	height:40rem;
+	overflow: auto;
+}
+
+.ORD input[type='button']{
+	position:relative;
+	top:-8px;
+	
+}
+@media (max-width: 768px){
+	.ORD input[type='button'] {
+	 padding: 0.20625rem 0.8rem;
+  	 font-size: 0.775rem;
+  	 line-height: 1.5;
+  	 border-radius: 0.1875rem;
+  	 left:10px;
+		
+	
+	}
+}
