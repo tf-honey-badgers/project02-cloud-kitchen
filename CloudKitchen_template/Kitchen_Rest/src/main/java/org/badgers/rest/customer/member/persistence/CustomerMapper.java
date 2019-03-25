@@ -2,7 +2,6 @@ package org.badgers.rest.customer.member.persistence;
 
 import java.util.List;
 
-import org.badgers.rest.model.BizMemberVOExtend;
 import org.badgers.rest.model.CustomerVO;
 import org.badgers.rest.model.FavoriteVO;
 import org.badgers.rest.model.OrderInfoVO;
@@ -10,10 +9,10 @@ import org.badgers.rest.model.OrderInfoVO;
 public interface CustomerMapper {
 
 	// 회원가입
-	public void register(CustomerVO vo);
+	public int register(CustomerVO vo) throws Exception;	
 
 	// 로그인
-	public CustomerVO login(String id);
+	public CustomerVO login(String id) throws Exception;
 
 	//회원 정보
 	public CustomerVO selectById(String id) throws Exception;	
@@ -38,5 +37,7 @@ public interface CustomerMapper {
 	
 	// ID 찾기
 	public String verify(CustomerVO vo);
+
+	//public void updateAuthkey(CustomerVO vo);
 
 }

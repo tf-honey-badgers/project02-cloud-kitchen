@@ -79,5 +79,5 @@ public class KitchenController {
 		}
 		return new ResponseEntity<List<MenuVOExtend>>(menuOptInfo, HttpStatus.OK);
 	}
-	
+
 }

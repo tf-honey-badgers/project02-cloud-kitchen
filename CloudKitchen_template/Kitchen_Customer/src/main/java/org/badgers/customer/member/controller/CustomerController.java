@@ -66,23 +66,24 @@ public class CustomerController {
 	// 로그인
 	@PostMapping(value = "/", produces = "text/plain; charset=utf-8")
 	@ResponseBody
-	public String login(@RequestBody CustomerVO customer) {
+	public String login(@RequestBody CustomerVO vo) {
+		log.info("Kitchen_customer 사용자 로그인...............................");
 		
 		String msg = "";
 		String url = "http://localhost/rest/customer/";
 		
 		try {
-			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
+			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);
 			msg = responseEntity.getBody();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		if(msg == "PW_BAD") {
+		if(msg.equals("BAD_PW")) {
 			msg = "비밀번호가 틀렸습니다.";
-		} else if(msg == "NO_ID") {
+		} else if(msg.equals("NO_ID")) {
 			msg = "존재하지 않는 아이디입니다.";
-		}else if(msg.equals("SERVER_ERROR") || msg.equals("")) {
+		} else if(msg.equals("SERVER_ERROR") || msg.equals("")) {
 			msg = "서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.";
 		} else {
 			// 로그인을 유지하기 위한 쿠키 생성
@@ -118,9 +119,9 @@ public class CustomerController {
 		
 		return "mypage";
 	}	
-	
+
 	// 회원 가입 
-	@PostMapping(value="/register", produces = "text/plain; charset=utf-8")
+	@PostMapping("/register")
 	@ResponseBody
 	public String register(@RequestBody CustomerVO customer) {
 		String msg = "";

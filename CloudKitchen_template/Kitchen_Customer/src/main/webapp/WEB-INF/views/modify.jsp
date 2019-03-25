@@ -61,31 +61,5 @@
             <jsp:include page="include/footer.jsp" flush="false"></jsp:include>
             <!-- End Footer -->
 			
-			
-    <script type="text/javascript">
- 
-  //비번 , 이름 , 이메일
-	$('#changeCustomer').on('click', function() {
-		$.ajax({
-    		url : '/customer/member/' + $('#id').val() + '/modify'
-    		, type : 'POST'
-			, contentType : 'application/json'
-    		, data : JSON.stringify({
-    				id : $('#id').val(),
-    				 pw : $('#pw').val()
-    				, name : $('#name').val()
-    				, email : $('#email').val()
-    			})
-    		, error : function() { alert("회원 정보를 수정하는데 에러가 발생했습니다."); }
-    		, success : function() { alert("성공적으로 회원 정보를 수정했습니다."); }
-		});
-	});
-    </script>
-    
-     <c:if test="${not empty message}">
-    	<script>
-    		$(document).ready(function() { alert("${message}"); });
-    	</script>
-	</c:if>
 </body>
 </html>

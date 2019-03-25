@@ -9,7 +9,7 @@ import org.badgers.rest.model.OrderInfoVO;
 public interface CustomerService {
 
 	// 회원가입
-	public boolean register(CustomerVO vo) throws Exception;
+	public int register(CustomerVO vo) throws Exception;
 
 	// 로그인
 	public String login(String id, String pw)throws Exception;
