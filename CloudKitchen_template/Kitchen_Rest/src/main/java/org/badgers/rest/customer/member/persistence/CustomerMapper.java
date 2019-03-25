@@ -38,6 +38,10 @@ public interface CustomerMapper {
 	// ID 찾기
 	public String verify(CustomerVO vo);
 
-	//public void updateAuthkey(CustomerVO vo);
+	//메일
+	public void createAuthKey(String email, String AuthCode) throws Exception;
+
+	
+	public int userAuth(CustomerVO vo);
 
 }

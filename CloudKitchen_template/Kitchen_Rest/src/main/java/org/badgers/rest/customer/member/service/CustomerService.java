@@ -40,4 +40,11 @@ public interface CustomerService {
 	public String verify(CustomerVO vo)throws Exception;
 	
 	
+	//메일
+	public void createAuthKey(String email, String AuthCode) throws Exception;
+	
+	
+	public int userAuth(CustomerVO vo) throws Exception;
+	
+	
 }

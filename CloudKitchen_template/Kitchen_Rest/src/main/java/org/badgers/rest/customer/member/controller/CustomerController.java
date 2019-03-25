@@ -160,6 +160,24 @@ public class CustomerController {
 			 
 			 return entity;
 		}
-	
+		
+		@GetMapping(value = "/emailConfirm")
+		public ResponseEntity<Integer> emailConfirm(CustomerVO vo) throws Exception { // 이메일인증
+			 ResponseEntity<Integer> entity = null;
+				
+			 int returnVal = service.userAuth(vo);
+			 
+			 //vo.setStatus("MEM002");
+		 
+				if(returnVal == 0) { entity = new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST); }
+				 else { entity = new ResponseEntity<Integer>(returnVal, HttpStatus.OK); }
+				 
+				 return entity;
+			 
+			 
+			 
+			 
+			
+		}
 
 }

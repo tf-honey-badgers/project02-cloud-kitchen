@@ -1,6 +1,8 @@
 package org.badgers.rest.customer.member.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -23,56 +25,55 @@ public class CustomerServiceImpl implements CustomerService {
 	private JavaMailSender mailSender;
 
 	// 등록
-//	@Override
-//	@Transactional
-//	public int register(CustomerVO vo) throws Exception {
-//		System.out.println("등록");
-//		int returnVal = 0;
-//		
-//		try {
-//			returnVal = mapper.register(vo);
-//			String authkey = new TempKey().getKey(50, false);
-//			
-//			vo.setAuthkey(authkey);
-//			mapper.updateAuthkey(vo);
-//			
-//			// mail 작성 관련 
-//			MailUtils sendMail = new MailUtils(mailSender);
-//
-//			sendMail.setSubject("[Kloud Kitchen] 회원가입 이메일 인증");
-//			sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
-//					.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-//					.append("<a href='http://localhost:12007/rest/customer/joinConfirm?=")
-//					.append("&email=")
-//					.append(vo.getEmail())
-//					.append("&authkey=")
-//					.append(authkey)
-//					.append("' target='_blenk'>이메일 인증 확인</a>")
-//					.toString());
-//			sendMail.setFrom("kloudkitchen5@gmail.com ", "클라우드 키친");
-//			sendMail.setTo(vo.getEmail());
-//			sendMail.send();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return returnVal;
-//	}
-
-	
 	@Override
-	public int register(CustomerVO vo) {
+	@Transactional
+	public int register(CustomerVO vo) throws Exception {
 		System.out.println("등록");
 		int returnVal = 0;
 		
 		try {
-			returnVal = mapper.register(vo);
+			returnVal = mapper.register(vo); // 회원가입 
+			
+			String key = new TempKey().getKey(50, false); // 인증키 생성 
+			
+			mapper.createAuthKey(vo.getEmail(), key); // 인증키 DB저장
+			
+			// mail 작성 관련 
+			MailHandler sendMail = new MailHandler(mailSender);
+
+			sendMail.setSubject("[Kloud Kitchen] 회원가입 이메일 인증");
+			sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
+					.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
+					.append("<a href='http://localhost:12007/rest/customer/emailConfirm?email=")
+					.append(vo.getEmail())
+					.append("&key=")
+					.append(key)
+					.append("' target='_blenk'>이메일 인증 확인</a>")
+					.toString());
+			sendMail.setFrom("kloudkitchen5@gmail.com ", "클라우드 키친");
+			sendMail.setTo(vo.getEmail());
+			sendMail.send();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return returnVal;
 	}
+
+	
+//	@Override
+//	public int register(CustomerVO vo) {
+//		System.out.println("등록");
+//		int returnVal = 0;
+//		
+//		try {
+//			returnVal = mapper.register(vo);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return returnVal;
+//	}
 	
 	
 	
@@ -170,6 +171,23 @@ public class CustomerServiceImpl implements CustomerService {
 			}
 			
 			return returnVal;
+		}
+
+
+		@Override
+		public void createAuthKey(String email, String AuthCode) throws Exception {
+			
+			CustomerVO vo = new CustomerVO();
+			
+			vo.setAuthCode(AuthCode);
+			vo.setEmail(email);
+
+		}
+		
+		@Override
+		public int userAuth(CustomerVO vo) throws Exception { // 인증키 일치시 DB칼럼(인증여부) false->true 로 변경
+
+			return mapper.userAuth(vo);
 		}
 	
 	
