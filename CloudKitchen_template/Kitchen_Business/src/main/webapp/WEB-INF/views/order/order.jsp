@@ -44,7 +44,7 @@
                     <div class="row">
                         <div id="orderList" class="col-md-6" >
                             <h4 class="card-title">주문 리스트</h4>
-                            <div class="orderListWrap common">
+                            <div class="orderListWrap common rounded bg-dark">
                             
                             </div>
                             
@@ -55,7 +55,7 @@
                         
                         <div id="waitArea" class="col-md-6" >
                             <h4 class="card-title">주문 대기 현황</h4>
-                            <div class="waitAreaWrap common">
+                            <div class="waitAreaWrap common rounded bg-dark">
                             
 	                        </div>
                         </div>
