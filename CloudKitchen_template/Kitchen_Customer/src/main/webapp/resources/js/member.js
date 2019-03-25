@@ -1,6 +1,3 @@
-console.log("Member module..........")
-
-
 $(document).ready(function(){
 	
 	//비번 , 이름 , 이메일
