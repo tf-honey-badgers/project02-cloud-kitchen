@@ -102,7 +102,7 @@
 		
 		where b.biz_id=#{bizId}
 		
-		order by mcNo asc, mocMenuOptType asc, mocMenuCode asc;
+		order by mcNo asc, mocMenuOptType asc, mocName asc, moAddPrice desc, mocMenuCode asc
 	</select>
 	
 	<select id="getCategorization" resultType="org.badgers.rest.model.CommonCodeVOExtend">
