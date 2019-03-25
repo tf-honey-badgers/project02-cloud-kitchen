@@ -38,7 +38,7 @@ public class OrderController {
 	}
 	
 	@PutMapping("/{bizId}/{orderId}/{status}")
-	public String test2(
+	public void updateStatus(
 			@PathVariable("bizId") String bizId, 
 			@PathVariable("orderId") String orderId, 
 			@PathVariable("status") String status) {
@@ -48,7 +48,6 @@ public class OrderController {
 		System.out.println("=============================================================");
 		System.out.println(obj);
 
-		return "yuni";
 	}
 
 }

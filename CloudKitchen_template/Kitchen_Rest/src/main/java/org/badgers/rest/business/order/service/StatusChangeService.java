@@ -33,8 +33,7 @@ public class StatusChangeService {
 	
 	public String getNewStatus(String status) {
 		
-		String changedStatus = "{\"status\":\""+Code.valueOf(status).getStatusName()+"\", \"statusCode\":\""+status+"\"}";
 		
-		return changedStatus;
+		return "{\"status\":\""+Code.valueOf(status).getStatusName()+"\", \"statusCode\":\""+status+"\"}";
 	}
 }
