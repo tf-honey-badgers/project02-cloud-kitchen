@@ -43,7 +43,7 @@
 <!-- Content ================================================== -->
 	<div class="container margin_60_35">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<p>
 					<a href="list_page.html" class="btn_side">Back to search</a>
 				</p>
@@ -62,7 +62,7 @@
 					<a href="tel://004542344599" class="phone">+45 423 445 99</a> <small>Monday
 						to Friday 9.00am - 7.30pm</small>
 				</div>
-			</div> <!-- End col-md-3 -->
+			</div> <!-- End col-md-2 -->
 
 			<div class="col-md-6">
 				<div class="box_style_2" id="main_menu">
@@ -129,7 +129,7 @@
 				</div> <!-- End box_style_2 -->
 			</div> <!-- End col-md-6 -->
 
-			<div class="col-md-3" id="sidebar">
+			<div class="col-md-4" id="sidebar">
 				<div class="theiaStickySidebar">
 					<div id="cart_box">
 						<h3>
@@ -138,60 +138,43 @@
 						<table class="table table_summary">
 							<thead>
 								<tr>
-									<th style="width: 15px;"><input type="checkbox"></th>
+									<th style="width: 10%;"><input type="checkbox"></th>
 									<th style="width: 80px;">전체선택</th>
-									<th style="text-align: right" colspan="2"><input type="checkbox"></th>
+									<th style="text-align: right; width: 10%;" colspan="2"><input type="checkbox"></th>
 								</tr>							
 							</thead>
-							<tbody>
-								<tr>
-									<td style="width: 15px;"><input type="checkbox"></td>
-									<td>
-									<strong>1x</strong> Enchiladas<strong class="pull-right">$11</strong>
-									</td>
-									<td style="width: 15px;"><input type="checkbox" class="pull-right"></td>
-								</tr>
-								<tr>
-									<td style="width: 15px;"><input type="checkbox"></td>
-									<td>
-									<strong>2x</strong> Burrito<strong class="pull-right">$14</strong>
-									</td>
-									<td style="width: 15px;"><input type="checkbox" class="pull-right"></td>
-								</tr>
-								<tr>
-									<td style="width: 15px"><input type="checkbox"></td>
-									<td>
-									<strong>1x</strong> Chicken<strong class="pull-right">$20</strong>
-									</td>
-									<td style="width: 15px;"><input type="checkbox" class="pull-right"></td>
-								</tr>
+							<tbody class="cartTable">
+								<c:forEach var="cart" items="${cart}">
+									<tr>
+										<td style="width: 10%;"><input type="checkbox"></td>
+										<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.name}<strong class="pull-right">${cart.totalAmt}원</strong></td>
+										<td style="width: 10%;"><input type="checkbox" class="pull-right"></td>
+									</tr>
+									<c:forEach var="options" items="${cart.options}">									
+										<tr>
+											<td style="width: 10%;"></td>
+											<td style="font-size: 12px;">${options.menuOptName}</td>
+											<td style="width: 10%;"></td>
+										</tr>
+									</c:forEach>
+								</c:forEach>
 							</tbody>
 						</table>
-
 						<hr>
 						<table class="table table_summary">
 							<tbody>
 								<tr>
-									<td>Subtotal <span class="pull-right">$56</span>
-									</td>
-								</tr>
-								<tr>
-									<td class="total">TOTAL <span class="pull-right">$66</span>
+									<td class="total">총 금액 <span class="pull-right"></span>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 						<hr>
 						<a class="btn_full" href="cart.html">Order now</a>
-					</div>
-					<!-- End cart_box -->
-				</div>
-				<!-- End theiaStickySidebar -->
-			</div>
-			<!-- End col-md-3 -->
-
-		</div>
-		<!-- End row -->
+					</div> <!-- End cart_box -->
+				</div> <!-- End theiaStickySidebar -->
+			</div> <!-- End col-md-4 -->
+		</div> <!-- End row -->
 	</div> <!-- End container -->
 <!-- End Content =============================================== -->
 
@@ -246,6 +229,14 @@
 				});
 
 		$(document).ready(function() {
+			/* 카트 부분에 총 금액 표시하기 */
+			var cartTotal = 0;
+			for(var i = 0; i < $('.menuData').size(); i++) {
+				var price = $('.menuData').eq(i).children('strong:eq(1)').text();
+				cartTotal += parseInt(price.substring(0, price.length - 1));
+			}
+			$('.total span').text(cartTotal + '원');
+			
 			/* 옵션이 없는 메뉴는 "+" 클릭하면 장바구니에 추가하도록 */
 			for(var i = 0; i < $('.dropdown-menu').size(); i++) {
 				if($('.dropdown-menu').eq(i).children('div').length == 0) {
@@ -278,9 +269,10 @@
 				$.each(optArr, function(index, item) {
 					totalPrice += parseInt(item);
 				})
-				console.log(totalPrice);
-				console.log($(this).siblings('div').children().children('input:checked').length);
-
+/* 				console.log(totalPrice); -> 총 금액 확인하기
+				console.log($(this).siblings('div').children().children('input:checked').length); -> 체크한 옵션 개수 확인하기
+*/
+				
 			/* 선택한 옵션의 개수를 cur변수의 값으로 삼는다. */
 				let cur = $(this).siblings('div').children().children('input:checked').length; // 브라우저 콘솔에서 작업용 : $('.add_to_basket').eq(0).siblings('div').children().children('input:checked')
 			/* 옵션 정보를 담을 배열 (List<CartDetailVO>에 매핑) */
@@ -305,7 +297,6 @@
 						, menuId : menuId
 						, options : inputOptions
 					};
-				console.log("INPUTDATA = 제대로 입력되었는지 확인하기 : ", inputData)
 				
 				// CartController로 비동기 요청하기
  				$.ajax({
@@ -315,7 +306,24 @@
 					, contentType : 'application/json'
 					, data : JSON.stringify(inputData)
 		    		, success : function(data) {
-						console.log(data);
+		    			$('.cartTable').empty();
+		    			cartTotal = 0;
+						for(let i = 0; i < data.length; i++) {
+			    			$('.cartTable').append('<tr><td style="width: 10%;"><input type="checkbox"></td>' +
+			    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
+			    					data[i].name + '<strong class="pull-right">' + data[i].totalAmt + '원</strong></td>' +
+			    					'<td style="width: 10%;"><input type="checkbox" class="pull-right"></td></tr>');
+			    			if(data[i].options != null) {
+				    			for(let j = 0; j < data[i].options.length; j++) {
+					    			$('.cartTable').append('<tr><td style="width: 10%;"></td>' +
+					    					'<td style="font-size: 11px">' + data[i].options[j].menuOptName + '</td>' +
+					    					'<td style="width: 10%;"></td></tr>');			    				
+				    			}
+			    			}
+			    			cartTotal += data[i].totalAmt;
+						}
+						console.log(cartTotal);
+						$('.total span').text(cartTotal + '원');
 					}
 					, error : function(data) {
 						console.log('ERRoR oCCURRED');
