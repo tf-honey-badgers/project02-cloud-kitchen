@@ -215,13 +215,13 @@
             </div>
         </div><!-- End row -->
     </div><!-- End container -->
-    
+
     <!-- Footer 시작  -->
 <jsp:include page="include/footer.jsp" flush="false"/>
 <!-- Footer 끝  -->
 
 
-   <script src="/customer/resources/js/material-dashboard.js" type="text/javascript"></script>
+
    <script src="/customer/resources/js/video_header.js"></script>
     <script>
         $(document).ready(function() {

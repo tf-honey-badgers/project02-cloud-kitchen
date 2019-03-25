@@ -25,6 +25,7 @@
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 
 <!-- BASE CSS -->
+<link href="/customer/resources/css/table.css" rel="stylesheet">
 <link href="/customer/resources/css/animate.min.css" rel="stylesheet">
 <link href="/customer/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/customer/resources/css/menu.css" rel="stylesheet">
@@ -92,9 +93,10 @@
 
 
 <!-- Login modal -->
-    <div class="modal fade" id="login_2" tabindex="-1" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content modal-popup">
+<div class="modal fade" id="login_2" tabindex="-1" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
+       <div class="modal-dialog" style="margin-top: 151px;">
+           <div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;
+					text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
                 <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
                 <form action="#" class="popup-form" id="myLogin">
                     <div class="login_icon"><i class="icon_lock_alt"></i></div>
@@ -137,19 +139,20 @@
         <div class="modal-dialog">
             <div class="modal-content modal-popup">
                 <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-                <form action="#" class="popup-form" id="myRegister">
+                <form action="#" class="popup-form" id="myRegister" name ="myRegister">
                     <div class="login_icon"><i class="icon_lock_alt"></i></div>
                     <input type="text" class="form-control form-white" placeholder="아이디">
                     <input type="password" class="form-control form-white" placeholder="비밀번호" id="password1">
-                    <input type="password" class="form-control form-white" placeholder="비밀번호 재확인" id="password2">
+                 	<input type="password" class="form-control form-white" placeholder="비밀번호 재확인" id="password2">
                     <input type="text" class="form-control form-white" placeholder="이름">
                     <input type="text" class="form-control form-white" placeholder="생년 월일">
                     <input type="text" class="form-control form-white" placeholder="휴대폰 번호">
                     <input type="email" class="form-control form-white" placeholder="Email">
                     <div>
 
-                        <input type="radio" name="gender" value="남" style="width:23px;height:23px"><span style="font-size: 30px; color: white; padding-right: 100px;">남</span>
-                        <input type="radio" name="gender" value="여" style="width:23px;height:23px"><span style="font-size: 30px; color: white">여</span>
+                        <input type="radio" name="gender" value="남" checked onclick="doIt('남')" id = "r1" style="width:23px;height:23px"> <label for = "r1" style="font-size: 30px; color: white; padding-right: 100px;" > 남 </label>
+                        <input type="radio" name="gender" value="여" onclick="doIt('여')" id = "r2" style="width:23px;height:23px"> <label for = "r2" style="font-size: 30px; color: white; padding-right: 100px;" > 여 </label>
+                   		<input type=text name=genders  value="남" style="display:none">
                     </div>
 
 
@@ -166,3 +169,14 @@
         </div>
     </div><!-- End Register modal -->
 
+<script>
+
+	
+
+function doIt(_v) {
+	document.myRegister.genders.value=_v;
+}
+
+
+
+</script>

@@ -3,7 +3,6 @@ package org.badgers.rest.customer.member.controller;
 import java.util.List;
 
 import org.badgers.rest.customer.member.service.CustomerService;
-import org.badgers.rest.model.BizMemberVOExtend;
 import org.badgers.rest.model.CustomerVO;
 import org.badgers.rest.model.FavoriteVO;
 import org.badgers.rest.model.OrderInfoVO;
@@ -31,22 +30,35 @@ public class CustomerController {
 	@Setter(onMethod_ = { @Autowired })
 	private CustomerService service;
 
-	//회원가입
-	@PostMapping(value = "/register", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> register(@RequestBody CustomerVO vo) throws Exception {
-		boolean result = service.register(vo);
-		log.info("insert result : " + result);
-
-		return result ? new ResponseEntity<>("success", HttpStatus.OK)
-				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	//회원가입                                                                                                                          
+//	@PostMapping(value = "/register", consumes = "application/json", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+//	public ResponseEntity<String> register(@RequestBody CustomerVO vo) throws Exception {
+//		ResponseEntity<String> entity = null;
+//		
+//		String returnVal = service.register(vo);
+//		 if(returnVal == null) { entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST); }
+//		 else { entity = new ResponseEntity<String>(returnVal, HttpStatus.OK); }
+//		 
+//		 return entity;
+//	}
+//	
+	@PostMapping(value= "/register")
+	public ResponseEntity<Integer> register(@RequestBody CustomerVO vo) throws Exception {
+		ResponseEntity<Integer> entity = null;
+		
+		int returnVal = service.register(vo);
+		 
+		if(returnVal == 0) { entity = new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST); }
+		 else { entity = new ResponseEntity<Integer>(returnVal, HttpStatus.OK); }
+		 
+		 return entity;
 	}
 	
+	
 	// 로그인
-	@PostMapping(value = "/")
+	@PostMapping("/")
 	public ResponseEntity<String> login(@RequestBody CustomerVO cvo) throws Exception {
 		 String returnVal = service.login(cvo.getId(), cvo.getPw());
-		 
-		 System.out.println(cvo.getId());
 
 		 ResponseEntity<String> entity = new ResponseEntity<String>(returnVal, HttpStatus.OK);
 		 
