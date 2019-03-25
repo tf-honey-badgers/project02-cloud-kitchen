@@ -1,16 +1,19 @@
 package org.badgers.rest.business.menu.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.badgers.rest.business.menu.persistence.MenuMapper;
 import org.badgers.rest.model.MenuCatVOExtend;
 import org.badgers.rest.model.MenuOptionClVOExtend;
 import org.badgers.rest.model.MenuOptionVOExtend;
 import org.badgers.rest.model.MenuVOExtend;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import lombok.Setter;
 
@@ -95,18 +98,40 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public int updateMenuInfo(MenuVOExtend menuVoEx) {
-		return mapper.updateMenuInfo(menuVoEx);
-	}
-
-	@Override
-	public int updateMenuOptInfo(MenuOptionVOExtend menuOptVoEx) {
-		return mapper.updateMenuOptInfo(menuOptVoEx);
-	}
-
-	@Override
-	public int updateMenu(List<?> updateMenuInfo) {
+	public int updateMenuInfo(String updateMenuInfo){
+		JsonParser parser = new JsonParser();
+		JsonObject menuOptClelement = (JsonObject) parser.parse(updateMenuInfo);
+		int resultCnt = 0;
+		MenuVOExtend menuVoEx = new MenuVOExtend();
+		menuVoEx.setMCode(menuOptClelement.get("mCode").getAsInt());
+		menuVoEx.setMName(menuOptClelement.get("mName").getAsString());
+		menuVoEx.setMBasicPrice(menuOptClelement.get("mBasicPrice").getAsInt());
+		menuVoEx.setMPhoto(menuOptClelement.get("mPhoto").getAsString());
+		
+		mapper.updateMenuInfo(menuVoEx);
+		resultCnt++;
+		
+		JsonArray menuOptClArray = menuOptClelement.get("menuOptCl").getAsJsonArray();
+		// menuOptCl의 사이즈 = 3
+		for(int i=0;i<menuOptClArray.size();i++) {
+			JsonObject menuOptCl = (JsonObject) menuOptClArray.get(i);
+			JsonObject menuOptelement = (JsonObject) parser.parse(menuOptClArray.get(i).toString());
+			JsonArray menuOptArray = menuOptelement.get("menuOptEx").getAsJsonArray();
+			resultCnt++;
+			
+			for(int j=0;j<menuOptArray.size();j++) {
+				JsonObject menuOpt = (JsonObject) menuOptArray.get(j);
+				MenuOptionVOExtend menuOptVoEx = new MenuOptionVOExtend();
+				menuOptVoEx.setMoCode(menuOpt.get("moCode").getAsInt());
+				menuOptVoEx.setMoName(menuOpt.get("moName").getAsString());
+				menuOptVoEx.setMoAddPrice(menuOpt.get("moAddPrice").getAsString());
+				menuOptVoEx.setMoOptClNo(menuOpt.get("moOptClNo").getAsInt());
+				mapper.updateMenuOptInfo(menuOptVoEx);
+			}
+		}
 		return 0;
 	}
+	
+	
 
 }
