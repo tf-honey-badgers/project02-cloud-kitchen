@@ -23,18 +23,20 @@
 	</select>
 
 	<select id="readCart" resultType="org.badgers.rest.model.CartVOExtend">
-		select 
-			id
-			, cust_id
-			, quantity
-			, unit_price
-			, total_amt
-			, kitchen_name
-			, biz_name
-			, menu_id
+		select
+			CA.id
+			, CA.cust_id
+			, CA.quantity
+			, CA.unit_price
+			, CA.total_amt
+			, CA.kitchen_name
+			, CA.biz_name
+			, CA.menu_id
+            , ME.name
 		from
-			honey_badgers.cart
-		where cust_id = #{custId}
+			honey_badgers.cart CA
+            , honey_badgers.menu ME
+		where CA.cust_id = #{custId} and CA.menu_id = ME.idx;
 	</select>
 	
 	<select id="readOptions" resultType="org.badgers.rest.model.CartDetailVO">
