@@ -48,7 +48,7 @@ public class CartController {
 		return new ResponseEntity<String>(returnVal, HttpStatus.OK);
 	}
 	
-	@GetMapping("/{custId}")
+	@GetMapping(value = "/{custId}", produces="application/json")
 	public ResponseEntity<List<CartVOExtend>> readCart(@PathVariable("custId") String custId) {
 		logger.info("Reading " + custId + "'s items from the 'cart' table!");
 		List<CartVOExtend> returnVal = null;
@@ -62,8 +62,7 @@ public class CartController {
 		for(CartVOExtend value : returnVal) {
 			logger.info(value.toString());			
 		}
-		
-		return new ResponseEntity<>(returnVal, HttpStatus.OK);
+		return new ResponseEntity<List<CartVOExtend>>(returnVal, HttpStatus.OK);
 	}
 	
 	@PutMapping("/")
@@ -112,5 +111,4 @@ public class CartController {
 		logger.info(returnVal + "개 행을 삭제했습니다!");
 		return new ResponseEntity<>(returnVal, HttpStatus.OK);
 	}
-
 }
