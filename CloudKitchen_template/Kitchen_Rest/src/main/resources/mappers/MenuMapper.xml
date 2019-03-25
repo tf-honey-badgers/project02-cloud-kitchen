@@ -5,4 +5,14 @@
 
 <mapper namespace="com.badgers.mapper.MenuMapper">
 	
+	<update id="updateMenuInfo">
+		update menu set photo=#{mPhoto}, basic_price=#{mBasicPrice}, name=#{mName} where idx= #{mCode}
+	</update>
+	
+	<update id="updateMenuOptInfo" >
+		update menu_option set name=#{moName}, add_price=#{moAddPrice} where idx= #{moCode}
+	</update>
+	
+	
+	
 </mapper>

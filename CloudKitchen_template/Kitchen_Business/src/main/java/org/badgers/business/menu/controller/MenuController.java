@@ -1,11 +1,12 @@
 package org.badgers.business.menu.controller;
 
-import java.util.ArrayList;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import org.badgers.business.menu.service.MenuServiceImpl;
-import org.badgers.business.model.MenuVOExtend;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -65,18 +66,23 @@ public class MenuController {
 		return null;
 	}
 	
-	@RequestMapping(value="/main/menuupdate", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/main/menuupdate", method=RequestMethod.POST, 
+			produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public int updateMenu(@RequestParam("updateMenu") List menuUpdateInfo) {
-		List updateMenu = new ArrayList(menuUpdateInfo);
-		System.out.println("받아온 정보 : "+updateMenu);
+	public int updateMenu(@RequestParam("updateMenu") String menuUpdateInfo) {
+		System.out.println(menuUpdateInfo);
 		int result = 0;
 		try {
 			System.out.println("MenuUpdate Front Controller1");
 			String url = "http://localhost:80/rest/bizmenu/menuupdate";
+	        
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+
+			HttpEntity entity = new HttpEntity(menuUpdateInfo, headers);
 			
 			ResponseEntity updateResponseEntity = restTemplate.postForEntity
-					(url,updateMenu,int.class);
+					(url,entity,int.class);
 			
 			System.out.println("MenuUpdate Front Controller2");
 			
