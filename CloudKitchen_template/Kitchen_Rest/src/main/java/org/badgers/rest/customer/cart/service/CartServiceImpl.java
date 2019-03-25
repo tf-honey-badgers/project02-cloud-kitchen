@@ -34,7 +34,7 @@ public class CartServiceImpl implements CartService {
 			for(CartDetailVO option : cart.getOptions()) {
 				option.setCartId(id);
 				addedOptions += mapper.insertOption(option);
-			}			
+			}
 		}
 		
 		return addedCart + addedOptions; // cart 테이블에 추가한 행 개수 + cart_detail 테이블에 추가한 행 개수 반환
@@ -48,7 +48,6 @@ public class CartServiceImpl implements CartService {
 		returnVal = mapper.readCart(custId);
 		
 		for(int i = 0; i < returnVal.size(); i++) {
-			System.out.println("NOT WORKING WTF? : " + returnVal.get(i));
 			List<CartDetailVO> options = mapper.readOptions(returnVal.get(i).getId());
 			returnVal.get(i).setOptions(options);
 		}
