@@ -211,8 +211,9 @@
 		  var orderId =obj[Object.keys(obj)[1]];
 		  var address= obj[Object.keys(obj)[0]];
 		  var menus =obj[Object.keys(obj)[2]];
-		  var status =obj[Object.keys(obj)[3]];
-		  var time =obj[Object.keys(obj)[5]];
+		  var msg =obj[Object.keys(obj)[3]];
+		  var status =obj[Object.keys(obj)[4]];
+		  var time =obj[Object.keys(obj)[6]];
 			  
 		  console.log('................')
 		  console.log(orderId)
@@ -236,7 +237,7 @@
 			  	+'<td class="pl-2">'+status+'</td></tr>'
 			  	+'<tr><th scope="row" >주문 시간</th>'
 			  	+'<td class="pl-2">'+time+'</td></tr>'
-			  	+'<tr><th scope="row">요청사항</th><td class="pl-2">'+'</td></tr></tbody></table>'
+			  	+'<tr><th scope="row">요청사항</th><td class="pl-2">'+msg+'</td></tr></tbody></table>'
 			  	+'<table class="table table-striped table-hover"><thead class="thead-dark"><th scope="col">메뉴 이름</th><th scope="col">옵션</th><th scope="col">수량</th></thead> <tbody class="inputMenuInfo">'
 			  	+'</tbody></table></div></div>'
 			  )
@@ -245,7 +246,7 @@
 		  
 	 	  $.each(menus, function(key, value){
 			  console.log(key, value)
-			  $('.inputMenuInfo ').append('<tr value="'+orderId+key+'">')
+			  $('div[id='+orderId+'] .inputMenuInfo ').append('<tr value="'+orderId+key+'">')
 			  $.each(value, function(k,v){
 				  if(v=='null'){
 					  v=''
