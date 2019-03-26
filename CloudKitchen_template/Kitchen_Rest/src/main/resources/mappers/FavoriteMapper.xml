@@ -10,7 +10,7 @@
 	</select>
 	
 	<!-- 가게 찜 회수 보기 -->
-	<select id="countFavorites">
+	<select id="countFavorites" resultType="int">
 		select count(*) from honey_badgers.favorite where biz_id = #{bizId}
 	</select>
 
@@ -24,6 +24,6 @@
 	
 	<!-- 찜 삭제하기 -->
 	<delete id="deleteFavorite">
-		delete from honey_badgers.favorite where cust_id = #{param0} and biz_id = #{param1}
+		delete from honey_badgers.favorite where cust_id = #{param1} and biz_id = #{param2}
 	</delete>
 </mapper>
