@@ -60,7 +60,7 @@ $(document).ready(function() {
 			
 			inputOptions.push({ menuOptId : optId, menuId : id, menuOptName : optName, menuOptPrice : optPrice });
 		}
-	// 비동기 요청하면 CartVOExtended에 매핑되도록 JavaScript 객체 생성
+	/* 비동기 요청하면 CartVOExtended에 매핑되도록 JavaScript 객체 생성 */
 		var inputData = {
 				custId : 'tjtjtj'
 				, quantity : 1
@@ -71,6 +71,9 @@ $(document).ready(function() {
 				, menuId : menuId
 				, options : inputOptions
 			};
+		
+	/* 카트에 추가하면 기존에 선택한 체크박스 해제하기 */
+		$(this).siblings('div').children().children('input:checked').prop('checked', false);
 		
  		$.ajax({
 			type : 'POST'
