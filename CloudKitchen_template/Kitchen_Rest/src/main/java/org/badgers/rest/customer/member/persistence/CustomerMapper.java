@@ -32,9 +32,6 @@ public interface CustomerMapper {
 	//주문내역
 	public List<OrderInfoVO> getOrderInfo(String custId);
 	
-	// 찜 내역 보기 
-	public List<FavoriteVO> favorite (String custId);
-	
 	// ID 찾기
 	public String verify(CustomerVO vo);
 

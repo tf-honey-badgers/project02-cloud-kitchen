@@ -31,17 +31,6 @@ public class CustomerController {
 	private CustomerService service;
 
 	//회원가입                                                                                                                          
-//	@PostMapping(value = "/register", consumes = "application/json", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-//	public ResponseEntity<String> register(@RequestBody CustomerVO vo) throws Exception {
-//		ResponseEntity<String> entity = null;
-//		
-//		String returnVal = service.register(vo);
-//		 if(returnVal == null) { entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST); }
-//		 else { entity = new ResponseEntity<String>(returnVal, HttpStatus.OK); }
-//		 
-//		 return entity;
-//	}
-//	
 	@PostMapping(value= "/register")
 	public ResponseEntity<Integer> register(@RequestBody CustomerVO vo) throws Exception {
 		ResponseEntity<Integer> entity = null;
@@ -53,8 +42,7 @@ public class CustomerController {
 		 
 		 return entity;
 	}
-	
-	
+
 	// 로그인
 	@PostMapping("/")
 	public ResponseEntity<String> login(@RequestBody CustomerVO cvo) throws Exception {
@@ -64,25 +52,18 @@ public class CustomerController {
 		 
 		 return entity;	
 	}
-		  
-		
-	
+
 	//개인정보 끌어오기 
 	@GetMapping(value = "/{id}/mypage", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<CustomerVO>  selectById(@PathVariable("id") String id) throws Exception {
 		CustomerVO customer = service.selectById(id);
-			
 
 		return new ResponseEntity<CustomerVO>(customer, HttpStatus.OK);
 	}
 	
-
-
-	
 	// 개인정보 수정
 	@PutMapping("/{id}/mypage/modify")
 	public int modify(@PathVariable("id")String id, @RequestBody CustomerVO vo) {
-
 		int returnVal = 0;
 
 		try {
@@ -97,7 +78,6 @@ public class CustomerController {
 	// 비번만  변화
 	@PutMapping("/changePwd")
 	public int changePwd(@RequestBody CustomerVO input) {
-
 		int returnVal = 0;
 
 		try {
@@ -112,7 +92,6 @@ public class CustomerController {
 	//삭제 -> 멤버 상태 수정 (status 변환)
 	@PutMapping("/delete/{id}")
 	public int delete(@PathVariable("id") String id,@RequestBody CustomerVO vo) {
-
 		int returnValue = 0;
 
 		try {
@@ -129,37 +108,20 @@ public class CustomerController {
 	@GetMapping(value = "/{cust_id}/mypage/orderinfo", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<List<OrderInfoVO>>  getOrderInfo(@PathVariable("cust_id")String custId) {
 		List<OrderInfoVO> list = service.getOrderInfo(custId);
-			
 
 		return new ResponseEntity<List<OrderInfoVO>>(list, HttpStatus.OK);
 	}
 	
-	
-	
-	//찜  내역  보기 
-	@CrossOrigin("http://localhost:12004") //크로스 도메인 처리 
-	@GetMapping(value = "/{cust_id}/mypage/favorite", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<List<FavoriteVO>>  favorite(@PathVariable("cust_id")String custId) {
-			List<FavoriteVO> favorite = service.favorite(custId);
-				
-
-			return new ResponseEntity<List<FavoriteVO>>(favorite, HttpStatus.OK);
-		}
-	
-	
 	// ID 찾기 & 본인인증하기
-		@PostMapping("/verify")
-		public ResponseEntity<String> verify(@RequestBody CustomerVO vo) throws Exception {
-			 ResponseEntity<String> entity = null;
-			 
-			 log.info("Kitchen_Rest 사용자 ID 찾기...............................");
-
+	@PostMapping("/verify")
+	public ResponseEntity<String> verify(@RequestBody CustomerVO vo) throws Exception {
+		 ResponseEntity<String> entity = null;
+		 
+		 log.info("Kitchen_Rest 사용자 ID 찾기...............................");
 			 String returnVal = service.verify(vo);
-			 if(returnVal == null) { entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST); }
-			 else { entity = new ResponseEntity<String>(returnVal, HttpStatus.OK); }
-			 
-			 return entity;
-		}
-	
-
+		 if(returnVal == null) { entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST); }
+		 else { entity = new ResponseEntity<String>(returnVal, HttpStatus.OK); }
+		 
+		 return entity;
+	}
 }
