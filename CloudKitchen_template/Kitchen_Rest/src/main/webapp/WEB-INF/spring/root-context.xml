@@ -53,7 +53,7 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	
-	<mybatis-spring:scan base-package="org.badgers.rest.*.*.persistence"/>
+	<mybatis-spring:scan base-package="org.badgers.rest.**.persistence"/>
 	
 	<!-- email 인증 : gmail -->
 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

@@ -149,15 +149,6 @@ public class CustomerServiceImpl implements CustomerService {
 		return list;
 	}
 	
-	//찜정보
-	@Override
-	public List<FavoriteVO> favorite(String custId) {
-		System.out.println("찜 정보  나와라=============");
-		List<FavoriteVO> favorite = mapper.favorite(custId);
-
-		return favorite;
-	}
-	
 	// ID 찾기 & 본인인증하기
 		public String verify(CustomerVO vo) throws Exception {
 			String returnVal = "";
