@@ -48,11 +48,11 @@ public class CustOrderController {
 		Iterator it = map.keySet().iterator();
 		
 		while(it.hasNext()) {
-			//가게별 주문 정보 insert
+//			//가게별 주문 정보 insert
 			orderPath = (String)it.next();
 			firebaseService.insertOrder(orderPath, map.get(orderPath));
-			
-			//가게별 주문 정보 상태(status) insert
+//			
+//			//가게별 주문 정보 상태(status) insert
 		}
 		return new ResponseEntity<>(list, HttpStatus.OK);
 

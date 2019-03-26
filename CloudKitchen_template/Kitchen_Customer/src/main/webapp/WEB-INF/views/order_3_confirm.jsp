@@ -41,6 +41,13 @@
 					</div>
 					<h4>Summary</h4>
 					<table class="table table-striped nomargin">
+						<thead>
+							<tr>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
 						<tbody>
 							<tr>
 								<td><strong>1x</strong> Enchiladas</td>

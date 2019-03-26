@@ -24,7 +24,6 @@ public class OrderInfoVO {
 	private int totalAmt;
 	private int payAmt;
 	private String msg;
-	private String requestMsg;
 
 	
 	
@@ -32,7 +31,7 @@ public class OrderInfoVO {
 			StringBuffer optName = new StringBuffer();
 			optName.append(this.optName);
 			OrderAlarmMenuVO menu = new OrderAlarmMenuVO(this.menuName, optName, this.quantity);
-			return new OrderAlarmVO(this.id, this.address, this.time, this.statusCode, this.status, menu);
+			return new OrderAlarmVO(this.id, this.address, this.time, this.statusCode, this.status, this.msg, menu);
 		}
 		
 		public OrderAlarmMenuVO toOrderAlarmMenuVO() {
