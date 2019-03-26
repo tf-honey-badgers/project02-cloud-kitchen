@@ -130,8 +130,8 @@
 								<c:forEach var="cart" items="${cart}">
 									<tr>
 										<td style="width: 10%;"><input class="check-order" type="checkbox"></td>
-										<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.name}<strong class="pull-right">${cart.totalAmt}원</strong></td>
-										<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td>
+										<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.menuName}<strong class="pull-right">${cart.totalAmt}원</strong></td>
+										<td style="text-align: right; width: 10%;"><i class="icon_close check-delete"></i></td>
 									</tr>
 									<c:forEach var="options" items="${cart.options}">									
 										<tr>
