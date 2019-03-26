@@ -3,7 +3,7 @@ $(document).ready(function() {
 	/* 사용자 정보 중 계좌정보 수정하기 */
 	$('#changeAccount').on('click', function() {
 		$.ajax({
-    		url : 'http://localhost:12001/business/member/' + $('#bizId').val() + '/modify'
+    		url : 'http://localhost:3000/business/member/' + $('#bizId').val() + '/modify'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({bizId : $('#bizId').val(), account : $('#account').val()})
@@ -15,7 +15,7 @@ $(document).ready(function() {
 	/* 가게 정보 중 최소주문금액, 생방송 키 코드, 가게 소개글 수정하기 */
 	$('#changeBiz').on('click', function() {
 		$.ajax({
-    		url : '/business/member/' + $('#bizId').val() + '/modify'
+    		url : 'http://localhost:3000/business/member/' + $('#bizId').val() + '/modify'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({
@@ -46,7 +46,7 @@ $(document).ready(function() {
 	/* 로그인 절차 */
 	$('#myLogin button').on('click', function() {
 		$.ajax({
-    		url : 'http://localhost:12001/business/member/'
+    		url : 'http://localhost:3000/business/member/'
     		, type : 'POST'
 			, contentType : 'application/json'
 			, dataType : 'text'
@@ -76,7 +76,7 @@ $(document).ready(function() {
 		$('#finder').modal('show');
     	$('#getId').on('click', function() {
     		$.ajax({
-        		url : 'http://localhost:12001/business/member/verify'
+        		url : 'http://localhost:3000/business/member/verify'
         		, type : 'POST'
 				, contentType : 'application/json'
         		, data : JSON.stringify({
@@ -116,7 +116,7 @@ $(document).ready(function() {
 		$('#finder').modal('show');
     	$('#getId').on('click', function() {
     		$.ajax({
-        		url : 'http://localhost:12001/business/member/verify'
+        		url : 'http://localhost:3000/business/member/verify'
         		, type : 'POST'
 				, contentType : 'application/json'
         		, data : JSON.stringify({
@@ -178,7 +178,7 @@ $(document).ready(function() {
 		}
 
 		$.ajax({
-    		url : 'http://localhost:12001/business/member/' + hiddenId + '/modify'
+    		url : 'http://localhost:3000/business/member/' + hiddenId + '/modify'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({

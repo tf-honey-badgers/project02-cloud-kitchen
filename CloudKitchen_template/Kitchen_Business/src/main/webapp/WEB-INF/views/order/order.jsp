@@ -129,7 +129,7 @@
             
             //주문상세 보기 toggle 
              $('body').on('click','.ordTgg', function(event){
-            	 console.log($(this).parent().siblings().find('.detailOrder').hide())
+            	 $(this).parent().siblings().find('.detailOrder').hide()
                 $(this).siblings('.detailOrder').stop().slideToggle();
                 
             }) 
@@ -196,71 +196,66 @@
 		  firebase.initializeApp(config); 
 		  
 		  // biz_1이라는 사업자에 들어온 order 정보 중  time으로 orderby 하여 가장 최근에 들어온 주문 1개만 받을 수 있도록 제한함  
-		  var dbRef = firebase.database().ref('biz_1').orderByChild('time').limitToLast(3);
+		  var dbRef = firebase.database().ref('biz_1').orderByChild('time').limitToLast(1);
 		  
 		  
 /* 		  var dbRef = firebase.database().ref('biz_2').orderByChild('time').limitToLast(1); */
 
 
 		  
-		  //
-		  var n=0
 		  
-		  dbRef.on('value', function(snapshot){
+		  dbRef.on('child_added', function(snapshot){
 		  var obj = snapshot.val()
 		  console.log(obj)
-		  
-		  //
-		  for(var i  in obj){
-			  var orderId = Object.keys(obj)[n];
-			  var orderInfo = obj[Object.keys(obj)[n++]];
-			  console.log(orderId)
+	  
+		  var orderId =obj[Object.keys(obj)[1]];
+		  var address= obj[Object.keys(obj)[0]];
+		  var menus =obj[Object.keys(obj)[2]];
+		  var msg =obj[Object.keys(obj)[3]];
+		  var status =obj[Object.keys(obj)[4]];
+		  var time =obj[Object.keys(obj)[6]];
+			  
+		  console.log('................')
+		  console.log(orderId)
+		  console.log(address)
+		  console.log(menus)
+		  console.log(time)
 			  
 			  
-			  
-			  
-			 
-			//firebase 트리거 사용하려면  다시 다 뒤집어야 해서.. 임시방편으로 한번 들어온 값은 업데이트가 되어도 다시 알람 뜨지 않게  만등
-			// 값이 들어올때만다 localStrorage에 키: 값 넣어놔서 다음에 들어온 알람과 비교
-			  
-		 	//i 는 key 역할이고  value 반납하는데 value 가 orderId 랑 같지 않으면  저장하려고 함  저장할 때  key 값은 숫자로...
-		 	  for (var i=1; i <= localStorage.length; i++)  {
-		 		  
-		 		  if(localStorage.getItem(orderId)!=orderId){
-					console.log('.......................................')
-			  		//localStorage.setItem(orderId, orderId);
-			  		
-					  $('<div id="'+orderId+'" class="ORD" >'
-							  	+'<div class="alert alert-info ordTgg"> '
-								+'<span style="display:inline-block"><b>[주문번호]&nbsp;</b>'+orderId+'</span>'
-								+'<span class="float-right">'
-								+'<input type="button" class="btn btn-primary btn-sm confirm" value="접수">'
-								+'<input type="button" class="btn btn-primary btn-sm cancel" value="취소">'
-								+'</span></div>'
-								+'<div class="detailOrder alert alert-light bg-light" style="border: 1px solid black; display: none;">'
-								+'<h4 class="alert-heading font-weight-bold">주문 상세 </h4>'
-							  	+'<table><tbody><tr><th scope="row">주소</th>'
-							  	+'<td class="pl-2">dsfsd'+'</td></tr>'
-							  	+'<tr><th scope="row" >주문 상태</th>'
-							  	+'<td class="pl-2">'+'</td></tr>'
-							  	+'<tr><th scope="row" >주문 시간</th>'
-							  	+'<td class="pl-2">'+'</td></tr>'
-							  	+'<tr><th scope="row">요청사항</th><td class="pl-2">'+'</td></tr></tbody></table>'
-							  	+'<table class="table table-striped table-hover"><thead class="thead-dark"><th scope="col">메뉴 이름</th><th scope="col">옵션</th><th scope="col">수량</th></thead> <tbody>'
-							  	+'<tr><td>'+'</td><td>'+'</td><td>'+'</td></tr>'
-							  	+'<tr><td>'+'</td><td>'+'</td><td>'+'</td></tr></tbody></table></div></div>'
-							  )
-								.appendTo('.waitAreaWrap')
-		 		  }
-				} 
-			  
+			  $('<div id="'+orderId+'" class="ORD" >'
+				+'<div class="alert alert-info ordTgg"> '
+				+'<span style="display:inline-block"><b>[주문번호]&nbsp;</b>'+orderId+'</span>'
+				+'<span class="float-right">'
+				+'<input type="button" class="btn btn-primary btn-sm confirm" value="접수">'
+				+'<input type="button" class="btn btn-primary btn-sm cancel" value="취소">'
+				+'</span></div>'
+				+'<div class="detailOrder alert alert-light bg-light" style="border: 1px solid black; display: none;">'
+				+'<h4 class="alert-heading font-weight-bold">주문 상세 </h4>'
+			  	+'<table><tbody><tr><th scope="row">주소</th>'
+			  	+'<td class="pl-2">'+address+'</td></tr>'
+			  	+'<tr><th scope="row" >주문 상태</th>'
+			  	+'<td class="pl-2">'+status+'</td></tr>'
+			  	+'<tr><th scope="row" >주문 시간</th>'
+			  	+'<td class="pl-2">'+time+'</td></tr>'
+			  	+'<tr><th scope="row">요청사항</th><td class="pl-2">'+msg+'</td></tr></tbody></table>'
+			  	+'<table class="table table-striped table-hover"><thead class="thead-dark"><th scope="col">메뉴 이름</th><th scope="col">옵션</th><th scope="col">수량</th></thead> <tbody class="inputMenuInfo">'
+			  	+'</tbody></table></div></div>'
+			  )
+				.appendTo('.waitAreaWrap')						  		   	  	
 		
-			  
+		  
+	 	  $.each(menus, function(key, value){
+			  console.log(key, value)
+			  $('div[id='+orderId+'] .inputMenuInfo ').append('<tr value="'+orderId+key+'">')
+			  $.each(value, function(k,v){
+				  if(v=='null'){
+					  v=''
+				  }
+				  console.log(k, v)
+				  $('.inputMenuInfo >tr[value="'+orderId+key+'"]').append('<td>'+v+'</td>')
+			  })
 			 
-			  
-			 // console.log(orderInfo)
-			  //
-		  }
+		  }) 
 			  
 		 })
 		 
