@@ -12,11 +12,12 @@ public class OrderAlarmVO {
 	private String time;
 	private String statusCode;
 	private String status;
+	private String msg;
 	private Map<String, OrderAlarmMenuVO> menus;
 	
 	OrderAlarmVO(){}
 
-	public OrderAlarmVO(String id, String address, String time, String statusCode, String status, OrderAlarmMenuVO menu) {
+	public OrderAlarmVO(String id, String address, String time, String statusCode, String status, String msg, OrderAlarmMenuVO menu) {
 		super();
 		
 		this.id = id;
@@ -24,6 +25,7 @@ public class OrderAlarmVO {
 		this.time = time;
 		this.statusCode = statusCode;
 		this.status = status;
+		this.msg = msg;
 		this.menus =  new HashMap<String, OrderAlarmMenuVO>();
 		addMenu(menu);
 	}
