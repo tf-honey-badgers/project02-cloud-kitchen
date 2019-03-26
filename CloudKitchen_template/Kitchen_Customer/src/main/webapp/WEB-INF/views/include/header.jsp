@@ -46,7 +46,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col--md-4 col-sm-4 col-xs-4">
-				<a href="#" id="logo">
+				<a href="${pageContext.request.contextPath}/main" id="logo">
 					<img src="/customer/resources/img/logo.png" width="190" height="23" alt="" data-retina="true" class="hidden-xs">
 					<img src="/customer/resources/img/logo_mobile.png" width="59" height="23" alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm">
 				</a>
@@ -55,11 +55,13 @@
 				<a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
 				<div class="main-menu">
 					<div id="header_menu">
-						<img src="/customer/resources/img/logo.png" width="190" height="23" alt="" data-retina="true">
+						<a href="${pageContext.request.contextPath}/main">
+						<img src="/customer/resources/img/logo.png" width="190" height="23" alt="logo" data-retina="true">
+						</a>
 					</div>
 					<a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
 					<ul>
-						<li class="submenu"><a href="javascript:void(0);" class="show-submenu">Home</a></li>
+						<li class="submenu"><a href="${pageContext.request.contextPath}/main" class="show-submenu">Home</a></li>
 						<li class="submenu"><a href="javascript:void(0);" class="show-submenu">Cloud Kitchen<i class="icon-down-open-mini"></i></a>
 							<ul>
 								<li><a href="list_page.html">줄형</a></li>

@@ -21,7 +21,7 @@ public class PaymentController {
 		session.setAttribute("address", "고양시 우리집");
 		/* --- */
 		
-		return "order/order_1_orderinfo";
+		return "/order/order_1_orderinfo";
 	}
 	
 	@RequestMapping("/payment")
@@ -29,7 +29,7 @@ public class PaymentController {
 		
 		session.setAttribute("OrderVOExtend", vo);
 		
-		return "order/order_2_payment";
+		return "/order/order_2_payment";
 	}
 	
 	@RequestMapping("/confirm")
@@ -37,6 +37,6 @@ public class PaymentController {
 		vo.mergeOrderVO((OrderVOExtend)session.getAttribute("OrderVOExtend"));
 		
 		System.out.println(vo);
-		return "order_3_confirm";
+		return "/order_3_confirm";
 	}
 }
