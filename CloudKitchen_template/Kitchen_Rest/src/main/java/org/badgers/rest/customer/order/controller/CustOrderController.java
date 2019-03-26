@@ -8,6 +8,7 @@ import java.util.Map;
 import org.badgers.rest.customer.order.service.CustFireBaseService;
 import org.badgers.rest.customer.order.service.CustOrderService;
 import org.badgers.rest.customer.order.service.ToOrderAlarmVOService;
+import org.badgers.rest.customer.order.service.ToOrderInfoForViewService;
 import org.badgers.rest.firebase.FirebaseException;
 import org.badgers.rest.firebase.JacksonUtilityException;
 import org.badgers.rest.model.OrderAlarmVO;
@@ -31,30 +32,35 @@ public class CustOrderController {
 	private final CustFireBaseService firebaseService;
 	private final CustOrderService orderService;
 	private final ToOrderAlarmVOService toOrderAlarmVOService;
+	private final ToOrderInfoForViewService toOrderInfoForViewService;
 
 	@PostMapping("/{key}")
 	public ResponseEntity<?> registOrder(@RequestBody OrderVOExtend vo, @PathVariable("key") String key)
 			throws JacksonUtilityException, Exception, FirebaseException {
 		// 1. mysql insert
-		orderService.excuteOrder(vo);
+//		orderService.excuteOrder(vo);
 
 		// 2. mysql select
 		LinkedList<OrderInfoVO> list = orderService.getOrderInfo(vo.getId());
-		if(list==null) {throw new Exception();}
+		Map map =toOrderInfoForViewService.toOrderInfoForView(list);
+		System.out.println(map);
+//		if(list==null) {throw new Exception();}
 		// 3. firebase insert
-		Map<String, Map<String,OrderAlarmVO>> map = toOrderAlarmVOService.toOrderAlarmVO(list);
-		String orderPath = null;
+//		Map<String, Map<String,OrderAlarmVO>> map = toOrderAlarmVOService.toOrderAlarmVO(list);
 		
-		Iterator it = map.keySet().iterator();
+//		String orderPath = null;
 		
-		while(it.hasNext()) {
+//		Iterator it = map.keySet().iterator();
+		
+//		while(it.hasNext()) {
 //			//가게별 주문 정보 insert
-			orderPath = (String)it.next();
-			firebaseService.insertOrder(orderPath, map.get(orderPath));
+//			orderPath = (String)it.next();
+//			firebaseService.insertOrder(orderPath, map.get(orderPath));
 //			
 //			//가게별 주문 정보 상태(status) insert
-		}
-		return new ResponseEntity<>(list, HttpStatus.OK);
+//		}
+//		return new ResponseEntity<>(list, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 
 	}
 

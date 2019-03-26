@@ -29,12 +29,12 @@
 		(id, menu_id,
 		menu_name, menu_price, add_option_price, quantity,
 		total_amt, biz_id,
-		biz_name, request_msg, order_id)
+		biz_name, order_id)
 		values
 		(#{id}, #{menuId},
 		#{menuName},#{menuPrice}, #{addOptionPrice},#{quantity},
 		#{totalAmt},
-		#{bizId}, #{bizName}, #{requestMsg},#{orderId})
+		#{bizId}, #{bizName}, #{orderId})
 
 	</insert>
 	<insert id="initOrderMenuOption"

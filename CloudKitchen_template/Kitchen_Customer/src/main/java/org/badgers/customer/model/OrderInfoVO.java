@@ -1,5 +1,8 @@
 package org.badgers.customer.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import lombok.Data;
 
 @Data
@@ -24,21 +27,35 @@ public class OrderInfoVO {
 	private int totalAmt;
 	private int payAmt;
 	private String msg;
-	private String requestMsg;
 
 	
-	
+	/* 파이어베이스 알람 VO */
 		public OrderAlarmVO toOrderAlarmVO() {
 			StringBuffer optName = new StringBuffer();
 			optName.append(this.optName);
 			OrderAlarmMenuVO menu = new OrderAlarmMenuVO(this.menuName, optName, this.quantity);
-			return new OrderAlarmVO(this.id, this.address, this.time, this.statusCode, this.status, menu);
+			return new OrderAlarmVO(this.id, this.address, this.time, this.statusCode, this.status, this.msg, menu);
 		}
 		
 		public OrderAlarmMenuVO toOrderAlarmMenuVO() {
 			StringBuffer optName = new StringBuffer();
 			optName.append(this.optName);
 			return new OrderAlarmMenuVO(this.menuName, optName, this.quantity);
+		}
+		
+	/* 사용자 주문 확인 VO */
+		public OrderInfoForViewVO toOrderInfoForViewVO() {
+			Map<String, OrderInfoMenuForViewVO> menus = new HashMap<>();
+			menus.put(this.menuName, toOrderInfoMenuForViewVO());
+			
+			return new OrderInfoForViewVO(this.id, this.bizName, this.phone, this.address, this.time, this.status, this.kitchenName, this.method, this.msg, this.payAmt, menus);
+		}
+		
+		public OrderInfoMenuForViewVO toOrderInfoMenuForViewVO() {
+			Map<String, Integer> option = new HashMap<>();
+			option.put(this.optName, this.optPrice);
+			
+			return new OrderInfoMenuForViewVO(this.menuPrice, this.quantity, this.totalAmt, option);
 		}
 		
 }
