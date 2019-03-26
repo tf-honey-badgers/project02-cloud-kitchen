@@ -49,6 +49,6 @@ public class OrderController {
 		System.out.println(list);
 		model.addAttribute("list", list);
 		
-		return "order_3_confirm";
+		return "order/order_3_confirm";
 	}
 }
