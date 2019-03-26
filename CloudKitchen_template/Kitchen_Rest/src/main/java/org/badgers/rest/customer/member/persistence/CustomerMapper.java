@@ -3,7 +3,6 @@ package org.badgers.rest.customer.member.persistence;
 import java.util.List;
 
 import org.badgers.rest.model.CustomerVO;
-import org.badgers.rest.model.FavoriteVO;
 import org.badgers.rest.model.OrderInfoVO;
 
 public interface CustomerMapper {
