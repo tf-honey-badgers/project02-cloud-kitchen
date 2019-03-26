@@ -67,7 +67,7 @@ $(document).ready(function() {
 				, unitPrice : menuPrice
 				, totalAmt : totalPrice
 				, kitchenName : '스톡홀름 1호점'
-				, bizName : 'biz_2'
+				, bizId : 'biz_2'
 				, menuId : menuId
 				, options : inputOptions
 			};
@@ -87,7 +87,7 @@ $(document).ready(function() {
 				for(let i = 0; i < data.length; i++) {
 	    			$('.cartTable').append('<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
 	    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
-	    					data[i].name + '<strong class="pull-right">' + data[i].totalAmt + '원</strong></td>' +
+	    					data[i].menuName + '<strong class="pull-right">' + data[i].totalAmt + '원</strong></td>' +
 	    					'<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td></tr>');
 	    			if(data[i].options != null) {
 		    			for(let j = 0; j < data[i].options.length; j++) {
@@ -156,7 +156,7 @@ $(document).ready(function() {
 				for(let i = 0; i < data.length; i++) {
 	    			$('.cartTable').append('<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
 	    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
-	    					data[i].name + '<strong class="pull-right">' + data[i].totalAmt + '원</strong></td>' +
+	    					data[i].menuName + '<strong class="pull-right">' + data[i].totalAmt + '원</strong></td>' +
 	    					'<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td></tr>');
 	    			if(data[i].options != null) {
 		    			for(let j = 0; j < data[i].options.length; j++) {
