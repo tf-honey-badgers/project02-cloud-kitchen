@@ -106,7 +106,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">찜 횟수</label>
-                                                    <input type="text" id="favorites" class="form-control" disabled value="${bizMember.biz.likeCnt}">
+                                                    <input type="text" id="favorites" class="form-control" disabled value="${favCnt}">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
