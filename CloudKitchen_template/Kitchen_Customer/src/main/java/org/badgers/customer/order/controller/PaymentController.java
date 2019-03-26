@@ -37,6 +37,6 @@ public class PaymentController {
 		vo.mergeOrderVO((OrderVOExtend)session.getAttribute("OrderVOExtend"));
 		
 		System.out.println(vo);
-		return "/order_3_confirm";
+		return "/order/order_3_confirm";
 	}
 }
