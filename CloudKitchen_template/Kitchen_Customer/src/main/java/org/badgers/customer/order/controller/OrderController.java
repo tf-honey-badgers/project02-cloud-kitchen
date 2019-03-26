@@ -1,10 +1,13 @@
 package org.badgers.customer.order.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.badgers.customer.model.OrderInfoForViewVO;
 import org.badgers.customer.model.OrderInfoVO;
 import org.badgers.customer.model.OrderVOExtend;
 import org.badgers.customer.order.service.OrderService;
@@ -36,9 +39,16 @@ public class OrderController {
 	public String registOrder(@RequestBody OrderVOExtend vo, Model model) {
 		
 		String url = "http://127.0.0.1:80/rest/cust/order/"+vo.getId();
-		ResponseEntity<OrderInfoVO[]> responses  = restTemplate.postForEntity(url,vo, OrderInfoVO[].class);
-		List<OrderInfoVO> list =Arrays.asList(responses.getBody());
+		System.out.println(url);
+		
+		ResponseEntity<String> responses  = restTemplate.postForEntity(url,vo, String.class);
+//		List<OrderInfoVO> list =Arrays.asList(responses.getBody());
+		
+		String list = responses.getBody();
+		
+		System.out.println(list);
 		model.addAttribute("list", list);
+		
 		return "order_3_confirm";
 	}
 }

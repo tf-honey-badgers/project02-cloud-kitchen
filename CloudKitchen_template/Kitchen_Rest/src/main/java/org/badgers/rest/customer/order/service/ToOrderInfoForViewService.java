@@ -9,11 +9,13 @@ import org.badgers.rest.model.OrderInfoMenuForViewVO;
 import org.badgers.rest.model.OrderInfoVO;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Service
 public class ToOrderInfoForViewService {
 
-	public Map<String,OrderInfoForViewVO> toOrderInfoForView(LinkedList<OrderInfoVO> list) {
-		
+	public String toOrderInfoForView(LinkedList<OrderInfoVO> list) throws JsonProcessingException {
 		//{가게1:메뉴A map[] 메뉴B map[]}, {가게2:메뉴A옵션abc 메뉴B옵션abc}
 		Map<String, OrderInfoForViewVO> orderInfos = new HashMap<>();
 		
@@ -40,6 +42,10 @@ public class ToOrderInfoForViewService {
 			option.put(vo.getOptName(), vo.getOptPrice());
 		}
 		
-		return orderInfos;
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String jsonOrderInfo = mapper.writeValueAsString(orderInfos);
+		
+		return jsonOrderInfo;
 	}
 }

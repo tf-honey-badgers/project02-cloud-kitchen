@@ -53,7 +53,12 @@ public class OrderInfoVO {
 		
 		public OrderInfoMenuForViewVO toOrderInfoMenuForViewVO() {
 			Map<String, Integer> option = new HashMap<>();
-			option.put(this.optName, this.optPrice);
+			
+			if(this.optName!=null) {
+				option.put(this.optName, this.optPrice);
+			}else {
+				option.put("없음",0);
+			}
 			
 			return new OrderInfoMenuForViewVO(this.menuPrice, this.quantity, this.totalAmt, option);
 		}
