@@ -1,10 +1,10 @@
 package org.badgers.rest.customer.member.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.badgers.rest.customer.member.service.CustomerService;
 import org.badgers.rest.model.CustomerVO;
-import org.badgers.rest.model.FavoriteVO;
 import org.badgers.rest.model.OrderInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -104,7 +104,7 @@ public class CustomerController {
 	}
 	
 	//주문 내역  보기 
-	@CrossOrigin("http://localhost:12004") //크로스 도메인 처리 
+	@CrossOrigin("http://localhost:3001") //크로스 도메인 처리 
 	@GetMapping(value = "/{cust_id}/mypage/orderinfo", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<List<OrderInfoVO>>  getOrderInfo(@PathVariable("cust_id")String custId) {
 		List<OrderInfoVO> list = service.getOrderInfo(custId);
@@ -112,6 +112,7 @@ public class CustomerController {
 		return new ResponseEntity<List<OrderInfoVO>>(list, HttpStatus.OK);
 	}
 	
+
 	// ID 찾기 & 본인인증하기
 	@PostMapping("/verify")
 	public ResponseEntity<String> verify(@RequestBody CustomerVO vo) throws Exception {
@@ -119,9 +120,32 @@ public class CustomerController {
 		 
 		 log.info("Kitchen_Rest 사용자 ID 찾기...............................");
 			 String returnVal = service.verify(vo);
-		 if(returnVal == null) { entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST); }
-		 else { entity = new ResponseEntity<String>(returnVal, HttpStatus.OK); }
-		 
-		 return entity;
-	}
+
+			 if(returnVal == null) { entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST); }
+			 else { entity = new ResponseEntity<String>(returnVal, HttpStatus.OK); }
+			 
+			 return entity;
+		}
+		
+			//이메일 인증 
+	
+	@PostMapping(value = "/emailConfirm" ,produces= { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<Integer> emailConfirm(@RequestBody Map<String,String> map) throws Exception { // 이메일인증
+				
+		   ResponseEntity<Integer> entity = null;
+
+		   log.info("이메일 인증 ================================== ");
+			
+				
+		   int returnVal = service.userAuth(map.get("email"),map.get("key"));
+				 
+				
+		   System.out.println("Rest");
+		   System.out.println(returnVal);
+		   if(returnVal == 0) { entity = new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST); }
+		   else { entity = new ResponseEntity<Integer>(Integer.valueOf(returnVal), HttpStatus.OK); }
+
+		   return entity;
+				
+			}
 }

@@ -45,7 +45,7 @@ var custId = '${custId}';
 				<th>옵션 총 가격</th>
 				<th>토탈 가격</th>
 				<th>하고싶은말</th>
-				<th>옵션 요청</th>
+				
 			</tr>
 			</thead>
 			<tbody>
@@ -57,9 +57,9 @@ var custId = '${custId}';
 		 var tbody = $('tbody');
 		 
 		$(document).ready(function(){
-			alert('start')
+		
 			
-			$.getJSON( 'http://localhost:12007/rest/customer/${custId}/mypage/orderinfo', function(list){
+			$.getJSON( 'http://localhost/rest/customer/${custId}/mypage/orderinfo', function(list){
 				
 				for(var i = 0, len = list.length || 0 ; i < len; i++){
 					var tr = $('<tr></tr>');
@@ -79,9 +79,9 @@ var custId = '${custId}';
 					var totalAmt = $('<td>' + list[i].totalAmt + '</td>');
 					var payAmt = $('<td>' + list[i].payAmt + '</td>');
 					var msg = $('<td>' + list[i].msg + '</td>');
-					var requestMsg = $('<td>' + list[i].requestMsg + '</td>');
+					
 					tr.append(id).append(custId).append(phone).append(address).append(time).append(kitchenName).append(bizName).append(method).append(menuName).append(menuPrice)
-					.append(optName).append(optPrice).append(quantity).append(totalAmt).append(payAmt).append(msg).append(requestMsg);
+					.append(optName).append(optPrice).append(quantity).append(totalAmt).append(payAmt).append(msg);
 					tbody.append(tr);
 					console.log(list[i]);
 				}

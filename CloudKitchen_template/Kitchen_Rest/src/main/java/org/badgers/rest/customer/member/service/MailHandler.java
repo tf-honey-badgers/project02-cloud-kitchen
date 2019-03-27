@@ -9,13 +9,13 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
-public class MailUtils {
+public class MailHandler {
     
     private JavaMailSender mailSender;
     private MimeMessage message;
     private MimeMessageHelper messageHelper;
     
-    public MailUtils(JavaMailSender mailSender) throws MessagingException {
+    public MailHandler(JavaMailSender mailSender) throws MessagingException {
         this.mailSender = mailSender;
         message = this.mailSender.createMimeMessage();
         messageHelper = new MimeMessageHelper(message, true, "UTF-8");

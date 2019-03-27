@@ -69,7 +69,7 @@
 			, total_amt
 			, pay_amt
 			, msg
-			, request_msg
+			
 		FROM
 			honey_badgers.order as orders
 			, order_payment as orderpayment
@@ -84,7 +84,6 @@
 				, total_amt
 				, biz_id
 				, biz_name
-				, request_msg
 				, order_id
 				, opt_id
 				, opt_name
@@ -114,4 +113,15 @@
 			and id =#{id}
 		</if>
 	</select>
+
+<!-- 인증키 생성 -->
+<update id="createAuthKey">
+update honey_badgers.customer set auth_code = #{param2} where email = #{param1}
+</update>
+
+<!-- 인증키 확인 메일 인증  -->
+<update id="userAuth">
+<![CDATA[	update honey_badgers.customer set status = "MEM002" where email = #{param1} and auth_code = #{param2}]]>
+</update>
+
 </mapper>
