@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel="apple-touch-icon" sizes="76x76" href="/business/resources/img/apple-icon.png">
     <link rel="icon" type="image/png" href="/business/resources/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -36,133 +37,32 @@
             <div class="card">
                 <div class="card-header card-header-primary">
                     <h3 class="card-title">Notifications</h3>
-                    <p class="card-category">Handcrafted by our friend
-                        <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the
-                        <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a>
+                    <p class="card-category">주문 실시간 알림
                     </p>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6">
-                            <h4 class="card-title">Notifications Style</h4>
-                      
+                        <div id="orderList" class="col-md-6" >
+                            <h4 class="card-title">주문 리스트</h4>
+                            <div class="orderListWrap common rounded bg-dark">
                             
-                            <div class="alert alert-success alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">hhh</span>
                             </div>
-                                 <div class="alert alert-success alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                            </div>
-                                 <div class="alert alert-success alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                            </div>
-                                 <div class="alert alert-success alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                            </div>
-                                 <div class="alert alert-success alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                            </div>
-                                 <div class="alert alert-info alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                            </div>
-                                 <div class="alert alert-info alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                            </div>
-                                 <div class="alert alert-info alert-with-icon" data-notify="container">
-                                <i class="material-icons" data-notify="icon">add_alert</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-                            </div>
+                            
                         </div>
-                        <div class="col-md-6">
-                            <h4 class="card-title">Notification states</h4>
-                            <div class="alert alert-info">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span>
-                                    <b> 주문 대기 상태 - </b></span>
-                            </div>
-                            <div class="alert alert-success">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span>
-                                    <b> 주문 접수 상태</b></span>
-                            </div>
-                            <div class="alert alert-warning">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span>
-                                    <b> 조리 중 상태</b> </span>
-                            </div>
-                            <div class="alert alert-danger">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span>
-                                    <b> 주문 취소 및 거부 상태</b> </span>
-                            </div>
-                            <div class="alert alert-primary">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span>
-                                    <b> 조리 완료 상태 </b> </span>
-                            </div>
+                        
+                        
+                        <!-- ================================================================================================ -->
+                        
+                        <div id="waitArea" class="col-md-6" >
+                            <h4 class="card-title">주문 대기 현황</h4>
+                            <div class="waitAreaWrap common rounded bg-dark">
+                            
+	                        </div>
                         </div>
+                        
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="places-buttons">
-                        <div class="row">
-                            <div class="col-md-6 ml-auto mr-auto text-center">
-                            
-                       <!--         <h4 class="card-title">
-                                    Notifications Places
-                                    <p class="category">Click to view notifications</p>
-                                </h4>-->
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-md-4">
-                                <button class="btn btn-primary btn-block" onclick="notifyOrder('bottom','right','order12345')">Bottom Right</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+   
                 <!---->
             </div>
             <!--card End-->
@@ -170,45 +70,12 @@
         <!--container-fluid-->
     </div>
     
-    
-<!--    <footer class="footer">
-        <div class="container-fluid">
-            <nav class="float-left">
-                <ul>
-                    <li>
-                        <a href="https://www.creative-tim.com">
-                            Creative Tim
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://creative-tim.com/presentation">
-                            About Us
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://blog.creative-tim.com">
-                            Blog
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.creative-tim.com/license">
-                            Licenses
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="copyright float-right">
-                &copy;
-                <script>
-                    document.write(new Date().getFullYear())
-
-                </script>, made with <i class="material-icons">favorite</i> by
-                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-            </div>
-        </div>
-    </footer>-->
+  			<%-- <!-- Footer -->
+            <jsp:include page="../include/footer.jsp" flush="false"></jsp:include>
+            <!-- End Footer --> --%>
         </div>
     </div>
+    <div id="notifydiv"></div>
     <!--   Core JS Files   -->
     <script src="/business/resources/js/core/jquery.min.js"></script>
     <script src="/business/resources/js/core/popper.min.js"></script>
@@ -260,36 +127,65 @@
             //init DateTimePickers
             md.initFormExtendedDatetimepickers();
             
+            //주문상세 보기 toggle 
+             $('body').on('click','.ordTgg', function(event){
+            	 $(this).parent().siblings().find('.detailOrder').hide()
+                $(this).siblings('.detailOrder').stop().slideToggle();
+                
+            }) 
+            
+            var url='';
+            var bizId='';
+            var orderId='';
+            var status='';
+             
+            
+            //주문 접수 눌렀을 때
+            $('body').on('click', '.confirm', function(e){
+            	//부모에게 물려받은 이벤트 멈춰버림 
+            	e.stopPropagation();
+            	$(this).siblings().css({display:'none'})
+            	$(this).parents('div[class="alert alert-info ordTgg"]').removeClass('alert-info').addClass('alert-success');
+            	$(this).removeClass('btn-primary confirm').addClass('btn-warning cooking')
+            	$(this).attr({'value': '조리시작'})
+            	$(this).parents('div[class="ORD"]').appendTo('.orderListWrap')
+            	orderId=$(this).parents('div.ORD').attr('id')
+            	status='ORD002'
+            	url='biz_1/'+orderId+'/'+status
+            	updateStatus(url)
+            });
+            // 조리시작 눌렀을 때
+             $('body').on('click', '.cooking', function(e){
+            	 e.stopPropagation();
+            	 console.log($(this).parents('div[class="alert ordTgg alert-success"]').removeClass('alert-success').addClass('alert-warning'))
+            	 $(this).removeClass('btn-warning cooking').addClass('btn-danger complete')
+            	 $(this).attr({'value': '조리완료'})
+            	 orderId=$(this).parents('div.ORD').attr('id')
+            	 status='ORD003'
+            	 url='biz_1/'+orderId+'/'+status
+            	 updateStatus(url)
+            	 
+            	 
+            	 
+             });
+             //조리완료 눌렀을때
+             $('body').on('click', '.complete', function(e){
+            	 e.stopPropagation();
+            	 status='ORD004'
+                 url='biz_1/'+orderId+'/'+status
+                 updateStatus(url)
+            	 $(this).parents('div.ORD').remove()
+                	 
+             });
+		  
+            
     
         });
         
+        /* 1. firebase 이벤트 --------------------------------------------------------------------- */
         
-        /* 1. 알람 함수 -------------------------------------------------------- */
-        function notifyOrder (from, align, orderId) {
-        	  type = ['', 'info'/*, 'danger', 'success', 'warning', 'rose', 'primary'*/];
-        	  color = Math.floor((Math.random() * 6) + 1);
-        	  $.notify({
-        	    icon: "add_alert",
-        	    title: orderId,
-        	    message: "<b>[주문번호]&nbsp;"+orderId+"</b>"
-        	      +"<div><h6>[메뉴]&nbsp;페퍼로니M<span>[옵션]&nbsp; 치즈크러스트, 올리브추가</span><span>[수량]&nbsp;1</span><h6></div>",
-        	    target:orderId
-        	      ,order: orderId
-
-        	  }, {
-        	    type: type[color],
-        	    timer: 3000,
-        	    placement: {
-        	      from: from,
-        	      align: align
-        	    }
-        	  })
-        	 };
-        
-        /* 2. firebase 이벤트 --------------------------------------------------------------------- */
-        
-         // Initialize Firebase
-		  var config = {
+         
+ 		  var config = {
 		    apiKey: "AIzaSyDZ4Zt7FAQrf8ah4FDlGZU2-qLeinySOSs",
 		    authDomain: "honeybadgers-d29cf.firebaseapp.com",
 		    databaseURL: "https://honeybadgers-d29cf.firebaseio.com",
@@ -297,23 +193,88 @@
 		    storageBucket: "honeybadgers-d29cf.appspot.com",
 		    messagingSenderId: "595672061077"
 		  };
-		  firebase.initializeApp(config);
+		  firebase.initializeApp(config); 
 		  
 		  // biz_1이라는 사업자에 들어온 order 정보 중  time으로 orderby 하여 가장 최근에 들어온 주문 1개만 받을 수 있도록 제한함  
-		  var dbRef = firebase.database().ref('biz_2').orderByChild('time').limitToLast(1);
-		  var orderId;
-		  var obj = dbRef.on('value', function(snapshot){
-				console.log('새로들어온 주문 있음')		
-				var obj=snapshot.val()
-				var orderId = Object.keys(obj)[0];
-				var orderInfo = obj[Object.keys(obj)[0]];
-				console.log(orderId)
-				console.log(orderInfo)
-				notifyOrder('bottom','right',orderId)
-				
-				//알람 팝업이후 알림창에 넣어 주기 
-				
-  		});
+		  var dbRef = firebase.database().ref('biz_1').orderByChild('time').limitToLast(1);
+		  
+		  
+/* 		  var dbRef = firebase.database().ref('biz_2').orderByChild('time').limitToLast(1); */
+
+
+		  
+		  
+		  dbRef.on('child_added', function(snapshot){
+		  var obj = snapshot.val()
+		  console.log(obj)
+	  
+		  var orderId =obj[Object.keys(obj)[1]];
+		  var address= obj[Object.keys(obj)[0]];
+		  var menus =obj[Object.keys(obj)[2]];
+		  var msg =obj[Object.keys(obj)[3]];
+		  var status =obj[Object.keys(obj)[4]];
+		  var time =obj[Object.keys(obj)[6]];
+			  
+		  console.log('................')
+		  console.log(orderId)
+		  console.log(address)
+		  console.log(menus)
+		  console.log(time)
+			  
+			  
+			  $('<div id="'+orderId+'" class="ORD" >'
+				+'<div class="alert alert-info ordTgg"> '
+				+'<span style="display:inline-block"><b>[주문번호]&nbsp;</b>'+orderId+'</span>'
+				+'<span class="float-right">'
+				+'<input type="button" class="btn btn-primary btn-sm confirm" value="접수">'
+				+'<input type="button" class="btn btn-primary btn-sm cancel" value="취소">'
+				+'</span></div>'
+				+'<div class="detailOrder alert alert-light bg-light" style="border: 1px solid black; display: none;">'
+				+'<h4 class="alert-heading font-weight-bold">주문 상세 </h4>'
+			  	+'<table><tbody><tr><th scope="row">주소</th>'
+			  	+'<td class="pl-2">'+address+'</td></tr>'
+			  	+'<tr><th scope="row" >주문 상태</th>'
+			  	+'<td class="pl-2">'+status+'</td></tr>'
+			  	+'<tr><th scope="row" >주문 시간</th>'
+			  	+'<td class="pl-2">'+time+'</td></tr>'
+			  	+'<tr><th scope="row">요청사항</th><td class="pl-2">'+msg+'</td></tr></tbody></table>'
+			  	+'<table class="table table-striped table-hover"><thead class="thead-dark"><th scope="col">메뉴 이름</th><th scope="col">옵션</th><th scope="col">수량</th></thead> <tbody class="inputMenuInfo">'
+			  	+'</tbody></table></div></div>'
+			  )
+				.appendTo('.waitAreaWrap')						  		   	  	
+		
+		  
+	 	  $.each(menus, function(key, value){
+			  console.log(key, value)
+			  $('div[id='+orderId+'] .inputMenuInfo ').append('<tr value="'+orderId+key+'">')
+			  $.each(value, function(k,v){
+				  if(v=='null'){
+					  v=''
+				  }
+				  console.log(k, v)
+				  $('.inputMenuInfo >tr[value="'+orderId+key+'"]').append('<td>'+v+'</td>')
+			  })
+			 
+		  }) 
+			  
+		 })
+		 
+		 /* --------------------------------------------------------------------- */
+		 
+		 function updateStatus(url){
+			  //order/{bizId}/{orderId}/{status}
+			  
+			  $.ajax(url, {
+				  method: "put",
+				  dataType: "json"
+				});
+			  
+		  }
+		  
+		 
+		 
+		  
+		  
 		  
     </script>
 </body>

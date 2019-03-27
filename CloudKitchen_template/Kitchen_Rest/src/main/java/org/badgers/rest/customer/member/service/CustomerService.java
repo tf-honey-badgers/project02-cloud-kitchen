@@ -9,7 +9,7 @@ import org.badgers.rest.model.OrderInfoVO;
 public interface CustomerService {
 
 	// 회원가입
-	public boolean register(CustomerVO vo) throws Exception;
+	public int register(CustomerVO vo) throws Exception;
 
 	// 로그인
 	public String login(String id, String pw)throws Exception;
@@ -32,9 +32,6 @@ public interface CustomerService {
 	
 	// 주문 내역 
 	public List<OrderInfoVO> getOrderInfo(String custId);
-	
-	// 찜 내역 보기 
-	public List<FavoriteVO> favorite(String custId);
 	
 	//ID 찾기
 	public String verify(CustomerVO vo)throws Exception;

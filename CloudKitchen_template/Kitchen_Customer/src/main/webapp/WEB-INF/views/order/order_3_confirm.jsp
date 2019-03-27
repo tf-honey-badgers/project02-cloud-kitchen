@@ -9,9 +9,10 @@
 <body>
 	<!--헤더 -->
 	<!-- 위쪽 헤더바  -->
-	<jsp:include page="include/header.jsp" flush="false" />
+	<jsp:include page="../include/header.jsp" flush="false" />
 	<!-- 주문 헤더 -->
-	<jsp:include page="include/header_order_TEST.jsp" flush="false" />
+	<jsp:include page="../include/header_order.jsp" flush="false" />
+	
 	<div id="position">
 		<div class="container">
 			<ul>
@@ -40,6 +41,13 @@
 					</div>
 					<h4>Summary</h4>
 					<table class="table table-striped nomargin">
+						<thead>
+							<tr>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
 						<tbody>
 							<tr>
 								<td><strong>1x</strong> Enchiladas</td>
@@ -76,6 +84,7 @@
 							</tr>
 						</tbody>
 					</table>
+					${list}
 				</div>
 			</div>
 		</div>
@@ -84,7 +93,7 @@
 	<!-- End container -->
 	<!-- End Content =============================================== -->
 	<!-- Footer 시작  -->
-	<jsp:include page="include/footer.jsp" flush="false" />
+	<jsp:include page="../include/footer.jsp" flush="false" />
 	<!-- Footer 끝  -->
 </body>
 </html>

@@ -8,12 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 리스트</title>
-
+<script src="/customer/resources/js/jquery-2.2.4.min.js"></script>
 <script type="text/javascript">
 
 var custId = '${custId}';
 
 </script>
+
 </head>
 <body>
 <!--나중에 뺼 js  -->
@@ -25,12 +26,12 @@ var custId = '${custId}';
 	<br><br><br><br><br><br><br><br><br><br><br>
 	<h2>주문 리스트</h2>
 	<br><br>
-		<table>
+		<table  class="type11">
 		<thead>
 			<tr>
 				<th>주문 아이디</th>
 				<th>회원 아이디</th>
-				<th>핸드폰 번호</th>
+				<th>핸드폰    번호</th>
 				<th>주소</th>
 				<th>주문 시간</th>
 				<th>키친 주소</th>

@@ -2,10 +2,8 @@ package org.badgers.customer.model;
 
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
 public class OrderDetailVOExtend extends OrderDetailVO  {
 	private String id;
 	private String menuId;
@@ -16,7 +14,7 @@ public class OrderDetailVOExtend extends OrderDetailVO  {
 	private int totalAmt;
 	private String bizId;
 	private String bizName;
-	private String requestMsg;
 	private String orderId;
 	private OrderOptionVO[] orderOptions;
+
 }

@@ -1,5 +1,23 @@
 $(document).ready(function(){
 	
+	//비번 , 이름 , 이메일
+	$('#changeCustomer').on('click', function() {
+		$.ajax({
+    		url : '/customer/member/' + $('#id').val() + '/modify'
+    		, type : 'POST'
+			, contentType : 'application/json'
+    		, data : JSON.stringify({
+    				id : $('#id').val(),
+    				 pw : $('#pw').val()
+    				, name : $('#name').val()
+    				, email : $('#email').val()
+    			})
+    		, error : function() { alert("회원 정보를 수정하는데 에러가 발생했습니다."); }
+    		, success : function() { alert("성공적으로 회원 정보를 수정했습니다."); }
+		});
+	});
+	
+	
 	/* modal의 "X" 버튼을 눌러 닫을 때 modal을 숨기고 초기화하기 */
 	$('body').on('click', '.modal-popup .close-link', function(event){
 		event.preventDefault();
@@ -16,44 +34,67 @@ $(document).ready(function(){
 	
 	
 	
+
 	/* 로그인 절차 */
 	$('#myLogin button').on('click', function() {
 		$.ajax({
     		url : 'http://localhost:12004/customer/member/'
     		, type : 'POST'
 			, contentType : 'application/json'
-			, dataType : 'text'
     		, data : JSON.stringify({
     				  id : $('#myLogin input:eq(0)').val()
     				, pw : $('#myLogin input:eq(1)').val()
+    			})
+    			, error : function(data) {
+        			console.log(data);
+        		}
+        		, success : function(data) {
+        			if(data == "성공적으로 로그인했습니다.") {
+        				 alert('로그인 성공');		
+        			} else {
+        				alert("로그인 실패");
+
+        				
+        				    				
+        			}
+        			$('.modal').modal('hide');
+        			$('#myLogin input').val("");
+        		}
+    		});
+    	})
+    	
+	
+	// 회원가입 절차 
+	$('#myRegister button').on('click', function() {
+		$.ajax({
+    		url : 'http://localhost:12004/customer/member/register'
+    		, type : 'POST'
+    	    , contentType : 'application/json; charset=UTF-8'
+			, dataType : 'text'
+			, data :            
+    		          JSON.stringify({
+    				  id : $('#myRegister input:eq(0)').val()
+    				, pw : $('#myRegister input:eq(1)').val()
+    				, name : $('#myRegister input:eq(3)').val()
+    				, birthDate : $('#myRegister input:eq(4)').val()
+    				, phone : $('#myRegister input:eq(5)').val()
+    				, email : $('#myRegister input:eq(6)').val()
+    				, gender : $('#myRegister input:eq(9)').val()
     			})
     		, error : function(data) {
     			console.log(data);
     		}
     		, success : function(data) {
-    			if(data == "성공적으로 로그인했습니다.") {
-    				md.showNotification('top', 'center', 'info', '로그인했습니다.');    				
+    			if(data == "가입 성공.") {
+    				alert('회원가입 ');    				
     			} else {
-    				md.showNotification('top', 'center', 'danger', data);    				
+    				alert('회원가입 성공');  			
     			}
     			$('.modal').modal('hide');
-    			$('#myLogin input').val("");
+    			$('#myRegister input').val("");
     		}
 		});
 	})
-	
-	// 회원가입 절차 
-	$('#register button').on('click',function(){
-		
-		
-		
-		
-	});
-	
-	
-	
-	
-	
 	
 	
 	/* ID 찾기 인증 절차 */
@@ -183,7 +224,7 @@ $(document).ready(function(){
         		$('#myId #getId').remove();
     		}
     		, success : function() {
-    			md.showNotification('bottom', 'right', 'info', '성공적으로 비밀번호를 수정했습니다.');
+    			alert('성공적 비번 수행 ')
     			$('.modal').modal('hide');
     			$('#myLogin input').val("");
     			$('#myId').text("");
@@ -201,4 +242,4 @@ $(document).ready(function(){
 	
 	
 	
-});
+})

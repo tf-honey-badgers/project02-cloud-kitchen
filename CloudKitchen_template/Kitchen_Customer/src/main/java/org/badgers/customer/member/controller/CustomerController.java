@@ -36,7 +36,7 @@ public class CustomerController {
 		log.info("사용자 개인정보 읽기...............................");
 		
 		CustomerVO returnVal = null;
-		String url = "http://localhost:12007/rest/customer/" + id + "/mypage";
+		String url = "http://localhost/rest/customer/" + id + "/mypage";
 		
 		try {
 			ResponseEntity<CustomerVO> responseEntity = 
@@ -66,23 +66,24 @@ public class CustomerController {
 	// 로그인
 	@PostMapping(value = "/", produces = "text/plain; charset=utf-8")
 	@ResponseBody
-	public String login(@RequestBody CustomerVO customer) {
+	public String login(@RequestBody CustomerVO vo) {
+		log.info("Kitchen_customer 사용자 로그인...............................");
 		
 		String msg = "";
-		String url = "http://localhost:12007/rest/customer/";
+		String url = "http://localhost/rest/customer/";
 		
 		try {
-			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
+			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);
 			msg = responseEntity.getBody();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		if(msg == "PW_BAD") {
+		if(msg.equals("BAD_PW")) {
 			msg = "비밀번호가 틀렸습니다.";
-		} else if(msg == "NO_ID") {
+		} else if(msg.equals("NO_ID")) {
 			msg = "존재하지 않는 아이디입니다.";
-		}else if(msg.equals("SERVER_ERROR") || msg.equals("")) {
+		} else if(msg.equals("SERVER_ERROR") || msg.equals("")) {
 			msg = "서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.";
 		} else {
 			// 로그인을 유지하기 위한 쿠키 생성
@@ -102,7 +103,7 @@ public class CustomerController {
 		log.info("Kitchen_Business 사용자 개인정보 수정...............................");
 		
 		try {
-			String url = "http://localhost:12007/rest/customer/" + cvo.getId() + "/mypage/modify";
+			String url = "http://localhost/rest/customer/" + cvo.getId() + "/mypage/modify";
 			restTemplate.put(url, cvo);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -118,13 +119,13 @@ public class CustomerController {
 		
 		return "mypage";
 	}	
-	
+
 	// 회원 가입 
-	@PostMapping(value="/register", produces = "text/plain; charset=utf-8")
+	@PostMapping("/register")
 	@ResponseBody
 	public String register(@RequestBody CustomerVO customer) {
 		String msg = "";
-		String url = "http://localhost:12007/rest/customer/register";
+		String url = "http://localhost/rest/customer/register";
 		
 		try {
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
@@ -143,7 +144,7 @@ public class CustomerController {
 		log.info("사용자 주문 내역 보기================================");
 		
 		List<OrderInfoVO> list = null;
-		String url = "http://localhost:12007/rest/customer/" + custId + "/mypage/orderinfo";
+		String url = "http://localhost/rest/customer/" + custId + "/mypage/orderinfo";
 		try {
 			ResponseEntity<OrderInfoVO> responseEntity =
 					restTemplate.getForEntity(url,org.badgers.customer.model.OrderInfoVO.class);
@@ -172,7 +173,7 @@ public class CustomerController {
 	public ModelAndView readFavorite (ModelAndView mav, @PathVariable("custId") String custId) {
 		log.info("사용자 찜 내역 보기================================");
 		List<FavoriteVO> favorite = null;
-		String url = "http://localhost:12007/rest/customer/" + custId + "/mypage/favorite";
+		String url = "http://localhost/rest/customer/" + custId + "/mypage/favorite";
 		try {
 			ResponseEntity<FavoriteVO> responseEntity =
 					restTemplate.getForEntity(url,org.badgers.customer.model.FavoriteVO.class);
@@ -199,7 +200,7 @@ public class CustomerController {
 		log.info("Kitchen_Business 사용자 ID 찾기...............................");
 
 		String res = "";
-		String url = "http://localhost:12007/rest/customer/verify";
+		String url = "http://localhost/rest/customer/verify";
 		
 		try {			
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);

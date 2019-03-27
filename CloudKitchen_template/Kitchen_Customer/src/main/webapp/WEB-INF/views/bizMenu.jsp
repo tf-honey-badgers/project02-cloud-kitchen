@@ -13,44 +13,21 @@
 <!-- Header =============================================== -->
 	<jsp:include page="include/header.jsp" flush="false" />
 <!-- End Header =============================================== -->
-<!-- SubHeader =============================================== -->
-	<section class="parallax-window" data-parallax="scroll" data-image-src="/customer/resources/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
-		<div id="subheader">
-		<div id="sub_content">
-			<div id="thumb"><img src="/customer/resources/img/thumb_restaurant.jpg" alt=""></div>
-	                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="detail_page_2.html">Read 98 reviews</a></small>)</div>
-	                    <h1>${bizMember.bizName}</h1>
-	                    <div><strong>최소 주문 금액:</strong> ${bizMember.bizMinAmt}원</div>
-	    </div><!-- End sub_content -->
-	</div><!-- End subheader -->
-	</section><!-- End section -->
-<!-- End SubHeader ============================================ -->
-	
-<!-- Position ============================================ -->
-	<div id="position">
-		<div class="container">
-			<ul>
-				<li><a href="#0">Home</a></li>
-				<li><a href="#0">Category</a></li>
-				<li>Page active</li>
-			</ul>
-			<a href="#0" class="search-overlay-menu-btn"><i
-				class="icon-search-6"></i> Search</a>
-		</div>
-	</div>
-<!-- End Position ============================================ -->
+<!-- SubHeader & Position =============================================== -->
+	<jsp:include page="include/menu_subheader.jsp" flush="false" />
+<!-- End SubHeader & Position =============================================== -->
 
 <!-- Content ================================================== -->
 	<div class="container margin_60_35">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<p>
-					<a href="list_page.html" class="btn_side">Back to search</a>
+					<a href="javascript:history.back()" class="btn_side">Back to search</a>
 				</p>
 				<div class="box_style_1">
 					<ul id="cat_nav">
 						<c:forEach var="menu" items="${bizMember.bizMenuCatVo}" varStatus="loop">
-							<li><a href="#${loop.index + 100}">${menu.mcName} <span>(141)</span></a></li>
+							<li><a href="#${loop.index + 100}">${menu.mcName}</a></li>
 						</c:forEach>
 					</ul>
 				</div> <!-- End box_style_1 -->
@@ -62,7 +39,7 @@
 					<a href="tel://004542344599" class="phone">+45 423 445 99</a> <small>Monday
 						to Friday 9.00am - 7.30pm</small>
 				</div>
-			</div> <!-- End col-md-3 -->
+			</div> <!-- End col-md-2 -->
 
 			<div class="col-md-6">
 				<div class="box_style_2" id="main_menu">
@@ -93,30 +70,33 @@
 												<div class="dropdown-menu">
 													<c:forEach var="extras" items="${dish.menuOptCl}">
 														<div>
-															<h5>${extras.mocName}</h5>
 															<c:if test="${extras.mocMenuOptType == 'OPT001'}">
+																<h5>${extras.mocName} (필수 선택)</h5>
 																<c:forEach var="option" items="${extras.menuOptEx}">
-																	<label> <input type="radio" data-name="${option.moName}" data-id="${option.moCode}" name="${extras.mocName}" required>${option.moName} <span data-price="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
+																	<label> <input type="radio" data-required="yes" data-name="${option.moName}" data-id="${option.moCode}" name="${extras.mocName}">${option.moName} <span data-price="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
 																</c:forEach>
 															</c:if>
 															<c:if test="${extras.mocMenuOptType == 'OPT002'}">
+																<h5>${extras.mocName} (필수 선택)</h5>
 																<c:forEach var="option" items="${extras.menuOptEx}">
-																	<label> <input type="checkbox" data-name="${option.moName}" data-id="${option.moCode}" name="${extras.mocName}" required>${option.moName} <span data-price="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
+																	<label> <input type="checkbox" data-required="yes" data-name="${option.moName}" data-id="${option.moCode}" name="${extras.mocName}">${option.moName} <span data-price="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
 																</c:forEach>
 															</c:if>
 															<c:if test="${extras.mocMenuOptType == 'OPT003'}">
+																<h5>${extras.mocName}</h5>
 																<c:forEach var="option" items="${extras.menuOptEx}">
-																	<label> <input type="radio" data-name="${option.moName}" data-id="${option.moCode}" name="${extras.mocName}">${option.moName} <span data-price="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
+																	<label> <input type="radio" data-required="no" data-name="${option.moName}" data-id="${option.moCode}" name="${extras.mocName}">${option.moName} <span data-price="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
 																</c:forEach>
 															</c:if>
 															<c:if test="${extras.mocMenuOptType == 'OPT004'}">
+																<h5>${extras.mocName}</h5>
 																<c:forEach var="option" items="${extras.menuOptEx}">
-																	<label> <input type="checkbox" data-name="${option.moName}" data-id="${option.moCode}" name="${extras.mocName}">${option.moName} <span data-price="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
+																	<label> <input type="checkbox" data-required="no" data-name="${option.moName}" data-id="${option.moCode}" name="${extras.mocName}">${option.moName} <span data-price="${option.moAddPrice}">+ ${option.moAddPrice} 원</span> </label>
 																</c:forEach>
 															</c:if>														
 														</div>
 													</c:forEach>
-													<a href="#0" class="add_to_basket">Add to cart</a>													
+													<a class="add_to_basket">Add to cart</a>													
 												</div>
 											</div>
 										</td>
@@ -129,7 +109,7 @@
 				</div> <!-- End box_style_2 -->
 			</div> <!-- End col-md-6 -->
 
-			<div class="col-md-3" id="sidebar">
+			<div class="col-md-4" id="sidebar">
 				<div class="theiaStickySidebar">
 					<div id="cart_box">
 						<h3>
@@ -138,65 +118,48 @@
 						<table class="table table_summary">
 							<thead>
 								<tr>
-									<th style="width: 15px;"><input type="checkbox"></th>
-									<th style="width: 80px;">전체선택</th>
-									<th style="text-align: right" colspan="2"><input type="checkbox"></th>
+									<th style="width: 10%;"><input type="checkbox"></th>
+									<th style="width: 80px;">
+										전체선택
+										<a class="btn_intro pull-right" id="deleteCart" >삭제하기</a>
+									</th>
+									<th style="text-align: right; width: 10%;" colspan="2"><input type="checkbox"></th>
 								</tr>							
 							</thead>
-							<tbody>
-								<tr>
-									<td style="width: 15px;"><input type="checkbox"></td>
-									<td>
-									<strong>1x</strong> Enchiladas<strong class="pull-right">$11</strong>
-									</td>
-									<td style="width: 15px;"><input type="checkbox" class="pull-right"></td>
-								</tr>
-								<tr>
-									<td style="width: 15px;"><input type="checkbox"></td>
-									<td>
-									<strong>2x</strong> Burrito<strong class="pull-right">$14</strong>
-									</td>
-									<td style="width: 15px;"><input type="checkbox" class="pull-right"></td>
-								</tr>
-								<tr>
-									<td style="width: 15px"><input type="checkbox"></td>
-									<td>
-									<strong>1x</strong> Chicken<strong class="pull-right">$20</strong>
-									</td>
-									<td style="width: 15px;"><input type="checkbox" class="pull-right"></td>
-								</tr>
+							<tbody class="cartTable">
+								<c:forEach var="cart" items="${cart}">
+									<tr>
+										<td style="width: 10%;"><input class="check-order" type="checkbox"></td>
+										<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.menuName}<strong class="pull-right">${cart.totalAmt}원</strong></td>
+										<td style="text-align: right; width: 10%;"><i class="icon_close check-delete"></i></td>
+									</tr>
+									<c:forEach var="options" items="${cart.options}">									
+										<tr>
+											<td style="width: 10%;"></td>
+											<td style="font-size: 12px;">${options.menuOptName}</td>
+											<td style="width: 10%;"></td>
+										</tr>
+									</c:forEach>
+								</c:forEach>
 							</tbody>
 						</table>
-
 						<hr>
 						<table class="table table_summary">
 							<tbody>
 								<tr>
-									<td>Subtotal <span class="pull-right">$56</span>
-									</td>
-								</tr>
-								<tr>
-									<td class="total">TOTAL <span class="pull-right">$66</span>
+									<td class="total">총 금액 <span class="pull-right"></span>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 						<hr>
-						<a class="btn_full" href="cart.html">Order now</a>
-					</div>
-					<!-- End cart_box -->
-				</div>
-				<!-- End theiaStickySidebar -->
-			</div>
-			<!-- End col-md-3 -->
-
-		</div>
-		<!-- End row -->
+						<a href="${pageContext.request.contextPath}/order/orderinfo" class="btn_full" id="orderNow">Order now</a>
+					</div> <!-- End cart_box -->
+				</div> <!-- End theiaStickySidebar -->
+			</div> <!-- End col-md-4 -->
+		</div> <!-- End row -->
 	</div> <!-- End container -->
 <!-- End Content =============================================== -->
-
-<div class="layer"></div>
-<!-- Mobile menu overlay mask -->
 
 <!-- Search Menu ============================================ -->
 	<div class="search-overlay-menu">
@@ -244,89 +207,9 @@
 						}
 					}
 				});
-
-		$(document).ready(function() {
-			/* 옵션이 없는 메뉴는 "+" 클릭하면 장바구니에 추가하도록 */
-			for(var i = 0; i < $('.dropdown-menu').size(); i++) {
-				if($('.dropdown-menu').eq(i).children('div').length == 0) {
-					// 옵션이 없으니까 옵션용 팝업을 보여주는 대신 곧바로 카트에 추가할 수 있다 (옵션용 팝업 속 "Add to cart" 버튼과 똑같다)
-					$('.dropdown-menu').eq(i).siblings('a').removeClass('dropdown-toggle').addClass('add_to_basket').removeAttr('data-toggle');
-				}
-			}
-			
-			/* "Add to cart" 버튼을 클릭하면 선택한 메뉴와 옵션 정보와 가격을 장바구니에 추가하고 Rest도메인을 호출하여 DB에 입력하도록 */
-			$('.add_to_basket').on('click', function(event) {
-				event.preventDefault();
-			/* 선택한 메뉴의 ID */
-				const menuId = $(this).parents('td').siblings('td:eq(0)').children('h5').attr('data-id');
-			/* 선택한 메뉴의 가격 (옵션 제외) */
-				const menuPrice = $(this).parents('td').siblings('td:eq(1)').attr('data-price');
-			/* 선택한 옵션들 (input tag) */
-				const checkedOptions = $(this).siblings('div').children().children('input:checked');
-			/* 선택한 옵션을 담을 배열 */
-				let optArr = [];
-			/* 메뉴와 옵션의 가격 총 합 */
-				let totalPrice = 0;
-				
-			/* 선택한 각 옵션의 가격을 optArr 배열에 담는다 */
-				$.each(checkedOptions, function(index, item) {
-					optArr.push(checkedOptions.eq(index).siblings('span').attr('data-price'));
-				})
-			
-			/* 메뉴 가격과 각 옵션의 가격을 더해서 가격 총 합을 구한다 */
-				totalPrice += parseInt(menuPrice);
-				$.each(optArr, function(index, item) {
-					totalPrice += parseInt(item);
-				})
-				console.log(totalPrice);
-				console.log($(this).siblings('div').children().children('input:checked').length);
-
-			/* 선택한 옵션의 개수를 cur변수의 값으로 삼는다. */
-				let cur = $(this).siblings('div').children().children('input:checked').length; // 브라우저 콘솔에서 작업용 : $('.add_to_basket').eq(0).siblings('div').children().children('input:checked')
-			/* 옵션 정보를 담을 배열 (List<CartDetailVO>에 매핑) */
-				let inputOptions = [];
-				for(let i = 0; i < cur; i++) {
-					id = menuId;
-					optName = $(this).siblings('div').children().children('input:checked').eq(i).attr('data-name');
-					optId = $(this).siblings('div').children().children('input:checked').eq(i).attr('data-id');
-					optPrice = $(this).siblings('div').children().children('input:checked').eq(i).siblings('span').attr('data-price');
-					
-					inputOptions.push({ menuOptId : optId, menuId : id, menuOptName : optName, menuOptPrice : optPrice });
-				}
-
-				// 비동기 요청하면 CartVOExtended에 매핑되도록
-				var inputData = {
-						custId : 'tjtjtj'
-						, quantity : 1
-						, unitPrice : menuPrice
-						, totalAmt : totalPrice
-						, kitchenName : '예테버리'
-						, bizName : 'biz_2'
-						, menuId : menuId
-						, options : inputOptions
-					};
-				console.log("INPUTDATA = 제대로 입력되었는지 확인하기 : ", inputData)
-				
-				// CartController로 비동기 요청하기
- 				$.ajax({
-					type : 'POST'
-					, url : 'http://localhost:12004/customer/kitchen/cart/add'
-					, dataType : 'json'
-					, contentType : 'application/json'
-					, data : JSON.stringify(inputData)
-		    		, success : function(data) {
-		    			console.log("AAA");
-						console.log(data);
-					}
-					, error : function(data) {
-						console.log("ZZZ");
-						console.log('ERRoR oCCURRED');
-						console.log(data);
-					}
-				});
-			});
-		});
 	</script>
+	
+	<script src="/customer/resources/js/menu/menu-functions.js"></script>
 
 	<c:if test="${not empty message}">
 		<script>
