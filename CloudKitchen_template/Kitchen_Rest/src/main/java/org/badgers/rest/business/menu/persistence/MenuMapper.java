@@ -1,9 +1,13 @@
 package org.badgers.rest.business.menu.persistence;
 
+import java.util.List;
+
 import org.badgers.rest.model.MenuCatVOExtend;
 import org.badgers.rest.model.MenuOptionClVOExtend;
 import org.badgers.rest.model.MenuOptionVOExtend;
 import org.badgers.rest.model.MenuVOExtend;
+
+import com.google.gson.JsonElement;
 
 public interface MenuMapper {
 	
@@ -15,4 +19,5 @@ public interface MenuMapper {
 	public int deleteMenuOpt(int menuOptIdx);
 	public int updateMenuInfo(MenuVOExtend menuVoEx);
 	public int updateMenuOptInfo(MenuOptionVOExtend menuOptVoEx);
+	public List<MenuCatVOExtend> getMenuCat(String bizId);
 }

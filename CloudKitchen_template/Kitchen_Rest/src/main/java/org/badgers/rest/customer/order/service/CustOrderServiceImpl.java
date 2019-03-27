@@ -1,16 +1,15 @@
 package org.badgers.rest.customer.order.service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.badgers.rest.customer.order.persistence.CustOrderMapper;
-import org.badgers.rest.model.OrderDetailVO;
 import org.badgers.rest.model.OrderDetailVOExtend;
 import org.badgers.rest.model.OrderInfoVO;
 import org.badgers.rest.model.OrderOptionVO;
 import org.badgers.rest.model.OrderPaymentVO;
-import org.badgers.rest.model.OrderVO;
 import org.badgers.rest.model.OrderVOExtend;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,14 +22,13 @@ public class CustOrderServiceImpl implements CustOrderService {
 	CustOrderMapper mapper;
 	
 	@Override
-	public List<OrderInfoVO> getOrderInfo(String orderId) throws Exception {
+	public LinkedList<OrderInfoVO> getOrderInfo(String orderId) throws Exception {
 		
-		List<OrderInfoVO> list = mapper.getOrderInfo(orderId);
+		LinkedList<OrderInfoVO> list = mapper.getOrderInfo(orderId);
 		
 		return list;
 	}
 	
-	//테스트 order
 	@Override
 	@Transactional()
 	public int excuteOrder(OrderVOExtend vo) throws Exception {
@@ -56,6 +54,8 @@ public class CustOrderServiceImpl implements CustOrderService {
 			//4. order_option INSERT
 			//4-1. order_option 배열 뽑아옴
 			OrderOptionVO[] orderOptions= orderDetailVOExtend.getOrderOptions();
+			if(orderOptions==null)
+				continue;
 			OrderOptionVO orderOptionVO = null;
 			//4-2. 배열에 든 모든 객체의 insert 수행
 			for(int j=0; j<orderOptions.length; j++) {
@@ -68,6 +68,4 @@ public class CustOrderServiceImpl implements CustOrderService {
 		
 		return 1;
 	}
-
-
 }

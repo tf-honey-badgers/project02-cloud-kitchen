@@ -6,49 +6,78 @@ import javax.inject.Inject;
 
 import org.badgers.rest.customer.member.persistence.CustomerMapper;
 import org.badgers.rest.model.CustomerVO;
-import org.badgers.rest.model.FavoriteVO;
 import org.badgers.rest.model.OrderInfoVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
 	@Inject
 	private CustomerMapper mapper;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 
 	// 등록
 	@Override
-	public boolean register(CustomerVO vo) {
+	@Transactional
+	public int register(CustomerVO vo) throws Exception {
 		System.out.println("등록");
+		int returnVal = 0;
+		
 		try {
-			mapper.register(vo);
+			returnVal = mapper.register(vo); // 회원가입 
+			
+			String key = new TempKey().getKey(50, false); // 인증키 생성 
+			
+			mapper.createAuthKey(vo.getEmail(), key); // 인증키 DB저장
+			
+			// mail 작성 관련 
+			MailHandler sendMail = new MailHandler(mailSender);
+
+			sendMail.setSubject("[Kloud Kitchen] 회원가입 이메일 인증");
+			sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
+					.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
+					.append("<a href='http://localhost:3001/customer/member/emailConfirm?email=")
+					.append(vo.getEmail())
+					.append("&key=")
+					.append(key)
+					.append("' target='_blenk'>이메일 인증 확인</a>")
+					.toString());
+			sendMail.setFrom("kloudkitchen5@gmail.com ", "클라우드 키친");
+			sendMail.setTo(vo.getEmail());
+			sendMail.send();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
 		}
-		return true;
-
+		
+		return returnVal;
 	}
 
+
 	// 로그인 by Yuriel on 2019.03.13(WED)
-	public int login(String id, String pw) {
+	@Override
+	public String login(String id, String pw) {
 		System.out.println("로그인 ========================================");
 
-		int returnVal = 0;
+		String returnVal = "";
 		CustomerVO queryResult = null;
 
 		try {
 			queryResult = mapper.login(id);
-			if(queryResult.getPw() == pw) {
-				returnVal = 1; // 입력한 비번 == DB 비번
+			if(queryResult.getPw().equals(pw)) {
+				returnVal = queryResult.getId(); // 입력한 비번 == DB 비번
 			} else {
-				returnVal = -1; // 입력한 비번 != DB 비번
+				returnVal = "BAD_PW"; // 입력한 비번 != DB 비번
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			returnVal = -2; // DB에 입력한 ID 없음 에러
+			returnVal = "NO_ID"; // DB에 입력한 ID 없음 표시
 		}
-		
+
 		return returnVal;
 	}
 	
@@ -92,7 +121,9 @@ public class CustomerServiceImpl implements CustomerService {
 		results = mapper.readMember(id);
 		return results;
 	}
-
+	
+	
+	//주문 정보 
 	@Override
 	public List<OrderInfoVO> getOrderInfo(String custId) {
 		System.out.println("오더 정보 나와라=============");
@@ -100,12 +131,41 @@ public class CustomerServiceImpl implements CustomerService {
 
 		return list;
 	}
+	
+	// ID 찾기 & 본인인증하기
+		public String verify(CustomerVO vo) throws Exception {
+			String returnVal = "";
+			
+			try {
+				returnVal = mapper.verify(vo);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return returnVal;
+		}
 
-	@Override
-	public List<FavoriteVO> favorite(String custId) {
-		System.out.println("찜 정보  나와라=============");
-		List<FavoriteVO> list = mapper.favorite(custId);
+		//메일
+		@Override
+		public void createAuthKey(String email, String AuthCode) throws Exception {
+			
+			CustomerVO vo = new CustomerVO();
+			
+			vo.setAuthCode(AuthCode);
+			vo.setEmail(email);
 
-		return list;
-	}
+		}
+		
+		//회원 인증 업데이트
+		@Override
+		public int userAuth(String email, String AuthCode) throws Exception { // 인증키 일치시 DB칼럼(인증여부) Mem001->Mem002 로 변경
+
+
+			return mapper.userAuth(email, AuthCode);
+	
+
+
+		}
+	
+	
 }

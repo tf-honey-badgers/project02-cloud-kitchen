@@ -448,6 +448,12 @@
                     </div>
                 </div>
             </div>
+			<!-- Login Modal -->
+            <jsp:include page="include/loginModal.jsp" flush="false"></jsp:include>
+            <!-- End Login Modal -->
+			<!-- Find ID / Find PW Modal -->
+            <jsp:include page="include/finderModal.jsp" flush="false"></jsp:include>
+            <!-- End Find ID / Find PW Modal -->
             <!-- Footer -->
             <jsp:include page="include/footer.jsp" flush="false"></jsp:include>
             <!-- End Footer -->
@@ -728,18 +734,21 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function() {
-            // Javascript method's body can be found in assets/js/demos.js
-            md.initDashboardPageCharts();
-
-        });
-    </script>
+    <!-- Business Member 관련 각종 JavaScript 함수 모음 -->
+    <script src="/business/resources/js/member/member-functions.js" type="text/javascript"></script>
     
     <c:if test="${not empty message}">
     	<script>
     		$(document).ready(function() { alert("${message}"); });
     	</script>
 	</c:if>
+	
+	<script>
+		$(document).ready(function() {
+			/* 사이드바 하이라이트된 항목 바꾸기 */
+			$('.nav-item').removeClass('active');
+			$('.nav-item.sidebar-home').addClass('active');
+		});
+	</script>
 </body>
 </html>

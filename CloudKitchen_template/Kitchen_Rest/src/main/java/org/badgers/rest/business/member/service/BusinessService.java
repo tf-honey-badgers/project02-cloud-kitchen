@@ -11,8 +11,8 @@ public interface BusinessService {
 	public int modify(BizMemberVOExtend mvo) throws Exception;
 
 	// 로그인
-	public int login(String bizId, String pw) throws Exception;
+	public String login(String bizId, String pw) throws Exception;
 
-	// ID 찾기
-	public String findBizId(String regNo, String account) throws Exception;
+	// ID 찾기 & 본인인증하기
+	public String verify(BizMemberVOExtend mvo) throws Exception;
 }

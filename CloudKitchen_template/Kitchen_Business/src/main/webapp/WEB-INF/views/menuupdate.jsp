@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
-
+<%@page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,32 +22,86 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <!-- CSS Files -->
+<link href="/business/resources/css/joon/menu.css" rel="stylesheet" />
 <link href="/business/resources/css/material-dashboard.css?v=2.1.1"
 	rel="stylesheet" />
 
 </head>
 
 <body class="">
-	<div class="wrapper ">
-        <!-- Sidebar -->
-        <jsp:include page="include/sidebar.jsp" flush="false"></jsp:include>
+<div id="menuModal" class="menuModal">
+	<div class="menuModalOpt">
+		<span class="menuModalClose">&times;</span>
+		<h3>변경</h3>
+		<table class="menuOpt">
+		</table>
+		<div class="modelBtnArea"><button id="updateMenuBtn">메뉴변경</button></div>
+	</div>
+</div>
 
+<div id="menuInsertModal" class="menuInsertModal">
+	<div class="menuInsertModalOpt">
+		<span class="menuInsertModalClose">&times;</span>
+		<h3>추가</h3>
+		<table class="menuInsertOpt">
+				<tr>
+					<th>메뉴사진</th><th>메뉴이름</th><th>메뉴가격</th><th>메뉴분류</th>
+				</tr>
+				<tr>
+					<td><input type="file" id="menuPhoto" value="선택"></td>
+					<td><input type="text" id="menuName"></td>
+					<td><input type="text" id="menuPrice"></td>
+					<td>
+						<select name="" class="menuCatSelect">
+   		 				</select>
+					</td>
+				</tr>
+				
+<!-- 				<tr>
+					<th>카테고리이름</th><th>옵션카테고리</th>
+				</tr>
+				<tr>
+					<td><input type="text" id="menuCatName"></td>
+					<td>
+						<select name="" class="menuOptSelect">
+        					<option value="OPT001">기본단일</option>
+        					<option value="OPT002">기본다중</option>
+        					<option value="OPT003">추가단일</option>
+        					<option value="OPT004">추가다중</option>
+   		 				</select>
+					</td>
+				</tr> -->
+
+		</table>
+		<div class="modelInsertBtnArea"><button id="updateInsertMenuBtn">메뉴변경</button></div>
+		<h3>메뉴추가</h3>
+		<table class="menuInsertOpt">
+		</table>
+		<div class="modelInsertBtnArea"><button id="insertMenuBtn">메뉴변경</button></div>
+	</div>
+</div>
+
+	<div class="wrapper ">
+		<!-- Sidebar -->
+		<jsp:include page="include/sidebar.jsp" flush="false"></jsp:include>
+		
 		<div class="main-panel">
-            <!-- Header -->
-            <jsp:include page="include/header.jsp" flush="false"></jsp:include>
-            <!-- End Header -->
+			<!-- Header -->
+			<jsp:include page="include/header.jsp" flush="false"></jsp:include>
+			<!-- End Header -->
 			<div class="content">
+				<input type="button" class="menuInsert" value="메뉴추가">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header card-header-primary">
-									<h4 class="card-title ">${bizMenu[0].bizMenucatvo[0].mcName}</h4>
+									<h4 class="card-title ">${bizMenu[0].bizMenuCatVo[0].mcName}</h4>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
 										<table class="table">
-											<thead class=" text-primary">
+											<thead class="text-primary">
 												<th>메뉴코드</th>
 												<th>메뉴사진</th>
 												<th>메뉴이름</th>
@@ -55,47 +109,18 @@
 												<th>옵션</th>
 											</thead>
 											<tbody>
-											<c:forEach var="menu" items="${bizMenu[0].bizMenucatvo[0].mcMenuvo}">
-												<tr>
-													<td>${menu.mcode}</td>
-													<td>${menu.mphoto}</td>
-													<td>${menu.mname}</td>
-													<td class="text-primary">${menu.mbasicPrice}</td>
-													<td><a href="" class="menu-option-select">변경</a> / <a href="" class="menu-option-delete">삭제</a></td>
-												</tr>
-											</c:forEach>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<c:forEach var="menucat" items="${bizMenu[0].bizMenucatvo}" begin="1">
-						<div class="col-md-12">
-							<div class="card card-plain">
-								<div class="card-header card-header-primary">
-									<h4 class="card-title mt-0">${menucat.mcName}</h4>
-								</div>
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table table-hover">
-											<thead class="">
-												<th>메뉴코드</th>
-												<th>메뉴사진</th>
-												<th>메뉴이름</th>
-												<th>메뉴가격</th>
-												<th>옵션</th>
-											</thead>
-											<tbody>
-												<c:forEach var="menu" items="${menucat.mcMenuvo}">
+												<c:forEach var="menu"
+													items="${bizMenu[0].bizMenuCatVo[0].mcMenuVo}">
 													<tr>
 														<td>${menu.mcode}</td>
 														<td>${menu.mphoto}</td>
 														<td>${menu.mname}</td>
 														<td class="text-primary">${menu.mbasicPrice}</td>
-														<td><a href="" class="menu-option-select">변경</a> / <a href="" class="menu-option-delete">삭제</a></td>
+														<td><a href="" class="menu-option-select">변경</a> / 
+														<a href="" class="menu-option-delete">삭제</a></td>
 													</tr>
+													
+													
 												</c:forEach>
 											</tbody>
 										</table>
@@ -103,16 +128,51 @@
 								</div>
 							</div>
 						</div>
-						</c:forEach>
 						
+						<c:forEach var="menucat" items="${bizMenu[0].bizMenuCatVo}"
+							begin="1">
+							<div class="col-md-12">
+								<div class="card card-plain">
+									<div class="card-header card-header-primary">
+										<h4 class="card-title mt-0">${menucat.mcName}</h4>
+									</div>
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table table-hover">
+												<thead class="">
+													<th>메뉴코드</th>
+													<th>메뉴사진</th>
+													<th>메뉴이름</th>
+													<th>메뉴가격</th>
+													<th>옵션</th>
+												</thead>
+												<tbody>
+													<c:forEach var="menu" items="${menucat.mcMenuVo}">
+														<tr>
+															<td>${menu.mcode}</td>
+															<td>${menu.mphoto}</td>
+															<td>${menu.mname}</td>
+															<td class="text-primary">${menu.mbasicPrice}</td>
+															<td><a href="#" class="menu-option-select">변경</a> / <a
+																href="#" class="menu-option-delete">삭제</a></td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+
 					</div>
 				</div>
 			</div>
-			
-            <!-- Footer -->
-            <jsp:include page="include/footer.jsp" flush="false"></jsp:include>
-            <!-- End Footer -->
-            
+
+			<!-- Footer -->
+			<jsp:include page="include/footer.jsp" flush="false"></jsp:include>
+			<!-- End Footer -->
+
 		</div>
 	</div>
 	<div class="fixed-plugin">
@@ -229,8 +289,7 @@
 	<script src="/business/resources/js/material-dashboard.js?v=2.1.1"
 		type="text/javascript"></script>
 	<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-	<script src="/business/resources/demo/demo.js"></script>
-	<script src="/business/resources/js/joon/menuupdate"></script>
+	<script src="/business/resources/js/joon/menuupdate.js"></script>
 
 </body>
 </html>

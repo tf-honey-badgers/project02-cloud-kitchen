@@ -30,23 +30,23 @@ public class CartController {
 	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 	
 	@PostMapping("/")
-	public ResponseEntity<Integer> addCart(@RequestBody CartVOExtend cart) {
+	public ResponseEntity<String> addCart(@RequestBody CartVOExtend cart) {
 		logger.info("Adding " + cart.getCustId() + "'s new item to the 'cart' & 'cart_detail' tables!");
-		int returnVal = 0;
-		
-		System.out.println("출력하기 : " + cart);
+		int result = 0;
+		String returnVal = "";
 			
 		try {
-			returnVal = service.addCart(cart);
+			result = service.addCart(cart);
+			returnVal = String.valueOf(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		logger.info(returnVal + "개 행을 추가했습니다!");
-		return new ResponseEntity<>(returnVal, HttpStatus.OK);
+		return new ResponseEntity<String>(returnVal, HttpStatus.OK);
 	}
 	
-	@GetMapping("/{custId}")
+	@GetMapping(value = "/{custId}", produces="application/json")
 	public ResponseEntity<List<CartVOExtend>> readCart(@PathVariable("custId") String custId) {
 		logger.info("Reading " + custId + "'s items from the 'cart' table!");
 		List<CartVOExtend> returnVal = null;
@@ -60,8 +60,7 @@ public class CartController {
 		for(CartVOExtend value : returnVal) {
 			logger.info(value.toString());			
 		}
-		
-		return new ResponseEntity<>(returnVal, HttpStatus.OK);
+		return new ResponseEntity<List<CartVOExtend>>(returnVal, HttpStatus.OK);
 	}
 	
 	@PutMapping("/")
@@ -110,5 +109,4 @@ public class CartController {
 		logger.info(returnVal + "개 행을 삭제했습니다!");
 		return new ResponseEntity<>(returnVal, HttpStatus.OK);
 	}
-
 }

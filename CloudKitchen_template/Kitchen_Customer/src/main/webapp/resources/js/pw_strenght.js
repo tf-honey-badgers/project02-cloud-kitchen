@@ -45,9 +45,9 @@ function passwordStrengthCheck(password1, password2, passwordsInfo)
 		
 		if(password1.val() !== password2.val())
 		{
-			passwordsInfo.removeClass().addClass('weakpass').html("Passwords do not match!!!!!!!!!!");	
+			passwordsInfo.removeClass().addClass('weakpass').html("비밀번호가 틀립니다 !!!!!!!!!!!!!!");	
 		}else{
-			passwordsInfo.removeClass().addClass('goodpass').html("Passwords match!!!!!!!!!!");	
+			passwordsInfo.removeClass().addClass('goodpass').html("비밀번호 일치 !!!!!!!!!!");	
 		}
 			
 	});
