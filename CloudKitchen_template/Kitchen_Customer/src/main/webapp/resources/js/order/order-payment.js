@@ -5,6 +5,8 @@ $(document).ready(function() {
 		$.ajax({
 			url : 'payment/kakaopay',
 		})
+		
 
 	})
 });
+
