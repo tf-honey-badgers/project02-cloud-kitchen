@@ -26,6 +26,10 @@ $(document)
 			        		}
 						});
 					}); // menuInsert click end
+
+					$('.menuInsert').on('click',function(e){
+						$('.menuInsertModalOpt').css('display', 'block');
+					});
 					
 					$('#updateMenuBtn').on('click',function(e){
 						
@@ -80,8 +84,11 @@ $(document)
 			        		},
 			        		success(data){
 			        			console.log(data);
+			        			alert('변경되었습니다');
 			        		}
 						});
+						
+						$('.menuModal').css('display', 'none');
 						
 					}); // click end
 					
@@ -169,12 +176,16 @@ $(document)
 				
 					$('.menuModalClose').on('click', function() {
 						$('.menuModal').css('display', 'none');
+						$('.menuInsertModal').css('display', 'none');
 						});
 					
+<<<<<<< HEAD
 					$('.menuInsertModalClose').on('click', function() {
 						$('.menuInsertModal').css('display', 'none');
 						});
 
+=======
+>>>>>>> 52697698a7f2381942bdbc302115dc503c462c46
 					$()
 							.ready(
 									function() {

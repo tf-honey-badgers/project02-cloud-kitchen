@@ -119,7 +119,7 @@ public class MenuServiceImpl implements MenuService {
 			JsonObject menuOptCl = (JsonObject) menuOptClArray.get(i);
 			JsonObject menuOptelement = (JsonObject) parser.parse(menuOptClArray.get(i).toString());
 			JsonArray menuOptArray = menuOptelement.get("menuOptEx").getAsJsonArray();
-			resultCnt++;
+			
 			
 			for(int j=0;j<menuOptArray.size();j++) {
 				JsonObject menuOpt = (JsonObject) menuOptArray.get(j);
@@ -129,9 +129,10 @@ public class MenuServiceImpl implements MenuService {
 				menuOptVoEx.setMoAddPrice(menuOpt.get("moAddPrice").getAsString());
 				menuOptVoEx.setMoOptClNo(menuOpt.get("moOptClNo").getAsInt());
 				mapper.updateMenuOptInfo(menuOptVoEx);
+				resultCnt++;
 			}
 		}
-		return 0;
+		return resultCnt;
 	}
 
 	@Override

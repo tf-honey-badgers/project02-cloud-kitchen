@@ -41,7 +41,7 @@ public class MenuController {
 			mav.addObject("bizMenu", menuVoEx);
 			mav.setViewName("menuupdate");
 			return mav;
-
+			
 		}catch(Exception e){
 			e.getStackTrace();
 		}
