@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import lombok.extern.log4j.Log4j;
 
 @Controller
@@ -74,7 +75,7 @@ public class BusinessController {
 	
 	@PostMapping(value = "/", produces = "text/plain; charset=utf-8")
 	@ResponseBody
-	public String login(@RequestBody BizMemberVOExtend mvo) {
+	public ModelAndView login(@RequestBody BizMemberVOExtend mvo, ModelAndView mv) {
 		log.info("Kitchen_Business 사업자 로그인...............................");
 
 		String msg = "";
@@ -96,10 +97,11 @@ public class BusinessController {
 		} else {
 			// 로그인을 유지하기 위한 쿠키 생성
 			msg = "성공적으로 로그인했습니다.";
+			mv.addObject("isSuccess", true);
 		}
-
+		
 		log.info(msg);
-		return msg;
+		return mv;
 	}
 	
 	@PostMapping("/verify")

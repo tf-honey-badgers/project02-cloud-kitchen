@@ -6,7 +6,7 @@ $(document)
 						e.preventDefault();
 						$('.menuInsertModal').css('display', 'block');
 						
-/*						$.ajax({
+						$.ajax({
 			        		type : "GET",
 			        		dataType : 'json',
 			        		url : "../menu/main/getMenuCat",
@@ -26,7 +26,7 @@ $(document)
 			        		}
 						});
 					}); // menuInsert click end
-*/
+
 //					$('.menuInsert').on('click',function(e){
 //						$('.menuInsertModalOpt').css('display', 'block');
 //					});

@@ -45,6 +45,9 @@ $(document).ready(function() {
 	
 	/* 로그인 절차 */
 	$('#myLogin button').on('click', function() {
+		//--------------------------------------------------------------------------
+		
+		
 		$.ajax({
     		url : 'http://localhost:3000/business/member/'
     		, type : 'POST'
