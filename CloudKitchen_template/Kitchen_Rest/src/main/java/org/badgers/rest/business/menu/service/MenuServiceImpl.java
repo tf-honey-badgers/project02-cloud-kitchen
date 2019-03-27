@@ -3,6 +3,7 @@ package org.badgers.rest.business.menu.service;
 import java.util.List;
 
 import org.badgers.rest.business.menu.persistence.MenuMapper;
+import org.badgers.rest.model.CommonCodeVOExtend;
 import org.badgers.rest.model.MenuCatVOExtend;
 import org.badgers.rest.model.MenuOptionClVOExtend;
 import org.badgers.rest.model.MenuOptionVOExtend;
@@ -138,6 +139,11 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public List<MenuCatVOExtend> getMenuCat(String bizId) {
 		return mapper.getMenuCat(bizId);
+	}
+
+	@Override
+	public List<CommonCodeVOExtend> getCommonCode() {
+		return mapper.getCommonCode();
 	}
 
 }

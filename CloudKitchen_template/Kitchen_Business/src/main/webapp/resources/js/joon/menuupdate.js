@@ -6,7 +6,7 @@ $(document)
 						e.preventDefault();
 						$('.menuInsertModal').css('display', 'block');
 						
-/*						$.ajax({
+						$.ajax({
 			        		type : "GET",
 			        		dataType : 'json',
 			        		url : "../menu/main/getMenuCat",
@@ -20,13 +20,14 @@ $(document)
 			        			console.log(data);
 			        			
 			        			for(let i=0;i<data.length;i++){
-			        				$('.menuCatSelect').append('<option value="" class="'+data[i].mcBizId
+			        				$('#menuCatSelect').append('<option value="" class="'+data[i].mcBizId
 			        						+'" id="'+data[i].mcNo+'" >'+data[i].mcName+'</option>');
 			        			}
 			        		}
 						});
+						
 					}); // menuInsert click end
-*/
+
 //					$('.menuInsert').on('click',function(e){
 //						$('.menuInsertModalOpt').css('display', 'block');
 //					});

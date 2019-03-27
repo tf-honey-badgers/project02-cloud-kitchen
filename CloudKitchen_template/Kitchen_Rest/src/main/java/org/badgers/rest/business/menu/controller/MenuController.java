@@ -3,6 +3,7 @@ package org.badgers.rest.business.menu.controller;
 import java.util.List;
 
 import org.badgers.rest.business.menu.service.MenuService;
+import org.badgers.rest.model.CommonCodeVOExtend;
 import org.badgers.rest.model.MenuCatVOExtend;
 import org.badgers.rest.model.MenuOptionClVOExtend;
 import org.badgers.rest.model.MenuOptionVOExtend;
@@ -93,5 +94,18 @@ public class MenuController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(menuCatInfo, HttpStatus.OK); 
+	}
+	
+	@RequestMapping(value="/getComCode",produces = "application/json;charset=UTF-8", method=RequestMethod.GET)	
+	@Transactional
+	@ResponseBody
+//	public ResponseEntity menuUpdate(@RequestBody List updateMenuInfo){
+	public ResponseEntity<?> getCommonCode(){
+		List<CommonCodeVOExtend> menuCommonCode = service.getCommonCode();
+		
+		if(menuCommonCode.size() == 0) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(menuCommonCode, HttpStatus.OK); 
 	}
 }
