@@ -42,6 +42,7 @@
 			CA.cust_id = #{custId}
 			and CA.menu_id = ME.idx
 			and CA.biz_id = BZ.biz_id
+		order by CA.biz_id asc, CA.id asc
 	</select>
 	
 	<select id="readOptions" resultType="org.badgers.rest.model.CartDetailVO">
