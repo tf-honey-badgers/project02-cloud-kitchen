@@ -53,4 +53,8 @@
 		select idx mcNo, name mcName, biz_id mcBizId from menu_category where biz_id=#{bizId}
 	</select>
 	
+	<select id="getCommonCode" resultType="org.badgers.rest.model.CommonCodeVOExtend">
+		select * from common_code where id like 'OPT%%'
+	</select>
+	
 </mapper>
