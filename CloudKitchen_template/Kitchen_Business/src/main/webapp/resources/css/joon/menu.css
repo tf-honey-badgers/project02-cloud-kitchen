@@ -14,13 +14,14 @@
 
 .menuSelect tr th { width: 100px!important; height : 32px;}
 
-.modelBtnArea {
+
+.modelBtnArea, .modelInsertBtnArea {
 	width: 80px;
 	height : 80px;
 	margin : auto;
 	}
 
-.menuModal {
+.menuModal, .menuInsertModal {
 	display: none;
 	position: fixed;
 	z-index: 9999;
@@ -33,7 +34,7 @@
 	overflow-y : scroll;
 }
 
-.menuModalOpt {
+.menuModalOpt, .menuInsertModalOpt {
 	background-color: #fefefe;
 	margin: 15% auto;
 	padding: 20px;
@@ -43,14 +44,15 @@
 	max-height: 2000%;
 }
 
-.menuModalClose {
+.menuModalClose, .menuInsertModalClose {
 	color: #aaa;
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
 }
 
-.menuModalClose:hover, .menuModalClose:focus {
+.menuModalClose:hover, .menuModalClose:focus,
+.menuInsertModalClose:hover, .menuInsertModalClose:focus {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;

@@ -2,6 +2,12 @@ $(document)
 		.ready(
 				function() {
 					
+					$('.menuInsert').on('click',function(e){
+						$('.menuInsertModalOpt').css('display', 'block');
+					});
+					
+					
+					
 					$('#updateMenuBtn').on('click',function(e){
 						
 						let menuOptSel = $('.menuOptSelect');
@@ -55,8 +61,11 @@ $(document)
 			        		},
 			        		success(data){
 			        			console.log(data);
+			        			alert('변경되었습니다');
 			        		}
 						});
+						
+						$('.menuModal').css('display', 'none');
 						
 					}); // click end
 					
@@ -144,8 +153,9 @@ $(document)
 				
 					$('.menuModalClose').on('click', function() {
 						$('.menuModal').css('display', 'none');
+						$('.menuInsertModal').css('display', 'none');
 						});
-
+					
 					$()
 							.ready(
 									function() {

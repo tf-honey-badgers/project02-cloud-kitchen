@@ -39,10 +39,20 @@
 	</div>
 </div>
 
+<div id="menuInsertModal" class="menuInsertModal">
+	<div class="menuInsertModalOpt">
+		<span class="menuInsertModalClose">&times;</span>
+		<h3>메뉴추가</h3>
+		<table class="menuInsertOpt">
+		</table>
+		<div class="modelInsertBtnArea"><button id="insertMenuBtn">메뉴변경</button></div>
+	</div>
+</div>
+
 	<div class="wrapper ">
 		<!-- Sidebar -->
 		<jsp:include page="include/sidebar.jsp" flush="false"></jsp:include>
-
+		
 		<div class="main-panel">
 			<!-- Header -->
 			<jsp:include page="include/header.jsp" flush="false"></jsp:include>
