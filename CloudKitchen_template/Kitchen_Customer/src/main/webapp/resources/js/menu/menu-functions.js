@@ -4,9 +4,15 @@ function removeDuplicateBizNames() {
 		if(bizNames.eq(i).text() == bizNames.eq(i-1).text()) {
 			bizNames.eq(i).remove();
 		}
-	}	
+	}
 }
 
+/* 브라우저 히스토리를 이용해서 이동했을 경우 (뒤로가기 앞으로가기 버튼) 페이지를 새로고침한다
+레퍼런스 --> https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigation
+*/
+if(performance.navigation.type == 2) {
+	location.reload(true);
+}
 
 $(document).ready(function() {
 /* 페이지 로딩 후 카트에 총 금액 표시하기 */
