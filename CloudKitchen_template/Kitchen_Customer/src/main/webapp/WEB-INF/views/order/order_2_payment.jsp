@@ -61,54 +61,11 @@
 					<h2 class="inner">Payment methods</h2>
 					<div class="payment_select">
 						<label><input type="radio" value="" checked
-							name="payment_method" class="icheck">Credit card</label> <i
-							class="icon_creditcard"></i>
+							name="payment_method" class="icheck">KAKAO PAY</label>
+							<i>
+								<img style="width:60px; " alt="$kakao icon" src="${pageContext.request.contextPath}/resources/img/kakako_payment_icon.png"></i>
 					</div>
-					<div class="form-group">
-						<label>Name on card</label> <input type="text"
-							class="form-control" id="name_card_order" name="name_card_order"
-							placeholder="First and last name">
-					</div>
-					<div class="form-group">
-						<label>Card number</label> <input type="text" id="card_number"
-							name="card_number" class="form-control" placeholder="Card number">
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<label>Expiration date</label>
-							<div class="row">
-								<div class="col-md-6 col-sm-6">
-									<div class="form-group">
-										<input type="text" id="expire_month" name="expire_month"
-											class="form-control" placeholder="mm">
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-6">
-									<div class="form-group">
-										<input type="text" id="expire_year" name="expire_year"
-											class="form-control" placeholder="yyyy">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-sm-12">
-							<div class="form-group">
-								<label>Security code</label>
-								<div class="row">
-									<div class="col-md-4 col-sm-6">
-										<div class="form-group">
-											<input type="text" id="ccv" name="ccv" class="form-control"
-												placeholder="CCV">
-										</div>
-									</div>
-									<div class="col-md-8 col-sm-6">
-										<img src="/customer/resources/img/icon_ccv.gif" width="50" height="29" alt="ccv"><small>Last
-											3 digits</small>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					
 					<!--End row -->
 					<div class="payment_select" id="paypal">
 						<label><input type="radio" value="" name="payment_method"
@@ -117,7 +74,9 @@
 					<div class="payment_select nomargin">
 						<label><input type="radio" value="" name="payment_method"
 							class="icheck">Pay with cash</label> <i class="icon_wallet"></i>
+							
 					</div>
+					<input type="button" id="naverPayBtn" value="네이버페이 결제 버튼">
 				</div>
 				<!-- End box_style_1 -->
 			</div>
@@ -160,14 +119,14 @@
 						</table>
 						<hr>
 						<div class="row" id="options_2">
-							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+							<!-- <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
 								<label><input type="radio" value="" checked
 									name="option_2" class="icheck">Delivery</label>
 							</div>
 							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
 								<label><input type="radio" value="" name="option_2"
 									class="icheck">Take Away</label>
-							</div>
+							</div> -->
 						</div>
 						<!-- Edn options 2 -->
 						<hr>
@@ -188,7 +147,7 @@
 							</tbody>
 						</table>
 						<hr>
-						<a class="btn_full" href="confirm">Confirm your order</a>
+						<a class="btn_full confirm-order" href="javascript:void(0)">Confirm your order</a>
 					</div>
 					<!-- End cart_box -->
 				</div>
@@ -203,5 +162,9 @@
 	<!-- Footer 시작  -->
 	<jsp:include page="../include/footer.jsp" flush="false" />
 	<!-- Footer 끝  -->
+	
+	<script src="/customer/resources/js/order/order-payment.js"></script>
+	
+	
 </body>
 </html>

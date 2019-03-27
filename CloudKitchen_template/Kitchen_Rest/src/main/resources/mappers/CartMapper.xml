@@ -6,9 +6,9 @@
 <mapper namespace="org.badgers.rest.customer.cart.persistence.CartMapper">	
 	<insert id="insertCart">
 		insert into honey_badgers.cart
-			(id, cust_id, quantity, unit_price, total_amt, kitchen_name, biz_name, menu_id)
+			(id, cust_id, quantity, unit_price, total_amt, kitchen_name, biz_id, menu_id)
 			values
-			(#{id}, #{custId}, #{quantity}, #{unitPrice}, #{totalAmt}, #{kitchenName}, #{bizName}, #{menuId})
+			(#{id}, #{custId}, #{quantity}, #{unitPrice}, #{totalAmt}, #{kitchenName}, #{bizId}, #{menuId})
 	</insert>
 	
 	<insert id="insertOption">
@@ -37,6 +37,7 @@
 			honey_badgers.cart CA
             , honey_badgers.menu ME
 		where CA.cust_id = #{custId} and CA.menu_id = ME.idx;
+
 	</select>
 	
 	<select id="readOptions" resultType="org.badgers.rest.model.CartDetailVO">

@@ -42,7 +42,7 @@
 			</div> <!-- End col-md-2 -->
 
 			<div class="col-md-6">
-				<div class="box_style_2" id="main_menu">
+				<div class="box_style_2" id="main_menu" data-biz-id="${bizMember.bizId}">
 					<h2 class="inner">Menu</h2>
 					<c:forEach var="menu" items="${bizMember.bizMenuCatVo}" varStatus="loop">
 						<h3 class="nomargin_top" id="${loop.index + 100}">${menu.mcName}</h3>
@@ -119,27 +119,31 @@
 							<thead>
 								<tr>
 									<th style="width: 10%;"><input type="checkbox"></th>
-									<th style="width: 80px;">
-										전체선택
-										<a class="btn_intro pull-right" id="deleteCart" >삭제하기</a>
-									</th>
-									<th style="text-align: right; width: 10%;" colspan="2"><input type="checkbox"></th>
-								</tr>							
+									<th style="width: 90%;">전체선택<a class="btn_intro pull-right" id="deleteCart" >삭제하기</a></th>
+								</tr>
 							</thead>
 							<tbody class="cartTable">
+							<!-- bizName이 다를 때 가게 이름을 출력하기 위한 반복문 -->
+								<!-- 카트 메뉴를 출력하기 위한 반복문  -->
 								<c:forEach var="cart" items="${cart}">
+									<tr class="bizNameRow">
+										<td colspan="3"><strong>${cart.bizName}</strong></td>
+									</tr>
 									<tr>
 										<td style="width: 10%;"><input class="check-order" type="checkbox"></td>
-										<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.name}<strong class="pull-right">${cart.totalAmt}원</strong></td>
-										<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td>
+										<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.menuName}<span class="pull-right">${cart.unitPrice}원</span></td>
 									</tr>
+									<!-- 옵션을 출력하기 위한 반복문 -->
 									<c:forEach var="options" items="${cart.options}">									
 										<tr>
 											<td style="width: 10%;"></td>
-											<td style="font-size: 12px;">${options.menuOptName}</td>
+											<td style="font-size: 11px;">${options.menuOptName} <span class="pull-right">+ ${options.menuOptPrice}원</span></td>
 											<td style="width: 10%;"></td>
 										</tr>
 									</c:forEach>
+									<tr>
+										<td colspan="2" class="priceData" data-total-price="${cart.totalAmt}"><strong class="pull-right">합계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cart.totalAmt}원</strong></td>
+									</tr>
 								</c:forEach>
 							</tbody>
 						</table>

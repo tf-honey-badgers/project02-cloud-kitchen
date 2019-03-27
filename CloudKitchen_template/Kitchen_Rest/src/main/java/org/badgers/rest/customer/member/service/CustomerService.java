@@ -3,7 +3,6 @@ package org.badgers.rest.customer.member.service;
 import java.util.List;
 
 import org.badgers.rest.model.CustomerVO;
-import org.badgers.rest.model.FavoriteVO;
 import org.badgers.rest.model.OrderInfoVO;
 
 public interface CustomerService {
@@ -33,11 +32,15 @@ public interface CustomerService {
 	// 주문 내역 
 	public List<OrderInfoVO> getOrderInfo(String custId);
 	
-	// 찜 내역 보기 
-	public List<FavoriteVO> favorite(String custId);
-	
 	//ID 찾기
 	public String verify(CustomerVO vo)throws Exception;
+	
+	
+	//메일
+	public void createAuthKey(String email, String AuthCode) throws Exception;
+	
+	//회원 인증 업데이트
+	public int userAuth(String email, String AuthCode) throws Exception;
 	
 	
 }
