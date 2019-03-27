@@ -13,7 +13,6 @@
 			<i class="icon_star voted"></i>
 			<i class="icon_star voted"></i>
 			<i class="icon_star"></i>
-			(<small><a href="detail_page_2.html">Read 98 reviews</a></small>)
 		</div>
 		<h1>${bizMember.bizName}</h1>
         <div><strong>최소 주문 금액:</strong> ${bizMember.bizMinAmt}원</div>

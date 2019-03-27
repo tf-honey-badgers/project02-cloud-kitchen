@@ -60,7 +60,7 @@ $(document).ready(function() {
 			
 			inputOptions.push({ menuOptId : optId, menuId : id, menuOptName : optName, menuOptPrice : optPrice });
 		}
-	// 비동기 요청하면 CartVOExtended에 매핑되도록 JavaScript 객체 생성
+	/* 비동기 요청하면 CartVOExtended에 매핑되도록 JavaScript 객체 생성 */
 		var inputData = {
 				custId : 'tjtjtj'
 				, quantity : 1
@@ -72,9 +72,12 @@ $(document).ready(function() {
 				, options : inputOptions
 			};
 		
+	/* 카트에 추가하면 기존에 선택한 체크박스 해제하기 */
+		$(this).siblings('div').children().children('input:checked').prop('checked', false);
+		
  		$.ajax({
 			type : 'POST'
-			, url : 'http://localhost:3001/customer/kitchen/cart'
+			, url : 'http://localhost:3001/customer/cart/add'
 			, dataType : 'json'
 			, contentType : 'application/json'
 			, data : JSON.stringify(inputData)
@@ -85,7 +88,7 @@ $(document).ready(function() {
 	    			$('.cartTable').append('<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
 	    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
 	    					data[i].name + '<strong class="pull-right">' + data[i].totalAmt + '원</strong></td>' +
-	    					'<td style="width: 10%;"><input type="checkbox" class="pull-right"></td></tr>');
+	    					'<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td></tr>');
 	    			if(data[i].options != null) {
 		    			for(let j = 0; j < data[i].options.length; j++) {
 			    			$('.cartTable').append('<tr><td style="width: 10%;"></td>' +
@@ -105,21 +108,21 @@ $(document).ready(function() {
 	});
 	
 /* 주문할 메뉴 전체선택하기 */
-	$('.table_summary th:eq(0) input').on('click', function() {
+	$('body').on('click', '.table_summary th:eq(0) input', function() {
 		$('.cartTable .check-order').prop('checked', $('.table_summary th:eq(0) input').prop('checked'));
 	});
 /* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
-	$('.cartTable .check-order').on('click', function() {
+	$('body').on('click', '.cartTable .check-order', function() {
 		if($('.table_summary th:eq(0) input').prop('checked') == true) {
 			$('.table_summary th:eq(0) input').prop('checked', false);
 		}
 	});
 /* 삭제할 메뉴 전체선택하기 */
-	$('.table_summary th:eq(2) input').on('click', function() {
+	$('body').on('click', '.table_summary th:eq(2) input', function() {
 		$('.cartTable .check-delete').prop('checked', $('.table_summary th:eq(2) input').prop('checked'));
 	});
 /* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
-	$('.cartTable .check-delete').on('click', function() {
+	$('body').on('click', '.cartTable .check-delete', function() {
 		if($('.table_summary th:eq(2) input').prop('checked') == true) {
 			$('.table_summary th:eq(2) input').prop('checked', false);
 		}
@@ -132,10 +135,15 @@ $(document).ready(function() {
 		for(let i = 0; i < checked.length; i++) {
 			cartId[i] = checked.eq(i).parent().siblings('.menuData').attr('data-cart-id');
 		}
+		/* 카트의 모든 체크박스 해제 */
+		$('.table_summary th:eq(0) input').prop('checked', false);
+		$('.cartTable .check-order').prop('checked', false);
+		$('.table_summary th:eq(2) input').prop('checked', false);
+		$('.cartTable .check-delete').prop('checked', false);
 		
  		$.ajax({
 			type : 'DELETE'
-			, url : 'http://localhost:3001/customer/kitchen/cart'
+			, url : 'http://localhost:3001/customer/cart/delete'
 			, dataType : 'json'
 			, contentType : 'application/json'
 			, data : JSON.stringify({
@@ -149,7 +157,7 @@ $(document).ready(function() {
 	    			$('.cartTable').append('<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
 	    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
 	    					data[i].name + '<strong class="pull-right">' + data[i].totalAmt + '원</strong></td>' +
-	    					'<td style="width: 10%;"><input type="checkbox" class="pull-right"></td></tr>');
+	    					'<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td></tr>');
 	    			if(data[i].options != null) {
 		    			for(let j = 0; j < data[i].options.length; j++) {
 			    			$('.cartTable').append('<tr><td style="width: 10%;"></td>' +
@@ -175,10 +183,15 @@ $(document).ready(function() {
 		for(let i = 0; i < checked.length; i++) {
 			cartId[i] = checked.eq(i).parent().siblings('.menuData').attr('data-cart-id');
 		}
+		/* 카트의 모든 체크박스 해제 */
+		$('.table_summary th:eq(0) input').prop('checked', false);
+		$('.cartTable .check-order').prop('checked', false);
+		$('.table_summary th:eq(2) input').prop('checked', false);
+		$('.cartTable .check-delete').prop('checked', false);
 		
  		$.ajax({
 			type : 'POST'
-			, url : 'http://localhost:3001/customer/kitchen/cart/order'
+			, url : 'http://localhost:3001/customer/cart/order'
 			, dataType : 'json'
 			, contentType : 'application/json'
 			, data : JSON.stringify({
