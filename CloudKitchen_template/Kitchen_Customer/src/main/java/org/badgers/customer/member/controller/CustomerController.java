@@ -178,11 +178,11 @@ public class CustomerController {
 
 	
 	// 찜 내역 보기 
-	@GetMapping(value = "/{custId}/mypage/favorite")
+	@GetMapping(value = "/{custId}/mypage")
 	public ModelAndView readFavorite (ModelAndView mav, @PathVariable("custId") String custId) {
 		log.info("사용자 찜 내역 보기================================");
 		List<FavoriteVO> favorite = null;
-		String url = "http://localhost/rest/customer/" + custId + "/mypage/favorite";
+		String url = "http://localhost/rest/favorite/" + custId + "/mypage";
 		try {
 			ResponseEntity<FavoriteVO> responseEntity =
 					restTemplate.getForEntity(url,org.badgers.customer.model.FavoriteVO.class);

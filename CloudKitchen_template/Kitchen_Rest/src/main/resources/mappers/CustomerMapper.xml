@@ -69,7 +69,7 @@
 			, total_amt
 			, pay_amt
 			, msg
-			, request_msg
+			
 		FROM
 			honey_badgers.order as orders
 			, order_payment as orderpayment
@@ -84,7 +84,6 @@
 				, total_amt
 				, biz_id
 				, biz_name
-				, request_msg
 				, order_id
 				, opt_id
 				, opt_name
