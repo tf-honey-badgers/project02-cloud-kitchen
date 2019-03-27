@@ -1,6 +1,11 @@
 package org.badgers.customer.member.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -10,12 +15,14 @@ import org.badgers.customer.model.OrderInfoVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
@@ -78,7 +85,7 @@ public class CustomerController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		// 처리는 인터셉터에서 하기
 		if(msg.equals("BAD_PW")) {
 			msg = "비밀번호가 틀렸습니다.";
 		} else if(msg.equals("NO_ID")) {
@@ -119,6 +126,8 @@ public class CustomerController {
 		
 		return "mypage";
 	}	
+	
+
 
 	// 회원 가입 
 	@PostMapping("/register")
@@ -186,8 +195,8 @@ public class CustomerController {
 		}
 		System.out.println(favorite);
 		
-		mav.addObject("list",favorite);
-		mav.setViewName("favorite");
+		mav.addObject("list",favorite); //뷰에 전달할 데이터 지정 
+		mav.setViewName("favorite"); //뷰 이름 지정 
 		
 		
 		return mav;
@@ -212,6 +221,47 @@ public class CustomerController {
 		log.info("retrieved customer id");
 		return res;
 	}
+	
+
+	
+	@GetMapping("/emailConfirm")
+
+	public ModelAndView emailConfirm(ModelAndView mav,@RequestParam("email")String email, @RequestParam("key") String AuthCode) throws UnsupportedEncodingException {	
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email",email);
+		map.put("key",AuthCode);	
+		
+	
+		
+	String url = "http://localhost/rest/customer/emailConfirm/";
+	int a =0;
+	
+	try {
+		ResponseEntity<Integer> responseEntity = restTemplate.postForEntity(url,map,Integer.class);
+			log.info("들어간다");
+		if (responseEntity.getStatusCode() == HttpStatus.OK) {
+		a	=  responseEntity.getBody();
+		System.out.println("이것은="+a);		
+		}
+	} catch (Exception e) {
+		e.getStackTrace();
+	}
+	
+	
+	
+	if(a != 0) { log.info("이메일 인증 완료 ! "); }
+	else {
+		log.info("Failed to emailConfirm. REST server may be offline.");
+		mav.addObject("message", "Failed to read customer member data. REST server may be offline.");
+	}
+
+	mav.addObject("customer", map);
+	mav.setViewName("join_success");
+	
+	return mav;
+	}
+
+	
 	
 	
 	

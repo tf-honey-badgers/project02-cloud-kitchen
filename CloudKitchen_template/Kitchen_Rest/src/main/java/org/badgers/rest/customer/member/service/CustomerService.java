@@ -1,6 +1,7 @@
 package org.badgers.rest.customer.member.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.badgers.rest.model.CustomerVO;
 import org.badgers.rest.model.FavoriteVO;
@@ -43,8 +44,8 @@ public interface CustomerService {
 	//메일
 	public void createAuthKey(String email, String AuthCode) throws Exception;
 	
-	
-	public int userAuth(CustomerVO vo) throws Exception;
+	//회원 인증 업데이트
+	public int userAuth(String email, String AuthCode) throws Exception;
 	
 	
 }

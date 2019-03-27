@@ -1,6 +1,7 @@
 package org.badgers.rest.customer.member.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.badgers.rest.customer.member.service.CustomerService;
 import org.badgers.rest.model.CustomerVO;
@@ -31,17 +32,6 @@ public class CustomerController {
 	private CustomerService service;
 
 	//회원가입                                                                                                                          
-//	@PostMapping(value = "/register", consumes = "application/json", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-//	public ResponseEntity<String> register(@RequestBody CustomerVO vo) throws Exception {
-//		ResponseEntity<String> entity = null;
-//		
-//		String returnVal = service.register(vo);
-//		 if(returnVal == null) { entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST); }
-//		 else { entity = new ResponseEntity<String>(returnVal, HttpStatus.OK); }
-//		 
-//		 return entity;
-//	}
-//	
 	@PostMapping(value= "/register")
 	public ResponseEntity<Integer> register(@RequestBody CustomerVO vo) throws Exception {
 		ResponseEntity<Integer> entity = null;
@@ -125,7 +115,7 @@ public class CustomerController {
 	}
 	
 	//주문 내역  보기 
-	@CrossOrigin("http://localhost:12004") //크로스 도메인 처리 
+	@CrossOrigin("http://localhost:3001") //크로스 도메인 처리 
 	@GetMapping(value = "/{cust_id}/mypage/orderinfo", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<List<OrderInfoVO>>  getOrderInfo(@PathVariable("cust_id")String custId) {
 		List<OrderInfoVO> list = service.getOrderInfo(custId);
@@ -137,7 +127,7 @@ public class CustomerController {
 	
 	
 	//찜  내역  보기 
-	@CrossOrigin("http://localhost:12004") //크로스 도메인 처리 
+	@CrossOrigin("http://localhost:3001") //크로스 도메인 처리 
 	@GetMapping(value = "/{cust_id}/mypage/favorite", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<List<FavoriteVO>>  favorite(@PathVariable("cust_id")String custId) {
 			List<FavoriteVO> favorite = service.favorite(custId);
@@ -161,23 +151,26 @@ public class CustomerController {
 			 return entity;
 		}
 		
-		@GetMapping(value = "/emailConfirm")
-		public ResponseEntity<Integer> emailConfirm(CustomerVO vo) throws Exception { // 이메일인증
-			 ResponseEntity<Integer> entity = null;
+			//이메일 인증 
+	
+			@PostMapping(value = "/emailConfirm" ,produces= { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+			public ResponseEntity<Integer> emailConfirm(@RequestBody Map<String,String> map) throws Exception { // 이메일인증
 				
-			 int returnVal = service.userAuth(vo);
-			 
-			 //vo.setStatus("MEM002");
-		 
-				if(returnVal == 0) { entity = new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST); }
-				 else { entity = new ResponseEntity<Integer>(returnVal, HttpStatus.OK); }
-				 
-				 return entity;
-			 
-			 
-			 
-			 
+				ResponseEntity<Integer> entity = null;
+
+				log.info("이메일 인증 ================================== ");
 			
-		}
+				
+				int returnVal = service.userAuth(map.get("email"),map.get("key"));
+				 
+				
+				System.out.println("Rest");
+				System.out.println(returnVal);
+				if(returnVal == 0) { entity = new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST); }
+				else { entity = new ResponseEntity<Integer>(Integer.valueOf(returnVal), HttpStatus.OK); }
+
+				return entity;
+				
+			}
 
 }

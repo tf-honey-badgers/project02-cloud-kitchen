@@ -59,7 +59,7 @@ var custId = '${custId}';
 		$(document).ready(function(){
 			alert('start')
 			
-			$.getJSON( 'http://localhost:12007/rest/customer/${custId}/mypage/orderinfo', function(list){
+			$.getJSON( 'http://localhost/rest/customer/${custId}/mypage/orderinfo', function(list){
 				
 				for(var i = 0, len = list.length || 0 ; i < len; i++){
 					var tr = $('<tr></tr>');

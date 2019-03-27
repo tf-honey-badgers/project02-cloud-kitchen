@@ -3,6 +3,7 @@ package org.badgers.rest.customer.member.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -44,7 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
 			sendMail.setSubject("[Kloud Kitchen] 회원가입 이메일 인증");
 			sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
 					.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-					.append("<a href='http://localhost:12007/rest/customer/emailConfirm?email=")
+					.append("<a href='http://localhost:3001/customer/member/emailConfirm?email=")
 					.append(vo.getEmail())
 					.append("&key=")
 					.append(key)
@@ -173,7 +174,7 @@ public class CustomerServiceImpl implements CustomerService {
 			return returnVal;
 		}
 
-
+		//메일
 		@Override
 		public void createAuthKey(String email, String AuthCode) throws Exception {
 			
@@ -184,10 +185,15 @@ public class CustomerServiceImpl implements CustomerService {
 
 		}
 		
+		//회원 인증 업데이트
 		@Override
-		public int userAuth(CustomerVO vo) throws Exception { // 인증키 일치시 DB칼럼(인증여부) false->true 로 변경
+		public int userAuth(String email, String AuthCode) throws Exception { // 인증키 일치시 DB칼럼(인증여부) Mem001->Mem002 로 변경
 
-			return mapper.userAuth(vo);
+
+			return mapper.userAuth(email, AuthCode);
+	
+
+
 		}
 	
 	

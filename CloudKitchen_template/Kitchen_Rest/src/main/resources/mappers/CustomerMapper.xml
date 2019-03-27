@@ -117,7 +117,7 @@ update honey_badgers.customer set auth_code = #{param2} where email = #{param1}
 </update>
 
 <update id="userAuth">
-	update honey_badgers.customer set status = "MEM002" where email={param1} and auth_code ={param2}
+<![CDATA[	update honey_badgers.customer set status = "MEM002" where email = #{param1} and auth_code = #{param2}]]>
 </update>
 <!-- set status = #{status} -->
 
