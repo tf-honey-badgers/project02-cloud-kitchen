@@ -28,15 +28,20 @@ public class BusinessController {
 		log.info("Kitchen_Business 사업자 개인정보 읽기...............................");
 		
 		BizMemberVOExtend returnVal = null;
-		String url = "http://localhost/rest/business/" + bizId + "/mypage";
+		String urlBizMember = "http://localhost/rest/business/" + bizId + "/mypage";
+		int likeCnt = 0;
+		String urlCountFav = "http://localhost/rest/favorite/" + bizId;
 		
 		try {
-			ResponseEntity<BizMemberVOExtend> responseEntity = restTemplate.getForEntity(url, org.badgers.business.model.BizMemberVOExtend.class);
+		// 사업자 정보 읽어오기
+			ResponseEntity<BizMemberVOExtend> responseEntity = restTemplate.getForEntity(urlBizMember, org.badgers.business.model.BizMemberVOExtend.class);
 			returnVal = responseEntity.getBody(); // if not HttpStatus.OK -> 위줄에서 바로 예외 발생하여 실행 안된다. 
+		// 사업자가 받은 찜 횟수 읽어오기
+			ResponseEntity<Integer> responseEntityInteger = restTemplate.getForEntity(urlCountFav, Integer.class);
+			likeCnt = responseEntityInteger.getBody();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(returnVal);
 		
 		if(returnVal != null) { log.info("readBizMember DONE!!!!!"); }
 		else {
@@ -45,6 +50,7 @@ public class BusinessController {
 		}
 		
 		mav.addObject("bizMember", returnVal);
+		mav.addObject("favCnt", likeCnt);
 		mav.setViewName("mypage");
 		
 		return mav;

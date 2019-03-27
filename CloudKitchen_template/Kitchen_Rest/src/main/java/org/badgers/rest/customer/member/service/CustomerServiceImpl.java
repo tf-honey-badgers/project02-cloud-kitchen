@@ -1,15 +1,11 @@
 package org.badgers.rest.customer.member.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.inject.Inject;
 
 import org.badgers.rest.customer.member.persistence.CustomerMapper;
 import org.badgers.rest.model.CustomerVO;
-import org.badgers.rest.model.FavoriteVO;
 import org.badgers.rest.model.OrderInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -61,23 +57,7 @@ public class CustomerServiceImpl implements CustomerService {
 		return returnVal;
 	}
 
-	
-//	@Override
-//	public int register(CustomerVO vo) {
-//		System.out.println("등록");
-//		int returnVal = 0;
-//		
-//		try {
-//			returnVal = mapper.register(vo);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return returnVal;
-//	}
-	
-	
-	
+
 	// 로그인 by Yuriel on 2019.03.13(WED)
 	@Override
 	public String login(String id, String pw) {
@@ -150,15 +130,6 @@ public class CustomerServiceImpl implements CustomerService {
 		List<OrderInfoVO> list = mapper.getOrderInfo(custId);
 
 		return list;
-	}
-	
-	//찜정보
-	@Override
-	public List<FavoriteVO> favorite(String custId) {
-		System.out.println("찜 정보  나와라=============");
-		List<FavoriteVO> favorite = mapper.favorite(custId);
-
-		return favorite;
 	}
 	
 	// ID 찾기 & 본인인증하기

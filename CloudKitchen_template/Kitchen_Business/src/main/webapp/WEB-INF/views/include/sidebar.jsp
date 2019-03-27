@@ -9,11 +9,11 @@
         Tip 2: you can also add an image using data-image tag
     -->
 	<div class="logo">
-		<a href="#" class="simple-text logo-normal">Honey Badgers <br> Cloud Kitchen </a>
+		<a href="${pageContext.request.contextPath}" class="simple-text logo-normal">Honey Badgers <br> Cloud Kitchen </a>
 	</div>
 	<div class="sidebar-wrapper">
 		<ul class="nav">
-			<li class="nav-item active sidebar-home"><a class="nav-link" href="/business/">
+			<li class="nav-item active sidebar-home"><a class="nav-link" href="${pageContext.request.contextPath}">
 					<i class="material-icons">home</i>
 					<p>메인</p>
 			</a></li>

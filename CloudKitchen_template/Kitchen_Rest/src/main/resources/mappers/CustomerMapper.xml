@@ -3,19 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper
-	namespace="org.badgers.rest.customer.member.persistence.CustomerMapper">
-
-
+<mapper namespace="org.badgers.rest.customer.member.persistence.CustomerMapper">
 	<!-- 회원 가입 -->
 	<insert id="register" parameterType="org.badgers.rest.model.CustomerVO">
-
 		insert into honey_badgers.customer
-		(id, pw, name, birth_date, phone,
-		email, gender)
-		values
-		(#{id},#{pw},#{name},#{birthDate},#{phone},#{email},#{gender})
-
+			(id, pw, name, birth_date, phone, email, gender)
+			values
+			(#{id},#{pw},#{name},#{birthDate},#{phone},#{email},#{gender})
 	</insert>
 	
 	<!-- 로그인 -->
@@ -24,86 +18,95 @@
 	</select>
 
 	<!--마이 페이지 -->
-	<select id="selectById"
-		resultType="org.badgers.rest.model.CustomerVO">
+	<select id="selectById" resultType="org.badgers.rest.model.CustomerVO">
 		select * from honey_badgers.customer where id = #{id}
 	</select>
 	
-	
-	
-
-
 	<!-- 회원 정보 수정 -->
 	<update id="modify">
 		update honey_badgers.customer 
 		<trim prefix="SET" suffixOverrides=",">
-		<if test="pw != null and pw != ''">   <!--  if 에 들어가는 거는 VO 쓰여진대루  -->
-		pw = #{pw}, <!-- 샵 안에는 vo꺼 ~  -->
-		</if>
-		<if test="name != null and name != ''">
-		name = #{name},
-		</if>
-		<if test="email != null and email != ''">
-		email = #{email},
-		</if>
+			<if test="pw != null and pw != ''">   <!--  if 에 들어가는 거는 VO 쓰여진대루  -->
+				pw = #{pw}, <!-- 샵 안에는 vo꺼 ~  -->
+			</if>
+			<if test="name != null and name != ''">
+				name = #{name},
+			</if>
+			<if test="email != null and email != ''">
+				email = #{email},
+			</if>
 		</trim>
 		where id = #{id}
 	</update>
-
-
-
 
 	<!-- 비번 수정 -->
 	<update id="changePwd">
 		update honey_badgers.customer set pw = #{param2} where id = #{param1}
 	</update>
 
-
 	<!-- 회원 정보 삭제 -->
 	<update id="delete">
 		update honey_badgers.customer set status= #{status} where id=#{id}
 	</update>
 
+	<!--주문 내역   -->
+	<select id="getOrderInfo" parameterType="String" resultType="org.badgers.rest.model.OrderInfoVO">
+		SELECT
+			orders.id
+			, cust_id
+			, phone
+			, address
+			, orders.time
+			, commoncode.name as status
+			, kitchen_name
+			, biz_name
+			, method
+			, menu_name
+			, menu_price
+			, opt_name
+			, opt_price
+			, quantity
+			, total_amt
+			, pay_amt
+			, msg
+			, request_msg
+		FROM
+			honey_badgers.order as orders
+			, order_payment as orderpayment
+			, common_code as commoncode,
+			(SELECT
+				id
+				, menu_id
+				, menu_name
+				, menu_price
+				, add_option_price
+				, quantity
+				, total_amt
+				, biz_id
+				, biz_name
+				, request_msg
+				, order_id
+				, opt_id
+				, opt_name
+				, opt_price
+				, order_detail_id
+			FROM order_detail as orderdetail
+				left outer join
+				(
+				SELECT * from honey_badgers.order_option
+				) as orderoption
+			ON orderdetail.id = orderoption.order_detail_id
+			) as orderdetailoption
+		WHERE
+			orders.cust_id=#{cust_id}
+			and orders.id=orderpayment.id
+			and orders.status=commoncode.id
+			and orders.id=orderpayment.id
+			and orderdetailoption.order_id = orders.id
+	</select>
 
-<!--주문 내역   -->
-<select id="getOrderInfo"
-      parameterType="String"
-      resultType="org.badgers.rest.model.OrderInfoVO">
-      select orders.id, cust_id, phone, address, orders.time,
-      commoncode.name as status, kitchen_name, biz_name, method, menu_name,
-      menu_price, opt_name, opt_price, quantity, total_amt, pay_amt, msg,
-      request_msg
-      FROM honey_badgers.order as orders, order_payment as orderpayment,
-      common_code as commoncode,
-      (
-      select id, menu_id, menu_name, menu_price, add_option_price, quantity,
-      total_amt, biz_id, biz_name, request_msg, order_id, opt_id, opt_name,
-      opt_price, order_detail_id from order_detail as orderdetail
-      left outer join
-      (
-      select * from honey_badgers.order_option
-      ) as orderoption
-      on orderdetail.id = orderoption.order_detail_id
-
-      ) as orderdetailoption
-      where
-      orders.cust_id=#{cust_id}
-      and orders.id=orderpayment.id
-      and orders.status=commoncode.id
-      and orders.id=orderpayment.id
-      and orderdetailoption.order_id = orders.id
-      ;
-   </select>
-
-<!--찜내역 보기  -->
-<select id="favorite" 
-resultType="org.badgers.rest.model.FavoriteVO">
-select * from honey_badgers.favorite where cust_id = #{custId}
-
-</select>
-
-<!-- id 찾기  -->
-<select id="verify" resultType="String">
+	<!-- id 찾기  -->
+	<select id="verify" resultType="String">
 		select id
 		from honey_badgers.customer
 		where name = #{name} and email = #{email}
@@ -112,13 +115,16 @@ select * from honey_badgers.favorite where cust_id = #{custId}
 		</if>
 	</select>
 
+<!-- 인증키 생성 -->
 <update id="createAuthKey">
 update honey_badgers.customer set auth_code = #{param2} where email = #{param1}
 </update>
 
+<!-- 인증키 확인 메일 인증  -->
 <update id="userAuth">
 <![CDATA[	update honey_badgers.customer set status = "MEM002" where email = #{param1} and auth_code = #{param2}]]>
 </update>
-<!-- set status = #{status} -->
+
+
 
 </mapper>
