@@ -14,5 +14,5 @@ public class CustomerVO {
 	private String status;
 	private String regDate;
 	private String idx;
-	private String Authkey;
+	private String AuthCode;
 }

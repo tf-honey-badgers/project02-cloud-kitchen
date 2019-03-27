@@ -57,7 +57,7 @@
 					</td>
 				</tr>
 				
-<!-- 				<tr>
+ 				<tr>
 					<th>카테고리이름</th><th>옵션카테고리</th>
 				</tr>
 				<tr>
@@ -70,7 +70,7 @@
         					<option value="OPT004">추가다중</option>
    		 				</select>
 					</td>
-				</tr> -->
+				</tr>
 
 		</table>
 		<div class="modelInsertBtnArea"><button id="updateInsertMenuBtn">메뉴변경</button></div>

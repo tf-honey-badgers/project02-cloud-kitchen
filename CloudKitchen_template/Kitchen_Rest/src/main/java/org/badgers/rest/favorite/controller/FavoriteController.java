@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,7 @@ public class FavoriteController {
 	private FavoriteService service;
 	
 	// 찜  내역  보기  
+	@CrossOrigin("http://localhost:3001") //크로스 도메인 처리 
 	@GetMapping(value = "/{cust_id}/mypage", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<List<FavoriteVO>> readFavorites(@PathVariable("cust_id") String custId) {
 		log.info(">>>>>  찜 내역 구하기  ==============================");

@@ -38,7 +38,7 @@ $(document).ready(function(){
 	/* 로그인 절차 */
 	$('#myLogin button').on('click', function() {
 		$.ajax({
-    		url : 'http://localhost:12004/customer/member/'
+    		url : 'http://localhost:3001/customer/member/'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({
@@ -67,7 +67,7 @@ $(document).ready(function(){
 	// 회원가입 절차 
 	$('#myRegister button').on('click', function() {
 		$.ajax({
-    		url : 'http://localhost:12004/customer/member/register'
+    		url : 'http://localhost:3001/customer/member/register'
     		, type : 'POST'
     	    , contentType : 'application/json; charset=UTF-8'
 			, dataType : 'text'
@@ -104,7 +104,7 @@ $(document).ready(function(){
 		$('#finder').modal('show');
     	$('#getId').on('click', function() {
     		$.ajax({
-        		url : 'http://localhost:12004/customer/member/verify'
+        		url : 'http://localhost:3001/customer/member/verify'
         		, type : 'POST'
 				, contentType : 'application/json'
         		, data : JSON.stringify({
@@ -162,7 +162,7 @@ $(document).ready(function(){
 		$('#finder').modal('show');
     	$('#getId').on('click', function() {
     		$.ajax({
-        		url : 'http://localhost:12004/customer/member/verify'
+        		url : 'http://localhost:3001/customer/member/verify'
         		, type : 'POST'
 				, contentType : 'application/json'
         		, data : JSON.stringify({
@@ -209,7 +209,7 @@ $(document).ready(function(){
 		}
 
 		$.ajax({
-    		url : 'http://localhost:12004/customer/member/' + hiddenId + '/modify'
+    		url : 'http://localhost:3001/customer/member/' + hiddenId + '/modify'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({

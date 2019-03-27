@@ -83,31 +83,38 @@
 
 <!-- Login modal -->
 <div class="modal fade" id="login_2" tabindex="-1" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
-	<div class="modal-dialog" style="margin-top: 151px;">
-		<div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
-            <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-			<form action="#" class="popup-form" id="myLogin">
-                <div class="login_icon"><i class="icon_lock_alt"></i></div>
-                <input type="text" class="form-control form-white" placeholder="아이디">
-                <input type="text" class="form-control form-white" placeholder="비밀번호">
-				<div class="text-left">
-                    <a id="findId" href="#" style="font-size: 13px;">아이디를 잊으셨나요?</a> <br/>
-					<a class="changePw" href="#" style="font-size: 13px;">비밀번호를 잊으셨나요?</a>
-                </div>
-            	<button type="button" class="btn btn-submit">로그인</button>
-        	</form>
-    	</div>
-	</div>
-</div><!-- End modal -->
+<<<<<<< HEAD
+       <div class="modal-dialog" style="margin-top: 151px;">
+           <div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;
+					text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
+                <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+                <form action="#" class="popup-form" id="myLogin">
+                    <div class="login_icon"><i class="icon_lock_alt"></i></div>
+                    <input type="text" class="form-control form-white" placeholder="아이디">
+                    <input type="text" class="form-control form-white" placeholder="비밀번호">
+                    <div class="text-left">
+                        <a id="findId" href="#" style="font-size: 13px;">아이디를 잊으셨나요?</a> <br/>
+				    	<a class="changePw" href="#" style="font-size: 13px;">비밀번호를 잊으셨나요?</a>
+                     </div>
+                    <button type="button" class="btn btn-submit">로그인</button>
+                </form>
+            </div>
+        </div>
+    </div><!-- End modal -->
+
+
+
 
 <!-- Find modal -->
 <div class="modal fade" id="finder" tabindex="-1" role="dialog"
 	aria-labelledby="myLogin" aria-hidden="true">
 	<div class="modal-dialog" style="margin-top: 151px;">
-		<div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
+		<div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;
+		text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
 			<a href="#" class="close-link"><i class="material-icons">close</i></a>
 			<form action="#" class="popup-form" id="myId">
-				<div class="login_icon" style="margin-top: 20px; margin-bottom: 10px;"><i class="material-icons" style="width: 60px; font-size: 60px;">lock_alt</i></div>
+				<div class="login_icon" style="margin-top: 20px; margin-bottom: 10px;">
+				<i class="material-icons" style="width: 60px; font-size: 60px;">lock_alt</i></div>
 				<h2>ID 찾기</h2>
 				<h5>ID를 찾으려면 본인인증을 해주세요.</h5>
 				<input type="text" class="form-control form-white" placeholder="이름">
@@ -134,8 +141,10 @@
                 <input type="text" class="form-control form-white" placeholder="휴대폰 번호">
                 <input type="email" class="form-control form-white" placeholder="Email">
                 <div>
-					<input type="radio" name="gender" value="남" checked onclick="doIt('남')" id = "r1" style="width:23px;height:23px"> <label for = "r1" style="font-size: 30px; color: white; padding-right: 100px;" > 남 </label>
-                    <input type="radio" name="gender" value="여" onclick="doIt('여')" id = "r2" style="width:23px;height:23px"> <label for = "r2" style="font-size: 30px; color: white; padding-right: 100px;" > 여 </label>
+					<input type="radio" name="gender" value="남" checked onclick="doIt('남')" id = "r1" style="width:23px;height:23px"> 
+					<label for = "r1" style="font-size: 30px; color: white; padding-right: 100px;" > 남 </label>
+                    <input type="radio" name="gender" value="여" onclick="doIt('여')" id = "r2" style="width:23px;height:23px">
+                     <label for = "r2" style="font-size: 30px; color: white; padding-right: 100px;" > 여 </label>
                    	<input type=text name=genders  value="남" style="display:none">
 				</div>
                 <div id="pass-info" class="clearfix"></div>
