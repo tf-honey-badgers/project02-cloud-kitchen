@@ -34,8 +34,6 @@ public class CartController {
 		logger.info("Adding " + cart.getCustId() + "'s new item to the 'cart' & 'cart_detail' tables!");
 		int result = 0;
 		String returnVal = "";
-		
-		System.out.println("출력하기 : " + cart);
 			
 		try {
 			result = service.addCart(cart);
