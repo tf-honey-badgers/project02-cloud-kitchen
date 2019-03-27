@@ -5,6 +5,7 @@ import java.util.List;
 import org.badgers.rest.customer.cart.persistence.CartMapper;
 import org.badgers.rest.model.CartDetailVO;
 import org.badgers.rest.model.CartVOExtend;
+import org.mortbay.log.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,64 @@ public class CartServiceImpl implements CartService {
 	@Transactional
 	@Override
 	public int addCart(CartVOExtend cart) throws Exception { // controller에서 예외처리
+		// 이미 카트 테이블에 있는 주문인지 확인한다 (이미 있다면 수량만 늘린다)
+		List<CartVOExtend> readCart = readCart(cart.getCustId());
+		// 새로들어온 주문이 이미 있는 주문 수량만 바꿀 것인지를 나타내는 플래그 변수
+		boolean flag = false;
+		
+		Log.info("********************* CHECKING WHETHER THERE'S ALREADY A RECORD IN THE CART TABLE WITH THE EXACT SAME MENU AND OPTIONS *********************");
+		System.out.println(readCart);
+		if(readCart != null) {
+			for(int i = 0; i < readCart.size(); i++) {
+				System.out.println("OUTER ITERATION IS : " + i);
+				CartVOExtend fromCart = readCart.get(i);
+				if(cart.getKitchenName().equals(fromCart.getKitchenName())
+						&& cart.getBizId().equals(fromCart.getBizId())
+						&& cart.getMenuId() == fromCart.getMenuId()) {
+					if(cart.getOptions() != null && fromCart.getOptions() != null) {
+						List<CartDetailVO> cartOptions = cart.getOptions();
+						List<CartDetailVO> fromOptions = fromCart.getOptions();
+						if(cartOptions.size() == fromOptions.size()) {
+							for(int j = 0; j < cartOptions.size(); j++) {
+								System.out.println("INNER ITERATION IS : " + j);
+								CartDetailVO cartOptDetail = cartOptions.get(j);
+								CartDetailVO fromOptDetail = fromOptions.get(j);
+								if(cartOptDetail.getMenuId() == fromOptDetail.getMenuId()
+										&& cartOptDetail.getMenuOptId() == fromOptDetail.getMenuOptId()
+										&& cartOptDetail.getMenuOptPrice() == fromOptDetail.getMenuOptPrice()
+										&& cartOptDetail.getMenuOptName().equals(fromOptDetail.getMenuOptName())) {
+									System.out.println(cartOptDetail.getMenuId());
+									System.out.println(fromOptDetail.getMenuId());
+									System.out.println(cartOptDetail.getMenuOptId());
+									System.out.println(fromOptDetail.getMenuOptId());
+									System.out.println(cartOptDetail.getMenuOptPrice());
+									System.out.println(fromOptDetail.getMenuOptPrice());
+									System.out.println(cartOptDetail.getMenuOptName());
+									System.out.println(fromOptDetail.getMenuOptName());
+									Log.info("********************* THERE IS ALREADY A RECORD IN THE CART TABLE WITH THE EXACT SAME OPTION *********************");
+									flag = true;
+								} else {
+									flag = false;
+									break;
+								}
+							}							
+						}
+					} else {
+						Log.info("********************* THERE IS ALREADY A RECORD IN THE CART TABLE WITH THE EXACT SAME MENU (NO OPTIONS) *********************");
+						flag = true;
+					}
+				}
+				if(flag) {
+					cart.setId(fromCart.getId());
+					cart.setQuantity(cart.getQuantity() + fromCart.getQuantity());
+					cart.setTotalAmt(cart.getTotalAmt() + fromCart.getTotalAmt());
+					int updateResult = updateCart(cart);
+					System.out.println("THE RESULT OF UPDATING THE CART SHOULD BE ONE(1) : " + updateResult);
+					return updateResult;
+				}
+			}
+		}
+		
 		int addedCart = 0;
 		int addedOptions = 0;
 		
