@@ -30,14 +30,19 @@
 			, CA.unit_price
 			, CA.total_amt
 			, CA.kitchen_name
-			, CA.biz_name
+			, CA.biz_id
 			, CA.menu_id
-            , ME.name
+            , ME.name as menu_name
+            , BZ.name as biz_name
 		from
 			honey_badgers.cart CA
             , honey_badgers.menu ME
-		where CA.cust_id = #{custId} and CA.menu_id = ME.idx;
-
+            , honey_badgers.biz BZ
+		where
+			CA.cust_id = #{custId}
+			and CA.menu_id = ME.idx
+			and CA.biz_id = BZ.biz_id
+		order by CA.biz_id asc, CA.id asc
 	</select>
 	
 	<select id="readOptions" resultType="org.badgers.rest.model.CartDetailVO">
