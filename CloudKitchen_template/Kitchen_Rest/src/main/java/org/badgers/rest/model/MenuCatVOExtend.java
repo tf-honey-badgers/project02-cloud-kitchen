@@ -9,5 +9,6 @@ public class MenuCatVOExtend {
 	private int mcNo;
 	private String mcName;
 	private String mcBizId;
-	private List<MenuCatVOExtend> mcMenuVo;
+	private List<MenuVOExtend> mcMenuVo;
 }
+
