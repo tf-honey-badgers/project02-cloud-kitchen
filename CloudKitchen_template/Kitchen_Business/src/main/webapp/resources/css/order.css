@@ -4583,6 +4583,7 @@ tbody.collapse.show {
   background-clip: border-box;
   border: 1px solid #eeeeee;
   border-radius: 0.25rem;
+  height: 48rem;
 }
 
 .card>hr {
@@ -6243,7 +6244,7 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  background-color: #011627 !important;
 }
 
 a.bg-dark:hover,
@@ -8788,14 +8789,14 @@ a.text-dark:focus {
 
 .btn.btn-primary {
   color: #fff;
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: #004369;
+  border-color: #004369;
   box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
 }
 
 .btn.btn-primary:hover {
   color: #fff;
-  background-color: #9124a3;
+  background-color: #011627;
   border-color: #701c7e;
 }
 
@@ -8803,7 +8804,7 @@ a.text-dark:focus {
 .btn.btn-primary.focus,
 .btn.btn-primary:hover {
   color: #fff;
-  background-color: #9124a3;
+  background-color: #011627;
   border-color: #701c7e;
 }
 
@@ -13422,7 +13423,8 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .alert.alert-info {
-  background-color: #004369;
+ /*  background-color: #004369; */
+  background-color: #f55145;
   color: #ffffff;
 }
 
@@ -13504,7 +13506,8 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .alert.alert-info {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4);
+ /*  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4); */
+ 
 }
 
 .alert.alert-info i {
@@ -15182,8 +15185,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .fixed-plugin .btn.btn-primary {
   color: #fff;
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: #004369;;
+  border-color: #004369;;
   box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
 }
 
@@ -16777,7 +16780,7 @@ label {
 .card.bg-primary,
 .card.card-rotate.bg-primary .front,
 .card.card-rotate.bg-primary .back {
-  background: linear-gradient(60deg, #ab47bc, #8e24aa);
+  background: linear-gradient(60deg, #004369, #5FA8D3);
 }
 
 .card .card-header-info .card-icon,
@@ -18820,3 +18823,31 @@ Copyright (c) 2015 Daniel Eden
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+
+.common{
+	border:1px solid grey; 
+	height:40rem;
+	overflow: auto;
+}
+
+.ORD input[type='button']{
+	position:relative;
+	top:-8px;
+	
+}
+@media (max-width: 768px){
+	.ORD input[type='button'] {
+	 padding: 0.20625rem 0.8rem;
+  	 font-size: 0.775rem;
+  	 line-height: 1.5;
+  	 border-radius: 0.1875rem;
+  	 left:10px;
+		
+	
+	}
+}
+
+.alert >span> b {
+	
+}

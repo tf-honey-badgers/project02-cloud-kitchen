@@ -1,5 +1,6 @@
 package org.badgers.rest.business.menu.controller;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,10 @@ import org.badgers.rest.model.MenuCatVOExtend;
 import org.badgers.rest.model.MenuOptionClVOExtend;
 import org.badgers.rest.model.MenuOptionVOExtend;
 import org.badgers.rest.model.MenuVOExtend;
+import org.mortbay.util.ajax.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -63,28 +67,19 @@ public class MenuController {
 		return  service.addOnlyOpt(menuIdx, menuVoEx,menuOptClVoEx);
 	}
 	
-	@RequestMapping("/updateMenu")
-	@ResponseBody
-	public int updateMenu(MenuVOExtend menuVoEx) {
-		return  service.updateMenuInfo(menuVoEx);
-	}
+//	@RequestMapping("/updateMenu")
+//	@ResponseBody
+//	public int updateMenu(MenuVOExtend menuVoEx) {
+//		return  service.updateMenuInfo(menuVoEx);
+//	}
 	
-	@RequestMapping("/updateMenuOpt")
-	@ResponseBody
-	public int updateMenuOpt(MenuOptionVOExtend menuOptVoEx) {
-		return  service.updateMenuOptInfo(menuOptVoEx);
-	}
-	
-	@RequestMapping(value="/menuupdate", method=RequestMethod.POST)	
+	@RequestMapping(value="/menuupdate",produces = "application/json;charset=UTF-8", method=RequestMethod.POST)	
 	@Transactional
 	@ResponseBody
 //	public ResponseEntity menuUpdate(@RequestBody List updateMenuInfo){
-	public ResponseEntity<?> menuUpdate(@RequestBody List<String> updateMenuInfo){
-		System.out.println("MenuUpdate Rest Controller : "+updateMenuInfo);
-		
-//		int result = service.updateMenu(updateMenuInfo);
-		int result = 1;
-		
+	public ResponseEntity<?> menuUpdate(@RequestBody String updateMenuInfo){
+		int result = service.updateMenuInfo(updateMenuInfo);
+
 		if(result == 0) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

@@ -29,12 +29,12 @@
 		(id, menu_id,
 		menu_name, menu_price, add_option_price, quantity,
 		total_amt, biz_id,
-		biz_name, request_msg, order_id)
+		biz_name, order_id)
 		values
 		(#{id}, #{menuId},
 		#{menuName},#{menuPrice}, #{addOptionPrice},#{quantity},
 		#{totalAmt},
-		#{bizId}, #{bizName}, #{requestMsg},#{orderId})
+		#{bizId}, #{bizName}, #{orderId})
 
 	</insert>
 	<insert id="initOrderMenuOption"
@@ -50,15 +50,14 @@
 	<select id="getOrderInfo"
 		parameterType="String"
 		resultType="org.badgers.rest.model.OrderInfoVO">
-		select orders.id, cust_id, orderdetailoption.id as orderdetail_id, phone, address, orders.time,
-		commoncode.id as status_code, commoncode.name as status, kitchen_name, biz_id, biz_name, method, menu_name,
-		menu_price, opt_name, opt_price, quantity, total_amt, pay_amt, msg,
-		request_msg
+		select orders.id, cust_id, orderdetailoption.id as orderdetail_id,  biz_name, phone, address, orders.time, commoncode.id as status_code,
+		commoncode.name as status, kitchen_name, biz_id, method, menu_name,
+		menu_price, opt_name, opt_price, quantity, total_amt, pay_amt, msg 
 		FROM honey_badgers.order as orders, order_payment as orderpayment,
 		common_code as commoncode,
 		(
 		select id, menu_id, menu_name, menu_price, add_option_price, quantity,
-		total_amt, biz_id, biz_name, request_msg, order_id, opt_id, opt_name,
+		total_amt, biz_id, biz_name, order_id, opt_id, opt_name,
 		opt_price, order_detail_id from order_detail as orderdetail
 		left outer join
 		(
