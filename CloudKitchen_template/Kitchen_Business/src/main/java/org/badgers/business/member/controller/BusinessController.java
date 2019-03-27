@@ -1,6 +1,7 @@
 package org.badgers.business.member.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.badgers.business.model.BizMemberVOExtend;
 import org.springframework.http.ResponseEntity;
@@ -74,11 +75,12 @@ public class BusinessController {
 	
 	@PostMapping(value = "/", produces = "text/plain; charset=utf-8")
 	@ResponseBody
-	public String login(@RequestBody BizMemberVOExtend mvo) {
+	public String login(@RequestBody BizMemberVOExtend mvo, HttpSession session) {
 		log.info("Kitchen_Business 사업자 로그인...............................");
 
 		String msg = "";
 		String url = "http://localhost/rest/business/";
+		String returnVal= "";
 		
 		try {				
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
@@ -88,18 +90,18 @@ public class BusinessController {
 		}
 		
 		if(msg.equals("BAD_PW")) {
-			msg = "비밀번호가 틀렸습니다.";
+			returnVal = "비밀번호가 틀렸습니다.";
 		} else if(msg.equals("NO_ID")) {
-			msg = "존재하지 않는 아이디입니다.";
+			returnVal = "존재하지 않는 아이디입니다.";
 		} else if(msg.equals("SERVER_ERROR") || msg.equals("")) {
-			msg = "서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.";
+			returnVal = "서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.";
 		} else {
-			// 로그인을 유지하기 위한 쿠키 생성
-			msg = "성공적으로 로그인했습니다.";
+			session.setAttribute("login_id", msg);
+			returnVal = "성공적으로 로그인했습니다.";
 		}
 
-		log.info(msg);
-		return msg;
+		log.info(returnVal);
+		return returnVal;
 	}
 	
 	@PostMapping("/verify")
