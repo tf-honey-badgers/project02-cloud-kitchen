@@ -1,12 +1,31 @@
+function removeDuplicateBizNames() {
+	var bizNames = $('.bizNameRow');
+	for(var i = 1; i < bizNames.size(); i++) {
+		if(bizNames.eq(i).text() == bizNames.eq(i-1).text()) {
+			bizNames.eq(i).remove();
+		}
+	}
+}
+
+/* 브라우저 히스토리를 이용해서 이동했을 경우 (뒤로가기 앞으로가기 버튼) 페이지를 새로고침한다
+레퍼런스 --> https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigation
+*/
+if(performance.navigation.type == 2) {
+	location.reload(true);
+}
+
 $(document).ready(function() {
 /* 페이지 로딩 후 카트에 총 금액 표시하기 */
 	var cartTotal = 0;
-	for(var i = 0; i < $('.menuData').size(); i++) {
-		var price = $('.menuData').eq(i).children('strong:eq(1)').text();
-		cartTotal += parseInt(price.substring(0, price.length - 1));
+	for(var i = 0; i < $('.priceData').size(); i++) {
+		var price = $('.priceData').eq(i).attr('data-total-price');
+		cartTotal += parseInt(price);
 	}
 	$('.total span').text(cartTotal + '원');
-	
+
+/* 페이지 로딩 후 카트에서 중복되는 가게명 (bizName) 제거하기 */
+	removeDuplicateBizNames();
+		
 /* 옵션 없는 메뉴는 "+" 클릭하면 장바구니에 추가하도록 */
 	for(var i = 0; i < $('.dropdown-menu').size(); i++) {
 		if($('.dropdown-menu').eq(i).children('div').length == 0) {
@@ -32,6 +51,8 @@ $(document).ready(function() {
 		
 	/* 선택한 메뉴의 ID */
 		const menuId = $(this).parents('td').siblings('td:eq(0)').children('h5').attr('data-id');
+	/* 가게 ID */	
+		const bizId = $('#main_menu').attr('data-biz-id');
 	/* 선택한 메뉴의 가격 (옵션 제외) */
 		const menuPrice = $(this).parents('td').siblings('td:eq(1)').attr('data-price');
 	/* 선택한 옵션들 (input tag) */
@@ -67,11 +88,10 @@ $(document).ready(function() {
 				, unitPrice : menuPrice
 				, totalAmt : totalPrice
 				, kitchenName : '스톡홀름 1호점'
-				, bizId : 'biz_2'
+				, bizId : bizId
 				, menuId : menuId
 				, options : inputOptions
 			};
-		
 	/* 카트에 추가하면 기존에 선택한 체크박스 해제하기 */
 		$(this).siblings('div').children().children('input:checked').prop('checked', false);
 		
@@ -85,20 +105,23 @@ $(document).ready(function() {
 	   			$('.cartTable').empty();
 	   			cartTotal = 0;
 				for(let i = 0; i < data.length; i++) {
-	    			$('.cartTable').append('<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
+	    			$('.cartTable').append('<tr class="bizNameRow"><td colspan="3"><strong>' + data[i].bizName + '</strong></td></tr>' +
+	    					'<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
 	    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
-	    					data[i].menuName + '<strong class="pull-right">' + data[i].totalAmt + '원</strong></td>' +
-	    					'<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td></tr>');
+	    					data[i].menuName + '<span class="pull-right">' + data[i].unitPrice + '원</span></td></tr>');
 	    			if(data[i].options != null) {
 		    			for(let j = 0; j < data[i].options.length; j++) {
-			    			$('.cartTable').append('<tr><td style="width: 10%;"></td>' +
-			    					'<td style="font-size: 11px">' + data[i].options[j].menuOptName + '</td>' +
-			    					'<td style="width: 10%;"></td></tr>');			    				
+			    			$('.cartTable').append('<tr><td style="width: 10%;"></td><td style="font-size: 11px">'
+			    					+ data[i].options[j].menuOptName + '<span class="pull-right">+ ' + data[i].options[j].menuOptPrice + '원</span></td>' +
+			    					'<td style="width: 10%;"></td></tr>');
 		    			}
 	    			}
+	    			$('.cartTable').append('<tr><td colspan="2" class="priceData" data-total-price="' + data[i].totalAmt + '">' +
+	    					'<strong class="pull-right">합계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + data[i].totalAmt + '원</strong></td></tr>');
 	    			cartTotal += data[i].totalAmt;
 				}
 				$('.total span').text(cartTotal + '원');
+				removeDuplicateBizNames();
 			}
 			, error : function(data) {
 				console.log('ERRoR oCCURRED');
@@ -117,20 +140,10 @@ $(document).ready(function() {
 			$('.table_summary th:eq(0) input').prop('checked', false);
 		}
 	});
-/* 삭제할 메뉴 전체선택하기 */
-	$('body').on('click', '.table_summary th:eq(2) input', function() {
-		$('.cartTable .check-delete').prop('checked', $('.table_summary th:eq(2) input').prop('checked'));
-	});
-/* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
-	$('body').on('click', '.cartTable .check-delete', function() {
-		if($('.table_summary th:eq(2) input').prop('checked') == true) {
-			$('.table_summary th:eq(2) input').prop('checked', false);
-		}
-	});
 	
 /* 카트의 id="deleteCart" 클릭하면 선택된 항목 삭제하기 */
 	$('#deleteCart').on('click', function() {
-		const checked = $('.cartTable .check-delete:checked');
+		const checked = $('.cartTable .check-order:checked');
 		let cartId = [];
 		for(let i = 0; i < checked.length; i++) {
 			cartId[i] = checked.eq(i).parent().siblings('.menuData').attr('data-cart-id');
@@ -138,8 +151,6 @@ $(document).ready(function() {
 		/* 카트의 모든 체크박스 해제 */
 		$('.table_summary th:eq(0) input').prop('checked', false);
 		$('.cartTable .check-order').prop('checked', false);
-		$('.table_summary th:eq(2) input').prop('checked', false);
-		$('.cartTable .check-delete').prop('checked', false);
 		
  		$.ajax({
 			type : 'DELETE'
@@ -154,20 +165,23 @@ $(document).ready(function() {
 	   			$('.cartTable').empty();
 	   			cartTotal = 0;
 				for(let i = 0; i < data.length; i++) {
-	    			$('.cartTable').append('<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
+	    			$('.cartTable').append('<tr class="bizNameRow"><td colspan="3"><strong>' + data[i].bizName + '</strong></td></tr>' +
+	    					'<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
 	    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
-	    					data[i].menuName + '<strong class="pull-right">' + data[i].totalAmt + '원</strong></td>' +
-	    					'<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td></tr>');
+	    					data[i].menuName + '<span class="pull-right">' + data[i].unitPrice + '원</span></td></tr>');
 	    			if(data[i].options != null) {
 		    			for(let j = 0; j < data[i].options.length; j++) {
-			    			$('.cartTable').append('<tr><td style="width: 10%;"></td>' +
-			    					'<td style="font-size: 11px">' + data[i].options[j].menuOptName + '</td>' +
-			    					'<td style="width: 10%;"></td></tr>');			    				
+			    			$('.cartTable').append('<tr><td style="width: 10%;"></td><td style="font-size: 11px">'
+			    					+ data[i].options[j].menuOptName + '<span class="pull-right">+ ' + data[i].options[j].menuOptPrice + '원</span></td>' +
+			    					'<td style="width: 10%;"></td></tr>');
 		    			}
 	    			}
+	    			$('.cartTable').append('<tr><td colspan="2" class="priceData" data-total-price="' + data[i].totalAmt + '">' +
+	    					'<strong class="pull-right">합계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + data[i].totalAmt + '원</strong></td></tr>');
 	    			cartTotal += data[i].totalAmt;
 				}
 				$('.total span').text(cartTotal + '원');
+				removeDuplicateBizNames();
 			}
 			, error : function(data) {
 				console.log('ERRoR oCCURRED');
@@ -186,8 +200,6 @@ $(document).ready(function() {
 		/* 카트의 모든 체크박스 해제 */
 		$('.table_summary th:eq(0) input').prop('checked', false);
 		$('.cartTable .check-order').prop('checked', false);
-		$('.table_summary th:eq(2) input').prop('checked', false);
-		$('.cartTable .check-delete').prop('checked', false);
 		
  		$.ajax({
 			type : 'POST'

@@ -1,5 +1,7 @@
 package org.badgers.rest.business.menu.service;
 
+import java.util.List;
+
 import org.badgers.rest.business.menu.persistence.MenuMapper;
 import org.badgers.rest.model.MenuCatVOExtend;
 import org.badgers.rest.model.MenuOptionClVOExtend;
@@ -117,7 +119,7 @@ public class MenuServiceImpl implements MenuService {
 			JsonObject menuOptCl = (JsonObject) menuOptClArray.get(i);
 			JsonObject menuOptelement = (JsonObject) parser.parse(menuOptClArray.get(i).toString());
 			JsonArray menuOptArray = menuOptelement.get("menuOptEx").getAsJsonArray();
-			resultCnt++;
+			
 			
 			for(int j=0;j<menuOptArray.size();j++) {
 				JsonObject menuOpt = (JsonObject) menuOptArray.get(j);
@@ -127,11 +129,15 @@ public class MenuServiceImpl implements MenuService {
 				menuOptVoEx.setMoAddPrice(menuOpt.get("moAddPrice").getAsString());
 				menuOptVoEx.setMoOptClNo(menuOpt.get("moOptClNo").getAsInt());
 				mapper.updateMenuOptInfo(menuOptVoEx);
+				resultCnt++;
 			}
 		}
-		return 0;
+		return resultCnt;
 	}
-	
-	
+
+	@Override
+	public List<MenuCatVOExtend> getMenuCat(String bizId) {
+		return mapper.getMenuCat(bizId);
+	}
 
 }
