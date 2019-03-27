@@ -119,12 +119,8 @@
 							<thead>
 								<tr>
 									<th style="width: 10%;"><input type="checkbox"></th>
-									<th style="width: 80px;">
-										전체선택
-										<a class="btn_intro pull-right" id="deleteCart" >삭제하기</a>
-									</th>
-									<th style="text-align: right; width: 10%;" colspan="2"><input type="checkbox"></th>
-								</tr>							
+									<th style="width: 90%;">전체선택<a class="btn_intro pull-right" id="deleteCart" >삭제하기</a></th>
+								</tr>
 							</thead>
 							<tbody class="cartTable">
 							<!-- bizName이 다를 때 가게 이름을 출력하기 위한 반복문 -->
@@ -136,7 +132,6 @@
 									<tr>
 										<td style="width: 10%;"><input class="check-order" type="checkbox"></td>
 										<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.menuName}<span class="pull-right">${cart.unitPrice}원</span></td>
-										<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td>
 									</tr>
 									<!-- 옵션을 출력하기 위한 반복문 -->
 									<c:forEach var="options" items="${cart.options}">									

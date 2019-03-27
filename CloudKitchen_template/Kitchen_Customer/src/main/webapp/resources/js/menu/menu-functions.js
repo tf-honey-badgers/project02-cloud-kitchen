@@ -109,8 +109,7 @@ $(document).ready(function() {
 	    			$('.cartTable').append('<tr class="bizNameRow"><td colspan="3"><strong>' + data[i].bizName + '</strong></td></tr>' +
 	    					'<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
 	    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
-	    					data[i].menuName + '<span class="pull-right">' + data[i].unitPrice + '원</span></td>' +
-	    					'<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td></tr>');
+	    					data[i].menuName + '<span class="pull-right">' + data[i].unitPrice + '원</span></td></tr>');
 	    			if(data[i].options != null) {
 		    			for(let j = 0; j < data[i].options.length; j++) {
 			    			$('.cartTable').append('<tr><td style="width: 10%;"></td><td style="font-size: 11px">'
@@ -142,20 +141,10 @@ $(document).ready(function() {
 			$('.table_summary th:eq(0) input').prop('checked', false);
 		}
 	});
-/* 삭제할 메뉴 전체선택하기 */
-	$('body').on('click', '.table_summary th:eq(2) input', function() {
-		$('.cartTable .check-delete').prop('checked', $('.table_summary th:eq(2) input').prop('checked'));
-	});
-/* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
-	$('body').on('click', '.cartTable .check-delete', function() {
-		if($('.table_summary th:eq(2) input').prop('checked') == true) {
-			$('.table_summary th:eq(2) input').prop('checked', false);
-		}
-	});
 	
 /* 카트의 id="deleteCart" 클릭하면 선택된 항목 삭제하기 */
 	$('#deleteCart').on('click', function() {
-		const checked = $('.cartTable .check-delete:checked');
+		const checked = $('.cartTable .check-order:checked');
 		let cartId = [];
 		for(let i = 0; i < checked.length; i++) {
 			cartId[i] = checked.eq(i).parent().siblings('.menuData').attr('data-cart-id');
@@ -163,8 +152,6 @@ $(document).ready(function() {
 		/* 카트의 모든 체크박스 해제 */
 		$('.table_summary th:eq(0) input').prop('checked', false);
 		$('.cartTable .check-order').prop('checked', false);
-		$('.table_summary th:eq(2) input').prop('checked', false);
-		$('.cartTable .check-delete').prop('checked', false);
 		
  		$.ajax({
 			type : 'DELETE'
@@ -182,8 +169,7 @@ $(document).ready(function() {
 	    			$('.cartTable').append('<tr class="bizNameRow"><td colspan="3"><strong>' + data[i].bizName + '</strong></td></tr>' +
 	    					'<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
 	    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
-	    					data[i].menuName + '<span class="pull-right">' + data[i].unitPrice + '원</span></td>' +
-	    					'<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td></tr>');
+	    					data[i].menuName + '<span class="pull-right">' + data[i].unitPrice + '원</span></td></tr>');
 	    			if(data[i].options != null) {
 		    			for(let j = 0; j < data[i].options.length; j++) {
 			    			$('.cartTable').append('<tr><td style="width: 10%;"></td><td style="font-size: 11px">'
@@ -215,8 +201,6 @@ $(document).ready(function() {
 		/* 카트의 모든 체크박스 해제 */
 		$('.table_summary th:eq(0) input').prop('checked', false);
 		$('.cartTable .check-order').prop('checked', false);
-		$('.table_summary th:eq(2) input').prop('checked', false);
-		$('.cartTable .check-delete').prop('checked', false);
 		
  		$.ajax({
 			type : 'POST'
