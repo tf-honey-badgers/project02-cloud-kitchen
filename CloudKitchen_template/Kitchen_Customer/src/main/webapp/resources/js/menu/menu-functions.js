@@ -92,7 +92,6 @@ $(document).ready(function() {
 				, menuId : menuId
 				, options : inputOptions
 			};
-		
 	/* 카트에 추가하면 기존에 선택한 체크박스 해제하기 */
 		$(this).siblings('div').children().children('input:checked').prop('checked', false);
 		
