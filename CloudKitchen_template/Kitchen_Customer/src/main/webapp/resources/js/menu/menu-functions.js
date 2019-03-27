@@ -1,12 +1,25 @@
+function removeDuplicateBizNames() {
+	var bizNames = $('.bizNameRow');
+	for(var i = 1; i < bizNames.size(); i++) {
+		if(bizNames.eq(i).text() == bizNames.eq(i-1).text()) {
+			bizNames.eq(i).remove();
+		}
+	}	
+}
+
+
 $(document).ready(function() {
 /* 페이지 로딩 후 카트에 총 금액 표시하기 */
 	var cartTotal = 0;
-	for(var i = 0; i < $('.menuData').size(); i++) {
-		var price = $('.menuData').eq(i).children('strong:eq(1)').text();
-		cartTotal += parseInt(price.substring(0, price.length - 1));
+	for(var i = 0; i < $('.priceData').size(); i++) {
+		var price = $('.priceData').eq(i).attr('data-total-price');
+		cartTotal += parseInt(price);
 	}
 	$('.total span').text(cartTotal + '원');
-	
+
+/* 페이지 로딩 후 카트에서 중복되는 가게명 (bizName) 제거하기 */
+	removeDuplicateBizNames();
+		
 /* 옵션 없는 메뉴는 "+" 클릭하면 장바구니에 추가하도록 */
 	for(var i = 0; i < $('.dropdown-menu').size(); i++) {
 		if($('.dropdown-menu').eq(i).children('div').length == 0) {
@@ -32,6 +45,8 @@ $(document).ready(function() {
 		
 	/* 선택한 메뉴의 ID */
 		const menuId = $(this).parents('td').siblings('td:eq(0)').children('h5').attr('data-id');
+	/* 가게 ID */	
+		const bizId = $('#main_menu').attr('data-biz-id');
 	/* 선택한 메뉴의 가격 (옵션 제외) */
 		const menuPrice = $(this).parents('td').siblings('td:eq(1)').attr('data-price');
 	/* 선택한 옵션들 (input tag) */
@@ -67,7 +82,7 @@ $(document).ready(function() {
 				, unitPrice : menuPrice
 				, totalAmt : totalPrice
 				, kitchenName : '스톡홀름 1호점'
-				, bizId : 'biz_2'
+				, bizId : bizId
 				, menuId : menuId
 				, options : inputOptions
 			};
@@ -85,20 +100,24 @@ $(document).ready(function() {
 	   			$('.cartTable').empty();
 	   			cartTotal = 0;
 				for(let i = 0; i < data.length; i++) {
-	    			$('.cartTable').append('<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
+	    			$('.cartTable').append('<tr class="bizNameRow"><td colspan="3"><strong>' + data[i].bizName + '</strong></td></tr>' +
+	    					'<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
 	    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
-	    					data[i].menuName + '<strong class="pull-right">' + data[i].totalAmt + '원</strong></td>' +
-	    					'<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td></tr>');
+	    					data[i].menuName + '<span class="pull-right">' + data[i].unitPrice + '원</span></td>' +
+	    					'<td style="text-align: right; width: 10%;"><i class="icon_close check-delete"></i></td></tr>');
 	    			if(data[i].options != null) {
 		    			for(let j = 0; j < data[i].options.length; j++) {
-			    			$('.cartTable').append('<tr><td style="width: 10%;"></td>' +
-			    					'<td style="font-size: 11px">' + data[i].options[j].menuOptName + '</td>' +
-			    					'<td style="width: 10%;"></td></tr>');			    				
+			    			$('.cartTable').append('<tr><td style="width: 10%;"></td><td style="font-size: 11px">'
+			    					+ data[i].options[j].menuOptName + '<span class="pull-right">+ ' + data[i].options[j].menuOptPrice + '원</span></td>' +
+			    					'<td style="width: 10%;"></td></tr>');
 		    			}
 	    			}
+	    			$('.cartTable').append('<tr><td colspan="2" class="priceData" data-total-price="' + data[i].totalAmt + '">' +
+	    					'<strong class="pull-right">합계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + data[i].totalAmt + '원</strong></td></tr>');
 	    			cartTotal += data[i].totalAmt;
 				}
 				$('.total span').text(cartTotal + '원');
+				removeDuplicateBizNames();
 			}
 			, error : function(data) {
 				console.log('ERRoR oCCURRED');
