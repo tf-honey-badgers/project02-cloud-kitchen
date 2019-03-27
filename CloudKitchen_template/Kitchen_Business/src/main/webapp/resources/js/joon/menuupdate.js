@@ -20,11 +20,12 @@ $(document)
 			        			console.log(data);
 			        			
 			        			for(let i=0;i<data.length;i++){
-			        				$('.menuCatSelect').append('<option value="" class="'+data[i].mcBizId
+			        				$('#menuCatSelect').append('<option value="" class="'+data[i].mcBizId
 			        						+'" id="'+data[i].mcNo+'" >'+data[i].mcName+'</option>');
 			        			}
 			        		}
 						});
+						
 					}); // menuInsert click end
 
 //					$('.menuInsert').on('click',function(e){
