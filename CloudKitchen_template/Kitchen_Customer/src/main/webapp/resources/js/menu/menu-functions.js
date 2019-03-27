@@ -25,7 +25,7 @@ $(document).ready(function() {
 
 /* 페이지 로딩 후 카트에서 중복되는 가게명 (bizName) 제거하기 */
 	removeDuplicateBizNames();
-		
+
 /* 옵션 없는 메뉴는 "+" 클릭하면 장바구니에 추가하도록 */
 	for(var i = 0; i < $('.dropdown-menu').size(); i++) {
 		if($('.dropdown-menu').eq(i).children('div').length == 0) {
