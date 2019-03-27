@@ -22,54 +22,43 @@ public class CartServiceImpl implements CartService {
 	@Transactional
 	@Override
 	public int addCart(CartVOExtend cart) throws Exception { // controller에서 예외처리
-		// 이미 카트 테이블에 있는 주문인지 확인한다 (이미 있다면 수량만 늘린다)
 		List<CartVOExtend> readCart = readCart(cart.getCustId());
-		// 새로들어온 주문이 이미 있는 주문 수량만 바꿀 것인지를 나타내는 플래그 변수
+		// 새로들어온 메뉴가 Cart 테이블에 있는 메뉴와 동일한지 나타내는 플래그 변수
 		boolean flag = false;
 		
 		Log.info("********************* CHECKING WHETHER THERE'S ALREADY A RECORD IN THE CART TABLE WITH THE EXACT SAME MENU AND OPTIONS *********************");
 		System.out.println(readCart);
-		if(readCart != null) {
+		if(readCart != null) { // custId를 가진 메뉴가 Cart 테이블에 있는가?
 			for(int i = 0; i < readCart.size(); i++) {
-				System.out.println("OUTER ITERATION IS : " + i);
 				CartVOExtend fromCart = readCart.get(i);
 				if(cart.getKitchenName().equals(fromCart.getKitchenName())
 						&& cart.getBizId().equals(fromCart.getBizId())
-						&& cart.getMenuId() == fromCart.getMenuId()) {
-					if(cart.getOptions() != null && fromCart.getOptions() != null) {
+						&& cart.getMenuId() == fromCart.getMenuId()) { // 새로들어온 메뉴와 Cart 테이블에 있는 메뉴가 정보가 같은가?
+					if(cart.getOptions() == null && fromCart.getOptions() == null) { // 새로들어온 메뉴와 Cart 테이블에 있는 메뉴에게 옵션 정보가 있는가?
+						Log.info("********************* THERE IS ALREADY A RECORD IN THE CART TABLE WITH THE EXACT SAME MENU (NO OPTIONS) *********************");
+						flag = true;
+					} else {
 						List<CartDetailVO> cartOptions = cart.getOptions();
 						List<CartDetailVO> fromOptions = fromCart.getOptions();
-						if(cartOptions.size() == fromOptions.size()) {
+						if(cartOptions.size() == fromOptions.size()) { // 새로들어온 메뉴 옵션과 Cart 테이블에 있는 메뉴 옵션 개수가 같은가?
 							for(int j = 0; j < cartOptions.size(); j++) {
-								System.out.println("INNER ITERATION IS : " + j);
 								CartDetailVO cartOptDetail = cartOptions.get(j);
 								CartDetailVO fromOptDetail = fromOptions.get(j);
 								if(cartOptDetail.getMenuId() == fromOptDetail.getMenuId()
 										&& cartOptDetail.getMenuOptId() == fromOptDetail.getMenuOptId()
 										&& cartOptDetail.getMenuOptPrice() == fromOptDetail.getMenuOptPrice()
-										&& cartOptDetail.getMenuOptName().equals(fromOptDetail.getMenuOptName())) {
-									System.out.println(cartOptDetail.getMenuId());
-									System.out.println(fromOptDetail.getMenuId());
-									System.out.println(cartOptDetail.getMenuOptId());
-									System.out.println(fromOptDetail.getMenuOptId());
-									System.out.println(cartOptDetail.getMenuOptPrice());
-									System.out.println(fromOptDetail.getMenuOptPrice());
-									System.out.println(cartOptDetail.getMenuOptName());
-									System.out.println(fromOptDetail.getMenuOptName());
+										&& cartOptDetail.getMenuOptName().equals(fromOptDetail.getMenuOptName())) { // 새로들어온 메뉴 옵션과 Cart 테이블에 있는 메뉴 옵션 정보가 같은가?
 									Log.info("********************* THERE IS ALREADY A RECORD IN THE CART TABLE WITH THE EXACT SAME OPTION *********************");
 									flag = true;
 								} else {
 									flag = false;
-									break;
+									break; // 하나라도 옵션 정보가 같지 않다면 옵션 비교 for문을 끝낸다.
 								}
-							}							
+							}
 						}
-					} else {
-						Log.info("********************* THERE IS ALREADY A RECORD IN THE CART TABLE WITH THE EXACT SAME MENU (NO OPTIONS) *********************");
-						flag = true;
 					}
 				}
-				if(flag) {
+				if(flag) { // 새로들어온 메뉴 정보와 Cart 테이블에 있는 메뉴 정보가 일치한다면 수량을 증가시키고 메서드를 끝낸다.
 					cart.setId(fromCart.getId());
 					cart.setQuantity(cart.getQuantity() + fromCart.getQuantity());
 					cart.setTotalAmt(cart.getTotalAmt() + fromCart.getTotalAmt());
@@ -79,15 +68,15 @@ public class CartServiceImpl implements CartService {
 				}
 			}
 		}
-		
+
+		// 새로들어온 메뉴 정보와 Cart 테이블에 있는 메뉴 정보가 다르다면 새로운 메뉴로 취급한다. (Cart 테이블에 새로운 튜플을 추가한다.)
 		int addedCart = 0;
 		int addedOptions = 0;
 		
 		// cart 정보로 cart 테이블에 추가
 		addedCart = mapper.insertCart(cart);
 		
-		int id = mapper.getCartId();
-		
+		int id = mapper.getCartId();		
 		// cart에 포함된 List<CartDetailVo>로 cart_detail 테이블에 추가
 		if(cart.getOptions() != null) {
 			for(CartDetailVO option : cart.getOptions()) {
