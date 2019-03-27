@@ -136,7 +136,7 @@
 									<tr>
 										<td style="width: 10%;"><input class="check-order" type="checkbox"></td>
 										<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.menuName}<span class="pull-right">${cart.unitPrice}원</span></td>
-										<td style="text-align: right; width: 10%;"><i class="icon_close check-delete"></i></td>
+										<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td>
 									</tr>
 									<!-- 옵션을 출력하기 위한 반복문 -->
 									<c:forEach var="options" items="${cart.options}">									
