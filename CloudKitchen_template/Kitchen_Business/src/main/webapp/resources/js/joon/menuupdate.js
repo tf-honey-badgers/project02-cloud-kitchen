@@ -176,16 +176,12 @@ $(document)
 				
 					$('.menuModalClose').on('click', function() {
 						$('.menuModal').css('display', 'none');
-						$('.menuInsertModal').css('display', 'none');
 						});
 					
-<<<<<<< HEAD
 					$('.menuInsertModalClose').on('click', function() {
 						$('.menuInsertModal').css('display', 'none');
 						});
 
-=======
->>>>>>> 52697698a7f2381942bdbc302115dc503c462c46
 					$()
 							.ready(
 									function() {
