@@ -11,4 +11,3 @@ public class MenuCatVOExtend {
 	private String mcBizId;
 	private List<MenuVOExtend> mcMenuVo;
 }
-
