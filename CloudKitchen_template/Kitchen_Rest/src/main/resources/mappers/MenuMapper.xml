@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.badgers.mapper.MenuMapper">
+<mapper namespace="com.badgers.MenuMapper">
 	
-	<update id="updateMenuInfo">
+<!--  	<update id="updateMenuInfo">
 		update menu set photo=#{mPhoto}, basic_price=#{mBasicPrice}, name=#{mName} where idx= #{mCode}
 	</update>
 	
@@ -13,6 +13,8 @@
 		update menu_option set name=#{moName}, add_price=#{moAddPrice} where idx= #{moCode}
 	</update>
 	
-	
+	<select id="getMenuCat" resultType="org.badgers.rest.model.MenuCatVOExtend">
+		select idx mcNo, name mcName, biz_id mcBizId from menu_category where biz_id=#{bizId}
+	</select> -->
 	
 </mapper>
