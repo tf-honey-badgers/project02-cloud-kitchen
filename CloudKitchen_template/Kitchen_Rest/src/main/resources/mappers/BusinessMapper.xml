@@ -49,4 +49,8 @@
 		update menu_option set name=#{moName}, add_price=#{moAddPrice} where idx=#{moCode}; 
 	</update>
 	
+	<select id="getMenuCat" resultType="org.badgers.rest.model.MenuCatVOExtend">
+		select idx mcNo, name mcName, biz_id mcBizId from menu_category where biz_id=#{bizId}
+	</select>
+	
 </mapper>

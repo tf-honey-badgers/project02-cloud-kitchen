@@ -2,6 +2,31 @@ $(document)
 		.ready(
 				function() {
 					
+					$('.content .menuInsert').on('click',function(e){
+						e.preventDefault();
+						$('.menuInsertModal').css('display', 'block');
+						
+						$.ajax({
+			        		type : "GET",
+			        		dataType : 'json',
+			        		url : "../menu/main/getMenuCat",
+			         		data : {
+			         			bizId : 'biz_2'
+			         		},
+			        		error : function(data){
+			        			console.log(data);
+			        		},
+			        		success(data){
+			        			console.log(data);
+			        			
+			        			for(let i=0;i<data.length;i++){
+			        				$('.menuCatSelect').append('<option value="" class="'+data[i].mcBizId
+			        						+'" id="'+data[i].mcNo+'" >'+data[i].mcName+'</option>');
+			        			}
+			        		}
+						});
+					}); // menuInsert click end
+					
 					$('#updateMenuBtn').on('click',function(e){
 						
 						let menuOptSel = $('.menuOptSelect');
@@ -144,6 +169,10 @@ $(document)
 				
 					$('.menuModalClose').on('click', function() {
 						$('.menuModal').css('display', 'none');
+						});
+					
+					$('.menuInsertModalClose').on('click', function() {
+						$('.menuInsertModal').css('display', 'none');
 						});
 
 					$()

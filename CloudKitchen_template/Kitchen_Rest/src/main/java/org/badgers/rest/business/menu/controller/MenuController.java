@@ -1,7 +1,5 @@
 package org.badgers.rest.business.menu.controller;
 
-import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.badgers.rest.business.menu.service.MenuService;
@@ -9,12 +7,8 @@ import org.badgers.rest.model.MenuCatVOExtend;
 import org.badgers.rest.model.MenuOptionClVOExtend;
 import org.badgers.rest.model.MenuOptionVOExtend;
 import org.badgers.rest.model.MenuVOExtend;
-import org.mortbay.util.ajax.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -85,5 +79,19 @@ public class MenuController {
 		}
 		return new ResponseEntity<>(result, HttpStatus.OK); 
 //		return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+	}
+	
+	@RequestMapping(value="/getMenuCat/{bizId}",produces = "application/json;charset=UTF-8", method=RequestMethod.GET)	
+	@Transactional
+	@ResponseBody
+//	public ResponseEntity menuUpdate(@RequestBody List updateMenuInfo){
+	public ResponseEntity<?> getMenuCat(@PathVariable("bizId") String bizId){
+		System.out.println("RestController : "+bizId);
+		List<MenuCatVOExtend> menuCatInfo = service.getMenuCat(bizId);
+		
+		if(menuCatInfo.size() == 0) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(menuCatInfo, HttpStatus.OK); 
 	}
 }

@@ -1,5 +1,7 @@
 package org.badgers.rest.business.menu.service;
 
+import java.util.List;
+
 import org.badgers.rest.business.menu.persistence.MenuMapper;
 import org.badgers.rest.model.MenuCatVOExtend;
 import org.badgers.rest.model.MenuOptionClVOExtend;
@@ -131,7 +133,10 @@ public class MenuServiceImpl implements MenuService {
 		}
 		return 0;
 	}
-	
-	
+
+	@Override
+	public List<MenuCatVOExtend> getMenuCat(String bizId) {
+		return mapper.getMenuCat(bizId);
+	}
 
 }

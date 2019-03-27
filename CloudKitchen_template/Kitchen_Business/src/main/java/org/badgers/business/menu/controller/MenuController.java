@@ -98,4 +98,23 @@ public class MenuController {
 		
 	}
 	
+	
+	@RequestMapping(value="/main/getMenuCat", method=RequestMethod.GET)
+	@ResponseBody
+	public List<?> getMenuCat(@RequestParam("bizId") String bizId) {
+		System.out.println("FrontController : "+bizId);
+		try {
+			String url = "http://localhost:80";
+			ResponseEntity<List> menuResponseEntity = restTemplate.getForEntity
+					(url+"rest/bizmenu/getMenuCat/"+bizId, List.class);
+			
+			List<?> menuOptVoEx = menuResponseEntity.getBody();
+			return menuOptVoEx;
+			
+		}catch(Exception e){
+			e.getStackTrace();
+		}
+		return null;
+	}
+	
 }
