@@ -110,7 +110,7 @@ $(document).ready(function() {
 	    					'<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
 	    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
 	    					data[i].menuName + '<span class="pull-right">' + data[i].unitPrice + '원</span></td>' +
-	    					'<td style="text-align: right; width: 10%;"><i class="icon_close check-delete"></i></td></tr>');
+	    					'<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td></tr>');
 	    			if(data[i].options != null) {
 		    			for(let j = 0; j < data[i].options.length; j++) {
 			    			$('.cartTable').append('<tr><td style="width: 10%;"></td><td style="font-size: 11px">'
@@ -179,20 +179,24 @@ $(document).ready(function() {
 	   			$('.cartTable').empty();
 	   			cartTotal = 0;
 				for(let i = 0; i < data.length; i++) {
-	    			$('.cartTable').append('<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
+	    			$('.cartTable').append('<tr class="bizNameRow"><td colspan="3"><strong>' + data[i].bizName + '</strong></td></tr>' +
+	    					'<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
 	    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
-	    					data[i].menuName + '<strong class="pull-right">' + data[i].totalAmt + '원</strong></td>' +
+	    					data[i].menuName + '<span class="pull-right">' + data[i].unitPrice + '원</span></td>' +
 	    					'<td style="text-align: right; width: 10%;"><input class="check-delete" type="checkbox"></td></tr>');
 	    			if(data[i].options != null) {
 		    			for(let j = 0; j < data[i].options.length; j++) {
-			    			$('.cartTable').append('<tr><td style="width: 10%;"></td>' +
-			    					'<td style="font-size: 11px">' + data[i].options[j].menuOptName + '</td>' +
-			    					'<td style="width: 10%;"></td></tr>');			    				
+			    			$('.cartTable').append('<tr><td style="width: 10%;"></td><td style="font-size: 11px">'
+			    					+ data[i].options[j].menuOptName + '<span class="pull-right">+ ' + data[i].options[j].menuOptPrice + '원</span></td>' +
+			    					'<td style="width: 10%;"></td></tr>');
 		    			}
 	    			}
+	    			$('.cartTable').append('<tr><td colspan="2" class="priceData" data-total-price="' + data[i].totalAmt + '">' +
+	    					'<strong class="pull-right">합계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + data[i].totalAmt + '원</strong></td></tr>');
 	    			cartTotal += data[i].totalAmt;
 				}
 				$('.total span').text(cartTotal + '원');
+				removeDuplicateBizNames();
 			}
 			, error : function(data) {
 				console.log('ERRoR oCCURRED');
