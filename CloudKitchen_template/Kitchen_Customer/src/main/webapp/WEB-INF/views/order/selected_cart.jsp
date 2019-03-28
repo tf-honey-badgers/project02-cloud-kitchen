@@ -46,7 +46,7 @@
 							</tbody>
 						</table>
 						<hr>
-						<a href="${pageContext.request.contextPath}/order/orderinfo" class="btn_full" id="orderNow">Order now</a>
+						<input type="submit" class="btn_full" id="orderNow" value="Order now">
 					</div> <!-- End cart_box -->
 				</div> <!-- End theiaStickySidebar -->
 			</div> <!-- End col-md-4 -->
