@@ -18943,7 +18943,10 @@ Copyright (c) 2015 Daniel Eden
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
-
+input.form-control.form-white{
+	width:100%;
+	
+}
 input.form-control.form-white::placeholder {
 	color: #fff;
 	text-indent: 10px

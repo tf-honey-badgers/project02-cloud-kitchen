@@ -39,7 +39,7 @@ $(document).ready(function() {
 				'<i class="material-icons" style="width: 60px; font-size: 60px;">lock_alt</i></div>' +
 				'<h2>ID 찾기</h2><h5>ID를 찾으려면 본인인증을 해주세요.</h5>' +
 				'<input type="text" class="form-control form-white" placeholder="사업자 등록번호">' +
-				'<input type="text" class="form-control form-white" placeholder="은행 계좌번호">' +
+				'<input type="password" class="form-control form-white" placeholder="은행 계좌번호">' +
 				'<button type="button" id="getId" class="btn btn-submit">ID 찾기</button>');
 	});
 	
@@ -47,29 +47,44 @@ $(document).ready(function() {
 	$('#myLogin button').on('click', function() {
 		//--------------------------------------------------------------------------
 		
+		var cnt=0;
+		var inputCheck= $(this).siblings('span.bmd-form-group').find('input');
+		inputCheck.each(function(i,v){
+			if(v.value===null||v.value===undefined||v.value===''){
+				cnt++;
+				return;
+				
+			}
+		})
 		
-		$.ajax({
-    		url : 'http://localhost:3000/business/member/'
-    		, type : 'POST'
-			, contentType : 'application/json'
-			, dataType : 'text'
-    		, data : JSON.stringify({
-    				bizId : $('#myLogin input:eq(0)').val()
-    				, pw : $('#myLogin input:eq(1)').val()
-    			})
-    		, error : function(data) {
-    			console.log(data);
-    		}
-    		, success : function(data) {
-    			if(data == "성공적으로 로그인했습니다.") {
-    				md.showNotification('top', 'center', 'info', '로그인했습니다.');    				
-    			} else {
-    				md.showNotification('top', 'center', 'danger', data);    				
-    			}
-    			$('.modal').modal('hide');
-    			$('#myLogin input').val("");
-    		}
-		});
+		if(cnt===0){
+			$.ajax({
+	    		url : 'http://localhost:3000/business/member/'
+	    		, type : 'POST'
+				, contentType : 'application/json'
+				, dataType : 'text'
+	    		, data : JSON.stringify({
+	    				bizId : $('#myLogin input:eq(0)').val()
+	    				, pw : $('#myLogin input:eq(1)').val()
+	    			})
+	    		, error : function(data) {
+	    			console.log(data);
+	    		}
+	    		, success : function(data) {
+	    			if(data == "성공적으로 로그인했습니다.") {
+	    				md.showNotification('top', 'center', 'info', '로그인했습니다.');    				
+	    			} else {
+	    				md.showNotification('top', 'center', 'danger', data);    				
+	    			}
+	    			$('.modal').modal('hide');
+	    			$('#myLogin input').val("");
+	    		}
+			});
+			
+		}else{
+			alert('빠트린 입력란이 있는지 확인해 주세요')
+		}
+		
 	})
 	
 	/* ID 찾기 인증 절차 */
