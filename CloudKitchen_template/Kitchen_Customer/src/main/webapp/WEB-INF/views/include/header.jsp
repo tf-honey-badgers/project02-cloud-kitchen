@@ -83,7 +83,7 @@
 
 <!-- Login modal -->
 <div class="modal fade" id="login_2" tabindex="-1" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
-<<<<<<< HEAD
+
        <div class="modal-dialog" style="margin-top: 151px;">
            <div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;
 					text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
@@ -91,13 +91,16 @@
                 <form action="#" class="popup-form" id="myLogin">
                     <div class="login_icon"><i class="icon_lock_alt"></i></div>
                     <input type="text" class="form-control form-white" placeholder="아이디">
-                    <input type="text" class="form-control form-white" placeholder="비밀번호">
+                    <input type="password" class="form-control form-white" placeholder="비밀번호">
                     <div class="text-left">
                         <a id="findId" href="#" style="font-size: 13px;">아이디를 잊으셨나요?</a> <br/>
 				    	<a class="changePw" href="#" style="font-size: 13px;">비밀번호를 잊으셨나요?</a>
                      </div>
                     <button type="button" class="btn btn-submit">로그인</button>
                 </form>
+           <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
+           <button type ="button" class="btn btn-submit">카카오 로그인</button>
+           </a>     
             </div>
         </div>
     </div><!-- End modal -->

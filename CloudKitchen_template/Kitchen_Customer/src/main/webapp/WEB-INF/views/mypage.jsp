@@ -15,7 +15,7 @@
 <div style="margin-left:300px;">	
 	<div class="row">
 		<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.1s">
-			<a class="strip_list grid" href="detail_page.html">
+			<a class="strip_list grid" href="modify.jsp">
 
 				<div class="desc">
 					
