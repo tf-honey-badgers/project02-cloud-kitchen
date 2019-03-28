@@ -109,9 +109,8 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public List<CartVOExtend> readSelectedCart(int[] selectedCartId) throws Exception {
 		List<CartVOExtend> returnVal = null;
-		String custId= null;
 		
-		returnVal = mapper.readCart(custId, selectedCartId);
+		returnVal = mapper.readSelectedCart(selectedCartId);
 		
 		for(int i = 0; i < returnVal.size(); i++) {
 			List<CartDetailVO> options = mapper.readOptions(returnVal.get(i).getId());

@@ -218,7 +218,7 @@ $(document).ready(function() {
 		const checked = $('.cartTable .check-order:checked');
 		let cartId = [];
 		for(let i = 0; i < checked.length; i++) {
-			cartId[i] = checked.eq(i).parent().siblings('.menuData').attr('data-cart-id');
+			cartId[i] = Number(checked.eq(i).parent().siblings('.menuData').attr('data-cart-id'));
 		}
 		/* 카트의 모든 체크박스 해제 */
 		$('.table_summary th:eq(0) input').prop('checked', false);
@@ -226,18 +226,23 @@ $(document).ready(function() {
 		
  		$.ajax({
 			type : 'POST'
-			, url : 'http://localhost:3001/customer/cart/order'
+			, url : 'http://localhost:3001/customer/order/orderinfo'
 			, dataType : 'json'
 			, contentType : 'application/json'
 			, data : JSON.stringify({
 					cartIds : cartId
 				})
+			/*, data : cartId*/
 	   		, success : function(data) {
 	   			console.log(data);
+	   			
 			}
 			, error : function(data) {
 				console.log('ERRoR oCCURRED');
 				console.log(data);
+				alert(Object.entries(data));
+				alert(cartId[0]);
+				alert(typeof(cartId[0]));
 			}
 		});
 	});

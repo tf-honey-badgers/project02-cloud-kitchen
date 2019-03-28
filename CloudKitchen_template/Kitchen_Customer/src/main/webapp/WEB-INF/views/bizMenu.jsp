@@ -157,7 +157,7 @@
 							</tbody>
 						</table>
 						<hr>
-						<a href="${pageContext.request.contextPath}/order/orderinfo" class="btn_full" id="orderNow">Order now</a>
+						<p class="btn_full" id="orderNow">Order now</p>
 					</div> <!-- End cart_box -->
 				</div> <!-- End theiaStickySidebar -->
 			</div> <!-- End col-md-4 -->

@@ -1,6 +1,8 @@
 package org.badgers.customer.order.controller;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -12,10 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
-
 
 import lombok.extern.log4j.Log4j;
 
@@ -27,17 +29,18 @@ public class PaymentController {
 	@Inject
 	RestTemplate restTemplate;
 
-	@RequestMapping("/orderinfo")
-	public String orderInfo(@RequestBody int[] cartIds, HttpSession session, Model model) {
+	@PostMapping("/orderinfo")
+	public String orderInfo(@RequestBody Map cartIds, HttpSession session, Model model) {
 		String url = "http://127.0.0.1:80/rest/cust/order/orderinfo";
 		
-		log.info("cartIds.length");
-		log.info(cartIds.length);
-		
-		ResponseEntity<List> response = restTemplate.postForEntity(url, cartIds, List.class);
+		ResponseEntity<CartVOExtend[]> response = restTemplate.postForEntity(url, cartIds.get("cartIds"), CartVOExtend[].class);
 		log.info("겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리");
 		log.info(response.getBody());
-		List cartList = response.getBody();
+		List cartList = Arrays.asList(response.getBody());
+		
+		log.info("cartListcartListcartListcartListcartListcartListcartListcartListcartListcartListcartListcartList");
+		log.info(cartList);
+//		List cartList = response.getBody();
 
 		/* 테스트용 */
 		session.setAttribute("id", "TJ");
