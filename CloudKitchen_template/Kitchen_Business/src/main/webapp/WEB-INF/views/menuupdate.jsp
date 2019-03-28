@@ -68,12 +68,15 @@
 														</select>
 														</td>
 													</tr>
-
+													
 											</tbody>
 										</table>
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="addOptBtnArea">
+						<button type="button" id="insertOpt" class="btn btn-primary pull-right">옵션추가</button>
 						</div>
 						
 						<div class="col-md-12">
@@ -87,23 +90,22 @@
 											<thead class="text-primary">
 												<th>옵션분류</th>
 												<th>옵션분류이름</th>
+												<th>옵션이름</th>
 												<th>옵션상세이름</th>
 												<th>옵션추가가격</th>
+												<th></th>
 											</thead>
 											<tbody>
-													<tr>
+													<tr class="menuOptCl">
 														<td>
-															<select id="menuOptSelect">
-																
+															<select id="menuOptClSelect">
 															</select>
 														</td>
 														<td><input type="text" class=""></td>
 														<td><input type="text" class=""></td>
-														<td>
-
-														</td>
+														<td><input type="text" class=""></td>
+														<td><input type="text" class=""></td>
 													</tr>
-
 											</tbody>
 										</table>
 									</div>
@@ -123,7 +125,7 @@
 			<jsp:include page="include/header.jsp" flush="false"></jsp:include>
 			<!-- End Header -->
 			<div class="content">
-				<input type="button" class="menuInsert" value="메뉴추가">
+				<button type="button" id="menuInsert" class="btn btn-primary pull-right">메뉴추가</button>
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
