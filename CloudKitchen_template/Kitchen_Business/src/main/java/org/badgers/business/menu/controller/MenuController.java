@@ -140,10 +140,8 @@ public class MenuController {
 			produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public int insertMenu(@RequestParam("menuInfo") String menuInsertInfo) {
-		System.out.println(menuInsertInfo);
 		int result = 0;
 		try {
-			System.out.println("MenuUpdate Front Controller1");
 			String url = "http://localhost:80/rest/bizmenu/menuinsert";
 	        
 			HttpHeaders headers = new HttpHeaders();
