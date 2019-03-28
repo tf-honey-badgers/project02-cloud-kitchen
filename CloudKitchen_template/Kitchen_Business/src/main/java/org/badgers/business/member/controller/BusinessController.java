@@ -1,19 +1,19 @@
 package org.badgers.business.member.controller;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.badgers.business.model.BizMemberVOExtend;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -80,18 +80,29 @@ public class BusinessController {
 //	로그인 
 	@PostMapping(value ="/login", produces = "text/plain; charset=utf-8")
 	@ResponseBody
-	public String login(@RequestBody BizMemberVOExtend mvo, ModelAndView mv) {
+	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend mvo, Model model) {
+		
 		log.info("Kitchen_Business 사업자 로그인...............................");
 		String status="";
 		String url = "http://localhost/rest/business/login";
-		try {
+//		try {
 			ResponseEntity<Object> responseEntity = restTemplate.postForEntity(url, mvo, Object.class);
+			HttpHeaders responseHeaders = new HttpHeaders();
+		    
+			responseHeaders.set("RESULT", "123456789");
+			
 			status= responseEntity.getStatusCode().toString();
-			mv.addObject("bizId",mvo.getBizId());
-		}catch(HttpClientErrorException e){
-		}
-		mv.addObject("status",status);
-		return status;
+			
+//			model.addObject("bizId",mvo.getBizId());
+			
+//		}catch(HttpClientErrorException e){
+//		}
+//		mv.addObject("status",status);
+//		return mv;
+		
+		model.addAttribute("RESULT", "ABCDEFG");
+			
+		return new ResponseEntity<>("ABCDEFG",responseHeaders,  HttpStatus.OK);	
 	}
 
 	@PostMapping("/verify")

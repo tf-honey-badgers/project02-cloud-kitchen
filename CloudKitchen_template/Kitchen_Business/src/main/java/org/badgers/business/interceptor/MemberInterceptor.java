@@ -1,7 +1,6 @@
 package org.badgers.business.interceptor;
 
-import java.util.Map;
-
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,15 +21,48 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView mv) throws Exception {
 		
-		Map map=mv.getModel();
-		System.out.println(".........................interceptor : postHandle...................");
+		System.out.println("=======================================");
+		System.out.println("=======================================");
 		
-		if(map.get("status").equals("200")&&map.get("bizId")!=null) {
-			System.out.println(".....................로그인 성공 했으니깐 세션 생성해주이소................................");
-			HttpSession session=request.getSession();
-			session.setAttribute("bizId", map.get("bizId") );
-
+		String result = response.getHeader("RESULT");
+		
+		System.out.println("STATUS: " + result);
+		
+		HttpSession session = request.getSession();
+		
+		if(session != null) {
+			
+			session.setAttribute("bizId", result );			
+			
 		}
+		
+		Cookie ck = new Cookie("TESTCOOKIE", result);
+		
+		response.addCookie(ck);
+		
+		
+		
+		System.out.println("=======================================");
+		System.out.println("=======================================");
+		
+		
+		
+//		Map map=mv.getModel();
+//		System.out.println(".........................interceptor : postHandle...................");
+//		
+//		if(map.get("status").equals("200")&&map.get("bizId")!=null) {
+//			System.out.println(".....................로그인 성공 했으니깐 세션 생성해주이소................................");
+//
+//			HttpSession session=request.getSession();
+//			
+//			System.out.println(session);
+//
+//			System.out.println(".....................로그인 성공 했으니깐 세션 생성해주이소................................");
+//			
+////			HttpSession session=request.getSession();
+//			session.setAttribute("bizId", map.get("bizId") );
+//
+//		}
 
 		
 		
