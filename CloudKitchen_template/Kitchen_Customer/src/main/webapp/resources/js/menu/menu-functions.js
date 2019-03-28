@@ -218,4 +218,10 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+/* 찜하기 버튼 누르면 찜을 추가하거나 찜을 삭제하기 */
+	$('body').on('click', $('icon-heart-empty'), function() {
+		
+	})
+	
 });
