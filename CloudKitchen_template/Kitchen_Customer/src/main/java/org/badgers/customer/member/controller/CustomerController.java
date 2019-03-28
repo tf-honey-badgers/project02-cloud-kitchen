@@ -160,7 +160,8 @@ public class CustomerController {
 	
 	// 특정 고객이 특정 가게를 찜했는지 확인하기
 	@GetMapping("/fav/{cust_id}/{biz_id}")
-	public ResponseEntity<Integer> isFavoriteChk(@PathVariable("cust_id") String custId, @PathVariable("biz_id") String bizId) {
+	@ResponseBody
+	public int isFavoriteChk(@PathVariable("cust_id") String custId, @PathVariable("biz_id") String bizId) {
 		log.info(custId + "이/가 " + bizId + "를 찜했는지 확인하기 ================================");
 		
 		int favorite = 0;
@@ -170,12 +171,13 @@ public class CustomerController {
 		if(responseEntity.getStatusCode() == HttpStatus.OK) {
 			favorite = responseEntity.getBody();
 		}
-		return new ResponseEntity<Integer>(favorite, HttpStatus.OK);
+		return favorite;
 	}
 	
 	// 찜 추가하기
 	@PostMapping(value = "/fav/add")
-	public ResponseEntity<Integer> addFavorite(@RequestBody FavoriteVO fav) {
+	@ResponseBody
+	public int addFavorite(@RequestBody FavoriteVO fav) {
 		log.info("찜 추가하기 ================================");
 		
 		int favorite = 0;
@@ -184,7 +186,7 @@ public class CustomerController {
 		ResponseEntity<Integer> responseEntity = restTemplate.postForEntity(url, fav, Integer.class);
 		favorite = responseEntity.getBody();
 		
-		return new ResponseEntity<Integer>(favorite, HttpStatus.OK);
+		return favorite;
 	}
 	
 	// 찜 삭제하기
