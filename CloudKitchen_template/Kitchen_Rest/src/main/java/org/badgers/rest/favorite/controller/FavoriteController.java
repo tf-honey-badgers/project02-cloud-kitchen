@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,6 +61,22 @@ public class FavoriteController {
 		return new ResponseEntity<Integer>(favorite, HttpStatus.OK);
 	}
 	
+	// 특정 고객(cust_id)이 특정 가게(biz_id)를 찜했는지 확인하기
+	@GetMapping(value = "/{cust_id}/{biz_id}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<Integer> isFavoriteChk(@PathVariable("cust_id") String custId, @PathVariable("biz_id") String bizId) {
+		log.info(">>>>>  찜 삭제하기  ==============================");
+
+		int favorite = 0;
+		
+		try {
+			favorite = service.isFavoriteChk(custId, bizId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<Integer>(favorite, HttpStatus.OK);
+	}
+	
 	// 찜 추가하기
 	@PostMapping(value = "/add", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<Integer> addFavorite(@RequestBody FavoriteVO fav) {
@@ -77,7 +94,7 @@ public class FavoriteController {
 	}
 	
 	// 찜 삭제하기
-	@GetMapping(value = "/{cust_id}/{biz_id}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	@DeleteMapping(value = "/{cust_id}/{biz_id}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<Integer> deleteFavorite(@PathVariable("cust_id") String custId, @PathVariable("biz_id") String bizId) {
 		log.info(">>>>>  찜 삭제하기  ==============================");
 		
