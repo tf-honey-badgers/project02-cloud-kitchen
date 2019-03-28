@@ -42,42 +42,77 @@
 <div id="menuInsertModal" class="menuInsertModal">
 	<div class="menuInsertModalOpt">
 		<span class="menuInsertModalClose">&times;</span>
-		<h3>추가</h3>
-		<table class="menuInsertOpt">
-				<tr>
-					<th>메뉴사진</th><th>메뉴이름</th><th>메뉴가격</th><th>메뉴분류</th>
-				</tr>
-				<tr>
-					<td><input type="file" id="menuPhoto" value="선택"></td>
-					<td><input type="text" id="menuName"></td>
-					<td><input type="text" id="menuPrice"></td>
-					<td>
-						<select name="" class="menuCatSelect">
-   		 				</select>
-					</td>
-				</tr>
-				
-<!-- 				<tr>
-					<th>카테고리이름</th><th>옵션카테고리</th>
-				</tr>
-				<tr>
-					<td><input type="text" id="menuCatName"></td>
-					<td>
-						<select name="" class="menuOptSelect">
-        					<option value="OPT001">기본단일</option>
-        					<option value="OPT002">기본다중</option>
-        					<option value="OPT003">추가단일</option>
-        					<option value="OPT004">추가다중</option>
-   		 				</select>
-					</td>
-				</tr> -->
-
-		</table>
-		<div class="modelInsertBtnArea"><button id="updateInsertMenuBtn">메뉴변경</button></div>
-		<h3>메뉴추가</h3>
-		<table class="menuInsertOpt">
-		</table>
-		<div class="modelInsertBtnArea"><button id="insertMenuBtn">메뉴변경</button></div>
+		
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header card-header-primary">
+									<h4 class="card-title ">메뉴</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table">
+											<thead class="text-primary">
+												<th>메뉴사진</th>
+												<th>메뉴이름</th>
+												<th>메뉴가격</th>
+												<th>메뉴구분</th>
+											</thead>
+											<tbody>
+													<tr>
+														<td><input type="file" class="" value="파일"></td>
+														<td><input type="text" class=""></td>
+														<td><input type="text" class=""></td>
+														<td>
+														<select id="menuCatSelect">
+															
+														</select>
+														</td>
+													</tr>
+													
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="addOptBtnArea">
+						<button type="button" id="insertOpt" class="btn btn-primary pull-right">옵션추가</button>
+						</div>
+						
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header card-header-primary">
+									<h4 class="card-title ">옵션종류선택</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table">
+											<thead class="text-primary">
+												<th>옵션분류</th>
+												<th>옵션분류이름</th>
+												<th>옵션이름</th>
+												<th>옵션상세이름</th>
+												<th>옵션추가가격</th>
+												<th></th>
+											</thead>
+											<tbody>
+													<tr class="menuOptCl">
+														<td>
+															<select id="menuOptClSelect">
+															</select>
+														</td>
+														<td><input type="text" class=""></td>
+														<td><input type="text" class=""></td>
+														<td><input type="text" class=""></td>
+														<td><input type="text" class=""></td>
+													</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						
 	</div>
 </div>
 
@@ -90,7 +125,7 @@
 			<jsp:include page="include/header.jsp" flush="false"></jsp:include>
 			<!-- End Header -->
 			<div class="content">
-				<input type="button" class="menuInsert" value="메뉴추가">
+				<button type="button" id="menuInsert" class="btn btn-primary pull-right">메뉴추가</button>
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">

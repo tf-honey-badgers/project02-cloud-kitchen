@@ -1,8 +1,6 @@
 package org.badgers.customer.member.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +13,7 @@ import org.badgers.customer.model.OrderInfoVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +31,6 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/member")
 @Log4j
 public class CustomerController {
-	
 	@Inject
 	RestTemplate restTemplate;
 	
@@ -45,17 +42,10 @@ public class CustomerController {
 		CustomerVO returnVal = null;
 		String url = "http://localhost/rest/customer/" + id + "/mypage";
 		
-		try {
-			ResponseEntity<CustomerVO> responseEntity = 
-					restTemplate.getForEntity(url, org.badgers.customer.model.CustomerVO.class);
-
-			if (responseEntity.getStatusCode() == HttpStatus.OK) {
-				returnVal = responseEntity.getBody();
-			}
-		} catch (Exception e) {
-			e.getStackTrace();
+		ResponseEntity<CustomerVO> responseEntity = restTemplate.getForEntity(url, org.badgers.customer.model.CustomerVO.class);
+		if (responseEntity.getStatusCode() == HttpStatus.OK) {
+			returnVal = responseEntity.getBody();
 		}
-		System.out.println(returnVal);		
 		
 		if(returnVal != null) { log.info("readCustomer DONE!!!!!"); }
 		else {
@@ -67,8 +57,7 @@ public class CustomerController {
 		mav.setViewName("modify");
 		
 		return mav;
-	}
-	
+	}	
 	
 	// 로그인
 	@PostMapping(value = "/", produces = "text/plain; charset=utf-8")
@@ -79,12 +68,9 @@ public class CustomerController {
 		String msg = "";
 		String url = "http://localhost/rest/customer/";
 		
-		try {
-			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);
-			msg = responseEntity.getBody();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);
+		msg = responseEntity.getBody();
+		
 		// 처리는 인터셉터에서 하기
 		if(msg.equals("BAD_PW")) {
 			msg = "비밀번호가 틀렸습니다.";
@@ -97,11 +83,9 @@ public class CustomerController {
 			msg = "성공적으로 로그인했습니다.";
 		}
 
-		log.info(msg);
-		
+		log.info(msg);	
 		return msg;
 	}
-	
 	
 	//회원정보 수정 
 	@PostMapping("/{id}/modify")
@@ -109,25 +93,17 @@ public class CustomerController {
 	public void updateCustomer(@RequestBody CustomerVO cvo) {
 		log.info("Kitchen_Business 사용자 개인정보 수정...............................");
 		
-		try {
-			String url = "http://localhost/rest/customer/" + cvo.getId() + "/mypage/modify";
-			restTemplate.put(url, cvo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		String url = "http://localhost/rest/customer/" + cvo.getId() + "/mypage/modify";
+		restTemplate.put(url, cvo);
+				
 		log.info("회원 정보 수정 완료 ");
-
 	}
 	
 	// 마이 페이지 
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage() {
-		
 		return "mypage";
-	}	
-	
-
+	}
 
 	// 회원 가입 
 	@PostMapping("/register")
@@ -136,71 +112,93 @@ public class CustomerController {
 		String msg = "";
 		String url = "http://localhost/rest/customer/register";
 		
-		try {
-			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
-			msg = responseEntity.getBody();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
+		msg = responseEntity.getBody();
+				
 		return msg;
 	}
 	
-	
 	// 주문 내역 보기 
+	@SuppressWarnings("unchecked")
 	@GetMapping(value = "/{custId}/mypage/orderinfo")
 	public ModelAndView readOrderinfo(ModelAndView mav, @PathVariable("custId") String custId) {
 		log.info("사용자 주문 내역 보기================================");
 		
 		List<OrderInfoVO> list = null;
 		String url = "http://localhost/rest/customer/" + custId + "/mypage/orderinfo";
-		try {
-			ResponseEntity<OrderInfoVO> responseEntity =
-					restTemplate.getForEntity(url,org.badgers.customer.model.OrderInfoVO.class);
-			if(responseEntity.getStatusCode()==HttpStatus.OK) {
-				list = (List<OrderInfoVO>) responseEntity.getBody();
-			}
 		
-		}catch(Exception e) {
-			e.getStackTrace();
+		ResponseEntity<OrderInfoVO> responseEntity = restTemplate.getForEntity(url,org.badgers.customer.model.OrderInfoVO.class);
+		if(responseEntity.getStatusCode()==HttpStatus.OK) {
+			list = (List<OrderInfoVO>) responseEntity.getBody();
 		}
-		System.out.println(list);
 		
 		mav.addObject("list",list);
-		mav.setViewName("orderinfo");
-		
+		mav.setViewName("orderinfo");	
 		
 		return mav;
-				    
 	}
-	
-	
 
-	
 	// 찜 내역 보기 
-	@GetMapping(value = "/{custId}/mypage")
-	public ModelAndView readFavorite (ModelAndView mav, @PathVariable("custId") String custId) {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@GetMapping(value = "/fav/{custId}/mypage")
+	public ModelAndView readFavorite(ModelAndView mav, @PathVariable("custId") String custId) {
 		log.info("사용자 찜 내역 보기================================");
+		
 		List<FavoriteVO> favorite = null;
 		String url = "http://localhost/rest/favorite/" + custId + "/mypage";
-		try {
-			ResponseEntity<FavoriteVO> responseEntity =
-					restTemplate.getForEntity(url,org.badgers.customer.model.FavoriteVO.class);
-			if(responseEntity.getStatusCode()==HttpStatus.OK) {
-				favorite = (List<FavoriteVO>) responseEntity.getBody();
-			}
 		
-		}catch(Exception e) {
-			e.getStackTrace();
-		}
-		System.out.println(favorite);
+		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, java.util.List.class);
+		if(responseEntity.getStatusCode()==HttpStatus.OK) {
+			favorite = (List<FavoriteVO>) responseEntity.getBody();
+		}		
 		
 		mav.addObject("list",favorite); //뷰에 전달할 데이터 지정 
 		mav.setViewName("favorite"); //뷰 이름 지정 
-		
-		
+
 		return mav;
-}
+	}
+	
+	// 특정 고객이 특정 가게를 찜했는지 확인하기
+	@GetMapping("/fav/{cust_id}/{biz_id}")
+	public ResponseEntity<Integer> isFavoriteChk(@PathVariable("cust_id") String custId, @PathVariable("biz_id") String bizId) {
+		log.info(custId + "이/가 " + bizId + "를 찜했는지 확인하기 ================================");
+		
+		int favorite = 0;
+		String url = "http://localhost/rest/favorite/" + custId + "/" + bizId;
+		
+		ResponseEntity<Integer> responseEntity = restTemplate.getForEntity(url, java.lang.Integer.class);
+		if(responseEntity.getStatusCode() == HttpStatus.OK) {
+			favorite = responseEntity.getBody();
+		}
+		return new ResponseEntity<Integer>(favorite, HttpStatus.OK);
+	}
+	
+	// 찜 추가하기
+	@PostMapping(value = "/fav/add")
+	public ResponseEntity<Integer> addFavorite(@RequestBody FavoriteVO fav) {
+		log.info("찜 추가하기 ================================");
+		
+		int favorite = 0;
+		String url = "http://localhost/rest/favorite/add";
+		
+		ResponseEntity<Integer> responseEntity = restTemplate.postForEntity(url, fav, Integer.class);
+		favorite = responseEntity.getBody();
+		
+		return new ResponseEntity<Integer>(favorite, HttpStatus.OK);
+	}
+	
+	// 찜 삭제하기
+	@SuppressWarnings("rawtypes")
+	@DeleteMapping("/fav/{cust_id}/{biz_id}")
+	public ResponseEntity deleteFavorite(@PathVariable("cust_id") String custId, @PathVariable("biz_id") String bizId) {
+		log.info(custId + "의 " + bizId + " 찜을 삭제하기 ================================");
+
+		String urlDeleteFav = "http://localhost/rest/favorite/" + custId + "/" + bizId;
+		
+		restTemplate.delete(urlDeleteFav, custId, bizId);
+		
+		return new ResponseEntity(HttpStatus.OK);
+	}
 	
 	//ID 찾기 
 	@PostMapping("/verify")
@@ -211,58 +209,38 @@ public class CustomerController {
 		String res = "";
 		String url = "http://localhost/rest/customer/verify";
 		
-		try {			
-			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);
-			res = responseEntity.getBody();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);
+		res = responseEntity.getBody();
+		
 		log.info("retrieved customer id");
 		return res;
 	}
-	
 
-	
 	@GetMapping("/emailConfirm")
-
-	public ModelAndView emailConfirm(ModelAndView mav,@RequestParam("email")String email, @RequestParam("key") String AuthCode) throws UnsupportedEncodingException {	
+	public ModelAndView emailConfirm(ModelAndView mav,@RequestParam("email")String email, @RequestParam("key") String AuthCode) throws UnsupportedEncodingException {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("email",email);
-		map.put("key",AuthCode);	
+		map.put("key",AuthCode);
 		
-	
+		String url = "http://localhost/rest/customer/emailConfirm/";
+		int a =0;
 		
-	String url = "http://localhost/rest/customer/emailConfirm/";
-	int a =0;
-	
-	try {
 		ResponseEntity<Integer> responseEntity = restTemplate.postForEntity(url,map,Integer.class);
-			log.info("들어간다");
+		log.info("들어간다");
 		if (responseEntity.getStatusCode() == HttpStatus.OK) {
-		a	=  responseEntity.getBody();
-		System.out.println("이것은="+a);		
+			a = responseEntity.getBody();
+			System.out.println("이것은="+a);		
+		}		
+		
+		if(a != 0) { log.info("이메일 인증 완료 ! "); }
+		else {
+			log.info("Failed to emailConfirm. REST server may be offline.");
+			mav.addObject("message", "Failed to read customer member data. REST server may be offline.");
 		}
-	} catch (Exception e) {
-		e.getStackTrace();
-	}
 	
-	
-	
-	if(a != 0) { log.info("이메일 인증 완료 ! "); }
-	else {
-		log.info("Failed to emailConfirm. REST server may be offline.");
-		mav.addObject("message", "Failed to read customer member data. REST server may be offline.");
-	}
-
-	mav.addObject("customer", map);
-	mav.setViewName("join_success");
-	
-	return mav;
-	}
-
-	
-	
-	
-	
+		mav.addObject("customer", map);
+		mav.setViewName("join_success");
+		
+		return mav;
+	}	
 }

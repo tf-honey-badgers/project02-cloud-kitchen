@@ -2,7 +2,15 @@ $(document)
 		.ready(
 				function() {
 					
-					$('.content .menuInsert').on('click',function(e){
+					$('#insertOpt').on('click',function(e){
+						e.preventDefault();
+						
+						
+						
+						
+					});
+					
+					$('.content #menuInsert').on('click',function(e){
 						e.preventDefault();
 						$('.menuInsertModal').css('display', 'block');
 						
@@ -18,18 +26,36 @@ $(document)
 			        		},
 			        		success(data){
 			        			console.log(data);
-			        			
+			        			$('#menuCatSelect').empty();
 			        			for(let i=0;i<data.length;i++){
-			        				$('.menuCatSelect').append('<option value="" class="'+data[i].mcBizId
+			        				$('#menuCatSelect').append('<option value="" class="'+data[i].mcBizId
 			        						+'" id="'+data[i].mcNo+'" >'+data[i].mcName+'</option>');
 			        			}
 			        		}
 						});
+						
+						$.ajax({
+			        		type : "GET",
+			        		dataType : 'json',
+			        		url : "../menu/main/getComCode.json",
+			        		error : function(data){
+			        			console.log(data);
+			        		},
+			        		success(data){
+			        			console.log(data);
+			        			$('#menuOptClSelect').empty();
+			        			for(let i=0;i<data.length;i++){
+			        				$('#menuOptClSelect').append('<option value="" class="'+data[i].id
+			        						+'" id="'+data[i].mcNo+'" >'+data[i].name+'</option>');
+			        			}
+			        		}
+						});
+						
 					}); // menuInsert click end
 
-					$('.menuInsert').on('click',function(e){
-						$('.menuInsertModalOpt').css('display', 'block');
-					});
+//					$('.menuInsert').on('click',function(e){
+//						$('.menuInsertModalOpt').css('display', 'block');
+//					});
 					
 					$('#updateMenuBtn').on('click',function(e){
 						
@@ -176,14 +202,11 @@ $(document)
 				
 					$('.menuModalClose').on('click', function() {
 						$('.menuModal').css('display', 'none');
-						$('.menuInsertModal').css('display', 'none');
 						});
 					
-
 					$('.menuInsertModalClose').on('click', function() {
 						$('.menuInsertModal').css('display', 'none');
 						});
-
 
 					$()
 							.ready(

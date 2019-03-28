@@ -2,6 +2,7 @@ package org.badgers.rest.business.menu.service;
 
 import java.util.List;
 
+import org.badgers.rest.model.CommonCodeVOExtend;
 import org.badgers.rest.model.MenuCatVOExtend;
 import org.badgers.rest.model.MenuOptionClVOExtend;
 import org.badgers.rest.model.MenuOptionVOExtend;
@@ -19,4 +20,5 @@ public interface MenuService {
 	public int updateMenuInfo(String updateMenuInfo);
 //	public int updateMenu(String updateMenuInfo);
 	public List<MenuCatVOExtend> getMenuCat(String bizId);
+	public List<CommonCodeVOExtend> getCommonCode();
 }

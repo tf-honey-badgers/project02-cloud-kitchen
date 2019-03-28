@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FavoriteServiceImpl implements FavoriteService {
-
 	@Inject
 	private FavoriteMapper mapper;
 	
@@ -18,16 +17,22 @@ public class FavoriteServiceImpl implements FavoriteService {
 	@Override
 	public List<FavoriteVO> readFavorites(String custId) throws Exception {
 		List<FavoriteVO> favorite = mapper.readFavorites(custId);
-
 		return favorite;
 	}
-	
 
 	// 가게 찜 회수 구하기
 	@Override
 	public int countFavorites(String bizId) throws Exception {
 		int favorite = mapper.countFavorites(bizId);
-		
+		return favorite;
+	}
+	
+	// 특정 고객(cust_id)이 특정 가게(biz_id)를 찜했는지 확인하기
+	@Override
+	public int isFavoriteChk(String custId, String bizId) throws Exception {
+		System.out.println(custId);
+		System.out.println(bizId);
+		int favorite = mapper.isFavoriteChk(custId, bizId);
 		return favorite;
 	}
 	
@@ -35,7 +40,6 @@ public class FavoriteServiceImpl implements FavoriteService {
 	@Override
 	public int addFavorite(FavoriteVO fav) throws Exception {
 		int favorite = mapper.addFavorite(fav);
-		
 		return favorite;
 	}
 	
@@ -43,7 +47,6 @@ public class FavoriteServiceImpl implements FavoriteService {
 	@Override
 	public int deleteFavorite(String custId, String bizId) throws Exception {
 		int favorite = mapper.deleteFavorite(custId, bizId);
-		
 		return favorite;
 	}
 }
