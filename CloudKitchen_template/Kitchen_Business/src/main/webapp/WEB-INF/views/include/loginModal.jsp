@@ -10,7 +10,7 @@
 			<form action="#" class="popup-form" id="myLogin">
 				<div class="login_icon" style="margin-top: 20px; margin-bottom: 10px;"><i class="material-icons" style="width: 60px; font-size: 60px;">lock_alt</i></div>
 				<input type="text" class="form-control form-white id" placeholder="아이디">
-				<input type="text" class="form-control form-white pwd" placeholder="비밀번호">
+				<input type="password" class="form-control form-white pwd" placeholder="비밀번호">
 				<div class="text-left">
 					<a id="findId" href="#" style="font-size: 13px;">아이디를 잊으셨나요?</a> <br/>
 					<a class="changePw" href="#" style="font-size: 13px;">비밀번호를 잊으셨나요?</a>

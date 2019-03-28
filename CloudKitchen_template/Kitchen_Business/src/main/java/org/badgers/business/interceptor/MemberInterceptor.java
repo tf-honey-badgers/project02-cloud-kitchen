@@ -13,7 +13,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("...................................interceptor...................");
+		System.out.println(".........................interceptor : preHandle...................");
 		return super.preHandle(request, response, handler);
 	}
 
@@ -23,9 +23,10 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 		
 		Map map=mv.getModel();
 		System.out.println(map.get("isSuccess"));
+		System.out.println(".........................interceptor : postHandle...................");
 		
 		if(map.containsKey("isSuccess")) {
-			System.out.println("로그인 성공 했으니깐 세션 생성해주이소................................");
+			System.out.println(".....................로그인 성공 했으니깐 세션 생성해주이소................................");
 		}
 
 		
