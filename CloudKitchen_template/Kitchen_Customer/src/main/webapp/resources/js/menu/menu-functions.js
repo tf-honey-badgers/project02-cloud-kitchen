@@ -157,7 +157,7 @@ $(document).ready(function() {
 				$('.total span').text(cartTotal + '원');
 				removeDuplicateBizNames();
 			/* 카트에 추가하면 기존에 선택한 체크박스 해제하기 */
-				$(this).siblings('div').children().children('input:checked').prop('checked', false);
+				checkedOptions.prop('checked', false);
 			/* 카트 체크박스를 default로 전체 선택하기 */
 				$('.cartTable .check-order').prop('checked', true);
 				$('.table_summary th:eq(0) input').prop('checked', true);
