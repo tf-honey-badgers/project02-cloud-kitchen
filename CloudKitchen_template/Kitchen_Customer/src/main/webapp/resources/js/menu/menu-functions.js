@@ -138,7 +138,7 @@ $(document).ready(function() {
 	   			cartTotal = 0;
 				for(let i = 0; i < data.length; i++) {
 	    			$('.cartTable').append('<tr class="bizNameRow"><td colspan="3"><strong>' + data[i].bizName + '</strong></td></tr>' +
-	    					'<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
+	    					'<tr><td style="width: 10%;"><input class="check-order" type="checkbox" name="selectedCart" value="' + data[i].id + '"></td>' +
 	    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
 	    					data[i].menuName + '<span class="pull-right">' + data[i].unitPrice + '원</span></td></tr>');
 	    			if(data[i].options != null) {
@@ -213,39 +213,21 @@ $(document).ready(function() {
 		});
 	});
 
+	
+/*명준이형의 흔적*/
 /* 카트의 id="orderNow" 클릭하면 선택된 항목 주문하기 */
-	$('#orderNow').on('click', function() {
+	/*$('#orderNow').on('click', function() {
 		const checked = $('.cartTable .check-order:checked');
 		let cartId = [];
 		for(let i = 0; i < checked.length; i++) {
 			cartId[i] = Number(checked.eq(i).parent().siblings('.menuData').attr('data-cart-id'));
 		}
-		/* 카트의 모든 체크박스 해제 */
+		 카트의 모든 체크박스 해제 
 		$('.table_summary th:eq(0) input').prop('checked', false);
 		$('.cartTable .check-order').prop('checked', false);
 		
- 		$.ajax({
-			type : 'POST'
-			, url : 'http://localhost:3001/customer/order/orderinfo'
-			, dataType : 'json'
-			, contentType : 'application/json'
-			, data : JSON.stringify({
-					cartIds : cartId
-				})
-			/*, data : cartId*/
-	   		, success : function(data) {
-	   			console.log(data);
-	   			
-			}
-			, error : function(data) {
-				console.log('ERRoR oCCURRED');
-				console.log(data);
-				alert(Object.entries(data));
-				alert(cartId[0]);
-				alert(typeof(cartId[0]));
-			}
-		});
-	});
+			
+	});*/
 	
 /* 찜하기 버튼 누르면 찜을 추가하기 */
 	$('body').on('click', $('#likeBiz'), function() {

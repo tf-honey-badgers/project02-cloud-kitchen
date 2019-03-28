@@ -30,11 +30,14 @@ public class PaymentController {
 	RestTemplate restTemplate;
 
 	@PostMapping("/orderinfo")
-	public String orderInfo(@RequestBody Map cartIds, HttpSession session, Model model) {
+//	public String orderInfo(@RequestBody Map cartIds, HttpSession session, Model model) {
+	public String orderInfo(int[] selectedCart, HttpSession session, Model model) {
 		String url = "http://127.0.0.1:80/rest/cust/order/orderinfo";
 		
-		ResponseEntity<CartVOExtend[]> response = restTemplate.postForEntity(url, cartIds.get("cartIds"), CartVOExtend[].class);
-		log.info("겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리겟바리");
+		log.info("selectedCart");
+		log.info(selectedCart.length);
+//		ResponseEntity<CartVOExtend[]> response = restTemplate.postForEntity(url, cartIds.get("cartIds"), CartVOExtend[].class);
+		ResponseEntity<CartVOExtend[]> response = restTemplate.postForEntity(url, selectedCart, CartVOExtend[].class);
 		log.info(response.getBody());
 		List cartList = Arrays.asList(response.getBody());
 		
