@@ -75,21 +75,17 @@ public class BusinessController {
 		log.info("updateBizMember DONE!!!!!");
 	}
 
-	@PostMapping(value = "/", produces = "text/plain; charset=utf-8")
+	@PostMapping(value = "/login", produces = "text/plain; charset=utf-8")
 	@ResponseBody
-	public ModelAndView login(@RequestBody BizMemberVOExtend mvo, ModelAndView mv, HttpSession session) {
+	public ModelAndView login(@RequestBody BizMemberVOExtend mvo, ModelAndView mv) {
 		log.info("Kitchen_Business 사업자 로그인...............................");
 
 		String msg = "";
 		String url = "http://localhost/rest/business/";
 		String returnVal = "";
-
-		try {
-			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
-			msg = responseEntity.getBody();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
+		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
+		msg = responseEntity.getBody();
 
 		if (msg.equals("BAD_PW")) {
 			returnVal = "비밀번호가 틀렸습니다.";
@@ -106,7 +102,6 @@ public class BusinessController {
 			returnVal = "성공적으로 로그인했습니다.";
 		}
 
-		session.setAttribute("login_id", msg);
 		log.info(returnVal);
 		return mv;
 	}

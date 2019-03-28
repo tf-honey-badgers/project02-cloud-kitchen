@@ -49,7 +49,7 @@ public class BusinessController {
 	}
 	
 	// 로그인
-	@PostMapping("/")
+	@PostMapping("/login")
 	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend biz) throws Exception {
 		 String returnVal = service.login(biz.getBizId(), biz.getPw());
 		 
