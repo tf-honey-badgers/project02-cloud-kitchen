@@ -21,4 +21,5 @@ public interface MenuService {
 //	public int updateMenu(String updateMenuInfo);
 	public List<MenuCatVOExtend> getMenuCat(String bizId);
 	public List<CommonCodeVOExtend> getCommonCode();
+	public int insertMenu(String updateMenuInfo);
 }

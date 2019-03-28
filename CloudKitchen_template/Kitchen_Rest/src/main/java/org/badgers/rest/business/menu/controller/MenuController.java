@@ -108,4 +108,18 @@ public class MenuController {
 		}
 		return new ResponseEntity<>(menuCommonCode, HttpStatus.OK); 
 	}
+	
+	@RequestMapping(value="/menuinsert",produces = "application/json;charset=UTF-8", method=RequestMethod.POST)	
+	@Transactional
+	@ResponseBody
+//	public ResponseEntity menuUpdate(@RequestBody List updateMenuInfo){
+	public ResponseEntity<?> menuInsert(@RequestBody String updateMenuInfo){
+		int result = service.updateMenuInfo(updateMenuInfo);
+		
+		if(result == 0) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(result, HttpStatus.OK); 
+//		return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+	}
 }
