@@ -22,6 +22,7 @@
 		SELECT LAST_INSERT_ID();
 	</select>
 
+	<!-- THIS IS THE ONE AND ONLY REAL TRUE CART MAPPER -->
 	<select id="readCart" resultType="org.badgers.rest.model.CartVOExtend">
 		select
 			CA.id

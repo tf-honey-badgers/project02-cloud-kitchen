@@ -45,14 +45,22 @@ $(document).ready(function() {
 	
 	/* 로그인 절차 */
 	$('#myLogin button').on('click', function() {
+		console.log('check login');
+		const id = $('#myLogin input:eq(0)').val();
+		const pw = $('#myLogin input:eq(1)').val();
+		if(id === "" || pw === "") {
+			md.showNotification('top', 'center', 'warning', '아이디와 비밀번호를 입력해야 합니다.');
+			return;
+		}
+		
 		$.ajax({
     		url : 'http://localhost:3000/business/member/'
     		, type : 'POST'
 			, contentType : 'application/json'
 			, dataType : 'text'
     		, data : JSON.stringify({
-    				bizId : $('#myLogin input:eq(0)').val()
-    				, pw : $('#myLogin input:eq(1)').val()
+    				bizId : id
+    				, pw : pw
     			})
     		, error : function(data) {
     			console.log(data);
