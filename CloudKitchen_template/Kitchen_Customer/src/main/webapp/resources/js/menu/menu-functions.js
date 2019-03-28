@@ -1,3 +1,9 @@
+/* 전역 변수 */
+	/* 사용자 ID */
+	const custId = 'tjtjtj';
+	/* 가게 ID */
+	const bizId = $('#main_menu').attr('data-biz-id');
+
 function removeDuplicateBizNames() {
 	var bizNames = $('.bizNameRow');
 	for(var i = 1; i < bizNames.size(); i++) {
@@ -5,6 +11,23 @@ function removeDuplicateBizNames() {
 			bizNames.eq(i).remove();
 		}
 	}
+}
+
+function isFavoriteChk() {
+	$.ajax({
+		type : 'GET'
+		, url : 'http://localhost:3001/customer/member/fav/' + custId + '/' + bizId + '.json'
+		, contentType : 'application/json'
+	  	, success : function(data) {
+  			if(data == 1) {
+  				$('#likeBiz').removeClass('icon-heart-empty').addClass('icon-heart').siblings('#likeText').text('찜하셨어요!!');
+  			}
+		}
+		, error : function(data) {
+			console.log('ERRoR oCCURRED');
+			console.log(data);
+		}
+	});
 }
 
 /* 브라우저 히스토리를 이용해서 이동했을 경우 (뒤로가기 앞으로가기 버튼) 페이지를 새로고침한다
@@ -25,6 +48,9 @@ $(document).ready(function() {
 
 /* 페이지 로딩 후 카트에서 중복되는 가게명 (bizName) 제거하기 */
 	removeDuplicateBizNames();
+	
+/* 페이지 로딩 후 현재 보고 있는 가게를 현재 로그인되어 있는 고객이 찜했는지 확인하고 반영하기 */
+	isFavoriteChk();
 		
 /* 옵션 없는 메뉴는 "+" 클릭하면 장바구니에 추가하도록 */
 	for(var i = 0; i < $('.dropdown-menu').size(); i++) {
@@ -51,8 +77,6 @@ $(document).ready(function() {
 		
 	/* 선택한 메뉴의 ID */
 		const menuId = $(this).parents('td').siblings('td:eq(0)').children('h5').attr('data-id');
-	/* 가게 ID */	
-		const bizId = $('#main_menu').attr('data-biz-id');
 	/* 선택한 메뉴의 가격 (옵션 제외) */
 		const menuPrice = $(this).parents('td').siblings('td:eq(1)').attr('data-price');
 	/* 선택한 옵션들 (input tag) */
@@ -83,7 +107,7 @@ $(document).ready(function() {
 		}
 	/* 비동기 요청하면 CartVOExtended에 매핑되도록 JavaScript 객체 생성 */
 		var inputData = {
-				custId : 'tjtjtj'
+				custId : custId
 				, quantity : 1
 				, unitPrice : menuPrice
 				, totalAmt : totalPrice
@@ -158,7 +182,7 @@ $(document).ready(function() {
 			, dataType : 'json'
 			, contentType : 'application/json'
 			, data : JSON.stringify({
-					custId : 'tjtjtj'
+					custId : custId
 					, cartIds : cartId
 				})
 	   		, success : function(data) {
@@ -219,9 +243,45 @@ $(document).ready(function() {
 		});
 	});
 	
-/* 찜하기 버튼 누르면 찜을 추가하거나 찜을 삭제하기 */
-	$('body').on('click', $('icon-heart-empty'), function() {
-		
+/* 찜하기 버튼 누르면 찜을 추가하기 */
+	$('body').on('click', $('#likeBiz'), function() {
+		if($('#likeBiz').prop('class') == 'icon-heart-empty') {
+			$.ajax({
+				type : 'POST'
+				, url : 'http://localhost:3001/customer/member/fav/add.json'
+				, contentType : 'application/json'
+				, data : JSON.stringify({
+					custId : custId
+					, bizId : bizId
+					, bizName : '원준이네 통닭집'
+					, kitchenName : '리벨점'
+				})
+			  	, success : function(data) {
+		  			if(data == 1) {
+		  				$('#likeBiz').removeClass('icon-heart-empty').addClass('icon-heart').siblings('#likeText').text('찜하셨어요!!');
+		  				$('#likes').text(parseInt($('#likes').text()) + 1);
+		  			}
+				}
+				, error : function(data) {
+					console.log('ERRoR oCCURRED');
+					console.log(data);
+				}
+			});
+		} else {
+			$.ajax({
+				type : 'DELETE'
+				, url : 'http://localhost:3001/customer/member/fav/' + custId + '/' + bizId + '.json'
+				, contentType : 'application/json'
+			  	, success : function(data) {
+		  			$('#likeBiz').removeClass('icon-heart').addClass('icon-heart-empty').siblings('#likeText').text('찜해주세요!!');
+		  			$('#likes').text(parseInt($('#likes').text()) - 1);
+		  		}
+				, error : function(data) {
+					console.log('ERRoR oCCURRED');
+					console.log(data);
+				}
+			});
+		}
 	})
 	
 });
