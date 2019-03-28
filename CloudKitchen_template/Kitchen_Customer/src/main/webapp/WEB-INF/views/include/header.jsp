@@ -99,7 +99,7 @@
                     <button type="button" class="btn btn-submit">로그인</button>
                 </form>
            <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
-           <button type ="button" class="btn btn-submit">카카오 로그인</button>
+           <img alt="카카오 로그인" src="/customer/resources/img/kakao.png">
            </a>     
             </div>
         </div>
