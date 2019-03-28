@@ -60,6 +60,17 @@ $(document).ready(function() {
 		}
 	}
 	
+/* 주문할 메뉴 전체선택하기 */
+	$('body').on('click', '.table_summary th:eq(0) input', function() {
+		$('.cartTable .check-order').prop('checked', $('.table_summary th:eq(0) input').prop('checked'));
+	});
+/* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
+	$('body').on('click', '.cartTable .check-order', function() {
+		if($('.table_summary th:eq(0) input').prop('checked') == true) {
+			$('.table_summary th:eq(0) input').prop('checked', false);
+		}
+	});
+	
 /* "Add to cart" 버튼을 클릭하면 선택한 메뉴와 옵션을 DB에 입력하고 이후 DB에서 카트 정보를 읽어와 표시하기 */
 	$('.add_to_basket').on('click', function(event) {
 		event.preventDefault();
@@ -116,9 +127,6 @@ $(document).ready(function() {
 				, menuId : menuId
 				, options : inputOptions
 			};
-	/* 카트에 추가하면 기존에 선택한 체크박스 해제하기 */
-		$(this).siblings('div').children().children('input:checked').prop('checked', false);
-		
  		$.ajax({
 			type : 'POST'
 			, url : 'http://localhost:3001/customer/cart/add'
@@ -152,19 +160,10 @@ $(document).ready(function() {
 				console.log(data);
 			}
 		});
+ 	/* 카트에 추가하면 기존에 선택한 체크박스 해제하기 */
+		$(this).siblings('div').children().children('input:checked').prop('checked', false);
 	});
-	
-/* 주문할 메뉴 전체선택하기 */
-	$('body').on('click', '.table_summary th:eq(0) input', function() {
-		$('.cartTable .check-order').prop('checked', $('.table_summary th:eq(0) input').prop('checked'));
-	});
-/* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
-	$('body').on('click', '.cartTable .check-order', function() {
-		if($('.table_summary th:eq(0) input').prop('checked') == true) {
-			$('.table_summary th:eq(0) input').prop('checked', false);
-		}
-	});
-	
+
 /* 카트의 id="deleteCart" 클릭하면 선택된 항목 삭제하기 */
 	$('#deleteCart').on('click', function() {
 		const checked = $('.cartTable .check-order:checked');
@@ -213,7 +212,7 @@ $(document).ready(function() {
 			}
 		});
 	});
-	
+
 /* 카트의 id="orderNow" 클릭하면 선택된 항목 주문하기 */
 	$('#orderNow').on('click', function() {
 		const checked = $('.cartTable .check-order:checked');
@@ -245,7 +244,7 @@ $(document).ready(function() {
 	
 /* 찜하기 버튼 누르면 찜을 추가하기 */
 	$('body').on('click', $('#likeBiz'), function() {
-		if($('#likeBiz').prop('class') == 'icon-heart-empty') {
+		if($('#likeBiz').prop('class') == 'icon-heart-empty') { // 찜하지 않은 상태라면 (if empty heart icon)
 			$.ajax({
 				type : 'POST'
 				, url : 'http://localhost:3001/customer/member/fav/add.json'
@@ -267,7 +266,7 @@ $(document).ready(function() {
 					console.log(data);
 				}
 			});
-		} else {
+		} else { // 찜한 상태라면 (if full heart icon)
 			$.ajax({
 				type : 'DELETE'
 				, url : 'http://localhost:3001/customer/member/fav/' + custId + '/' + bizId + '.json'
@@ -282,6 +281,6 @@ $(document).ready(function() {
 				}
 			});
 		}
-	})
+	});
 	
 });
