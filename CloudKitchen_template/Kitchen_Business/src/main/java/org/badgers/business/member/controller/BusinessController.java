@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.badgers.business.model.BizMemberVOExtend;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -75,35 +77,21 @@ public class BusinessController {
 		log.info("updateBizMember DONE!!!!!");
 	}
 
-	@PostMapping(value = "/login", produces = "text/plain; charset=utf-8")
+//	로그인 
+	@PostMapping(value ="/login", produces = "text/plain; charset=utf-8")
 	@ResponseBody
-	public ModelAndView login(@RequestBody BizMemberVOExtend mvo, ModelAndView mv) {
+	public String login(@RequestBody BizMemberVOExtend mvo, ModelAndView mv) {
 		log.info("Kitchen_Business 사업자 로그인...............................");
-
-		String msg = "";
-		String url = "http://localhost/rest/business/";
-		String returnVal = "";
-		
-		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
-		msg = responseEntity.getBody();
-
-		if (msg.equals("BAD_PW")) {
-			returnVal = "비밀번호가 틀렸습니다.";
-		} else if (msg.equals("NO_ID")) {
-			returnVal = "존재하지 않는 아이디입니다.";
-		} else if (msg.equals("SERVER_ERROR") || msg.equals("")) {
-			returnVal = "서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.";
-		} else {
-			// 로그인을 유지하기 위한 쿠키 생성
-			msg = "성공적으로 로그인했습니다.";
-			mv.addObject("isSuccess", true);
-
-			log.info(msg);
-			returnVal = "성공적으로 로그인했습니다.";
+		String status="";
+		String url = "http://localhost/rest/business/login";
+		try {
+			ResponseEntity<Object> responseEntity = restTemplate.postForEntity(url, mvo, Object.class);
+			status= responseEntity.getStatusCode().toString();
+			mv.addObject("bizId",mvo.getBizId());
+		}catch(HttpClientErrorException e){
 		}
-
-		log.info(returnVal);
-		return mv;
+		mv.addObject("status",status);
+		return status;
 	}
 
 	@PostMapping("/verify")

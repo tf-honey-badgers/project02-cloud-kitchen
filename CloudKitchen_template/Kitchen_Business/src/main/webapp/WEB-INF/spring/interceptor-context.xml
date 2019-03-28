@@ -8,7 +8,7 @@
 <mvc:interceptors>
 
 	<mvc:interceptor>
-		<mvc:mapping path="/member/"/>
+		<mvc:mapping path="/member/login"/>
 		<bean class="org.badgers.business.interceptor.MemberInterceptor"></bean>
 	</mvc:interceptor>
 

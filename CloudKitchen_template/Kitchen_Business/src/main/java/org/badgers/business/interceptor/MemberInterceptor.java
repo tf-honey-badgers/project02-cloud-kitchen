@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -22,16 +23,18 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 			ModelAndView mv) throws Exception {
 		
 		Map map=mv.getModel();
-		System.out.println(map.get("isSuccess"));
 		System.out.println(".........................interceptor : postHandle...................");
 		
-		if(map.containsKey("isSuccess")) {
+		if(map.get("status").equals("200")&&map.get("bizId")!=null) {
 			System.out.println(".....................로그인 성공 했으니깐 세션 생성해주이소................................");
+			HttpSession session=request.getSession();
+			session.setAttribute("bizId", map.get("bizId") );
+
 		}
 
 		
 		
-		super.postHandle(request, response, handler, mv);
+	
 	}
 
 }

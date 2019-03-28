@@ -50,12 +50,10 @@ public class BusinessController {
 	
 	// 로그인
 	@PostMapping("/login")
-	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend biz) throws Exception {
-		 String returnVal = service.login(biz.getBizId(), biz.getPw());
+	public ResponseEntity<Object> login(@RequestBody BizMemberVOExtend biz) throws Exception {
+		 int returnVal = service.login(biz.getBizId(), biz.getPw());
 		 
-		 ResponseEntity<String> entity = new ResponseEntity<String>(returnVal, HttpStatus.OK);
-		 
-		 return entity;	
+		 return (returnVal==1)?new ResponseEntity<>(HttpStatus.OK): new ResponseEntity<>(HttpStatus.UNAUTHORIZED);	
 	}
 	
 	// ID 찾기 & 본인인증하기

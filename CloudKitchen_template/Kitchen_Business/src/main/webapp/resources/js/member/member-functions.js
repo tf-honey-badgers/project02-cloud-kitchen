@@ -59,7 +59,7 @@ $(document).ready(function() {
 		
 		if(cnt===0){
 			$.ajax({
-	    		url : 'http://localhost:3000/business/member/'
+	    		url : 'http://localhost:3000/business/member/login'
 	    		, type : 'POST'
 				, contentType : 'application/json'
 				, dataType : 'text'
