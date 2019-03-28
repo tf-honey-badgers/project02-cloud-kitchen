@@ -51,7 +51,7 @@ public class PaymentController {
 		session.setAttribute("address", "고양시 우리집");
 		/* --- */
 		
-		model.addAttribute("cartList", cartList);
+		model.addAttribute("cart", cartList);
 		
 		return "/order/order_1_orderinfo";
 	}

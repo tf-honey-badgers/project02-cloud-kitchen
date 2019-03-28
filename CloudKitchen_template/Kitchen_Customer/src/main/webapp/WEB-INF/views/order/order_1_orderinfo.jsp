@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +59,6 @@
 
 			</div>
 			<!-- End col-md-3 -->
-			${cartList}
 			<div class="col-md-6">
 				<div class="box_style_2" id="order_process">
 					<h2 class="inner">주문 정보 입력</h2>
@@ -114,6 +115,14 @@
 			defaultAddressInit();
 		})
 		
+		var cartTotal = 0;
+				for(var i = 0; i < $('.priceData').size(); i++) {
+					var price = $('.priceData').eq(i).attr('data-total-price');
+					cartTotal += parseInt(price);
+				}
+				$('.total span').text(cartTotal + '원');
+				});
+		
 		function defaultPhoneInit(){
 			$('#defaultPhone').siblings().click(function(){
 				if($(this).parent().hasClass('checked')){
@@ -134,6 +143,7 @@
 			})
 		}
 	</script>
+
 	<!-- Script 끝 -->
 </body>
 </html>
