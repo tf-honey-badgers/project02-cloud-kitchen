@@ -35,20 +35,23 @@ public class BusinessServiceImpl implements BusinessService {
 		System.out.println("로그인 ========================================");
 
 		String returnVal = "";
-		BizMemberVOExtend queryResult = null;
+//		BizMemberVOExtend queryResult = null;
+//		
+//		try {
+		BizMemberVOExtend member = mapper.login(bizId, pw);
 		
-		try {
-			queryResult = mapper.login(bizId);
-			if(queryResult.getPw().equals(pw)) {
-				returnVal = queryResult.getBizId(); // 입력한 비번 == DB 비번
-			} else {
-				returnVal = "BAD_PW"; // 입력한 비번 != DB 비번
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			returnVal = "NO_ID"; // DB에 입력한 ID 없음 표시
-		}
-
+		System.out.println(member);
+		
+//			if(queryResult.getPw().equals(pw)) {
+//				returnVal = queryResult.getBizId(); // 입력한 비번 == DB 비번
+//			} else {
+//				returnVal = "BAD_PW"; // 입력한 비번 != DB 비번
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			returnVal = "NO_ID"; // DB에 입력한 ID 없음 표시
+//		}
+//
 		return returnVal;
 	}
 	
