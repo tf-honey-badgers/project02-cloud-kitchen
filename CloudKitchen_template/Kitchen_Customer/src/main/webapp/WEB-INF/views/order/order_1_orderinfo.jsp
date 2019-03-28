@@ -57,7 +57,7 @@
 
 			</div>
 			<!-- End col-md-3 -->
-
+			${cartList}
 			<div class="col-md-6">
 				<div class="box_style_2" id="order_process">
 					<h2 class="inner">주문 정보 입력</h2>

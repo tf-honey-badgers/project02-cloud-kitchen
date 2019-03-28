@@ -1,6 +1,8 @@
 package org.badgers.rest.customer.cart.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.badgers.rest.customer.cart.persistence.CartMapper;
 import org.badgers.rest.model.CartDetailVO;
@@ -102,6 +104,24 @@ public class CartServiceImpl implements CartService {
 		
 		return returnVal;
 	}
+	
+	// 선택된 메뉴 읽기(결제로 넘어갈 때)
+	@Override
+	public List<CartVOExtend> readSelectedCart(int[] selectedCartId) throws Exception {
+		List<CartVOExtend> returnVal = null;
+		String custId= null;
+		
+		returnVal = mapper.readCart(custId, selectedCartId);
+		
+		for(int i = 0; i < returnVal.size(); i++) {
+			List<CartDetailVO> options = mapper.readOptions(returnVal.get(i).getId());
+			returnVal.get(i).setOptions(options);
+		}
+		
+		
+		return returnVal;
+	}
+	
 
 	// 메뉴 업데이트 (수량을 0으로 만들 수는 없음) -> 옵션은 업데이트 없다
 	@Override
@@ -123,4 +143,5 @@ public class CartServiceImpl implements CartService {
 		
 		return returnVal; // cart_detail 테이블에서 삭제된 행 개수 + cart 테이블에서 삭제된 행 개수 반환
 	}
+
 }

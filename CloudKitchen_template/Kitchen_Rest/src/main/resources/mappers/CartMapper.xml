@@ -40,9 +40,19 @@
             , honey_badgers.menu ME
             , honey_badgers.biz BZ
 		where
-			CA.cust_id = #{custId}
-			and CA.menu_id = ME.idx
+			CA.menu_id = ME.idx
 			and CA.biz_id = BZ.biz_id
+			<choose>
+				<when test="param1 neq null">
+					and CA.cust_id = #{custId}
+				</when>
+				<otherwise>
+					<foreach item="item" index="index" collection="param2" open="and (CA.id=" close=")" separator="or CA.id =" >
+						#{item}
+						<!-- and (CA.id = '253' or CA.id ='269' or CA.id ='270' or CA.id ='272' ) -->
+					</foreach>
+				</otherwise>
+			</choose>
 		order by CA.biz_id asc, CA.id asc
 	</select>
 	
@@ -70,4 +80,5 @@
 	<delete id="deleteAllCart">
 		delete from honey_badgers.cart where cust_id = #{custId}
 	</delete>
+	
 </mapper>
