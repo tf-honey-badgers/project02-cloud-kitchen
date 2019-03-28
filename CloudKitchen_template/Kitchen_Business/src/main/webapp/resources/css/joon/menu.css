@@ -1,4 +1,9 @@
+.addOptBtnArea {
+	margin : 0% 10% 0% 90%;
+	height : 50px!important;
+	}
 
+input { width:120px!important; }
 .modelInsertBtnArea {
 	width: 80px;
 	height : 80px;

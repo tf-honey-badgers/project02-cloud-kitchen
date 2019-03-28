@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 			<div class="col-md-3" id="sidebar">
 				<div class="theiaStickySidebar">
 					<div id="cart_box">
@@ -17,7 +19,7 @@
 										<td colspan="3"><strong>${cart.bizName}</strong></td>
 									</tr>
 									<tr>
-										<td style="width: 10%;"><input class="check-order" type="checkbox"></td>
+										<td style="width: 10%;"><!-- <input class="check-order" type="checkbox"> --></td>
 										<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.menuName}<span class="pull-right">${cart.unitPrice}원</span></td>
 									</tr>
 									<!-- 옵션을 출력하기 위한 반복문 -->
@@ -44,7 +46,8 @@
 							</tbody>
 						</table>
 						<hr>
-						<a href="${pageContext.request.contextPath}/order/orderinfo" class="btn_full" id="orderNow">Order now</a>
+						<input type="submit" class="btn_full" id="orderNow" value="Order now">
 					</div> <!-- End cart_box -->
 				</div> <!-- End theiaStickySidebar -->
 			</div> <!-- End col-md-4 -->
+			

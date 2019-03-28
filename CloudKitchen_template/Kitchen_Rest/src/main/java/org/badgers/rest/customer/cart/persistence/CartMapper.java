@@ -14,6 +14,7 @@ public interface CartMapper {
 	
 	// CartServiceImpl의 readCart & readOptions에서 사용
 	public List<CartVOExtend> readCart(String custId) throws Exception;
+	public List<CartVOExtend> readSelectedCart(int[] selectedCartId) throws Exception;
 	public List<CartDetailVO> readOptions(int cartId) throws Exception;
 	
 	// CartServiceImpl의 updateCart에서 사용
