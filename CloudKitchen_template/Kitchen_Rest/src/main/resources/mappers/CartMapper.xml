@@ -24,27 +24,40 @@
 
 	<!-- THIS IS THE ONE AND ONLY REAL TRUE CART MAPPER -->
 	<select id="readCart" resultType="org.badgers.rest.model.CartVOExtend">
-		select
-			CA.id
-			, CA.cust_id
-			, CA.quantity
-			, CA.unit_price
-			, CA.total_amt
-			, CA.kitchen_name
-			, CA.biz_id
-			, CA.menu_id
-            , ME.name as menu_name
-            , BZ.name as biz_name
-		from
-			honey_badgers.cart CA
-            , honey_badgers.menu ME
-            , honey_badgers.biz BZ
-		where
-			CA.cust_id = #{custId}
-			and CA.menu_id = ME.idx
-			and CA.biz_id = BZ.biz_id
-		order by CA.biz_id asc, CA.id asc
+		<include refid="cartReadComm"/>
+			and CA.cust_id = #{custId}
+			order by CA.biz_id asc, CA.id asc
 	</select>
+	
+	<select id="readSelectedCart" resultType="org.badgers.rest.model.CartVOExtend">
+		<include refid="cartReadComm"/>
+			<foreach item="item" index="index" collection="array" open="and (CA.id=" close=")" separator="or CA.id =" >
+				#{item}
+				<!-- and (CA.id = '253' or CA.id ='269' or CA.id ='270' or CA.id ='272' ) -->
+			</foreach>
+			order by CA.biz_id asc, CA.id asc
+	</select>
+	
+	<sql id="cartReadComm">
+		select
+				CA.id
+				, CA.cust_id
+				, CA.quantity
+				, CA.unit_price
+				, CA.total_amt
+				, CA.kitchen_name
+				, CA.biz_id
+				, CA.menu_id
+	            , ME.name as menu_name
+	            , BZ.name as biz_name
+			from
+				honey_badgers.cart CA
+	            , honey_badgers.menu ME
+	            , honey_badgers.biz BZ
+			where
+				CA.menu_id = ME.idx
+				and CA.biz_id = BZ.biz_id
+	</sql>
 	
 	<select id="readOptions" resultType="org.badgers.rest.model.CartDetailVO">
 		select
@@ -70,4 +83,5 @@
 	<delete id="deleteAllCart">
 		delete from honey_badgers.cart where cust_id = #{custId}
 	</delete>
+	
 </mapper>

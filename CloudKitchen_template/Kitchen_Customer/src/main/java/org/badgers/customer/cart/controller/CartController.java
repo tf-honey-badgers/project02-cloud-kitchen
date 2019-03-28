@@ -80,15 +80,4 @@ public class CartController {
 		return new ResponseEntity<>(returnVal, HttpStatus.OK);
 	}
 	
-	@SuppressWarnings("rawtypes")
-	@PostMapping("/order")
-	public void orderCart(@RequestBody Map<String, Object> req) {
-		log.info("Kitchen_Customer 주문하기");
-		
-		List cartIds = (List) req.get("cartIds");
-		
-		for(int i = 0; i < cartIds.size(); i++) {
-			log.info("Receiving order request : " + cartIds.get(i));
-		}
-	}
 }
