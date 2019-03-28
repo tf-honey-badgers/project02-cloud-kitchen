@@ -48,9 +48,11 @@ $(document).ready(function() {
 
 /* 페이지 로딩 후 카트에서 중복되는 가게명 (bizName) 제거하기 */
 	removeDuplicateBizNames();
-	
 /* 페이지 로딩 후 현재 보고 있는 가게를 현재 로그인되어 있는 고객이 찜했는지 확인하고 반영하기 */
 	isFavoriteChk();
+/* 페이지 로딩 후 카트 전체선택 해놓기 */
+	$('.cartTable .check-order').prop('checked', true);
+	$('.table_summary th:eq(0) input').prop('checked', true);
 		
 /* 옵션 없는 메뉴는 "+" 클릭하면 장바구니에 추가하도록 */
 	for(var i = 0; i < $('.dropdown-menu').size(); i++) {
@@ -154,14 +156,17 @@ $(document).ready(function() {
 				}
 				$('.total span').text(cartTotal + '원');
 				removeDuplicateBizNames();
+			/* 카트에 추가하면 기존에 선택한 체크박스 해제하기 */
+				$(this).siblings('div').children().children('input:checked').prop('checked', false);
+			/* 카트 체크박스를 default로 전체 선택하기 */
+				$('.cartTable .check-order').prop('checked', true);
+				$('.table_summary th:eq(0) input').prop('checked', true);
 			}
 			, error : function(data) {
 				console.log('ERRoR oCCURRED');
 				console.log(data);
 			}
 		});
- 	/* 카트에 추가하면 기존에 선택한 체크박스 해제하기 */
-		$(this).siblings('div').children().children('input:checked').prop('checked', false);
 	});
 
 /* 카트의 id="deleteCart" 클릭하면 선택된 항목 삭제하기 */
@@ -171,9 +176,6 @@ $(document).ready(function() {
 		for(let i = 0; i < checked.length; i++) {
 			cartId[i] = checked.eq(i).parent().siblings('.menuData').attr('data-cart-id');
 		}
-		/* 카트의 모든 체크박스 해제 */
-		$('.table_summary th:eq(0) input').prop('checked', false);
-		$('.cartTable .check-order').prop('checked', false);
 		
  		$.ajax({
 			type : 'DELETE'
@@ -205,6 +207,9 @@ $(document).ready(function() {
 				}
 				$('.total span').text(cartTotal + '원');
 				removeDuplicateBizNames();
+			/* 카트 체크박스를 default로 전체 선택하기 */
+				$('.cartTable .check-order').prop('checked', true);
+				$('.table_summary th:eq(0) input').prop('checked', true);
 			}
 			, error : function(data) {
 				console.log('ERRoR oCCURRED');
