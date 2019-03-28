@@ -117,4 +117,23 @@ public class MenuController {
 		return null;
 	}
 	
+	
+	@RequestMapping(value="/main/getComCode", method=RequestMethod.GET)
+	@ResponseBody
+	public List<?> getComCode() {
+		try {
+			String url = "http://localhost:80";
+			ResponseEntity<List> menuResponseEntity = restTemplate.getForEntity
+					(url+"rest/bizmenu/getComCode", List.class);
+			
+			List<?> menuComCode = menuResponseEntity.getBody();
+			return menuComCode;
+			
+		}catch(Exception e){
+			e.getStackTrace();
+		}
+		return null;
+	}
+	
+
 }

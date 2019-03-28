@@ -1,3 +1,9 @@
+/* 전역 변수 */
+	/* 사용자 ID */
+	const custId = 'tjtjtj';
+	/* 가게 ID */
+	const bizId = $('#main_menu').attr('data-biz-id');
+
 function removeDuplicateBizNames() {
 	var bizNames = $('.bizNameRow');
 	for(var i = 1; i < bizNames.size(); i++) {
@@ -5,6 +11,23 @@ function removeDuplicateBizNames() {
 			bizNames.eq(i).remove();
 		}
 	}
+}
+
+function isFavoriteChk() {
+	$.ajax({
+		type : 'GET'
+		, url : 'http://localhost:3001/customer/member/fav/' + custId + '/' + bizId + '.json'
+		, contentType : 'application/json'
+	  	, success : function(data) {
+  			if(data == 1) {
+  				$('#likeBiz').removeClass('icon-heart-empty').addClass('icon-heart').siblings('#likeText').text('찜하셨어요!!');
+  			}
+		}
+		, error : function(data) {
+			console.log('ERRoR oCCURRED');
+			console.log(data);
+		}
+	});
 }
 
 /* 브라우저 히스토리를 이용해서 이동했을 경우 (뒤로가기 앞으로가기 버튼) 페이지를 새로고침한다
@@ -25,7 +48,10 @@ $(document).ready(function() {
 
 /* 페이지 로딩 후 카트에서 중복되는 가게명 (bizName) 제거하기 */
 	removeDuplicateBizNames();
-
+	
+/* 페이지 로딩 후 현재 보고 있는 가게를 현재 로그인되어 있는 고객이 찜했는지 확인하고 반영하기 */
+	isFavoriteChk();
+		
 /* 옵션 없는 메뉴는 "+" 클릭하면 장바구니에 추가하도록 */
 	for(var i = 0; i < $('.dropdown-menu').size(); i++) {
 		if($('.dropdown-menu').eq(i).children('div').length == 0) {
@@ -33,6 +59,17 @@ $(document).ready(function() {
 			$('.dropdown-menu').eq(i).siblings('a').removeClass('dropdown-toggle').addClass('add_to_basket').removeAttr('data-toggle');
 		}
 	}
+	
+/* 주문할 메뉴 전체선택하기 */
+	$('body').on('click', '.table_summary th:eq(0) input', function() {
+		$('.cartTable .check-order').prop('checked', $('.table_summary th:eq(0) input').prop('checked'));
+	});
+/* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
+	$('body').on('click', '.cartTable .check-order', function() {
+		if($('.table_summary th:eq(0) input').prop('checked') == true) {
+			$('.table_summary th:eq(0) input').prop('checked', false);
+		}
+	});
 	
 /* "Add to cart" 버튼을 클릭하면 선택한 메뉴와 옵션을 DB에 입력하고 이후 DB에서 카트 정보를 읽어와 표시하기 */
 	$('.add_to_basket').on('click', function(event) {
@@ -51,8 +88,6 @@ $(document).ready(function() {
 		
 	/* 선택한 메뉴의 ID */
 		const menuId = $(this).parents('td').siblings('td:eq(0)').children('h5').attr('data-id');
-	/* 가게 ID */	
-		const bizId = $('#main_menu').attr('data-biz-id');
 	/* 선택한 메뉴의 가격 (옵션 제외) */
 		const menuPrice = $(this).parents('td').siblings('td:eq(1)').attr('data-price');
 	/* 선택한 옵션들 (input tag) */
@@ -83,7 +118,7 @@ $(document).ready(function() {
 		}
 	/* 비동기 요청하면 CartVOExtended에 매핑되도록 JavaScript 객체 생성 */
 		var inputData = {
-				custId : 'tjtjtj'
+				custId : custId
 				, quantity : 1
 				, unitPrice : menuPrice
 				, totalAmt : totalPrice
@@ -92,9 +127,6 @@ $(document).ready(function() {
 				, menuId : menuId
 				, options : inputOptions
 			};
-	/* 카트에 추가하면 기존에 선택한 체크박스 해제하기 */
-		$(this).siblings('div').children().children('input:checked').prop('checked', false);
-		
  		$.ajax({
 			type : 'POST'
 			, url : 'http://localhost:3001/customer/cart/add'
@@ -128,19 +160,10 @@ $(document).ready(function() {
 				console.log(data);
 			}
 		});
+ 	/* 카트에 추가하면 기존에 선택한 체크박스 해제하기 */
+		$(this).siblings('div').children().children('input:checked').prop('checked', false);
 	});
-	
-/* 주문할 메뉴 전체선택하기 */
-	$('body').on('click', '.table_summary th:eq(0) input', function() {
-		$('.cartTable .check-order').prop('checked', $('.table_summary th:eq(0) input').prop('checked'));
-	});
-/* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
-	$('body').on('click', '.cartTable .check-order', function() {
-		if($('.table_summary th:eq(0) input').prop('checked') == true) {
-			$('.table_summary th:eq(0) input').prop('checked', false);
-		}
-	});
-	
+
 /* 카트의 id="deleteCart" 클릭하면 선택된 항목 삭제하기 */
 	$('#deleteCart').on('click', function() {
 		const checked = $('.cartTable .check-order:checked');
@@ -158,7 +181,7 @@ $(document).ready(function() {
 			, dataType : 'json'
 			, contentType : 'application/json'
 			, data : JSON.stringify({
-					custId : 'tjtjtj'
+					custId : custId
 					, cartIds : cartId
 				})
 	   		, success : function(data) {
@@ -189,7 +212,7 @@ $(document).ready(function() {
 			}
 		});
 	});
-	
+
 /* 카트의 id="orderNow" 클릭하면 선택된 항목 주문하기 */
 	$('#orderNow').on('click', function() {
 		const checked = $('.cartTable .check-order:checked');
@@ -218,4 +241,46 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+/* 찜하기 버튼 누르면 찜을 추가하기 */
+	$('body').on('click', $('#likeBiz'), function() {
+		if($('#likeBiz').prop('class') == 'icon-heart-empty') { // 찜하지 않은 상태라면 (if empty heart icon)
+			$.ajax({
+				type : 'POST'
+				, url : 'http://localhost:3001/customer/member/fav/add.json'
+				, contentType : 'application/json'
+				, data : JSON.stringify({
+					custId : custId
+					, bizId : bizId
+					, bizName : '원준이네 통닭집'
+					, kitchenName : '리벨점'
+				})
+			  	, success : function(data) {
+		  			if(data == 1) {
+		  				$('#likeBiz').removeClass('icon-heart-empty').addClass('icon-heart').siblings('#likeText').text('찜하셨어요!!');
+		  				$('#likes').text(parseInt($('#likes').text()) + 1);
+		  			}
+				}
+				, error : function(data) {
+					console.log('ERRoR oCCURRED');
+					console.log(data);
+				}
+			});
+		} else { // 찜한 상태라면 (if full heart icon)
+			$.ajax({
+				type : 'DELETE'
+				, url : 'http://localhost:3001/customer/member/fav/' + custId + '/' + bizId + '.json'
+				, contentType : 'application/json'
+			  	, success : function(data) {
+		  			$('#likeBiz').removeClass('icon-heart').addClass('icon-heart-empty').siblings('#likeText').text('찜해주세요!!');
+		  			$('#likes').text(parseInt($('#likes').text()) - 1);
+		  		}
+				, error : function(data) {
+					console.log('ERRoR oCCURRED');
+					console.log(data);
+				}
+			});
+		}
+	});
+	
 });
