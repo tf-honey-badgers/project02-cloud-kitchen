@@ -17,7 +17,7 @@
 										<td colspan="3"><strong>${cart.bizName}</strong></td>
 									</tr>
 									<tr>
-										<td style="width: 10%;"><input class="check-order" type="checkbox"></td>
+										<td style="width: 10%;"><!-- <input class="check-order" type="checkbox"> --></td>
 										<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.menuName}<span class="pull-right">${cart.unitPrice}원</span></td>
 									</tr>
 									<!-- 옵션을 출력하기 위한 반복문 -->
