@@ -191,14 +191,17 @@ public class CustomerController {
 	
 	// 찜 삭제하기
 	@SuppressWarnings("rawtypes")
-	@DeleteMapping("/fav/{cust_id}/{biz_id}")
-	public ResponseEntity deleteFavorite(@PathVariable("cust_id") String custId, @PathVariable("biz_id") String bizId) {
+	@DeleteMapping("/fav/delete/{cust_id}/{biz_id}/{biz_like_cnt}")
+	public ResponseEntity deleteFavorite(
+				@PathVariable("cust_id") String custId
+				, @PathVariable("biz_id") String bizId
+				, @PathVariable("biz_like_cnt") int bizLikeCnt
+			) {
 		log.info(custId + "의 " + bizId + " 찜을 삭제하기 ================================");
 
-		String urlDeleteFav = "http://localhost/rest/favorite/" + custId + "/" + bizId;
-		
-		restTemplate.delete(urlDeleteFav, custId, bizId);
-		
+		String urlDeleteFav = "http://localhost/rest/favorite/delete/" + custId + "/" + bizId + "/" + bizLikeCnt;
+		restTemplate.delete(urlDeleteFav);
+
 		return new ResponseEntity(HttpStatus.OK);
 	}
 	

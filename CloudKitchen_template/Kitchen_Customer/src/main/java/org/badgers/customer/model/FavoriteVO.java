@@ -9,4 +9,5 @@ public class FavoriteVO {
 	private String bizName;
 	private int stars;
 	private String kitchenName;
+	private int bizLikeCnt;
 }
