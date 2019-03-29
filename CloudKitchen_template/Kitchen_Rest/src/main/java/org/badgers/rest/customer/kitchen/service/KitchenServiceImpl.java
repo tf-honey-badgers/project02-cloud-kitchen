@@ -20,14 +20,17 @@ public class KitchenServiceImpl implements KitchenService {
 	
 	@Override
 	public List<KitchenBranchVOExtend> kitchenbranchList(){
-		System.out.println("키친 서비스");
 		return mapper.kitchenbranchList();
 	}
 	
 	@Override
 	public List<BizVOExtend> bizlist(){
-		System.out.println("키친 서비스");
 		return mapper.bizList();
+	}
+	
+	@Override
+	public List<MenuVOExtend> menulist(){
+		return mapper.menuList();
 	}
 	
 	@Override

@@ -11,6 +11,7 @@ public interface KitchenService {
 
 	public List<KitchenBranchVOExtend> kitchenbranchList();
 	public List<BizVOExtend> bizlist();
+	public List<MenuVOExtend> menulist();
 	public List<BizVOExtend> bizInfo(String bizId);
 	public List<Object> getCategorization();
 	public List<KitchenSelectCatVOExtend> getCatKitchen(String comName);

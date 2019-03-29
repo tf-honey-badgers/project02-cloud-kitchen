@@ -38,12 +38,11 @@ public class KitchenController {
 		return service.bizlist();
 	}
 	
-//	@RequestMapping("/menuinfo/{mIdx}")
-//	@Transactional
-//	public List<MenuVOExtend> menuInfo(@PathVariable("mIdx") int mIdx) {
-//		System.out.println("menuInfo : 컨트롤러");
-//		return service.getMenu(mIdx);
-//	}
+	// 메뉴 목록
+	@RequestMapping("/menulist")
+	public List<MenuVOExtend> menulist() {
+		return service.menulist();
+	}
 	
 	@RequestMapping("/categorization")
 	public List<Object> getCategorization(){
@@ -79,5 +78,4 @@ public class KitchenController {
 		}
 		return new ResponseEntity<List<MenuVOExtend>>(menuOptInfo, HttpStatus.OK);
 	}
-
 }
