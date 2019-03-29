@@ -86,9 +86,10 @@ public class BusinessController {
 //	로그인 
 	@PostMapping(value ="/login", produces = "text/plain; charset=utf-8")
 	@ResponseBody
-	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend mvo, Model model){
+	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend mvo, ModelAndView mov){
 		
 		log.info("Kitchen_Business 사업자 로그인...............................");
+		HttpHeaders responseHeaders=null;
 		String status="";
 		String url = "http://localhost/rest/business/login";
 		try {
@@ -96,15 +97,14 @@ public class BusinessController {
 			
 			log.info(responseEntity);
 			log.info(responseEntity.getBody());
-			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders = new HttpHeaders();
 			log.info(".......................................................");
 		    
-			responseHeaders.set("RESULT", "123456789");
+			responseHeaders.set("RESULT", mvo.getBizId()+"I AM TJ HEY WHATS YOUR NAME");
 			
 			status= responseEntity.getStatusCode().toString();
-			
-//			model.addObject("bizId",mvo.getBizId());
-			
+			System.out.println("컨트롤러 헤드헤드 : "+responseHeaders.getFirst("RESULT"));
+//			mov.addObject("bizId",mvo.getBizId());
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 			if(e.getMessage().contains("failed: Connection refused: connect")) {
@@ -113,7 +113,7 @@ public class BusinessController {
 
 		}
 			
-		return new ResponseEntity<>(status,  HttpStatus.OK);	
+		return new ResponseEntity<>(status, responseHeaders,HttpStatus.OK);	
 	}
 
 	@PostMapping("/verify")

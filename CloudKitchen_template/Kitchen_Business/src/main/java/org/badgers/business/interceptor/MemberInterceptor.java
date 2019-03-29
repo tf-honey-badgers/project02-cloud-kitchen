@@ -27,18 +27,23 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 		String result = response.getHeader("RESULT");
 		
 		System.out.println("STATUS: " + result);
-		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(true);
 		
 		if(session != null) {
+			System.out.println("xcvcvxcv");
+			System.out.println(session);
+//			session.setAttribute("bizId", result );	
+			session.setAttribute("bizId", result );	
+			System.out.println(session.getAttribute("bizId"));
+			System.out.println("세션 생성 활인..........................ㄴ");
 			
-			session.setAttribute("bizId", result );			
-			
+		}else {
+			System.out.println("null 이다");
 		}
 		
-		Cookie ck = new Cookie("TESTCOOKIE", result);
+//		Cookie ck = new Cookie("TESTCOOKIE", result);
 		
-		response.addCookie(ck);
+//		response.addCookie(ck);
 		
 		
 		

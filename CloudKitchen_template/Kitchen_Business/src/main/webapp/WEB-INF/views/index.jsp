@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%-- <%@ page session="false" %> --%>
 
 <!DOCTYPE html>
 <html>
@@ -43,6 +43,7 @@
                                         <i class="material-icons">content_copy</i>
                                     </div>
                                     <p class="card-category">Used Space</p>
+<h1>${sessionScope.bizId}</h1>
                                     <h3 class="card-title">49/50
                                         <small>GB</small>
                                     </h3>
