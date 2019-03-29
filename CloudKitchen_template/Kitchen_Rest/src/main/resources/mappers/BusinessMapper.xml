@@ -34,7 +34,7 @@
 	</insert>
 	
 	<delete id="deleteMenu">
-		delete from menu_category where idx=#{menuId}
+		delete from menu where idx=#{menuId}
 	</delete>
 	
 	<delete id="deleteMenuOpt">
