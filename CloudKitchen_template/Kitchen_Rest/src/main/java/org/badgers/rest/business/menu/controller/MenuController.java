@@ -114,7 +114,7 @@ public class MenuController {
 	@ResponseBody
 //	public ResponseEntity menuUpdate(@RequestBody List updateMenuInfo){
 	public ResponseEntity<?> menuInsert(@RequestBody String updateMenuInfo){
-		int result = service.updateMenuInfo(updateMenuInfo);
+		int result = service.insertMenu(updateMenuInfo);
 		
 		if(result == 0) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

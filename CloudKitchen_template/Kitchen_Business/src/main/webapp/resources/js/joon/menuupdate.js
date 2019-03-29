@@ -31,9 +31,11 @@ $(document)
 					
 					$('#insertMenu').on('click',function(e){
 						
+						
 						let insertMenu = new Object();
 						insertMenu.mName = $('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value;
 						insertMenu.mBasicPrice = $('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value;
+						insertMenu.mPhoto = $('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value;
 						insertMenu.menuCatCode = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).attr('id');
 						
 						let menuOptClArr = new Array();
