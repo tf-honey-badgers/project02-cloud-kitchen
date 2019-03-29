@@ -157,7 +157,7 @@ $(document).ready(function() {
 				$('.total span').text(cartTotal + '원');
 				removeDuplicateBizNames();
 			/* 카트에 추가하면 기존에 선택한 체크박스 해제하기 */
-				$(this).siblings('div').children().children('input:checked').prop('checked', false);
+				checkedOptions.prop('checked', false);
 			/* 카트 체크박스를 default로 전체 선택하기 */
 				$('.cartTable .check-order').prop('checked', true);
 				$('.table_summary th:eq(0) input').prop('checked', true);
@@ -235,7 +235,7 @@ $(document).ready(function() {
 	});*/
 	
 /* 찜하기 버튼 누르면 찜을 추가하기 */
-	$('body').on('click', $('#likeBiz'), function() {
+	$('#likeWrapper').on('click', $('#likeBiz'), function() {
 		if($('#likeBiz').prop('class') == 'icon-heart-empty') { // 찜하지 않은 상태라면 (if empty heart icon)
 			$.ajax({
 				type : 'POST'
@@ -246,6 +246,7 @@ $(document).ready(function() {
 					, bizId : bizId
 					, bizName : '원준이네 통닭집'
 					, kitchenName : '리벨점'
+					, bizLikeCnt : parseInt($('#likes').text())
 				})
 			  	, success : function(data) {
 		  			if(data == 1) {
@@ -261,9 +262,9 @@ $(document).ready(function() {
 		} else { // 찜한 상태라면 (if full heart icon)
 			$.ajax({
 				type : 'DELETE'
-				, url : 'http://localhost:3001/customer/member/fav/' + custId + '/' + bizId + '.json'
+				, url : 'http://localhost:3001/customer/member/fav/delete/' + custId + '/' + bizId + '/' + parseInt($('#likes').text()) + '.json'
 				, contentType : 'application/json'
-			  	, success : function(data) {
+			  	, success : function() {
 		  			$('#likeBiz').removeClass('icon-heart').addClass('icon-heart-empty').siblings('#likeText').text('찜해주세요!!');
 		  			$('#likes').text(parseInt($('#likes').text()) - 1);
 		  		}

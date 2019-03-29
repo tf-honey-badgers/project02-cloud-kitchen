@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.badgers.rest.favorite.persistence.FavoriteMapper;
 import org.badgers.rest.model.FavoriteVO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class FavoriteServiceImpl implements FavoriteService {
@@ -38,15 +39,22 @@ public class FavoriteServiceImpl implements FavoriteService {
 	
 	// 가게 찜 추가하기
 	@Override
+	@Transactional
 	public int addFavorite(FavoriteVO fav) throws Exception {
 		int favorite = mapper.addFavorite(fav);
+		fav.setBizLikeCnt(fav.getBizLikeCnt()+1);
+		mapper.updateBizLikes(fav);
 		return favorite;
 	}
 	
 	// 찜 삭제하기
 	@Override
-	public int deleteFavorite(String custId, String bizId) throws Exception {
-		int favorite = mapper.deleteFavorite(custId, bizId);
-		return favorite;
+	@Transactional
+	public void deleteFavorite(String custId, String bizId, int bizLikeCnt) throws Exception {
+		mapper.deleteFavorite(custId, bizId);
+		FavoriteVO fav = new FavoriteVO();
+		fav.setBizId(bizId);
+		fav.setBizLikeCnt(bizLikeCnt-1);
+		mapper.updateBizLikes(fav);
 	}
 }

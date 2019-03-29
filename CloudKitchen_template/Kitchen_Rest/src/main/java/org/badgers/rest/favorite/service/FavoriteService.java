@@ -18,5 +18,5 @@ public interface FavoriteService {
 	public int addFavorite(FavoriteVO fav) throws Exception;
 	
 	// 찜 삭제하기
-	public int deleteFavorite(String custId, String bizId) throws Exception;
+	public void deleteFavorite(String custId, String bizId, int bizLikeCnt) throws Exception;
 }
