@@ -76,7 +76,6 @@
 							class="icheck">Pay with cash</label> <i class="icon_wallet"></i>
 							
 					</div>
-					<input type="button" id="naverPayBtn" value="네이버페이 결제 버튼">
 				</div>
 				<!-- End box_style_1 -->
 			</div>

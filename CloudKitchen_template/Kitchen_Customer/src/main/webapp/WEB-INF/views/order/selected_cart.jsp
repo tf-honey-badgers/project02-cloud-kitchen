@@ -51,3 +51,15 @@
 				</div> <!-- End theiaStickySidebar -->
 			</div> <!-- End col-md-4 -->
 			
+<script src="/customer/resources/js/jquery-2.2.4.min.js"></script>
+<script>
+$(document).ready(function(){
+	var cartTotal = 0;
+	for(var i = 0; i < $('.priceData').size(); i++) {
+		var price = $('.priceData').eq(i).attr('data-total-price');
+		cartTotal += parseInt(price);
+	}
+	$('.total span').text(cartTotal + '원');
+})
+</script>
+			

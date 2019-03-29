@@ -114,13 +114,6 @@
 			/* 회원 주소 사용 */
 			defaultAddressInit();
 		})
-		
-		var cartTotal = 0;
-		for(var i = 0; i < $('.priceData').size(); i++) {
-			var price = $('.priceData').eq(i).attr('data-total-price');
-			cartTotal += parseInt(price);
-		}
-		$('.total span').text(cartTotal + '원');
 				
 		
 		function defaultPhoneInit(){
