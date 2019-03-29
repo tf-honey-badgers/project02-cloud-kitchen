@@ -2,6 +2,33 @@ $(document)
 		.ready(
 				function() {
 					
+					$('.menu-option-delete').on('click',function(e){
+						e.preventDefault();
+						
+						$.ajax({
+			        		type : "POST",
+			        		dataType : 'json',
+			        		url : "../menu/main/deletemenu",
+			         		data : {
+			         			menuId : $(this).parent().parent().children().eq(0).text()
+			         		},
+			        		error : function(data){
+			        			console.log(data);
+			        		},
+			        		success(data){
+			        			console.log(data);
+//			        			$(this).parent().parent().remove();
+			        		}
+						});
+					});
+					
+					$('.menuInsertModalOpt')
+						.on('click','.col-md-12 .card .card-body .table-responsive .table tbody .menuOptCl td .deleteMenuOpt',function(e){
+						
+						$(this).parent().parent().parent().parent().parent().parent().parent().parent().remove();	
+					});
+					
+					
 					$('#insertMenu').on('click',function(e){
 						
 						let insertMenu = new Object();
@@ -106,8 +133,11 @@ $(document)
 			        				+'<td><input type="text" class=""></td>'
 			        				+'<td><button class="addOpt">'
 			        				+'<img src="/business/resources/img/baseline_add_circle_outline_black_18dp.png">'
-			        				+'</button></td>'
-			        				+'</tr>'
+			        				+'</button>'
+			        				+'<button class="deleteMenuOpt">'
+			        				+'<img src="/business/resources/img/baseline_remove_circle_outline_black_18dp.png">'
+			        				+'</button>'
+			        				+'</td></tr>'
 			        				+'</tbody>'
 			        				+'</table>'
 			        				+'</div>'

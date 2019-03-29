@@ -111,6 +111,9 @@
 															<button class="addOpt">
 															<img src="/business/resources/img/baseline_add_circle_outline_black_18dp.png">
 															</button>
+															<button class="deleteMenuOpt">
+															<img src="/business/resources/img/baseline_remove_circle_outline_black_18dp.png">
+															</button>
 														 </td>
 													</tr>
 											</tbody>
