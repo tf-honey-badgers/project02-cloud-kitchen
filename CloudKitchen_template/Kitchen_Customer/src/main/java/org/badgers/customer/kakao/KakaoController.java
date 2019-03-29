@@ -20,55 +20,67 @@ public class KakaoController {
 	 @RequestMapping(value = "/main/kakaologin", produces = "application/json", method = { RequestMethod.GET, RequestMethod.POST })
 	    public String kakaoLogin(ModelMap model,@RequestParam("code") String code, RedirectAttributes ra, HttpSession session, HttpServletResponse response) throws IOException {
 
-	    	
+		   //카카오 홈페이지에서 받은 결과 코드
 	    System.out.println("kakao code:" +code);
 
-	        // JsonNode트리형태로 토큰받아온다
-	        JsonNode jsonToken = KakaoAccessToken.getKakaoAccessToken(code);
-	        
-	        // 여러 json객체 중 access_token을 가져온다
-	        JsonNode accessToken = jsonToken.get("access_token");
-	        
-	        System.out.println("access_token : " + accessToken);
-	        
-	        // access_token을 통해 사용자 정보 요청
-	        JsonNode userInfo = KakaoUserInfo.getKakaoUserInfo(accessToken);
-	        
-	       
-	        System.out.println("userInfo 다 ===============" + userInfo);
-	        
-	        
-	        String token = jsonToken.get("access_token").toString();
+	    	KakaoAccessToken kr = new KakaoAccessToken();
+	    	
+	    	JsonNode knode = kr.getKakaoAccessToken(code);
+	    	
+	    	System.out.println(knode);
+	    	
+	    	 //노드 안에 있는 access_token값을 꺼내 문자열로 변환
 
-	     
-	        
-	        // Get id
-//	        String id = userInfo.path("id").asText();
-	        
-	        JsonNode kakao_account = userInfo.path("kakao_account");
-	        System.out.println(kakao_account);
-	        
-	        JsonNode  properties = userInfo.path("properties");
-	        System.out.println(properties);
-	        
-	        
-	        
-	        String id = userInfo.get("id").toString();
-	        String email = userInfo.get("kakao_account").get("email").toString();
-	        String image = userInfo.get("properties").get("profile_image").toString();
-	        String nickname = userInfo.get("properties").get("nickname").toString();
+	    	String token =knode.get("access_token").toString();
+	    
+	    	session.setAttribute("token", token);
 
-	        System.out.println(id + email);
-		
-	        session.setAttribute("token", token);
-	        session.setAttribute("token", id);
-	      
-	        model.addAttribute("token",token);
-	        model.addAttribute("k_userInfo", userInfo);
-	        model.addAttribute("id", id);
-	        model.addAttribute("email", email);
-	        model.addAttribute("nickname", nickname);
-	        model.addAttribute("image", image);
+
+	    
+		  // JsonNode트리형태로 토큰받아온다 JsonNode jsonToken =
+		  KakaoAccessToken.getKakaoAccessToken(code);
+		  
+		 // 여러 json객체 중 access_token을 가져온다 JsonNode accessToken =
+		  jsonToken.get("access_token");
+		  
+		  System.out.println("access_token : " + accessToken);
+		  
+		  // access_token을 통해 사용자 정보 요청 JsonNode userInfo =
+		 KakaoUserInfo.getKakaoUserInfo(accessToken);
+		  
+		  
+		  System.out.println("userInfo 다 ===============" + userInfo);
+		  
+		  
+		  String token = jsonToken.get("access_token").toString();
+		  
+		  
+		  
+		  // Get id // String id = userInfo.path("id").asText();
+		  
+		  JsonNode kakao_account = userInfo.path("kakao_account");
+		  System.out.println(kakao_account);
+		  
+		  JsonNode properties = userInfo.path("properties");
+		  System.out.println(properties);
+		 
+	        
+	        
+	        
+		/*
+		 * String id = userInfo.get("id").toString(); String email =
+		 * userInfo.get("kakao_account").get("email").toString(); String image =
+		 * userInfo.get("properties").get("profile_image").toString(); String nickname =
+		 * userInfo.get("properties").get("nickname").toString();
+		 * 
+		 * System.out.println(id + email);
+		 * 
+		 * session.setAttribute("token", token); session.setAttribute("token", id);
+		 * 
+		 * model.addAttribute("token",token); model.addAttribute("k_userInfo",
+		 * userInfo); model.addAttribute("id", id); model.addAttribute("email", email);
+		 * model.addAttribute("nickname", nickname); model.addAttribute("image", image);
+		 */
 
 	        return "logininfo";
 	   

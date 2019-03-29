@@ -25,6 +25,10 @@
       <button type="button" id ="kakaologout" class="btn btn-submit">로그아웃</button>
       </a><br>
       <a href=" https://developers.kakao.com/logout">dddddd</a>
+      ${sessionScope.token}
+      
+      
+      
       
       <button class="api-btn" onclick="unlinkApp()">
 앱 탈퇴하기						
@@ -51,28 +55,7 @@
 <script src='https://developers.kakao.com/sdk/js/kakao.min.js'></script>
 
 
-<script type='text/javascript'>
-  //<![CDATA[
-    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('f974d2d246e51518f4c5d60e83a2ee41');
-    function unlinkApp(){
-        Kakao.API.request({
-            url: '/v1/user/unlink',
-            success: function(res) {
-                alert('success!');	
-                console.log(res);
-            //    document.getElementById('unlink-desc').style.display = "none";
-            },
-            fail: function(error) {
-                console.log(error);
-                document.getElementById('unlink-desc').style.display = "block";
-                document.getElementById('error-desc').innerHTML = JSON.stringify(error);
-               
-            }
-        })
-    }
-  //]]>
-</script> 
+
 
 </body>
 </html>
