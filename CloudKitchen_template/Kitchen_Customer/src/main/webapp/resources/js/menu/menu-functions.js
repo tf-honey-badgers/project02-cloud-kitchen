@@ -234,6 +234,18 @@ $(document).ready(function() {
 			
 	});*/
 	
+	$('body').on('click','#orderNow',function(event){
+		var checkedMenu = $('.cartTable .check-order:checked').length;
+		if(checkedMenu<1){
+			event.preventDefault();
+			alert('한 가지 이상의 메뉴를 선택해주십쇼 형님');
+			return;
+		}
+		console.log(checkedMenu);
+		console.log(checkedMenu);
+		
+		
+	});
 	
 /* 찜하기 버튼 누르면 찜을 추가하기 */
 	$('#likeWrapper').on('click', $('#likeBiz'), function() {
