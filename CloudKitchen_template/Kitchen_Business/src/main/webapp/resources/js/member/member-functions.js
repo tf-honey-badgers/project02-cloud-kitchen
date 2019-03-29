@@ -71,6 +71,8 @@ $(document).ready(function() {
 	    			console.log(data);
 	    		}
 	    		, success : function(data) {
+	    			console.log('..............',data)
+	    			
 	    			if(data == "성공적으로 로그인했습니다.") {
 	    				md.showNotification('top', 'center', 'info', '로그인했습니다.');    				
 	    			} else {

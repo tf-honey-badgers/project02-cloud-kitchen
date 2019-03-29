@@ -1,7 +1,12 @@
 package org.badgers.business.member.controller;
 
+import java.io.IOException;
+import java.net.ConnectException;
+import java.net.SocketException;
+
 import javax.inject.Inject;
 
+import org.apache.http.conn.HttpHostConnectException;
 import org.badgers.business.model.BizMemberVOExtend;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -80,14 +86,18 @@ public class BusinessController {
 //	로그인 
 	@PostMapping(value ="/login", produces = "text/plain; charset=utf-8")
 	@ResponseBody
-	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend mvo, Model model) {
+	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend mvo, Model model){
 		
 		log.info("Kitchen_Business 사업자 로그인...............................");
 		String status="";
 		String url = "http://localhost/rest/business/login";
-//		try {
-			ResponseEntity<Object> responseEntity = restTemplate.postForEntity(url, mvo, Object.class);
+		try {
+			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
+			
+			log.info(responseEntity);
+			log.info(responseEntity.getBody());
 			HttpHeaders responseHeaders = new HttpHeaders();
+			log.info(".......................................................");
 		    
 			responseHeaders.set("RESULT", "123456789");
 			
@@ -95,14 +105,15 @@ public class BusinessController {
 			
 //			model.addObject("bizId",mvo.getBizId());
 			
-//		}catch(HttpClientErrorException e){
-//		}
-//		mv.addObject("status",status);
-//		return mv;
-		
-		model.addAttribute("RESULT", "ABCDEFG");
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			if(e.getMessage().contains("failed: Connection refused: connect")) {
+				status="server disconnected";
+			}
+
+		}
 			
-		return new ResponseEntity<>("ABCDEFG",responseHeaders,  HttpStatus.OK);	
+		return new ResponseEntity<>(status,  HttpStatus.OK);	
 	}
 
 	@PostMapping("/verify")
