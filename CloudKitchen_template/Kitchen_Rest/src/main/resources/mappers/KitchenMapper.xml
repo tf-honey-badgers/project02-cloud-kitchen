@@ -7,15 +7,15 @@
 	namespace="org.badgers.rest.customer.kitchen.persistence.KitchenMapper">
 
 	<select id="kitchenbranchList"
-		resultType="org.badgers.rest.model.KitchenBranchVOExtend">
+		resultType="org.badgers.rest.model.KitchenBranchVO">
 		select * from kitchen_branch
 	</select>
 
-	<select id="bizList" resultType="org.badgers.rest.model.BizVOExtend">
+	<select id="bizList" resultType="org.badgers.rest.model.BizVO">
 		select * from biz
 	</select>
 	
-	<select id="menuList" resultType="org.badgers.rest.model.MenuVOExtend">
+	<select id="menuList" resultType="org.badgers.rest.model.MenuVO">
 		select * from menu
 	</select>
 	
