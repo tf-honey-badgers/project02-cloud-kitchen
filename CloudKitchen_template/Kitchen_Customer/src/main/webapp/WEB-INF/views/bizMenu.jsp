@@ -61,7 +61,7 @@
 											<figure class="thumb_menu_list">
 												<img src="/customer/resources/img/menu-thumb-1.jpg"	alt="thumb">
 											</figure>
-											<h5 style="padding-top: 10px;" data-id="${dish.mcode}">${loop.index+1}. ${dish.mname}</h5>
+											<h5 style="padding-top: 10px; width: 220px !important;" data-id="${dish.mcode}">${loop.index+1}. ${dish.mname}</h5>
 										</td>
 										<td data-price="${dish.mbasicPrice}"><strong>${dish.mbasicPrice} 원</strong></td>
 										<td class="options">

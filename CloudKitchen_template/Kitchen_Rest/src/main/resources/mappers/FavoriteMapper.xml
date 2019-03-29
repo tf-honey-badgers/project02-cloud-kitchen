@@ -27,6 +27,10 @@
 			(#{custId}, #{bizId}, #{bizName}, #{kitchenName})
 	</insert>
 	
+	<update id="updateBizLikes">
+		update honey_badgers.biz set like_cnt = #{bizLikeCnt} where biz_id = #{bizId}
+	</update>
+	
 	<!-- 찜 삭제하기 -->
 	<delete id="deleteFavorite">
 		delete from honey_badgers.favorite where cust_id = #{param1} and biz_id = #{param2}

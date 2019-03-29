@@ -135,5 +135,34 @@ public class MenuController {
 		return null;
 	}
 	
+	
+	@RequestMapping(value="/main/insertMenu", method=RequestMethod.POST, 
+			produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public int insertMenu(@RequestParam("menuInfo") String menuInsertInfo) {
+		int result = 0;
+		try {
+			String url = "http://localhost:80/rest/bizmenu/menuinsert";
+	        
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
 
+			HttpEntity entity = new HttpEntity(menuInsertInfo, headers);
+			
+			ResponseEntity updateResponseEntity = restTemplate.postForEntity
+					(url,entity,int.class);
+			
+			System.out.println("MenuUpdate Front Controller2");
+			
+			result = (int) updateResponseEntity.getBody();
+			System.out.println(result);
+			return result;
+			
+		}catch(Exception e){
+			e.getStackTrace();
+		}
+		
+		return 0;
+		
+	}
 }

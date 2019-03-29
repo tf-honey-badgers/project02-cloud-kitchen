@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.extern.log4j.Log4j;
@@ -30,8 +31,7 @@ public class PaymentController {
 	RestTemplate restTemplate;
 
 	@PostMapping("/orderinfo")
-//	public String orderInfo(@RequestBody Map cartIds, HttpSession session, Model model) {
-	public String orderInfo(int[] selectedCart, HttpSession session, Model model, RedirectAttributes rttr) {
+	public ModelAndView orderInfo(int[] selectedCart, HttpSession session, ModelAndView mv) {
 		String url = "http://127.0.0.1:80/rest/cust/order/orderinfo";
 		
 		ResponseEntity<CartVOExtend[]> response = restTemplate.postForEntity(url, selectedCart, CartVOExtend[].class);
@@ -42,10 +42,9 @@ public class PaymentController {
 		session.setAttribute("phone", "01011112222");
 		session.setAttribute("address", "고양시 우리집");
 		/* --- */
-		
-		model.addAttribute("cart", cartList);
-		
-		return "/order/order_1_orderinfo";
+		mv.addObject("cartList", cartList);
+		mv.setViewName("/order/order_1_orderinfo");
+		return mv;
 	}
 
 	@RequestMapping("/payment")
