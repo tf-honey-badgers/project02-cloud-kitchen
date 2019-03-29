@@ -25,6 +25,11 @@
       <button type="button" id ="kakaologout" class="btn btn-submit">로그아웃</button>
       </a><br>
       <a href=" https://developers.kakao.com/logout">dddddd</a>
+      
+      <button class="api-btn" onclick="unlinkApp()">
+앱 탈퇴하기						
+</button>
+
 	</div>
 	</div>
 	<br>
@@ -44,26 +49,30 @@
   </script>
     
 <script src='https://developers.kakao.com/sdk/js/kakao.min.js'></script>
-<script>
-$(document).ready(function(){
-	 if ( window.location == 'https://developers.kakao.com/logout' ) {
-		   window.location.href='http://localhost:3001/customer/main';
-		  };
-	 
-$('#kakaologout').on('click', function() {
-Kakao.init('f974d2d246e51518f4c5d60e83a2ee41'); //카카오에서 제공 myceo.co.kr 수정
-Kakao.Auth.logout(
-function(obj) {
-	if(obj==true){
-		setTimeout(function(){
- location.href = "${pageContext.request.contextPath}/logout";
- alert('로그아웃  성공');		
- });
-	}else{alert('실패')}
-});
-});
-});
-</script>
+
+
+<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('f974d2d246e51518f4c5d60e83a2ee41');
+    function unlinkApp(){
+        Kakao.API.request({
+            url: '/v1/user/unlink',
+            success: function(res) {
+                alert('success!');	
+                console.log(res);
+            //    document.getElementById('unlink-desc').style.display = "none";
+            },
+            fail: function(error) {
+                console.log(error);
+                document.getElementById('unlink-desc').style.display = "block";
+                document.getElementById('error-desc').innerHTML = JSON.stringify(error);
+               
+            }
+        })
+    }
+  //]]>
+</script> 
 
 </body>
 </html>

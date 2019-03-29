@@ -73,7 +73,11 @@ public class KakaoController {
 	        return "logininfo";
 	   
 	    }	
-	 
+	 @RequestMapping(value="main/test",produces="application/json")
+	 public String test() {
+		 
+		 return "test";
+	 }
 	 
 	 @RequestMapping(value = "/logout", produces = "application/json")
 	    public String Logout(HttpSession session) {
