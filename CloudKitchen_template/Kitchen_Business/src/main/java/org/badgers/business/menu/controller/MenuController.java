@@ -167,4 +167,37 @@ public class MenuController {
 		return 0;
 		
 	}
+	
+	
+	@RequestMapping(value="/main/deletemenu", method=RequestMethod.POST, 
+			produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public int deleteMenu(@RequestParam("menuId") String menuId) {
+		System.out.println(menuId);
+		int result = 0;
+//		try {
+//			System.out.println("MenuUpdate Front Controller1");
+//			String url = "http://localhost:80/rest/bizmenu/deletemenu";
+//	        
+//			HttpHeaders headers = new HttpHeaders();
+//			headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+//
+//			HttpEntity entity = new HttpEntity(menuId, headers);
+//			
+//			ResponseEntity updateResponseEntity = restTemplate.postForEntity
+//					(url,entity,int.class);
+//			
+//			System.out.println("MenuUpdate Front Controller2");
+//			
+//			result = (int) updateResponseEntity.getBody();
+//			System.out.println(result);
+//			return result;
+//			
+//		}catch(Exception e){
+//			e.getStackTrace();
+//		}
+		
+		return 0;
+		
+	}
 }

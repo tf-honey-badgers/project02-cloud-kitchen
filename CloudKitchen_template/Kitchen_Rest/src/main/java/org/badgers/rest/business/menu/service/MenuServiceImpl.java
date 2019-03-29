@@ -60,8 +60,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public int deleteMenu(int menuIdx) {
-		return mapper.deleteMenu(menuIdx);
+	public int deleteMenu(int menuId) {
+		return mapper.deleteMenu(menuId);
 	}
 
 	@Override
@@ -121,16 +121,16 @@ public class MenuServiceImpl implements MenuService {
 			JsonArray menuOptArray = menuOptelement.get("menuOptEx").getAsJsonArray();
 			
 			
-//			for(int j=0;j<menuOptArray.size();j++) {
-//				JsonObject menuOpt = (JsonObject) menuOptArray.get(j);
-//				MenuOptionVOExtend menuOptVoEx = new MenuOptionVOExtend();
-//				menuOptVoEx.setMoCode(menuOpt.get("moCode").getAsInt());
-//				menuOptVoEx.setMoName(menuOpt.get("moName").getAsString());
-//				menuOptVoEx.setMoAddPrice(menuOpt.get("moAddPrice").getAsString());
-//				menuOptVoEx.setMoOptClNo(menuOpt.get("moOptClNo").getAsInt());
-//				mapper.updateMenuOptInfo(menuOptVoEx);
-//				resultCnt++;
-//			}
+			for(int j=0;j<menuOptArray.size();j++) {
+				JsonObject menuOpt = (JsonObject) menuOptArray.get(j);
+				MenuOptionVOExtend menuOptVoEx = new MenuOptionVOExtend();
+				menuOptVoEx.setMoCode(menuOpt.get("moCode").getAsInt());
+				menuOptVoEx.setMoName(menuOpt.get("moName").getAsString());
+				menuOptVoEx.setMoAddPrice(menuOpt.get("moAddPrice").getAsString());
+				menuOptVoEx.setMoOptClNo(menuOpt.get("moOptClNo").getAsInt());
+				mapper.updateMenuOptInfo(menuOptVoEx);
+				resultCnt++;
+			}
 		}
 		return resultCnt;
 	}
@@ -167,17 +167,19 @@ public class MenuServiceImpl implements MenuService {
 			JsonObject menuOptelement = (JsonObject) parser.parse(menuOptClArray.get(i).toString());
 			JsonArray menuOptArray = menuOptelement.get("menuOptEx").getAsJsonArray();
 			System.out.println(menuOptCl);
-//			for(int j=0;j<menuOptArray.size();j++) {
-//				JsonObject menuOpt = (JsonObject) menuOptArray.get(j);
-//				MenuOptionVOExtend menuOptVoEx = new MenuOptionVOExtend();
-//				menuOptVoEx.setMoCode(menuOpt.get("moCode").getAsInt());
-//				menuOptVoEx.setMoName(menuOpt.get("moName").getAsString());
-//				menuOptVoEx.setMoAddPrice(menuOpt.get("moAddPrice").getAsString());
-//				menuOptVoEx.setMoOptClNo(menuOpt.get("moOptClNo").getAsInt());
-//				mapper.updateMenuOptInfo(menuOptVoEx);
-//				resultCnt++;
-//			}
+			
+			for(int j=0;j<menuOptArray.size();j++) {
+				JsonObject menuOpt = (JsonObject) menuOptArray.get(j);
+				MenuOptionVOExtend menuOptVoEx = new MenuOptionVOExtend();
+				menuOptVoEx.setMoCode(menuOpt.get("moCode").getAsInt());
+				menuOptVoEx.setMoName(menuOpt.get("moName").getAsString());
+				menuOptVoEx.setMoAddPrice(menuOpt.get("moAddPrice").getAsString());
+				menuOptVoEx.setMoOptClNo(menuOpt.get("moOptClNo").getAsInt());
+				mapper.updateMenuOptInfo(menuOptVoEx);
+				resultCnt++;
+			}
 		}
 		return resultCnt;
 	}
+
 }
