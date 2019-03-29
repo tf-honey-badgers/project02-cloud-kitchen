@@ -51,7 +51,7 @@ $(document).ready(function() {
 	
 /* 페이지 로딩 후 현재 보고 있는 가게를 현재 로그인되어 있는 고객이 찜했는지 확인하고 반영하기 */
 	isFavoriteChk();
-		
+	
 /* 옵션 없는 메뉴는 "+" 클릭하면 장바구니에 추가하도록 */
 	for(var i = 0; i < $('.dropdown-menu').size(); i++) {
 		if($('.dropdown-menu').eq(i).children('div').length == 0) {
@@ -228,6 +228,23 @@ $(document).ready(function() {
 		
 			
 	});*/
+	$('body').on('click','#orderNow',function(event){
+		event.preventDefault();
+		var checkedMenu = $('.cartTable .check-order').prop('checked');
+		console.log(checkedMenu);
+		alert(checkedMenu);
+		
+	});
+	
+	$('#orderNow').on('click',function(event){
+		event.preventDefault();
+		alert(checkedMenu);
+	});
+	
+	$('document').on('click',function(event){
+		console.log(event);
+	});
+	
 	
 /* 찜하기 버튼 누르면 찜을 추가하기 */
 	$('body').on('click', $('#likeBiz'), function() {
@@ -271,3 +288,4 @@ $(document).ready(function() {
 	});
 	
 });
+
