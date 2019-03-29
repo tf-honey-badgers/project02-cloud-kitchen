@@ -53,6 +53,13 @@ public class KitchenController {
 		return service.allLists();
 	}
 	
+	// 검색어를 가지고 지점, 가게, 메뉴 검색하기
+	@SuppressWarnings("rawtypes")
+	@RequestMapping(value = "/searchlists/{query}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public Map<String, List> searchLists(@PathVariable("query") String query) {
+		return service.searchLists(query);
+	}
+	
 	@RequestMapping("/categorization")
 	public List<Object> getCategorization(){
 		return service.getCategorization();

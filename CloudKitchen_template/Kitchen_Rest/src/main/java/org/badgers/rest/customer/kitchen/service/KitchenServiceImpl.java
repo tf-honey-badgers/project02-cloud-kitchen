@@ -50,6 +50,23 @@ public class KitchenServiceImpl implements KitchenService {
 		return returnVal;
 	}
 	
+	@SuppressWarnings("rawtypes")
+	public Map<String, List> searchLists(String query) {
+
+		// work in progress
+		Map<String, List> returnVal = new HashMap<String, List>();
+		
+		List<KitchenBranchVOExtend> kitchenList = mapper.kitchenbranchList();
+		List<BizVOExtend> bizList = mapper.bizList();
+		List<MenuVOExtend> menuList = mapper.menuList();
+		
+		returnVal.put("kitchenList", kitchenList);
+		returnVal.put("bizList", bizList);
+		returnVal.put("menuList", menuList);
+		
+		return returnVal;
+	}
+	
 	@Override
 	public List<BizVOExtend> bizInfo(String bizId){
 		System.out.println("bizInfo : 서비스");
