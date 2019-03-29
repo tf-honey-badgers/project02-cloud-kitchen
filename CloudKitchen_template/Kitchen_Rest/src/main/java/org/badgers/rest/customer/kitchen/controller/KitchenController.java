@@ -1,6 +1,7 @@
 package org.badgers.rest.customer.kitchen.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.badgers.rest.customer.kitchen.service.KitchenServiceImpl;
 import org.badgers.rest.model.BizVOExtend;
@@ -9,6 +10,7 @@ import org.badgers.rest.model.KitchenSelectCatVOExtend;
 import org.badgers.rest.model.MenuVOExtend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +44,13 @@ public class KitchenController {
 	@RequestMapping("/menulist")
 	public List<MenuVOExtend> menulist() {
 		return service.menulist();
+	}
+	
+	// 지점, 가게, 메뉴 목록
+	@SuppressWarnings("rawtypes")
+	@RequestMapping(value = "/alllists", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public Map<String, List> allLists() {
+		return service.allLists();
 	}
 	
 	@RequestMapping("/categorization")

@@ -1,6 +1,8 @@
 package org.badgers.rest.customer.kitchen.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.badgers.rest.customer.kitchen.persistence.KitchenMapper;
 import org.badgers.rest.model.BizVOExtend;
@@ -27,10 +29,25 @@ public class KitchenServiceImpl implements KitchenService {
 	public List<BizVOExtend> bizlist(){
 		return mapper.bizList();
 	}
-	
+		
 	@Override
 	public List<MenuVOExtend> menulist(){
 		return mapper.menuList();
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public Map<String, List> allLists() {
+		Map<String, List> returnVal = new HashMap<String, List>();
+		
+		List<KitchenBranchVOExtend> kitchenList = mapper.kitchenbranchList();
+		List<BizVOExtend> bizList = mapper.bizList();
+		List<MenuVOExtend> menuList = mapper.menuList();
+		
+		returnVal.put("kitchenList", kitchenList);
+		returnVal.put("bizList", bizList);
+		returnVal.put("menuList", menuList);
+		
+		return returnVal;
 	}
 	
 	@Override
