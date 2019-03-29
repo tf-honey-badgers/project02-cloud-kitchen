@@ -233,22 +233,6 @@ $(document).ready(function() {
 		
 			
 	});*/
-	$('body').on('click','#orderNow',function(event){
-		event.preventDefault();
-		var checkedMenu = $('.cartTable .check-order').prop('checked');
-		console.log(checkedMenu);
-		alert(checkedMenu);
-		
-	});
-	
-	$('#orderNow').on('click',function(event){
-		event.preventDefault();
-		alert(checkedMenu);
-	});
-	
-	$('document').on('click',function(event){
-		console.log(event);
-	});
 	
 	
 /* 찜하기 버튼 누르면 찜을 추가하기 */
