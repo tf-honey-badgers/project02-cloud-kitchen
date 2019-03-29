@@ -9,15 +9,10 @@
 <mvc:interceptors>
 
 	<mvc:interceptor>
-		<mvc:mapping path=""/>
-		<bean></bean>
+		<mvc:mapping path="/order/orderinfo"/>
+		<bean class="org.badgers.customer.interceptor.PaymentSessionInterceptor"></bean>
 	</mvc:interceptor>
 
-
-
-
 </mvc:interceptors>
-
-
 
 </beans>
