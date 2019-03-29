@@ -1,3 +1,15 @@
+.addOpt{
+	border : none;
+	background-color : white;
+	background: url( "img/baseline_add_circle_outline_black_18dp.png" ) no-repeat;
+}
+
+ .deleteOpt {
+	border : none;
+	background-color : white;
+ 	background: url( "img/baseline_remove_circle_outline_black_18dp.png" ) no-repeat;
+ }
+
 .addOptBtnArea {
 	margin : 0% 10% 0% 90%;
 	height : 50px!important;
@@ -13,7 +25,7 @@ input { width:120px!important; }
 .menuInsertModal {
 	display: none;
 	position: fixed;
-	z-index: 9999;
+	z-index: 9999; 
 	left: 0;
 	top: 0;
 	width: 100%;

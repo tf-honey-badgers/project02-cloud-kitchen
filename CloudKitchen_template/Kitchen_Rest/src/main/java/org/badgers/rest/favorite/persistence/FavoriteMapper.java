@@ -16,6 +16,7 @@ public interface FavoriteMapper {
 	
 	// 찜 추가하기
 	public int addFavorite(FavoriteVO fav) throws Exception;
+	public void updateBizLikes(FavoriteVO fav) throws Exception;
 	
 	// 찜 삭제하기
 	public int deleteFavorite(String custId, String bizId) throws Exception;
