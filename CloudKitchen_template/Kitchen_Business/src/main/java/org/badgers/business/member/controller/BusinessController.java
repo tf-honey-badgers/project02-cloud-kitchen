@@ -94,17 +94,13 @@ public class BusinessController {
 		String url = "http://localhost/rest/business/login";
 		try {
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
-			
-			log.info(responseEntity);
-			log.info(responseEntity.getBody());
+			status= responseEntity.getBody();
 			responseHeaders = new HttpHeaders();
-			log.info(".......................................................");
-		    
-			responseHeaders.set("RESULT", mvo.getBizId()+"I AM TJ HEY WHATS YOUR NAME");
 			
-			status= responseEntity.getStatusCode().toString();
-			System.out.println("컨트롤러 헤드헤드 : "+responseHeaders.getFirst("RESULT"));
-//			mov.addObject("bizId",mvo.getBizId());
+			if(status.equals("success")) {
+				responseHeaders.set("RESULT", mvo.getBizId());
+			}
+			
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 			if(e.getMessage().contains("failed: Connection refused: connect")) {

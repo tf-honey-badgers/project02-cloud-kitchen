@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
 	<div class="container-fluid">
@@ -26,10 +27,10 @@
 				</div>
 			</form>
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#login_2">
+				<!-- <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#login_2">
 						<i class="material-icons">lock</i>
 						<p class="d-lg-none d-md-block">Login</p>
-				</a></li>
+				</a></li> -->
 				<li class="nav-item"><a class="nav-link" href="#pablo"> <i
 						class="material-icons">dashboard</i>
 						<p class="d-lg-none d-md-block">Stats</p>
@@ -49,20 +50,33 @@
 							Andrew</a> <a class="dropdown-item" href="#">Another Notification</a>
 						<a class="dropdown-item" href="#">Another One</a>
 					</div></li>
-				<li class="nav-item dropdown"><a class="nav-link" href="#pablo"
-					id="navbarDropdownProfile" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"> <i
-						class="material-icons">person</i>
+					
+					<!-- 회원 관리  -->
+				<li class="nav-item dropdown">
+					<a class="nav-link" href="#pablo"id="navbarDropdownProfile" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
+					 <i class="material-icons">person</i>
 						<p class="d-lg-none d-md-block">Account</p>
-				</a>
-					<div class="dropdown-menu dropdown-menu-right"
-						aria-labelledby="navbarDropdownProfile">
-						<a class="dropdown-item" href="#">Profile</a> <a
-							class="dropdown-item" href="#">Settings</a>
+				    </a>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+						<a class="dropdown-item" href="#">Profile</a> 
+						<a class="dropdown-item" href="#">Settings</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Log Out</a>
-					</div></li>
+						<c:if test="${!empty sessionScope.bizId }" >
+							<a class="dropdown-item" href="#" id="login"  data-toggle="modal" data-target="#login_2">Login</a>
+						</c:if>
+						<c:if test="${empty sessionScope.bizId }" >
+							<a class="dropdown-item" href="#" id="logout">Logout</a>
+						</c:if>
+					</div>
+				</li>
 			</ul>
 		</div>
 	</div>
 </nav>
+
+<script>
+/* 	$('#login').on('click', function(){
+		alert('sdfs')
+		//$('#login_2').modal('show');
+	}) */
+</script>

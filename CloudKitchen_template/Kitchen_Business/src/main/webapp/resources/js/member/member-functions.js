@@ -73,8 +73,9 @@ $(document).ready(function() {
 	    		, success : function(data) {
 	    			console.log('..............',data)
 	    			
-	    			if(data == "성공적으로 로그인했습니다.") {
-	    				md.showNotification('top', 'center', 'info', '로그인했습니다.');    				
+	    			if(data == "success") {
+	    				md.showNotification('top', 'center', 'info', $('#myLogin input:eq(0)').val()+'님  환영합니다'); 
+	    				window.location.reload()
 	    			} else {
 	    				md.showNotification('top', 'center', 'danger', data);    				
 	    			}
