@@ -7,14 +7,14 @@
 	<!-- 회원 가입 -->
 	<insert id="register" parameterType="org.badgers.rest.model.CustomerVO">
 		insert into honey_badgers.customer
-			(id, pw, name, birth_date, phone, email, gender)
+			(id, pw, name, birth_date, phone, email, gender,address,address_detail)
 			values
-			(#{id},#{pw},#{name},#{birthDate},#{phone},#{email},#{gender})
+			(#{id},#{pw},#{name},#{birthDate},#{phone},#{email},#{gender},#{address},#{addressDetail})
 	</insert>
 	
 	<!-- 로그인 -->
 	<select id="login" resultType="org.badgers.rest.model.CustomerVO">
-		select id, pw from honey_badgers.customer where id = #{id}
+		select id, pw from honey_badgers.customer where id = #{id} and status = "MEM002"
 	</select>
 
 	<!--마이 페이지 -->
@@ -35,6 +35,12 @@
 			<if test="email != null and email != ''">
 				email = #{email},
 			</if>
+			<if test="address != null and address != ''">
+				address = #{address},
+			</if>
+			<if test="addressDeatial != null and addressDeatial != ''">
+				address_detail = #{addressDetail},
+			</if>
 		</trim>
 		where id = #{id}
 	</update>
@@ -46,7 +52,7 @@
 
 	<!-- 회원 정보 삭제 -->
 	<update id="delete">
-		update honey_badgers.customer set status= #{status} where id=#{id}
+		update honey_badgers.customer set status= "MEM004" where id=#{id} and pw =#{pw}
 	</update>
 
 	<!--주문 내역   -->

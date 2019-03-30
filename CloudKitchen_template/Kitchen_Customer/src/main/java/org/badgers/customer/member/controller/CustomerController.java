@@ -99,6 +99,18 @@ public class CustomerController {
 		log.info("회원 정보 수정 완료 ");
 	}
 	
+	//회원정보 수정 
+	@PostMapping("/{id}/delete")
+	@ResponseBody
+	public void deleteCustomer(@RequestBody CustomerVO cvo) {
+		log.info("Kitchen_Business 사용자 탈퇴...............................");
+	
+		String url = "http://localhost/rest/customer/" + cvo.getId() + "/delete";
+		restTemplate.put(url, cvo);
+					
+		log.info("회원탈퇴 완료");
+	}
+	
 	// 마이 페이지 
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage() {
@@ -215,7 +227,8 @@ public class CustomerController {
 		log.info("retrieved customer id");
 		return res;
 	}
-
+	
+	// 이메일 인증 처리 
 	@GetMapping("/emailConfirm")
 	public ModelAndView emailConfirm(ModelAndView mav,@RequestParam("email")String email, @RequestParam("key") String AuthCode) throws UnsupportedEncodingException {
 		Map<String, String> map = new HashMap<String, String>();

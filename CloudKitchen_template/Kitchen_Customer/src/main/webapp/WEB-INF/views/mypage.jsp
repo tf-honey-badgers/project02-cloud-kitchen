@@ -10,6 +10,7 @@
 <body>
 	<!-- 위쪽 헤더바  -->
 	<jsp:include page="include/header.jsp" />
+	<jsp:include page="include/menu_subheader.jsp" flush="false" />
 	<!-- 헤드 끝 -->
 <br><br><br><br><br><br>
 <div style="margin-left:300px;">	
@@ -32,7 +33,7 @@
 
 				<div class="desc">
 					
-					<h3>뭐시기 뭐시기 </h3>
+					<h3>찜 목록 이동 </h3>
 					
 				</div>
 			</a>
@@ -48,7 +49,7 @@
 				<div class="desc">
 					
 				
-					<h3>회원정보 수정</h3>
+					<h3>회원 주문 내역 </h3>
 		
 				</div>
 			</a>
