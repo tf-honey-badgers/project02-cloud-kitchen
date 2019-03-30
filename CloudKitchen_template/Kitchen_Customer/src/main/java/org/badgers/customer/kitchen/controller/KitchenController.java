@@ -81,19 +81,25 @@ public class KitchenController {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PostMapping(value = "/search", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<List<BizVOExtend>> searchLists(@RequestBody String query) {
+	public ModelAndView searchLists(ModelAndView mav, @RequestBody String query) {
 		log.info("Searching lists of kitchen branches, businesses, menus");
-		System.out.println(query);
 		
 		List<BizVOExtend> returnVal = null;
 		String url = "http://localhost/rest/kitchenbranch/searchlists";
 		
 		ResponseEntity<List> responseEntity = restTemplate.postForEntity(url, query, List.class);
-		if(!responseEntity.getBody().isEmpty()) {
-			returnVal = responseEntity.getBody();
-		}	
-		log.info(returnVal);
 		
-		return new ResponseEntity<List<BizVOExtend>>(returnVal, HttpStatus.OK);
+		if(!responseEntity.getBody().isEmpty()) {
+			log.info("Search successful!");
+			returnVal = responseEntity.getBody();
+			mav.addObject("searchResults", returnVal);
+		} else {
+			log.info("No matching search results");
+			mav.addObject("message", "No search results. Try again with a different query.");
+		}
+		log.info(returnVal);
+		mav.setViewName("searchGrid");
+		
+		return mav;
 	}
 }
