@@ -33,6 +33,8 @@
             <!-- Header -->
             <jsp:include page="include/header.jsp" flush="false"></jsp:include>
             <!-- End Header -->
+            <h1>id 나와라</h1>
+            <h1>${sessionScope.bizId}</h1>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -43,7 +45,7 @@
                                         <i class="material-icons">content_copy</i>
                                     </div>
                                     <p class="card-category">Used Space</p>
-<h1>${sessionScope.bizId}</h1>
+
                                     <h3 class="card-title">49/50
                                         <small>GB</small>
                                     </h3>
