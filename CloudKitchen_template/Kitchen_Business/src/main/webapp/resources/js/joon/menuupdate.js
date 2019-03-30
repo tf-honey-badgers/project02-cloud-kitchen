@@ -2,24 +2,30 @@ $(document)
 		.ready(
 				function() {
 					
-					$('.menu-option-delete').on('click',function(e){
+					$('.table-responsive').on('click','table tbody tr td .menu-option-delete',function(e){
 						e.preventDefault();
+						let deleteCheck = confirm("정말 삭제하시겠습니까?");
+						let deleteMenu = $(this).parent().parent();
+						if(deleteCheck == true){
+							$.ajax({
+								type : "POST",
+								dataType : 'json',
+								url : "../menu/main/deletemenu",
+								data : {
+									menuId : $(this).parent().parent().children().eq(0).text()
+								},
+								error : function(data){
+									console.log(data);
+								},
+								success(data){
+									console.log(data);
+									deleteMenu.remove();
+								}
+							});
+						} else {
+							return false;
+						}
 						
-						$.ajax({
-			        		type : "POST",
-			        		dataType : 'json',
-			        		url : "../menu/main/deletemenu",
-			         		data : {
-			         			menuId : $(this).parent().parent().children().eq(0).text()
-			         		},
-			        		error : function(data){
-			        			console.log(data);
-			        		},
-			        		success(data){
-			        			console.log(data);
-//			        			$(this).parent().parent().remove();
-			        		}
-						});
 					});
 					
 					$('.menuInsertModalOpt')
@@ -71,7 +77,23 @@ $(document)
 			        		},
 			        		success(data){
 			        			console.log(data);
-			        			
+			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
+			        			for(let i=0; i<menuCat.length; i++){
+			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
+//			        					$('.container-fluid .table tbody')[i].innerHTML+=(
+			        					$('.container-fluid .table tbody').eq(i).append(
+			        							'<tr>'
+			        							+'<td>'+data+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value+'</td>'
+			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
+												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
+			        							);
+			        					
+			        					$('.menuInsertModal').css('display', 'none');
+			        				}
+			        			}
 			        		}
 						});
 					});
@@ -258,7 +280,7 @@ $(document)
 						
 					}); // click end
 					
-			 		$('table tbody tr td .menu-option-select').on('click', function(e) {
+			 		$('table tbody tr td ').on('click','.menu-option-select', function(e) {
 						e.preventDefault();
 						$('.menuModalOpt table').empty();
 						$('.menuModal').css('display', 'block');

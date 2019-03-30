@@ -154,14 +154,12 @@ public class MenuServiceImpl implements MenuService {
 		System.out.println(updateMenuInfo);
 		JsonParser parser = new JsonParser();
 		JsonObject menuOptClelement = (JsonObject) parser.parse(updateMenuInfo);
-		int resultCnt = 0;
+		
 		MenuVOExtend menuVoEx = new MenuVOExtend();
 		menuVoEx.setMName(menuOptClelement.get("mName").getAsString());
 		menuVoEx.setMBasicPrice(menuOptClelement.get("mBasicPrice").getAsInt());
 		menuVoEx.setMenuCatCode(menuOptClelement.get("menuCatCode").getAsInt());
 
-		mapper.addMenu(menuVoEx);
-		resultCnt++;
 		
 		if(menuOptClelement.get("mPhoto").getAsString()==null || menuOptClelement.get("mPhoto").getAsString()=="" ) {
 			menuVoEx.setMPhoto("사진없음");
@@ -171,7 +169,6 @@ public class MenuServiceImpl implements MenuService {
 		
 		mapper.addMenu(menuVoEx);
 		
-		resultCnt++;
 		JsonArray menuOptClArray = menuOptClelement.get("menuOptCl").getAsJsonArray();
 		
 		for(int i=0;i<menuOptClArray.size();i++) {
@@ -194,33 +191,10 @@ public class MenuServiceImpl implements MenuService {
 				menuOptVoEx.setMoOptClNo(menuOptClVo.getMocNo());
 				mapper.addMenuOption(menuOptVoEx);
 
-				resultCnt++;
 			}
-			
-			mapper.addMenuOptionCl(menuOptClVo);
-			
-			for(int j=0;j<menuOptArray.size();j++) {
-				JsonObject menuOpt = (JsonObject) menuOptArray.get(j);
-				MenuOptionVOExtend menuOptVoEx = new MenuOptionVOExtend();
-				menuOptVoEx.setMoName(menuOpt.get("moName").getAsString());
-				menuOptVoEx.setMoAddPrice(menuOpt.get("moAddPrice").getAsString());
-				menuOptVoEx.setMoOptClNo(menuOptClVo.getMocNo());
-				
-				mapper.addMenuOption(menuOptVoEx);
-				resultCnt++;
-			}
-//			for(int j=0;j<menuOptArray.size();j++) {
-//				JsonObject menuOpt = (JsonObject) menuOptArray.get(j);
-//				MenuOptionVOExtend menuOptVoEx = new MenuOptionVOExtend();
-//				menuOptVoEx.setMoCode(menuOpt.get("moCode").getAsInt());
-//				menuOptVoEx.setMoName(menuOpt.get("moName").getAsString());
-//				menuOptVoEx.setMoAddPrice(menuOpt.get("moAddPrice").getAsString());
-//				menuOptVoEx.setMoOptClNo(menuOpt.get("moOptClNo").getAsInt());
-//				mapper.updateMenuOptInfo(menuOptVoEx);
-//				resultCnt++;
-//			}
+
 		}
-		return resultCnt;
+		return menuVoEx.getMCode();
 	}
 
 }
