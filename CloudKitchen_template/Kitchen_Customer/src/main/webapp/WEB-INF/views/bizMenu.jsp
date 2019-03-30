@@ -61,7 +61,7 @@
 											<figure class="thumb_menu_list">
 												<img src="/customer/resources/img/menu-thumb-1.jpg"	alt="thumb">
 											</figure>
-											<h5 style="padding-top: 10px;" data-id="${dish.mcode}">${loop.index+1}. ${dish.mname}</h5>
+											<h5 style="padding-top: 10px; width: 220px !important;" data-id="${dish.mcode}">${loop.index+1}. ${dish.mname}</h5>
 										</td>
 										<td data-price="${dish.mbasicPrice}"><strong>${dish.mbasicPrice} 원</strong></td>
 										<td class="options">
@@ -108,7 +108,7 @@
 					</c:forEach>
 				</div> <!-- End box_style_2 -->
 			</div> <!-- End col-md-6 -->
-
+			<form action="http://localhost:3001/customer/order/orderinfo" method="post">
 			<div class="col-md-4" id="sidebar">
 				<div class="theiaStickySidebar">
 					<div id="cart_box">
@@ -130,7 +130,7 @@
 										<td colspan="3"><strong>${cart.bizName}</strong></td>
 									</tr>
 									<tr>
-										<td style="width: 10%;"><input class="check-order" type="checkbox"></td>
+										<td style="width: 10%;"><input class="check-order" type="checkbox" name="selectedCart" value="${cart.id}"></td>
 										<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.menuName}<span class="pull-right">${cart.unitPrice}원</span></td>
 									</tr>
 									<!-- 옵션을 출력하기 위한 반복문 -->
@@ -157,10 +157,11 @@
 							</tbody>
 						</table>
 						<hr>
-						<a href="${pageContext.request.contextPath}/order/orderinfo" class="btn_full" id="orderNow">Order now</a>
+						<input type="submit" class="btn_full" id="orderNow" value="Order now">
 					</div> <!-- End cart_box -->
 				</div> <!-- End theiaStickySidebar -->
 			</div> <!-- End col-md-4 -->
+			</form>
 		</div> <!-- End row -->
 	</div> <!-- End container -->
 <!-- End Content =============================================== -->

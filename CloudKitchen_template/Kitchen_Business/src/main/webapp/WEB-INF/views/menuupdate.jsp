@@ -42,6 +42,9 @@
 <div id="menuInsertModal" class="menuInsertModal">
 	<div class="menuInsertModalOpt">
 		<span class="menuInsertModalClose">&times;</span>
+		<div class="addOptBtnArea">
+			<button type="button" id="insertMenu" class="btn btn-primary pull-right">메뉴 등록</button>
+		</div>
 		
 						<div class="col-md-12">
 							<div class="card">
@@ -76,10 +79,10 @@
 							</div>
 						</div>
 						<div class="addOptBtnArea">
-						<button type="button" id="insertOpt" class="btn btn-primary pull-right">옵션추가</button>
+							<button type="button" id="insertOpt" class="btn btn-primary pull-right">옵션분류추가</button>
 						</div>
 						
-						<div class="col-md-12">
+						<div class="col-md-12 addMenuList">
 							<div class="card">
 								<div class="card-header card-header-primary">
 									<h4 class="card-title ">옵션종류선택</h4>
@@ -91,9 +94,8 @@
 												<th>옵션분류</th>
 												<th>옵션분류이름</th>
 												<th>옵션이름</th>
-												<th>옵션상세이름</th>
 												<th>옵션추가가격</th>
-												<th></th>
+												<th>옵션추가삭제</th>
 											</thead>
 											<tbody>
 													<tr class="menuOptCl">
@@ -105,6 +107,14 @@
 														<td><input type="text" class=""></td>
 														<td><input type="text" class=""></td>
 														<td><input type="text" class=""></td>
+														<td>
+															<button class="addOpt">
+															<img src="/business/resources/img/baseline_add_circle_outline_black_18dp.png">
+															</button>
+															<button class="deleteMenuOpt">
+															<img src="/business/resources/img/baseline_remove_circle_outline_black_18dp.png">
+															</button>
+														 </td>
 													</tr>
 											</tbody>
 										</table>

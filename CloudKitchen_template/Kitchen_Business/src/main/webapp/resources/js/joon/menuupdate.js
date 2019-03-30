@@ -2,17 +2,177 @@ $(document)
 		.ready(
 				function() {
 					
+					$('.table-responsive').on('click','table tbody tr td .menu-option-delete',function(e){
+						e.preventDefault();
+						let deleteCheck = confirm("정말 삭제하시겠습니까?");
+						let deleteMenu = $(this).parent().parent();
+						if(deleteCheck == true){
+							$.ajax({
+								type : "POST",
+								dataType : 'json',
+								url : "../menu/main/deletemenu",
+								data : {
+									menuId : $(this).parent().parent().children().eq(0).text()
+								},
+								error : function(data){
+									console.log(data);
+								},
+								success(data){
+									console.log(data);
+									deleteMenu.remove();
+								}
+							});
+						} else {
+							return false;
+						}
+						
+					});
+					
+					$('.menuInsertModalOpt')
+						.on('click','.col-md-12 .card .card-body .table-responsive .table tbody .menuOptCl td .deleteMenuOpt',function(e){
+						
+						$(this).parent().parent().parent().parent().parent().parent().parent().parent().remove();	
+					});
+					
+					
+					$('#insertMenu').on('click',function(e){
+						
+						let insertMenu = new Object();
+						insertMenu.mName = $('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value;
+						insertMenu.mBasicPrice = $('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value;
+						insertMenu.mPhoto = $('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value;
+						insertMenu.menuCatCode = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).attr('id');
+						
+						let menuOptClArr = new Array();
+						for(let i=0; i<$('.menuOptClSelect').length; i++){
+							
+							let insertMenuOptCl = new Object();
+							insertMenuOptCl.mocName = $('.menuOptCl')[i].children[1].children[0].value;
+							insertMenuOptCl.mocMenuOptType = $('.menuOptClSelect')[i].children[$('.menuOptClSelect')[0].selectedIndex].className;
+							
+							let menuOptArr = new Array();
+							insertMenuOptCl.menuOpt = menuOptArr;
+							menuOptClArr.push(insertMenuOptCl);
+							
+							for(let j=0; j<$('.addMenuList .menuOptCl')[i].parentNode.childNodes.length; j++){
+								
+								let insertMenuOpt = new Object();
+								insertMenuOpt.moName = $('.addMenuList .menuOptCl')[i].parentNode.childNodes[j].childNodes[2].childNodes[0].value;
+								insertMenuOpt.moAddPrice = $('.addMenuList .menuOptCl')[i].parentNode.childNodes[j].childNodes[3].childNodes[0].value;
+								menuOptArr.push(insertMenuOpt);
+							}
+						}
+						insertMenu.menuOptCl = menuOptClArr;
+						console.log(insertMenu);
+						
+						$.ajax({
+			        		type : "POST",
+			        		dataType : 'json',
+			        		url : "../menu/main/insertMenu",
+			         		data : {
+			         			menuInfo : JSON.stringify(insertMenu)
+			         		},
+			        		error : function(data){
+			        			console.log(data);
+			        		},
+			        		success(data){
+			        			console.log(data);
+			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
+			        			for(let i=0; i<menuCat.length; i++){
+			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
+//			        					$('.container-fluid .table tbody')[i].innerHTML+=(
+			        					$('.container-fluid .table tbody').eq(i).append(
+			        							'<tr>'
+			        							+'<td>'+data+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value+'</td>'
+			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
+												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
+			        							);
+			        					
+			        					$('.menuInsertModal').css('display', 'none');
+			        				}
+			        			}
+			        		}
+						});
+					});
+					
+					$('.menuInsertModalOpt')
+					.on('click','.addMenuList .card .card-body .table-responsive table tbody tr td .deleteOpt',function(e){
+						e.preventDefault();
+						$(this).parent().parent().remove();
+					});
+					
+					$('.menuInsertModalOpt')
+						.on('click','.addMenuList .card .card-body .table-responsive table tbody tr td .addOpt',function(e){
+						
+						e.preventDefault();
+						$(this).parent().parent().parent().append(
+							'<tr><td></td>'
+							+'<td></td>'
+							+'<td><input type="text" class=""></td>'
+							+'<td><input type="text" class=""></td>'
+							+'<td><button class="deleteOpt">'
+							+'<img src="/business/resources/img/baseline_remove_circle_outline_black_18dp.png">'
+							+'</button></td></tr>'
+						);
+					});
+					
+					
 					$('#insertOpt').on('click',function(e){
 						e.preventDefault();
-						
-						
-						
-						
+							
+			        		$('.menuInsertModalOpt').append(
+			        				'<div class="col-md-12 addMenuList">'
+			        				+'<div class="card">'
+			        				+'<div class="card-header card-header-primary">'
+			        				+'<h4 class="card-title ">옵션종류선택</h4>'
+			        				+'</div>'
+			        				+'<div class="card-body">'
+			        				+'<div class="table-responsive">'
+			        				+'<table class="table">'
+			        				+'<thead class="text-primary">'
+			        				+'<th>옵션분류</th>'
+			        				+'<th>옵션분류이름</th>'
+			        				+'<th>옵션이름</th>'
+			        				+'<th>옵션추가가격</th>'
+			        				+'<th>옵션추가삭제</th>'
+			        				+'<th></th>'
+			        				+'</thead>'
+			        				+'<tbody>'
+			        				+'<tr class="menuOptCl">'
+			        				+'<td>'
+			        				+'<select class="menuOptClSelect">'
+			        				+'<option value="" class="OPT001" id="undefined">기본 단일(필수)</option>'
+			        				+'<option value="" class="OPT002" id="undefined">기본 다중(필수)</option>'
+			        				+'<option value="" class="OPT003" id="undefined">추가 단일(선택)</option>'
+			        				+'<option value="" class="OPT004" id="undefined">추가 다중(선택)</option>'
+			        				+'</select>'
+			        				+'</td>'
+			        				+'<td><input type="text" class=""></td>'
+			        				+'<td><input type="text" class=""></td>'
+			        				+'<td><input type="text" class=""></td>'
+			        				+'<td><button class="addOpt">'
+			        				+'<img src="/business/resources/img/baseline_add_circle_outline_black_18dp.png">'
+			        				+'</button>'
+			        				+'<button class="deleteMenuOpt">'
+			        				+'<img src="/business/resources/img/baseline_remove_circle_outline_black_18dp.png">'
+			        				+'</button>'
+			        				+'</td></tr>'
+			        				+'</tbody>'
+			        				+'</table>'
+			        				+'</div>'
+			        				+'</div>'
+			        				+'</div>'
+			        				+'</div>'
+			        		);
 					});
 					
 					$('.content #menuInsert').on('click',function(e){
 						e.preventDefault();
 						$('.menuInsertModal').css('display', 'block');
+						$('.menuInsertModalOpt .addMenuList').remove();	
 						
 						$.ajax({
 			        		type : "GET",
@@ -25,7 +185,7 @@ $(document)
 			        			console.log(data);
 			        		},
 			        		success(data){
-			        			console.log(data);
+//			        			console.log(data);
 			        			$('#menuCatSelect').empty();
 			        			for(let i=0;i<data.length;i++){
 			        				$('#menuCatSelect').append('<option value="" class="'+data[i].mcBizId
@@ -39,23 +199,25 @@ $(document)
 			        		dataType : 'json',
 			        		url : "../menu/main/getComCode.json",
 			        		error : function(data){
-			        			console.log(data);
+//			        			console.log(data);
 			        		},
 			        		success(data){
-			        			console.log(data);
+//			        			console.log(data);
 			        			$('#menuOptClSelect').empty();
 			        			for(let i=0;i<data.length;i++){
-			        				$('#menuOptClSelect').append('<option value="" class="'+data[i].id
-			        						+'" id="'+data[i].mcNo+'" >'+data[i].name+'</option>');
+			        				if(data[i].name=='기본 단일' || data[i].name=='기본 다중'){
+			        					$('#menuOptClSelect').append('<option value="" class="'+data[i].id
+			        							+'" id="'+data[i].mcNo+'" >'+data[i].name+'(필수)</option>');
+			        				}else{
+			        					$('#menuOptClSelect').append('<option value="" class="'+data[i].id
+			        							+'" id="'+data[i].mcNo+'" >'+data[i].name+'(선택)</option>');
+			        				}
 			        			}
 			        		}
 						});
 						
 					}); // menuInsert click end
 
-//					$('.menuInsert').on('click',function(e){
-//						$('.menuInsertModalOpt').css('display', 'block');
-//					});
 					
 					$('#updateMenuBtn').on('click',function(e){
 						
@@ -118,7 +280,7 @@ $(document)
 						
 					}); // click end
 					
-			 		$('table tbody tr td .menu-option-select').on('click', function(e) {
+			 		$('table tbody tr td ').on('click','.menu-option-select', function(e) {
 						e.preventDefault();
 						$('.menuModalOpt table').empty();
 						$('.menuModal').css('display', 'block');

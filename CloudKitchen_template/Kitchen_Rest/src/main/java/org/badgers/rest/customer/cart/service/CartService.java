@@ -1,5 +1,6 @@
 package org.badgers.rest.customer.cart.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.badgers.rest.model.CartVOExtend;
@@ -11,6 +12,8 @@ public interface CartService {
 	
 // R : 메뉴 읽기 (페이지 로딩할 때 & 결제로 넘어갈 때)
 	public List<CartVOExtend> readCart(String custId) throws Exception;
+	public List<CartVOExtend> readSelectedCart(int[] selectedCartId) throws Exception;
+	
 	
 // U : 메뉴 업데이트 (수량을 0으로 만들 수는 없음)
 	public int updateCart(CartVOExtend cart) throws Exception;

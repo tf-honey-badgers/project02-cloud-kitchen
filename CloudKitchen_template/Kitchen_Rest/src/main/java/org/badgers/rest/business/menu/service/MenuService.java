@@ -13,7 +13,7 @@ import com.google.gson.JsonElement;
 public interface MenuService {
 	public int addMenuCat(MenuCatVOExtend menuCatVoEx,MenuVOExtend menuVoEx,
 			MenuOptionClVOExtend menuOptClVoEx,MenuOptionVOExtend menuOptVoEx);
-	public int deleteMenu(int menuIdx);
+	public int deleteMenu(int menuId);
 	public int deleteMenuOpt(int menuOptIdx);
 	public int addOnlyMenu(MenuCatVOExtend menuCatVoEx,MenuVOExtend menuVoEx);
 	public int addOnlyOpt(int menuIdx, MenuVOExtend menuVoEx,MenuOptionClVOExtend menuOptClVoEx);
@@ -21,4 +21,5 @@ public interface MenuService {
 //	public int updateMenu(String updateMenuInfo);
 	public List<MenuCatVOExtend> getMenuCat(String bizId);
 	public List<CommonCodeVOExtend> getCommonCode();
+	public int insertMenu(String updateMenuInfo);
 }

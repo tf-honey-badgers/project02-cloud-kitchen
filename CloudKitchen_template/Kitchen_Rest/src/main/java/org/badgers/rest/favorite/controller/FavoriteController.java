@@ -94,18 +94,21 @@ public class FavoriteController {
 	}
 	
 	// 찜 삭제하기
-	@DeleteMapping(value = "/{cust_id}/{biz_id}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<Integer> deleteFavorite(@PathVariable("cust_id") String custId, @PathVariable("biz_id") String bizId) {
+	@SuppressWarnings("rawtypes")
+	@DeleteMapping(value = "/delete/{cust_id}/{biz_id}/{biz_like_cnt}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity deleteFavorite(
+				@PathVariable("cust_id") String custId
+				, @PathVariable("biz_id") String bizId
+				, @PathVariable("biz_like_cnt") int bizLikeCnt
+			) {
 		log.info(">>>>>  찜 삭제하기  ==============================");
 		
-		int favorite = 0;
-		
 		try {
-			favorite = service.deleteFavorite(custId, bizId);
+			service.deleteFavorite(custId, bizId, bizLikeCnt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return new ResponseEntity<Integer>(favorite, HttpStatus.OK);
+		return new ResponseEntity(HttpStatus.OK);
 	}
 }

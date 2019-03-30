@@ -27,73 +27,31 @@
 	<!-- Position -->
 
 	<!-- Content ================================================== -->
-	<div class="container margin_60_35">
-		<div class="row">
-			<div class="col-md-offset-3 col-md-6">
-				<div class="box_style_2">
-					<h2 class="inner">Order confirmed!</h2>
-					<div id="confirm">
-						<i class="icon_check_alt2"></i>
-						<h3>Thank you!</h3>
-						<p>Lorem ipsum dolor sit amet, nostrud nominati vis ex, essent
-							conceptam eam ad. Cu etiam comprehensam nec. Cibo delicata mei
-							an, eum porro legere no.</p>
-					</div>
-					<h4>Summary</h4>
-					<table class="table table-striped nomargin">
-						<thead>
-							<tr>
-								<th></th>
-								<th></th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><strong>1x</strong> Enchiladas</td>
-								<td><strong class="pull-left">$11</strong></td>
-							</tr>
-							<tr>
-								<td><strong>2x</strong> Burrito</td>
-								<td><strong class="pull-left">$14</strong></td>
-							</tr>
-							<tr>
-								<td><strong>1x</strong> Chicken</td>
-								<td><strong class="pull-left">$20</strong></td>
-							</tr>
-							<tr>
-								<td><strong>2x</strong> Corona Beer</td>
-								<td><strong class="pull-left">$9</strong></td>
-							</tr>
-							<tr>
-								<td><strong>2x</strong> Cheese Cake</td>
-								<td><strong class="pull-left">$12</strong></td>
-							</tr>
-							<tr>
-								<td>Delivery schedule <a href="#" class="tooltip-1"
-									data-placement="top" title=""
-									data-original-title="Please consider 30 minutes of margin for the delivery!"><i
-										class="icon_question_alt"></i></a>
-								</td>
-								<td><strong class="pull-left">Today 07.30 pm</strong></td>
-							</tr>
-							<tr>
-								<td class="total_confirm">TOTAL</td>
-								<td class="total_confirm"><span class="pull-left">$66</span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					${list}
+<div class="container margin_60_35">
+	<div class="row">
+		<div class="col-md-offset-3 col-md-6">
+			<div class="box_style_2">
+				<h2 class="inner">Order confirmed!</h2>
+				<div id="confirm">
+					<i class="icon_check_alt2"></i>
+					<h3>주문 완료!</h3>
+					<p>
+						고객님이 주문하신 음식의 조리가 시작되면 실시간으로 주방의 모습을 확인하실 수 있습니다. 고객님의 핸드폰으로 발송된 링크를 통해 청결한 주방과 요리 과정을 확인하세요!
+					</p>
 				</div>
+				<h4>주문 확인</h4>
+				<div id="orderBox">
+                </div>
 			</div>
 		</div>
-		<!-- End row -->
-	</div>
-	<!-- End container -->
-	<!-- End Content =============================================== -->
+	</div><!-- End row -->
+</div><!-- End container -->
+${list}
+<!-- End Content =============================================== -->
+
 	<!-- Footer 시작  -->
 	<jsp:include page="../include/footer.jsp" flush="false" />
 	<!-- Footer 끝  -->
+	<script src="/customer/resources/js/order/order-confirm.js"></script>
 </body>
 </html>
