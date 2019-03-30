@@ -55,10 +55,14 @@ public class KitchenController {
 	}
 	
 	// 검색어를 가지고 지점, 가게, 메뉴 검색하기
-	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/searchlists", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public Map<String, List> searchLists(@RequestBody String query) {
-		return service.searchLists(query);
+	public ResponseEntity<List<BizVOExtend>> searchLists(@RequestBody String query) {
+		List<BizVOExtend> returnVal = service.searchLists(query);
+		
+		if(returnVal.size() == 0) {
+			return new ResponseEntity<List<BizVOExtend>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<BizVOExtend>>(returnVal, HttpStatus.OK);
 	}
 	
 	@RequestMapping("/categorization")
