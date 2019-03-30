@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,8 +56,8 @@ public class KitchenController {
 	
 	// 검색어를 가지고 지점, 가게, 메뉴 검색하기
 	@SuppressWarnings("rawtypes")
-	@RequestMapping(value = "/searchlists/{query}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public Map<String, List> searchLists(@PathVariable("query") String query) {
+	@RequestMapping(value = "/searchlists", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public Map<String, List> searchLists(@RequestBody String query) {
 		return service.searchLists(query);
 	}
 	
