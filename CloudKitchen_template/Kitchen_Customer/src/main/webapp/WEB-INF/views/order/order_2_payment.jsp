@@ -91,8 +91,8 @@
 	<!-- Footer 시작  -->
 	<jsp:include page="../include/footer.jsp" flush="false" />
 	<!-- Footer 끝  -->
-	
 	<script src="/customer/resources/js/order/order-payment.js"></script>
+	<jsp:include page="pay_modal.jsp" flush="false" />
 	
 	
 </body>
