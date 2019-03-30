@@ -6,17 +6,36 @@
 <mapper
 	namespace="org.badgers.rest.customer.kitchen.persistence.KitchenMapper">
 
-	<select id="kitchenbranchList"
-		resultType="org.badgers.rest.model.KitchenBranchVO">
-		select * from kitchen_branch
+	<select id="kitchenbranchList" resultType="org.badgers.rest.model.KitchenBranchVOExtend">
+		select
+			id kitchenid
+			, name kitchenname
+			, address kitchenaddress
+		from kitchen_branch
 	</select>
 
-	<select id="bizList" resultType="org.badgers.rest.model.BizVO">
-		select * from biz
+	<select id="bizList" resultType="org.badgers.rest.model.BizVOExtend">
+		select
+			biz_id bizId
+			, info bizInfo
+			, name bizName
+			, like_cnt bizLikeCnt
+			, min_amt bizMinAmt
+			, biz_cat_id bizCatId
+			, kitchen_id bizKitchenId
+			, biz_live_strm bizLiveStrm
+			, idx bizIdx		
+		from biz
 	</select>
 	
-	<select id="menuList" resultType="org.badgers.rest.model.MenuVO">
-		select * from menu
+	<select id="menuList" resultType="org.badgers.rest.model.MenuVOExtend">
+		select
+			idx mCode
+			, name mName
+			, basic_price mBasicPrice
+			, photo mPhoto
+			, category_id menuCatCode
+		from menu
 	</select>
 	
 	<resultMap id="MenuOptionEx" type="org.badgers.rest.model.MenuOptionVOExtend">
@@ -106,6 +125,38 @@
 		
 		where b.biz_id=#{bizId}
 		
+		order by mcNo asc, mocMenuOptType asc, mocName asc, moAddPrice desc, moName asc, mocMenuCode asc
+	</select>
+	
+	<!-- 특정 키친 지점명으로 해당 지점의 가게 정보 읽기 (where 조건 제외하고는 id="bizInfo"와 같다) -->
+	<select id="bizInfoByKitchen" resultMap="bizvo">
+		select
+			b.biz_id bizId, b.info bizInfo, b.name bizName, b.like_cnt bizLikeCnt, b.min_amt bizMinAmt, b.biz_cat_id bizCatId, b.kitchen_id bizKitchenId, b.biz_live_strm bizLiveStrm, b.idx bizIdx,
+			mc.idx mcNo, mc.name mcName, mc.biz_id mcBizId,
+			m.idx mCode, m.name mName, m.basic_price mBasicPrice, m.photo mPhoto, m.category_id menuCatCode,
+			moc.idx mocNo, moc.name mocName, moc.menu_opt_type mocMenuOptType, moc.menu_id mocMenuCode,
+			mo.idx moCode, mo.name moName, mo.add_price moAddPrice, mo.opt_cl_id moOptClNo
+		from biz b left outer join menu_category mc on b.biz_id = mc.biz_id
+			left outer join menu m on mc.idx = m.category_id
+			left outer join menu_option_cl moc on m.idx = moc.menu_id
+			left outer join menu_option mo on moc.idx = mo.opt_cl_id
+		where b.kitchen_id=#{kitchenId}
+		order by mcNo asc, mocMenuOptType asc, mocName asc, moAddPrice desc, moName asc, mocMenuCode asc
+	</select>
+	
+	<!-- 특정 메뉴명이나 옵션명으로 해당 메뉴나 옵션을 가진 가게 정보 읽기 (where 조건 제외하고는 id="bizInfo"와 같다) -->
+	<select id="bizInfoByMenu" resultMap="bizvo">
+		select
+			b.biz_id bizId, b.info bizInfo, b.name bizName, b.like_cnt bizLikeCnt, b.min_amt bizMinAmt, b.biz_cat_id bizCatId, b.kitchen_id bizKitchenId, b.biz_live_strm bizLiveStrm, b.idx bizIdx,
+			mc.idx mcNo, mc.name mcName, mc.biz_id mcBizId,
+			m.idx mCode, m.name mName, m.basic_price mBasicPrice, m.photo mPhoto, m.category_id menuCatCode,
+			moc.idx mocNo, moc.name mocName, moc.menu_opt_type mocMenuOptType, moc.menu_id mocMenuCode,
+			mo.idx moCode, mo.name moName, mo.add_price moAddPrice, mo.opt_cl_id moOptClNo
+		from biz b left outer join menu_category mc on b.biz_id = mc.biz_id
+			left outer join menu m on mc.idx = m.category_id
+			left outer join menu_option_cl moc on m.idx = moc.menu_id
+			left outer join menu_option mo on moc.idx = mo.opt_cl_id
+		where m.name = #{menuName} or mo.name = #{menuName}
 		order by mcNo asc, mocMenuOptType asc, mocName asc, moAddPrice desc, moName asc, mocMenuCode asc
 	</select>
 	
