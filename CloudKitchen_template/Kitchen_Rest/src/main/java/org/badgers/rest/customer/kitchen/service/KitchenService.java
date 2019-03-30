@@ -17,7 +17,7 @@ public interface KitchenService {
 	@SuppressWarnings("rawtypes")
 	public Map<String, List> allLists();
 	@SuppressWarnings("rawtypes")
-	public Map<String, List> searchLists(String query);
+	public List<BizVOExtend> searchLists(String query);
 	
 	public List<BizVOExtend> bizInfo(String bizId);
 	public List<Object> getCategorization();
