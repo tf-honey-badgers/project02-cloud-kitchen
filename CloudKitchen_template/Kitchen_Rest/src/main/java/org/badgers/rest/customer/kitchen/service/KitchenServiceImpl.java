@@ -1,5 +1,8 @@
 package org.badgers.rest.customer.kitchen.service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,13 +55,47 @@ public class KitchenServiceImpl implements KitchenService {
 	
 	@SuppressWarnings("rawtypes")
 	public Map<String, List> searchLists(String query) {
-
-		// work in progress
 		Map<String, List> returnVal = new HashMap<String, List>();
-		
 		List<KitchenBranchVOExtend> kitchenList = mapper.kitchenbranchList();
 		List<BizVOExtend> bizList = mapper.bizList();
 		List<MenuVOExtend> menuList = mapper.menuList();
+
+		try { // query 문자열은 한글이니까 encoding하여 들어오기 때문에
+			query = URLDecoder.decode(query, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		query = query.substring(6); // query 문자열의 앞부분 "query=" 제거 (왜 붙는거지?!)
+		String[] tokens = query.split("[\\s@&\\.,?!$+-]+"); // 공백, @, &, 마침표, 쉼표, ?, !, $, +, - 기준으로 query 문자열을 나눈다.
+
+		// kitchenList, bizList, menuList에서 token이 있는지 검색하기
+		for(String token : tokens) {
+			List<KitchenBranchVOExtend> targetKitchens = new ArrayList<>();
+			List<BizVOExtend> targetBizs = new ArrayList<>();
+			List<MenuVOExtend> targetMenus = new ArrayList<>();
+			for(KitchenBranchVOExtend kitchen : kitchenList) {
+				if(kitchen.getKitchenname().contains(token)) {
+					targetKitchens.add(kitchen);
+				}
+			}
+			for(BizVOExtend biz : bizList) {
+				if(biz.getBizName().contains(token)) {
+					targetBizs.add(biz);
+				}
+			}
+			for(MenuVOExtend menu : menuList) {
+				if(menu.getMName().contains(token)) {
+					targetMenus.add(menu);
+				}
+			}
+			if(!targetKitchens.isEmpty()) {
+				
+			}
+			
+			
+	    	System.out.println(token);
+	    } 
+		
 		
 		returnVal.put("kitchenList", kitchenList);
 		returnVal.put("bizList", bizList);
