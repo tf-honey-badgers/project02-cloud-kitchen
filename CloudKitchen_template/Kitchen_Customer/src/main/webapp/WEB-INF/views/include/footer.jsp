@@ -76,6 +76,8 @@
 <script src="/customer/resources/js/functions.js"></script>
 <script src="/customer/resources/assets/validate.js"></script>
 
+
+
 <!-- Modernizr -->
 <script src="/customer/resources/js/modernizr.js"></script>
 
@@ -104,4 +106,108 @@
 			});
 		});
 	});
+</script>
+
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"
+	integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+	crossorigin="anonymous"></script>
+<style>
+	.ui-autocomplete-category {
+		font-weight: bold;
+		padding: .2em .4em;
+		margin: .8em 0 .2em;
+		line-height: 1.5;
+	}
+</style>
+<script>
+/* 검색 기능 */
+$(document).ready(function() {
+	let source = [];
+	$.ajax({
+		type : 'GET'
+		, url : 'http://localhost:3001/customer/kitchen/lists.json'
+		, contentType : 'application/json'
+	 	, success : function(data) {
+	 		let readList, category;
+	 		for(let i = 0; i < 3; i++) {
+ 				if(i == 0) {
+	 				readList = data.kitchenList;
+	 				category = "지점";
+			 		for(let j = 0; j < readList.length; j++) {
+				 		let readLine = readList[j];
+				 		source.push({label: readLine.kitchenname, category: category});				 		
+			 		}
+	 			}
+ 				if(i == 1) {
+ 					readList = data.bizList;
+ 					category = "가게";
+			 		for(let j = 0; j < readList.length; j++) {
+				 		let readLine = readList[j];
+				 		source.push({label: readLine.bizName, category: category});				 		
+			 		}
+	 			}
+	 			if(i == 2) {
+	 				readList = data.menuList;
+ 					category = "메뉴";
+			 		for(let j = 0; j < readList.length; j++) {
+				 		let readLine = readList[j];
+				 		source.push({label: readLine.mname, category: category});				 		
+			 		}
+ 				}
+ 			}
+	  	}
+		, error : function(data) {
+			console.log('ERRoR oCCURRED');
+			console.log(data);
+		}
+	});
+
+	$.widget( "custom.catcomplete", $.ui.autocomplete, {
+		_create: function() {
+    		this._super();
+	        this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+		},
+		_renderMenu: function( ul, items ) {
+    		var that = this, currentCategory = " ";
+        	$.each( items, function( index, item ) {
+	        	var li;
+	        	if ( item.category != currentCategory ) {
+	        		ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+    	    		currentCategory = item.category;
+        		}
+        		li = that._renderItemData( ul, item );
+	        	if ( item.category ) {
+	        		li.attr( "aria-label", item.category + " : " + item.label );
+	        	}
+    	    });
+		}
+	});
+
+	$(".search-query").catcomplete({
+		delay : 0
+		, source : source
+	});
+	
+/* 검색창에 입력 후 검색하기 클릭하면... */
+	$('#searchBtn').on('click', () => {
+		$.ajax({
+			type : 'POST'
+			, url : 'http://localhost:3001/customer/kitchen/search.json'
+			, contentType : 'application/json'
+			, data : {
+				query : $('.search-query').val()
+			}
+		 	, success : function(data) {
+		 		console.log(data);
+		 		$('#searchResults').append('<div>' + data + '</div>');
+		  	}
+			, error : function(data) {
+				console.log('ERRoR oCCURRED');
+				console.log(data);
+			}
+		});
+	});
+});
 </script>
