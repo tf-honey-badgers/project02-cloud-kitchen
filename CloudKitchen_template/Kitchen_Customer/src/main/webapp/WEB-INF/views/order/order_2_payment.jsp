@@ -28,6 +28,7 @@
 
 	<!-- Content ================================================== -->
 	<div class="container margin_60_35">
+<form action="${pageContext.request.contextPath}/order/payready" method="post">
 		<div class="row">
 			<div class="col-md-3">
 				<div class="box_style_2 hidden-xs info">
@@ -55,13 +56,12 @@
 				</div>
 			</div>
 			<!-- End col-md-3 -->
-
 			<div class="col-md-6">
 				<div class="box_style_2">
 					<h2 class="inner">Payment methods</h2>
 					<div class="payment_select">
-						<label><input type="radio" value="" checked
-							name="payment_method" class="icheck">KAKAO PAY</label>
+						<label><input type="radio" value="kakaoPay" checked
+							name="method" class="icheck">KAKAO PAY</label>
 							<i>
 								<img style="width:60px; " alt="$kakao icon" src="${pageContext.request.contextPath}/resources/img/kakako_payment_icon.png"></i>
 					</div>
@@ -83,9 +83,12 @@
 
 			<jsp:include page="selected_cart.jsp"></jsp:include>
 			<!-- End col-md-3 -->
+			
 		</div>
 		<!-- End row -->
+</form>
 	</div>
+
 	<!-- End container -->
 	<!-- End Content =============================================== -->
 	<!-- Footer 시작  -->

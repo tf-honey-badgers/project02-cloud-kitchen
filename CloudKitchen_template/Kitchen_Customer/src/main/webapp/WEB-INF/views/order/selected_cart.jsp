@@ -46,7 +46,7 @@
 							</tbody>
 						</table>
 						<hr>
-						<input type="submit" class="btn_full" id="orderNow" value="Order now">
+								<input type="submit" class="btn_full" id="orderNow" value="Order now">
 					</div> <!-- End cart_box -->
 				</div> <!-- End theiaStickySidebar -->
 			</div> <!-- End col-md-4 -->
