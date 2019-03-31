@@ -84,7 +84,7 @@
 											</thead>
 											<tbody>
 													<tr>
-														<td><input type="file" id="menuPhotoInsert" value="파일"></td>
+														<td><input type="file" id="menuPhotoInsert" multiple="multiple" value="파일"></td>
 														<td><input type="text" class=""></td>
 														<td><input type="text" class=""></td>
 														<td>

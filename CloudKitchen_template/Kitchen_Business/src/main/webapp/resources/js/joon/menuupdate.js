@@ -91,7 +91,7 @@ $(document)
 						}
 						insertMenu.menuOptCl = menuOptClArr;
 						console.log(insertMenu);
-						addPhoto('HBBizPhoto');
+						addPhoto(77);
 //						$.ajax({
 //			        		type : "POST",
 //			        		dataType : 'json',
@@ -117,7 +117,7 @@ $(document)
 //			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
 //												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
 //			        							);
-//					        			
+//			        					addPhoto(data);
 //			        					$('.menuInsertModal').css('display', 'none');
 //			        				}
 //			        			}
@@ -445,6 +445,31 @@ $(document)
 						$('.menuInsertModal').css('display', 'none');
 						});
 
+
+					function addPhoto(menuId) {
+					  var albumName = 'HBBizPhoto'
+					  var files = document.getElementById('menuPhotoInsert').files;
+					  if (!files.length) {
+					    return alert('Please choose a file to upload first.');
+					  }
+					  console.dir(files);
+					  var file = files[0];
+					  var fileName = file.name;
+					  var albumPhotosKey = encodeURIComponent(albumName) + '//';
+
+					  var photoKey = albumPhotosKey + fileName + menuId;
+					  s3.upload({
+					    Key: photoKey,
+					    Body: file,
+					    ACL: 'public-read'
+					  }, function(err, data) {
+					    if (err) {
+					      return alert('There was an error uploading your photo: ', err.message);
+					    }
+					    alert('Successfully uploaded photo.');
+					    viewAlbum(albumName);
+					  });
+					}
 
 					$()
 							.ready(
