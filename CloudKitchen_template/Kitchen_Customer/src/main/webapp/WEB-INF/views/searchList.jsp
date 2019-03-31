@@ -28,14 +28,10 @@
 					<div class="filter_type">
 						<h6>Type</h6>
 						<ul>
-							<li><label><input type="checkbox" checked class="icheck">All <small>(49)</small></label></li>
-							<li><label><input type="checkbox" class="icheck">American <small>(12)</small></label><i class="color_1"></i></li>
-							<li><label><input type="checkbox" class="icheck">Chinese <small>(5)</small></label><i class="color_2"></i></li>
-							<li><label><input type="checkbox" class="icheck">Hamburger <small>(7)</small></label><i class="color_3"></i></li>
-							<li><label><input type="checkbox" class="icheck">Fish <small>(1)</small></label><i class="color_4"></i></li>
-							<li><label><input type="checkbox" class="icheck">Mexican <small>(49)</small></label><i class="color_5"></i></li>
-							<li><label><input type="checkbox" class="icheck">Pizza <small>(22)</small></label><i class="color_6"></i></li>
-							<li><label><input type="checkbox" class="icheck">Sushi <small>(43)</small></label><i class="color_7"></i></li>
+							<li><label><input type="checkbox" checked class="icheck">All <small></small></label></li>
+							<c:forEach var="cat" items="${bizCat}" varStatus="loop">
+								<li><label><input type="checkbox" class="icheck" data-cat-id="${cat.id}">${cat.name}<small></small></label><i class="color_${loop.index % 7 + 1}"></i></li>
+							</c:forEach>
 						</ul>
 					</div>
 					<div class="filter_type">
@@ -101,7 +97,7 @@
 									<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="#0">98 reviews</a></small>)
 								</div>
 								<h3>${biz.bizName}</h3>
-								<div class="type">${biz.bizCatName}</div>
+								<div class="type" data-cat-id="${biz.bizCatId}" data-kitchen-id="${biz.bizKitchenId}">${biz.bizCatName} / ${biz.bizKitchenName}</div>
 							</div>
 						</div>
 						<div class="col-md-3 col-sm-3">
