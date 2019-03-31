@@ -6,14 +6,14 @@
         <div id="sub_content">
             <h1>주문 & 음식 배달</h1>
             <p>
-                Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.
+				벌꿀오소리가 운영하는 클라우드 키친 홈페이지입니다! 많이 사랑해주세요!
             </p>
-            <form method="post" action="list_page.html">
+            <form onsubmit="return false">
                 <div id="custom-search-input">
                     <div class="input-group">
-                        <input type="text" class=" search-query" placeholder="Your Address or postal code">
+                        <input type="text" class="search-query" placeholder="키워드, 키친, 가게, 메뉴를 자유롭게 입력해주세요.">
                         <span class="input-group-btn">
-                        <input type="submit" class="btn_search" value="submit">
+                        	<input type="button" id="searchBtn" class="btn_search">
                         </span>
                     </div>
                 </div>
