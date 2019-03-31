@@ -30,6 +30,8 @@ public class PaymentController {
 	@Inject
 	RestTemplate restTemplate;
 
+	
+	//pre :
 	@PostMapping("/orderinfo")
 	public ModelAndView orderInfo(int[] selectedCart, ModelAndView mv) {
 		String url = "http://127.0.0.1:80/rest/cust/order/orderinfo";
@@ -42,16 +44,21 @@ public class PaymentController {
 		
 		return mv;
 	}
-
+	//post : cartList를 "cart"로 저장
+	
+	//pre : 
 	@RequestMapping("/payment")
-	public ModelAndView payment(HttpSession session, OrderVOExtend vo, ModelAndView mv) {
+	public ModelAndView payment(OrderVOExtend vo, ModelAndView mv) {
 
-		mv.addObject("Order", vo);
+		mv.addObject("Order", vo);//사용자 번호, 주소, 요청 메세지
 		mv.setViewName("/order/order_2_payment");
 		
 		return mv;
 	}
-
+	//post : 사용자 번호, 주소, 요청 메세지, cartExtendVO를 OrderExtendVO에 저장(OrderExtendVO.PaymentVO 제외): "Order"
+	//orderId, OrderDetailId, 사용자 정보 아직 안 함
+	
+	//pre :
 	@PostMapping("/payready")
 	public ModelAndView payReady(HttpSession session, String method, ModelAndView mv) {
 		
@@ -60,6 +67,7 @@ public class PaymentController {
 		
 		return mv;
 	}
+	//post : PaymentVO를 만들어 OrderExtendVO 완성 "Order"
 	
 	@RequestMapping("/confirm")
 	public String confirm(HttpSession session, OrderVOExtend vo) {
