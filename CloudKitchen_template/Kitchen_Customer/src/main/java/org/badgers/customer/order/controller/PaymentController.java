@@ -59,17 +59,15 @@ public class PaymentController {
 	//post : 사용자 번호, 주소, 요청 메세지, cartExtendVO를 OrderExtendVO에 저장(OrderExtendVO.PaymentVO 제외): "Order"
 	//orderId, OrderDetailId, 사용자 정보 아직 안 함
 	
-	//pre :
+	//pre : method(결제 방법)을 받고 PaymentVO를 만들어 OrderExtendVO 완성 "Order"
 	@PostMapping("/payready")
-	public ModelAndView payReady(HttpSession session, String method, ModelAndView mv) {
+	public ModelAndView payReady(HttpSession session, ModelAndView mv) {
 		
 	//	kakaoService.kakaopay(vo)
-		mv.addObject("method", method);
-		mv.setViewName("redirect:/order/order_2_payment");
 		
 		return mv;
 	}
-	//post : PaymentVO를 만들어 OrderExtendVO 완성 "Order"
+	//post : 
 	
 	@RequestMapping("/confirm")
 	public String confirm(HttpSession session, OrderVOExtend vo) {

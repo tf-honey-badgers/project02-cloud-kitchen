@@ -19,21 +19,11 @@ public class PayReadyInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		log.info(request.getAttribute("method"));
-		
-		
-		return super.preHandle(request, response, handler);
-	}
-
-	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-		// TODO Auto-generated method stub
+		String method = (String)request.getParameter("method");
 		
 		HttpSession session = request.getSession();
 		OrderVOExtend order = (OrderVOExtend)session.getAttribute("Order");
 		
-		String method = (String)modelAndView.getModel().get("method");
 		
 		OrderPaymentVO orderPaymentVO = new OrderPaymentVO();
 		
@@ -48,6 +38,16 @@ public class PayReadyInterceptor extends HandlerInterceptorAdapter {
 		log.info(":::::::::::::::::::::::::::::::::::ORDER:::::::::::::::::::::::::::::::::::::::::::::::::::::");
 		log.info(order);
 		log.info("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+		
+		return super.preHandle(request, response, handler);
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+		// TODO Auto-generated method stub
+		
+		
 		
 		
 		super.postHandle(request, response, handler, modelAndView);
