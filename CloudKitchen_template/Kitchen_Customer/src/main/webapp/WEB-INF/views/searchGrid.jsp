@@ -101,7 +101,7 @@
                     	<div class="ribbon_1">Popular</div>
                     	<div class="desc">
 							<div class="thumb_strip">
-								<img src="img/thumb_restaurant.jpg" alt="">
+								<img src="/customer/resources/img/thumb_restaurant.jpg" alt="">
 							</div>
 							<div class="rating">
 								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -125,7 +125,7 @@
                     	<div class="ribbon_1">Popular</div>
                     	<div class="desc">
 							<div class="thumb_strip">
-								<img src="img/thumb_restaurant_2.jpg" alt="">
+								<img src="/customer/resources/img/thumb_restaurant_2.jpg" alt="">
 							</div>
 							<div class="rating">
 								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -152,7 +152,7 @@
                     	<div class="ribbon_1">Popular</div>
                     	<div class="desc">
 							<div class="thumb_strip">
-								<img src="img/thumb_restaurant_3.jpg" alt="">
+								<img src="/customer/resources/img/thumb_restaurant_3.jpg" alt="">
 							</div>
 							<div class="rating">
 								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -175,7 +175,7 @@
                 	<a class="strip_list grid" href="detail_page.html">
                     	<div class="desc">
 							<div class="thumb_strip">
-								<img src="img/thumb_restaurant_4.jpg" alt="">
+								<img src="/customer/resources/img/thumb_restaurant_4.jpg" alt="">
 							</div>
 							<div class="rating">
 								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -201,7 +201,7 @@
                 	<a class="strip_list grid" href="detail_page.html">
                     	<div class="desc">
 							<div class="thumb_strip">
-								<img src="img/thumb_restaurant_5.jpg" alt="">
+								<img src="/customer/resources/img/thumb_restaurant_5.jpg" alt="">
 							</div>
 							<div class="rating">
 								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -224,7 +224,7 @@
                 	<a class="strip_list grid" href="detail_page.html">
                     	<div class="desc">
 							<div class="thumb_strip">
-								<img src="img/thumb_restaurant_6.jpg" alt="">
+								<img src="/customer/resources/img/thumb_restaurant_6.jpg" alt="">
 							</div>
 							<div class="rating">
 								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -257,12 +257,12 @@
 <!-- Footer =============================================== -->
 
 <!-- SPECIFIC SCRIPTS -->
-<script  src="js/cat_nav_mobile.js"></script>
+<script src="/customer/resources/js/cat_nav_mobile.js"></script>
 <script>$('#cat_nav').mobileMenu();</script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
-<script src="js/map.js"></script>
-<script src="js/infobox.js"></script>
-<script src="js/ion.rangeSlider.js"></script>
+<script src="/customer/resources/js/map.js"></script>
+<script src="/customer/resources/js/infobox.js"></script>
+<script src="/customer/resources/js/ion.rangeSlider.js"></script>
 <script>
     $(function () {
 		 'use strict';
@@ -282,11 +282,5 @@
 </script>
 	
 <script src="/customer/resources/js/menu/menu-functions.js"></script>
-
-<script>
-	$(document).ready(function() {
-
-	}
-</script>
 </body>
 </html>
