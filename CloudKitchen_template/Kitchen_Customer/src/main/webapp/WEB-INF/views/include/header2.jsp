@@ -8,12 +8,12 @@
             <p>
 				벌꿀오소리가 운영하는 클라우드 키친 홈페이지입니다! 많이 사랑해주세요!
             </p>
-            <form onsubmit="return false">
+            <form action="http://localhost:3001/customer/kitchen/search" method="post">
                 <div id="custom-search-input">
                     <div class="input-group">
-                        <input type="text" class="search-query" placeholder="키워드, 키친, 가게, 메뉴를 자유롭게 입력해주세요.">
+                        <input type="text" class="search-query" name="query" placeholder="키워드, 키친, 가게, 메뉴를 자유롭게 입력해주세요.">
                         <span class="input-group-btn">
-                        	<input type="button" id="searchBtn" class="btn_search">
+                        	<input type="submit" id="searchBtn" class="btn_search">
                         </span>
                     </div>
                 </div>
