@@ -760,7 +760,7 @@
 			}else if(msg=='fail'){
 				md.showNotification('top', 'center', 'warning', '로그인 해주시기 바랍니다'); 
 				$('#login_2').modal('show');	
-			}else if(msg='logout'){
+			}else if(msg=='logout'){
 				md.showNotification('top', 'center', 'success', '로그아웃 되셨습니다');  
 			}
 			
