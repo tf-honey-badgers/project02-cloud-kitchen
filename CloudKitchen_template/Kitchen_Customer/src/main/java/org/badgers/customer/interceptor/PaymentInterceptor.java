@@ -43,7 +43,7 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 		
 		String orderId = "tjtjtj"+System.currentTimeMillis();
 		order.setId(orderId);
-
+		order.setCustId("tjtjtj");
 		int payAmt = 0;
 		
 		for(CartVOExtend cart:cartList) {
@@ -100,7 +100,7 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 		
 		
 		log.info(":::::::::::::::::::::::::::::::::::ORDER:::::::::::::::::::::::::::::::::::::::::::::::::::::");
-		log.info(order);
+		//log.info(order);
 		log.info("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 		
 		session.setAttribute("order", order);

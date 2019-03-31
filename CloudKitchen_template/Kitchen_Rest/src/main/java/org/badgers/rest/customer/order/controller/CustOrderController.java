@@ -59,7 +59,7 @@ public class CustOrderController {
 	public ResponseEntity<?> registOrder(@RequestBody OrderVOExtend vo, @PathVariable("key") String key)
 			throws JacksonUtilityException, Exception, FirebaseException {
 		// 1. mysql insert
-//		orderService.excuteOrder(vo);
+		orderService.excuteOrder(vo);
 
 		// 2. mysql select
 		LinkedList<OrderInfoVO> list = orderService.getOrderInfo(vo.getId());

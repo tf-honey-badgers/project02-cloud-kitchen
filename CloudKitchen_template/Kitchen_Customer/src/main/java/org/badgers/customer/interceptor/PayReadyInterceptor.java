@@ -42,7 +42,7 @@ public class PayReadyInterceptor extends HandlerInterceptorAdapter {
 		session.setAttribute("order", order);
 		
 		log.info(":::::::::::::::::::::::::::::::::::ORDER:::::::::::::::::::::::::::::::::::::::::::::::::::::");
-		log.info(order);
+		//log.info(order);
 		log.info("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 		
 		return super.preHandle(request, response, handler);
