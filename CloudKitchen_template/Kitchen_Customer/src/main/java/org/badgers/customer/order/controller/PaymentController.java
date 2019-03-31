@@ -55,9 +55,18 @@ public class PaymentController {
 		return "/order/order_2_payment";
 	}
 
+	@PostMapping("/payready")
+	public String payReady(HttpSession session, OrderVOExtend vo) {
+		log.info("================================================payment READ=======================================");
+		vo.mergeOrderVO((OrderVOExtend) session.getAttribute("OrderVOExtend"));
+		log.info(vo);
+		log.info("================================================payment READ=======================================");
+		return "redirect:";
+	}
+	
 	@RequestMapping("/confirm")
 	public String confirm(HttpSession session, OrderVOExtend vo) {
-		vo.mergeOrderVO((OrderVOExtend) session.getAttribute("OrderVOExtend"));
+		
 
 		System.out.println(vo);
 		return "/order/order_3_confirm";
@@ -75,4 +84,5 @@ public class PaymentController {
 		log.info("카카오페이 결제 성공...");
 		return "/order/order_3_confirm";
 	}
+	
 }
