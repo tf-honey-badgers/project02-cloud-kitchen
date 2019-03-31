@@ -76,10 +76,9 @@ public class PaymentController {
 	//post : 
 	
 	@RequestMapping("/confirm")
-	public String confirm(OrderVOExtend vo) {
+	public String confirm() {
 		
 		
-		System.out.println(vo);
 		return "/order/order_3_confirm";
 	}
 

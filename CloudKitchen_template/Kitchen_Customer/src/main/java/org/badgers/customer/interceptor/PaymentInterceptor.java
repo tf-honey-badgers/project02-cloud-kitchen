@@ -41,6 +41,9 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 		
 		order.setKitchenName(cartList.get(0).getKitchenName());
 		
+		String orderId = "tjtjtj"+System.currentTimeMillis();
+		order.setId(orderId);
+
 		int payAmt = 0;
 		
 		for(CartVOExtend cart:cartList) {
@@ -48,15 +51,16 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 			payAmt += cart.getTotalAmt();
 			
 			OrderDetailVOExtend orderDetail = new OrderDetailVOExtend();
+			String orderDetailId=orderId+cartList.indexOf(cart);
 			
-//			orderDetail.setId(id);
+			orderDetail.setId(orderDetailId);
 			orderDetail.setMenuId(cart.getMenuId()+"");
 			orderDetail.setMenuName(cart.getMenuName());
 			orderDetail.setMenuPrice(cart.getUnitPrice());
 			orderDetail.setQuantity(cart.getQuantity());
 			orderDetail.setBizId(cart.getBizId());
 			orderDetail.setBizName(cart.getBizName());
-//			orderDetail.setOrderId(orderId);
+			orderDetail.setOrderId(orderId);
 			
 			int optionPrice = 0;
 			List<OrderOptionVO> optionVOList = new ArrayList<>();
@@ -76,7 +80,7 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 				orderOptionVO.setOptId(cartDetail.getMenuOptId()+"");
 				orderOptionVO.setOptName(cartDetail.getMenuOptName());
 				orderOptionVO.setOptPrice(cartDetail.getMenuOptPrice());
-//				orderOptionVO.setOrderDetailId(orderDetailId);
+				orderOptionVO.setOrderDetailId(orderDetailId);
 				
 				optionVOList.add(orderOptionVO);
 			}
