@@ -88,8 +88,8 @@
        <div class="modal-dialog" style="margin-top: 151px;">
            <div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;
 					text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
-                <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-                <form action="#" class="popup-form" id="myLogin">
+                <a href="javascrpit:void()" class="close-link"><i class="icon_close_alt2"></i></a>
+                <form action="http://localhost:3001/customer/member/login"" class="popup-form" id="myLogin">
                     <div class="login_icon"><i class="icon_lock_alt"></i></div>
                     <input type="text" class="form-control form-white" placeholder="아이디">
                     <input type="password" class="form-control form-white" placeholder="비밀번호">

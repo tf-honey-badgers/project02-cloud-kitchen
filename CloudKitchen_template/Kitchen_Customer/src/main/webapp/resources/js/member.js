@@ -61,33 +61,48 @@ $(document).ready(function(){
 
 	/* 로그인 절차 */
 	$('#myLogin button').on('click', function() {
-		$.ajax({
-    		url : 'http://localhost:3001/customer/member/'
-    		, type : 'POST'
-			, contentType : 'application/json'
-    		, data : JSON.stringify({
-    				  id : $('#myLogin input:eq(0)').val()
-    				, pw : $('#myLogin input:eq(1)').val()
-    			})
-    			, error : function(data) {
-        			console.log(data);
-        		}
-        		, success : function(data) {
-        			if(data == "성공적으로 로그인했습니다.") {
-        				 alert('로그인 성공');		
-        			} else {
-        				alert("로그인 실패");
+		var cnt=0;
+		var inputCheck= $(this).siblings('span.bmd-form-group').find('input');
+		inputCheck.each(function(i,v){
+			if(v.value===null||v.value===undefined||v.value===''){
+				cnt++;
+				return;
+				
+			}
+		})
+		if(cnt===0){
+			$.ajax({
+	    		url : 'http://localhost:3001/customer/member/login'
+	    		, type : 'POST'
+				, contentType : 'application/json'
+				, dataType : 'text'
+	    		, data : JSON.stringify({
+	    				  id : $('#myLogin input:eq(0)').val()
+	    				, pw : $('#myLogin input:eq(1)').val()
+	    			})
+	    		, error : function(data) {
+	    			console.log(data);
+	    		}
+	    		, success : function(data) {
+	    			console.log('..............',data)
+	    			
+	    			if(data == "success") {
+	    				window.location.reload()
+	    				
+	    			} else {
+	    				alert("로그인 실패");    				
+	    			}
+	    			$('.modal').modal('hide');
+	    			$('#myLogin input').val("");
+	    		}
+			});
+			
+		}else{
+			alert('빠트린 입력란이 있는지 확인해 주세요')
+		}
+		
+	})	
 
-        				
-        				    				
-        			}
-        			$('.modal').modal('hide');
-        			$('#myLogin input').val("");
-        		}
-    		});
-    	})
-    	
-	
 	// 회원가입 절차 
 	$('#myRegister button').on('click', function() {
 		$.ajax({

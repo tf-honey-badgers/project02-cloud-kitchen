@@ -44,13 +44,13 @@ public class CustomerController {
 	}
 
 	// 로그인
-	@PostMapping("/")
+	@PostMapping(value="/login" , produces = "application/json; charset=UTF-8")
 	public ResponseEntity<String> login(@RequestBody CustomerVO cvo) throws Exception {
-		 String returnVal = service.login(cvo.getId(), cvo.getPw());
+		String msg=""; 
+		
+		int returnVal = service.login(cvo.getId(), cvo.getPw());
 
-		 ResponseEntity<String> entity = new ResponseEntity<String>(returnVal, HttpStatus.OK);
-		 
-		 return entity;	
+		return (returnVal==1)?new ResponseEntity<>(msg ="success", HttpStatus.OK): new ResponseEntity<>(msg ="fail",HttpStatus.OK);	
 	}
 
 	//개인정보 끌어오기 

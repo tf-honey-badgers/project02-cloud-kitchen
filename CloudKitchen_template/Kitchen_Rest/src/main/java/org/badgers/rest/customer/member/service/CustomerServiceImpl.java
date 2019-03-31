@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.badgers.rest.customer.member.persistence.CustomerMapper;
+import org.badgers.rest.model.BizMemberVOExtend;
 import org.badgers.rest.model.CustomerVO;
 import org.badgers.rest.model.OrderInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,25 +61,13 @@ public class CustomerServiceImpl implements CustomerService {
 
 	// 로그인 by Yuriel on 2019.03.13(WED)
 	@Override
-	public String login(String id, String pw) {
+	public int login(String id, String pw) throws Exception {
 		System.out.println("로그인 ========================================");
-
-		String returnVal = "";
-		CustomerVO queryResult = null;
-
-		try {
-			queryResult = mapper.login(id);
-			if(queryResult.getPw().equals(pw)) {
-				returnVal = queryResult.getId(); // 입력한 비번 == DB 비번
-			} else {
-				returnVal = "BAD_PW"; // 입력한 비번 != DB 비번
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			returnVal = "NO_ID"; // DB에 입력한 ID 없음 표시
-		}
-
-		return returnVal;
+		
+		int returnVal;
+		CustomerVO vo = mapper.login(id, pw);
+		return (vo!=null)? (returnVal=1) : (returnVal=0);
+		
 	}
 	
 

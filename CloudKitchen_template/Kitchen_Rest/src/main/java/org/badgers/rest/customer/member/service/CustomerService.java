@@ -11,7 +11,7 @@ public interface CustomerService {
 	public int register(CustomerVO vo) throws Exception;
 
 	// 로그인
-	public String login(String id, String pw)throws Exception;
+	public int login(String id, String pw)throws Exception;
 
 	
 	//회원 정보

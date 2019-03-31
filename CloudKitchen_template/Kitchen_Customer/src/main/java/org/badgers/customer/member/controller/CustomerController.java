@@ -10,9 +10,11 @@ import javax.inject.Inject;
 import org.badgers.customer.model.CustomerVO;
 import org.badgers.customer.model.FavoriteVO;
 import org.badgers.customer.model.OrderInfoVO;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,31 +62,53 @@ public class CustomerController {
 	}	
 	
 	// 로그인
-	@PostMapping(value = "/", produces = "text/plain; charset=utf-8")
+	@PostMapping(value = "/login", produces = "text/plain; charset=utf-8")
 	@ResponseBody
-	public String login(@RequestBody CustomerVO vo) {
+	public ResponseEntity<String> login(@RequestBody CustomerVO vo, ModelAndView mov) {
+		
 		log.info("Kitchen_customer 사용자 로그인...............................");
+		HttpHeaders responseHeaders=null;
+		String status = "";
+		String url = "http://localhost/rest/customer/login";
 		
-		String msg = "";
-		String url = "http://localhost/rest/customer/";
-		
+		try {
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);
-		msg = responseEntity.getBody();
+		status= responseEntity.getBody();
+		responseHeaders = new HttpHeaders();
+		
+		if(status.equals("success")) {
+			responseHeaders.set("RESULT", vo.getId());
+		}
+		
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			if(e.getMessage().contains("failed: Connection refused: connect")) {
+				status="server disconnected";
+			}
 		
 		// 처리는 인터셉터에서 하기
-		if(msg.equals("BAD_PW")) {
-			msg = "비밀번호가 틀렸습니다.";
-		} else if(msg.equals("NO_ID")) {
-			msg = "존재하지 않는 아이디입니다.";
-		} else if(msg.equals("SERVER_ERROR") || msg.equals("")) {
-			msg = "서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.";
-		} else {
-			// 로그인을 유지하기 위한 쿠키 생성
-			msg = "성공적으로 로그인했습니다.";
+//		if(msg.equals("BAD_PW")) {
+//			msg = "비밀번호가 틀렸습니다.";
+//		} else if(msg.equals("NO_ID")) {
+//			msg = "존재하지 않는 아이디입니다.";
+//		} else if(msg.equals("SERVER_ERROR") || msg.equals("")) {
+//			msg = "서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.";
+//		} else {
+//			// 로그인을 유지하기 위한 쿠키 생성
+//			msg = "성공적으로 로그인했습니다.";
+//		}
+//		log.info(msg);	
+//		return msg;
+			
 		}
-
-		log.info(msg);	
-		return msg;
+		return new ResponseEntity<>(status, responseHeaders,HttpStatus.OK);	
+	}
+	
+	//로그아웃 
+	@GetMapping("/logout")
+	public String logout (Model model) {
+		model.addAttribute("logout", "logout");
+		return "redirect:/";
 	}
 	
 	//회원정보 수정 
