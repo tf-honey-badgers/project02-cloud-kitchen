@@ -6,12 +6,12 @@
         <div id="sub_content">
             <h1>주문 & 음식 배달</h1>
             <p>
-				벌꿀오소리가 운영하는 클라우드 키친 홈페이지입니다! 많이 사랑해주세요!
+				벌꿀오소리 5명이 운영하는 클라우드 키친 홈페이지입니다! 많이 사랑해주세요!
             </p>
             <form action="http://localhost:3001/customer/kitchen/search" method="post">
                 <div id="custom-search-input">
                     <div class="input-group">
-                        <input type="text" class="search-query" name="query" placeholder="키워드, 키친, 가게, 메뉴를 자유롭게 입력해주세요.">
+                        <input type="text" class="search-query" name="query" placeholder="검색어를 자유롭게 입력해주세요.">
                         <span>
                         	<input type="submit" id="searchBtn" class="btn_search" value="검색">
                         </span>

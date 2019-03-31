@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html>
@@ -79,7 +78,7 @@
 					</div>
 					<form action="http://localhost:3001/customer/kitchen/search" method="post">
 						<div style="display: inline;">
-                    		<input type="text" class="search-query" name="query" placeholder="키워드, 키친, 가게, 메뉴를 자유롭게 입력해주세요.">
+                    		<input type="text" class="search-query" name="query" placeholder="검색어를 자유롭게 입력해주세요.">
                         	<span class="input-group-btn" style="display: inline; height: 20px; width: 40px;">
 	                    		<input type="submit" id="searchBtn" class="btn_search">
     	                	</span>
@@ -89,69 +88,38 @@
 			</div>
 			<!-- End Tools =================================================== -->
         
-        	<!-- Content =================================================== -->
-        	<p>mrow mrow mrow mrow</p>
-        	<p>${fn:length(searchResults)}</p>
-        	<c:forEach var="result" items="${searchResults}" varStatus="loop">
-        		<p>${result.bizId}</p>
+        	<!-- Search Results =================================================== -->
+        	<c:forEach var="biz" items="${searchResults}">
+        		<div class="strip_list wow fadeIn" data-wow-delay="0.1s">
+					<div class="row">
+						<div class="col-md-9 col-sm-9">
+							<div class="desc">
+								<div class="thumb_strip">
+									<a href="detail_page.html"><img src="/customer/resources/img/thumb_restaurant.jpg" alt=""></a>
+								</div>
+								<div class="rating">
+									<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="#0">98 reviews</a></small>)
+								</div>
+								<h3>${biz.bizName}</h3>
+								<div class="type">${biz.bizCatName}</div>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-3">
+							<div class="go_to">
+								<div>
+									<a href="http://localhost:3001/customer/kitchen/${biz.bizId}/main" class="btn_1">가게 보기</a>
+								</div>
+							</div>
+						</div>
+					</div><!-- End row-->
+				</div><!-- End strip_list-->
         	</c:forEach>
+        	<!-- End Search Results =================================================== -->
         	
-        	<!-- End Content =================================================== -->
-        	<div class="row">
-            	<div class="col-md-6 col-sm-6 wow zoomIn" data-wow-delay="0.1s">
-                	<a class="strip_list grid" href="detail_page.html">
-                    	<div class="desc">
-							<div class="thumb_strip">
-								<img src="/customer/resources/img/thumb_restaurant.jpg" alt="">
-							</div>
-							<div class="rating">
-								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-							</div>
-							<h3>Taco Mexican</h3>
-							<div class="type">
-								Mexican / American
-							</div>
-							<div class="location">
-								135 Newtownards Road, Belfast, BT4. <br><span class="opening">Opens at 17:00.</span> Minimum order: $15
-							</div>
-							<ul>
-								<li>Take away<i class="icon_check_alt2 ok"></i></li>
-								<li>Delivery<i class="icon_check_alt2 ok"></i></li>
-							</ul>
-						</div>
-                    </a><!-- End strip_list-->
-                </div><!-- End col-md-6-->
-               <div class="col-md-6 col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                	<a class="strip_list grid" href="detail_page.html">
-                    	<div class="desc">
-							<div class="thumb_strip">
-								<img src="/customer/resources/img/thumb_restaurant_2.jpg" alt="">
-							</div>
-							<div class="rating">
-								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-							</div>
-							<h3>Naples Pizza</h3>
-							<div class="type">
-								Italian / Pizza
-							</div>
-							<div class="location">
-								135 Newtownards Road, Belfast, BT4. <br><span class="opening">Opens at 17:00.</span> Minimum order: $15
-							</div>
-							<ul>
-								<li>Take away<i class="icon_check_alt2 ok"></i></li>
-								<li>Delivery<i class="icon_check_alt2 ok"></i></li>
-							</ul>
-						</div>
-                    </a><!-- End strip_list-->
-                </div><!-- End col-md-6-->                
-            </div><!-- End row-->
-            
-            
-            
-            <a href="#0" class="load_more_bt wow fadeIn" data-wow-delay="0.2s">Load more...</a>
-            ${searchResults}
-		</div><!-- End col-md-9-->
-        
+        	<!-- 미래 확장용으로 남겨둠. -->
+<!--             <a href="#0" class="load_more_bt wow fadeIn" data-wow-delay="0.2s">Load more...</a> -->
+
+		</div><!-- End col-md-9-->        
 	</div><!-- End row -->
 </div><!-- End container -->
 <!-- End Content =============================================== -->
