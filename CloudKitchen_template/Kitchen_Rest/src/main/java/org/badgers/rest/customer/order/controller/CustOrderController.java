@@ -82,6 +82,10 @@ public class CustOrderController {
 		// 4. 사용자의 view에 넘겨줄 orderInfo map
 		String jsonOrderInfoForView = toOrderInfoForViewService.toOrderInfoForView(list);
 		
+		// 5. 주문 완료 된 고객의 장바구니 delete
+		cartService.deleteAllCart(vo.getCustId());
+		
+		
 		return new ResponseEntity<>(jsonOrderInfoForView, HttpStatus.OK);
 
 	}

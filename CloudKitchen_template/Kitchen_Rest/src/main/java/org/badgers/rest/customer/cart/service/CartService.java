@@ -20,4 +20,6 @@ public interface CartService {
 	
 // D : 메뉴 삭제 (장바구니 항목 하나씩 삭제 (cartId 사용) OR 장바구니 항목 전체 삭제 (cartId 미사용))
 	public int deleteCart(String custId, String cartId) throws Exception;
+	
+	public int deleteAllCart(String custId) throws Exception;
 }
