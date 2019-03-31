@@ -1,16 +1,22 @@
+.deleteUpdateMenuOpt{
+	border : none;
+	background-color : white;
+ 	background: url( "img/baseline_remove_circle_outline_black_18dp.png" ) no-repeat;
+}
+
 .addOpt{
 	border : none;
 	background-color : white;
 	background: url( "img/baseline_add_circle_outline_black_18dp.png" ) no-repeat;
 }
 
-.deleteMenuOpt{
+.deleteOpt{
 	border : none;
 	background-color : white;
  	background: url( "img/baseline_remove_circle_outline_black_18dp.png" ) no-repeat;
 }
 
-.deleteOpt{
+.deleteMenuOpt{
 	border : none;
 	background-color : white;
  	background: url( "img/baseline_remove_circle_outline_black_18dp.png" ) no-repeat;

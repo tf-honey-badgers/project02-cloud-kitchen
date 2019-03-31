@@ -34,11 +34,11 @@
 	</insert>
 	
 	<delete id="deleteMenu">
-		delete from menu_category where idx=#{menuId}
+		delete from menu where idx=#{menuId}
 	</delete>
 	
 	<delete id="deleteMenuOpt">
-		delete from menu_option_cl where idx=#{menuOptIdx}
+		delete from menu_option where idx=#{menuOptIdx}
 	</delete>
 	
 	<update id="updateMenuInfo">
