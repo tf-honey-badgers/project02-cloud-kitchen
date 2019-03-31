@@ -749,8 +749,37 @@
 			/* 사이드바 하이라이트된 항목 바꾸기 */
 			$('.nav-item').removeClass('active');
 			$('.nav-item.sidebar-home').addClass('active');
+			var msg = getParameterByName('msg'); 
+			console.log(msg);
+			alertNoti(msg);
 		});
-		//로그아웃
+		
+		
+		
+		
+
+		function alertNoti(msg){
+			if(msg=='success'){
+				md.showNotification('top', 'center', 'success', '로그인 성공하셨습니다');  
+			}else if(msg=='fail'){
+				md.showNotification('top', 'center', 'warning', '로그인 해주시기 바랍니다'); 
+				$('#login_2').modal('show');	
+			}else if(msg='logout'){
+				md.showNotification('top', 'center', 'success', '로그아웃 되셨습니다');  
+			}
+			
+		}
+
+		function getParameterByName(name, url) {
+		    if (!url) url = window.location.href;
+		    name = name.replace(/[\[\]]/g, "\\$&");
+		    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		        results = regex.exec(url);
+		    if (!results) return null;
+		    if (!results[2]) return '';
+		    return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+		
 	</script>
 </body>
 </html>

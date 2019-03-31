@@ -63,7 +63,6 @@ public class PaymentController {
 		return "/order/order_3_confirm";
 	}
 
-	@SuppressWarnings("unchecked")
 	@GetMapping("/payment/{payMethod}")
 	public void payWithPayMethod(@PathVariable("payMethod") String method) {
 		

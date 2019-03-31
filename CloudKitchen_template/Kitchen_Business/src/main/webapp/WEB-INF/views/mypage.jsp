@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -41,14 +42,9 @@
                             <div class="card">
                                 <div class="card-header card-header-primary">
                                     <h4 class="card-title">Profile</h4>
-                                    
-                                    <h1>asdkfhaksldfha</h1>
-									<h1>${sessionScope.bizId}</h1>
-                                    <h1>asdkfhaksldfha</h1>
-                                    
                                     <p class="card-category">비밀번호와 계좌번호만 변경할 수 있습니다.</p>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body" style="padding-top: 50px;">
                                     <form>
                                         <div class="row">
                                             <div class="col-md-3">
@@ -98,7 +94,7 @@
                                     <h4 class="card-title">Business</h4>
                                     <p class="card-category">가게 소개문, 최소주문금액, 생방송 키 코드만 변경할 수 있습니다.</p>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body" style="padding-top: 50px;">
                                     <form>
                                         <div class="row">
                                             <div class="col-md-5">
@@ -116,7 +112,9 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">최소주문금액</label>
-                                                    <input type="text" id="minAmt" class="form-control" value="${bizMember.biz.minAmt}">
+                                                    <input type="text" id="minAmt" class="form-control" value="
+                                                    <fmt:formatNumber value="${bizMember.biz.minAmt}" type="currency" currencySymbol="￦"/>
+                                                   "/>
                                                 </div>
                                             </div>
                                         </div>
@@ -265,7 +263,7 @@
     <!-- Library for adding dinamically elements -->
     <script src="/business/resources/js/plugins/arrive.min.js"></script>
     <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
     <!-- Chartist JS -->
     <script src="/business/resources/js/plugins/chartist.min.js"></script>
     <!--  Notifications Plugin    -->
