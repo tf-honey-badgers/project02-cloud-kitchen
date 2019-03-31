@@ -32,10 +32,10 @@
 <div id="menuModal" class="menuModal">
 	<div class="menuModalOpt">
 		<span class="menuModalClose">&times;</span>
-		<h3>변경</h3>
-		<table class="menuOpt">
-		</table>
-		<div class="modelBtnArea"><button id="updateMenuBtn">메뉴변경</button></div>
+
+		<div class="addOptBtnArea">
+			<button type="button" id="updateMenu" class="btn btn-primary pull-right">메뉴 등록</button>
+		</div>
 	</div>
 </div>
 
@@ -43,7 +43,7 @@
 	<div class="menuInsertModalOpt">
 		<span class="menuInsertModalClose">&times;</span>
 		<div class="addOptBtnArea">
-			<button type="button" id="insertMenu" class="btn btn-primary pull-right">메뉴 등록</button>
+			<button type="button" id="updateMenu" class="btn btn-primary pull-right">메뉴 변경</button>
 		</div>
 		
 						<div class="col-md-12">

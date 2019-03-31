@@ -106,6 +106,7 @@ public class MenuServiceImpl implements MenuService {
 		JsonObject menuOptClelement = (JsonObject) parser.parse(updateMenuInfo);
 		int resultCnt = 0;
 		MenuVOExtend menuVoEx = new MenuVOExtend();
+		menuVoEx.setMCode(menuOptClelement.get("mCode").getAsInt());
 		menuVoEx.setMName(menuOptClelement.get("mName").getAsString());
 		menuVoEx.setMBasicPrice(menuOptClelement.get("mBasicPrice").getAsInt());
 		if(menuOptClelement.get("mPhoto").getAsString()!=null) {
@@ -114,7 +115,7 @@ public class MenuServiceImpl implements MenuService {
 		} else {
 			menuVoEx.setMPhoto("사진없음");
 		}
-		
+		System.out.println(menuOptClelement);
 		mapper.updateMenuInfo(menuVoEx);
 		resultCnt++;
 		
@@ -123,8 +124,8 @@ public class MenuServiceImpl implements MenuService {
 		for(int i=0;i<menuOptClArray.size();i++) {
 			JsonObject menuOptCl = (JsonObject) menuOptClArray.get(i);
 			JsonObject menuOptelement = (JsonObject) parser.parse(menuOptClArray.get(i).toString());
-			JsonArray menuOptArray = menuOptelement.get("menuOpt").getAsJsonArray();
-
+			JsonArray menuOptArray = menuOptelement.get("menuOptEx").getAsJsonArray();
+			
 			for(int j=0;j<menuOptArray.size();j++) {
 				JsonObject menuOpt = (JsonObject) menuOptArray.get(j);
 				MenuOptionVOExtend menuOptVoEx = new MenuOptionVOExtend();
