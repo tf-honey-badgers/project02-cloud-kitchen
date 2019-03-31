@@ -35,6 +35,7 @@
 <link href="/customer/resources/css/fontello/css/fontello.min.css" rel="stylesheet">
 <link href="/customer/resources/css/magnific-popup.css" rel="stylesheet">
 <link href="/customer/resources/css/pop_up.css" rel="stylesheet">
+<link href="/customer/resources/css/custom.css" rel="stylesheet">
 
 <!-- Radio and check inputs -->
 <link href="/customer/resources/css/skins/square/grey.css" rel="stylesheet">
@@ -83,7 +84,7 @@
 
 <!-- Login modal -->
 <div class="modal fade" id="login_2" tabindex="-1" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
-<<<<<<< HEAD
+
        <div class="modal-dialog" style="margin-top: 151px;">
            <div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;
 					text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
@@ -91,13 +92,27 @@
                 <form action="#" class="popup-form" id="myLogin">
                     <div class="login_icon"><i class="icon_lock_alt"></i></div>
                     <input type="text" class="form-control form-white" placeholder="아이디">
-                    <input type="text" class="form-control form-white" placeholder="비밀번호">
+                    <input type="password" class="form-control form-white" placeholder="비밀번호">
                     <div class="text-left">
                         <a id="findId" href="#" style="font-size: 13px;">아이디를 잊으셨나요?</a> <br/>
 				    	<a class="changePw" href="#" style="font-size: 13px;">비밀번호를 잊으셨나요?</a>
                      </div>
                     <button type="button" class="btn btn-submit">로그인</button>
                 </form>
+                
+           <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
+           <img alt="카카오 로그인" src="/customer/resources/img/kakao.png">
+           </a>    
+           
+           <div id="kakao_btn_changed">
+           <a id="custom-login-btn" href="javascript:loginWithKakao()">
+		   <img src="https://k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
+		   </a> 
+		   </div>
+		   
+		   <div>
+  		 <button class="api-btn" onclick="unlinkApp()"> 앱 탈퇴하기	</button>
+ 			</div>
             </div>
         </div>
     </div><!-- End modal -->
@@ -136,24 +151,33 @@
                 <input type="text" class="form-control form-white" placeholder="아이디">
                 <input type="password" class="form-control form-white" placeholder="비밀번호" id="password1">
                 <input type="password" class="form-control form-white" placeholder="비밀번호 재확인" id="password2">
+                
+                <div id="pass-info" class="clearfix"></div>
+                
                 <input type="text" class="form-control form-white" placeholder="이름">
                 <input type="text" class="form-control form-white" placeholder="생년 월일">
                 <input type="text" class="form-control form-white" placeholder="휴대폰 번호">
                 <input type="email" class="form-control form-white" placeholder="Email">
+               
                 <div>
-					<input type="radio" name="gender" value="남" checked onclick="doIt('남')" id = "r1" style="width:23px;height:23px"> 
-					<label for = "r1" style="font-size: 30px; color: white; padding-right: 100px;" > 남 </label>
-                    <input type="radio" name="gender" value="여" onclick="doIt('여')" id = "r2" style="width:23px;height:23px">
-                     <label for = "r2" style="font-size: 30px; color: white; padding-right: 100px;" > 여 </label>
+					<input type="radio" name="gender" value="남" checked onclick="doIt('남')" id = "r1" style="width:23px;height:15px"> 
+					<label for = "r1" style="font-size: 15px; color: white; padding-right: 250px;" > 남 </label>
+                    <input type="radio" name="gender" value="여" onclick="doIt('여')" id = "r2" style="width:23px;height:15px">
+                     <label for = "r2" style="font-size: 15px; color: white; padding-right: 10px;" > 여 </label>
                    	<input type=text name=genders  value="남" style="display:none">
 				</div>
-                <div id="pass-info" class="clearfix"></div>
-                <div class="checkbox-holder text-left">
-                	<div class="checkbox">
-                    	<input type="checkbox" value="accept_2" id="check_2" name="check_2" />
-                        <label for="check_2"><span>I Agree to the <strong>Terms &amp; Conditions</strong></span></label>
-					</div>
+				
+                <div class="form-group">                   
+				<input class="form-control" style="width: 50%; margin-right:70px; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" >
+    			<button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
 				</div>
+				<div class="form-group">
+  			    <input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="location" id="addr2" type="text" readonly="readonly" />
+				</div>
+				<div class="form-group">
+   				 <input class="form-control" placeholder="상세주소" name="location" id="addr3" type="text"  />
+				</div>
+               
                 <button type="button" class="btn btn-submit">회원가입</button>
 			</form>
 		</div>
@@ -164,4 +188,47 @@
 	function doIt(_v) {
 		document.myRegister.genders.value=_v;
 	}
+</script>
+<script>
+function execPostCode() {
+	
+         new daum.Postcode({
+             oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+ 
+                // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+ 
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+                // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+                if(fullRoadAddr !== ''){
+                    fullRoadAddr += extraRoadAddr;
+                }
+ 
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                console.log(data.zonecode);
+                console.log(fullRoadAddr);
+                
+                
+                document.getElementById('addr1').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('addr2').value = fullRoadAddr;
+               
+            }
+         }).open();
+     }
+
 </script>

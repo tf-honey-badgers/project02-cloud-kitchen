@@ -24,6 +24,7 @@ var custId = '${custId}';
 <br><br>
 	<!-- 위쪽 헤더바  -->
 	<jsp:include page="include/header.jsp" />
+	<jsp:include page="include/background.jsp" flush="false" />
 	<!-- 헤드 끝 -->
 <h2>찜 리스트</h2>
 <table  class="type11">
