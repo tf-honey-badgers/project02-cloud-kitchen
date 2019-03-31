@@ -11,7 +11,10 @@ public interface KitchenMapper {
 
 	public List<KitchenBranchVOExtend> kitchenbranchList();
 	public List<BizVOExtend> bizList();
+	public List<MenuVOExtend> menuList();
 	public List<BizVOExtend> bizInfo(String bizId);
+	public List<BizVOExtend> bizInfoByKitchen(String kitchenId);
+	public List<BizVOExtend> bizInfoByMenu(String menuName);
 	public List<Object> getCategorization();
 	public List<KitchenSelectCatVOExtend> getCatKitchen(String comName);
 	public List<MenuVOExtend> getMenu(int mIdx);
