@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class OrderPaymentVO {
-	private String id;
-	private int amount;
-	private String method;
+	private String id; // orderId
+	private int amount; // payAmt
+	private String method; // input
 }

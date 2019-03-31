@@ -29,9 +29,9 @@ public class KakaoTest {
 	    params.add("quantity", "1");
 	    params.add("total_amount", "1155");
 	    params.add("tax_free_amount", "0");
-	    params.add("approval_url", "http://localhost:3000/business");
-	    params.add("cancel_url", "http://localhost:3000/business");
-	    params.add("fail_url", "http://localhost:3000/business");
+	    params.add("approval_url", "http://localhost:3001/customer/main");
+	    params.add("cancel_url", "http://localhost:3001/customer/main");
+	    params.add("fail_url", "http://localhost:3001/customer/main");
 	    
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.add("Authorization", "KakaoAK " + "e0d26cb3e1a4b577fce26f8828fc6a49");

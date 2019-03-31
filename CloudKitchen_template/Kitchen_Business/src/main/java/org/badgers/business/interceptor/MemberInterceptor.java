@@ -35,7 +35,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 		//map에 logout 이라는 키를 가지고 있으면 세션invalidate() 해주기
 		if(mv!=null) {
 			Map map = mv.getModel();
-			if(map.containsKey("logout")) {
+			if(map.get("msg").equals("logout")) {
 				session.invalidate();;
 			}
 		}

@@ -73,10 +73,32 @@
 		</div>
 	</div>
 </nav>
-
 <script>
-/* 	$('#login').on('click', function(){
-		alert('sdfs')
-		//$('#login_2').modal('show');
-	}) */
+
+/* 	var msg = getParameterByName('msg'); 
+	console.log(msg);
+	alertNoti(msg);
+	
+
+
+function alertNoti(msg){
+	if(msg=='success'){
+		md.showNotification('top', 'center', 'success', '로그인 성공하셨습니다');  
+	}else if(msg='fail'){
+		//md.showNotification('top', 'center', 'success', '로그인 해주시기 바랍니다'); 
+		$('.modal').modal('show');	
+	}
+	
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+} */
+
 </script>

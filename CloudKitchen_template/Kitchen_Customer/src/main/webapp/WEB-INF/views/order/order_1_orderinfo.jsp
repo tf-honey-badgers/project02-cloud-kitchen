@@ -84,7 +84,7 @@
 
 							<label>주문 요청 사항</label>
 							<textarea class="form-control" style="height: 150px"
-								placeholder="주문 요청 사항" name="notes" id="notes"></textarea>
+								placeholder="주문 요청 사항" name="msg" id="notes"></textarea>
 
 						</div>
 					</div>
