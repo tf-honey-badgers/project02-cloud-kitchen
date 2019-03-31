@@ -125,7 +125,7 @@ $(document)
 					});
 					
 					$('.menuInsertModalOpt')
-					.on('click','.addMenuList .card .card-body .table-responsive table tbody tr td .deleteOpt',function(e){
+						.on('click','.addMenuList .card .card-body .table-responsive table tbody tr td .deleteOpt',function(e){
 						e.preventDefault();
 						$(this).parent().parent().remove();
 					});
@@ -312,12 +312,19 @@ $(document)
 						let menuCatName = $(this).parent().parent().parent().parent().parent().parent().parent().parent().children().eq(0).children().eq(0).children().eq(0).text();
 						console.log(menuCatName);
 						
+						let menuInfo = $(this).parent().parent().children();
+						
+						let menuNo = menuInfo.eq(0).text();
+						let menuPhoto = menuInfo.eq(1).text();
+						let menuName = menuInfo.eq(2).text();
+						let menuPrice = menuInfo.eq(3).text();
+						
 						$.ajax({
 			        		type : "GET",
 			        		url : "../menu/main/update",
 			        		dataType : "json",
 			         		data : {
-			         			mIdx : $(this).parent().parent().children().eq(0).text()
+			         			mIdx : menuInfo.eq(0).text()
 			        		},
 			        		error : function(data){
 			        			console.log(data);
@@ -398,6 +405,92 @@ $(document)
 			        				}
 			        				
 			        				
+			        			$('.menuUpdate').append(
+			        					'<thead class="text-primary">'
+			        					+'<th>메뉴코드</th>'
+			        					+'<th>메뉴사진</th>'
+			        					+'<th>메뉴이름</th>'
+			        					+'<th>메뉴가격</th>'
+			        					+'<th>메뉴구분</th>'
+			        					+'</thead>'
+			        					+'<tbody>'
+			        					+'<tr>'
+			        					+'<td>'+menuNo+'</td>'
+			        					+'<td><input type="file" class="" value="파일"></td>'
+			        					+'<td><input type="text" class="" value="'+menuName+'"></td>'
+			        					+'<td><input type="text" class="" value="'+menuPrice+'"></td>'
+			        					+'<td>'
+			        					+'<select id="menuCatUpdate">'
+			        					+'</select>'
+			        					+'</td>'
+			        					+'</tr>'
+			        					+'</tbody>'
+			        				);
+			        			
+			        			for(let i of data[0].menuOptCl){
+			        				console.log(i);
+			        				$('.menuModalOpt').append(
+			        					'<div class="col-md-12">'
+			    							+'<div class="card">'
+			    							+'<div class="card-header card-header-primary">'
+			    							+'<h4 class="card-title" id="'+i.mocMenuOptType+'" name="'+i.mocNo+'">'+i.mocName+'</h4>'
+			    							+'</div>'
+			    							+'<div class="card-body">'
+			    							+'<div class="table-responsive">'
+			    							+'<table class="table menuUpdate">'
+				        					+'<thead class="text-primary">'
+				        					+'<tr>'
+				        					+'<th>옵션번호</th>'
+				        					+'<th>옵션이름</th>'
+				        					+'<th>옵션추가금</th>'
+				        					+'<th>메뉴가격</th>'
+				        					+'</tr>'
+				        					+'</thead>'
+				        					+'<tbody class="mOpt">'
+				        					+'</tbody>'
+			    							+'</table>'
+			    							+'</div>'
+			    							+'</div>'
+			    							+'</div>'
+			    							+'</div>'
+			        				);
+			        			}
+			        			
+			        			
+//			        			for(let i=0; i<data[0].menuOptCl.menuOptEx.length; i++){
+//			        				console.log(i);
+//			        				if(i.mocNo == j.moOptClNo){
+////			        					$('.mOpt').append(
+////			        							+'<tr>'
+////			        							+'<td>'+j.moCode+'</td>'
+////			        							+'<td>'+j.moName+'</td>'
+////			        							+'<td>'+j.moAddPrice+'</td>'
+////			        							+'<td>'+j.moOptClNo+'</td>'
+////			        							+'</tr>'
+////			        					);
+//			        				}
+//			        			}
+			        			
+								$.ajax({
+					        		type : "GET",
+					        		dataType : 'json',
+					        		url : "../menu/main/getMenuCat",
+					         		data : {
+					         			bizId : 'biz_2'
+					         		},
+					        		error : function(data){
+					        			console.log(data);
+					        		},
+					        		success(data){
+//					        			console.log(data);
+					        			$('#menuCatUpdate').empty();
+					        			for(let i=0;i<data.length;i++){
+					        				$('.menuModalOpt #menuCatUpdate').append('<option value="" class="'+data[i].mcBizId
+					        						+'" id="'+data[i].mcNo+'" >'+data[i].mcName+'</option>');
+					        			}
+					        		}
+								}); // ajax2 소환
+
 			        		} // success
 			        	});	// post ajax끝
 					}); 
