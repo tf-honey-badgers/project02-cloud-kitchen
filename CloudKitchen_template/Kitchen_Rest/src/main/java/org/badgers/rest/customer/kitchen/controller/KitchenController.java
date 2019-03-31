@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.badgers.rest.customer.kitchen.service.KitchenServiceImpl;
 import org.badgers.rest.model.BizVOExtend;
+import org.badgers.rest.model.CommonCodeVO;
 import org.badgers.rest.model.KitchenBranchVOExtend;
 import org.badgers.rest.model.KitchenSelectCatVOExtend;
 import org.badgers.rest.model.MenuVOExtend;
@@ -60,6 +61,14 @@ public class KitchenController {
 		List<BizVOExtend> returnVal = service.searchLists(query);
 		
 		return new ResponseEntity<List<BizVOExtend>>(returnVal, HttpStatus.OK);
+	}
+	
+	// 가게 분류 코드 목록
+	@RequestMapping(value = "/bizcodes", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<List<CommonCodeVO>> bizCatList() {
+		List<CommonCodeVO> returnVal = service.bizCatList();
+				
+		return new ResponseEntity<List<CommonCodeVO>>(returnVal, HttpStatus.OK);
 	}
 	
 	@RequestMapping("/categorization")

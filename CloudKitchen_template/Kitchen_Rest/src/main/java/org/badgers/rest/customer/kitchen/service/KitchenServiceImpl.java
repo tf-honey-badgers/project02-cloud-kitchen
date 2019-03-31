@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.badgers.rest.customer.kitchen.persistence.KitchenMapper;
 import org.badgers.rest.model.BizVOExtend;
+import org.badgers.rest.model.CommonCodeVO;
 import org.badgers.rest.model.KitchenBranchVOExtend;
 import org.badgers.rest.model.KitchenSelectCatVOExtend;
 import org.badgers.rest.model.MenuVOExtend;
@@ -161,7 +162,12 @@ public class KitchenServiceImpl implements KitchenService {
 		log.info("Search complete, returning to controller");
 		return returnVal;
 	}
-	
+
+	@Override
+	public List<CommonCodeVO> bizCatList() {
+		return mapper.bizCatList();
+	}
+
 	@Override
 	public List<BizVOExtend> bizInfo(String bizId){
 		System.out.println("bizInfo : 서비스");

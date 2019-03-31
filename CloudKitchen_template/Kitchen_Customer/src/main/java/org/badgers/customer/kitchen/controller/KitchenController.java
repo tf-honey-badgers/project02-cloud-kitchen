@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.badgers.customer.model.BizVOExtend;
 import org.badgers.customer.model.CartVOExtend;
+import org.badgers.customer.model.CommonCodeVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -86,7 +87,9 @@ public class KitchenController {
 		log.info("Searching lists of kitchen branches, businesses, menus");
 
 		List<BizVOExtend> returnVal = null;
-		String url = "http://localhost/rest/kitchenbranch/searchlists";
+		String urlSearch = "http://localhost/rest/kitchenbranch/searchlists";
+		List<CommonCodeVO> bizCatVal = null;
+		String urlBizCat = "http://localhost/rest/kitchenbranch/bizcodes";
 
 		if(query.equals("")) {
 			log.info("query is null");
@@ -94,7 +97,9 @@ public class KitchenController {
 		}
 		
 		restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
-		ResponseEntity<List> responseEntity = restTemplate.postForEntity(url, query, List.class);
+		ResponseEntity<List> responseEntity = restTemplate.postForEntity(urlSearch, query, List.class);
+		ResponseEntity<List> responseBizCats = restTemplate.getForEntity(urlBizCat, List.class);
+		bizCatVal = responseBizCats.getBody();
 		
 		if(!responseEntity.getBody().isEmpty()) {
 			log.info("Search successful!");
@@ -104,8 +109,9 @@ public class KitchenController {
 			log.info("No matching search results");
 			mav.addObject("message", "No search results. Try again with a different query.");
 		}
+		mav.addObject("bizCat", bizCatVal);
 		log.info(returnVal);
-		mav.setViewName("searchGrid");
+		mav.setViewName("searchList");
 		
 		return mav;
 	}
