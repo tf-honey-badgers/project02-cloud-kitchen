@@ -61,36 +61,7 @@ public class PaymentController {
 		return mv;
 	}
 	
-	@GetMapping("/payment/{status}")
-	public String registOrder(@PathVariable("status")String status, HttpSession session, Model model) {
-		log.info("...............................payment/status...................");
-		OrderVOExtend vo = (OrderVOExtend)session.getAttribute("order");
-		
-		if(status.equals("success")) {
-			log.info("............success");
-			String url = "http://127.0.0.1:80/rest/cust/order/"+vo.getId();
-			System.out.println(url);
-			
-			ResponseEntity<String> responses  = restTemplate.postForEntity(url,vo, String.class);
-//			List<OrderInfoVO> list =Arrays.asList(responses.getBody());
-			
-			String list = responses.getBody();
-			
-			System.out.println(list);
-			model.addAttribute("list", list);
-			
-			return "redirect:/customer/order/confirm";
-			
-			
-		}else if(status.equals("cancel")) {
-			
-		}else if(status.equals("fail")) {
-			
-		}
-		
-		return "redirect:/main";
-		
-	}
+	
 	//post : 사용자 번호, 주소, 요청 메세지, cartExtendVO를 OrderExtendVO에 저장(OrderExtendVO.PaymentVO 제외): "order"
 	//orderId, OrderDetailId, 사용자 정보 아직 안 함
 	
@@ -114,16 +85,36 @@ public class PaymentController {
 		return "/order/order_3_confirm";
 	}
 
-	@GetMapping("/payment/{payMethod}")
-	public void payWithPayMethod(@PathVariable("payMethod") String method) {
+
+
+	@GetMapping("payment/{payMethod}/{status}")
+	public String succeedPayment(@PathVariable("status")String status, HttpSession session, Model model) {
+		log.info("...............................payment/status...................");
+		OrderVOExtend vo = (OrderVOExtend)session.getAttribute("order");
 		
-	}
-
-	@GetMapping("payment/{payMethod}/success")
-	public String succeedPayment() {
-
-		log.info("카카오페이 결제 성공...");
-		return "/order/order_3_confirm";
+		if(status.equals("success")) {
+			log.info("............success");
+			String url = "http://127.0.0.1:80/rest/cust/order/"+vo.getId();
+			System.out.println(url);
+			
+			ResponseEntity<String> responses  = restTemplate.postForEntity(url,vo, String.class);
+//			List<OrderInfoVO> list =Arrays.asList(responses.getBody());
+			
+			String list = responses.getBody();
+			
+			System.out.println(list);
+			model.addAttribute("list", list);
+			
+			return "redirect:/order/confirm";
+			
+			
+		}else if(status.equals("cancel")) {
+			
+		}else if(status.equals("fail")) {
+			
+		}
+		
+		return "redirect:/main";
 	}
 	
 }
