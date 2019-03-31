@@ -244,7 +244,8 @@
                     </a><!-- End strip_list-->
                 </div><!-- End col-md-6-->                
             </div><!-- End row-->
-            <a href="#0" class="load_more_bt wow fadeIn" data-wow-delay="0.2s">Load more...</a>           
+            <a href="#0" class="load_more_bt wow fadeIn" data-wow-delay="0.2s">Load more...</a>
+            ${searchResults}
 		</div><!-- End col-md-9-->
         
 	</div><!-- End row -->
@@ -280,14 +281,12 @@
     });
 </script>
 	
-	<script src="/customer/resources/js/menu/menu-functions.js"></script>
+<script src="/customer/resources/js/menu/menu-functions.js"></script>
 
-	<c:if test="${not empty message}">
-		<script>
-			$(document).ready(function() {
-				alert('${message}');
-			});
-		</script>
-	</c:if>
+<script>
+	$(document).ready(function() {
+
+	}
+</script>
 </body>
 </html>

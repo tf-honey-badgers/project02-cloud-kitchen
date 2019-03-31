@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- Search Menu ============================================ -->
 	<div class="search-overlay-menu">
@@ -124,6 +125,15 @@
 	});
 </script>
 
+<!-- "message" 속성이 있다면 알림창 띄우기 -->
+<c:if test="${not empty message}">
+	<script>
+		$(document).ready(function() {
+			alert('${message}');
+		});
+	</script>
+</c:if>
+
 <!-- 자동완성에 필요한 CDN -->
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -208,7 +218,7 @@
         });
 
     /* 검색창에 입력 후 검색하기 클릭하면... */
-        $('#searchBtn').on('click', () => {
+/*         $('#searchBtn').on('click', () => {
             $.ajax({
                 type : 'POST'
                 , url : 'http://localhost:3001/customer/kitchen/search.json'
@@ -216,16 +226,8 @@
                 , data : {
                     query : $('.search-query').val()
                 }
-                , success : function(data) {
-                    console.log(data);
-                    $('#searchResults').append('<div>' + data + '</div>');
-                }
-                , error : function(data) {
-                    console.log('ERRoR oCCURRED');
-                    console.log(data);
-                }
             });
-        });
+        }); */
     });
     /* End Search =============================================== */
 

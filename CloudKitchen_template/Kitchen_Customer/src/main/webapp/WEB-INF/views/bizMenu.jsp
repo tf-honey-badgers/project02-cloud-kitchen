@@ -203,13 +203,5 @@
 	</script>
 	
 	<script src="/customer/resources/js/menu/menu-functions.js"></script>
-
-	<c:if test="${not empty message}">
-		<script>
-			$(document).ready(function() {
-				alert('${message}');
-			});
-		</script>
-	</c:if>
 </body>
 </html>
