@@ -12,8 +12,8 @@
                 <div id="custom-search-input">
                     <div class="input-group">
                         <input type="text" class="search-query" name="query" placeholder="키워드, 키친, 가게, 메뉴를 자유롭게 입력해주세요.">
-                        <span class="input-group-btn">
-                        	<input type="submit" id="searchBtn" class="btn_search">
+                        <span>
+                        	<input type="submit" id="searchBtn" class="btn_search" value="검색">
                         </span>
                     </div>
                 </div>

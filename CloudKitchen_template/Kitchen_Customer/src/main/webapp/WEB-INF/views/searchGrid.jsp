@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html>
@@ -20,17 +21,12 @@
 <!-- Content ================================================== -->
 <div class="container margin_60_35">
 	<div class="row">
-    
+		<!-- Sidebar =================================================== -->
 		<div class="col-md-3">
-			<p>
-				<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap">View on map</a>
-			</p>
 			<div id="filters_col">
 				<a data-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters" id="filters_col_bt">Filters <i class="icon-plus-1 pull-right"></i></a>
 				<div class="collapse" id="collapseFilters">
 					<div class="filter_type">
-                    	<h6>Distance</h6>
-                        <input type="text" id="range" value="" name="range">
 						<h6>Type</h6>
 						<ul>
 							<li><label><input type="checkbox" checked class="icheck">All <small>(49)</small></label></li>
@@ -63,22 +59,14 @@
 							</span></label></li>
 						</ul>
 					</div>
-					<div class="filter_type">
-						<h6>Options</h6>
-						<ul class="nomargin">
-							<li><label><input type="checkbox" class="icheck">Delivery</label></li>
-							<li><label><input type="checkbox" class="icheck">Take Away</label></li>
-							<li><label><input type="checkbox" class="icheck">Distance 10Km</label></li>
-							<li><label><input type="checkbox" class="icheck">Distance 5Km</label></li>
-						</ul>
-					</div>
 				</div><!--End collapse -->
 			</div><!--End filters col-->
-		</div><!--End col-md -->
-        
+		</div><!--End col-md-3 -->
+		<!-- End Sidebar =================================================== -->
+
 		<div class="col-md-9">
-        
-        <div id="tools">
+			<!-- Tools =================================================== -->
+			<div id="tools">
 				<div class="row">
 					<div class="col-md-3 col-sm-3 col-xs-6">
 						<div class="styled-select">
@@ -89,16 +77,29 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-md-9 col-sm-9 hidden-xs">
-						<a href="list_page.html" class="bt_filters"><i class="icon-list"></i></a>
-					</div>
+					<form action="http://localhost:3001/customer/kitchen/search" method="post">
+						<div style="display: inline;">
+                    		<input type="text" class="search-query" name="query" placeholder="키워드, 키친, 가게, 메뉴를 자유롭게 입력해주세요.">
+                        	<span class="input-group-btn" style="display: inline; height: 20px; width: 40px;">
+	                    		<input type="submit" id="searchBtn" class="btn_search">
+    	                	</span>
+						</div>
+            		</form>
 				</div>
-			</div><!--End tools -->
+			</div>
+			<!-- End Tools =================================================== -->
         
+        	<!-- Content =================================================== -->
+        	<p>mrow mrow mrow mrow</p>
+        	<p>${fn:length(searchResults)}</p>
+        	<c:forEach var="result" items="${searchResults}" varStatus="loop">
+        		<p>${result.bizId}</p>
+        	</c:forEach>
+        	
+        	<!-- End Content =================================================== -->
         	<div class="row">
             	<div class="col-md-6 col-sm-6 wow zoomIn" data-wow-delay="0.1s">
                 	<a class="strip_list grid" href="detail_page.html">
-                    	<div class="ribbon_1">Popular</div>
                     	<div class="desc">
 							<div class="thumb_strip">
 								<img src="/customer/resources/img/thumb_restaurant.jpg" alt="">
@@ -122,7 +123,6 @@
                 </div><!-- End col-md-6-->
                <div class="col-md-6 col-sm-6 wow zoomIn" data-wow-delay="0.2s">
                 	<a class="strip_list grid" href="detail_page.html">
-                    	<div class="ribbon_1">Popular</div>
                     	<div class="desc">
 							<div class="thumb_strip">
 								<img src="/customer/resources/img/thumb_restaurant_2.jpg" alt="">
@@ -146,104 +146,8 @@
                 </div><!-- End col-md-6-->                
             </div><!-- End row-->
             
-            <div class="row">
-            	<div class="col-md-6 col-sm-6 wow zoomIn" data-wow-delay="0.3s">
-                	<a class="strip_list grid" href="detail_page.html">
-                    	<div class="ribbon_1">Popular</div>
-                    	<div class="desc">
-							<div class="thumb_strip">
-								<img src="/customer/resources/img/thumb_restaurant_3.jpg" alt="">
-							</div>
-							<div class="rating">
-								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-							</div>
-							<h3>Japan Food</h3>
-							<div class="type">
-								Sushi / Japanese
-							</div>
-							<div class="location">
-								135 Newtownards Road, Belfast, BT4. <br><span class="opening">Opens at 17:00.</span> Minimum order: $15
-							</div>
-							<ul>
-								<li>Take away<i class="icon_check_alt2 ok"></i></li>
-								<li>Delivery<i class="icon_check_alt2 ok"></i></li>
-							</ul>
-						</div>
-                    </a><!-- End strip_list-->
-                </div><!-- End col-md-6-->
-                <div class="col-md-6 col-sm-6 wow zoomIn" data-wow-delay="0.4s">
-                	<a class="strip_list grid" href="detail_page.html">
-                    	<div class="desc">
-							<div class="thumb_strip">
-								<img src="/customer/resources/img/thumb_restaurant_4.jpg" alt="">
-							</div>
-							<div class="rating">
-								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-							</div>
-							<h3>Sushi Gold</h3>
-							<div class="type">
-								Sushi / Japanese
-							</div>
-							<div class="location">
-								135 Newtownards Road, Belfast, BT4. <br><span class="opening">Opens at 17:00.</span> Minimum order: $15
-							</div>
-							<ul>
-								<li>Take away<i class="icon_check_alt2 ok"></i></li>
-								<li>Delivery<i class="icon_check_alt2 ok"></i></li>
-							</ul>
-						</div>
-                    </a><!-- End strip_list-->
-                </div><!-- End col-md-6-->                
-            </div><!-- End row-->
             
-            <div class="row">
-            	<div class="col-md-6 col-sm-6 wow zoomIn" data-wow-delay="0.5s">
-                	<a class="strip_list grid" href="detail_page.html">
-                    	<div class="desc">
-							<div class="thumb_strip">
-								<img src="/customer/resources/img/thumb_restaurant_5.jpg" alt="">
-							</div>
-							<div class="rating">
-								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-							</div>
-							<h3>Dragon Tower</h3>
-							<div class="type">
-								Chinese / Thai
-							</div>
-							<div class="location">
-								135 Newtownards Road, Belfast, BT4. <br><span class="opening">Opens at 17:00.</span> Minimum order: $15
-							</div>
-							<ul>
-								<li>Take away<i class="icon_check_alt2 ok"></i></li>
-								<li>Delivery<i class="icon_check_alt2 ok"></i></li>
-							</ul>
-						</div>
-                    </a><!-- End strip_list-->
-                </div><!-- End col-md-6-->
-                <div class="col-md-6 col-sm-6 wow zoomIn" data-wow-delay="0.6s">
-                	<a class="strip_list grid" href="detail_page.html">
-                    	<div class="desc">
-							<div class="thumb_strip">
-								<img src="/customer/resources/img/thumb_restaurant_6.jpg" alt="">
-							</div>
-							<div class="rating">
-								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-							</div>
-							<h3>China Food</h3>
-							<div class="type">
-								Chinese / Vietnam
-							</div>
-							<div class="location">
-								135 Newtownards Road, Belfast, BT4. <br><span class="opening">Opens at 17:00.</span> Minimum order: $15
-							</div>
-							<ul>
-								<li>Take away<i class="icon_check_alt2 ok"></i></li>
-								<li>Delivery<i class="icon_check_alt2 ok"></i></li>
-							</ul>
-						</div>
-                    </a><!-- End strip_list-->
-                </div><!-- End col-md-6-->                
-            </div><!-- End row-->
+            
             <a href="#0" class="load_more_bt wow fadeIn" data-wow-delay="0.2s">Load more...</a>
             ${searchResults}
 		</div><!-- End col-md-9-->

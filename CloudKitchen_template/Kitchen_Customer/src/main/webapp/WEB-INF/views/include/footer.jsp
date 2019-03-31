@@ -126,13 +126,13 @@
 </script>
 
 <!-- "message" 속성이 있다면 알림창 띄우기 -->
-<c:if test="${not empty message}">
+<%-- <c:if test="${not empty message}">
 	<script>
 		$(document).ready(function() {
 			alert('${message}');
 		});
 	</script>
-</c:if>
+</c:if> --%>
 
 <!-- 자동완성에 필요한 CDN -->
 <link rel="stylesheet"
