@@ -11,12 +11,20 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-public class PaymentSessionInterceptor extends HandlerInterceptorAdapter{
+public class OrderInfoInterceptor extends HandlerInterceptorAdapter{
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		// TODO Auto-generated method stub
+		
+		HttpSession session = request.getSession();
+		
+		/* 테스트용 */
+		session.setAttribute("id", "TJ");
+		session.setAttribute("phone", "01011112222");
+		session.setAttribute("address", "고양시 우리집");
+		/* --- */
+		
 		return super.preHandle(request, response, handler);
 	}
 
@@ -31,7 +39,6 @@ public class PaymentSessionInterceptor extends HandlerInterceptorAdapter{
 		session.setAttribute("cart", modelAndView.getModel().get("cartList"));
 		log.info("==========================INTERCEPTOR========================================");
 		log.info(modelAndView.getModel().get("cartList"));
-		log.info("==========================INTERCEPTOR========================================");
 	}
 	
 }

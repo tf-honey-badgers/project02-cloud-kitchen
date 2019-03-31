@@ -17,11 +17,11 @@ public class OrderVOExtend {
 	private OrderPaymentVO orderPayment;//---------
 	private OrderDetailVOExtend[] orderDetails;//--
 	
-	public void mergeOrderVO(OrderVOExtend vo) {
-		this.custId = vo.getCustId();
-		this.phone=vo.getPhone();
-		this.address=vo.getAddress();
-	}
+//	public void mergeOrderVO(OrderVOExtend vo) {
+//		this.custId = vo.getCustId();
+//		this.phone=vo.getPhone();
+//		this.address=vo.getAddress();
+//	}
 	
 	
 }

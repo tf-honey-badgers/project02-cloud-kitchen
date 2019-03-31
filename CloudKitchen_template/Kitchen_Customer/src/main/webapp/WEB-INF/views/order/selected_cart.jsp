@@ -8,16 +8,13 @@
 						<h3>
 							Your order <i class="icon_cart_alt pull-right"></i>
 						</h3>
-						<h1>${cart}</h1>
-						<input type="hidden" value="${cart[0].kitchenName}" name="kitchenName">
-						<input type="hidden" value="${cart[0].totalAmt}" name="payAmt">
 						<table class="table table_summary">
 							<thead>
 							</thead>
 							<tbody class="cartTable">
 							<!-- bizName이 다를 때 가게 이름을 출력하기 위한 반복문 -->
 								<!-- 카트 메뉴를 출력하기 위한 반복문  -->
-								<c:forEach var="cart" items="${cart}" varStatus="index">
+								<c:forEach var="cart" items="${cart}">
 									<tr class="bizNameRow">
 										<td colspan="3"><strong>${cart.bizName}</strong></td>
 									</tr>

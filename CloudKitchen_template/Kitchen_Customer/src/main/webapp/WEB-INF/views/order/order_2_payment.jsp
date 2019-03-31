@@ -61,7 +61,7 @@
 					<h2 class="inner">Payment methods</h2>
 					<div class="payment_select">
 						<label><input type="radio" value="kakaoPay" checked
-							name="orderPayment.method" class="icheck">KAKAO PAY</label>
+							name="method" class="icheck">KAKAO PAY</label>
 							<i>
 								<img style="width:60px; " alt="$kakao icon" src="${pageContext.request.contextPath}/resources/img/kakako_payment_icon.png"></i>
 					</div>

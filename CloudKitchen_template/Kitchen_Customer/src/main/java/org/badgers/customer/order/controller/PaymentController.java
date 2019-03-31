@@ -31,37 +31,34 @@ public class PaymentController {
 	RestTemplate restTemplate;
 
 	@PostMapping("/orderinfo")
-	public ModelAndView orderInfo(int[] selectedCart, HttpSession session, ModelAndView mv) {
+	public ModelAndView orderInfo(int[] selectedCart, ModelAndView mv) {
 		String url = "http://127.0.0.1:80/rest/cust/order/orderinfo";
 		
 		ResponseEntity<CartVOExtend[]> response = restTemplate.postForEntity(url, selectedCart, CartVOExtend[].class);
 		List cartList = Arrays.asList(response.getBody());
 		
-		/* 테스트용 */
-		session.setAttribute("id", "TJ");
-		session.setAttribute("phone", "01011112222");
-		session.setAttribute("address", "고양시 우리집");
-		/* --- */
 		mv.addObject("cartList", cartList);
 		mv.setViewName("/order/order_1_orderinfo");
+		
 		return mv;
 	}
 
 	@RequestMapping("/payment")
-	public String payment(HttpSession session, OrderVOExtend vo) {
+	public ModelAndView payment(HttpSession session, OrderVOExtend vo, ModelAndView mv) {
 
-		session.setAttribute("OrderVOExtend", vo);
-
-		return "/order/order_2_payment";
+		mv.addObject("Order", vo);
+		mv.setViewName("/order/order_2_payment");
+		
+		return mv;
 	}
 
 	@PostMapping("/payready")
-	public String payReady(HttpSession session, OrderVOExtend vo) {
-		log.info("================================================payment READ=======================================");
-		vo.mergeOrderVO((OrderVOExtend) session.getAttribute("OrderVOExtend"));
-		log.info(vo);
-		log.info("================================================payment READ=======================================");
-		return "redirect:";
+	public ModelAndView payReady(HttpSession session, String method, ModelAndView mv) {
+		
+		mv.addObject("method", method);
+		mv.setViewName("redirect:/order/order_2_payment");
+		
+		return mv;
 	}
 	
 	@RequestMapping("/confirm")
