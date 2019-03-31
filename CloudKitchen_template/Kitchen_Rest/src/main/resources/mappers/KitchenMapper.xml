@@ -38,6 +38,10 @@
 		from menu
 	</select>
 	
+	<select id="bizCatList" resultType="org.badgers.rest.model.CommonCodeVO">
+		select * from honey_badgers.common_code where id like 'STR%'
+	</select>
+	
 	<resultMap id="MenuOptionEx" type="org.badgers.rest.model.MenuOptionVOExtend">
 		<result property="moCode" column="moCode"/>
 		<result property="moName" column="moName"/>
@@ -76,7 +80,9 @@
 		<result property="bizLikeCnt" column="bizLikeCnt" />
 		<result property="bizMinAmt" column="bizMinAmt" />
 		<result property="bizCatId" column="bizCatId" />
+		<result property="bizCatName" column="bizCatName" />
 		<result property="bizKitchenId" column="bizKitchenId" />
+		<result property="bizKitchenName" column="bizKitchenName" />
 		<result property="bizLiveStrm" column="bizLiveStrm" />
 		<result property="bizIdx" column="bizIdx" />
 		<collection property="bizMenuCatVo" javaType="java.util.ArrayList" resultMap="MenuCatVoEx"/>
@@ -90,7 +96,9 @@
 			b.like_cnt bizLikeCnt,
 			b.min_amt bizMinAmt,
 			b.biz_cat_id bizCatId,
+			cc.name bizCatName,
 			b.kitchen_id bizKitchenId,
+			kb.name bizKitchenName,
 			b.biz_live_strm bizLiveStrm,
 			b.idx bizIdx,
 			
@@ -121,9 +129,13 @@
 			left outer join menu_option_cl moc
 			on m.idx = moc.menu_id
 			left outer join menu_option mo
-			on moc.idx = mo.opt_cl_id
+			on moc.idx = mo.opt_cl_id,
+			common_code cc,
+			kitchen_branch kb
 		
 		where b.biz_id=#{bizId}
+			and b.biz_cat_id=cc.id
+			and b.kitchen_id=kb.id
 		
 		order by mcNo asc, mocMenuOptType asc, mocName asc, moAddPrice desc, moName asc, mocMenuCode asc
 	</select>
@@ -131,7 +143,7 @@
 	<!-- 특정 키친 지점명으로 해당 지점의 가게 정보 읽기 (where 조건 제외하고는 id="bizInfo"와 같다) -->
 	<select id="bizInfoByKitchen" resultMap="bizvo">
 		select
-			b.biz_id bizId, b.info bizInfo, b.name bizName, b.like_cnt bizLikeCnt, b.min_amt bizMinAmt, b.biz_cat_id bizCatId, b.kitchen_id bizKitchenId, b.biz_live_strm bizLiveStrm, b.idx bizIdx,
+			b.biz_id bizId, b.info bizInfo, b.name bizName, b.like_cnt bizLikeCnt, b.min_amt bizMinAmt, b.biz_cat_id bizCatId, cc.name bizCatName, b.kitchen_id bizKitchenId, kb.name bizKitchenName, b.biz_live_strm bizLiveStrm, b.idx bizIdx,
 			mc.idx mcNo, mc.name mcName, mc.biz_id mcBizId,
 			m.idx mCode, m.name mName, m.basic_price mBasicPrice, m.photo mPhoto, m.category_id menuCatCode,
 			moc.idx mocNo, moc.name mocName, moc.menu_opt_type mocMenuOptType, moc.menu_id mocMenuCode,
@@ -139,15 +151,17 @@
 		from biz b left outer join menu_category mc on b.biz_id = mc.biz_id
 			left outer join menu m on mc.idx = m.category_id
 			left outer join menu_option_cl moc on m.idx = moc.menu_id
-			left outer join menu_option mo on moc.idx = mo.opt_cl_id
-		where b.kitchen_id=#{kitchenId}
+			left outer join menu_option mo on moc.idx = mo.opt_cl_id,
+			common_code cc,
+			kitchen_branch kb
+		where b.kitchen_id=#{kitchenId} and b.biz_cat_id=cc.id and b.kitchen_id=kb.id
 		order by mcNo asc, mocMenuOptType asc, mocName asc, moAddPrice desc, moName asc, mocMenuCode asc
 	</select>
 	
 	<!-- 특정 메뉴명이나 옵션명으로 해당 메뉴나 옵션을 가진 가게 정보 읽기 (where 조건 제외하고는 id="bizInfo"와 같다) -->
 	<select id="bizInfoByMenu" resultMap="bizvo">
 		select
-			b.biz_id bizId, b.info bizInfo, b.name bizName, b.like_cnt bizLikeCnt, b.min_amt bizMinAmt, b.biz_cat_id bizCatId, b.kitchen_id bizKitchenId, b.biz_live_strm bizLiveStrm, b.idx bizIdx,
+			b.biz_id bizId, b.info bizInfo, b.name bizName, b.like_cnt bizLikeCnt, b.min_amt bizMinAmt, b.biz_cat_id bizCatId, cc.name bizCatName, b.kitchen_id bizKitchenId, kb.name bizKitchenName, b.biz_live_strm bizLiveStrm, b.idx bizIdx,
 			mc.idx mcNo, mc.name mcName, mc.biz_id mcBizId,
 			m.idx mCode, m.name mName, m.basic_price mBasicPrice, m.photo mPhoto, m.category_id menuCatCode,
 			moc.idx mocNo, moc.name mocName, moc.menu_opt_type mocMenuOptType, moc.menu_id mocMenuCode,
@@ -155,8 +169,10 @@
 		from biz b left outer join menu_category mc on b.biz_id = mc.biz_id
 			left outer join menu m on mc.idx = m.category_id
 			left outer join menu_option_cl moc on m.idx = moc.menu_id
-			left outer join menu_option mo on moc.idx = mo.opt_cl_id
-		where m.name = #{menuName} or mo.name = #{menuName}
+			left outer join menu_option mo on moc.idx = mo.opt_cl_id,
+			common_code cc,
+			kitchen_branch kb
+		where b.biz_cat_id=cc.id and b.kitchen_id=kb.id and (m.name = #{menuName} or mo.name = #{menuName})
 		order by mcNo asc, mocMenuOptType asc, mocName asc, moAddPrice desc, moName asc, mocMenuCode asc
 	</select>
 	
@@ -178,33 +194,37 @@
 			c.description comDisc,
 			c.idx comIdx 
 			
-		from biz b,common_code c
-		where c.id = b.biz_cat_id and c.name=#{menuCat}
+		from
+			biz b,
+			common_code c
+		where
+			c.id = b.biz_cat_id
+			and c.name=#{menuCat}
 	</select>
 	
 	<select id="getMenu" resultMap="MenuVoEx">
 		select 
-		m.idx mCode,
-		m.name mName,
-		m.basic_price mBasicPrice,
-		m.photo mPhoto,
-		m.category_id menuCatCode,
+			m.idx mCode,
+			m.name mName,
+			m.basic_price mBasicPrice,
+			m.photo mPhoto,
+			m.category_id menuCatCode,
 	    
-		moc.idx mocNo,
-		moc.name mocName,
-		moc.menu_opt_type mocMenuOptType,
-		moc.menu_id mocMenuCode,
+			moc.idx mocNo,
+			moc.name mocName,
+			moc.menu_opt_type mocMenuOptType,
+			moc.menu_id mocMenuCode,
 	
-		mo.idx moCode,
-		mo.name moName,
-		mo.add_price moAddPrice,
-		mo.opt_cl_id moOptClNo
+			mo.idx moCode,
+			mo.name moName,
+			mo.add_price moAddPrice,
+			mo.opt_cl_id moOptClNo
 	    
-	from menu m left outer join menu_option_cl moc
-	on m.idx = moc.menu_id
-	left outer join menu_option mo
-	on moc.idx = mo.opt_cl_id
-	where m.idx=#{mIdx};
-	
+		from
+			menu m left outer join menu_option_cl moc
+			on m.idx = moc.menu_id
+			left outer join menu_option mo
+			on moc.idx = mo.opt_cl_id
+		where m.idx=#{mIdx};
 	</select>
 </mapper>
