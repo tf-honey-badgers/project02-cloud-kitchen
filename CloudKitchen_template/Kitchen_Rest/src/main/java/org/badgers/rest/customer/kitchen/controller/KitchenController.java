@@ -59,9 +59,6 @@ public class KitchenController {
 	public ResponseEntity<List<BizVOExtend>> searchLists(@RequestBody String query) {
 		List<BizVOExtend> returnVal = service.searchLists(query);
 		
-		if(returnVal.size() == 0) {
-			return new ResponseEntity<List<BizVOExtend>>(HttpStatus.NOT_FOUND);
-		}
 		return new ResponseEntity<List<BizVOExtend>>(returnVal, HttpStatus.OK);
 	}
 	
