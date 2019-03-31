@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%-- <%@ page session="false" %> --%>
 
 <!DOCTYPE html>
 <html>
@@ -43,6 +43,7 @@
                                         <i class="material-icons">content_copy</i>
                                     </div>
                                     <p class="card-category">Used Space</p>
+
                                     <h3 class="card-title">49/50
                                         <small>GB</small>
                                     </h3>
@@ -556,7 +557,7 @@
     <!-- Library for adding dinamically elements -->
     <script src="/business/resources/js/plugins/arrive.min.js"></script>
     <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+   <!--  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
     <!-- Chartist JS -->
     <script src="/business/resources/js/plugins/chartist.min.js"></script>
     <!--  Notifications Plugin    -->
@@ -749,6 +750,7 @@
 			$('.nav-item').removeClass('active');
 			$('.nav-item.sidebar-home').addClass('active');
 		});
+		//로그아웃
 	</script>
 </body>
 </html>

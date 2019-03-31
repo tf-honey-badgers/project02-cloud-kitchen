@@ -1,11 +1,13 @@
 package org.badgers.business.member.controller;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.badgers.business.model.BizMemberVOExtend;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,40 +77,39 @@ public class BusinessController {
 		log.info("updateBizMember DONE!!!!!");
 	}
 
-	@PostMapping(value = "/", produces = "text/plain; charset=utf-8")
+//	로그인 
+	@PostMapping(value ="/login", produces = "text/plain; charset=utf-8")
 	@ResponseBody
-	public ModelAndView login(@RequestBody BizMemberVOExtend mvo, ModelAndView mv, HttpSession session) {
+	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend mvo, ModelAndView mov){
+		
 		log.info("Kitchen_Business 사업자 로그인...............................");
-
-		String msg = "";
-		String url = "http://localhost/rest/business/";
-		String returnVal = "";
-
+		HttpHeaders responseHeaders=null;
+		String status="";
+		String url = "http://localhost/rest/business/login";
 		try {
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
-			msg = responseEntity.getBody();
-		} catch (Exception e) {
-			e.printStackTrace();
+			status= responseEntity.getBody();
+			responseHeaders = new HttpHeaders();
+			
+			if(status.equals("success")) {
+				responseHeaders.set("RESULT", mvo.getBizId());
+			}
+			
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			if(e.getMessage().contains("failed: Connection refused: connect")) {
+				status="server disconnected";
+			}
+
 		}
-
-		if (msg.equals("BAD_PW")) {
-			returnVal = "비밀번호가 틀렸습니다.";
-		} else if (msg.equals("NO_ID")) {
-			returnVal = "존재하지 않는 아이디입니다.";
-		} else if (msg.equals("SERVER_ERROR") || msg.equals("")) {
-			returnVal = "서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.";
-		} else {
-			// 로그인을 유지하기 위한 쿠키 생성
-			msg = "성공적으로 로그인했습니다.";
-			mv.addObject("isSuccess", true);
-
-			log.info(msg);
-			returnVal = "성공적으로 로그인했습니다.";
-		}
-
-		session.setAttribute("login_id", msg);
-		log.info(returnVal);
-		return mv;
+			
+		return new ResponseEntity<>(status, responseHeaders,HttpStatus.OK);	
+	}
+	//로그아웃 
+	@GetMapping("/logout")
+	public String logout (Model model) {
+		model.addAttribute("logout", "logout");
+		return "redirect:/";
 	}
 
 	@PostMapping("/verify")

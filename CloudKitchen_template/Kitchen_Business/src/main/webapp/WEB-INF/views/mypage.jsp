@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 
 <!DOCTYPE html>
 <html>
@@ -42,6 +41,11 @@
                             <div class="card">
                                 <div class="card-header card-header-primary">
                                     <h4 class="card-title">Profile</h4>
+                                    
+                                    <h1>asdkfhaksldfha</h1>
+									<h1>${sessionScope.bizId}</h1>
+                                    <h1>asdkfhaksldfha</h1>
+                                    
                                     <p class="card-category">비밀번호와 계좌번호만 변경할 수 있습니다.</p>
                                 </div>
                                 <div class="card-body">

@@ -15,4 +15,6 @@ public class CustomerVO {
 	private String regDate;
 	private String idx;
 	private String AuthCode;
+	private String address;
+	private String addressDetail;
 }

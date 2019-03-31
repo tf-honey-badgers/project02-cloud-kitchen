@@ -59,7 +59,7 @@ $(document).ready(function() {
 		
 		if(cnt===0){
 			$.ajax({
-	    		url : 'http://localhost:3000/business/member/'
+	    		url : 'http://localhost:3000/business/member/login'
 	    		, type : 'POST'
 				, contentType : 'application/json'
 				, dataType : 'text'
@@ -71,8 +71,11 @@ $(document).ready(function() {
 	    			console.log(data);
 	    		}
 	    		, success : function(data) {
-	    			if(data == "성공적으로 로그인했습니다.") {
-	    				md.showNotification('top', 'center', 'info', '로그인했습니다.');    				
+	    			console.log('..............',data)
+	    			
+	    			if(data == "success") {
+	    				window.location.reload()
+	    				
 	    			} else {
 	    				md.showNotification('top', 'center', 'danger', data);    				
 	    			}
@@ -86,6 +89,7 @@ $(document).ready(function() {
 		}
 		
 	})
+	
 	
 	/* ID 찾기 인증 절차 */
 	$('#findId').on('click', function(event) {

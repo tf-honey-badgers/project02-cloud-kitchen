@@ -198,4 +198,36 @@ public class MenuController {
 		return 0;
 		
 	}
+	
+	
+	@RequestMapping(value="/main/deletemenuopt", method=RequestMethod.GET, 
+			produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public int deleteMenuOpt(@RequestParam("menuOptId") int menuOptId) {
+		int result = 0;
+		try {
+			System.out.println("MenuUpdate Front Controller1");
+			String url = "http://localhost:80/rest/bizmenu/deletemenuopt";
+	        
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+
+			HttpEntity entity = new HttpEntity(menuOptId, headers);
+			
+			ResponseEntity updateResponseEntity = restTemplate.postForEntity
+					(url,entity,int.class);
+			
+			System.out.println("MenuUpdate Front Controller2");
+			
+			result = (int) updateResponseEntity.getBody();
+			System.out.println(result);
+			return result;
+			
+		}catch(Exception e){
+			e.getStackTrace();
+		}
+		
+		return 0;
+		
+	}
 }

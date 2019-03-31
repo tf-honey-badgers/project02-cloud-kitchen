@@ -90,7 +90,7 @@ public class CustomerController {
 	}
 
 	//삭제 -> 멤버 상태 수정 (status 변환)
-	@PutMapping("/delete/{id}")
+	@PutMapping("/{id}/delete")
 	public int delete(@PathVariable("id") String id,@RequestBody CustomerVO vo) {
 		int returnValue = 0;
 
