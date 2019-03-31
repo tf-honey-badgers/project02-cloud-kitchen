@@ -1,12 +1,7 @@
 package org.badgers.business.member.controller;
 
-import java.io.IOException;
-import java.net.ConnectException;
-import java.net.SocketException;
-
 import javax.inject.Inject;
 
-import org.apache.http.conn.HttpHostConnectException;
 import org.badgers.business.model.BizMemberVOExtend;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -110,6 +104,12 @@ public class BusinessController {
 		}
 			
 		return new ResponseEntity<>(status, responseHeaders,HttpStatus.OK);	
+	}
+	//로그아웃 
+	@GetMapping("/logout")
+	public String logout (Model model) {
+		model.addAttribute("logout", "logout");
+		return "redirect:/";
 	}
 
 	@PostMapping("/verify")

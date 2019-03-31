@@ -74,8 +74,8 @@ $(document).ready(function() {
 	    			console.log('..............',data)
 	    			
 	    			if(data == "success") {
-	    				md.showNotification('top', 'center', 'info', $('#myLogin input:eq(0)').val()+'님  환영합니다'); 
 	    				window.location.reload()
+	    				
 	    			} else {
 	    				md.showNotification('top', 'center', 'danger', data);    				
 	    			}
@@ -89,6 +89,7 @@ $(document).ready(function() {
 		}
 		
 	})
+	
 	
 	/* ID 찾기 인증 절차 */
 	$('#findId').on('click', function(event) {

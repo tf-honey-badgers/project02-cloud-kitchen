@@ -61,11 +61,11 @@
 						<a class="dropdown-item" href="#">Profile</a> 
 						<a class="dropdown-item" href="#">Settings</a>
 						<div class="dropdown-divider"></div>
-						<c:if test="${!empty sessionScope.bizId }" >
+						<c:if test="${empty sessionScope.bizId }" > 
 							<a class="dropdown-item" href="#" id="login"  data-toggle="modal" data-target="#login_2">Login</a>
 						</c:if>
-						<c:if test="${empty sessionScope.bizId }" >
-							<a class="dropdown-item" href="#" id="logout">Logout</a>
+						<c:if test="${!empty sessionScope.bizId }" >
+							<a class="dropdown-item" href="member/logout" id="logout">Logout</a>
 						</c:if>
 					</div>
 				</li>

@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-	//비번 , 이름 , 이메일
+	//비번 , 이름 , 이메일,주소
 	$('#changeCustomer').on('click', function() {
 		$.ajax({
     		url : '/customer/member/' + $('#id').val() + '/modify'
@@ -11,11 +11,35 @@ $(document).ready(function(){
     				 pw : $('#pw').val()
     				, name : $('#name').val()
     				, email : $('#email').val()
+    				, address : $('#address').val()
+    				, addressDetail :$('#addressDetail').val()
     			})
     		, error : function() { alert("회원 정보를 수정하는데 에러가 발생했습니다."); }
     		, success : function() { alert("성공적으로 회원 정보를 수정했습니다."); }
 		});
 	});
+	
+	//회원 탈퇴 
+	$('#deleteCustomer').on('click',function(){
+		$.ajax({
+			url : '/customer/member/' + $('#id').val() + '/delete'
+			, type : 'POST'
+				, contentType : 'application/json'
+	    		, data : JSON.stringify({
+	    				id : $('#id').val(),
+	    				pw : $('#pw').val()
+	    			  , status : $('#status').val()
+	    	
+	    			})
+	    		, error : function() { alert("회원 탈퇴 에러."); }
+	    		, success : function() { alert("성공적으로 탈퇴 하였습니다.");
+	    		location.href = "http://localhost:3001/customer/main";
+	    		}
+			});
+		});
+	
+	
+	
 	
 	
 	/* modal의 "X" 버튼을 눌러 닫을 때 modal을 숨기고 초기화하기 */
@@ -80,6 +104,10 @@ $(document).ready(function(){
     				, phone : $('#myRegister input:eq(5)').val()
     				, email : $('#myRegister input:eq(6)').val()
     				, gender : $('#myRegister input:eq(9)').val()
+    				, address : $('#myRegister input:eq(11)').val()
+    				, addressDetail : $('#myRegister input:eq(12)').val()
+    		
+  
     			})
     		, error : function(data) {
     			console.log(data);

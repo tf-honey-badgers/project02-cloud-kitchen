@@ -1,6 +1,7 @@
 package org.badgers.rest.customer.kitchen.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.badgers.rest.customer.kitchen.service.KitchenServiceImpl;
 import org.badgers.rest.model.BizVOExtend;
@@ -9,9 +10,11 @@ import org.badgers.rest.model.KitchenSelectCatVOExtend;
 import org.badgers.rest.model.MenuVOExtend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,12 +41,29 @@ public class KitchenController {
 		return service.bizlist();
 	}
 	
-//	@RequestMapping("/menuinfo/{mIdx}")
-//	@Transactional
-//	public List<MenuVOExtend> menuInfo(@PathVariable("mIdx") int mIdx) {
-//		System.out.println("menuInfo : 컨트롤러");
-//		return service.getMenu(mIdx);
-//	}
+	// 메뉴 목록
+	@RequestMapping("/menulist")
+	public List<MenuVOExtend> menulist() {
+		return service.menulist();
+	}
+	
+	// 지점, 가게, 메뉴 목록
+	@SuppressWarnings("rawtypes")
+	@RequestMapping(value = "/alllists", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public Map<String, List> allLists() {
+		return service.allLists();
+	}
+	
+	// 검색어를 가지고 지점, 가게, 메뉴 검색하기
+	@RequestMapping(value = "/searchlists", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<List<BizVOExtend>> searchLists(@RequestBody String query) {
+		List<BizVOExtend> returnVal = service.searchLists(query);
+		
+		if(returnVal.size() == 0) {
+			return new ResponseEntity<List<BizVOExtend>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<BizVOExtend>>(returnVal, HttpStatus.OK);
+	}
 	
 	@RequestMapping("/categorization")
 	public List<Object> getCategorization(){
@@ -79,5 +99,4 @@ public class KitchenController {
 		}
 		return new ResponseEntity<List<MenuVOExtend>>(menuOptInfo, HttpStatus.OK);
 	}
-
 }

@@ -29,13 +29,35 @@
 </head>
 
 <body class="">
+<!-- <div id="menuModal" class="menuModal">
+	<div class="menuModalOpt">
+		<span class="menuModalClose">&times;</span>
+
+		<div class="addOptBtnArea">
+			<button type="button" id="updateMenu" class="btn btn-primary pull-right">메뉴 등록</button>
+		</div>
+	</div>
+</div> -->
+
 <div id="menuModal" class="menuModal">
 	<div class="menuModalOpt">
 		<span class="menuModalClose">&times;</span>
-		<h3>변경</h3>
-		<table class="menuOpt">
-		</table>
-		<div class="modelBtnArea"><button id="updateMenuBtn">메뉴변경</button></div>
+					<div class="col-md-12">
+							<div class="card">
+								<div class="card-header card-header-primary">
+									<h4 class="card-title ">메뉴</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table menuUpdate">
+											
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>	
+		<div class="modelBtnArea"><button type="button" id="updateMenuBtn" class="btn btn-primary pull-right">메뉴 변경</button></div>
+		
 	</div>
 </div>
 
@@ -43,7 +65,7 @@
 	<div class="menuInsertModalOpt">
 		<span class="menuInsertModalClose">&times;</span>
 		<div class="addOptBtnArea">
-			<button type="button" id="insertMenu" class="btn btn-primary pull-right">메뉴 등록</button>
+			<button type="button" id="updateMenu" class="btn btn-primary pull-right">메뉴 변경</button>
 		</div>
 		
 						<div class="col-md-12">
@@ -177,7 +199,7 @@
 						<c:forEach var="menucat" items="${bizMenu[0].bizMenuCatVo}"
 							begin="1">
 							<div class="col-md-12">
-								<div class="card card-plain">
+								<div class="card">
 									<div class="card-header card-header-primary">
 										<h4 class="card-title mt-0">${menucat.mcName}</h4>
 									</div>

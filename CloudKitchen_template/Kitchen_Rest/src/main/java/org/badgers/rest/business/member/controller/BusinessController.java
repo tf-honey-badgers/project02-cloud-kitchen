@@ -51,7 +51,7 @@ public class BusinessController {
 	}
 	
 	// 로그인
-	@PostMapping("/login")
+	@PostMapping(value="/login" , produces = "application/json; charset=UTF-8")
 	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend biz) throws Exception {
 		String msg=""; 
 		int returnVal = service.login(biz.getBizId(), biz.getPw());

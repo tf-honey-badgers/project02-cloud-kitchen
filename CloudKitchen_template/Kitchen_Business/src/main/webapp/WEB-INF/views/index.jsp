@@ -33,8 +33,6 @@
             <!-- Header -->
             <jsp:include page="include/header.jsp" flush="false"></jsp:include>
             <!-- End Header -->
-            <h1>id 나와라</h1>
-            <h1>${sessionScope.bizId}</h1>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -752,6 +750,7 @@
 			$('.nav-item').removeClass('active');
 			$('.nav-item.sidebar-home').addClass('active');
 		});
+		//로그아웃
 	</script>
 </body>
 </html>
