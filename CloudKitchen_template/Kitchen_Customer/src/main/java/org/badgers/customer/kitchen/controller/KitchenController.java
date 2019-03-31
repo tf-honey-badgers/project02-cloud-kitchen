@@ -1,15 +1,20 @@
 package org.badgers.customer.kitchen.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.badgers.customer.model.BizVOExtend;
 import org.badgers.customer.model.CartVOExtend;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
@@ -54,6 +59,47 @@ public class KitchenController {
 			mav.addObject("message", "Failed to read biz main data. REST server may be offline.");
 		}		
 		mav.setViewName("bizMenu");
+		return mav;
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@GetMapping(value = "/lists", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<Map<String, List>> getLists() {
+		log.info("Reading lists of kitchen branches, businesses, menus for the autocomplete");
+		
+		Map<String, List> returnVal = null;
+		String url = "http://localhost/rest/kitchenbranch/alllists";
+		
+		ResponseEntity<Map> responseEntity = restTemplate.getForEntity(url, Map.class);
+		if(!responseEntity.getBody().isEmpty()) {
+			returnVal = responseEntity.getBody();
+		}	
+		log.info(returnVal);
+		
+		return new ResponseEntity<Map<String,List>>(returnVal, HttpStatus.OK);
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@PostMapping(value = "/search", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ModelAndView searchLists(ModelAndView mav, @RequestBody String query) {
+		log.info("Searching lists of kitchen branches, businesses, menus");
+		
+		List<BizVOExtend> returnVal = null;
+		String url = "http://localhost/rest/kitchenbranch/searchlists";
+		
+		ResponseEntity<List> responseEntity = restTemplate.postForEntity(url, query, List.class);
+		
+		if(!responseEntity.getBody().isEmpty()) {
+			log.info("Search successful!");
+			returnVal = responseEntity.getBody();
+			mav.addObject("searchResults", returnVal);
+		} else {
+			log.info("No matching search results");
+			mav.addObject("message", "No search results. Try again with a different query.");
+		}
+		log.info(returnVal);
+		mav.setViewName("searchGrid");
+		
 		return mav;
 	}
 }

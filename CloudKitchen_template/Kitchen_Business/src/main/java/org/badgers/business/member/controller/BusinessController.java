@@ -108,8 +108,8 @@ public class BusinessController {
 	//로그아웃 
 	@GetMapping("/logout")
 	public String logout (Model model) {
-		model.addAttribute("logout", "logout");
-		return "redirect:/";
+		model.addAttribute("msg", "logout");
+		return "redirect:/main";
 	}
 
 	@PostMapping("/verify")

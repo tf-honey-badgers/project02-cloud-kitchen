@@ -74,12 +74,20 @@ $(document).ready(function() {
 	    			console.log('..............',data)
 	    			
 	    			if(data == "success") {
-	    				window.location.reload()
+	    				window.location.href = "/business/main?msg=success";
+//	    				window.location.reload()
 	    				
 	    			} else {
-	    				md.showNotification('top', 'center', 'danger', data);    				
+	    				if(data==='server disconnected'){
+	    					md.showNotification('top', 'center', 'danger', 'server disconnected');  
+	    					$('.modal').modal('hide');	
+	    				}else if(data==='fail'){
+	    					md.showNotification('top', 'center', 'danger', '아이디 혹은 비밀번호를 다시 확인해 주시기 바랍니다 ');  
+	    				}
+	    				
+	    			//	window.location.href = "/business/main?msg=fail";
+	    							
 	    			}
-	    			$('.modal').modal('hide');
 	    			$('#myLogin input').val("");
 	    		}
 			});
