@@ -70,6 +70,7 @@ public class KitchenServiceImpl implements KitchenService {
 		}
 		System.out.println(query);
 		
+//		query = query.substring(6); // Postman으로 테스트할 때 사용
 		String[] tokens = query.split("[\\s@&\\.,?!$+-]+"); // 공백, @, &, 마침표, 쉼표, ?, !, $, +, - 기준으로 query 문자열을 나눈다.
 		for(String token : tokens) {
 			log.info(token);
