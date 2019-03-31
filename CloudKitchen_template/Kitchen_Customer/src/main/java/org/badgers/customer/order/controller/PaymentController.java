@@ -2,6 +2,7 @@ package org.badgers.customer.order.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -9,8 +10,11 @@ import javax.servlet.http.HttpSession;
 import org.badgers.customer.model.CartVOExtend;
 import org.badgers.customer.model.OrderVOExtend;
 import org.badgers.customer.order.service.PaymentService;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,8 +32,7 @@ public class PaymentController {
 	@Inject
 	RestTemplate restTemplate;
 	@Inject
-	PaymentService kakaoService;
-	
+	PaymentService kakaoservice;
 
 	
 	//pre :
@@ -51,21 +54,24 @@ public class PaymentController {
 	@RequestMapping("/payment")
 	public ModelAndView payment(OrderVOExtend vo, ModelAndView mv) {
 
-		mv.addObject("Order", vo);//사용자 번호, 주소, 요청 메세지
+		mv.addObject("order", vo);//사용자 번호, 주소, 요청 메세지
 		mv.setViewName("/order/order_2_payment");
 		
 		return mv;
 	}
-	//post : 사용자 번호, 주소, 요청 메세지, cartExtendVO를 OrderExtendVO에 저장(OrderExtendVO.PaymentVO 제외): "Order"
+	//post : 사용자 번호, 주소, 요청 메세지, cartExtendVO를 OrderExtendVO에 저장(OrderExtendVO.PaymentVO 제외): "order"
 	//orderId, OrderDetailId, 사용자 정보 아직 안 함
 	
-	//pre : method(결제 방법)을 받고 PaymentVO를 만들어 OrderExtendVO 완성 "Order"
+	//pre : method(결제 방법)을 받고 PaymentVO를 만들어 OrderExtendVO 완성 "order"
 	@PostMapping("/payready")
-	public ModelAndView payReady(ModelAndView mv) {
-		
-	//	kakaoService.kakaopay(vo)
-		
-		return mv;
+	public String payReady(HttpSession session) {
+		OrderVOExtend vo = (OrderVOExtend)session.getAttribute("order");
+		HttpEntity<MultiValueMap<String, String>> request= kakaoservice.kakaopay(vo);
+		ResponseEntity<Map> response = restTemplate.exchange("https://kapi.kakao.com/v1/payment/ready", HttpMethod.POST, request, Map.class);
+		Map kakaoRes = response.getBody();
+        System.out.println(kakaoRes);
+        String url= (String) kakaoRes.get("next_redirect_pc_url");
+        return "redirect:"+url;
 	}
 	//post : 
 	

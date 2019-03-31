@@ -7,6 +7,12 @@ import javax.servlet.http.HttpSession;
 
 import org.badgers.customer.model.OrderPaymentVO;
 import org.badgers.customer.model.OrderVOExtend;
+import org.badgers.customer.order.service.PaymentServiceImpl;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -22,7 +28,7 @@ public class PayReadyInterceptor extends HandlerInterceptorAdapter {
 		String method = (String)request.getParameter("method");
 		
 		HttpSession session = request.getSession();
-		OrderVOExtend order = (OrderVOExtend)session.getAttribute("Order");
+		OrderVOExtend order = (OrderVOExtend)session.getAttribute("order");
 		
 		
 		OrderPaymentVO orderPaymentVO = new OrderPaymentVO();
@@ -33,7 +39,7 @@ public class PayReadyInterceptor extends HandlerInterceptorAdapter {
 		
 		order.setOrderPayment(orderPaymentVO);
 		
-		session.setAttribute("Order", order);
+		session.setAttribute("order", order);
 		
 		log.info(":::::::::::::::::::::::::::::::::::ORDER:::::::::::::::::::::::::::::::::::::::::::::::::::::");
 		log.info(order);
@@ -52,5 +58,7 @@ public class PayReadyInterceptor extends HandlerInterceptorAdapter {
 		
 		super.postHandle(request, response, handler, modelAndView);
 	}
+	
+	
 
 }

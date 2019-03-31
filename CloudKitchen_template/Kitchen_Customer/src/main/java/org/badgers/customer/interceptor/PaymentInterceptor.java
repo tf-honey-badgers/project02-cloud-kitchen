@@ -34,7 +34,7 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 		HttpSession session = request.getSession();
 		
-		OrderVOExtend order = (OrderVOExtend)modelAndView.getModel().get("Order");
+		OrderVOExtend order = (OrderVOExtend)modelAndView.getModel().get("order");
 		List<OrderDetailVOExtend> orderDetailList = new ArrayList<>();
 		
 		List<CartVOExtend> cartList = (List)session.getAttribute("cart");
@@ -99,7 +99,7 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 		log.info(order);
 		log.info("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 		
-		session.setAttribute("Order", order);
+		session.setAttribute("order", order);
 		
 		super.postHandle(request, response, handler, modelAndView);
 	}
