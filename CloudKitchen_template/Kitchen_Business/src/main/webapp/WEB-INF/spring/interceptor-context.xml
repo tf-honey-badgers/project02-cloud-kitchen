@@ -11,6 +11,11 @@
 		<mvc:mapping path="/member/login"/>
 		<bean class="org.badgers.business.interceptor.MemberInterceptor"></bean>
 	</mvc:interceptor>
+	
+	<mvc:interceptor>
+		<mvc:mapping path="/member/logout"/>
+		<bean class="org.badgers.business.interceptor.MemberInterceptor"></bean>
+	</mvc:interceptor>
 
 
 

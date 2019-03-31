@@ -1,5 +1,7 @@
 package org.badgers.business.interceptor;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,16 +23,28 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 			ModelAndView mv) throws Exception {
 		System.out.println(".........................interceptor : postHandle...................");
 		String result = response.getHeader("RESULT");
+		
 		//상태가 success 여서 header에 bizId가 담겨 있다면 세션 생성 
+		HttpSession session = request.getSession(true);
 		if(result!=null) {
-			HttpSession session = request.getSession(true);
 			if(session != null) {
-				session.setAttribute("bizId", result );	
-			}else {
-				System.out.println("session null 이다");
+					System.out.println("로그인 성공");
+					session.setAttribute("bizId", result );	
+			}
+		}
+		//map에 logout 이라는 키를 가지고 있으면 세션invalidate() 해주기
+		if(mv!=null) {
+			Map map = mv.getModel();
+			if(map.containsKey("logout")) {
+				session.invalidate();;
 			}
 		}
 		
+		
+		
+		
 	}
-
+	
+	
+	
 }
