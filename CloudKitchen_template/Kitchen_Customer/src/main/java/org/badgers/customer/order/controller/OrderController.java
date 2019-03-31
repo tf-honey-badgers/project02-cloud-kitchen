@@ -35,7 +35,7 @@ public class OrderController {
 //	@Setter(onMethod_ = { @Autowired })
 //	private PaymentService pService;
 	
-	@PostMapping("/")
+	@PostMapping("/payment/{staus}")
 	public String registOrder(@RequestBody OrderVOExtend vo, Model model) {
 		
 		String url = "http://127.0.0.1:80/rest/cust/order/"+vo.getId();
