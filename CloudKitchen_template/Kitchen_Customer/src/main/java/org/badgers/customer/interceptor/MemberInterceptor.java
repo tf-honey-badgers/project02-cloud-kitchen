@@ -39,7 +39,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 		if(mv!=null) {
 			Map map = mv.getModel();
 			if(map.containsKey("logout")) {
-				session.invalidate();;
+				session.invalidate();
 			}
 		}
 	}

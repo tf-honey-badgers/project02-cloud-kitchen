@@ -38,7 +38,7 @@
 			<if test="address != null and address != ''">
 				address = #{address},
 			</if>
-			<if test="addressDeatial != null and addressDeatial != ''">
+			<if test="addressDetail != null and addressDetail != ''">
 				address_detail = #{addressDetail},
 			</if>
 		</trim>
