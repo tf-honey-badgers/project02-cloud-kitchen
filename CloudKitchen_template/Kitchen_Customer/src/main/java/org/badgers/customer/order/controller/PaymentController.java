@@ -61,7 +61,7 @@ public class PaymentController {
 	
 	//pre : method(결제 방법)을 받고 PaymentVO를 만들어 OrderExtendVO 완성 "Order"
 	@PostMapping("/payready")
-	public ModelAndView payReady(HttpSession session, ModelAndView mv) {
+	public ModelAndView payReady(ModelAndView mv) {
 		
 	//	kakaoService.kakaopay(vo)
 		
@@ -70,7 +70,7 @@ public class PaymentController {
 	//post : 
 	
 	@RequestMapping("/confirm")
-	public String confirm(HttpSession session, OrderVOExtend vo) {
+	public String confirm(OrderVOExtend vo) {
 		
 		
 		System.out.println(vo);
