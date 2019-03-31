@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%-- <%@ page session="false" %> --%>
 
 <!DOCTYPE html>
 <html>
@@ -43,6 +43,7 @@
                                         <i class="material-icons">content_copy</i>
                                     </div>
                                     <p class="card-category">Used Space</p>
+
                                     <h3 class="card-title">49/50
                                         <small>GB</small>
                                     </h3>
@@ -556,7 +557,7 @@
     <!-- Library for adding dinamically elements -->
     <script src="/business/resources/js/plugins/arrive.min.js"></script>
     <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+   <!--  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
     <!-- Chartist JS -->
     <script src="/business/resources/js/plugins/chartist.min.js"></script>
     <!--  Notifications Plugin    -->
@@ -748,7 +749,45 @@
 			/* 사이드바 하이라이트된 항목 바꾸기 */
 			$('.nav-item').removeClass('active');
 			$('.nav-item.sidebar-home').addClass('active');
+			var msg = getParameterByName('msg'); 
+			console.log(msg);
+			alertNoti(msg);
 		});
+		
+		function alertNoti(msg){
+			if(msg=='success'){
+				md.showNotification('top', 'center', 'success', '로그인 성공하셨습니다');  
+			}else if(msg=='fail'){
+				md.showNotification('top', 'center', 'warning', '로그인 해주시기 바랍니다'); 
+				$('#login_2').modal('show');	
+			}else if(msg='logout'){
+				md.showNotification('top', 'center', 'success', '로그아웃 되셨습니다');  
+			}
+			
+		}
+
+		function getParameterByName(name, url) {
+		    if (!url) url = window.location.href;
+		    name = name.replace(/[\[\]]/g, "\\$&");
+		    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		        results = regex.exec(url);
+		    if (!results) return null;
+		    if (!results[2]) return '';
+		    return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+		//새로고침, 뒤로가기 방지
+		document.onkeydown = function(e) {
+			 key = (e) ? e.keyCode : event.keyCode;
+			 if(key==8 || key==116) {
+			  if(e) {
+			   e.preventDefault();
+			  } else {
+			   event.keyCode = 0;
+			   event.returnValue = false;
+			  }
+			 }
+			}
+		
 	</script>
 </body>
 </html>

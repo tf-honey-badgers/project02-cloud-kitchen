@@ -1,6 +1,33 @@
 $(document)
 		.ready(
 				function() {
+
+					
+					$('.menuModalOpt').on('click','.deleteUpdateMenuOpt',function(e){
+						let optId = $(this).parent().parent();
+						console.log(optId);
+						let deleteCheck = confirm("정말 삭제하시겠습니까?");
+						
+						if(deleteCheck == true){
+							$.ajax({
+								type : "GET",
+								dataType : 'json',
+								url : "../menu/main/deletemenuopt",
+								data : {
+									menuOptId : optId.children().eq(0).text()
+								},
+								error : function(data){
+									console.log(data);
+								},
+								success(data){
+									console.log(data);
+									optId.remove();
+								}
+							});
+							
+						}
+					});
+				
 					
 					$('.table-responsive').on('click','table tbody tr td .menu-option-delete',function(e){
 						e.preventDefault();
@@ -64,38 +91,38 @@ $(document)
 						}
 						insertMenu.menuOptCl = menuOptClArr;
 						console.log(insertMenu);
-						
-						$.ajax({
-			        		type : "POST",
-			        		dataType : 'json',
-			        		url : "../menu/main/insertMenu",
-			         		data : {
-			         			menuInfo : JSON.stringify(insertMenu)
-			         		},
-			        		error : function(data){
-			        			console.log(data);
-			        		},
-			        		success(data){
-			        			console.log(data);
-			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
-			        			for(let i=0; i<menuCat.length; i++){
-			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
-//			        					$('.container-fluid .table tbody')[i].innerHTML+=(
-			        					$('.container-fluid .table tbody').eq(i).append(
-			        							'<tr>'
-			        							+'<td>'+data+'</td>'
-			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value+'</td>'
-			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value+'</td>'
-			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value+'</td>'
-			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
-												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
-			        							);
-			        					
-			        					$('.menuInsertModal').css('display', 'none');
-			        				}
-			        			}
-			        		}
-						});
+						addPhoto('HBBizPhoto');
+//						$.ajax({
+//			        		type : "POST",
+//			        		dataType : 'json',
+//			        		url : "../menu/main/insertMenu",
+//			         		data : {
+//			         			menuInfo : JSON.stringify(insertMenu)
+//			         		},
+//			        		error : function(data){
+//			        			console.log(data);
+//			        		},
+//			        		success(data){
+//			        			console.log(data);
+//			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
+//			        			for(let i=0; i<menuCat.length; i++){
+//			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
+////			        					$('.container-fluid .table tbody')[i].innerHTML+=(
+//			        					$('.container-fluid .table tbody').eq(i).append(
+//			        							'<tr>'
+//			        							+'<td>'+data+'</td>'
+//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value+'</td>'
+//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value+'</td>'
+//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value+'</td>'
+//			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
+//												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
+//			        							);
+//					        			
+//			        					$('.menuInsertModal').css('display', 'none');
+//			        				}
+//			        			}
+//			        		}
+//						});
 					});
 					
 					$('.menuInsertModalOpt')
@@ -191,6 +218,7 @@ $(document)
 			        				$('#menuCatSelect').append('<option value="" class="'+data[i].mcBizId
 			        						+'" id="'+data[i].mcNo+'" >'+data[i].mcName+'</option>');
 			        			}
+			        			
 			        		}
 						});
 						
@@ -221,45 +249,39 @@ $(document)
 					
 					$('#updateMenuBtn').on('click',function(e){
 						
-						let menuOptSel = $('.menuOptSelect');
+						let menuOptSel = $('.menuOptUp');
 						let menuOptAll = $('.optAll');
+						
+						
+						let menu = new Object();
+						menu.mCode = $('.menuModalOpt tbody').children().eq(0).children().eq(0).text();
+						menu.mPhoto = $('.menuModalOpt tbody').children().eq(0).children().eq(1).children().val();
+						menu.mName = $('.menuModalOpt tbody').children().eq(0).children().eq(2).children().val();
+						menu.mBasicPrice = $('.menuModalOpt tbody').children().eq(0).children().eq(3).children().val();
 						
 						// 카테고리용
 						let menuOptCl = new Array();
 						
-						for(let i=0;i<$('.menuOptSelect').length;i++){
+						for(let i=0;i<$('.menuOptUp').length;i++){
 							let menuOptClsub = new Object();
 							
-							menuOptClsub.mocNo = parseInt(menuOptSel[i].childNodes[0].innerHTML);
-							menuOptClsub.mocName = menuOptSel[i].childNodes[1].innerHTML;
-							menuOptClsub.mocMenuOptType = menuOptSel[i].childNodes[2].innerHTML;
-							menuOptClsub.mocMenuCode = parseInt(menuOptSel[i].childNodes[3].innerHTML);
-							
-							// 카테고리 안의 옵션용
+//							// 카테고리 안의 옵션용
 							let menuOpt = new Array();
 							
-							for(let j=0;j<menuOptAll.length;j++){
-								if(menuOptSel[i].childNodes[0].innerHTML == menuOptAll[j].children[3].innerHTML){
+							for(let j=0;j<$('.menuOptUp').eq(i).children().length;j++){
 									let menuOptsub = new Object();
-									menuOptsub.moCode = parseInt(menuOptAll[j].children[0].innerHTML);
-									menuOptsub.moName = menuOptAll[j].children[1].children[0].value;
-									menuOptsub.moAddPrice = parseInt(menuOptAll[j].children[2].children[0].value);
-									menuOptsub.moOptClNo = parseInt(menuOptAll[j].children[3].innerHTML);
+									menuOptsub.moCode = $('.menuOptUp').eq(i).children().eq(j).children().eq(0).text();
+									menuOptsub.moName = $('.menuOptUp').eq(i).children().eq(j).children().eq(1).children().val();
+									menuOptsub.moAddPrice = $('.menuOptUp').eq(i).children().eq(j).children().eq(2).children().val();
+									menuOptsub.moOptClNo = $('.menuOptUp').eq(i).children().eq(j).children().eq(3).text();
 									menuOpt.push(menuOptsub);
-								}// menuOptAll if end
+									console.log(menuOptsub);
 							} // menuOptAll end
 							menuOptClsub.menuOptEx = menuOpt;
 							menuOptCl.push(menuOptClsub);
 						} // menuOptSelect end
-						
-						let menu = new Object();
-						menu.mCode = parseInt($('.menuVal').children().eq(0).text());
-						menu.mPhoto = $('.menuVal').children().eq(1).text();
-						menu.mName = $('.menuVal').children().eq(2).children().val();
-						menu.mBasicPrice = parseInt($('.menuVal').children().eq(3).children().val());
 						menu.menuOptCl = menuOptCl;
-						console.log(menu);
-
+						
 						$.ajax({
 			        		type : "POST",
 			        		dataType : 'json',
@@ -272,6 +294,17 @@ $(document)
 			        		},
 			        		success(data){
 			        			console.log(data);
+
+			        			for(let i=0; i<$('.container-fluid .table tbody tr').length; i++){
+			        				if($('.container-fluid .table tbody tr').eq(i).children().eq(0).text()
+			        						== $('.menuModalOpt tbody tr').eq(0).children().eq(0).text()){
+			        					
+			        					$('.container-fluid .table tbody tr').eq(i).children().eq(2).text($('.menuModalOpt tbody tr').eq(0).children().eq(2).children().val());
+			        					
+			        					$('.container-fluid .table tbody tr').eq(i).children().eq(3).text($('.menuModalOpt tbody tr').eq(0).children().eq(3).children().val());
+			        				}
+			        			}
+			        			
 			        			alert('변경되었습니다');
 			        		}
 						});
@@ -282,15 +315,17 @@ $(document)
 					
 			 		$('table tbody tr td ').on('click','.menu-option-select', function(e) {
 						e.preventDefault();
-						$('.menuModalOpt table').empty();
+						$('.menuModalOpt .col-md-12').remove();
 						$('.menuModal').css('display', 'block');
 						
+						let menuNo = $(this).parent().parent().children().eq(0).text();
+						let menuPhoto = $(this).parent().parent().children().eq(1).text();
+						let menuName = $(this).parent().parent().children().eq(2).text();
+						let menuPrice = $(this).parent().parent().children().eq(3).text();
+						let menuCatName = $(this).parent().parent().parent().parent().parent().parent().parent().parent().children().eq(0).children().eq(0).children().eq(0).text();
 						let menuInfo = $(this).parent().parent().children();
+						console.log(menuCatName);
 						
-						let menuNo = menuInfo.eq(0).text();
-						let menuPhoto = menuInfo.eq(1).text();
-						let menuName = menuInfo.eq(2).text();
-						let menuPrice = menuInfo.eq(3).text();
 						
 						$.ajax({
 			        		type : "GET",
@@ -304,72 +339,79 @@ $(document)
 			        		},
 			        		success(data){
 			        			console.log(data);
-			        			
-			        			$('.menuUpdate').append(
-			        					'<thead class="text-primary">'
-			        					+'<th>메뉴코드</th>'
-			        					+'<th>메뉴사진</th>'
-			        					+'<th>메뉴이름</th>'
-			        					+'<th>메뉴가격</th>'
-			        					+'<th>메뉴구분</th>'
-			        					+'</thead>'
-			        					+'<tbody>'
-			        					+'<tr>'
-			        					+'<td>'+menuNo+'</td>'
-			        					+'<td><input type="file" class="" value="파일"></td>'
-			        					+'<td><input type="text" class="" value="'+menuName+'"></td>'
-			        					+'<td><input type="text" class="" value="'+menuPrice+'"></td>'
-			        					+'<td>'
-			        					+'<select id="menuCatUpdate">'
-			        					+'</select>'
-			        					+'</td>'
-			        					+'</tr>'
-			        					+'</tbody>'
-			        				);
-			        			
-			        			for(let i of data[0].menuOptCl){
-			        				console.log(i);
 			        				$('.menuModalOpt').append(
-			        					'<div class="col-md-12">'
-			    							+'<div class="card">'
-			    							+'<div class="card-header card-header-primary">'
-			    							+'<h4 class="card-title" id="'+i.mocMenuOptType+'" name="'+i.mocNo+'">'+i.mocName+'</h4>'
-			    							+'</div>'
-			    							+'<div class="card-body">'
-			    							+'<div class="table-responsive">'
-			    							+'<table class="table menuUpdate">'
-				        					+'<thead class="text-primary">'
-				        					+'<tr>'
-				        					+'<th>옵션번호</th>'
-				        					+'<th>옵션이름</th>'
-				        					+'<th>옵션추가금</th>'
-				        					+'<th>메뉴가격</th>'
-				        					+'</tr>'
-				        					+'</thead>'
-				        					+'<tbody class="mOpt">'
-				        					+'</tbody>'
-			    							+'</table>'
-			    							+'</div>'
-			    							+'</div>'
-			    							+'</div>'
-			    							+'</div>'
+			        						'<div class="col-md-12">'
+			        						+'<div class="card">'
+			        						+'<div class="card-header card-header-primary">'
+			        						+'<h4 class="card-title ">메뉴변경</h4>'
+			        						+'</div>'
+			        						+'<div class="card-body">'
+			        						+'<div class="table-responsive">'
+			        						+'<table class="table">'
+			        						+'<thead class="text-primary">'
+			        						+'<th>메뉴코드</th>'
+			        						+'<th>메뉴사진</th>'
+			        						+'<th>메뉴이름</th>'
+			        						+'<th>메뉴가격</th>'
+			        						+'<th>메뉴구분</th>'
+			        						+'</thead>'
+			        						+'<tbody>'
+			        						+'<tr>'
+			        						+'<td>'+data[0].mcode+'</td>'
+			        						+'<td><input type="file" class="" value="파일"></td>'
+			        						+'<td><input type="text" class="" value="'+data[0].mname+'"></td>'
+			        						+'<td><input type="text" class="" value="'+data[0].mbasicPrice+'"></td>'
+			        						+'<td>'+menuCatName+'</td>'
+			        						+'</tr>'
+			        						+'</tbody>'
+			        						+'</table>'
+			        						+'</div>'
+			        						+'</div>'
+			        						+'</div>'
+			        						+'</div>'
 			        				);
-			        			}
-			        			
-			        			
-//			        			for(let i=0; i<data[0].menuOptCl.menuOptEx.length; i++){
-//			        				console.log(i);
-//			        				if(i.mocNo == j.moOptClNo){
-////			        					$('.mOpt').append(
-////			        							+'<tr>'
-////			        							+'<td>'+j.moCode+'</td>'
-////			        							+'<td>'+j.moName+'</td>'
-////			        							+'<td>'+j.moAddPrice+'</td>'
-////			        							+'<td>'+j.moOptClNo+'</td>'
-////			        							+'</tr>'
-////			        					);
-//			        				}
-//			        			}
+			        				
+			        				for(let i of data[0].menuOptCl){
+				        				$('.menuModalOpt').append(
+				        						'<div class="col-md-12">'
+				        						+'<div class="card">'
+				        						+'<div class="card-header card-header-primary">'
+				        						+'<h4 class="card-title" id="'+i.mocNo+'">'+i.mocName+'</h4>'
+				        						+'</div>'
+				        						+'<div class="card-body">'
+				        						+'<div class="table-responsive">'
+				        						+'<table class="table">'
+				        						+'<thead class="text-primary">'
+				        						+'<th>옵션코드</th>'
+				        						+'<th>옵션이름</th>'
+				        						+'<th>옵션추가금액</th>'
+				        						+'<th>옵션분류번호</th>'
+				        						+'<th>옵션삭제</th>'
+				        						+'</thead>'
+				        						+'<tbody class="menuOptUp" id="opt'+i.mocNo+'">'
+				        						+'</tbody>'
+				        						+'</table>'
+				        						+'</div>'
+				        						+'</div>'
+				        						+'</div>'
+				        						+'</div>'
+				        				);
+				        				
+				        				for(let j of i.menuOptEx){
+				        					$('#opt'+i.mocNo+'').append(
+				        							'<tr>'
+					        						+'<td>'+j.moCode+'</td>'
+					        						+'<td><input type="text" class="" value="'+j.moName+'"></td>'
+					        						+'<td><input type="text" class="" value="'+j.moAddPrice+'"></td>'
+					        						+'<td>'+j.moOptClNo+'</td>'
+					        						+'<td><button class="deleteUpdateMenuOpt">'
+							        				+'<img src="/business/resources/img/baseline_remove_circle_outline_black_18dp.png">'
+							        				+'</button></td>'
+					        						+'</tr>'
+				        					);
+				        				}
+			        				}
+			        				
 			        			
 								$.ajax({
 					        		type : "GET",
@@ -402,6 +444,7 @@ $(document)
 					$('.menuInsertModalClose').on('click', function() {
 						$('.menuInsertModal').css('display', 'none');
 						});
+
 
 					$()
 							.ready(

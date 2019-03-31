@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -20,18 +21,30 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView mv) throws Exception {
-		
-		Map map=mv.getModel();
-		System.out.println(map.get("isSuccess"));
 		System.out.println(".........................interceptor : postHandle...................");
+		String result = response.getHeader("RESULT");
 		
-		if(map.containsKey("isSuccess")) {
-			System.out.println(".....................로그인 성공 했으니깐 세션 생성해주이소................................");
+		//상태가 success 여서 header에 bizId가 담겨 있다면 세션 생성 
+		HttpSession session = request.getSession(true);
+		if(result!=null) {
+			if(session != null) {
+					System.out.println("로그인 성공");
+					session.setAttribute("bizId", result );	
+			}
 		}
-
+		//map에 logout 이라는 키를 가지고 있으면 세션invalidate() 해주기
+		if(mv!=null) {
+			Map map = mv.getModel();
+			if(map.get("msg").equals("logout")) {
+				session.invalidate();;
+			}
+		}
 		
 		
-		super.postHandle(request, response, handler, mv);
+		
+		
 	}
-
+	
+	
+	
 }

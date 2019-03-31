@@ -46,8 +46,20 @@
 							</tbody>
 						</table>
 						<hr>
-						<a href="${pageContext.request.contextPath}/order/orderinfo" class="btn_full" id="orderNow">Order now</a>
+								<input type="submit" class="btn_full" id="orderNow" value="Order now">
 					</div> <!-- End cart_box -->
 				</div> <!-- End theiaStickySidebar -->
 			</div> <!-- End col-md-4 -->
+			
+<script src="/customer/resources/js/jquery-2.2.4.min.js"></script>
+<script>
+$(document).ready(function(){
+	var cartTotal = 0;
+	for(var i = 0; i < $('.priceData').size(); i++) {
+		var price = $('.priceData').eq(i).attr('data-total-price');
+		cartTotal += parseInt(price);
+	}
+	$('.total span').text(cartTotal + '원');
+})
+</script>
 			

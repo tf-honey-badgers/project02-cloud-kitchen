@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
-	@GetMapping("/")
+	@GetMapping("/main")
 	public ModelAndView goMain(ModelAndView mav) {
 		mav.setViewName("index");
 		return mav;

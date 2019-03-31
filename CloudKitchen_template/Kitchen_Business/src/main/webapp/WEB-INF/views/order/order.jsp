@@ -119,8 +119,8 @@
     <script src="/business/resources/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
     <script src="/business/resources/js/order.js" type="text/javascript"></script>
     <!-- firebase -->
-      <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+	<script src="/business/resources/js/member/member-functions.js" type="text/javascript"></script>
    
     <script>
         $(document).ready(function() {
@@ -183,7 +183,8 @@
         });
         
         /* 1. firebase 이벤트 --------------------------------------------------------------------- */
-        
+          var bizId ='${sessionScope.bizId}';
+          console.log(bizId)
          
  		  var config = {
 		    apiKey: "AIzaSyDZ4Zt7FAQrf8ah4FDlGZU2-qLeinySOSs",
@@ -196,7 +197,7 @@
 		  firebase.initializeApp(config); 
 		  
 		  // biz_1이라는 사업자에 들어온 order 정보 중  time으로 orderby 하여 가장 최근에 들어온 주문 1개만 받을 수 있도록 제한함  
-		  var dbRef = firebase.database().ref('biz_1').orderByChild('time').limitToLast(1);
+		  var dbRef = firebase.database().ref(bizId).orderByChild('time').limitToLast(1);
 		  
 		  
 /* 		  var dbRef = firebase.database().ref('biz_2').orderByChild('time').limitToLast(1); */
@@ -214,12 +215,6 @@
 		  var msg =obj[Object.keys(obj)[3]];
 		  var status =obj[Object.keys(obj)[4]];
 		  var time =obj[Object.keys(obj)[6]];
-			  
-		  console.log('................')
-		  console.log(orderId)
-		  console.log(address)
-		  console.log(menus)
-		  console.log(time)
 			  
 			  
 			  $('<div id="'+orderId+'" class="ORD" >'
@@ -260,7 +255,7 @@
 		 })
 		 
 		 /* --------------------------------------------------------------------- */
-		 
+		 //주문상태 firebase로 실시간 업데이트 해주기
 		 function updateStatus(url){
 			  //order/{bizId}/{orderId}/{status}
 			  

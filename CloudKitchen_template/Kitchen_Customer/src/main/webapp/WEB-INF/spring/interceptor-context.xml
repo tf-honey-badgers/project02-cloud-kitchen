@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
@@ -8,23 +9,17 @@
 <mvc:interceptors>
 
 	<mvc:interceptor>
-		<mvc:mapping path="/member/login"/>
-		<mvc:mapping path="/member/logout"/>
-		<bean class="org.badgers.business.interceptor.MemberInterceptor"></bean>
+		<mvc:mapping path="/order/orderinfo"/>
+		<bean class="org.badgers.customer.interceptor.OrderInfoInterceptor"></bean>
 	</mvc:interceptor>
-	
 	<mvc:interceptor>
-		<mvc:mapping path="/menu/main?bizId=biz_2"/>
-		<mvc:mapping path="/order/main"/>
-		<bean class="org.badgers.business.interceptor.AuthCheckInterceptor"></bean>
+		<mvc:mapping path="/order/payment"/>
+		<bean class="org.badgers.customer.interceptor.PaymentInterceptor"></bean>
 	</mvc:interceptor>
-
-
-
-
-
+	<mvc:interceptor>
+		<mvc:mapping path="/order/payready"/>
+		<bean class="org.badgers.customer.interceptor.PayReadyInterceptor"></bean>
+	</mvc:interceptor>
 </mvc:interceptors>
-
-
 
 </beans>

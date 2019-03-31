@@ -31,25 +31,11 @@ public class BusinessServiceImpl implements BusinessService {
 		
 	// 로그인
 	@Override
-	public String login(String bizId, String pw) {
+	public int login(String bizId, String pw) {
 		System.out.println("로그인 ========================================");
-
-		String returnVal = "";
-		BizMemberVOExtend queryResult = null;
-		
-		try {
-			queryResult = mapper.login(bizId);
-			if(queryResult.getPw().equals(pw)) {
-				returnVal = queryResult.getBizId(); // 입력한 비번 == DB 비번
-			} else {
-				returnVal = "BAD_PW"; // 입력한 비번 != DB 비번
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			returnVal = "NO_ID"; // DB에 입력한 ID 없음 표시
-		}
-
-		return returnVal;
+		int returnVal;
+		BizMemberVOExtend member = mapper.login(bizId, pw);
+		return (member!=null)? (returnVal=1) : (returnVal=0);
 	}
 	
 	// ID 찾기 & 본인인증하기

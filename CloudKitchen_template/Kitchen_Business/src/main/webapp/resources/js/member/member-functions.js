@@ -59,7 +59,7 @@ $(document).ready(function() {
 		
 		if(cnt===0){
 			$.ajax({
-	    		url : 'http://localhost:3000/business/member/'
+	    		url : 'http://localhost:3000/business/member/login'
 	    		, type : 'POST'
 				, contentType : 'application/json'
 				, dataType : 'text'
@@ -71,12 +71,23 @@ $(document).ready(function() {
 	    			console.log(data);
 	    		}
 	    		, success : function(data) {
-	    			if(data == "성공적으로 로그인했습니다.") {
-	    				md.showNotification('top', 'center', 'info', '로그인했습니다.');    				
+	    			console.log('..............',data)
+	    			
+	    			if(data == "success") {
+	    				window.location.href = "/business/main?msg=success";
+//	    				window.location.reload()
+	    				
 	    			} else {
-	    				md.showNotification('top', 'center', 'danger', data);    				
+	    				if(data==='server disconnected'){
+	    					md.showNotification('top', 'center', 'danger', 'server disconnected');  
+	    					$('.modal').modal('hide');	
+	    				}else if(data==='fail'){
+	    					md.showNotification('top', 'center', 'danger', '아이디 혹은 비밀번호를 다시 확인해 주시기 바랍니다 ');  
+	    				}
+	    				
+	    			//	window.location.href = "/business/main?msg=fail";
+	    							
 	    			}
-	    			$('.modal').modal('hide');
 	    			$('#myLogin input').val("");
 	    		}
 			});
@@ -86,6 +97,7 @@ $(document).ready(function() {
 		}
 		
 	})
+	
 	
 	/* ID 찾기 인증 절차 */
 	$('#findId').on('click', function(event) {

@@ -1,5 +1,6 @@
 package org.badgers.rest.business.member.persistence;
 
+import org.apache.ibatis.annotations.Param;
 import org.badgers.rest.model.BizMemberVOExtend;
 
 public interface BusinessMapper {
@@ -11,7 +12,7 @@ public interface BusinessMapper {
 	public int modify(BizMemberVOExtend mvo);
 
 	// 로그인
-	public BizMemberVOExtend login(String bizId);
+	public BizMemberVOExtend login(@Param("bizId")String bizId, @Param("pw")String pw);
 	
 	// ID 찾기
 	public String verify(BizMemberVOExtend mvo);

@@ -74,11 +74,11 @@ public class MenuController {
 //	public ResponseEntity menuUpdate(@RequestBody List updateMenuInfo){
 	public ResponseEntity<?> menuUpdate(@RequestBody String updateMenuInfo){
 		int result = service.updateMenuInfo(updateMenuInfo);
-
+		
 		if(result == 0) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(result, HttpStatus.OK); 
+		return new ResponseEntity<>(1, HttpStatus.OK); 
 //		return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 	}
 	
@@ -123,18 +123,18 @@ public class MenuController {
 //		return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 	}
 	
-	@RequestMapping(value="/deletemenu",produces = "application/json;charset=UTF-8", method=RequestMethod.POST)	
+	@RequestMapping(value="/deletemenuopt",produces = "application/json;charset=UTF-8", method=RequestMethod.POST)	
 	@Transactional
 	@ResponseBody
 //	public ResponseEntity menuDelete(@RequestBody List updateMenuInfo){
-	public ResponseEntity<?> menuDelete(@RequestBody int menuId){
-		System.out.println(menuId);
-		int result = service.deleteMenu(menuId);
+	public ResponseEntity<?> menuOptDelete(@RequestBody int menuOptId){
+		System.out.println(menuOptId);
+		int result = service.deleteMenuOpt(menuOptId);
 		
 		if(result == 0) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(result, HttpStatus.OK); 
+		return new ResponseEntity<>(1, HttpStatus.OK); 
 //		return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 	}
 }

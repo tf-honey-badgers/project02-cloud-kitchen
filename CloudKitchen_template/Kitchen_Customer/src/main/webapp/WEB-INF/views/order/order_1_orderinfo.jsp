@@ -70,13 +70,13 @@
 					<div class="form-group">
 						<label>연락 받을 번호</label> <span>(회원 번호와 동일)</span> <input
 							type="checkbox" id="defaultPhone" class="icheck"> <input type="text" id="phone"
-							name="phone" class="form-control" placeholder="연락 받을 번호">
+							name="phone" class="form-control" placeholder="연락 받을 번호" required>
 					</div>
 					<div class="form-group">
 						<label>배달 주소</label> <span>(회원 주소와 동일)</span> <input
 							type="checkbox" id="defaultAddress" class="icheck"> <input type="text"
 							id="address" name="address" class="form-control"
-							placeholder="배달 주소">
+							placeholder="배달 주소" required>
 					</div>
 					<hr>
 					<div class="row">
@@ -84,7 +84,7 @@
 
 							<label>주문 요청 사항</label>
 							<textarea class="form-control" style="height: 150px"
-								placeholder="주문 요청 사항" name="notes" id="notes"></textarea>
+								placeholder="주문 요청 사항" name="msg" id="notes"></textarea>
 
 						</div>
 					</div>
@@ -114,14 +114,7 @@
 			/* 회원 주소 사용 */
 			defaultAddressInit();
 		})
-		
-		var cartTotal = 0;
-				for(var i = 0; i < $('.priceData').size(); i++) {
-					var price = $('.priceData').eq(i).attr('data-total-price');
-					cartTotal += parseInt(price);
-				}
-				$('.total span').text(cartTotal + '원');
-				});
+				
 		
 		function defaultPhoneInit(){
 			$('#defaultPhone').siblings().click(function(){

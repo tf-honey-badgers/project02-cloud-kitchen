@@ -197,10 +197,11 @@ md = {
 
     }, {
       type: type,
-      timer: 3000,
+      timer: 1000,
       placement: {
         from: from,
         align: align
+        
       }
     });
   },

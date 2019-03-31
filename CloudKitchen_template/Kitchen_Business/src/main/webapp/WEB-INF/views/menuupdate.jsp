@@ -32,10 +32,10 @@
 <!-- <div id="menuModal" class="menuModal">
 	<div class="menuModalOpt">
 		<span class="menuModalClose">&times;</span>
-		<h3>변경</h3>
-		<table class="menuOpt">
-		</table>
-		<div class="modelBtnArea"><button id="updateMenuBtn">메뉴변경</button></div>
+
+		<div class="addOptBtnArea">
+			<button type="button" id="updateMenu" class="btn btn-primary pull-right">메뉴 등록</button>
+		</div>
 	</div>
 </div> -->
 
@@ -65,7 +65,7 @@
 	<div class="menuInsertModalOpt">
 		<span class="menuInsertModalClose">&times;</span>
 		<div class="addOptBtnArea">
-			<button type="button" id="insertMenu" class="btn btn-primary pull-right">메뉴 등록</button>
+			<button type="button" id="insertMenu" class="btn btn-primary pull-right">메뉴 추가</button>
 		</div>
 		
 						<div class="col-md-12">
@@ -84,7 +84,7 @@
 											</thead>
 											<tbody>
 													<tr>
-														<td><input type="file" class="" value="파일"></td>
+														<td><input type="file" id="menuPhotoInsert" value="파일"></td>
 														<td><input type="text" class=""></td>
 														<td><input type="text" class=""></td>
 														<td>
@@ -356,7 +356,7 @@
 	<script src="/business/resources/js/material-dashboard.js?v=2.1.1"
 		type="text/javascript"></script>
 	<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
 	<script src="/business/resources/js/joon/menuupdate.js"></script>
-
 </body>
 </html>
