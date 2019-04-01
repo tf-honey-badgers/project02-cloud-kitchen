@@ -25,16 +25,24 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView mv) throws Exception {
 		System.out.println(".........................interceptor : postHandle...................");
-		String result = response.getHeader("RESULT");
-		
-		//상태가 success 여서 header에 bizId가 담겨 있다면 세션 생성 
+		String uid = response.getHeader("id");
+		String uphone = response.getHeader("phone");
+		String uaddr = response.getHeader("address");
+		String uaddr2 = response.getHeader("addressDetail");
+	
+		//상태가 success 여서 header에 id가 담겨 있다면 세션 생성 
 		HttpSession session = request.getSession(true);
-		if(result!=null) {
+		if(uid!=null) {
 			if(session != null) {
 					System.out.println("로그인 성공");
-					session.setAttribute("id", result );	
+					session.setAttribute("uid", uid );	
+					session.setAttribute("phone", uphone );	
+					session.setAttribute("addr1", uaddr );	
+					session.setAttribute("addr2", uaddr2 );	
+				
 			}
 		}
+
 		//map에 logout 이라는 키를 가지고 있으면 세션invalidate() 해주기
 		if(mv!=null) {
 			Map map = mv.getModel();

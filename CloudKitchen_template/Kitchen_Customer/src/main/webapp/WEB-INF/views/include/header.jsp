@@ -68,9 +68,17 @@
 								<li><a href="list_page.html">줄형</a></li>
 								<li><a href="grid_list.html">박스형</a></li>
 							</ul></li>
-						<li><a href="#0" data-toggle="modal" data-target="#login_2">로그인</a></li>
-						<li><a href="#0" data-toggle="modal" data-target="#register">회원가입</a></li>
-						<li><a href="#0">마이 페이지</a></li>
+						
+						
+				<c:if test="${empty sessionScope.uid }" > 
+				<li><a href="#0" data-toggle="modal" data-target="#login_2">로그인</a></li>
+				<li><a href="#0" data-toggle="modal" data-target="#register">회원가입</a></li>
+			    </c:if>
+				<c:if test="${!empty sessionScope.uid }" >
+				<li><a  href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
+				<li><a href="${pageContext.request.contextPath}/member/mypage">마이 페이지</a></li>
+				</c:if>
+						
 						<li><a href="about.html">About us</a></li>
 					</ul>
 				</div> <!-- End main-menu -->

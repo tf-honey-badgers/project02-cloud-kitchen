@@ -10,17 +10,21 @@
 <body>
 	<!-- 위쪽 헤더바  -->
 	<jsp:include page="include/header.jsp" />
-	<jsp:include page="include/menu_subheader.jsp" flush="false" />
+	<jsp:include page="include/background.jsp" flush="false" />
 	<!-- 헤드 끝 -->
 <br><br><br><br><br><br>
 <div style="margin-left:300px;">	
+				${uid }
+				${phone}
+				${sessionScope.uid }
+				${addr1 }
+				${addr2 }
+				
 	<div class="row">
 		<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.1s">
-			<a class="strip_list grid" href="modify.jsp">
+			<a class="strip_list grid" href="http://localhost:3001/customer/member/${uid}/change">
 
 				<div class="desc">
-					
-				
 					<h3>회원정보 수정</h3>
 		
 				</div>
@@ -29,11 +33,11 @@
 		</div>
 		<!-- End col-md-6-->
 		<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.2s">
-			<a class="strip_list grid" href="detail_page.html">
+				<a class="strip_list grid" href="http://localhost:3001/customer/member/${uid}/mypage/orderinfo">
 
 				<div class="desc">
 					
-					<h3>찜 목록 이동 </h3>
+					<h3>주문 내역 보기 </h3>
 					
 				</div>
 			</a>
@@ -44,12 +48,11 @@
 	<!-- End row-->
 <div class="row">
 		<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.1s">
-			<a class="strip_list grid" href="detail_page.html">
-
+				<a class="strip_list grid" href="http://localhost:3001/customer/member/fav/${uid}/mypage">
 				<div class="desc">
 					
 				
-					<h3>회원 주문 내역 </h3>
+					<h3>찜 내역 보기  </h3>
 		
 				</div>
 			</a>
@@ -71,33 +74,7 @@
 	</div>
 	<!-- End row-->
 	
-	<div class="row">
-		<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.1s">
-			<a class="strip_list grid" href="detail_page.html">
-
-				<div class="desc">
-					
-				
-					<h3>회원정보 수정</h3>
-		
-				</div>
-			</a>
-			<!-- End strip_list-->
-		</div>
-		<!-- End col-md-6-->
-		<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.2s">
-			<a class="strip_list grid" href="detail_page.html">
-
-				<div class="desc">
-					
-					<h3>뭐시기 뭐시기 </h3>
-					
-				</div>
-			</a>
-			<!-- End strip_list-->
-		</div>
-		<!-- End col-md-6-->
-	</div>
+	
 	<!-- End row-->
 	</div>
 		<!-- 위쪽 헤더바  -->

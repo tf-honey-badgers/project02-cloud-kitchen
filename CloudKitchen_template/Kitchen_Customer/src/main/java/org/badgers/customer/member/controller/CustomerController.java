@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.badgers.customer.model.CustomerVO;
+import org.badgers.customer.model.CustomerVOExtend;
 import org.badgers.customer.model.FavoriteVO;
 import org.badgers.customer.model.OrderInfoVO;
 import org.springframework.http.HttpHeaders;
@@ -38,7 +40,7 @@ public class CustomerController {
 	
 	// 조회
 	@GetMapping("/{id}/change")
-	public ModelAndView readCustomer(ModelAndView mav, @PathVariable("id") String id) {
+	public ModelAndView readCustomer(ModelAndView mav, @PathVariable("id") String id ,HttpSession session) {
 		log.info("사용자 개인정보 읽기...............................");
 		
 		CustomerVO returnVal = null;
@@ -56,6 +58,9 @@ public class CustomerController {
 		}
 
 		mav.addObject("customer", returnVal);
+		log.info("returnVal");
+		System.out.println("resutnVal================================"+ returnVal);
+		session.setAttribute("login", returnVal);
 		mav.setViewName("modify");
 		
 		return mav;
@@ -68,47 +73,51 @@ public class CustomerController {
 		
 		log.info("Kitchen_customer 사용자 로그인...............................");
 		HttpHeaders responseHeaders=null;
-		String status = "";
+		int status = 0;
+		
+		String msg ="";
+		
 		String url = "http://localhost/rest/customer/login";
 		
+		System.out.println("폰==============="+ vo);
+		System.out.println("폰==============="+ vo.getPhone());
 		try {
-		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);
-		status= responseEntity.getBody();
+		ResponseEntity<CustomerVO> responseEntity = restTemplate.postForEntity(url, vo, CustomerVO.class);
+//		status= responseEntity.getBody();
+		CustomerVO member = responseEntity.getBody();
+		status = responseEntity.getStatusCodeValue();
 		responseHeaders = new HttpHeaders();
 		
-		if(status.equals("success")) {
-			responseHeaders.set("RESULT", vo.getId());
+		System.out.println("member=========================" +member);
+		
+		System.out.println("status==========================="+status);
+		
+		
+		if(status==200) {
+			responseHeaders.set("id",member.getId() );
+			responseHeaders.set("phone", member.getPhone());
+			responseHeaders.set("address", member.getAddress());
+			responseHeaders.set("addressDetail", member.getAddressDetail());
+			msg="로그인 성공";
 		}
 		
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 			if(e.getMessage().contains("failed: Connection refused: connect")) {
-				status="server disconnected";
+				msg="로그인 실패";
+				
 			}
 		
-		// 처리는 인터셉터에서 하기
-//		if(msg.equals("BAD_PW")) {
-//			msg = "비밀번호가 틀렸습니다.";
-//		} else if(msg.equals("NO_ID")) {
-//			msg = "존재하지 않는 아이디입니다.";
-//		} else if(msg.equals("SERVER_ERROR") || msg.equals("")) {
-//			msg = "서버에 에러가 발생했습니다. 조금 있다가 다시 시도해주세요.";
-//		} else {
-//			// 로그인을 유지하기 위한 쿠키 생성
-//			msg = "성공적으로 로그인했습니다.";
-//		}
-//		log.info(msg);	
-//		return msg;
 			
 		}
-		return new ResponseEntity<>(status, responseHeaders,HttpStatus.OK);	
+		return new ResponseEntity<>(msg, responseHeaders,HttpStatus.OK);	
 	}
 	
 	//로그아웃 
 	@GetMapping("/logout")
 	public String logout (Model model) {
 		model.addAttribute("logout", "logout");
-		return "redirect:/";
+		return "redirect:/main";
 	}
 	
 	//회원정보 수정 
@@ -163,12 +172,13 @@ public class CustomerController {
 		List<OrderInfoVO> list = null;
 		String url = "http://localhost/rest/customer/" + custId + "/mypage/orderinfo";
 		
-		ResponseEntity<OrderInfoVO> responseEntity = restTemplate.getForEntity(url,org.badgers.customer.model.OrderInfoVO.class);
+		ResponseEntity<OrderInfoVO> responseEntity = restTemplate.getForEntity(url,OrderInfoVO.class);
 		if(responseEntity.getStatusCode()==HttpStatus.OK) {
 			list = (List<OrderInfoVO>) responseEntity.getBody();
 		}
 		
 		mav.addObject("list",list);
+	
 		mav.setViewName("orderinfo");	
 		
 		return mav;

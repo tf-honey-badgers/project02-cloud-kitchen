@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.badgers.rest.customer.member.persistence.CustomerMapper;
 import org.badgers.rest.model.BizMemberVOExtend;
 import org.badgers.rest.model.CustomerVO;
+import org.badgers.rest.model.CustomerVOExtend;
 import org.badgers.rest.model.OrderInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -61,15 +62,16 @@ public class CustomerServiceImpl implements CustomerService {
 
 	// 로그인 by Yuriel on 2019.03.13(WED)
 	@Override
-	public int login(String id, String pw) throws Exception {
+	public CustomerVO login(String id, String pw) throws Exception {
 		System.out.println("로그인 ========================================");
 		
 		int returnVal;
 		CustomerVO vo = mapper.login(id, pw);
-		return (vo!=null)? (returnVal=1) : (returnVal=0);
+//		return (vo!=null)? (vo) : (returnVal=0);
+		return vo;
 		
 	}
-	
+	 
 
 // 회원정보
 	@Override

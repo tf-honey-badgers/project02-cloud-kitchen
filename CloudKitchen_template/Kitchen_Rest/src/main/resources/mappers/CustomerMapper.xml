@@ -14,7 +14,12 @@
 	
 	<!-- 로그인 -->
 	<select id="login" resultType="org.badgers.rest.model.CustomerVO">
-		select id, pw from honey_badgers.customer where id = #{id} and status = "MEM002"
+		select id, pw , phone,address, address_detail
+			from
+			 honey_badgers.customer
+			 
+			where id = #{id} 
+			 and status = "MEM002"
 	</select>
 
 	<!--마이 페이지 -->
