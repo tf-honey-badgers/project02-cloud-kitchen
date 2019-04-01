@@ -5,10 +5,6 @@
 	const bizId = $('#main_menu').attr('data-biz-id');
 	/* 치킨 지점명 */
 	const kbName = $('#main_menu').attr('data-kb-name');
-	/* 카트 전체선택용 체크박스 */
-	const allChkBox = $('.table_summary th:eq(0) input');
-	/* 카트의 각 메뉴 체크박스 */
-	const menuChkBox = $('.cartTable .check-order');
 
 function removeDuplicateBizNames() {
 	var bizNames = $('.bizNameRow');
@@ -36,13 +32,35 @@ function isFavoriteChk() {
 	});
 }
 
-function calcCartTotal() {
+function calcCartTotal(length) {
 	var cartTotal = 0;
-	for(var i = 0; i < $('.check-order:checked').size(); i++) {
-		var price = $('.check-order:checked').eq(i).parent().parent().next().children('td').data('total-price');
+	for(var k = 0; k < length; k++) {
+		var price = $('.check-order:checked').eq(k).parent().parent().nextAll('.priceRow:eq(0)').children('td').data('total-price');
 		cartTotal += price;
 	}
+	console.log('Cart Total :', cartTotal);
 	$('.total span').text(cartTotal + '원');
+}
+
+function cartChkFunctions() {
+/* 전체선택하기 이벤트 걸기 */
+	$('body').on('click', '.table_summary th:eq(0) input', function() {
+		$('.cartTable .check-order').prop('checked', $('.table_summary th:eq(0) input').prop('checked'));
+		calcCartTotal($('.check-order:checked').length);
+	});
+/* 전체선택  체크박스용 이벤트 걸기 */
+	$('body').on('click', '.cartTable .check-order', function() {
+	/* 체크박스 하나 클릭시 전체선택 체크박스 체크 해제하기 */
+		if($('.table_summary th:eq(0) input').prop('checked') == true) {
+			$('.table_summary th:eq(0) input').prop('checked', false);
+		}
+	/* 모든 체크박스를 선택한다면 전체선택 체크박스도 체크하기 */
+		if($('.cartTable .check-order:checked').length === $('.cartTable .check-order').length) {
+			$('.table_summary th:eq(0) input').prop('checked', true);
+		}
+
+		calcCartTotal($('.check-order:checked').length);
+	});
 }
 
 /* 브라우저 히스토리를 이용해서 이동했을 경우 (뒤로가기 앞으로가기 버튼) 페이지를 새로고침한다
@@ -53,16 +71,17 @@ if(performance.navigation.type == 2) {
 }
 
 $(document).ready(function() {
-/* 페이지 로딩 후 카트에 총 금액 표시하기 */
-	calcCartTotal();
 /* 페이지 로딩 후 카트에서 중복되는 가게명 (bizName) 제거하기 */
 	removeDuplicateBizNames();
 /* 페이지 로딩 후 현재 보고 있는 가게를 현재 로그인되어 있는 고객이 찜했는지 확인하고 반영하기 */
 	isFavoriteChk();
+/* 카트 체크박스에 미래 이벤트 걸기 */
+	cartChkFunctions();
 /* 페이지 로딩 후 카트 전체선택 해놓기 */
-	menuChkBox.prop('checked', true);
-	allChkBox.prop('checked', true);
-		
+	$('.cartTable .check-order').prop('checked', true);
+	$('.table_summary th:eq(0) input').prop('checked', true);
+/* 페이지 로딩 후 카트에 총 금액 표시하기 */
+	calcCartTotal($('.check-order:checked').length);
 /* 옵션 없는 메뉴는 "+" 클릭하면 장바구니에 추가하도록 */
 	for(var i = 0; i < $('.dropdown-menu').size(); i++) {
 		if($('.dropdown-menu').eq(i).children('div').length == 0) {
@@ -70,22 +89,6 @@ $(document).ready(function() {
 			$('.dropdown-menu').eq(i).siblings('a').removeClass('dropdown-toggle').addClass('add_to_basket').removeAttr('data-toggle');
 		}
 	}
-	
-/* 전체선택하기 이벤트 걸기 */
-	$('body').on('click', '.table_summary th:eq(0) input', function() {
-		menuChkBox.prop('checked', allChkBox.prop('checked'));
-	});
-/* 전체선택  체크박스용 이벤트 걸기 */
-	$('body').on('click', '.cartTable .check-order', function() {
-		/* 체크박스 하나 클릭시 전체선택 체크박스 체크 해제하기 */
-		if(allChkBox.prop('checked') == true) {
-			allChkBox.prop('checked', false);
-		}
-		/* 모든 체크박스를 선택한다면 전체선택 체크박스도 체크하기 */
-		if($('.cartTable .check-order:checked').length == menuChkBox.length) {
-			allChkBox.prop('checked', true);
-		}
-	});
 	
 /* "Add to cart" 버튼을 클릭하면 선택한 메뉴와 옵션을 DB에 입력하고 이후 DB에서 카트 정보를 읽어와 표시하기 */
 	$('.add_to_basket').on('click', function(event) {
@@ -164,17 +167,16 @@ $(document).ready(function() {
 			    					'<td style="width: 10%;"></td></tr>');
 		    			}
 	    			}
-	    			$('.cartTable').append('<tr><td colspan="2" class="priceData" data-total-price="' + data[i].totalAmt + '">' +
+	    			$('.cartTable').append('<tr class="priceRow"><td colspan="2" class="priceData" data-total-price="' + data[i].totalAmt + '">' +
 	    					'<strong class="pull-right">합계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + data[i].totalAmt + '원</strong></td></tr>');
 				}
-				calcCartTotal();
 				removeDuplicateBizNames();
 			/* 카트에 추가하면 기존에 선택한 체크박스 해제하기 */
 				checkedOptions.prop('checked', false);
 			/* 카트 체크박스를 default로 전체 선택하기 */
-				menuChkBox.prop('checked', true);
-				allChkBox.prop('checked', true);
-				console.log("ADDED TO CART... IT'S WORKING I GUESS");
+				$('.cartTable .check-order').prop('checked', true);
+				$('.table_summary th:eq(0) input').prop('checked', true);
+				calcCartTotal($('.check-order:checked').length);
 			}
 			, error : function(data) {
 				console.log('ERRoR oCCURRED');
@@ -215,15 +217,14 @@ $(document).ready(function() {
 			    					'<td style="width: 10%;"></td></tr>');
 		    			}
 	    			}
-	    			$('.cartTable').append('<tr><td colspan="2" class="priceData" data-total-price="' + data[i].totalAmt + '">' +
+	    			$('.cartTable').append('<tr class="priceRow"><td colspan="2" class="priceData" data-total-price="' + data[i].totalAmt + '">' +
 	    					'<strong class="pull-right">합계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + data[i].totalAmt + '원</strong></td></tr>');
-	    			cartTotal += data[i].totalAmt;
 				}
-				$('.total span').text(cartTotal + '원');
 				removeDuplicateBizNames();
 			/* 카트 체크박스를 default로 전체 선택하기 */
-				menuChkBox.prop('checked', true);
-				allChkBox.prop('checked', true);
+				$('.cartTable .check-order').prop('checked', true);
+				$('.table_summary th:eq(0) input').prop('checked', true);
+				calcCartTotal($('.check-order:checked').length);
 			}
 			, error : function(data) {
 				console.log('ERRoR oCCURRED');
@@ -242,8 +243,8 @@ $(document).ready(function() {
 			cartId[i] = Number(checked.eq(i).parent().siblings('.menuData').attr('data-cart-id'));
 		}
 		 카트의 모든 체크박스 해제 
-		allChkBox.prop('checked', false);
-		menuChkBox.prop('checked', false);
+		$('.table_summary th:eq(0) input').prop('checked', false);
+		$('.cartTable .check-order').prop('checked', false);
 		
 			
 	});*/

@@ -141,7 +141,7 @@
 											<td style="width: 10%;"></td>
 										</tr>
 									</c:forEach>
-									<tr>
+									<tr class="priceRow">
 										<td colspan="2" class="priceData" data-total-price="${cart.totalAmt}"><strong class="pull-right">합계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cart.totalAmt}원</strong></td>
 									</tr>
 								</c:forEach>
