@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>payment Temp</title>
+<title>결제</title>
 </head>
 <body>
 	<!--헤더 -->
