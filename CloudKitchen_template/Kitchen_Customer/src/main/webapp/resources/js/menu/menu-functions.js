@@ -3,6 +3,12 @@
 	const custId = 'tjtjtj';
 	/* 가게 ID */
 	const bizId = $('#main_menu').attr('data-biz-id');
+	/* 치킨 지점명 */
+	const kbName = $('#main_menu').attr('data-kb-name');
+	/* 카트 전체선택용 체크박스 */
+	const allChkBox = $('.table_summary th:eq(0) input');
+	/* 카트의 각 메뉴 체크박스 */
+	const menuChkBox = $('.cartTable .check-order');
 
 function removeDuplicateBizNames() {
 	var bizNames = $('.bizNameRow');
@@ -30,6 +36,15 @@ function isFavoriteChk() {
 	});
 }
 
+function calcCartTotal() {
+	var cartTotal = 0;
+	for(var i = 0; i < $('.check-order:checked').size(); i++) {
+		var price = $('.check-order:checked').eq(i).parent().parent().next().children('td').data('total-price');
+		cartTotal += price;
+	}
+	$('.total span').text(cartTotal + '원');
+}
+
 /* 브라우저 히스토리를 이용해서 이동했을 경우 (뒤로가기 앞으로가기 버튼) 페이지를 새로고침한다
 레퍼런스 --> https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigation
 */
@@ -39,20 +54,14 @@ if(performance.navigation.type == 2) {
 
 $(document).ready(function() {
 /* 페이지 로딩 후 카트에 총 금액 표시하기 */
-	var cartTotal = 0;
-	for(var i = 0; i < $('.priceData').size(); i++) {
-		var price = $('.priceData').eq(i).attr('data-total-price');
-		cartTotal += parseInt(price);
-	}
-	$('.total span').text(cartTotal + '원');
-
+	calcCartTotal();
 /* 페이지 로딩 후 카트에서 중복되는 가게명 (bizName) 제거하기 */
 	removeDuplicateBizNames();
 /* 페이지 로딩 후 현재 보고 있는 가게를 현재 로그인되어 있는 고객이 찜했는지 확인하고 반영하기 */
 	isFavoriteChk();
 /* 페이지 로딩 후 카트 전체선택 해놓기 */
-	$('.cartTable .check-order').prop('checked', true);
-	$('.table_summary th:eq(0) input').prop('checked', true);
+	menuChkBox.prop('checked', true);
+	allChkBox.prop('checked', true);
 		
 /* 옵션 없는 메뉴는 "+" 클릭하면 장바구니에 추가하도록 */
 	for(var i = 0; i < $('.dropdown-menu').size(); i++) {
@@ -62,21 +71,26 @@ $(document).ready(function() {
 		}
 	}
 	
-/* 주문할 메뉴 전체선택하기 */
+/* 전체선택하기 이벤트 걸기 */
 	$('body').on('click', '.table_summary th:eq(0) input', function() {
-		$('.cartTable .check-order').prop('checked', $('.table_summary th:eq(0) input').prop('checked'));
+		menuChkBox.prop('checked', allChkBox.prop('checked'));
 	});
-/* 체크박스 하나 클릭시 전체선택 체크박스 1개 해제하기 */
+/* 전체선택  체크박스용 이벤트 걸기 */
 	$('body').on('click', '.cartTable .check-order', function() {
-		if($('.table_summary th:eq(0) input').prop('checked') == true) {
-			$('.table_summary th:eq(0) input').prop('checked', false);
+		/* 체크박스 하나 클릭시 전체선택 체크박스 체크 해제하기 */
+		if(allChkBox.prop('checked') == true) {
+			allChkBox.prop('checked', false);
+		}
+		/* 모든 체크박스를 선택한다면 전체선택 체크박스도 체크하기 */
+		if($('.cartTable .check-order:checked').length == menuChkBox.length) {
+			allChkBox.prop('checked', true);
 		}
 	});
 	
 /* "Add to cart" 버튼을 클릭하면 선택한 메뉴와 옵션을 DB에 입력하고 이후 DB에서 카트 정보를 읽어와 표시하기 */
 	$('.add_to_basket').on('click', function(event) {
 		event.preventDefault();
-		
+	
 	/* 필수선택 옵션을 선택했는지 확인한다 */
 		const divs = $(this).siblings('div');
 		for(let i = 0; i < divs.length; i++) {
@@ -152,15 +166,15 @@ $(document).ready(function() {
 	    			}
 	    			$('.cartTable').append('<tr><td colspan="2" class="priceData" data-total-price="' + data[i].totalAmt + '">' +
 	    					'<strong class="pull-right">합계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + data[i].totalAmt + '원</strong></td></tr>');
-	    			cartTotal += data[i].totalAmt;
 				}
-				$('.total span').text(cartTotal + '원');
+				calcCartTotal();
 				removeDuplicateBizNames();
 			/* 카트에 추가하면 기존에 선택한 체크박스 해제하기 */
 				checkedOptions.prop('checked', false);
 			/* 카트 체크박스를 default로 전체 선택하기 */
-				$('.cartTable .check-order').prop('checked', true);
-				$('.table_summary th:eq(0) input').prop('checked', true);
+				menuChkBox.prop('checked', true);
+				allChkBox.prop('checked', true);
+				console.log("ADDED TO CART... IT'S WORKING I GUESS");
 			}
 			, error : function(data) {
 				console.log('ERRoR oCCURRED');
@@ -208,8 +222,8 @@ $(document).ready(function() {
 				$('.total span').text(cartTotal + '원');
 				removeDuplicateBizNames();
 			/* 카트 체크박스를 default로 전체 선택하기 */
-				$('.cartTable .check-order').prop('checked', true);
-				$('.table_summary th:eq(0) input').prop('checked', true);
+				menuChkBox.prop('checked', true);
+				allChkBox.prop('checked', true);
 			}
 			, error : function(data) {
 				console.log('ERRoR oCCURRED');
@@ -228,8 +242,8 @@ $(document).ready(function() {
 			cartId[i] = Number(checked.eq(i).parent().siblings('.menuData').attr('data-cart-id'));
 		}
 		 카트의 모든 체크박스 해제 
-		$('.table_summary th:eq(0) input').prop('checked', false);
-		$('.cartTable .check-order').prop('checked', false);
+		allChkBox.prop('checked', false);
+		menuChkBox.prop('checked', false);
 		
 			
 	});*/
