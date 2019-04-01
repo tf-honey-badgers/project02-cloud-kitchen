@@ -250,7 +250,7 @@ $(document).ready(function() {
 			
 	});*/
 	
-	$('body').on('click', '#orderNow', function(event) {
+	/*$('body').on('click', '#orderNow', function(event) {
 		var checkedMenu = $('.cartTable .check-order:checked').length;
 		var minAmt = $('#minAmt').data('min-amt');
 		if(checkedMenu < 1){
@@ -267,7 +267,7 @@ $(document).ready(function() {
 		console.log(checkedMenu);
 		
 		
-	});
+	});*/
 	
 /* 찜하기 버튼 누르면 찜을 추가하기 */
 	$('#likeWrapper').on('click', $('#likeBiz'), function() {
