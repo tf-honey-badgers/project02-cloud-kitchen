@@ -47,7 +47,7 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 		order.setKitchenName(cartList.get(0).getKitchenName());
 		
 		//주문(OrderExtendVO) 건에 매칭되는 orderId를 생성한다(custId + 시간)
-		String orderId = "tjtjtj"+System.currentTimeMillis();
+		String orderId = "tjtjtj"+"_"+System.currentTimeMillis();
 		
 		order.setId(orderId);
 		order.setCustId("tjtjtj");
