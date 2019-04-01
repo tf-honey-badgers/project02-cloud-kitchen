@@ -171,7 +171,7 @@ public class MenuController {
 			produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public int deleteMenu(@RequestParam("menuId") String menuId) {
-		System.out.println(menuId);
+		System.out.println("deleteMenu : "+ menuId);
 		int result = 0;
 		try {
 			System.out.println("MenuUpdate Front Controller1");

@@ -4,6 +4,7 @@ $(document)
 					
 					
 					
+
 					$('.insertMenuCatModalOpt').on('click','#insertMenuCatBtn',function(e){
 						
 						let menuCat = new Object();
@@ -32,11 +33,11 @@ $(document)
 							}
 						});
 						
-					});
+					}); // insertMenuCatBtn 끝
 					
 					$('.insertMenuCatModal').on('click','.deleteMenuCat',function(e){
 						$(this).parent().parent().remove();
-					});
+					}); // deleteMenuCat
 					
 					$('.insertMenuCatModal').on('click','.addMenuCat',function(e){
 						
@@ -50,12 +51,12 @@ $(document)
 							+'</td></tr>'
 						
 						);
-					});
+					}); // addMenuCat
 					
 					$('#insertMenuCat').on('click',function(e){
 						$('.insertMenuCatModal tbody').empty();
 						$('.insertMenuCatModal').css('display', 'block');
-					});
+					}); // insertMenuCat
 
 					
 					$('.menuModalOpt').on('click','.deleteUpdateMenuOpt',function(e){
@@ -81,13 +82,14 @@ $(document)
 							});
 							
 						}
-					});
+					}); // deleteUpdateMenuOpt
 				
 					
 					$('.table-responsive').on('click','table tbody tr td .menu-option-delete',function(e){
 						e.preventDefault();
 						let deleteCheck = confirm("정말 삭제하시겠습니까?");
 						let deleteMenu = $(this).parent().parent();
+						console.log($(this).parent().parent().children().eq(0).text());
 						if(deleteCheck == true){
 							$.ajax({
 								type : "POST",
@@ -108,13 +110,13 @@ $(document)
 							return false;
 						}
 						
-					});
+					}); // menu-option-delete
 					
 					$('.menuInsertModalOpt')
 						.on('click','.col-md-12 .card .card-body .table-responsive .table tbody .menuOptCl td .deleteMenuOpt',function(e){
 						
 						$(this).parent().parent().parent().parent().parent().parent().parent().parent().remove();	
-					});
+					}); // deleteMenuOpt
 					
 					
 					$('#insertMenu').on('click',function(e){
@@ -146,27 +148,6 @@ $(document)
 						}
 						insertMenu.menuOptCl = menuOptClArr;
 						console.log(insertMenu);
-						
-				        AWS.config.update({
-				            accessKeyId: 'AKIA6DOEAM5RBJXDFMUB',
-				            secretAccessKey: '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'
-				        });
-				        
-				        var bucket = new AWS.S3({ params: { Bucket: 'bucketname' } });
-		                var fileChooser = document.getElementById('file');
-		                var file = fileChooser.files[0];
-		                
-		                if (file) {
-		                    var params = {
-		                        Key: file.name,
-		                        ContentType: file.type,
-		                        Body: file,
-		                        ACL: 'public-read' // 접근 권한
-		                    };
-
-		                    bucket.putObject(params, function (err, data) {
-		                        // 업로드 성공
-		                    });
 
 //						$.ajax({
 //			        		type : "POST",
@@ -214,14 +195,13 @@ $(document)
 			        			}
 			        		}
 						});
-					});
-					}
+					});	 // insertMenu
 					
 					$('.menuInsertModalOpt')
 						.on('click','.addMenuList .card .card-body .table-responsive table tbody tr td .deleteOpt',function(e){
 						e.preventDefault();
 						$(this).parent().parent().remove();
-					});
+					}); // menuInsertModalOpt
 					
 					$('.menuInsertModalOpt')
 						.on('click','.addMenuList .card .card-body .table-responsive table tbody tr td .addOpt',function(e){
@@ -236,7 +216,7 @@ $(document)
 							+'<img src="/business/resources/img/baseline_remove_circle_outline_black_18dp.png">'
 							+'</button></td></tr>'
 						);
-					});
+					}); // menuInsertModalOpt
 					
 					
 					$('#insertOpt').on('click',function(e){
@@ -286,7 +266,7 @@ $(document)
 			        				+'</div>'
 			        				+'</div>'
 			        		);
-					});
+					}); // insertOpt
 					
 					$('.content #menuInsert').on('click',function(e){
 						e.preventDefault();
@@ -865,5 +845,5 @@ $(document)
 																	}, 1000);
 
 														});
-									});
-				});
+									}); // ()ready
+			});	// document ready	
