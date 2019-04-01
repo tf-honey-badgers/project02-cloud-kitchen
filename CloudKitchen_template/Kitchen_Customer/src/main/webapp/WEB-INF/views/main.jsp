@@ -230,7 +230,47 @@
 	});
 	
 	$(document).ready(function() {
-    	
+    	$('#searchAll').on('click', function() {
+    		const query = 'a';
+    		$.ajax({
+    	    	type : 'GET'
+    	        , url : 'http://localhost:3001/customer/kitchen/lists.json'
+    	        , contentType : 'application/json'
+    	        , success : function(data) {
+    	        	let readList, category;
+    	            for(let i = 0; i < 3; i++) {
+    	            	if(i == 0) {
+    	            		readList = data.kitchenList;
+    	                    category = "지점";
+    	                    for(let j = 0; j < readList.length; j++) {
+    	                    	let readLine = readList[j];
+    	                        source.push({label: readLine.kitchenname, category: category});				 		
+    	                    }
+    	            	}
+    	                if(i == 1) {
+    	                	readList = data.bizList;
+    	                    category = "가게";
+    	                    for(let j = 0; j < readList.length; j++) {
+    	                    	let readLine = readList[j];
+    	                        source.push({label: readLine.bizName, category: category});				 		
+    	                    }
+    	                }
+    	                if(i == 2) {
+    	                	readList = data.menuList;
+    	                    category = "메뉴";
+    	                    for(let j = 0; j < readList.length; j++) {
+    	                    	let readLine = readList[j];
+    	                        source.push({label: readLine.mname, category: category});				 		
+    	                    }
+    	                }
+    	            }
+    	        }
+    	    	, error : function(data) {
+    	    		console.log('ERRoR oCCURRED');
+    	            console.log(data);
+    	    	}
+    	    });
+    	});
 	});
 </script>
 </body>
