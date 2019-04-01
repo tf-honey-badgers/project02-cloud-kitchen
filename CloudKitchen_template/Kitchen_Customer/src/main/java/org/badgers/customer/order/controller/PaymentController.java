@@ -19,9 +19,12 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.extern.log4j.Log4j;
 
@@ -86,8 +89,9 @@ public class PaymentController {
 	//post : 
 	
 	@RequestMapping("/confirm")
-	public String confirm() {
-		
+	public String confirm(@RequestParam("list")List list, Model model) {
+		System.out.println("redirect List------------------------------------");
+		model.addAttribute("list", list);
 		
 		return "/order/order_3_confirm";
 	}
@@ -95,7 +99,7 @@ public class PaymentController {
 
 
 	@GetMapping("payment/{payMethod}/{status}")
-	public String succeedPayment(@PathVariable("status")String status, HttpSession session, Model model) {
+	public String succeedPayment(@PathVariable("status")String status, HttpSession session, Model model, RedirectAttributes rttr) {
 		log.info("...............................payment/status...................");
 		OrderVOExtend vo = (OrderVOExtend)session.getAttribute("order");
 		
@@ -111,6 +115,9 @@ public class PaymentController {
 			
 //			System.out.println(list);
 			model.addAttribute("list", list);
+			System.out.println("redirect List------------------------------------담는다");
+
+			rttr.addFlashAttribute("list", list);
 			
 			return "redirect:/order/confirm";
 			
