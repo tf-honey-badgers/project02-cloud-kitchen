@@ -137,13 +137,15 @@
 			defaultAddressInit();
 			/* 주소 합쳐서 submit */
 			mergeAddress();
+			console.log('${sessionScope.uid}');
 		})
 				
 		
 		function defaultPhoneInit(){
 			$('#defaultPhone').siblings().click(function(){
 				if($(this).parent().hasClass('checked')){
-					$('#phone').val('${phone}');
+					$('#phone').val('${sessionScope.phone}');
+					console.log('${sessionScope.phone}');
 					return;
 				}
 				$('#phone').val('');
@@ -153,12 +155,10 @@
 		function defaultAddressInit(){
 			$('#defaultAddress').siblings().click(function(){
 				if($(this).parent().hasClass('checked')){
-					console.log('체크됨');
-					$('#sample5_address').val('어드레스');
-					$('#sample5_address_detail').val('어드레스 상세');
+					$('#sample5_address').val('${sessionScope.addr1}');
+					$('#sample5_address_detail').val('${sessionScope.addr2}');
 					return;
 				}
-					console.log('체크해제');
 				$('#sample5_address').val('');
 				$('#sample5_address_detail').val('');
 			})
@@ -169,7 +169,6 @@
 				var address = $('#sample5_address').val();
 				var addressDetail = $('#sample5_address_detail').val();
 				$('#address').val(address+addressDetail);
-				console.log($('#address').val());
 			});
 		}
 	</script>

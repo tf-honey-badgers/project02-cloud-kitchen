@@ -17,14 +17,6 @@ public class OrderInfoInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		HttpSession session = request.getSession();
-		
-		/* 테스트용 */
-		session.setAttribute("id", "TJ");
-		session.setAttribute("phone", "01011112222");
-		session.setAttribute("address", "고양시 우리집");
-		/* --- */
-		
 		return super.preHandle(request, response, handler);
 	}
 
