@@ -40,6 +40,12 @@ public class PaymentController {
 	@PostMapping("/orderinfo")
 	public ModelAndView orderInfo(int[] selectedCart, ModelAndView mv) {
 		String url = "http://127.0.0.1:80/rest/cust/order/orderinfo";
+
+		log.info("::::::::::::::::::::::::::::::selectCart의 내용:::::::::::::::::::::::::::::::::::::::::");
+//		for(int i:selectedCart) {
+//			System.out.println(i);
+//		}
+		log.info("::::::::::::::::::::::::::::::;;;;;;;;;;;:::::::::::::::::::::::::::::::::::::::::");
 		
 		ResponseEntity<CartVOExtend[]> response = restTemplate.postForEntity(url, selectedCart, CartVOExtend[].class);
 		List cartList = Arrays.asList(response.getBody());
@@ -50,6 +56,7 @@ public class PaymentController {
 		return mv;
 	}
 	//post : cartList를 "cart"로 저장
+	
 	
 	//pre : 
 	@RequestMapping("/payment")
@@ -72,7 +79,7 @@ public class PaymentController {
 		HttpEntity<MultiValueMap<String, String>> request= kakaoservice.kakaopay(vo);
 		ResponseEntity<Map> response = restTemplate.exchange("https://kapi.kakao.com/v1/payment/ready", HttpMethod.POST, request, Map.class);
 		Map kakaoRes = response.getBody();
-        System.out.println(kakaoRes);
+      //  System.out.println(kakaoRes);
         String url= (String) kakaoRes.get("next_redirect_pc_url");
         return "redirect:"+url;
 	}
@@ -95,14 +102,14 @@ public class PaymentController {
 		if(status.equals("success")) {
 			log.info("............success");
 			String url = "http://127.0.0.1:80/rest/cust/order/"+vo.getId();
-			System.out.println(url);
+//			System.out.println(url);
 			
 			ResponseEntity<String> responses  = restTemplate.postForEntity(url,vo, String.class);
 //			List<OrderInfoVO> list =Arrays.asList(responses.getBody());
 			
 			String list = responses.getBody();
 			
-			System.out.println(list);
+//			System.out.println(list);
 			model.addAttribute("list", list);
 			
 			return "redirect:/order/confirm";

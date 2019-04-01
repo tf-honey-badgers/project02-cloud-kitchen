@@ -134,7 +134,22 @@ public class MenuController {
 		if(result == 0) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(1, HttpStatus.OK); 
+		return new ResponseEntity<>(result, HttpStatus.OK); 
+//		return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+	}
+	
+	@RequestMapping(value="/insertmenucat",produces = "application/json;charset=UTF-8", method=RequestMethod.POST)	
+	@Transactional
+	@ResponseBody
+//	public ResponseEntity menuDelete(@RequestBody List updateMenuInfo){
+	public ResponseEntity<?> insertMenuCat(@RequestBody String insertMenuCat){
+		System.out.println(insertMenuCat);
+		int result = service.insertMenuCat(insertMenuCat);
+		
+		if(result == 0) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(result, HttpStatus.OK); 
 //		return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 	}
 }

@@ -33,11 +33,11 @@ public class CartController {
 		List<CartVOExtend> returnVal = null;
 		String url = "http://localhost/rest/cart/";
 		
-		System.out.println(cart);
+//		System.out.println(cart);
 		
 		try {
 			ResponseEntity<String> addMenuToCart = restTemplate.postForEntity(url, cart, String.class);
-			System.out.println(addMenuToCart);
+//			System.out.println(addMenuToCart);
 			
 			log.info("Kitchen_Customer 카트 읽어오기");
 			url += cart.getCustId();
