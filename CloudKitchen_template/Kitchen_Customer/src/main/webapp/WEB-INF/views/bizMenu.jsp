@@ -151,7 +151,7 @@
 						<table class="table table_summary">
 							<tbody>
 								<tr>
-									<td class="total">총 금액 <span class="pull-right"></span>
+									<td class="total">총 금액 <span class="pull-right" data-total=""></span>
 									</td>
 								</tr>
 							</tbody>

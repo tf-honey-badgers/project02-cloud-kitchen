@@ -40,6 +40,7 @@ function calcCartTotal(length) {
 	}
 	console.log('Cart Total :', cartTotal);
 	$('.total span').text(cartTotal + '원');
+	$('.total span').attr('data-total', cartTotal);
 }
 
 function cartChkFunctions() {
@@ -249,11 +250,17 @@ $(document).ready(function() {
 			
 	});*/
 	
-	$('body').on('click','#orderNow',function(event){
+	$('body').on('click', '#orderNow', function(event) {
 		var checkedMenu = $('.cartTable .check-order:checked').length;
-		if(checkedMenu<1){
+		var minAmt = $('#minAmt').data('min-amt');
+		if(checkedMenu < 1){
 			event.preventDefault();
-			alert('한 가지 이상의 메뉴를 선택해주십쇼 형님');
+			alert('메뉴를 최소한 하나는 선택해주세요.');
+			return;
+		}
+		if($('.total span').data('total') < minAmt) {
+			event.preventDefault();
+			alert('메뉴를 최소한 하나는 선택해주세요.');
 			return;
 		}
 		console.log(checkedMenu);
