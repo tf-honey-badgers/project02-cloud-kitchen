@@ -2,31 +2,36 @@ $(document)
 		.ready(
 				function() {
 					
+					
+					
 					$('.insertMenuCatModalOpt').on('click','#insertMenuCatBtn',function(e){
-						console.log(this);
+						
 						let menuCat = new Object();
 						let menuCatArr = new Array();
 						
 						for(let i=0; i<$('.insertMenuCatModalOpt tbody tr').length; i++){
 							menuCatArr.push($('.insertMenuCatModalOpt tbody tr').eq(i).children().eq(0).children().eq(0).val());
 						}
+						
 						menuCat.menuCat = menuCatArr;
+						menuCat.bizId = $('#bizId').val();
 						
 						$.ajax({
 							type : "GET",
 							dataType : 'json',
 							url : "../menu/main/insertmenucat",
 							data : {
-								insertMenuCat : JSON.stringify(menuCat)
-//								bizId : 
+								insertMenuCat : JSON.stringify(menuCat),
 							},
 							error : function(data){
 								console.log(data);
 							},
 							success(data){
 								console.log(data);
+								$('.insertMenuCatModal tbody').empty();
 							}
 						});
+						
 					});
 					
 					$('.insertMenuCatModal').on('click','.deleteMenuCat',function(e){
@@ -142,26 +147,27 @@ $(document)
 						insertMenu.menuOptCl = menuOptClArr;
 						console.log(insertMenu);
 						
-//						$.ajax({
-//			        		type : "POST",
-//			        		dataType : 'json',
-//			        		url : "../menu/main/getMenuCat",
-//			         		data : {
-//			         			bizId : 'biz_2'
-//			         		},
-//			        		error : function(data){
+						$.ajax({
+			        		type : "POST",
+			        		dataType : 'json',
+			        		
+			        		url : "../menu/main/getMenuCat",
+			         		data : {
+			         			menuPhoto : 'biz_2'
+			         		},
+			        		error : function(data){
+			        			console.log(data);
+			        		},
+			        		success(data){
 //			        			console.log(data);
-//			        		},
-//			        		success(data){
-////			        			console.log(data);
-//			        			$('#menuCatSelect').empty();
-//			        			for(let i=0;i<data.length;i++){
-//			        				$('#menuCatSelect').append('<option value="" class="'+data[i].mcBizId
-//			        						+'" id="'+data[i].mcNo+'" >'+data[i].mcName+'</option>');
-//			        			}
-//			        			
-//			        		}
-//						});
+			        			$('#menuCatSelect').empty();
+			        			for(let i=0;i<data.length;i++){
+			        				$('#menuCatSelect').append('<option value="" class="'+data[i].mcBizId
+			        						+'" id="'+data[i].mcNo+'" >'+data[i].mcName+'</option>');
+			        			}
+			        			
+			        		}
+						});
 						
 //						$.ajax({
 //			        		type : "POST",
