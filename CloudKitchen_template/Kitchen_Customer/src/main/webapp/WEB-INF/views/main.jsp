@@ -14,48 +14,44 @@
   	<!-- 위쪽 헤더바  -->
     <jsp:include page="include/header.jsp" flush="false"/>
     <!-- 영상 및 주문  -->
-	<jsp:include page="include/header2.jsp" flush="false"/>
+	<jsp:include page="include/main_subheader.jsp" flush="false"/>
 <!-- End Headers ================================================== -->
 
 <!-- Content ================================================== -->
     <div class="container margin_60">
 		<div class="main_title">
             <h2 class="nomargin_top" style="padding-top:0">클라우드 키친이란?</h2>
-            <p>한곳에서 ~~~~~~~~</p>
+            <p>한곳에서 이 모든 일을~~~~~!!</p>
         </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="box_home" id="one">
                     <span>1</span>
-                    <h3>주소 찾기</h3>
-                    <p>근처 클라우드 키친 찾기</p>
+                    <h3>근처 키친 찾기</h3>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="box_home" id="two">
                     <span>2</span>
-                    <h3>가게 선택 </h3>
-                    <p>다양한 가게에서 선택</p>
+                    <h3>다양한 가게 선택 </h3>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="box_home" id="three">
                     <span>3</span>
-                    <h3>결제 종류 선택</h3>
-                    <p>빠르고 간편하게 결제</p>
+                    <h3>빠르고 간편하게 결제</h3>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="box_home" id="four">
                     <span>4</span>
                     <h3>집앞까지 배달합니다.</h3>
-                    <p>배달 얍</p>
                 </div>
             </div>
         </div><!-- End Row -->
         <div id="delivery_time" class="hidden-xs">
             <strong><span>3</span><span>0</span></strong>
-            <h4>평균 배송 소요 </h4>
+            <h4>평균 배송 시간 </h4>
         </div>
     </div><!-- End Container -->
 
@@ -171,9 +167,9 @@
 
     <div class="high_light">
         <div class="container">
-            <h3>Choose from over 2,000 Restaurants</h3>
-            <p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
-            <a href="list_page.html">View all Restaurants</a>
+            <h3>모든 키친과 음식점을 보실래요?</h3>
+            <p>벌꿀오소리 클라우드 키친은 총 205개 키친과 2,059개 음식점을 운영하고 있습니다.</p>
+            <a id="searchAll">모든 음식점 보기</a>
         </div><!-- End container -->
     </div><!-- End hight_light -->
 
@@ -231,6 +227,10 @@
             videoTrigger: $("#video-trigger"),
             autoPlayVideo: true
 		});
+	});
+	
+	$(document).ready(function() {
+    	
 	});
 </script>
 </body>

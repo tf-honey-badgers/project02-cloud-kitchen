@@ -146,8 +146,8 @@
 	<!-- 자동완성 script -->
 <script src="/customer/resources/js/search/search-functions.js"></script>
 <!-- End Autocomplete =============================================== -->
+
 <script>
-    $(document).ready(function() {
     //로그인 및 로그아웃 버튼 생성 처리
     var cookiedata = document.cookie;
 
