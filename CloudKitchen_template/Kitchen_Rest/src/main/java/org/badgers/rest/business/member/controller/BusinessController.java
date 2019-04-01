@@ -50,6 +50,19 @@ public class BusinessController {
 		return new ResponseEntity<Integer>(returnVal, HttpStatus.OK);
 	}
 	
+	// 개인정보 보기 
+	@GetMapping(value = "/livestrm/{bizId}/{bizLiveStrm}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<String>  inputBizLiveStrm(@PathVariable("bizId") String bizId, @PathVariable("bizLiveStrm") String bizLiveStrm) throws Exception {
+		String returnVal = "";
+		
+		int result = service.inputBizLiveStrm(bizId, bizLiveStrm);
+		if(result == 1) {
+			returnVal = bizLiveStrm;
+		}
+
+		return new ResponseEntity<String>(returnVal, HttpStatus.OK);
+	}
+	
 	// 로그인
 	@PostMapping(value="/login" , produces = "application/json; charset=UTF-8")
 	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend biz) throws Exception {
