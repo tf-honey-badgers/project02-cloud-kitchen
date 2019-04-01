@@ -15,11 +15,13 @@ public class PaymentServiceImpl implements PaymentService {
 	public HttpEntity<MultiValueMap<String, String>> kakaopay(OrderVOExtend vo) {
 		
 		 MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
-		 System.out.println(vo.getOrderDetails()[1].getMenuName()+" 외 "+(vo.getOrderDetails().length-1)+"개 ");
+		 System.out.println(vo.getOrderDetails()[0].getMenuName()+
+		    		(vo.getOrderDetails().length==1?"":(" 외 "+(vo.getOrderDetails().length-1)+"개 ")));
 		    params.add("cid", "TC0ONETIME");
 		    params.add("partner_order_id", vo.getId());
 		    params.add("partner_user_id", vo.getCustId());
-		    params.add("item_name", vo.getOrderDetails()[1].getMenuName()+" 외 "+(vo.getOrderDetails().length-1)+"개 ");
+		    params.add("item_name", vo.getOrderDetails()[0].getMenuName()+
+		    		(vo.getOrderDetails().length==1?"":(" 외 "+(vo.getOrderDetails().length-1)+"개 ")));
 		    params.add("quantity", ""+vo.getOrderDetails().length);
 		    params.add("total_amount", ""+vo.getPayAmt());
 		    params.add("tax_free_amount", "0");

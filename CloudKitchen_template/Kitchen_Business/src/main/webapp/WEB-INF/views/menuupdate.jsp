@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
-<%@page isELIgnored="false" %>
+<%-- <%@ page session="false"%> --%>
+<%-- <%@page isELIgnored="false" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,14 +35,14 @@
 					<div class="col-md-12">
 							<div class="card">
 								<div class="card-header card-header-primary">
-									<h4 class="card-title ">메뉴</h4>
+									<h4 class="card-title ">메뉴</h4><h4 class="card-title "></h4>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
 										<table class="table menuUpdate">
 											<thead class="text-primary">
 												<th>카테고리이름</th>
-												<th>추가삭제
+												<th>추가삭제<input type="hidden" id="bizId" value="${sessionScope.bizId}"/>
 													<button class="addMenuCat">
 													<img src="/business/resources/img/baseline_add_circle_outline_black_18dp.png">
 													</button>
@@ -103,7 +103,7 @@
 											</thead>
 											<tbody>
 													<tr>
-														<td><input type="file" id="menuPhotoInsert" multiple="multiple" value="파일"></td>
+														<td><input type="file" id="menuPhotoInsert" value=""> <input type="text" id="photoRealPath" /></td>
 														<td><input type="text" class=""></td>
 														<td><input type="text" class=""></td>
 														<td>
@@ -380,5 +380,6 @@
 	<!-- Material Dashboard DEMO methods, don't include it in your project! -->
 	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
 	<script src="/business/resources/js/joon/menuupdate.js"></script>
+	<script src="http://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
 </body>
 </html>

@@ -45,7 +45,7 @@ public class KitchenController {
 			returnBiz = responseEntity.getBody();
 			
 			log.info("Kitchen_Customer 카트 읽기");
-			url = "http://localhost/rest/cart/" + "tjtjtj"; // 현재 로그인되어 있는 사용자 ID를 사용
+			url = "http://localhost/rest/cart/" + "1234"; // 현재 로그인되어 있는 사용자 ID를 사용
 			ResponseEntity<List> readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class);
 			returnCart = readMenuFromCart.getBody();
 		} catch (Exception e) {
@@ -85,6 +85,7 @@ public class KitchenController {
 	@RequestMapping(value = "/search", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ModelAndView searchLists(ModelAndView mav, @ModelAttribute("query") String query) {
 		log.info("Searching lists of kitchen branches, businesses, menus");
+		System.out.println(query);
 
 		List<BizVOExtend> returnVal = null;
 		String urlSearch = "http://localhost/rest/kitchenbranch/searchlists";
@@ -109,6 +110,8 @@ public class KitchenController {
 			log.info("No matching search results");
 			mav.addObject("message", "No search results. Try again with a different query.");
 		}
+		
+		mav.addObject("query", query);
 		mav.addObject("bizCat", bizCatVal);
 		log.info(returnVal);
 		mav.setViewName("searchList");

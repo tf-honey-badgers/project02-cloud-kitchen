@@ -1,6 +1,6 @@
 /* 전역 변수 */
 	/* 사용자 ID */
-	const custId = 'tjtjtj';
+	const custId = '1234';
 	/* 가게 ID */
 	const bizId = $('#main_menu').attr('data-biz-id');
 	/* 치킨 지점명 */
@@ -40,6 +40,7 @@ function calcCartTotal(length) {
 	}
 	console.log('Cart Total :', cartTotal);
 	$('.total span').text(cartTotal + '원');
+	$('.total span').attr('data-total', cartTotal);
 }
 
 function cartChkFunctions() {
@@ -249,18 +250,24 @@ $(document).ready(function() {
 			
 	});*/
 	
-	$('body').on('click','#orderNow',function(event){
+	/*$('body').on('click', '#orderNow', function(event) {
 		var checkedMenu = $('.cartTable .check-order:checked').length;
-		if(checkedMenu<1){
+		var minAmt = $('#minAmt').data('min-amt');
+		if(checkedMenu < 1){
 			event.preventDefault();
-			alert('한 가지 이상의 메뉴를 선택해주십쇼 형님');
+			alert('메뉴를 최소한 하나는 선택해주세요.');
+			return;
+		}
+		if($('.total span').data('total') < minAmt) {
+			event.preventDefault();
+			alert('메뉴를 최소한 하나는 선택해주세요.');
 			return;
 		}
 		console.log(checkedMenu);
 		console.log(checkedMenu);
 		
 		
-	});
+	});*/
 	
 /* 찜하기 버튼 누르면 찜을 추가하기 */
 	$('#likeWrapper').on('click', $('#likeBiz'), function() {

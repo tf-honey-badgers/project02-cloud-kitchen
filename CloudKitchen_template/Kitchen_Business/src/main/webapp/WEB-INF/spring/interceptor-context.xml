@@ -14,8 +14,9 @@
 	</mvc:interceptor>
 	
 	<mvc:interceptor>
-		<mvc:mapping path="/menu/main?bizId=biz_2"/>
+		<mvc:mapping path="/menu/main"/>
 		<mvc:mapping path="/order/main"/>
+		<mvc:mapping path="/member/mypage"/>
 		<bean class="org.badgers.business.interceptor.AuthCheckInterceptor"></bean>
 	</mvc:interceptor>
 

@@ -2,36 +2,42 @@ $(document)
 		.ready(
 				function() {
 					
+					
+					
+
 					$('.insertMenuCatModalOpt').on('click','#insertMenuCatBtn',function(e){
-						console.log(this);
+						
 						let menuCat = new Object();
 						let menuCatArr = new Array();
 						
 						for(let i=0; i<$('.insertMenuCatModalOpt tbody tr').length; i++){
 							menuCatArr.push($('.insertMenuCatModalOpt tbody tr').eq(i).children().eq(0).children().eq(0).val());
 						}
+						
 						menuCat.menuCat = menuCatArr;
+						menuCat.bizId = $('#bizId').val();
 						
 						$.ajax({
 							type : "GET",
 							dataType : 'json',
 							url : "../menu/main/insertmenucat",
 							data : {
-								insertMenuCat : JSON.stringify(menuCat)
-//								bizId : 
+								insertMenuCat : JSON.stringify(menuCat),
 							},
 							error : function(data){
 								console.log(data);
 							},
 							success(data){
 								console.log(data);
+								$('.insertMenuCatModal tbody').empty();
 							}
 						});
-					});
+						
+					}); // insertMenuCatBtn 끝
 					
 					$('.insertMenuCatModal').on('click','.deleteMenuCat',function(e){
 						$(this).parent().parent().remove();
-					});
+					}); // deleteMenuCat
 					
 					$('.insertMenuCatModal').on('click','.addMenuCat',function(e){
 						
@@ -45,12 +51,12 @@ $(document)
 							+'</td></tr>'
 						
 						);
-					});
+					}); // addMenuCat
 					
 					$('#insertMenuCat').on('click',function(e){
 						$('.insertMenuCatModal tbody').empty();
 						$('.insertMenuCatModal').css('display', 'block');
-					});
+					}); // insertMenuCat
 
 					
 					$('.menuModalOpt').on('click','.deleteUpdateMenuOpt',function(e){
@@ -76,13 +82,14 @@ $(document)
 							});
 							
 						}
-					});
+					}); // deleteUpdateMenuOpt
 				
 					
 					$('.table-responsive').on('click','table tbody tr td .menu-option-delete',function(e){
 						e.preventDefault();
 						let deleteCheck = confirm("정말 삭제하시겠습니까?");
 						let deleteMenu = $(this).parent().parent();
+						console.log($(this).parent().parent().children().eq(0).text());
 						if(deleteCheck == true){
 							$.ajax({
 								type : "POST",
@@ -103,13 +110,13 @@ $(document)
 							return false;
 						}
 						
-					});
+					}); // menu-option-delete
 					
 					$('.menuInsertModalOpt')
 						.on('click','.col-md-12 .card .card-body .table-responsive .table tbody .menuOptCl td .deleteMenuOpt',function(e){
 						
 						$(this).parent().parent().parent().parent().parent().parent().parent().parent().remove();	
-					});
+					}); // deleteMenuOpt
 					
 					
 					$('#insertMenu').on('click',function(e){
@@ -141,69 +148,60 @@ $(document)
 						}
 						insertMenu.menuOptCl = menuOptClArr;
 						console.log(insertMenu);
-						
+
 //						$.ajax({
 //			        		type : "POST",
 //			        		dataType : 'json',
-//			        		url : "../menu/main/getMenuCat",
+//			        		url : "../menu/main/photoupload",
 //			         		data : {
-//			         			bizId : 'biz_2'
-//			         		},
-//			        		error : function(data){
-//			        			console.log(data);
-//			        		},
-//			        		success(data){
-////			        			console.log(data);
-//			        			$('#menuCatSelect').empty();
-//			        			for(let i=0;i<data.length;i++){
-//			        				$('#menuCatSelect').append('<option value="" class="'+data[i].mcBizId
-//			        						+'" id="'+data[i].mcNo+'" >'+data[i].mcName+'</option>');
-//			        			}
-//			        			
-//			        		}
-//						});
-						
-//						$.ajax({
-//			        		type : "POST",
-//			        		dataType : 'json',
-//			        		url : "../menu/main/insertMenu",
-//			         		data : {
-//			         			menuInfo : JSON.stringify(insertMenu)
+//			         			menuPhoto : $('#menuPhotoInsert').val()
 //			         		},
 //			        		error : function(data){
 //			        			console.log(data);
 //			        		},
 //			        		success(data){
 //			        			console.log(data);
-//			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
-//			        			for(let i=0; i<menuCat.length; i++){
-//			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
-////			        					$('.container-fluid .table tbody')[i].innerHTML+=(
-//			        					$('.container-fluid .table tbody').eq(i).append(
-//			        							'<tr>'
-//			        							+'<td>'+data+'</td>'
-//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value+'</td>'
-//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value+'</td>'
-//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value+'</td>'
-//			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
-//												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
-//			        							);
-//			        					addPhoto(data);
-//			        					$('.menuInsertModal').css('display', 'none');
-//			        				}
-//			        			}
 //			        		}
 //						});
 						
-						
-						
-					});
+						$.ajax({
+			        		type : "POST",
+			        		dataType : 'json',
+			        		url : "../menu/main/insertMenu",
+			         		data : {
+			         			menuInfo : JSON.stringify(insertMenu)
+			         		},
+			        		error : function(data){
+			        			console.log(data);
+			        		},
+			        		success(data){
+			        			console.log(data);
+			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
+			        			for(let i=0; i<menuCat.length; i++){
+			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
+//			        					$('.container-fluid .table tbody')[i].innerHTML+=(
+			        					$('.container-fluid .table tbody').eq(i).append(
+			        							'<tr>'
+			        							+'<td>'+data+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value+'</td>'
+			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
+												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
+			        							);
+			        					addPhoto(data);
+			        					$('.menuInsertModal').css('display', 'none');
+			        				}
+			        			}
+			        		}
+						});
+					});	 // insertMenu
 					
 					$('.menuInsertModalOpt')
 						.on('click','.addMenuList .card .card-body .table-responsive table tbody tr td .deleteOpt',function(e){
 						e.preventDefault();
 						$(this).parent().parent().remove();
-					});
+					}); // menuInsertModalOpt
 					
 					$('.menuInsertModalOpt')
 						.on('click','.addMenuList .card .card-body .table-responsive table tbody tr td .addOpt',function(e){
@@ -218,7 +216,7 @@ $(document)
 							+'<img src="/business/resources/img/baseline_remove_circle_outline_black_18dp.png">'
 							+'</button></td></tr>'
 						);
-					});
+					}); // menuInsertModalOpt
 					
 					
 					$('#insertOpt').on('click',function(e){
@@ -268,7 +266,7 @@ $(document)
 			        				+'</div>'
 			        				+'</div>'
 			        		);
-					});
+					}); // insertOpt
 					
 					$('.content #menuInsert').on('click',function(e){
 						e.preventDefault();
@@ -847,5 +845,5 @@ $(document)
 																	}, 1000);
 
 														});
-									});
-				});
+									}); // ()ready
+			});	// document ready	

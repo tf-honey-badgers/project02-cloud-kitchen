@@ -11,13 +11,15 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String home() {
 		logger.info("Kitchen Customer Domain online");
 		
 		return "main";
+	}
+	
+	@RequestMapping(value = "/about", method = RequestMethod.GET)
+	public String aboutUs() {		
+		return "about";
 	}	
 }

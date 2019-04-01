@@ -72,11 +72,27 @@
 							type="checkbox" id="defaultPhone" class="icheck"> <input type="text" id="phone"
 							name="phone" class="form-control" placeholder="연락 받을 번호" required>
 					</div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label>배달 주소</label> <span>(회원 주소와 동일)</span> <input
 							type="checkbox" id="defaultAddress" class="icheck"> <input type="text"
 							id="address" name="address" class="form-control"
 							placeholder="배달 주소" required>
+					</div> -->
+					<div>
+						<input type="hidden" id="address" name="address" value="">
+					</div>
+					
+					<div class="form-group">
+						<label>배달 주소</label> <span>(회원 주소와 동일)</span> 
+						<input type="checkbox" id="defaultAddress" class="icheck">
+						<input type="text" id="sample5_address" placeholder="주소" onclick="sample5_execDaumPostcode()" class="form-control"
+							required>
+						<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+					</div>
+					<div class="form-group">
+						<label>상세 주소</label>
+						<input type="text" id="sample5_address_detail" placeholder="상세 주소" class="form-control"
+							required>
 					</div>
 					<hr>
 					<div class="row">
@@ -107,19 +123,29 @@
 	<!-- Footer 끝  -->
 	
 	<!-- Script 시작 -->
+		<!-- 카카오 지도 api -->
+		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c2f56b6eb320f47a6785c0b094eb1060&libraries=services"></script>
+		<script src="/customer/resources/js/order/order-orderinfo-kakaoApi.js"></script>
+		
+		<!-- 카카오 지도 api 끝 -->
 	<script>
 		$(document).ready(function(){
 			/* 회원 번호 사용 */
 			defaultPhoneInit();
 			/* 회원 주소 사용 */
 			defaultAddressInit();
+			/* 주소 합쳐서 submit */
+			mergeAddress();
+			console.log('${sessionScope.uid}');
 		})
 				
 		
 		function defaultPhoneInit(){
 			$('#defaultPhone').siblings().click(function(){
 				if($(this).parent().hasClass('checked')){
-					$('#phone').val('${phone}');
+					$('#phone').val('${sessionScope.phone}');
+					console.log('${sessionScope.phone}');
 					return;
 				}
 				$('#phone').val('');
@@ -129,14 +155,28 @@
 		function defaultAddressInit(){
 			$('#defaultAddress').siblings().click(function(){
 				if($(this).parent().hasClass('checked')){
-					$('#address').val('${address}');
+					$('#sample5_address').val('${sessionScope.addr1}');
+					$('#sample5_address_detail').val('${sessionScope.addr2}');
 					return;
 				}
-				$('#address').val('');
+				$('#sample5_address').val('');
+				$('#sample5_address_detail').val('');
 			})
 		}
+		
+		function mergeAddress(){
+			$('#orderNow').click(function(){
+				var address = $('#sample5_address').val();
+				var addressDetail = $('#sample5_address_detail').val();
+				$('#address').val(address+addressDetail);
+			});
+		}
 	</script>
-
+	
 	<!-- Script 끝 -->
+	
+	
+	
+
 </body>
 </html>

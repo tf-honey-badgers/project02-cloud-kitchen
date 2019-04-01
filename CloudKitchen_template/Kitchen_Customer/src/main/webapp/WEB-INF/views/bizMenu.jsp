@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>BADGERS - 일반 사용자</title>
+	<title>${bizMember.bizName}</title>
 </head>
 <body>
 <!-- Header =============================================== -->
@@ -151,7 +151,7 @@
 						<table class="table table_summary">
 							<tbody>
 								<tr>
-									<td class="total">총 금액 <span class="pull-right"></span>
+									<td class="total">총 금액 <span class="pull-right" data-total=""></span>
 									</td>
 								</tr>
 							</tbody>

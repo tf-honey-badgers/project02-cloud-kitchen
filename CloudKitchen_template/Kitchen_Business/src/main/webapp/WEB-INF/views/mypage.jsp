@@ -37,57 +37,65 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <!-- View / Change profile data -->
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header card-header-primary">
-                                    <h4 class="card-title">Profile</h4>
-                                    <p class="card-category">비밀번호와 계좌번호만 변경할 수 있습니다.</p>
-                                </div>
-                                <div class="card-body" style="padding-top: 50px;">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">사업자 이름</label>
-                                                    <input type="text" id="bizMemberName" class="form-control" disabled value="${bizMember.name}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">사업자 아이디</label>
-                                                    <input type="text" id="bizId" class="form-control" disabled value="${bizMember.bizId}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">사업자 등록번호</label>
-                                                    <input type="text" id="regNo" class="form-control" disabled value="${bizMember.regNo}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">비밀번호</label>
-                                                    <input type="password" id="pw" class="form-control" disabled value="********************">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">계좌번호</label>
-                                                    <input type="text" id="account" class="form-control" value="${bizMember.account}">
-                                                </div>
-                                            </div>
-                                        </div>
-							            <button type="button" class="changePw btn btn-primary pull-left">사업자 비밀번호 수정</button>
-                                        <button type="button" id="changeAccount" class="btn btn-primary pull-right">사업자 계좌번호 수정</button>
-                                        <div class="clearfix"></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- View / Change business data -->
+						<!-- View / Change profile data -->
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header card-header-primary">
+									<h4 class="card-title">Profile</h4>
+									<p class="card-category">비밀번호와 계좌번호만 변경할 수 있습니다.</p>
+								</div>
+								<div class="card-body" style="padding-top: 50px;">
+									<form>
+										<div class="row">
+											<div class="col-md-3">
+												<div class="form-group">
+													<label class="bmd-label-floating">사업자 이름</label> <input
+														type="text" id="bizMemberName" class="form-control"
+														disabled value="${bizMember.name}">
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label class="bmd-label-floating">사업자 아이디</label> <input
+														type="text" id="bizId" class="form-control" disabled
+														value="${bizMember.bizId}">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="bmd-label-floating">사업자 등록번호</label> <input
+														type="text" id="regNo" class="form-control" disabled
+														value="${bizMember.regNo}">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="bmd-label-floating">비밀번호</label> <input
+														type="password" id="pw" class="form-control" disabled
+														value="********************">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="bmd-label-floating">계좌번호</label> <input
+														type="text" id="account" class="form-control"
+														value="${bizMember.account}">
+												</div>
+											</div>
+										</div>
+										<button type="button"
+											class="changePw btn btn-primary pull-left">사업자 비밀번호
+											수정</button>
+										<button type="button" id="changeAccount"
+											class="btn btn-primary pull-right">사업자 계좌번호 수정</button>
+										<div class="clearfix"></div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- View / Change business data -->
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-primary">

@@ -62,14 +62,10 @@
 					</div>
 					<a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
 					<ul>
-						<li class="submenu"><a href="${pageContext.request.contextPath}/main" class="show-submenu">Home</a></li>
+
+						<li class="submenu"><a href="${pageContext.request.contextPath}/main" class="show-submenu"><i class="icon-home-2"></i></a></li>
 						<li class="submenu"><a href="javascript:void(0);" class="show-submenu">Cloud Kitchen<i class="icon-down-open-mini"></i></a>
-							<ul>
-								<li><a href="list_page.html">줄형</a></li>
-								<li><a href="grid_list.html">박스형</a></li>
-							</ul></li>
-						
-						
+
 				<c:if test="${empty sessionScope.uid and empty sessionScope.kid }" > <!-- 기본상태 -->
 				<li><a href="#0" data-toggle="modal" data-target="#login_2">로그인</a></li>
 				<li><a href="#0" data-toggle="modal" data-target="#register">회원가입</a></li>
@@ -84,11 +80,8 @@
 				<li><a  href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
 				<li><a href="${pageContext.request.contextPath}/member/mypage">마이 페이지</a></li>
 				</c:if>
-				
-				
-		
-						
-						<li><a href="about.html">About us</a></li>
+				<li><a href="${pageContext.request.contextPath}/about">회사 소개</a></li>
+
 					</ul>
 				</div> <!-- End main-menu -->
 			</nav>
@@ -101,7 +94,6 @@
 
 <!-- Login modal -->
 <div class="modal fade" id="login_2" tabindex="-1" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
-
        <div class="modal-dialog" style="margin-top: 151px;">
            <div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;
 					text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
@@ -137,16 +129,17 @@
 
 
 
+
 <!-- Find modal -->
-<div class="modal fade" id="finder" tabindex="-1" role="dialog"
-	aria-labelledby="myLogin" aria-hidden="true">
+<div class="modal fade" id="finder" tabindex="-1" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
 	<div class="modal-dialog" style="margin-top: 151px;">
 		<div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;
-		text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
+				text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
 			<a href="#" class="close-link"><i class="material-icons">close</i></a>
 			<form action="#" class="popup-form" id="myId">
 				<div class="login_icon" style="margin-top: 20px; margin-bottom: 10px;">
-				<i class="material-icons" style="width: 60px; font-size: 60px;">lock_alt</i></div>
+					<i class="material-icons" style="width: 60px; font-size: 60px;">lock_alt</i>
+				</div>
 				<h2>ID 찾기</h2>
 				<h5>ID를 찾으려면 본인인증을 해주세요.</h5>
 				<input type="text" class="form-control form-white" placeholder="이름">
@@ -168,33 +161,28 @@
                 <input type="text" class="form-control form-white" placeholder="아이디">
                 <input type="password" class="form-control form-white" placeholder="비밀번호" id="password1">
                 <input type="password" class="form-control form-white" placeholder="비밀번호 재확인" id="password2">
-                
                 <div id="pass-info" class="clearfix"></div>
-                
                 <input type="text" class="form-control form-white" placeholder="이름">
                 <input type="text" class="form-control form-white" placeholder="생년 월일">
                 <input type="text" class="form-control form-white" placeholder="휴대폰 번호">
                 <input type="email" class="form-control form-white" placeholder="Email">
-               
                 <div>
-					<input type="radio" name="gender" value="남" checked onclick="doIt('남')" id = "r1" style="width:23px;height:15px"> 
+					<input type="radio" name="gender" value="남" checked onclick="doIt('남')" id = "r1" style="width:23px;height:15px">
 					<label for = "r1" style="font-size: 15px; color: white; padding-right: 250px;" > 남 </label>
                     <input type="radio" name="gender" value="여" onclick="doIt('여')" id = "r2" style="width:23px;height:15px">
-                     <label for = "r2" style="font-size: 15px; color: white; padding-right: 10px;" > 여 </label>
+                    <label for = "r2" style="font-size: 15px; color: white; padding-right: 10px;" > 여 </label>
                    	<input type=text name=genders  value="남" style="display:none">
-				</div>
-				
+				</div>				
                 <div class="form-group">                   
-				<input class="form-control" style="width: 50%; margin-right:70px; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" >
-    			<button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
+					<input class="form-control" style="width: 50%; margin-right:70px; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" >
+    				<button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
 				</div>
 				<div class="form-group">
-  			    <input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="location" id="addr2" type="text" readonly="readonly" />
+  			    	<input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="location" id="addr2" type="text" readonly="readonly" />
 				</div>
 				<div class="form-group">
-   				 <input class="form-control" placeholder="상세주소" name="location" id="addr3" type="text"  />
+					<input class="form-control" placeholder="상세주소" name="location" id="addr3" type="text"  />
 				</div>
-               
                 <button type="button" class="btn btn-submit">회원가입</button>
 			</form>
 		</div>
@@ -208,44 +196,39 @@
 </script>
 <script>
 function execPostCode() {
-	
-         new daum.Postcode({
-             oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	new daum.Postcode({
+		oncomplete: function(data) {
+        	// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+			// 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 도로명 조합형 주소 변수
  
-                // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
-                var extraRoadAddr = ''; // 도로명 조합형 주소 변수
- 
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraRoadAddr += data.bname;
-                }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraRoadAddr !== ''){
-                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-                }
-                // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
-                if(fullRoadAddr !== ''){
-                    fullRoadAddr += extraRoadAddr;
-                }
- 
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                console.log(data.zonecode);
-                console.log(fullRoadAddr);
-                
-                
-                document.getElementById('addr1').value = data.zonecode; //5자리 새우편번호 사용
-                document.getElementById('addr2').value = fullRoadAddr;
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+            	extraRoadAddr += data.bname;
+			}
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+            	extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+			}
+            // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if(extraRoadAddr !== ''){
+            	extraRoadAddr = ' (' + extraRoadAddr + ')';
+			}
+            // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+            if(fullRoadAddr !== ''){
+            	fullRoadAddr += extraRoadAddr;
+			}
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            console.log(data.zonecode);
+            console.log(fullRoadAddr);
+            
+            document.getElementById('addr1').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('addr2').value = fullRoadAddr;
                
-            }
-         }).open();
-     }
-
+		}
+	}).open();
+}
 </script>

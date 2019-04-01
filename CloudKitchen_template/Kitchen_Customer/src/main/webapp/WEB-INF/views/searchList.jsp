@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>BADGERS - 일반 사용자</title>
+	<title>검색 결과</title>
 </head>
 <body>
 <!-- Header =============================================== -->
@@ -34,26 +34,6 @@
 							</c:forEach>
 						</ul>
 					</div>
-					<div class="filter_type">
-						<h6>Rating</h6>
-						<ul>
-							<li><label><input type="checkbox" class="icheck"><span class="rating">
-							<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i>
-							</span></label></li>
-							<li><label><input type="checkbox" class="icheck"><span class="rating">
-							<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-							</span></label></li>
-							<li><label><input type="checkbox" class="icheck"><span class="rating">
-							<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i>
-							</span></label></li>
-							<li><label><input type="checkbox" class="icheck"><span class="rating">
-							<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i>
-							</span></label></li>
-							<li><label><input type="checkbox" class="icheck"><span class="rating">
-							<i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i>
-							</span></label></li>
-						</ul>
-					</div>
 				</div><!--End collapse -->
 			</div><!--End filters col-->
 		</div><!--End col-md-3 -->
@@ -63,23 +43,12 @@
 			<!-- Tools =================================================== -->
 			<div id="tools">
 				<div class="row">
-					<div class="col-md-3 col-sm-3 col-xs-6">
-						<div class="styled-select">
-							<select name="sort_rating" id="sort_rating">
-								<option value="" selected>Sort by ranking</option>
-								<option value="lower">Lowest ranking</option>
-								<option value="higher">Highest ranking</option>
-							</select>
-						</div>
-					</div>
 					<form action="http://localhost:3001/customer/kitchen/search" method="post">
-						<div style="display: inline;">
-                    		<input type="text" class="search-query" name="query" placeholder="검색어를 자유롭게 입력해주세요.">
-                        	<span class="input-group-btn" style="display: inline; height: 20px; width: 40px;">
-	                    		<input type="submit" id="searchBtn" class="btn_search">
-    	                	</span>
-						</div>
-            		</form>
+						<div class="form-group">
+                        	<input type="text" class="search-query form-control" name="query" value="${query}" placeholder="검색어를 자유롭게 입력해주세요." style="display:inline;width:87%;">
+	                    	<input type="submit" id="searchBtn" class="btn_1" value="검색" style="width:100px;height:40px;position:absolute;top:1px;">
+	                    </div>
+					</form>
 				</div>
 			</div>
 			<!-- End Tools =================================================== -->

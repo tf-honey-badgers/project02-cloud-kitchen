@@ -58,7 +58,7 @@
 	</select>
 	
 	<insert id="insertMenuCat" >
-		insert into menu_category (name,add_price,opt_cl_id) values(#{moName},#{moAddPrice},#{moOptClNo})
+		insert into menu_category (name,biz_id) values(#{mcName},#{mcBizId})
 	</insert>
 	
 </mapper>
