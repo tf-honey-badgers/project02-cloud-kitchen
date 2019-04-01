@@ -13,7 +13,7 @@
                     <div class="input-group">
                         <input type="text" class="search-query" name="query" placeholder="검색어를 자유롭게 입력해주세요.">
                         <span>
-                        	<input type="submit" id="searchBtn" class="btn_search" value="검색">
+                        	<input type="submit" id="searchBtn" class="btn_search" value="">
                         </span>
                     </div>
                 </div>
