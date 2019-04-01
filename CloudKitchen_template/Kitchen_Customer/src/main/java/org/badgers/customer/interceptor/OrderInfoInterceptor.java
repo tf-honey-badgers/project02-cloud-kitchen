@@ -35,10 +35,8 @@ public class OrderInfoInterceptor extends HandlerInterceptorAdapter{
 		super.postHandle(request, response, handler, modelAndView);
 		
 		HttpSession session = request.getSession();
-		
+		// Rest에서 가져온 (selected)cartList를 "cart"라는 이름으로 세션에 저장 
 		session.setAttribute("cart", modelAndView.getModel().get("cartList"));
-		log.info("==========================INTERCEPTOR========================================");
-		log.info(modelAndView.getModel().get("cartList"));
 	}
 	
 }

@@ -60,6 +60,15 @@ $(document).ready(function(){
 		cartTotal += parseInt(price);
 	}
 	$('.total span').text(cartTotal + '원');
+	removeDuplicateBizNames();
 })
+	function removeDuplicateBizNames() {
+		var bizNames = $('.bizNameRow');
+		for(var i = 1; i < bizNames.size(); i++) {
+			if(bizNames.eq(i).text() == bizNames.eq(i-1).text()) {
+				bizNames.eq(i).remove();
+			}
+		}
+	}
 </script>
 			

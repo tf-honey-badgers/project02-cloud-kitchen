@@ -25,25 +25,26 @@ public class PayReadyInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
+		//method(결제 방법)
 		String method = (String)request.getParameter("method");
 		
 		HttpSession session = request.getSession();
+		
+		//PaymentVO를 제외한 모든 세팅이 끝난 OrderVOExtend를 가져온다
 		OrderVOExtend order = (OrderVOExtend)session.getAttribute("order");
 		
-		
+		//PaymentVO 생성
 		OrderPaymentVO orderPaymentVO = new OrderPaymentVO();
 		
 		orderPaymentVO.setId(order.getId());
 		orderPaymentVO.setAmount(order.getPayAmt());
 		orderPaymentVO.setMethod(method);
 		
+		//OrderVOExtend에 PaymentVO를 set 해줌으로써 OrderVoExtend의 setting이 끝났다 
 		order.setOrderPayment(orderPaymentVO);
 		
+		//모든 setting이 완료된 OrderVOExtend를 session에 저장
 		session.setAttribute("order", order);
-		
-		log.info(":::::::::::::::::::::::::::::::::::ORDER:::::::::::::::::::::::::::::::::::::::::::::::::::::");
-		//log.info(order);
-		log.info("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 		
 		return super.preHandle(request, response, handler);
 	}
@@ -52,9 +53,6 @@ public class PayReadyInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
-		
-		
-		
 		
 		super.postHandle(request, response, handler, modelAndView);
 	}
