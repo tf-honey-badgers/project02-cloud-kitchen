@@ -230,4 +230,33 @@ public class MenuController {
 		return 0;
 		
 	}
+	
+	@RequestMapping(value="/main/insertmenucat", method=RequestMethod.GET, 
+			produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public int insertMenuCat(@RequestParam("insertMenuCat") String insertMenuCat) {
+		int result = 0;
+		System.out.println(insertMenuCat);
+		try {
+			String url = "http://localhost:80/rest/bizmenu/insertmenucat";
+	        
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+
+			HttpEntity entity = new HttpEntity(insertMenuCat, headers);
+			
+			ResponseEntity updateResponseEntity = restTemplate.postForEntity
+					(url,entity,int.class);
+			
+			result = (int) updateResponseEntity.getBody();
+			System.out.println(result);
+			return result;
+			
+		}catch(Exception e){
+			e.getStackTrace();
+		}
+		
+		return 0;
+		
+	}
 }
