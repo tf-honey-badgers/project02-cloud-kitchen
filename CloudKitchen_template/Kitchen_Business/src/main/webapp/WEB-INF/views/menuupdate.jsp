@@ -103,7 +103,9 @@
 											</thead>
 											<tbody>
 													<tr>
-														<td><input type="file" id="menuPhotoInsert" value=""> <input type="text" id="photoRealPath" /></td>
+														<td>
+														<input type="file" id="menuPhotoInsert" value="">
+														</td>
 														<td><input type="text" class=""></td>
 														<td><input type="text" class=""></td>
 														<td>
