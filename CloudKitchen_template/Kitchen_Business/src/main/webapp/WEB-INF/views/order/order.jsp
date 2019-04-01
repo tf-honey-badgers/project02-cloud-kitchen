@@ -173,9 +173,8 @@
              });
              //조리완료 눌렀을때
              $('body').on('click', '.complete', function(e){
-            	 console.log(e)
-            	 console.log($(this))
             	 e.stopPropagation();
+            	 orderId=$(this).parents('div.ORD').attr('id')
             	 status='ORD004'
                  url=bizId+'/'+orderId+'/'+status
                  updateStatus(url)
