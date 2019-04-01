@@ -1,6 +1,4 @@
-package org.badgers.rest.model;
-
-import java.util.List;
+package org.badgers.customer.model;
 
 import lombok.Data;
 
@@ -16,7 +14,8 @@ public class CustomerVOExtend {
 	private String status;
 	private String regDate;
 	private String idx;
-	private List<OrderInfoVO> oIo;
-	
+	private String AuthCode;
+	private String address;
+	private String addressDetail;
 	
 }

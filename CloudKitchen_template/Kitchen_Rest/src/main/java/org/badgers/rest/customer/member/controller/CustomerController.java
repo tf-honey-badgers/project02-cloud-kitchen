@@ -44,13 +44,13 @@ public class CustomerController {
 	}
 
 	// 로그인
-	@PostMapping("/")
-	public ResponseEntity<String> login(@RequestBody CustomerVO cvo) throws Exception {
-		 String returnVal = service.login(cvo.getId(), cvo.getPw());
-
-		 ResponseEntity<String> entity = new ResponseEntity<String>(returnVal, HttpStatus.OK);
-		 
-		 return entity;	
+	@PostMapping(value="/login" , produces = "application/json; charset=UTF-8")
+	public ResponseEntity login(@RequestBody CustomerVO cvo) throws Exception {
+//		String msg=""; 
+		
+		CustomerVO returnVal = service.login(cvo.getId(), cvo.getPw());
+		
+		return (returnVal!=null)?new ResponseEntity<>(returnVal, HttpStatus.OK): new ResponseEntity<>(returnVal,HttpStatus.NOT_FOUND);	
 	}
 
 	//개인정보 끌어오기 
@@ -102,6 +102,7 @@ public class CustomerController {
 
 		return returnValue;
 	}
+
 	
 	//주문 내역  보기 
 	@CrossOrigin("http://localhost:3001") //크로스 도메인 처리 
@@ -112,7 +113,6 @@ public class CustomerController {
 		return new ResponseEntity<List<OrderInfoVO>>(list, HttpStatus.OK);
 	}
 	
-
 	// ID 찾기 & 본인인증하기
 	@PostMapping("/verify")
 	public ResponseEntity<String> verify(@RequestBody CustomerVO vo) throws Exception {
