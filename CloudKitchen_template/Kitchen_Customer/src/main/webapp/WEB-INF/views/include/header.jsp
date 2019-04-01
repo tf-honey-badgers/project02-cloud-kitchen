@@ -74,14 +74,14 @@
 				<li><a href="#0" data-toggle="modal" data-target="#login_2">로그인</a></li>
 				<li><a href="#0" data-toggle="modal" data-target="#register">회원가입</a></li>
 			    </c:if>
-				<c:if test="${!empty sessionScope.uid }" >
+				<c:if test="${!empty sessionScope.uid or !empty sessionScope.kid}" >
 				<li><a  href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
 				<li><a href="${pageContext.request.contextPath}/member/mypage">마이 페이지</a></li>
 				</c:if>
 				
-				<c:if test="${!empty sessionScope.kid }" >
+				<%-- <c:if test="${!empty sessionScope.kid }" >
 				<li><a  href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
-				</c:if>
+				</c:if> --%>
 						
 						<li><a href="about.html">About us</a></li>
 					</ul>
