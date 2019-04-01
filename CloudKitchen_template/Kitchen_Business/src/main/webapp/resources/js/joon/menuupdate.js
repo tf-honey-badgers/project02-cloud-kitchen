@@ -1,6 +1,56 @@
 $(document)
 		.ready(
 				function() {
+					
+					$('.insertMenuCatModalOpt').on('click','#insertMenuCatBtn',function(e){
+						console.log(this);
+						let menuCat = new Object();
+						let menuCatArr = new Array();
+						
+						for(let i=0; i<$('.insertMenuCatModalOpt tbody tr').length; i++){
+							menuCatArr.push($('.insertMenuCatModalOpt tbody tr').eq(i).children().eq(0).children().eq(0).val());
+						}
+						menuCat.menuCat = menuCatArr;
+						
+						$.ajax({
+							type : "GET",
+							dataType : 'json',
+							url : "../menu/main/insertmenucat",
+							data : {
+								insertMenuCat : JSON.stringify(menuCat)
+								bizId : 
+							},
+							error : function(data){
+								console.log(data);
+							},
+							success(data){
+								console.log(data);
+							}
+						});
+					});
+					
+					$('.insertMenuCatModal').on('click','.deleteMenuCat',function(e){
+						$(this).parent().parent().remove();
+					});
+					
+					$('.insertMenuCatModal').on('click','.addMenuCat',function(e){
+						
+						$('.insertMenuCatModal tbody').append(
+							 '<tr>'
+							+'<td><input type="text" class="menuCat" /></td>'
+							+'<td>'
+							+'<button class="deleteMenuCat">'
+							+'<img src="/business/resources/img/baseline_remove_circle_outline_black_18dp.png">'
+							+'</button>'
+							+'</td></tr>'
+						
+						);
+					});
+					
+					$('#insertMenuCat').on('click',function(e){
+						$('.insertMenuCatModal tbody').empty();
+						$('.insertMenuCatModal').css('display', 'block');
+					});
 
 					
 					$('.menuModalOpt').on('click','.deleteUpdateMenuOpt',function(e){
@@ -91,7 +141,28 @@ $(document)
 						}
 						insertMenu.menuOptCl = menuOptClArr;
 						console.log(insertMenu);
-						addPhoto(77);
+						
+//						$.ajax({
+//			        		type : "POST",
+//			        		dataType : 'json',
+//			        		url : "../menu/main/getMenuCat",
+//			         		data : {
+//			         			bizId : 'biz_2'
+//			         		},
+//			        		error : function(data){
+//			        			console.log(data);
+//			        		},
+//			        		success(data){
+////			        			console.log(data);
+//			        			$('#menuCatSelect').empty();
+//			        			for(let i=0;i<data.length;i++){
+//			        				$('#menuCatSelect').append('<option value="" class="'+data[i].mcBizId
+//			        						+'" id="'+data[i].mcNo+'" >'+data[i].mcName+'</option>');
+//			        			}
+//			        			
+//			        		}
+//						});
+						
 //						$.ajax({
 //			        		type : "POST",
 //			        		dataType : 'json',
@@ -123,6 +194,9 @@ $(document)
 //			        			}
 //			        		}
 //						});
+						
+						
+						
 					});
 					
 					$('.menuInsertModalOpt')
@@ -444,32 +518,11 @@ $(document)
 					$('.menuInsertModalClose').on('click', function() {
 						$('.menuInsertModal').css('display', 'none');
 						});
+					
+					$('.insertMenuCatModalClose').on('click', function() {
+						$('.insertMenuCatModal').css('display', 'none');
+						});
 
-
-					function addPhoto(menuId) {
-					  var albumName = 'HBBizPhoto'
-					  var files = document.getElementById('menuPhotoInsert').files;
-					  if (!files.length) {
-					    return alert('Please choose a file to upload first.');
-					  }
-					  console.dir(files);
-					  var file = files[0];
-					  var fileName = file.name;
-					  var albumPhotosKey = encodeURIComponent(albumName) + '//';
-
-					  var photoKey = albumPhotosKey + fileName + menuId;
-					  s3.upload({
-					    Key: photoKey,
-					    Body: file,
-					    ACL: 'public-read'
-					  }, function(err, data) {
-					    if (err) {
-					      return alert('There was an error uploading your photo: ', err.message);
-					    }
-					    alert('Successfully uploaded photo.');
-					    viewAlbum(albumName);
-					  });
-					}
 
 					$()
 							.ready(

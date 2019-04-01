@@ -22,4 +22,5 @@ public interface MenuMapper {
 	public int updateMenuOptInfo(MenuOptionVOExtend menuOptVoEx);
 	public List<MenuCatVOExtend> getMenuCat(String bizId);
 	public List<CommonCodeVOExtend> getCommonCode();
+	public int insertMenuCat(String menuCatName);
 }
