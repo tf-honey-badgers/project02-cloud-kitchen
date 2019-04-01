@@ -176,7 +176,7 @@
         </div><!-- End container -->
     </div><!-- End hight_light -->
 
-    <section class="parallax-window" data-parallax="scroll" data-image-src="/customer/resources/img/kitchenmain.jpg" data-natural-width="1200" data-natural-height="600">
+    <section class="parallax-window" data-parallax="scroll" data-image-src="/customer/resources/img/kitchenmain.jpg" data-natural-width="1200" data-natural-height="800">
         <div class="parallax-content">
             <div class="sub_content">
                 <i class="icon_mug"></i>
