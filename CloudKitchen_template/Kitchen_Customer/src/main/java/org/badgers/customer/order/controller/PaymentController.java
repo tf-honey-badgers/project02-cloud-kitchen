@@ -89,13 +89,9 @@ public class PaymentController {
 	//post : 
 	
 	@RequestMapping("/confirm")
-	public String confirm(@RequestParam("list")List list, Model model) {
-		System.out.println("redirect List------------------------------------");
-		model.addAttribute("list", list);
-		
+	public String confirm() {
 		return "/order/order_3_confirm";
 	}
-
 
 
 	@GetMapping("payment/{payMethod}/{status}")
@@ -111,13 +107,9 @@ public class PaymentController {
 			ResponseEntity<String> responses  = restTemplate.postForEntity(url,vo, String.class);
 //			List<OrderInfoVO> list =Arrays.asList(responses.getBody());
 			
-			String list = responses.getBody();
+			String orderconfirm = responses.getBody();
 			
-//			System.out.println(list);
-			model.addAttribute("list", list);
-			System.out.println("redirect List------------------------------------담는다");
-
-			rttr.addFlashAttribute("list", list);
+			rttr.addFlashAttribute("orderconfirm", (String)orderconfirm);
 			
 			return "redirect:/order/confirm";
 			

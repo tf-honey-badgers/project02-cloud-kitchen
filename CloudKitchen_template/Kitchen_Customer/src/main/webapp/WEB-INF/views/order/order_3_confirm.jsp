@@ -52,7 +52,7 @@
 	<jsp:include page="../include/footer.jsp" flush="false" />
 	<!-- Footer 끝  -->
 	<script>
-		var order=${list};
+		var order=${orderconfirm};
 	</script>
 	<script src="/customer/resources/js/order/order-confirm.js"></script>
 </body>
