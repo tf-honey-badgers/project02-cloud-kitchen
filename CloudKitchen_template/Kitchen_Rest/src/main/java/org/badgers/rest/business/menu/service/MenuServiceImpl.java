@@ -198,4 +198,19 @@ public class MenuServiceImpl implements MenuService {
 		return menuVoEx.getMCode();
 	}
 
+	@Override
+	public int insertMenuCat(String insertMenuCat) {
+		int result = 0;
+		JsonParser parser = new JsonParser();
+		JsonObject menuCatelement = (JsonObject) parser.parse(insertMenuCat);
+		JsonArray menuCatArray = menuCatelement.get("menuCat").getAsJsonArray();
+		
+		for(int i=0; i<menuCatArray.size(); i++) {
+			mapper.insertMenuCat(menuCatArray.get(i).getAsString());
+			result++;
+		}
+		
+		return result;
+	}
+
 }

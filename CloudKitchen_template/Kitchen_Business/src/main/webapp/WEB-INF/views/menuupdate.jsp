@@ -29,15 +29,35 @@
 </head>
 
 <body class="">
-<!-- <div id="menuModal" class="menuModal">
-	<div class="menuModalOpt">
-		<span class="menuModalClose">&times;</span>
-
-		<div class="addOptBtnArea">
-			<button type="button" id="updateMenu" class="btn btn-primary pull-right">메뉴 등록</button>
-		</div>
+<div id="insertMenuCatModal" class="insertMenuCatModal">
+	<div class="insertMenuCatModalOpt">
+		<span class="insertMenuCatModalClose">&times;</span>
+					<div class="col-md-12">
+							<div class="card">
+								<div class="card-header card-header-primary">
+									<h4 class="card-title ">메뉴</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table menuUpdate">
+											<thead class="text-primary">
+												<th>카테고리이름</th>
+												<th>추가삭제
+													<button class="addMenuCat">
+													<img src="/business/resources/img/baseline_add_circle_outline_black_18dp.png">
+													</button>
+												</th>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>	
+		<div class="insertMenuCatBtnArea"><button type="button" id="insertMenuCatBtn" class="btn btn-primary pull-right">카테고리 추가</button></div>
 	</div>
-</div> -->
+</div>
 
 <div id="menuModal" class="menuModal">
 	<div class="menuModalOpt">
@@ -57,7 +77,6 @@
 							</div>
 						</div>	
 		<div class="modelBtnArea"><button type="button" id="updateMenuBtn" class="btn btn-primary pull-right">메뉴 변경</button></div>
-		
 	</div>
 </div>
 
@@ -157,7 +176,10 @@
 			<jsp:include page="include/header.jsp" flush="false"></jsp:include>
 			<!-- End Header -->
 			<div class="content">
+			<div class="btnArea">
+				<button type="button" id="insertMenuCat" class="btn btn-primary pull-right">카테고리 추가</button>
 				<button type="button" id="menuInsert" class="btn btn-primary pull-right">메뉴추가</button>
+			</div>
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
