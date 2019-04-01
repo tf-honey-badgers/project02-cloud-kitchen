@@ -78,6 +78,10 @@
 				<li><a  href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
 				<li><a href="${pageContext.request.contextPath}/member/mypage">마이 페이지</a></li>
 				</c:if>
+				
+				<c:if test="${!empty sessionScope.kid }" >
+				<li><a  href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
+				</c:if>
 						
 						<li><a href="about.html">About us</a></li>
 					</ul>
@@ -113,7 +117,7 @@
            </a>    
            
            <div id="kakao_btn_changed">
-           <a id="custom-login-btn" href="javascript:loginWithKakao()">
+           <a id="custom-login-btn" href="javascript:logoutWithKakao()">
 		   <img src="https://k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
 		   </a> 
 		   </div>

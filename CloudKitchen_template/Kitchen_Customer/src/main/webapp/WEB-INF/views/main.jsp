@@ -21,6 +21,11 @@
 		<div class="main_title">
             <h2 class="nomargin_top" style="padding-top:0">클라우드 키친이란?</h2>
             <p>한곳에서 ~~~~~~~~</p>
+            <p>${kid }</p>
+            <p>${sessionScope.kid }</p>
+            <p>${kemail }</p>
+            <p>${knikname }</p>
+           
         </div>
         <div class="row">
             <div class="col-md-3">

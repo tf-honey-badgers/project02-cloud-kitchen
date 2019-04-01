@@ -117,7 +117,7 @@ public class CustomerController {
 	@GetMapping("/logout")
 	public String logout (Model model) {
 		model.addAttribute("logout", "logout");
-		return "redirect:/main";
+		return "main";
 	}
 	
 	//회원정보 수정 
@@ -132,15 +132,16 @@ public class CustomerController {
 		log.info("회원 정보 수정 완료 ");
 	}
 	
-	//회원정보 수정 
+	//회원정보 삭제 
 	@PostMapping("/{id}/delete")
 	@ResponseBody
-	public void deleteCustomer(@RequestBody CustomerVO cvo) {
+	public void deleteCustomer(@RequestBody CustomerVO cvo, HttpSession session) {
 		log.info("Kitchen_Business 사용자 탈퇴...............................");
 	
 		String url = "http://localhost/rest/customer/" + cvo.getId() + "/delete";
 		restTemplate.put(url, cvo);
-					
+		
+		session.invalidate();		
 		log.info("회원탈퇴 완료");
 	}
 	

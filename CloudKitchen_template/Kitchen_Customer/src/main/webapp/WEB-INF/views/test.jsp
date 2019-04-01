@@ -58,17 +58,6 @@ function setCookie( name , value , expired ){
  
 }
  
-/* 쿠키 삭제 다른방법
-function deleteCookie( name ){
-    
-    var date = new Date();
-     date.setHours(date.getHours() - 1);
-     var expried_set = "expries="+date.toGMTString();
-     document.cookie = name + "="  + "; path=/;" + expried_set + ";"
-}
-*/
- 
-// 
 function getCookie(name){
  
     var nameofCookie = name + "=";

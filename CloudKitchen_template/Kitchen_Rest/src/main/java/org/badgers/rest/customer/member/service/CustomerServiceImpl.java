@@ -43,11 +43,15 @@ public class CustomerServiceImpl implements CustomerService {
 			sendMail.setSubject("[Kloud Kitchen] 회원가입 이메일 인증");
 			sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
 					.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
+					.append("<div>")
+					.append("<span:style='display:none'>")
 					.append("<a href='http://localhost:3001/customer/member/emailConfirm?email=")
 					.append(vo.getEmail())
 					.append("&key=")
 					.append(key)
 					.append("' target='_blenk'>이메일 인증 확인</a>")
+					.append("</span>")
+					.append("</div>")
 					.toString());
 			sendMail.setFrom("kloudkitchen5@gmail.com ", "클라우드 키친");
 			sendMail.setTo(vo.getEmail());
