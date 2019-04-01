@@ -11,9 +11,9 @@
             <form action="http://localhost:3001/customer/kitchen/search" method="post">
                 <div id="custom-search-input">
                     <div class="input-group">
-                        <input type="text" class="search-query" name="query" placeholder="검색어를 자유롭게 입력해주세요.">
+                        <input type="text" class="search-query" name="query" placeholder="검색어를 자유롭게 입력해주세요." style="border-radius: 0 !important;">
                         <span>
-                        	<input type="submit" id="searchBtn" class="btn_search" value="검색">
+                        	<input type="submit" id="searchBtn" class="btn_search" value="">
                         </span>
                     </div>
                 </div>

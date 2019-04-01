@@ -184,7 +184,7 @@
         
         /* 1. firebase 이벤트 --------------------------------------------------------------------- */
           var bizId ='${sessionScope.bizId}';
-          console.log(bizId)
+         console.log(bizId)
          
  		  var config = {
 		    apiKey: "AIzaSyDZ4Zt7FAQrf8ah4FDlGZU2-qLeinySOSs",
@@ -213,44 +213,47 @@
 		  var address= obj[Object.keys(obj)[0]];
 		  var menus =obj[Object.keys(obj)[2]];
 		  var msg =obj[Object.keys(obj)[3]];
-		  var status =obj[Object.keys(obj)[4]];
+		  var status =obj[Object.keys(obj)[5]];
 		  var time =obj[Object.keys(obj)[6]];
-			  
-			  
-			  $('<div id="'+orderId+'" class="ORD" >'
-				+'<div class="alert alert-info ordTgg"> '
-				+'<span style="display:inline-block"><b>[주문번호]&nbsp;</b>'+orderId+'</span>'
-				+'<span class="float-right">'
-				+'<input type="button" class="btn btn-primary btn-sm confirm" value="접수">'
-				+'<input type="button" class="btn btn-primary btn-sm cancel" value="취소">'
-				+'</span></div>'
-				+'<div class="detailOrder alert alert-light bg-light" style="border: 1px solid black; display: none;">'
-				+'<h4 class="alert-heading font-weight-bold">주문 상세 </h4>'
-			  	+'<table><tbody><tr><th scope="row">주소</th>'
-			  	+'<td class="pl-2">'+address+'</td></tr>'
-			  	+'<tr><th scope="row" >주문 상태</th>'
-			  	+'<td class="pl-2">'+status+'</td></tr>'
-			  	+'<tr><th scope="row" >주문 시간</th>'
-			  	+'<td class="pl-2">'+time+'</td></tr>'
-			  	+'<tr><th scope="row">요청사항</th><td class="pl-2">'+msg+'</td></tr></tbody></table>'
-			  	+'<table class="table table-striped table-hover"><thead class="thead-dark"><th scope="col">메뉴 이름</th><th scope="col">옵션</th><th scope="col">수량</th></thead> <tbody class="inputMenuInfo">'
-			  	+'</tbody></table></div></div>'
-			  )
-				.appendTo('.waitAreaWrap')						  		   	  	
-		
 		  
-	 	  $.each(menus, function(key, value){
-			  console.log(key, value)
-			  $('div[id='+orderId+'] .inputMenuInfo ').append('<tr value="'+orderId+key+'">')
-			  $.each(value, function(k,v){
-				  if(v=='null'){
-					  v=''
-				  }
-				  console.log(k, v)
-				  $('.inputMenuInfo >tr[value="'+orderId+key+'"]').append('<td>'+v+'</td>')
-			  })
-			 
-		  }) 
+		  //주문번호 뿌려줄땐 고객아이디 안보이게 해서 뿌려주기 
+		  var idx= orderId.indexOf('_')+1;
+		  var trimedOrderId= orderId.substring(idx)
+			  
+		  // 주문 상태가 ORD001 일때만 알람이 뜸  접수 이후로는 알람 안뜸
+			  if(status==='ORD001'){
+				  $('<div id="'+orderId+'" class="ORD" >'
+					+'<div class="alert alert-info ordTgg"> '
+					+'<span style="display:inline-block"><b>[주문번호]&nbsp;</b>'+trimedOrderId+'</span>'
+					+'<span class="float-right">'
+					+'<input type="button" class="btn btn-primary btn-sm confirm" value="접수">'
+					+'<input type="button" class="btn btn-primary btn-sm cancel" value="취소">'
+					+'</span></div>'
+					+'<div class="detailOrder alert alert-light bg-light" style="border: 1px solid black; display: none;">'
+					+'<h4 class="alert-heading font-weight-bold">주문 상세 </h4>'
+				  	+'<table><tbody><tr><th scope="row">주소</th>'
+				  	+'<td class="pl-2">'+address+'</td></tr>'
+				  	+'<tr><th scope="row" >주문 시간</th>'
+				  	+'<td class="pl-2">'+time+'</td></tr>'
+				  	+'<tr><th scope="row">요청사항</th><td class="pl-2">'+msg+'</td></tr></tbody></table>'
+				  	+'<table class="table table-striped table-hover"><thead class="thead-dark"><th scope="col">메뉴 이름</th><th scope="col">옵션</th><th scope="col">수량</th></thead> <tbody class="inputMenuInfo">'
+				  	+'</tbody></table></div></div>'
+				  )
+					.appendTo('.waitAreaWrap')						  		   	  	
+		  
+			 	  $.each(menus, function(key, value){
+					 // console.log(key, value)
+					  $('div[id='+orderId+'] .inputMenuInfo ').append('<tr value="'+orderId+key+'">')
+					  $.each(value, function(k,v){
+						  if(v=='null'){
+							  v=''
+						  }
+						  //console.log(k, v)
+						  $('.inputMenuInfo >tr[value="'+orderId+key+'"]').append('<td>'+v+'</td>')
+					  })
+					 
+				  }) 
+			  }
 			  
 		 })
 		 

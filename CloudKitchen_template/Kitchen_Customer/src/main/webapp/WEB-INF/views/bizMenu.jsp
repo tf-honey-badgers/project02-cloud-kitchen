@@ -42,7 +42,7 @@
 			</div> <!-- End col-md-2 -->
 
 			<div class="col-md-6">
-				<div class="box_style_2" id="main_menu" data-biz-id="${bizMember.bizId}">
+				<div class="box_style_2" id="main_menu" data-biz-id="${bizMember.bizId}" data-kb-id="${bizMember.bizKitchenId}" data-kb-name="${bizMember.bizKitchenName}">
 					<h2 class="inner">Menu</h2>
 					<c:forEach var="menu" items="${bizMember.bizMenuCatVo}" varStatus="loop">
 						<h3 class="nomargin_top" id="${loop.index + 100}">${menu.mcName}</h3>
@@ -141,7 +141,7 @@
 											<td style="width: 10%;"></td>
 										</tr>
 									</c:forEach>
-									<tr>
+									<tr class="priceRow">
 										<td colspan="2" class="priceData" data-total-price="${cart.totalAmt}"><strong class="pull-right">합계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cart.totalAmt}원</strong></td>
 									</tr>
 								</c:forEach>
@@ -151,7 +151,7 @@
 						<table class="table table_summary">
 							<tbody>
 								<tr>
-									<td class="total">총 금액 <span class="pull-right"></span>
+									<td class="total">총 금액 <span class="pull-right" data-total=""></span>
 									</td>
 								</tr>
 							</tbody>
