@@ -61,33 +61,30 @@ $(document).ready(function(){
 
 	/* 로그인 절차 */
 	$('#myLogin button').on('click', function() {
-		$.ajax({
-    		url : 'http://localhost:3001/customer/member/'
-    		, type : 'POST'
-			, contentType : 'application/json'
-    		, data : JSON.stringify({
-    				  id : $('#myLogin input:eq(0)').val()
-    				, pw : $('#myLogin input:eq(1)').val()
-    			})
-    			, error : function(data) {
-        			console.log(data);
-        		}
-        		, success : function(data) {
-        			if(data == "성공적으로 로그인했습니다.") {
-        				 alert('로그인 성공');		
-        			} else {
-        				alert("로그인 실패");
+        $.ajax({
+            url : 'http://localhost:3001/customer/member/login'
+            , type : 'POST'
+            , contentType : 'application/json; charset=UTF-8'
+            , data : JSON.stringify({
+                      id : $('#myLogin input:eq(0)').val()
+                    , pw : $('#myLogin input:eq(1)').val()
+                })
+                , error : function(data) {
+                    console.log(data);
+                }
+                , success : function(data) {
+                    if(data == "로그인 성공") {
+                         alert('로그인 성공'); 
+                         window.location.reload()
+                    } else {
+                        alert("로그인 실패");	
+                    }
+                    $('.modal').modal('hide');
+                    $('#myLogin input').val("");
+                }
+            });
+        })
 
-        				
-        				    				
-        			}
-        			$('.modal').modal('hide');
-        			$('#myLogin input').val("");
-        		}
-    		});
-    	})
-    	
-	
 	// 회원가입 절차 
 	$('#myRegister button').on('click', function() {
 		$.ajax({

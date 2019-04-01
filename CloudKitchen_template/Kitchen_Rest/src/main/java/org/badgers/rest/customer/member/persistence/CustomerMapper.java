@@ -1,9 +1,10 @@
 package org.badgers.rest.customer.member.persistence;
 
 import java.util.List;
-import java.util.Set;
 
+import org.apache.ibatis.annotations.Param;
 import org.badgers.rest.model.CustomerVO;
+import org.badgers.rest.model.CustomerVOExtend;
 import org.badgers.rest.model.OrderInfoVO;
 
 public interface CustomerMapper {
@@ -12,7 +13,7 @@ public interface CustomerMapper {
 	public int register(CustomerVO vo) throws Exception;	
 
 	// 로그인
-	public CustomerVO login(String id) throws Exception;
+	public CustomerVO login(@Param("id")String id, @Param("pw")String pw) throws Exception;
 
 	//회원 정보
 	public CustomerVO selectById(String id) throws Exception;	
