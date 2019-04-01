@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<!-- SubHeader & Position =============================================== -->
+<!-- SubHeader =============================================== -->
 <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="/customer/resources/img/sub_header_short.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
 	<div id="sub_content">

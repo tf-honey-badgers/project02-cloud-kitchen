@@ -10,13 +10,14 @@
     <title>BADGERS - 일반 사용자</title>
 </head>
 <body>
-<!--헤더 -->
+<!-- Headers ================================================== -->
   	<!-- 위쪽 헤더바  -->
     <jsp:include page="include/header.jsp" flush="false"/>
     <!-- 영상 및 주문  -->
 	<jsp:include page="include/header2.jsp" flush="false"/>
+<!-- End Headers ================================================== -->
 
-<!-- 본문 ================================================== -->
+<!-- Content ================================================== -->
     <div class="container margin_60">
 		<div class="main_title">
             <h2 class="nomargin_top" style="padding-top:0">클라우드 키친이란?</h2>
@@ -187,7 +188,7 @@
             </div><!-- End sub_content -->
         </div><!-- End subheader -->
     </section><!-- End section -->
-    <!-- End Content =============================================== -->
+<!-- End Content =============================================== -->
 
     <div class="container margin_60">
         <div class="main_title margin_mobile">
@@ -216,25 +217,21 @@
         </div><!-- End row -->
     </div><!-- End container -->
 
-    <!-- Footer 시작  -->
+<!-- Footer 시작  -->
 <jsp:include page="include/footer.jsp" flush="false"/>
 <!-- Footer 끝  -->
 
-
-
-   <script src="/customer/resources/js/video_header.js"></script>
-    <script>
-        $(document).ready(function() {
-            'use strict';
-            HeaderVideo.init({
-                container: $('.header-video'),
-                header: $('.header-video--media'),
-                videoTrigger: $("#video-trigger"),
-                autoPlayVideo: true
-            });
-
-        });
-    </script>
-
+<script src="/customer/resources/js/video_header.js"></script>
+<script>
+	$(document).ready(function() {
+    	'use strict';
+        HeaderVideo.init({
+        	container: $('.header-video'),
+            header: $('.header-video--media'),
+            videoTrigger: $("#video-trigger"),
+            autoPlayVideo: true
+		});
+	});
+</script>
 </body>
 </html>
