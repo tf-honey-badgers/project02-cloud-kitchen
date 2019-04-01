@@ -40,9 +40,9 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public int login(String bizId, String pw) {
 		System.out.println("로그인 ========================================");
-		int returnVal;
+
 		BizMemberVOExtend member = mapper.login(bizId, pw);
-		return (member!=null) ? (returnVal=1) : (returnVal=0);
+		return (member!=null) ? 1 : 0;
 	}
 	
 	// ID 찾기 & 본인인증하기

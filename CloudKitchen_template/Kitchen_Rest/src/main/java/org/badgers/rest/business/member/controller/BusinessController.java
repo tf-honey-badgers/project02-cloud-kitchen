@@ -1,7 +1,5 @@
 package org.badgers.rest.business.member.controller;
 
-import java.net.ConnectException;
-
 import org.badgers.rest.business.member.service.BusinessService;
 import org.badgers.rest.model.BizMemberVOExtend;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,11 +64,10 @@ public class BusinessController {
 	// 로그인
 	@PostMapping(value="/login" , produces = "application/json; charset=UTF-8")
 	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend biz) throws Exception {
-		String msg=""; 
 		int returnVal = service.login(biz.getBizId(), biz.getPw());
 		
 		 //로그인이 성공했는지 메세지 전송 , httpStatus로 성공 실패구분짓는것은 ..  header에 http프로토콜 상태를 알려주는 것이므로 에러유발... 좋은 코드가 아님 
-		 return (returnVal==1)?new ResponseEntity<>(msg ="success", HttpStatus.OK): new ResponseEntity<>(msg ="fail",HttpStatus.OK);	
+		 return (returnVal==1) ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>("fail", HttpStatus.OK);	
 	}
 	
 	// ID 찾기 & 본인인증하기
