@@ -60,11 +60,6 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public int deleteMenu(int menuId) {
-		return mapper.deleteMenu(menuId);
-	}
-
-	@Override
 	public int deleteMenuOpt(int menuOptIdx) {
 		return mapper.deleteMenuOpt(menuOptIdx);
 	}
@@ -216,6 +211,11 @@ public class MenuServiceImpl implements MenuService {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public int deleteMenu(int menuId) {
+		return mapper.deleteMenu(menuId);
 	}
 
 }
