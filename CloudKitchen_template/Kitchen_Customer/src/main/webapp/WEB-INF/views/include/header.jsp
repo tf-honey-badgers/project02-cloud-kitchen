@@ -70,18 +70,23 @@
 							</ul></li>
 						
 						
-				<c:if test="${empty sessionScope.uid }" > 
+				<c:if test="${empty sessionScope.uid and empty sessionScope.kid }" > <!-- 기본상태 -->
 				<li><a href="#0" data-toggle="modal" data-target="#login_2">로그인</a></li>
 				<li><a href="#0" data-toggle="modal" data-target="#register">회원가입</a></li>
 			    </c:if>
-				<c:if test="${!empty sessionScope.uid or !empty sessionScope.kid}" >
+				<c:if test="${empty sessionScope.uid and !empty sessionScope.kid}" ><!-- 아이디 없고 카카오 있고  -->
+				<li class="submenu"><a href="#" class="show-submenu">${knikname }님</a></li>
+				<li><a  href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
+				
+				</c:if>
+				<c:if test="${!empty sessionScope.uid and empty sessionScope.kid}" > <!-- 아이디 있고 카카오 없고 -->
+				<li class="submenu"><a href="#" class="show-submenu">${uid }님</a></li>
 				<li><a  href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
 				<li><a href="${pageContext.request.contextPath}/member/mypage">마이 페이지</a></li>
 				</c:if>
 				
-				<%-- <c:if test="${!empty sessionScope.kid }" >
-				<li><a  href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
-				</c:if> --%>
+				
+		
 						
 						<li><a href="about.html">About us</a></li>
 					</ul>
@@ -111,20 +116,20 @@
                      </div>
                     <button type="button" class="btn btn-submit">로그인</button>
                 </form>
-                
+          	
            <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
-           <img alt="카카오 로그인" src="/customer/resources/img/kakao.png">
-           </a>    
+           <img alt="카카오 로그인" src="/customer/resources/img/kakaobutton.png" style="max-width: 100%; heigth:auto;">
+           </a>    					
            
-           <div id="kakao_btn_changed">
+         <!--   <div id="kakao_btn_changed">
            <a id="custom-login-btn" href="javascript:logoutWithKakao()">
 		   <img src="https://k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
 		   </a> 
-		   </div>
+		   </div> -->
 		   
-		   <div>
+		<!--    <div>
   		 <button class="api-btn" onclick="unlinkApp()"> 앱 탈퇴하기	</button>
- 			</div>
+ 			</div> -->
             </div>
         </div>
     </div><!-- End modal -->

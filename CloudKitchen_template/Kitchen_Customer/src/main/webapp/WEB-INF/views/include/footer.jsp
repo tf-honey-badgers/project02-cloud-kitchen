@@ -232,23 +232,23 @@
     /* End Search =============================================== */
 
     //로그인 및 로그아웃 버튼 생성 처리
-    var cookiedata = document.cookie;
+/*     var cookiedata = document.cookie;
 
     if(cookiedata.indexOf('kakao_login=done') < 0){
         createLoginKakao();
     }else{
         createLogoutKakao();
-    }
+    } */
 
     /* 로그인 관련 쿠키 생성 및 삭제 */
-    function setCookie( name , value , expired ){
+  /*   function setCookie( name , value , expired ){
 
      var date = new Date();
      date.setHours(date.getHours() + expired);
      var expried_set = "expries="+date.toGMTString();
      document.cookie = name + "=" + value + "; path=/;" + expried_set + ";"
 
-    }
+    } */
 
     /* 쿠키 삭제 다른방법
     function deleteCookie( name ){
@@ -261,7 +261,7 @@
     */
 
     // 
-    function getCookie(name){
+   /*  function getCookie(name){
 
         var nameofCookie = name + "=";
         var x = 0;
@@ -279,13 +279,13 @@
 
             return "";
     }
-
+ */
 
     // 카카오 script key 입력
     Kakao.init('f974d2d246e51518f4c5d60e83a2ee41');
 
      // 로그인 처리
-    function loginWithKakao(){
+ /*    function loginWithKakao(){
 
         Kakao.Auth.cleanup();
         Kakao.Auth.login({
@@ -337,7 +337,7 @@
                     "</a>";
      document.getElementById('kakao_btn_changed').innerHTML  = logout_btn;
 
-    }
+    } */
 
 
       //]]>
