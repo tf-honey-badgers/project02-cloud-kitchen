@@ -15,7 +15,7 @@
 			<i class="icon_star"></i>
 		</div>
 		<h1>${bizMember.bizName}</h1>
-        <div><strong>최소 주문 금액:</strong> ${bizMember.bizMinAmt}원</div>
+        <div id="minAmt" data-min-amt="${bizMember.bizMinAmt}"><strong>최소 주문 금액:</strong> ${bizMember.bizMinAmt}원</div>
         <div><strong>가게 찜 횟수:</strong> <span id="likes">${bizMember.bizLikeCnt}</span> (<span id="likeText">찜해주세요!!</span>&nbsp;<span id="likeWrapper"><i id="likeBiz" class="icon-heart-empty"></i></span>)</div>
         	<!--
         		내가 찜했다면 class="icon-heart", span은 "찜하셨어요!!"
