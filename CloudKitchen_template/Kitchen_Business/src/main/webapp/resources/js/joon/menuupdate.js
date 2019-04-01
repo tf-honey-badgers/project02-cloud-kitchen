@@ -18,7 +18,7 @@ $(document)
 							url : "../menu/main/insertmenucat",
 							data : {
 								insertMenuCat : JSON.stringify(menuCat)
-								bizId : 
+//								bizId : 
 							},
 							error : function(data){
 								console.log(data);
