@@ -46,12 +46,14 @@
 		</div>
 	</div><!-- End row -->
 </div><!-- End container -->
-${list}
 <!-- End Content =============================================== -->
 
 	<!-- Footer 시작  -->
 	<jsp:include page="../include/footer.jsp" flush="false" />
 	<!-- Footer 끝  -->
+	<script>
+		var order=${list};
+	</script>
 	<script src="/customer/resources/js/order/order-confirm.js"></script>
 </body>
 </html>
