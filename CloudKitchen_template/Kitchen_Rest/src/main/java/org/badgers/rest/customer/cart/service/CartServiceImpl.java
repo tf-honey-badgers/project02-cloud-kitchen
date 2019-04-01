@@ -147,4 +147,12 @@ public class CartServiceImpl implements CartService {
 		
 		return returnVal; // cart_detail 테이블에서 삭제된 행 개수 + cart 테이블에서 삭제된 행 개수 반환
 	}
+
+	@Override
+	public int deleteAllCart(String custId) throws Exception {
+		// TODO Auto-generated method stub
+		mapper.deleteAllCart(custId);
+		
+		return 0;
+	}
 }

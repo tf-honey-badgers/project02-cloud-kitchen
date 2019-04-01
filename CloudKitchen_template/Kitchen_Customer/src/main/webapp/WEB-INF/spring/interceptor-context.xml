@@ -10,9 +10,18 @@
 
 	<mvc:interceptor>
 		<mvc:mapping path="/order/orderinfo"/>
-		<bean class="org.badgers.customer.interceptor.PaymentSessionInterceptor"></bean>
+		<bean class="org.badgers.customer.interceptor.OrderInfoInterceptor"></bean>
 	</mvc:interceptor>
 	
+	<mvc:interceptor>
+		<mvc:mapping path="/order/payment"/>
+		<bean class="org.badgers.customer.interceptor.PaymentInterceptor"></bean>
+	</mvc:interceptor>
+	<mvc:interceptor>
+		<mvc:mapping path="/order/payready"/>
+		<bean class="org.badgers.customer.interceptor.PayReadyInterceptor"></bean>
+	</mvc:interceptor>
+
 	<mvc:interceptor>
 		<mvc:mapping path="/member/login"/>
 		<bean class="org.badgers.customer.interceptor.MemberInterceptor"></bean>
@@ -23,6 +32,8 @@
 		<bean class="org.badgers.customer.interceptor.MemberInterceptor"></bean>
 	</mvc:interceptor>
 	
+	
+
 </mvc:interceptors>
 
 

@@ -59,7 +59,7 @@ public class CustOrderController {
 	public ResponseEntity<?> registOrder(@RequestBody OrderVOExtend vo, @PathVariable("key") String key)
 			throws JacksonUtilityException, Exception, FirebaseException {
 		// 1. mysql insert
-//		orderService.excuteOrder(vo);
+		orderService.excuteOrder(vo);
 
 		// 2. mysql select
 		LinkedList<OrderInfoVO> list = orderService.getOrderInfo(vo.getId());
@@ -81,6 +81,10 @@ public class CustOrderController {
 		}
 		// 4. 사용자의 view에 넘겨줄 orderInfo map
 		String jsonOrderInfoForView = toOrderInfoForViewService.toOrderInfoForView(list);
+		
+		// 5. 주문 완료 된 고객의 장바구니 delete
+		cartService.deleteAllCart(vo.getCustId());
+		
 		
 		return new ResponseEntity<>(jsonOrderInfoForView, HttpStatus.OK);
 

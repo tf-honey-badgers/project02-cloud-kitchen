@@ -178,7 +178,7 @@ public class CustomerController {
 		}
 		
 		mav.addObject("list",list);
-	
+		
 		mav.setViewName("orderinfo");	
 		
 		return mav;
@@ -198,7 +198,9 @@ public class CustomerController {
 			favorite = (List<FavoriteVO>) responseEntity.getBody();
 		}		
 		
+		System.out.println("favorite===================="+favorite);
 		mav.addObject("list",favorite); //뷰에 전달할 데이터 지정 
+		
 		mav.setViewName("favorite"); //뷰 이름 지정 
 
 		return mav;

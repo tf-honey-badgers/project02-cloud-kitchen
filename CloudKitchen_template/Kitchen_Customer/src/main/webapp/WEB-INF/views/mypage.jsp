@@ -19,6 +19,7 @@
 				${sessionScope.uid }
 				${addr1 }
 				${addr2 }
+				${sessionScope.custid }
 				
 	<div class="row">
 		<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.1s">
