@@ -42,7 +42,7 @@
 			</div> <!-- End col-md-2 -->
 
 			<div class="col-md-6">
-				<div class="box_style_2" id="main_menu" data-biz-id="${bizMember.bizId}">
+				<div class="box_style_2" id="main_menu" data-biz-id="${bizMember.bizId}" data-kb-id="${bizMember.bizKitchenId}" data-kb-name="${bizMember.bizKitchenName}">
 					<h2 class="inner">Menu</h2>
 					<c:forEach var="menu" items="${bizMember.bizMenuCatVo}" varStatus="loop">
 						<h3 class="nomargin_top" id="${loop.index + 100}">${menu.mcName}</h3>
