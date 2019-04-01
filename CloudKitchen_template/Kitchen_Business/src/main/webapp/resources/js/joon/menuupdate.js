@@ -2,6 +2,57 @@ $(document)
 		.ready(
 				function() {
 					
+					$('.insertMenuCatModalOpt').on('click','#insertMenuCatBtn',function(e){
+						console.log(this);
+						let menuCat = new Object();
+						let menuCatArr = new Array();
+						
+						for(let i=0; i<$('.insertMenuCatModalOpt tbody tr').length; i++){
+							menuCatArr.push($('.insertMenuCatModalOpt tbody tr').eq(i).children().eq(0).children().eq(0).val());
+						}
+						menuCat.menuCat = menuCatArr;
+						
+						$.ajax({
+							type : "GET",
+							dataType : 'json',
+							url : "../menu/main/insertmenucat",
+							data : {
+								insertMenuCat : JSON.stringify(menuCat)
+								bizId : 
+							},
+							error : function(data){
+								console.log(data);
+							},
+							success(data){
+								console.log(data);
+							}
+						});
+					});
+					
+					$('.insertMenuCatModal').on('click','.deleteMenuCat',function(e){
+						$(this).parent().parent().remove();
+					});
+					
+					$('.insertMenuCatModal').on('click','.addMenuCat',function(e){
+						
+						$('.insertMenuCatModal tbody').append(
+							 '<tr>'
+							+'<td><input type="text" class="menuCat" /></td>'
+							+'<td>'
+							+'<button class="deleteMenuCat">'
+							+'<img src="/business/resources/img/baseline_remove_circle_outline_black_18dp.png">'
+							+'</button>'
+							+'</td></tr>'
+						
+						);
+					});
+					
+					$('#insertMenuCat').on('click',function(e){
+						$('.insertMenuCatModal tbody').empty();
+						$('.insertMenuCatModal').css('display', 'block');
+					});
+
+					
 					$('.menuModalOpt').on('click','.deleteUpdateMenuOpt',function(e){
 						let optId = $(this).parent().parent();
 						console.log(optId);
@@ -91,37 +142,61 @@ $(document)
 						insertMenu.menuOptCl = menuOptClArr;
 						console.log(insertMenu);
 						
-						$.ajax({
-			        		type : "POST",
-			        		dataType : 'json',
-			        		url : "../menu/main/insertMenu",
-			         		data : {
-			         			menuInfo : JSON.stringify(insertMenu)
-			         		},
-			        		error : function(data){
-			        			console.log(data);
-			        		},
-			        		success(data){
-			        			console.log(data);
-			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
-			        			for(let i=0; i<menuCat.length; i++){
-			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
-//			        					$('.container-fluid .table tbody')[i].innerHTML+=(
-			        					$('.container-fluid .table tbody').eq(i).append(
-			        							'<tr>'
-			        							+'<td>'+data+'</td>'
-			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value+'</td>'
-			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value+'</td>'
-			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value+'</td>'
-			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
-												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
-			        							);
-			        					
-			        					$('.menuInsertModal').css('display', 'none');
-			        				}
-			        			}
-			        		}
-						});
+//						$.ajax({
+//			        		type : "POST",
+//			        		dataType : 'json',
+//			        		url : "../menu/main/getMenuCat",
+//			         		data : {
+//			         			bizId : 'biz_2'
+//			         		},
+//			        		error : function(data){
+//			        			console.log(data);
+//			        		},
+//			        		success(data){
+////			        			console.log(data);
+//			        			$('#menuCatSelect').empty();
+//			        			for(let i=0;i<data.length;i++){
+//			        				$('#menuCatSelect').append('<option value="" class="'+data[i].mcBizId
+//			        						+'" id="'+data[i].mcNo+'" >'+data[i].mcName+'</option>');
+//			        			}
+//			        			
+//			        		}
+//						});
+						
+//						$.ajax({
+//			        		type : "POST",
+//			        		dataType : 'json',
+//			        		url : "../menu/main/insertMenu",
+//			         		data : {
+//			         			menuInfo : JSON.stringify(insertMenu)
+//			         		},
+//			        		error : function(data){
+//			        			console.log(data);
+//			        		},
+//			        		success(data){
+//			        			console.log(data);
+//			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
+//			        			for(let i=0; i<menuCat.length; i++){
+//			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
+////			        					$('.container-fluid .table tbody')[i].innerHTML+=(
+//			        					$('.container-fluid .table tbody').eq(i).append(
+//			        							'<tr>'
+//			        							+'<td>'+data+'</td>'
+//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value+'</td>'
+//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value+'</td>'
+//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value+'</td>'
+//			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
+//												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
+//			        							);
+//			        					addPhoto(data);
+//			        					$('.menuInsertModal').css('display', 'none');
+//			        				}
+//			        			}
+//			        		}
+//						});
+						
+						
+						
 					});
 					
 					$('.menuInsertModalOpt')
@@ -217,6 +292,7 @@ $(document)
 			        				$('#menuCatSelect').append('<option value="" class="'+data[i].mcBizId
 			        						+'" id="'+data[i].mcNo+'" >'+data[i].mcName+'</option>');
 			        			}
+			        			
 			        		}
 						});
 						
@@ -245,7 +321,7 @@ $(document)
 					}); // menuInsert click end
 
 					
-					$('#updateMenu').on('click',function(e){
+					$('#updateMenuBtn').on('click',function(e){
 						
 						let menuOptSel = $('.menuOptUp');
 						let menuOptAll = $('.optAll');
@@ -292,6 +368,17 @@ $(document)
 			        		},
 			        		success(data){
 			        			console.log(data);
+
+			        			for(let i=0; i<$('.container-fluid .table tbody tr').length; i++){
+			        				if($('.container-fluid .table tbody tr').eq(i).children().eq(0).text()
+			        						== $('.menuModalOpt tbody tr').eq(0).children().eq(0).text()){
+			        					
+			        					$('.container-fluid .table tbody tr').eq(i).children().eq(2).text($('.menuModalOpt tbody tr').eq(0).children().eq(2).children().val());
+			        					
+			        					$('.container-fluid .table tbody tr').eq(i).children().eq(3).text($('.menuModalOpt tbody tr').eq(0).children().eq(3).children().val());
+			        				}
+			        			}
+			        			
 			        			alert('변경되었습니다');
 			        		}
 						});
@@ -310,14 +397,9 @@ $(document)
 						let menuName = $(this).parent().parent().children().eq(2).text();
 						let menuPrice = $(this).parent().parent().children().eq(3).text();
 						let menuCatName = $(this).parent().parent().parent().parent().parent().parent().parent().parent().children().eq(0).children().eq(0).children().eq(0).text();
+						let menuInfo = $(this).parent().parent().children();
 						console.log(menuCatName);
 						
-						let menuInfo = $(this).parent().parent().children();
-						
-						let menuNo = menuInfo.eq(0).text();
-						let menuPhoto = menuInfo.eq(1).text();
-						let menuName = menuInfo.eq(2).text();
-						let menuPrice = menuInfo.eq(3).text();
 						
 						$.ajax({
 			        		type : "GET",
@@ -404,72 +486,6 @@ $(document)
 				        				}
 			        				}
 			        				
-			        				
-			        			$('.menuUpdate').append(
-			        					'<thead class="text-primary">'
-			        					+'<th>메뉴코드</th>'
-			        					+'<th>메뉴사진</th>'
-			        					+'<th>메뉴이름</th>'
-			        					+'<th>메뉴가격</th>'
-			        					+'<th>메뉴구분</th>'
-			        					+'</thead>'
-			        					+'<tbody>'
-			        					+'<tr>'
-			        					+'<td>'+menuNo+'</td>'
-			        					+'<td><input type="file" class="" value="파일"></td>'
-			        					+'<td><input type="text" class="" value="'+menuName+'"></td>'
-			        					+'<td><input type="text" class="" value="'+menuPrice+'"></td>'
-			        					+'<td>'
-			        					+'<select id="menuCatUpdate">'
-			        					+'</select>'
-			        					+'</td>'
-			        					+'</tr>'
-			        					+'</tbody>'
-			        				);
-			        			
-			        			for(let i of data[0].menuOptCl){
-			        				console.log(i);
-			        				$('.menuModalOpt').append(
-			        					'<div class="col-md-12">'
-			    							+'<div class="card">'
-			    							+'<div class="card-header card-header-primary">'
-			    							+'<h4 class="card-title" id="'+i.mocMenuOptType+'" name="'+i.mocNo+'">'+i.mocName+'</h4>'
-			    							+'</div>'
-			    							+'<div class="card-body">'
-			    							+'<div class="table-responsive">'
-			    							+'<table class="table menuUpdate">'
-				        					+'<thead class="text-primary">'
-				        					+'<tr>'
-				        					+'<th>옵션번호</th>'
-				        					+'<th>옵션이름</th>'
-				        					+'<th>옵션추가금</th>'
-				        					+'<th>메뉴가격</th>'
-				        					+'</tr>'
-				        					+'</thead>'
-				        					+'<tbody class="mOpt">'
-				        					+'</tbody>'
-			    							+'</table>'
-			    							+'</div>'
-			    							+'</div>'
-			    							+'</div>'
-			    							+'</div>'
-			        				);
-			        			}
-			        			
-			        			
-//			        			for(let i=0; i<data[0].menuOptCl.menuOptEx.length; i++){
-//			        				console.log(i);
-//			        				if(i.mocNo == j.moOptClNo){
-////			        					$('.mOpt').append(
-////			        							+'<tr>'
-////			        							+'<td>'+j.moCode+'</td>'
-////			        							+'<td>'+j.moName+'</td>'
-////			        							+'<td>'+j.moAddPrice+'</td>'
-////			        							+'<td>'+j.moOptClNo+'</td>'
-////			        							+'</tr>'
-////			        					);
-//			        				}
-//			        			}
 			        			
 								$.ajax({
 					        		type : "GET",
@@ -502,6 +518,11 @@ $(document)
 					$('.menuInsertModalClose').on('click', function() {
 						$('.menuInsertModal').css('display', 'none');
 						});
+					
+					$('.insertMenuCatModalClose').on('click', function() {
+						$('.insertMenuCatModal').css('display', 'none');
+						});
+
 
 					$()
 							.ready(

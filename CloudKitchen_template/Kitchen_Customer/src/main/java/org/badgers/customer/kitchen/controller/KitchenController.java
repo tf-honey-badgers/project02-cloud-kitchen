@@ -1,5 +1,6 @@
 package org.badgers.customer.kitchen.controller;
 
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
@@ -7,14 +8,15 @@ import javax.inject.Inject;
 
 import org.badgers.customer.model.BizVOExtend;
 import org.badgers.customer.model.CartVOExtend;
+import org.badgers.customer.model.CommonCodeVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
@@ -80,14 +82,24 @@ public class KitchenController {
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@PostMapping(value = "/search", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ModelAndView searchLists(ModelAndView mav, @RequestBody String query) {
+	@RequestMapping(value = "/search", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ModelAndView searchLists(ModelAndView mav, @ModelAttribute("query") String query) {
 		log.info("Searching lists of kitchen branches, businesses, menus");
-		
+
 		List<BizVOExtend> returnVal = null;
-		String url = "http://localhost/rest/kitchenbranch/searchlists";
+		String urlSearch = "http://localhost/rest/kitchenbranch/searchlists";
+		List<CommonCodeVO> bizCatVal = null;
+		String urlBizCat = "http://localhost/rest/kitchenbranch/bizcodes";
+
+		if(query.equals("")) {
+			log.info("query is null");
+			query = " ";
+		}
 		
-		ResponseEntity<List> responseEntity = restTemplate.postForEntity(url, query, List.class);
+		restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
+		ResponseEntity<List> responseEntity = restTemplate.postForEntity(urlSearch, query, List.class);
+		ResponseEntity<List> responseBizCats = restTemplate.getForEntity(urlBizCat, List.class);
+		bizCatVal = responseBizCats.getBody();
 		
 		if(!responseEntity.getBody().isEmpty()) {
 			log.info("Search successful!");
@@ -97,8 +109,9 @@ public class KitchenController {
 			log.info("No matching search results");
 			mav.addObject("message", "No search results. Try again with a different query.");
 		}
+		mav.addObject("bizCat", bizCatVal);
 		log.info(returnVal);
-		mav.setViewName("searchGrid");
+		mav.setViewName("searchList");
 		
 		return mav;
 	}

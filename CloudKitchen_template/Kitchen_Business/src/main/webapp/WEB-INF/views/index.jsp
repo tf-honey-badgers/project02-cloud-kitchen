@@ -775,18 +775,6 @@
 		    if (!results[2]) return '';
 		    return decodeURIComponent(results[2].replace(/\+/g, " "));
 		}
-		//새로고침, 뒤로가기 방지
-		document.onkeydown = function(e) {
-			 key = (e) ? e.keyCode : event.keyCode;
-			 if(key==8 || key==116) {
-			  if(e) {
-			   e.preventDefault();
-			  } else {
-			   event.keyCode = 0;
-			   event.returnValue = false;
-			  }
-			 }
-			}
 		
 	</script>
 </body>

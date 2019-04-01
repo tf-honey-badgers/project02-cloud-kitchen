@@ -29,15 +29,35 @@
 </head>
 
 <body class="">
-<!-- <div id="menuModal" class="menuModal">
-	<div class="menuModalOpt">
-		<span class="menuModalClose">&times;</span>
-
-		<div class="addOptBtnArea">
-			<button type="button" id="updateMenu" class="btn btn-primary pull-right">메뉴 등록</button>
-		</div>
+<div id="insertMenuCatModal" class="insertMenuCatModal">
+	<div class="insertMenuCatModalOpt">
+		<span class="insertMenuCatModalClose">&times;</span>
+					<div class="col-md-12">
+							<div class="card">
+								<div class="card-header card-header-primary">
+									<h4 class="card-title ">메뉴</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table menuUpdate">
+											<thead class="text-primary">
+												<th>카테고리이름</th>
+												<th>추가삭제
+													<button class="addMenuCat">
+													<img src="/business/resources/img/baseline_add_circle_outline_black_18dp.png">
+													</button>
+												</th>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>	
+		<div class="insertMenuCatBtnArea"><button type="button" id="insertMenuCatBtn" class="btn btn-primary pull-right">카테고리 추가</button></div>
 	</div>
-</div> -->
+</div>
 
 <div id="menuModal" class="menuModal">
 	<div class="menuModalOpt">
@@ -57,7 +77,6 @@
 							</div>
 						</div>	
 		<div class="modelBtnArea"><button type="button" id="updateMenuBtn" class="btn btn-primary pull-right">메뉴 변경</button></div>
-		
 	</div>
 </div>
 
@@ -65,7 +84,7 @@
 	<div class="menuInsertModalOpt">
 		<span class="menuInsertModalClose">&times;</span>
 		<div class="addOptBtnArea">
-			<button type="button" id="updateMenu" class="btn btn-primary pull-right">메뉴 변경</button>
+			<button type="button" id="insertMenu" class="btn btn-primary pull-right">메뉴 추가</button>
 		</div>
 		
 						<div class="col-md-12">
@@ -84,7 +103,7 @@
 											</thead>
 											<tbody>
 													<tr>
-														<td><input type="file" class="" value="파일"></td>
+														<td><input type="file" id="menuPhotoInsert" multiple="multiple" value="파일"></td>
 														<td><input type="text" class=""></td>
 														<td><input type="text" class=""></td>
 														<td>
@@ -157,7 +176,10 @@
 			<jsp:include page="include/header.jsp" flush="false"></jsp:include>
 			<!-- End Header -->
 			<div class="content">
+			<div class="btnArea">
+				<button type="button" id="insertMenuCat" class="btn btn-primary pull-right">카테고리 추가</button>
 				<button type="button" id="menuInsert" class="btn btn-primary pull-right">메뉴추가</button>
+			</div>
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
@@ -356,7 +378,7 @@
 	<script src="/business/resources/js/material-dashboard.js?v=2.1.1"
 		type="text/javascript"></script>
 	<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
 	<script src="/business/resources/js/joon/menuupdate.js"></script>
-
 </body>
 </html>
