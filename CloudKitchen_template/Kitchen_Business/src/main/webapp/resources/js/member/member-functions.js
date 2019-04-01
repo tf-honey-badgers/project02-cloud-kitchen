@@ -25,7 +25,7 @@ $(document).ready(function() {
     				, info : $('#bizInfo').val()
     			})
     		, error : function() { md.showNotification('bottom', 'right', 'danger', '가게 정보를 수정하는데 에러가 발생했습니다.'); }
-    		, success : function(data) { console.log(data); md.showNotification('bottom','right', 'info', '성공적으로 가게 정보를 수정했습니다.'); }
+    		, success : function() { md.showNotification('bottom','right', 'info', '성공적으로 가게 정보를 수정했습니다.'); }
 		});
 	});
 	
@@ -36,7 +36,7 @@ $(document).ready(function() {
     		, type : 'GET'
 			, contentType : 'application/json'
     		, error : function() { md.showNotification('bottom', 'right', 'danger', 'YouTube LiveStreaming 코드를 입력하는데 에러가 발생했습니다.'); }
-    		, success : function() { md.showNotification('bottom','right', 'info', '성공적으로 YouTube LiveStreaming 코드를 입력했습니다.'); }
+			, success : function(data) { md.showNotification('bottom','right', 'info', '성공적으로 가게 정보를 수정했습니다.'); }
 		});
 	});
 
