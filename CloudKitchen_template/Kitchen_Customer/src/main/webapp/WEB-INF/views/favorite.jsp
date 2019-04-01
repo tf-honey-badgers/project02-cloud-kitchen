@@ -42,7 +42,7 @@ var custId = '${custId}';
 
 		<script>
 		 var tbody = $('tbody');
-		 alert('start');
+		
 		$(document).ready(function(){
 			$.getJSON( 'http://localhost/rest/favorite/${custId}/mypage', function(list){
 				

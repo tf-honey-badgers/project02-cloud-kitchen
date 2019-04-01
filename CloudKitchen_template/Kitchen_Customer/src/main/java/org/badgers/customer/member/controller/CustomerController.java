@@ -172,7 +172,7 @@ public class CustomerController {
 		List<OrderInfoVO> list = null;
 		String url = "http://localhost/rest/customer/" + custId + "/mypage/orderinfo";
 		
-		ResponseEntity<OrderInfoVO> responseEntity = restTemplate.getForEntity(url,OrderInfoVO.class);
+		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url,java.util.List.class);
 		if(responseEntity.getStatusCode()==HttpStatus.OK) {
 			list = (List<OrderInfoVO>) responseEntity.getBody();
 		}
