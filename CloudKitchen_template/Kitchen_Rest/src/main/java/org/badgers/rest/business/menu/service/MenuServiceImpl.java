@@ -204,10 +204,15 @@ public class MenuServiceImpl implements MenuService {
 		JsonParser parser = new JsonParser();
 		JsonObject menuCatelement = (JsonObject) parser.parse(insertMenuCat);
 		JsonArray menuCatArray = menuCatelement.get("menuCat").getAsJsonArray();
+		System.out.println(menuCatelement.get("bizId").getAsString());
 		
 		for(int i=0; i<menuCatArray.size(); i++) {
-			mapper.insertMenuCat(menuCatArray.get(i).getAsString());
+			MenuCatVOExtend menuCatVo = new MenuCatVOExtend();
+			menuCatVo.setMcBizId(menuCatelement.get("bizId").getAsString());
+			menuCatVo.setMcName(menuCatArray.get(i).getAsString());
+			mapper.insertMenuCat(menuCatVo);
 			result++;
+			System.out.println(menuCatArray.get(i).getAsString());
 		}
 		
 		return result;
