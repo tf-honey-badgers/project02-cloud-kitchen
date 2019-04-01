@@ -25,7 +25,7 @@ public class PayReadyInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		log.info("object handler 는 무슨 역할을 하는가????????");
-		log.info(handler);
+		log.info(handler.toString());
 		log.info("........................................................");
 		//method(결제 방법)
 		String method = (String)request.getParameter("method");

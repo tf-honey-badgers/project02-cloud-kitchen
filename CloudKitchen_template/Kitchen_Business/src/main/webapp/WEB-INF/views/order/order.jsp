@@ -145,7 +145,7 @@
             	//부모에게 물려받은 이벤트 멈춰버림 
             	e.stopPropagation();
             	$(this).siblings().css({display:'none'})
-            	$(this).parents('div[class="alert alert-info ordTgg"]').removeClass('alert-info').addClass('alert-success');
+            	$(this).parents('div[class="alert ordTgg alert-info"]').removeClass('alert-info').addClass('alert-success');
             	$(this).removeClass('btn-primary confirm').addClass('btn-warning cooking')
             	$(this).attr({'value': '조리시작'})
             	$(this).parents('div[class="ORD"]').appendTo('.orderListWrap')
@@ -157,7 +157,7 @@
             // 조리시작 눌렀을 때
              $('body').on('click', '.cooking', function(e){
             	 e.stopPropagation();
-            	 console.log($(this).parents('div[class="alert ordTgg alert-success"]').removeClass('alert-success').addClass('alert-warning'))
+            	 $(this).parents('div[class="alert ordTgg alert-success"]').removeClass('alert-success').addClass('alert-warning')
             	 $(this).removeClass('btn-warning cooking').addClass('btn-danger complete')
             	 $(this).attr({'value': '조리완료'})
             	 orderId=$(this).parents('div.ORD').attr('id')
@@ -170,6 +170,8 @@
              });
              //조리완료 눌렀을때
              $('body').on('click', '.complete', function(e){
+            	 console.log(e)
+            	 console.log($(this))
             	 e.stopPropagation();
             	 status='ORD004'
                  url='biz_1/'+orderId+'/'+status
@@ -197,65 +199,45 @@
 		  firebase.initializeApp(config); 
 		  
 		  // biz_1이라는 사업자에 들어온 order 정보 중  time으로 orderby 하여 가장 최근에 들어온 주문 1개만 받을 수 있도록 제한함  
-		  var dbRef = firebase.database().ref(bizId).orderByChild('time').limitToLast(1);
-		  
-		  
-/* 		  var dbRef = firebase.database().ref('biz_2').orderByChild('time').limitToLast(1); */
-
-
-		  
-		  
+		  var dbRef = firebase.database().ref(bizId).orderByChild('time')/* .limitToLast(1) */;
+			
+		  //새로 들어온 주문에 대한 알람 설정 
 		  dbRef.on('child_added', function(snapshot){
-		  var obj = snapshot.val()
-		  console.log(obj)
-	  
-		  var orderId =obj[Object.keys(obj)[1]];
-		  var address= obj[Object.keys(obj)[0]];
-		  var menus =obj[Object.keys(obj)[2]];
-		  var msg =obj[Object.keys(obj)[3]];
-		  var status =obj[Object.keys(obj)[5]];
-		  var time =obj[Object.keys(obj)[6]];
+			  var obj = snapshot.val()
+			  console.log(obj)
 		  
-		  //주문번호 뿌려줄땐 고객아이디 안보이게 해서 뿌려주기 
-		  var idx= orderId.indexOf('_')+1;
-		  var trimedOrderId= orderId.substring(idx)
+			  var orderId =obj[Object.keys(obj)[1]];
+			  var address= obj[Object.keys(obj)[0]];
+			  var menus =obj[Object.keys(obj)[2]];
+			  var msg =obj[Object.keys(obj)[3]];
+			  var status =obj[Object.keys(obj)[5]];
+			  var time =obj[Object.keys(obj)[6]];
 			  
-		  // 주문 상태가 ORD001 일때만 알람이 뜸  접수 이후로는 알람 안뜸
+			  //주문번호 뿌려줄땐 고객아이디 안보이게 해서 뿌려주기 
+			  var idx= orderId.indexOf('_')+1;
+			  var trimedOrderId= orderId.substring(idx)
+			  
+		  	  // 주문 상태가 ORD001 일때만 알람이 뜸  접수 이후로는 알람 안뜸
 			  if(status==='ORD001'){
-				  $('<div id="'+orderId+'" class="ORD" >'
-					+'<div class="alert alert-info ordTgg"> '
-					+'<span style="display:inline-block"><b>[주문번호]&nbsp;</b>'+trimedOrderId+'</span>'
-					+'<span class="float-right">'
-					+'<input type="button" class="btn btn-primary btn-sm confirm" value="접수">'
-					+'<input type="button" class="btn btn-primary btn-sm cancel" value="취소">'
-					+'</span></div>'
-					+'<div class="detailOrder alert alert-light bg-light" style="border: 1px solid black; display: none;">'
-					+'<h4 class="alert-heading font-weight-bold">주문 상세 </h4>'
-				  	+'<table><tbody><tr><th scope="row">주소</th>'
-				  	+'<td class="pl-2">'+address+'</td></tr>'
-				  	+'<tr><th scope="row" >주문 시간</th>'
-				  	+'<td class="pl-2">'+time+'</td></tr>'
-				  	+'<tr><th scope="row">요청사항</th><td class="pl-2">'+msg+'</td></tr></tbody></table>'
-				  	+'<table class="table table-striped table-hover"><thead class="thead-dark"><th scope="col">메뉴 이름</th><th scope="col">옵션</th><th scope="col">수량</th></thead> <tbody class="inputMenuInfo">'
-				  	+'</tbody></table></div></div>'
-				  )
-					.appendTo('.waitAreaWrap')						  		   	  	
-		  
-			 	  $.each(menus, function(key, value){
-					 // console.log(key, value)
-					  $('div[id='+orderId+'] .inputMenuInfo ').append('<tr value="'+orderId+key+'">')
-					  $.each(value, function(k,v){
-						  if(v=='null'){
-							  v=''
-						  }
-						  //console.log(k, v)
-						  $('.inputMenuInfo >tr[value="'+orderId+key+'"]').append('<td>'+v+'</td>')
-					  })
-					 
-				  }) 
+				  notification(orderId,trimedOrderId,address,time,msg,'alert-info',ord001btn).appendTo('.waitAreaWrap');						  		   	  	
+		  		  getMenu(orderId, menus);
+			 	
+			  }else if(status==='ORD002'){
+				  notification(orderId,trimedOrderId,address,time,msg,'alert-success', ord002btn).appendTo('.orderListWrap');						  		   	  	
+		  		  getMenu(orderId, menus);
+			  }else if(status==='ORD003'){
+				  notification(orderId,trimedOrderId,address,time,msg,'alert-warning', ord003btn).appendTo('.orderListWrap');						  		   	  	
+		  		  getMenu(orderId, menus);
+				  
 			  }
-			  
-		 })
+			  //새로고침하거나 로그아웃 되서 다시 들어 와야 할때 조리중 이거나 접수대기 인 (ORD002,ORD003)주문번호들을 다시 읽어와서 
+			  // 주문 리스트에 뿌려줘야 함 
+			
+			
+		 })/* 알람설정 end */
+		 
+		
+		 
 		 
 		 /* --------------------------------------------------------------------- */
 		 //주문상태 firebase로 실시간 업데이트 해주기
@@ -267,6 +249,41 @@
 				  dataType: "json"
 				});
 			  
+		  }
+		  
+		  var ord001btn= '<input type="button" class="btn btn-primary btn-sm confirm" value="접수"><input type="button" class="btn btn-primary btn-sm cancel" value="취소">'
+		  var ord002btn='<input type="button" class="btn btn-warning btn-sm cooking" value="조리시작">';
+		  var ord003btn='<input type="button" class="btn btn-danger btn-sm complete" value="조리완료">';
+		//함수로 알람시 필요한 태그들 리턴 함 
+		  function notification(orderId,trimedOrderId,address,time,msg, status,button){
+			 return $('<div id="'+orderId+'" class="ORD" >'
+						+'<div class="alert ordTgg '+status+'">'
+						+'<span style="display:inline-block"><b>[주문번호]&nbsp;</b>'+trimedOrderId+'</span>'
+						+'<span class="float-right">'
+						+button
+						+'</span></div>'
+						+'<div class="detailOrder alert alert-light bg-light" style="border: 1px solid black; display: none;">'
+						+'<h4 class="alert-heading font-weight-bold">주문 상세 </h4>'
+					  	+'<table><tbody><tr><th scope="row">주소</th>'
+					  	+'<td class="pl-2">'+address+'</td></tr>'
+					  	+'<tr><th scope="row" >주문 시간</th>'
+					  	+'<td class="pl-2">'+time+'</td></tr>'
+					  	+'<tr><th scope="row">요청사항</th><td class="pl-2">'+msg+'</td></tr></tbody></table>'
+					  	+'<table class="table table-striped table-hover"><thead class="thead-dark"><th scope="col">메뉴 이름</th><th scope="col">옵션</th><th scope="col">수량</th></thead> <tbody class="inputMenuInfo">'
+					  	+'</tbody></table></div></div>'
+					  )
+		  }
+		// 메뉴 뿌려주기 함수 
+		  function getMenu(orderId, menus){
+			  $.each(menus, function(key, value){
+					 // console.log(key, value)
+					  $('div[id='+orderId+'] .inputMenuInfo ').append('<tr value="'+orderId+key+'">')
+					  $.each(value, function(k,v){
+						  if(v=='null'){v=''}
+						  //console.log(k, v)
+						  $('.inputMenuInfo >tr[value="'+orderId+key+'"]').append('<td>'+v+'</td>')
+					 })
+			  }) 
 		  }
 		  
 		 
