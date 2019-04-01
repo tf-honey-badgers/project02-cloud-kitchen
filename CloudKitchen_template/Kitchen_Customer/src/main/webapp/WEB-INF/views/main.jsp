@@ -21,7 +21,7 @@
     <div class="container margin_60">
 		<div class="main_title">
             <h2 class="nomargin_top" style="padding-top:0">클라우드 키친이란?</h2>
-            <p>한곳에서 이 모든 일을~~~~~!!</p>
+
         </div>
         <div class="row">
             <div class="col-md-3">

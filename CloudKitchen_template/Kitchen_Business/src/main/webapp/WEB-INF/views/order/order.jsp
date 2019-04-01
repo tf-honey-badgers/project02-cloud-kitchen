@@ -124,6 +124,8 @@
    
     <script>
         $(document).ready(function() {
+        	
+        	
             //init DateTimePickers
             md.initFormExtendedDatetimepickers();
             
@@ -138,7 +140,8 @@
             var bizId='';
             var orderId='';
             var status='';
-             
+            var bizId ='${sessionScope.bizId}';
+            console.log('dnnnnnnnnnnnnnnnnnnnn',bizId)
             
             //주문 접수 눌렀을 때
             $('body').on('click', '.confirm', function(e){
@@ -151,7 +154,7 @@
             	$(this).parents('div[class="ORD"]').appendTo('.orderListWrap')
             	orderId=$(this).parents('div.ORD').attr('id')
             	status='ORD002'
-            	url='biz_1/'+orderId+'/'+status
+            	url=bizId+'/'+orderId+'/'+status
             	updateStatus(url)
             });
             // 조리시작 눌렀을 때
@@ -162,7 +165,7 @@
             	 $(this).attr({'value': '조리완료'})
             	 orderId=$(this).parents('div.ORD').attr('id')
             	 status='ORD003'
-            	 url='biz_1/'+orderId+'/'+status
+            	 url=bizId+'/'+orderId+'/'+status
             	 updateStatus(url)
             	 
             	 
@@ -170,11 +173,10 @@
              });
              //조리완료 눌렀을때
              $('body').on('click', '.complete', function(e){
-            	 console.log(e)
-            	 console.log($(this))
             	 e.stopPropagation();
+            	 orderId=$(this).parents('div.ORD').attr('id')
             	 status='ORD004'
-                 url='biz_1/'+orderId+'/'+status
+                 url=bizId+'/'+orderId+'/'+status
                  updateStatus(url)
             	 $(this).parents('div.ORD').remove()
                 	 
@@ -186,7 +188,7 @@
         
         /* 1. firebase 이벤트 --------------------------------------------------------------------- */
           var bizId ='${sessionScope.bizId}';
-         console.log(bizId)
+            console.log(bizId)
          
  		  var config = {
 		    apiKey: "AIzaSyDZ4Zt7FAQrf8ah4FDlGZU2-qLeinySOSs",
@@ -202,9 +204,9 @@
 		  var dbRef = firebase.database().ref(bizId).orderByChild('time')/* .limitToLast(1) */;
 			
 		  //새로 들어온 주문에 대한 알람 설정 
-		  dbRef.on('child_added', function(snapshot){
+ 		  dbRef.on('child_added', function(snapshot){
 			  var obj = snapshot.val()
-			  console.log(obj)
+			 // console.log(obj)
 		  
 			  var orderId =obj[Object.keys(obj)[1]];
 			  var address= obj[Object.keys(obj)[0]];
@@ -218,25 +220,27 @@
 			  var trimedOrderId= orderId.substring(idx)
 			  
 		  	  // 주문 상태가 ORD001 일때만 알람이 뜸  접수 이후로는 알람 안뜸
-			  if(status==='ORD001'){
+		 	  if(status==='ORD001'){
 				  notification(orderId,trimedOrderId,address,time,msg,'alert-info',ord001btn).appendTo('.waitAreaWrap');						  		   	  	
 		  		  getMenu(orderId, menus);
 			 	
 			  }else if(status==='ORD002'){
 				  notification(orderId,trimedOrderId,address,time,msg,'alert-success', ord002btn).appendTo('.orderListWrap');						  		   	  	
-		  		  getMenu(orderId, menus);
+		  		  getMenu(orderId, menus); 
 			  }else if(status==='ORD003'){
 				  notification(orderId,trimedOrderId,address,time,msg,'alert-warning', ord003btn).appendTo('.orderListWrap');						  		   	  	
 		  		  getMenu(orderId, menus);
 				  
-			  }
+			  } 
+		 	  
+ 		 	   
 			  //새로고침하거나 로그아웃 되서 다시 들어 와야 할때 조리중 이거나 접수대기 인 (ORD002,ORD003)주문번호들을 다시 읽어와서 
 			  // 주문 리스트에 뿌려줘야 함 
 			
 			
 		 })/* 알람설정 end */
 		 
-		
+		 
 		 
 		 
 		 /* --------------------------------------------------------------------- */

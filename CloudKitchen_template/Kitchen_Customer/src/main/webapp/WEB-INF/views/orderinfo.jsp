@@ -21,8 +21,8 @@ var custId = '${custId}';
 <!-- <script type="text/javascript" src="/customer/resources/js/member.js"></script> -->
 <br><br>
 	<!-- 위쪽 헤더바  -->
-	<jsp:include page="include/header.jsp" />
 	<jsp:include page="include/background.jsp" flush="false" />
+	<jsp:include page="include/header.jsp" />
 	<!-- 헤드 끝 -->
 	<br><br><br><br><br><br><br><br><br><br><br>
 	<h2>주문 리스트</h2>

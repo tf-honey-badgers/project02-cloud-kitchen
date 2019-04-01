@@ -171,7 +171,7 @@ public class MenuController {
 			produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public int deleteMenu(@RequestParam("menuId") String menuId) {
-		System.out.println(menuId);
+		System.out.println("deleteMenu : "+ menuId);
 		int result = 0;
 		try {
 			System.out.println("MenuUpdate Front Controller1");
@@ -255,6 +255,35 @@ public class MenuController {
 		}catch(Exception e){
 			e.getStackTrace();
 		}
+		
+		return 0;
+		
+	}
+	
+	@RequestMapping(value="/main/photoupload", method=RequestMethod.POST, 
+			produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public int menuPhotoUpload(@RequestParam("menuPhoto") String insertMenuCat) {
+		int result = 0;
+		System.out.println(insertMenuCat);
+//		try {
+//			String url = "http://localhost:80/rest/bizmenu/insertmenucat";
+//	        
+//			HttpHeaders headers = new HttpHeaders();
+//			headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+//
+//			HttpEntity entity = new HttpEntity(insertMenuCat, headers);
+//			
+//			ResponseEntity updateResponseEntity = restTemplate.postForEntity
+//					(url,entity,int.class);
+//			
+//			result = (int) updateResponseEntity.getBody();
+//			System.out.println(result);
+//			return result;
+//			
+//		}catch(Exception e){
+//			e.getStackTrace();
+//		}
 		
 		return 0;
 		

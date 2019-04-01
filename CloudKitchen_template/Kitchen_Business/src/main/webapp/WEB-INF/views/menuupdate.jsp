@@ -103,7 +103,9 @@
 											</thead>
 											<tbody>
 													<tr>
-														<td><input type="file" id="menuPhotoInsert" multiple="multiple" value="파일"></td>
+														<td>
+														<input type="file" id="menuPhotoInsert" value="">
+														</td>
 														<td><input type="text" class=""></td>
 														<td><input type="text" class=""></td>
 														<td>
@@ -380,5 +382,6 @@
 	<!-- Material Dashboard DEMO methods, don't include it in your project! -->
 	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
 	<script src="/business/resources/js/joon/menuupdate.js"></script>
+	<script src="http://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
 </body>
 </html>

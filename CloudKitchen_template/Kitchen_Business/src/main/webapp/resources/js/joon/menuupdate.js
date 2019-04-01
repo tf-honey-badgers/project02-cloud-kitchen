@@ -2,8 +2,15 @@ $(document)
 		.ready(
 				function() {
 					
-					
-					
+			        AWS.config.update({
+
+			            accessKeyId: 'AKIA6DOEAM5RBJXDFMUB',
+			            secretAccessKey: '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'
+			        });
+			        
+			        AWS.config.region = 'ap-northeast-2';
+			        
+
 					$('.insertMenuCatModalOpt').on('click','#insertMenuCatBtn',function(e){
 						
 						let menuCat = new Object();
@@ -32,11 +39,11 @@ $(document)
 							}
 						});
 						
-					});
+					}); // insertMenuCatBtn 끝
 					
 					$('.insertMenuCatModal').on('click','.deleteMenuCat',function(e){
 						$(this).parent().parent().remove();
-					});
+					}); // deleteMenuCat
 					
 					$('.insertMenuCatModal').on('click','.addMenuCat',function(e){
 						
@@ -50,12 +57,12 @@ $(document)
 							+'</td></tr>'
 						
 						);
-					});
+					}); // addMenuCat
 					
 					$('#insertMenuCat').on('click',function(e){
 						$('.insertMenuCatModal tbody').empty();
 						$('.insertMenuCatModal').css('display', 'block');
-					});
+					}); // insertMenuCat
 
 					
 					$('.menuModalOpt').on('click','.deleteUpdateMenuOpt',function(e){
@@ -81,13 +88,14 @@ $(document)
 							});
 							
 						}
-					});
+					}); // deleteUpdateMenuOpt
 				
 					
 					$('.table-responsive').on('click','table tbody tr td .menu-option-delete',function(e){
 						e.preventDefault();
 						let deleteCheck = confirm("정말 삭제하시겠습니까?");
 						let deleteMenu = $(this).parent().parent();
+						console.log($(this).parent().parent().children().eq(0).text());
 						if(deleteCheck == true){
 							$.ajax({
 								type : "POST",
@@ -108,13 +116,13 @@ $(document)
 							return false;
 						}
 						
-					});
+					}); // menu-option-delete
 					
 					$('.menuInsertModalOpt')
 						.on('click','.col-md-12 .card .card-body .table-responsive .table tbody .menuOptCl td .deleteMenuOpt',function(e){
 						
 						$(this).parent().parent().parent().parent().parent().parent().parent().parent().remove();	
-					});
+					}); // deleteMenuOpt
 					
 					
 					$('#insertMenu').on('click',function(e){
@@ -146,70 +154,66 @@ $(document)
 						}
 						insertMenu.menuOptCl = menuOptClArr;
 						console.log(insertMenu);
-						
+
+//						var bucket = new AWS.S3({ params: { Bucket: 'honeybadgers' } });
+//		                var fileChooser = document.getElementById('menuPhotoInsert');
+//		                var file = fileChooser.files[0];
+//
+//		                if (file) {
+//		                    var params = {
+//		                        Key: file.name,
+//		                        ContentType: file.type,
+//		                        Body: file,
+//		                        ACL: 'public-read' // 접근 권한
+//		                    };
+//
+//		                    bucket.putObject(params, function (err, data) {
+//		                    	console.log(err);
+//		                    	console.log(data);
+//		                        // 업로드 성공
+//		                    });
+//		                } 
+//		                alert('사진파일 업로드에 실패하였습니다.');
+//		                return false;
+		                    
 						$.ajax({
 			        		type : "POST",
 			        		dataType : 'json',
-			        		
-			        		url : "../menu/main/getMenuCat",
+			        		url : "../menu/main/insertMenu",
 			         		data : {
-			         			menuPhoto : 'biz_2'
+			         			menuInfo : JSON.stringify(insertMenu)
 			         		},
 			        		error : function(data){
 			        			console.log(data);
 			        		},
 			        		success(data){
-//			        			console.log(data);
-			        			$('#menuCatSelect').empty();
-			        			for(let i=0;i<data.length;i++){
-			        				$('#menuCatSelect').append('<option value="" class="'+data[i].mcBizId
-			        						+'" id="'+data[i].mcNo+'" >'+data[i].mcName+'</option>');
+			        			console.log(data);
+			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
+			        			for(let i=0; i<menuCat.length; i++){
+			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
+//			        					$('.container-fluid .table tbody')[i].innerHTML+=(
+			        					$('.container-fluid .table tbody').eq(i).append(
+			        							'<tr>'
+			        							+'<td>'+data+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value+'</td>'
+			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
+												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
+			        							);
+			        					
+			        					$('.menuInsertModal').css('display', 'none');
+			        				}
 			        			}
-			        			
 			        		}
 						});
-						
-//						$.ajax({
-//			        		type : "POST",
-//			        		dataType : 'json',
-//			        		url : "../menu/main/insertMenu",
-//			         		data : {
-//			         			menuInfo : JSON.stringify(insertMenu)
-//			         		},
-//			        		error : function(data){
-//			        			console.log(data);
-//			        		},
-//			        		success(data){
-//			        			console.log(data);
-//			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
-//			        			for(let i=0; i<menuCat.length; i++){
-//			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
-////			        					$('.container-fluid .table tbody')[i].innerHTML+=(
-//			        					$('.container-fluid .table tbody').eq(i).append(
-//			        							'<tr>'
-//			        							+'<td>'+data+'</td>'
-//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value+'</td>'
-//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value+'</td>'
-//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value+'</td>'
-//			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
-//												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
-//			        							);
-//			        					addPhoto(data);
-//			        					$('.menuInsertModal').css('display', 'none');
-//			        				}
-//			        			}
-//			        		}
-//						});
-						
-						
-						
-					});
+					});	 // insertMenu
 					
 					$('.menuInsertModalOpt')
 						.on('click','.addMenuList .card .card-body .table-responsive table tbody tr td .deleteOpt',function(e){
 						e.preventDefault();
 						$(this).parent().parent().remove();
-					});
+					}); // menuInsertModalOpt
 					
 					$('.menuInsertModalOpt')
 						.on('click','.addMenuList .card .card-body .table-responsive table tbody tr td .addOpt',function(e){
@@ -224,7 +228,7 @@ $(document)
 							+'<img src="/business/resources/img/baseline_remove_circle_outline_black_18dp.png">'
 							+'</button></td></tr>'
 						);
-					});
+					}); // menuInsertModalOpt
 					
 					
 					$('#insertOpt').on('click',function(e){
@@ -274,7 +278,7 @@ $(document)
 			        				+'</div>'
 			        				+'</div>'
 			        		);
-					});
+					}); // insertOpt
 					
 					$('.content #menuInsert').on('click',function(e){
 						e.preventDefault();
@@ -853,5 +857,5 @@ $(document)
 																	}, 1000);
 
 														});
-									});
-				});
+									}); // ()ready
+			});	// document ready	

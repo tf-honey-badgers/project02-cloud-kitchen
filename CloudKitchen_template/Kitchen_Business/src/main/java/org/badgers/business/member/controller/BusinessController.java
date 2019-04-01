@@ -9,23 +9,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.log4j.Log4j;
 
 @Controller
+@SessionAttributes("bizId")
 @RequestMapping("/member")
 @Log4j
 public class BusinessController {
 	@Inject
 	RestTemplate restTemplate;
-
+	
+	@GetMapping("mypage")
+	public String mypage (@ModelAttribute("bizId")String bizId) {
+		
+		return "redirect:"+bizId+"/main";
+	}
+	
 	@GetMapping("/{bizId}/main")
 	public ModelAndView readBizMember(ModelAndView mav, @PathVariable("bizId") String bizId) {
 		log.info("Kitchen_Business 사업자 개인정보 읽기...............................");

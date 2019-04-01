@@ -34,7 +34,8 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 		HttpSession session = request.getSession();
 		
-		//custId, address, phone이 바인딩 되어 넘어온 OrderVOExtend를 받는다
+		String custId = (String)session.getAttribute("uid");
+		//address, phone이 바인딩 되어 넘어온 OrderVOExtend를 받는다
 		OrderVOExtend order = (OrderVOExtend)modelAndView.getModel().get("order");
 		
 		// OrderVOExtend의 멤버인 OrderDetailVOExtend[]에 set해줄 List를 생성한다
@@ -47,10 +48,10 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 		order.setKitchenName(cartList.get(0).getKitchenName());
 		
 		//주문(OrderExtendVO) 건에 매칭되는 orderId를 생성한다(custId + 시간)
-		String orderId = "tjtjtj"+"_"+System.currentTimeMillis();
+		String orderId = custId+"_"+System.currentTimeMillis();
 		
 		order.setId(orderId);
-		order.setCustId("tjtjtj");
+		order.setCustId(custId);
 
 		//모든 메뉴의 가격(+옵션가격 포함)을 합해줄 변수 선언
 		int payAmt = 0;

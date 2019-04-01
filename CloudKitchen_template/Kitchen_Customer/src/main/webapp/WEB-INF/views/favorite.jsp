@@ -22,10 +22,12 @@ var custId = '${custId}';
 <body>
 
 <br><br>
-	<!-- 위쪽 헤더바  -->
-	<jsp:include page="include/header.jsp" />
+	<!-- Header =============================================== -->
+	<jsp:include page="include/header.jsp" flush="false" />
+<!-- End Header =============================================== -->
+<!-- SubHeader & Position =============================================== -->
 	<jsp:include page="include/background.jsp" flush="false" />
-	<!-- 헤드 끝 -->
+<!-- End SubHeader & Position =============================================== -->
 <h2>찜 리스트</h2>
 <table  class="type11">
 		<thead>
