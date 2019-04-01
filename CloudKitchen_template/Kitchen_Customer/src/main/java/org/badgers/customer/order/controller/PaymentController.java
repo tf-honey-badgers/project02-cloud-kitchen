@@ -40,6 +40,12 @@ public class PaymentController {
 	@PostMapping("/orderinfo")
 	public ModelAndView orderInfo(int[] selectedCart, ModelAndView mv) {
 		String url = "http://127.0.0.1:80/rest/cust/order/orderinfo";
+
+		log.info("::::::::::::::::::::::::::::::selectCart의 내용:::::::::::::::::::::::::::::::::::::::::");
+		for(int i:selectedCart) {
+			System.out.println(i);
+		}
+		log.info("::::::::::::::::::::::::::::::;;;;;;;;;;;:::::::::::::::::::::::::::::::::::::::::");
 		
 		ResponseEntity<CartVOExtend[]> response = restTemplate.postForEntity(url, selectedCart, CartVOExtend[].class);
 		List cartList = Arrays.asList(response.getBody());
@@ -50,6 +56,7 @@ public class PaymentController {
 		return mv;
 	}
 	//post : cartList를 "cart"로 저장
+	
 	
 	//pre : 
 	@RequestMapping("/payment")

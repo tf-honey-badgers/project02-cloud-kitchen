@@ -191,7 +191,7 @@ $(document).ready(function() {
 	   			cartTotal = 0;
 				for(let i = 0; i < data.length; i++) {
 	    			$('.cartTable').append('<tr class="bizNameRow"><td colspan="3"><strong>' + data[i].bizName + '</strong></td></tr>' +
-	    					'<tr><td style="width: 10%;"><input class="check-order" type="checkbox"></td>' +
+	    					'<tr><td style="width: 10%;"><input class="check-order" type="checkbox"  name="selectedCart" value="' + data[i].id + '"></td>' +
 	    					'<td class="menuData" data-cart-id="' + data[i].id + '"><strong>' + data[i].quantity + 'x</strong> ' +
 	    					data[i].menuName + '<span class="pull-right">' + data[i].unitPrice + '원</span></td></tr>');
 	    			if(data[i].options != null) {
