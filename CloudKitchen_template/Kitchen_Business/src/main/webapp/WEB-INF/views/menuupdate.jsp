@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
-<%@page isELIgnored="false" %>
+<%-- <%@ page session="false"%> --%>
+<%-- <%@page isELIgnored="false" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,14 +35,14 @@
 					<div class="col-md-12">
 							<div class="card">
 								<div class="card-header card-header-primary">
-									<h4 class="card-title ">메뉴</h4>
+									<h4 class="card-title ">메뉴</h4><h4 class="card-title "></h4>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
 										<table class="table menuUpdate">
 											<thead class="text-primary">
 												<th>카테고리이름</th>
-												<th>추가삭제
+												<th>추가삭제<input type="hidden" id="bizId" value="${sessionScope.bizId}"/>
 													<button class="addMenuCat">
 													<img src="/business/resources/img/baseline_add_circle_outline_black_18dp.png">
 													</button>
