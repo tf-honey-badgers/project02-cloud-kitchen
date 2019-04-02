@@ -8,6 +8,8 @@ import org.badgers.business.model.OrderVO;
 import org.badgers.business.model.OrderVOExtend;
 import org.badgers.business.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,7 +40,7 @@ public class OrderController {
 	}
 	
 	@PutMapping("/{bizId}/{orderId}/{status}")
-	public void updateStatus(
+	public ResponseEntity<Object> updateStatus(
 			@PathVariable("bizId") String bizId, 
 			@PathVariable("orderId") String orderId, 
 			@PathVariable("status") String status) {
@@ -47,7 +49,7 @@ public class OrderController {
 		Object obj = restTemplate.getForEntity(url, String.class);
 		System.out.println("=============================================================");
 		System.out.println(obj);
-
+		return new ResponseEntity<>(obj, HttpStatus.OK);	
 	}
 
 }
