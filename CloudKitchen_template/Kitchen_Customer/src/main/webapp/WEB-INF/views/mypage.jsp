@@ -56,6 +56,7 @@
 		</div>
 		<!-- End col-md-6-->
 		<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.2s">
+		
 			<a class="strip_list grid" href="http://localhost:3001/customer/member/card">
 
 				<div class="desc">
@@ -64,6 +65,7 @@
 					
 				</div>
 			</a>
+			
 			<!-- End strip_list-->
 		</div>
 		<!-- End col-md-6-->

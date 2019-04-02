@@ -117,7 +117,7 @@ public class CustomerController {
 	@GetMapping("/logout")
 	public String logout (Model model) {
 		model.addAttribute("logout", "logout");
-	//	return "main";
+	
 		return "redirect:/main";
 	}
 	
