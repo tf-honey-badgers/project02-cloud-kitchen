@@ -37,13 +37,14 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter{
             return false;
 			
 		}
-		
-		//세션은 있는데 세션id랑 pathvariable id랑 비교해서 일치하는지 보여줘야함 
-		if(sessionBizId.equals(uriBizId)==false) {
-			response.sendRedirect("/business/main?msg=invalidId");
-			return false;
+		//uriBizId가 null이 아니라면 
+		if(uriBizId!=null) {
+			//세션은 있는데 세션id랑 pathvariable id랑 비교해서 일치하는지 보여줘야함 
+			if(sessionBizId.equals(uriBizId)==false) {
+				response.sendRedirect("/business/main?msg=invalidId");
+				return false;
+			}
 		}
-			
 		
 		return true;
 	}
