@@ -261,7 +261,7 @@ $(document).ready(function() {
 			alert('메뉴를 최소한 하나는 선택해주세요.');
 			return;
 		}
-		if($('.total span').data('total') < minAmt) {
+		if($('.total span').data('total') < $('#minAmt').data('min-amt')) {
 			event.preventDefault();
 			alert('메뉴를 최소한 하나는 선택해주세요.');
 			return;
@@ -314,5 +314,11 @@ $(document).ready(function() {
 		}
 	});
 	
-	
+	$('body').on('click', '#orderNow', function(event) {
+		if($('.total span').data('total') < $('#minAmt').data('min-amt')) {
+			event.preventDefault();
+			alert('최소금액보다 적어서 주문할 수 없습니다.');
+			return;
+		}
+	})
 });
