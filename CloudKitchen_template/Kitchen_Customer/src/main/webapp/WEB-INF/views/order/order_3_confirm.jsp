@@ -42,6 +42,7 @@
 				<h4>주문 확인</h4>
 				<div id="orderBox">
                 </div>
+                <a href="/customer/main" class="btn btn-warning" style="display:block; text-align: center;">메인으로 돌아가기</a>
 			</div>
 		</div>
 	</div><!-- End row -->

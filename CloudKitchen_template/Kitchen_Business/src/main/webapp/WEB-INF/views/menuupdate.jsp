@@ -391,5 +391,10 @@
     	$('.nav-item').removeClass('active');
     	$('.nav-item.sidebar-menu').addClass('active');
     </script>
+    
+    <script>
+    	
+    
+    </script>
 </body>
 </html>

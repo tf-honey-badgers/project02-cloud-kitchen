@@ -4,7 +4,7 @@
 
 <!-- SubHeader =============================================== -->
 <section class="parallax-window" id="short" data-parallax="scroll"
-	data-image-src="/customer/resources/img/sub_header_cart.jpg"
+	data-image-src="http://mblogthumb1.phinf.naver.net/MjAxNzAxMTFfMTY5/MDAxNDg0MTE4OTI2MTM0.muyktrRcsj6S-snAafOMnib3A7-wyuE9iqTjm0m3fvQg.iNp_vn8DNW8ShaT_yezVj2Zj9-slL12bULnGMw3cM6Mg.JPEG.kmg7765/3.E7%EC%9A%94%EB%A6%AC%EC%82%AC.jpg?type=w800"
 	data-natural-width="1400" data-natural-height="350">
 	<div id="subheader">
 		<div id="sub_content">
