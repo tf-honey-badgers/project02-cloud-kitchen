@@ -14,12 +14,7 @@
 	<!-- 헤드 끝 -->
 <br><br><br><br><br><br>
 <div style="margin-left:300px;">	
-				${uid }
-				${phone}
-				${sessionScope.uid }
-				${addr1 }
-				${addr2 }
-			
+
 				
 	<div class="row">
 		<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.1s">
@@ -65,7 +60,7 @@
 
 				<div class="desc">
 					
-					<h3>뭐시기 뭐시기 </h3>
+					<h3>미정 </h3>
 					
 				</div>
 			</a>

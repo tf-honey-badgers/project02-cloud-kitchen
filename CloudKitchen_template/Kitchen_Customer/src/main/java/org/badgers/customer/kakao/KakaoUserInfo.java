@@ -46,7 +46,7 @@ public class KakaoUserInfo {
 	        return returnNode;
 	    }
 	 // 로그아웃 accessToken
-	 public static JsonNode Logout(JsonNode accessToken) {
+	 public static JsonNode Logout(String accessToken) {
 	        final String RequestUrl = "https://kapi.kakao.com/v1/user/logout";
 	     
 	        final HttpClient client = HttpClientBuilder.create().build();
