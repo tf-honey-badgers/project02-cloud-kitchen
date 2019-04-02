@@ -213,7 +213,6 @@
 														<a href="" class="menu-option-delete">삭제</a></td>
 													</tr>
 													
-													
 												</c:forEach>
 											</tbody>
 										</table>
