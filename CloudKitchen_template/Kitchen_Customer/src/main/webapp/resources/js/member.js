@@ -1,4 +1,9 @@
 $(document).ready(function(){
+	var sessionSc1 = $('#kakaoidss').val();
+	var sessionSc2 = $('#kakaoniks').val();
+	console.log(sessionSc1);
+	console.log(sessionSc2);
+
 	
 	//비번 , 이름 , 이메일,주소
 	$('#changeCustomer').on('click', function() {
@@ -122,6 +127,7 @@ $(document).ready(function(){
 	})
 	
 	
+	
 	/* ID 찾기 인증 절차 */
 	$('#findId').on('click', function(event) {
 		event.preventDefault();
@@ -233,6 +239,7 @@ $(document).ready(function(){
 			return;
 		}
 
+
 		$.ajax({
     		url : 'http://localhost:3001/customer/member/' + hiddenId + '/modify'
     		, type : 'POST'
@@ -265,6 +272,39 @@ $(document).ready(function(){
 	});
 	
 	
+	$('#kakaologin123').on('click', function() {
+		console.log('sdfsdfsdfd')
+		$.ajax({
+    		url : 'http://localhost:3001/customer/member/register'
+    		, type : 'POST'
+    	    , contentType : 'application/json; charset=UTF-8'
+			, data :            
+				 JSON.stringify({
+					 
+					    id : sessionSc1
+	    				, pw :"1234"
+	    				, name : sessionSc2
+	    				, birthDate : "1111-11-11"
+	    				, phone : "010-"
+	    				, email : sessionSc1
+	    				, gender : "미정"
+	    				, status : "MEM002"
+	    		
+	    		
+    			})
+    		, error : function(data) {
+    			console.log(data);
+    		}
+    		, success : function(data) {
+    			if(data == "가입 성공.") {
+    				alert('회원가입 ');    				
+    			} else {
+    				alert('회원가입 성공');  			
+    			}
+    			
+    		}
+		});
+	})
 	
 	
 })
