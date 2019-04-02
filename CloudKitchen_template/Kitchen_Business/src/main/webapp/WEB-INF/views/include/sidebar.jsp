@@ -32,7 +32,7 @@
 					<i class="material-icons">person</i>
 					<p>마이페이지</p>
 			</a></li>
-			<li class="nav-item sidebar-menu"><a class="nav-link" href="${pageContext.request.contextPath}/menu/main?bizId=${sessionScope.bizId}">
+			<li class="nav-item sidebar-menu"><a class="nav-link" href="${pageContext.request.contextPath}/menu/${sessionScope.bizId}/main">
 					<i class="material-icons">library_books</i>
 					<p>메뉴관리</p>
 			</a></li>

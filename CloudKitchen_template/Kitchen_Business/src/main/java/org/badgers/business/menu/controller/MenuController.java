@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,8 +30,8 @@ public class MenuController {
 	@Setter(onMethod_=@Autowired)
 	private RestTemplate restTemplate;
 	
-	@RequestMapping(value="/main", method=RequestMethod.GET)	
-	public ModelAndView bizGetMenu(ModelAndView mav, @RequestParam("bizId") String bizId) {
+	@RequestMapping(value="/{bizId}/main", method=RequestMethod.GET)	
+	public ModelAndView bizGetMenu(ModelAndView mav, @PathVariable("bizId") String bizId) {
 //		System.out.println(bizId);
 		try {
 			String url = "http://localhost:80/";
