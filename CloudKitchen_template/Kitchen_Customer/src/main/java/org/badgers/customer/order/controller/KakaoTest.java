@@ -1,5 +1,7 @@
 package org.badgers.customer.order.controller;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.http.HttpEntity;
@@ -16,8 +18,7 @@ public class KakaoTest {
 		paymentReady();
 	}
 
-    @SuppressWarnings("rawtypes")
-	private static void paymentReady() {
+    private static void paymentReady() {
         RestTemplate restTemplate = new RestTemplate();
     
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();

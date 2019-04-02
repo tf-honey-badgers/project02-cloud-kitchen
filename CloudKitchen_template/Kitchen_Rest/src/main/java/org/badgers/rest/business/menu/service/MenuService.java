@@ -8,6 +8,8 @@ import org.badgers.rest.model.MenuOptionClVOExtend;
 import org.badgers.rest.model.MenuOptionVOExtend;
 import org.badgers.rest.model.MenuVOExtend;
 
+import com.google.gson.JsonElement;
+
 public interface MenuService {
 	public int addMenuCat(MenuCatVOExtend menuCatVoEx,MenuVOExtend menuVoEx,
 			MenuOptionClVOExtend menuOptClVoEx,MenuOptionVOExtend menuOptVoEx);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.badgers.rest.model.CustomerVO;
+import org.badgers.rest.model.CustomerVOExtend;
 import org.badgers.rest.model.OrderInfoVO;
 
 public interface CustomerMapper {

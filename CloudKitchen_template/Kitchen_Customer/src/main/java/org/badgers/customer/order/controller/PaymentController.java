@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.badgers.customer.model.CartVOExtend;
 import org.badgers.customer.model.OrderVOExtend;
@@ -13,12 +14,16 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,7 +44,6 @@ public class PaymentController {
 
 	
 	//pre :
-	@SuppressWarnings("rawtypes")
 	@PostMapping("/orderinfo")
 	public ModelAndView orderInfo(int[] selectedCart, ModelAndView mv) {
 		String url = "http://127.0.0.1:80/rest/cust/order/orderinfo";
@@ -74,7 +78,6 @@ public class PaymentController {
 	//orderId, OrderDetailId, 사용자 정보 아직 안 함
 	
 	//pre : method(결제 방법)을 받고 PaymentVO를 만들어 OrderExtendVO 완성 "order"
-	@SuppressWarnings("rawtypes")
 	@PostMapping("/payready")
 	public String payReady(@ModelAttribute("order") OrderVOExtend order) {
 		

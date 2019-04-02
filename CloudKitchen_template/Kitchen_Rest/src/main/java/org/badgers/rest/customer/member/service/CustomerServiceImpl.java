@@ -5,7 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.badgers.rest.customer.member.persistence.CustomerMapper;
+import org.badgers.rest.model.BizMemberVOExtend;
 import org.badgers.rest.model.CustomerVO;
+import org.badgers.rest.model.CustomerVOExtend;
 import org.badgers.rest.model.OrderInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;

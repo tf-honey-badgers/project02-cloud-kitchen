@@ -44,7 +44,6 @@ public class CustomerController {
 	}
 
 	// 로그인
-	@SuppressWarnings("rawtypes")
 	@PostMapping(value="/login" , produces = "application/json; charset=UTF-8")
 	public ResponseEntity login(@RequestBody CustomerVO cvo) throws Exception {
 //		String msg=""; 

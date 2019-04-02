@@ -8,7 +8,10 @@ import org.badgers.rest.model.OrderAlarmVO;
 import org.badgers.rest.model.OrderInfoVO;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.log4j.Log4j;
+
 @Service
+@Log4j
 public class ToOrderAlarmVOService {
 
 	
@@ -54,6 +57,9 @@ public class ToOrderAlarmVOService {
 			
 		}
 		
-		return bizAndOrder;	
-	}	
+		return bizAndOrder;
+		
+	}
+	
+	
 }
