@@ -27,19 +27,19 @@
 </div><!-- End subheader -->
 </section><!-- End section -->
 <!-- End SubHeader ============================================ -->
-	<script>
+
+<script>
 	bizName = '${bizMember.bizName}';
-	</script>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script>
-		$(document).ready(function(){
-			if(bizName=='유니네 피자집'){
-				$('.shopImg').attr('src','http://newsimg.hankookilbo.com/2014/08/19/201408191596070672_1.jpg');				
-				$('.HImg').attr('data-image-src','https://cbmpress.com/calgary/wp-content/uploads/sites/4/2017/09/pizzaweek.jpg');
-			}else{
-				$('.shopImg').attr('src','https://media-cdn.tripadvisor.com/media/photo-s/0a/85/0a/ab/2.jpg');
-				$('.HImg').attr('data-image-src','http://leegane.co.kr/images/main/visual_01.jpg');
-			}
-		})
-	
-	</script>
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		if(bizName=='유니네 피자집'){
+			$('.shopImg').attr('src','http://newsimg.hankookilbo.com/2014/08/19/201408191596070672_1.jpg');				
+			$('.HImg').attr('data-image-src','https://cbmpress.com/calgary/wp-content/uploads/sites/4/2017/09/pizzaweek.jpg');
+		}else{
+			$('.shopImg').attr('src','https://media-cdn.tripadvisor.com/media/photo-s/0a/85/0a/ab/2.jpg');
+			$('.HImg').attr('data-image-src','http://leegane.co.kr/images/main/visual_01.jpg');
+		}
+	})
+</script>

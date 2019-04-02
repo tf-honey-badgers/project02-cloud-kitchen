@@ -70,7 +70,7 @@
 										</td>
 										<td data-price="${dish.mbasicPrice}"><strong>${dish.mbasicPrice} 원</strong></td>
 										<td class="options">
-											<div class="dropdown dropdown-options">
+											<div class="dropdown dropdown-options plus-sign">
 												<a href="#" id="addCart" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
 												<div class="dropdown-menu">
 													<c:forEach var="extras" items="${dish.menuOptCl}">
@@ -118,48 +118,54 @@
 					<form action="http://localhost:3001/customer/order/orderinfo" method="post">
 						<div id="cart_box">
 							<h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
-							<table class="table table_summary">
-								<thead>
-									<tr>
-										<th style="width: 10%;"><input type="checkbox"></th>
-										<th style="width: 90%;">전체선택<a class="btn_intro pull-right" id="deleteCart" >삭제하기</a></th>
-									</tr>
-								</thead>
-								<tbody class="cartTable">
-								<!-- bizName이 다를 때 가게 이름을 출력하기 위한 반복문 -->
-									<!-- 카트 메뉴를 출력하기 위한 반복문  -->
-									<c:forEach var="cart" items="${cart}">
-										<tr class="bizNameRow">
-											<td colspan="3"><strong>${cart.bizName}</strong></td>
-										</tr>
+							<c:set var="cid" value="${sessionScope.uid}"></c:set>
+							<c:if test="${cid == null}">
+								<input type="button" class="btn_full" id="loginNow" value="사용하려면 로그인해주세요." data-toggle="modal" data-target="#login_2">
+							</c:if>
+							<c:if test="${cid != null}">
+								<table class="table table_summary">
+									<thead>
 										<tr>
-											<td style="width: 10%;"><input class="check-order" type="checkbox" name="selectedCart" value="${cart.id}"></td>
-											<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.menuName}<span class="pull-right">${cart.unitPrice}원</span></td>
+											<th style="width: 10%;"><input type="checkbox"></th>
+											<th style="width: 90%;">전체선택<a class="btn_intro pull-right" id="deleteCart" >삭제하기</a></th>
 										</tr>
-										<!-- 옵션을 출력하기 위한 반복문 -->
-										<c:forEach var="options" items="${cart.options}">									
+									</thead>
+									<tbody class="cartTable">
+									<!-- bizName이 다를 때 가게 이름을 출력하기 위한 반복문 -->
+										<!-- 카트 메뉴를 출력하기 위한 반복문  -->
+										<c:forEach var="cart" items="${cart}">
+											<tr class="bizNameRow">
+												<td colspan="3"><strong>${cart.bizName}</strong></td>
+											</tr>
 											<tr>
-												<td style="width: 10%;"></td>
-												<td style="font-size: 11px;">${options.menuOptName} <span class="pull-right">+ ${options.menuOptPrice}원</span></td>
-												<td style="width: 10%;"></td>
+												<td style="width: 10%;"><input class="check-order" type="checkbox" name="selectedCart" value="${cart.id}"></td>
+												<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.menuName}<span class="pull-right">${cart.unitPrice}원</span></td>
+											</tr>
+											<!-- 옵션을 출력하기 위한 반복문 -->
+											<c:forEach var="options" items="${cart.options}">									
+												<tr>
+													<td style="width: 10%;"></td>
+													<td style="font-size: 11px;">${options.menuOptName} <span class="pull-right">+ ${options.menuOptPrice}원</span></td>
+													<td style="width: 10%;"></td>
+												</tr>
+											</c:forEach>
+											<tr class="priceRow">
+												<td colspan="2" class="priceData" data-total-price="${cart.totalAmt}"><strong class="pull-right">합계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cart.totalAmt}원</strong></td>
 											</tr>
 										</c:forEach>
-										<tr class="priceRow">
-											<td colspan="2" class="priceData" data-total-price="${cart.totalAmt}"><strong class="pull-right">합계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cart.totalAmt}원</strong></td>
+									</tbody>
+								</table>
+								<hr>
+								<table class="table table_summary">
+									<tbody>
+										<tr>
+											<td class="total">총 금액 <span class="pull-right" data-total=""></span></td>
 										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-							<hr>
-							<table class="table table_summary">
-								<tbody>
-									<tr>
-										<td class="total">총 금액 <span class="pull-right" data-total=""></span></td>
-									</tr>
-								</tbody>
-							</table>
-							<hr>
-							<input type="submit" class="btn_full" id="orderNow" value="Order now">
+									</tbody>
+								</table>
+								<hr>
+								<input type="submit" class="btn_full" id="orderNow" value="Order now">
+							</c:if>
 						</div> <!-- End cart_box -->
 					</form>
 				</div> <!-- End theiaStickySidebar -->
