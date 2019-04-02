@@ -21,7 +21,7 @@
 </head>
 
 <body class="">
-    	<!-- Preload -->
+    <!-- Preload -->
 	<jsp:include page="../include/preload.jsp" flush="false"></jsp:include>
 	<!-- End Preload -->
    	<div class="wrapper ">
@@ -296,7 +296,13 @@
 		  
 		  
     </script>
+    
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	    	/* 사이드바 하이라이트된 바꾸기 */
+	    	$('.nav-item').removeClass('active');
+	    	$('.nav-item.sidebar-orders').addClass('active');
+	    });
+    </script>
 </body>
-
 </html>
-
