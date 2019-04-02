@@ -154,59 +154,59 @@ $(document)
 						}
 						insertMenu.menuOptCl = menuOptClArr;
 						console.log(insertMenu);
+						
+						var bucket = new AWS.S3({ params: { Bucket: 'honeybadgers' } });
+		                var fileChooser = document.getElementById('menuPhotoInsert');
+		                var file = fileChooser.files[0];
 
-//						var bucket = new AWS.S3({ params: { Bucket: 'honeybadgers' } });
-//		                var fileChooser = document.getElementById('menuPhotoInsert');
-//		                var file = fileChooser.files[0];
-//		                
-//		                if (file) {
-//		                    var params = {
-//		                        Key: file.name,
-//		                        ContentType: file.type,
-//		                        Body: file,
-//		                        ACL: 'public-read' // 접근 권한
-//		                    };
-//
-//		                    bucket.putObject(params, function (err, data) {
-//		                    	console.log(err);
-//		                    	console.log(data);
-//		                        // 업로드 성공
-//		                    });
-//		                } 
-//		                alert('사진파일 업로드에 실패하였습니다.');
-//		                return false;
+		                if (file) {
+		                    var params = {
+		                        Key: file.name,
+		                        ContentType: file.type,
+		                        Body: file,
+		                        ACL: 'public-read' // 접근 권한
+		                    };
+
+		                    bucket.putObject(params, function (err, data) {
+		                    	console.log(err);
+		                    	console.log(data);
+		                        // 업로드 성공
+		                    });
+		                } 
+		                alert('사진파일 업로드에 실패하였습니다.');
+		                return false;
 		                    
-						$.ajax({
-			        		type : "POST",
-			        		dataType : 'json',
-			        		url : "../menu/main/insertMenu",
-			         		data : {
-			         			menuInfo : JSON.stringify(insertMenu)
-			         		},
-			        		error : function(data){
-			        			console.log(data);
-			        		},
-			        		success(data){
-			        			console.log(data);
-			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
-			        			for(let i=0; i<menuCat.length; i++){
-			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
-//			        					$('.container-fluid .table tbody')[i].innerHTML+=(
-			        					$('.container-fluid .table tbody').eq(i).append(
-			        							'<tr>'
-			        							+'<td>'+data+'</td>'
-			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value+'</td>'
-			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value+'</td>'
-			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value+'</td>'
-			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
-												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
-			        							);
-			        					
-			        					$('.menuInsertModal').css('display', 'none');
-			        				}
-			        			}
-			        		}
-						});
+//						$.ajax({
+//			        		type : "POST",
+//			        		dataType : 'json',
+//			        		url : "../menu/main/insertMenu",
+//			         		data : {
+//			         			menuInfo : JSON.stringify(insertMenu)
+//			         		},
+//			        		error : function(data){
+//			        			console.log(data);
+//			        		},
+//			        		success(data){
+//			        			console.log(data);
+//			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
+//			        			for(let i=0; i<menuCat.length; i++){
+//			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
+////			        					$('.container-fluid .table tbody')[i].innerHTML+=(
+//			        					$('.container-fluid .table tbody').eq(i).append(
+//			        							'<tr>'
+//			        							+'<td>'+data+'</td>'
+//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value+'</td>'
+//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value+'</td>'
+//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value+'</td>'
+//			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
+//												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
+//			        							);
+//			        					
+//			        					$('.menuInsertModal').css('display', 'none');
+//			        				}
+//			        			}
+//			        		}
+//						});
 					});	 // insertMenu
 					
 					$('.menuInsertModalOpt')
