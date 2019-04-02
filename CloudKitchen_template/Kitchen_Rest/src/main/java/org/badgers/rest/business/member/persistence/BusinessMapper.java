@@ -10,6 +10,9 @@ public interface BusinessMapper {
 
 	// 사업자 정보 수정
 	public int modify(BizMemberVOExtend mvo);
+	
+	// bizLiveStrm 입력
+	public int inputBizLiveStrm(String bizId, String bizLiveStrm);
 
 	// 로그인
 	public BizMemberVOExtend login(@Param("bizId")String bizId, @Param("pw")String pw);

@@ -95,6 +95,29 @@
 								</div>
 							</div>
 						</div>
+						<!-- View / Change YouTube player code -->
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header card-header-primary">
+									<h4 class="card-title">YouTube Live Streaming</h4>
+									<p class="card-category">스트리밍을 시작하면 현재 유효한 유투브 생방송 코드를 입력해주세요.</p>
+								</div>
+								<div class="card-body" style="padding-top: 50px;">
+									<form>
+										<div class="row">
+											<div class="col-md-8">
+												<div class="form-group">
+													<label class="bmd-label-floating">유투브 생방송 코드</label>
+													<input type="text" id="bizLiveStrm" class="form-control" value="${bizMember.biz.bizLiveStrm}">
+												</div>
+											</div>
+											<button type="button" id="changeBizLiveStrm" class="btn btn-primary pull-right">유투브 생방송 코드 입력</button>
+										</div>
+										<div class="clearfix"></div>
+									</form>
+								</div>
+							</div>
+						</div>
 						<!-- View / Change business data -->
                         <div class="col-md-12">
                             <div class="card">

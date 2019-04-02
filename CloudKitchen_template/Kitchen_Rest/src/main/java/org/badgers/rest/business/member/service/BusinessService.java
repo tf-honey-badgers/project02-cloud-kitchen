@@ -9,6 +9,9 @@ public interface BusinessService {
 
 	// 정보수정
 	public int modify(BizMemberVOExtend mvo) throws Exception;
+	
+	// bizLiveStrm 입력
+	public int inputBizLiveStrm(String bizId, String bizLiveStrm) throws Exception;
 
 	// 로그인
 	public int login(String bizId, String pw) throws Exception;
