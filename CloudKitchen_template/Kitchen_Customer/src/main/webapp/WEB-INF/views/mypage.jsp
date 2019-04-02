@@ -56,11 +56,11 @@
 		</div>
 		<!-- End col-md-6-->
 		<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.2s">
-			<a class="strip_list grid" href="detail_page.html">
+			<a class="strip_list grid" href="http://localhost:3001/customer/member/card">
 
 				<div class="desc">
 					
-					<h3>미정 </h3>
+					<h3>사용자 카드 관리 </h3>
 					
 				</div>
 			</a>
