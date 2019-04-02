@@ -212,10 +212,6 @@
 														<td><a href="" class="menu-option-select">변경</a> / 
 														<a href="" class="menu-option-delete">삭제</a></td>
 													</tr>
-<<<<<<< HEAD
-=======
-													
->>>>>>> 130d501231081bf5049f0c48b932a8b1eecfe8e2
 												</c:forEach>
 											</tbody>
 										</table>
@@ -392,11 +388,6 @@
     	/* 사이드바 하이라이트된 바꾸기 */
     	$('.nav-item').removeClass('active');
     	$('.nav-item.sidebar-menu').addClass('active');
-    </script>
-    
-    <script>
-    	
-    
     </script>
 </body>
 </html>
