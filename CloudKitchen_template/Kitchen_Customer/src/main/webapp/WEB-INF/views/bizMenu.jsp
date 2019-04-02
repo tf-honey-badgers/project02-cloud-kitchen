@@ -201,7 +201,9 @@
 					}
 				});
 		
-		
+		const custId = '${sessionScope.uid}';
+		console.log(custId)
+
 		var imgArr=[];
 		var BIZID = $('#bizId').val();
 		/* if(BIZID=='유니네 피자집'){
