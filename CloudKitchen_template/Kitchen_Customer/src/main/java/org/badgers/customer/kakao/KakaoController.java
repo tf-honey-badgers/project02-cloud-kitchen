@@ -68,10 +68,10 @@ public class KakaoController {
 
 	        System.out.println(id + email);
 		
-	        session.setAttribute("token", token);
-	        session.setAttribute("kid", id);
-	        session.setAttribute("kemail", email);
-	        session.setAttribute("knikname", nickname);
+	        session.setAttribute("token", token); // 세션 토큰값 저장 
+	        session.setAttribute("kid", id); // 세션 id(임시 브라우저마다 다르다고 함) 저장 
+	        session.setAttribute("kemail", email); // 세션 email 저장 
+	        session.setAttribute("knikname", nickname); // 세션 닉네임 -> 이게id 로 
 	      
 	        model.addAttribute("token",token);
 	        model.addAttribute("k_userInfo", userInfo);

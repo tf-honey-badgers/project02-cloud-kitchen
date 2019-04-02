@@ -105,7 +105,7 @@
                 </form>
           	
            <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
-           <img alt="카카오 로그인" src="/customer/resources/img/kakaobutton.png" style="width:375px; height: 44px;">
+           <img alt="카카오 로그인" src="/customer/resources/img/kakaobutton.png" style="width:375px; height: 44px;" id="kakaologin">
            </a>    					
            
          <!--   <div id="kakao_btn_changed">

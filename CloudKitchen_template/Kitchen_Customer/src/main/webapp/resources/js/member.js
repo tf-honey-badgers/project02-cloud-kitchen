@@ -84,7 +84,7 @@ $(document).ready(function(){
                 }
             });
         })
-
+ 
 	// 회원가입 절차 
 	$('#myRegister button').on('click', function() {
 		$.ajax({
