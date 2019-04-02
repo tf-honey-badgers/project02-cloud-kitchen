@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,12 +27,6 @@ import lombok.extern.log4j.Log4j;
 public class BusinessController {
 	@Inject
 	RestTemplate restTemplate;
-	
-	@GetMapping("mypage")
-	public String mypage (@ModelAttribute("bizId")String bizId) {
-		
-		return "redirect:"+bizId+"/main";
-	}
 	
 	@GetMapping("/{bizId}/main")
 	public ModelAndView readBizMember(ModelAndView mav, @PathVariable("bizId") String bizId) {

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="sidebar" data-color="azure" data-background-color="white"
 	data-image="/business/resources/img/sidebar-1.jpg">
@@ -17,7 +18,13 @@
 					<i class="material-icons">home</i>
 					<p>메인</p>
 			</a></li>
-			<li class="nav-item sidebar-mypage"><a class="nav-link" href="/business/member/mypage">
+			<li class="nav-item sidebar-mypage">
+				<c:if test="${!empty sessionScope.bizId }">
+					<a class="nav-link" href="${pageContext.request.contextPath}/member/${sessionScope.bizId }/main">
+				</c:if>
+				<c:if test="${empty sessionScope.bizId }">
+					<a class="nav-link" href="${pageContext.request.contextPath}/main?msg=fail">
+				</c:if>
 					<i class="material-icons">person</i>
 					<p>마이페이지</p>
 			</a></li>
