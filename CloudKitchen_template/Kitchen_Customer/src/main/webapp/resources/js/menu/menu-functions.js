@@ -1,6 +1,4 @@
 /* 전역 변수 */
-	/* 사용자 ID */
-	const custId = '1234';
 	/* 가게 ID */
 	const bizId = $('#main_menu').attr('data-biz-id');
 	/* 치킨 지점명 */
