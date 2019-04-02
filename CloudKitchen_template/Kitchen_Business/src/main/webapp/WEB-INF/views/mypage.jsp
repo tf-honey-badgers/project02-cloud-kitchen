@@ -152,14 +152,6 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">생방송 키 코드</label>
-                                                    <input type="text" id="bizLiveStrm" class="form-control" value="${bizMember.biz.bizLiveStrm}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
                                                     <label class="bmd-label-floating">주소</label>
                                                     <input type="text" id="addr" class="form-control" disabled value="${bizMember.kb.address}">
                                                 </div>
