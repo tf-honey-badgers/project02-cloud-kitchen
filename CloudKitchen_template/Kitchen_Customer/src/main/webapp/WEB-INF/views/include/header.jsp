@@ -62,26 +62,21 @@
 					</div>
 					<a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
 					<ul>
-
 						<li class="submenu"><a href="${pageContext.request.contextPath}/main" class="show-submenu"><i class="icon-home-2"></i></a></li>
-						<li class="submenu"><a href="javascript:void(0);" class="show-submenu">Cloud Kitchen<i class="icon-down-open-mini"></i></a>
-
-				<c:if test="${empty sessionScope.uid and empty sessionScope.kid }" > <!-- 기본상태 -->
-				<li><a href="#0" data-toggle="modal" data-target="#login_2">로그인</a></li>
-				<li><a href="#0" data-toggle="modal" data-target="#register">회원가입</a></li>
-			    </c:if>
-				<c:if test="${empty sessionScope.uid and !empty sessionScope.kid}" ><!-- 아이디 없고 카카오 있고  -->
-				<li class="submenu"><a href="#" class="show-submenu">${knikname }님</a></li>
-				<li><a  href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
-				
-				</c:if>
-				<c:if test="${!empty sessionScope.uid and empty sessionScope.kid}" > <!-- 아이디 있고 카카오 없고 -->
-				<li class="submenu"><a href="#" class="show-submenu">${uid }님</a></li>
-				<li><a  href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
-				<li><a href="${pageContext.request.contextPath}/member/mypage">마이 페이지</a></li>
-				</c:if>
-				<li><a href="${pageContext.request.contextPath}/about">회사 소개</a></li>
-
+						<c:if test="${empty sessionScope.uid and empty sessionScope.kid }" > <!-- 기본상태 -->
+							<li><a href="#0" data-toggle="modal" data-target="#login_2">로그인</a></li>
+							<li><a href="#0" data-toggle="modal" data-target="#register">회원가입</a></li>
+			    		</c:if>
+						<c:if test="${empty sessionScope.uid and !empty sessionScope.kid}" ><!-- 아이디 없고 카카오 있고  -->
+							<li class="submenu"><a href="#" class="show-submenu">${knikname }님</a></li>
+							<li><a  href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
+						</c:if>
+						<c:if test="${!empty sessionScope.uid and empty sessionScope.kid}" > <!-- 아이디 있고 카카오 없고 -->
+							<li class="submenu"><a href="#" class="show-submenu">${uid }님</a></li>
+							<li><a href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
+							<li><a href="${pageContext.request.contextPath}/member/mypage">마이 페이지</a></li>
+						</c:if>
+						<li><a href="${pageContext.request.contextPath}/about">회사 소개</a></li>
 					</ul>
 				</div> <!-- End main-menu -->
 			</nav>
