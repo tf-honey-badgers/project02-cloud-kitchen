@@ -15,8 +15,7 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter {
 				HttpServletResponse response,
 				Object handler
 			) throws Exception {
-		String url = "";
-		String custId = (String) request.getSession().getAttribute("uid");
+		String url = "", custId = (String) request.getSession().getAttribute("uid");
 		log.info("UID IS : " + custId);
 
 		if(request.getQueryString() == null) {
@@ -40,7 +39,6 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter {
 				}				
 			}
 		}
-
 		return true;
 	}
 }
