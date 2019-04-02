@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.badgers.customer.model.CustomerVO;
-import org.badgers.customer.model.CustomerVOExtend;
 import org.badgers.customer.model.FavoriteVO;
 import org.badgers.customer.model.OrderInfoVO;
 import org.springframework.http.HttpHeaders;
@@ -166,7 +165,7 @@ public class CustomerController {
 	}
 	
 	// 주문 내역 보기 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping(value = "/{custId}/mypage/orderinfo")
 	public ModelAndView readOrderinfo(ModelAndView mav, @PathVariable("custId") String custId) {
 		log.info("사용자 주문 내역 보기================================");
