@@ -93,6 +93,11 @@ $(document).ready(function() {
 	$('.add_to_basket').on('click', function(event) {
 		event.preventDefault();
 	
+	/* 로그인했는지 확인한다 */
+		if(custId === "") {
+			alert("사용하려면 로그인해주세요.");
+			return;
+		}
 	/* 필수선택 옵션을 선택했는지 확인한다 */
 		const divs = $(this).siblings('div');
 		for(let i = 0; i < divs.length; i++) {
@@ -307,5 +312,7 @@ $(document).ready(function() {
 				}
 			});
 		}
-	});	
+	});
+	
+	
 });
