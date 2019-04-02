@@ -15,6 +15,7 @@ public class MenuServiceImpl implements MenuService {
 	@Setter(onMethod_=@Autowired)
 	private RestTemplate restTemplate;
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List<?> bizGetMenu(String bizId) {
 		
@@ -32,6 +33,7 @@ public class MenuServiceImpl implements MenuService {
 		return null;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List<?> getMenuInfo(int mIdx) {
 		

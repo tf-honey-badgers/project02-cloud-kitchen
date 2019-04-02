@@ -13,6 +13,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class AuthCheckInterceptor extends HandlerInterceptorAdapter{
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -48,6 +49,4 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter{
 		
 		return true;
 	}
-
-
 }
