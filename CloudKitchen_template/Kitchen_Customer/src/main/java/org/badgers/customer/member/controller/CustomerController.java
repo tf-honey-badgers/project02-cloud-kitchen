@@ -117,7 +117,8 @@ public class CustomerController {
 	@GetMapping("/logout")
 	public String logout (Model model) {
 		model.addAttribute("logout", "logout");
-		return "main";
+	
+		return "redirect:/main";
 	}
 	
 	//회원정보 수정 
@@ -298,4 +299,10 @@ public class CustomerController {
 		
 		return mav;
 	}	
+	
+	@RequestMapping(value = "/card", method = RequestMethod.GET)
+	public String card() {
+		return "card";
+	}
+
 }

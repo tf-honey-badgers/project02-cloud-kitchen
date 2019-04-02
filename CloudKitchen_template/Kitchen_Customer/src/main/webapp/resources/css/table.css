@@ -8,6 +8,7 @@ table.type11 {
     font-size: 0.8em;
 }
 table.type11 th {
+    text-align: center;
     width: 155px;
     padding: 10px;
     font-weight: bold;

@@ -21,18 +21,19 @@ var custId = '${custId}';
 
 <body>
 
-<br><br>
-	<!-- Header =============================================== -->
-	<jsp:include page="include/header.jsp" flush="false" />
-<!-- End Header =============================================== -->
-<!-- SubHeader & Position =============================================== -->
+<!-- 위쪽 헤더바  -->
+	<jsp:include page="include/header.jsp" />
 	<jsp:include page="include/background.jsp" flush="false" />
-<!-- End SubHeader & Position =============================================== -->
-<h2>찜 리스트</h2>
-<table  class="type11">
+	<!-- 헤드 끝 -->
+<br><br><br><br><br><br>
+<div style="margin-left:33%;">	
+<h1>찜 리스트</h1>
+</div>
+
+<table  class="type11" style="margin-left:33%;">
 		<thead>
 			<tr>
-				<th>회원 아이디</th>
+				<th>가게 사진</th>
 				<th>가게 이름</th>
 				<th>키친 이름</th>
 			</tr>
