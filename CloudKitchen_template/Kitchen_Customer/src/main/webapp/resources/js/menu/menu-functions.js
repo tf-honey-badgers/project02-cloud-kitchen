@@ -93,6 +93,11 @@ $(document).ready(function() {
 	$('.add_to_basket').on('click', function(event) {
 		event.preventDefault();
 	
+	/* 로그인했는지 확인한다 */
+		if(custId === "") {
+			alert("사용하려면 로그인해주세요.");
+			return;
+		}
 	/* 필수선택 옵션을 선택했는지 확인한다 */
 		const divs = $(this).siblings('div');
 		for(let i = 0; i < divs.length; i++) {
@@ -256,7 +261,7 @@ $(document).ready(function() {
 			alert('메뉴를 최소한 하나는 선택해주세요.');
 			return;
 		}
-		if($('.total span').data('total') < minAmt) {
+		if($('.total span').data('total') < $('#minAmt').data('min-amt')) {
 			event.preventDefault();
 			alert('메뉴를 최소한 하나는 선택해주세요.');
 			return;
@@ -307,5 +312,13 @@ $(document).ready(function() {
 				}
 			});
 		}
-	});	
+	});
+	
+	$('body').on('click', '#orderNow', function(event) {
+		if($('.total span').data('total') < $('#minAmt').data('min-amt')) {
+			event.preventDefault();
+			alert('최소금액보다 적어서 주문할 수 없습니다.');
+			return;
+		}
+	})
 });

@@ -11,7 +11,6 @@ import org.badgers.customer.model.CartDetailVO;
 import org.badgers.customer.model.CartVOExtend;
 import org.badgers.customer.model.OrderDetailVOExtend;
 import org.badgers.customer.model.OrderOptionVO;
-import org.badgers.customer.model.OrderPaymentVO;
 import org.badgers.customer.model.OrderVOExtend;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -29,6 +28,7 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 		return super.preHandle(request, response, handler);
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
@@ -42,7 +42,7 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 		List<OrderDetailVOExtend> orderDetailList = new ArrayList<>();
 		
 		//세션에 저장해둔 cart를 받아온다
-		List<CartVOExtend> cartList = (List)session.getAttribute("cart");
+		List<CartVOExtend> cartList = (List) session.getAttribute("cart");
 		
 		//kitchenName은 OrderVoExtendVO에 하나만 필요하므로 cartList의 0번째 요소만 받아서 set해준다
 		order.setKitchenName(cartList.get(0).getKitchenName());

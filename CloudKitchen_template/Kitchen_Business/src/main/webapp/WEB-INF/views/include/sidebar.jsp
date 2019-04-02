@@ -36,7 +36,8 @@
 					<i class="material-icons">library_books</i>
 					<p>메뉴관리</p>
 			</a></li>
-			<li class="nav-item sidebar-marketing"><a class="nav-link" href="https://www.youtube.com/livestreaming/">
+			<li class="nav-item sidebar-marketing"><a class="nav-link" target="_blank"
+			onClick="window.open(this.href,'','width=700px, height=460px, top=200, left=1000'); return false;" href="https://www.youtube.com/livestreaming/">
 					<i class="material-icons">camera</i>
 					<p>마케팅관리</p>
 			</a></li>

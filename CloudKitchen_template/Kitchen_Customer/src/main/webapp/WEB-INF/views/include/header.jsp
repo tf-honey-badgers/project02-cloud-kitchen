@@ -118,13 +118,9 @@
 		<!--    <div>
   		 <button class="api-btn" onclick="unlinkApp()"> 앱 탈퇴하기	</button>
  			</div> -->
-            </div>
-        </div>
-    </div><!-- End modal -->
-
-
-
-
+    	</div>
+	</div>
+</div><!-- End modal -->
 
 <!-- Find modal -->
 <div class="modal fade" id="finder" tabindex="-1" role="dialog" aria-labelledby="myLogin" aria-hidden="true">

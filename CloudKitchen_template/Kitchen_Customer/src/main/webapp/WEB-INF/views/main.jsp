@@ -20,7 +20,7 @@
 <!-- Content ================================================== -->
 <input type="hidden" id="kakaoidss" value="${sessionScope.kemail}" />
 <input type="hidden" id="kakaoniks" value="${sessionScope.knikname}" />
-<button type="button" id="kakaologin123"></button>
+<button type="button" id="kakaologin123" style="display:none;"></button>
 
     <div class="container margin_60">
 		<div class="main_title">

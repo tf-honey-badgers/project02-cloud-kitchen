@@ -18,6 +18,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 //		return super.preHandle(request, response, handler);
 //	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView mv) throws Exception {

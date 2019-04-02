@@ -3,7 +3,6 @@ package org.badgers.rest.customer.member.service;
 import java.util.List;
 
 import org.badgers.rest.model.CustomerVO;
-import org.badgers.rest.model.CustomerVOExtend;
 import org.badgers.rest.model.OrderInfoVO;
 
 public interface CustomerService {

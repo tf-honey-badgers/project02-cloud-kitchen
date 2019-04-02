@@ -3,7 +3,6 @@ package org.badgers.business.menu.controller;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import org.badgers.business.menu.service.MenuServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -24,12 +23,10 @@ import lombok.Setter;
 @RequestMapping("/menu")
 public class MenuController {
 	
-	@Setter(onMethod_ = { @Autowired })
-	private MenuServiceImpl service;
-	
 	@Setter(onMethod_=@Autowired)
 	private RestTemplate restTemplate;
 	
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value="/{bizId}/main", method=RequestMethod.GET)	
 	public ModelAndView bizGetMenu(ModelAndView mav, @PathVariable("bizId") String bizId) {
 //		System.out.println(bizId);
@@ -49,6 +46,7 @@ public class MenuController {
 		return null;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value="/main/update", method=RequestMethod.GET)
 	@ResponseBody
 	public List<?> getMenuInfo(@RequestParam("mIdx") int mIdx) {
@@ -67,6 +65,7 @@ public class MenuController {
 		return null;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="/main/menuupdate", method=RequestMethod.POST, 
 			produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -100,6 +99,7 @@ public class MenuController {
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value="/main/getMenuCat", method=RequestMethod.GET)
 	@ResponseBody
 	public List<?> getMenuCat(@RequestParam("bizId") String bizId) {
@@ -119,6 +119,7 @@ public class MenuController {
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value="/main/getComCode", method=RequestMethod.GET)
 	@ResponseBody
 	public List<?> getComCode() {
@@ -137,6 +138,7 @@ public class MenuController {
 	}
 	
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="/main/insertMenu", method=RequestMethod.POST, 
 			produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -168,6 +170,7 @@ public class MenuController {
 	}
 	
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="/main/deletemenu", method=RequestMethod.POST, 
 			produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -201,6 +204,7 @@ public class MenuController {
 	}
 	
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="/main/deletemenuopt", method=RequestMethod.GET, 
 			produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -232,6 +236,7 @@ public class MenuController {
 		
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="/main/insertmenucat", method=RequestMethod.GET, 
 			produces = "application/json;charset=UTF-8")
 	@ResponseBody

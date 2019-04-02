@@ -168,7 +168,7 @@ public class CustomerController {
 	}
 	
 	// 주문 내역 보기 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping(value = "/{custId}/mypage/orderinfo")
 	public ModelAndView readOrderinfo(ModelAndView mav, @PathVariable("custId") String custId) {
 		log.info("사용자 주문 내역 보기================================");
