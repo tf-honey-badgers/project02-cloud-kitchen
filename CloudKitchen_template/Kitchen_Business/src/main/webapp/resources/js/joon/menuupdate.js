@@ -188,37 +188,37 @@ $(document)
 						console.log(insertMenu);
 						addPhoto('MenuPhoto');
 		                    
-//						$.ajax({
-//			        		type : "POST",
-//			        		dataType : 'json',
-//			        		url : "../menu/main/insertMenu",
-//			         		data : {
-//			         			menuInfo : JSON.stringify(insertMenu)
-//			         		},
-//			        		error : function(data){
-//			        			console.log(data);
-//			        		},
-//			        		success(data){
-//			        			console.log(data);
-//			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
-//			        			for(let i=0; i<menuCat.length; i++){
-//			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
-////			        					$('.container-fluid .table tbody')[i].innerHTML+=(
-//			        					$('.container-fluid .table tbody').eq(i).append(
-//			        							'<tr>'
-//			        							+'<td>'+data+'</td>'
-//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value+'</td>'
-//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value+'</td>'
-//			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value+'</td>'
-//			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
-//												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
-//			        							);
-//			        					
-//			        					$('.menuInsertModal').css('display', 'none');
-//			        				}
-//			        			}
-//			        		}
-//						});
+						$.ajax({
+			        		type : "POST",
+			        		dataType : 'json',
+			        		url : "../menu/main/insertMenu",
+			         		data : {
+			         			menuInfo : JSON.stringify(insertMenu)
+			         		},
+			        		error : function(data){
+			        			console.log(data);
+			        		},
+			        		success(data){
+			        			console.log(data);
+			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
+			        			for(let i=0; i<menuCat.length; i++){
+			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
+//			        					$('.container-fluid .table tbody')[i].innerHTML+=(
+			        					$('.container-fluid .table tbody').eq(i).append(
+			        							'<tr>'
+			        							+'<td>'+data+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[0].children[0].value+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[1].children[0].value+'</td>'
+			        							+'<td>'+$('.menuInsertModalOpt .table tbody tr')[0].children[2].children[0].value+'</td>'
+			        							+'<td><a href="#" class="menu-option-select">변경</a> /'
+												+'<a href="#" class="menu-option-delete">삭제</a></td></tr>'
+			        							);
+			        					
+			        					$('.menuInsertModal').css('display', 'none');
+			        				}
+			        			}
+			        		}
+						});
 					});	 // insertMenu
 					
 					$('.menuInsertModalOpt')
