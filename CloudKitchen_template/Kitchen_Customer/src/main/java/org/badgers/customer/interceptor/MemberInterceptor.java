@@ -2,14 +2,13 @@ package org.badgers.customer.interceptor;
 
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
-import lombok.extern.log4j.Log4j;
 
 
 public class MemberInterceptor extends HandlerInterceptorAdapter{
@@ -40,8 +39,12 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 					session.setAttribute("addr1", uaddr );	 // 사용자 주소 1 (지도 주소) 
 					session.setAttribute("addr2", uaddr2 );	 // 사용자 주소 2 (상세 주소)
 				
+					
 			}
+			
 		}
+		
+		
 
 		//map에 logout 이라는 키를 가지고 있으면 세션invalidate() 해주기
 		if(mv!=null) {

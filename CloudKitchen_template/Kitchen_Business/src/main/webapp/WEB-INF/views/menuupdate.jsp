@@ -168,7 +168,9 @@
 						
 	</div>
 </div>
-
+<!-- Preload -->
+<jsp:include page="include/preload.jsp" flush="false"></jsp:include>
+<!-- End Preload -->
 	<div class="wrapper ">
 		<!-- Sidebar -->
 		<jsp:include page="include/sidebar.jsp" flush="false"></jsp:include>
@@ -383,5 +385,11 @@
 	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
 	<script src="/business/resources/js/joon/menuupdate.js"></script>
 	<script src="http://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+	
+	<script type="text/javascript">
+    	/* 사이드바 하이라이트된 바꾸기 */
+    	$('.nav-item').removeClass('active');
+    	$('.nav-item.sidebar-menu').addClass('active');
+    </script>
 </body>
 </html>

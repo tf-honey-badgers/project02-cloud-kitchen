@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>payment Temp</title>
+<title>주문 정보 입력</title>
 </head>
 <body>
 	<!--헤더 -->

@@ -290,7 +290,7 @@ $(document)
 			        		dataType : 'json',
 			        		url : "../menu/main/getMenuCat",
 			         		data : {
-			         			bizId : 'biz_2'
+			         			bizId : $('#bizId').val()
 			         		},
 			        		error : function(data){
 			        			console.log(data);

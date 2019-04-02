@@ -1,10 +1,16 @@
 package org.badgers.customer.kakao;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class KakaoController {
@@ -26,6 +33,7 @@ public class KakaoController {
 	        // JsonNode 트리형태로 토큰받아온다
 	        JsonNode jsonToken = KakaoAccessToken.getKakaoAccessToken(code);
 	        
+	        System.out.println("jspm토큰==================="+jsonToken);
 	        // 여러 json객체 중 access_token을 가져온다
 	        JsonNode accessToken = jsonToken.get("access_token");
 	        
@@ -61,7 +69,9 @@ public class KakaoController {
 	        System.out.println(id + email);
 		
 	        session.setAttribute("token", token);
-	        session.setAttribute("token", id);
+	        session.setAttribute("kid", id);
+	        session.setAttribute("kemail", email);
+	        session.setAttribute("knikname", nickname);
 	      
 	        model.addAttribute("token",token);
 	        model.addAttribute("k_userInfo", userInfo);
@@ -70,7 +80,7 @@ public class KakaoController {
 	        model.addAttribute("nickname", nickname);
 	        model.addAttribute("image", image);
 
-	        return "logininfo";
+	        return "main";
 	   
 	    }	
 	 @RequestMapping(value="main/test",produces="application/json")
@@ -81,35 +91,29 @@ public class KakaoController {
 	 
 	 @RequestMapping(value = "/logout", produces = "application/json")
 	    public String Logout(HttpSession session) {
-	        //KakaoUserInfo 객체 선언
-
-	   
 		 
-	      //  Object accessToken = null;
-//	        
-//	        System.out.println("accessToken 1번 ==================="+accessToken);
-//	        
-	    //    accessToken = session.getAttribute("token");
-//	        
-//	        //노드에 로그아웃한 결과값음 담아줌 매개변수는 세션에 잇는 token을 가져와 문자열로 변환
-//	        
-//	        System.out.println("accessToken 2번 ==================="+accessToken);
-//	        
-//	        
-	     //   JsonNode node = KakaoUserInfo.Logout((JsonNode) accessToken);
-//	        
-//	        
-//	        System.out.println("node==================="+node);
-//
-//	        //결과 값 출력
-//	        
-//	        System.out.println("로그아웃후 반환되는 아이디 : " + node.get("id"));
-	        
-	        return "main";
-	    }    
+		 KakaoUserInfo ki = new KakaoUserInfo();
+		 
+		 JsonNode node = ki.Logout(session.getAttribute("token").toString());
+		System.out.println("node==================="+node);
+		
+		 System.out.println("로그인 후 반환되는 아이디 : " + node.get("id"));
+
+		
+		 
+		 
+		 
+		 
+		 
+		 
+		 return "redirect:/http://localhost:3001/customer/main";
+
+		
+
+
+	
 
 
 
-
-
+}
 }
