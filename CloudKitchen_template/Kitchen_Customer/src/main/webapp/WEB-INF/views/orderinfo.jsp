@@ -14,9 +14,40 @@
 var custId = '${custId}';
 
 </script>
+<style type="text/css">
 
+        div.c{
+            margin: 0 10% 0 10%;
+            width: 1500px;
+            height: 200px;
+            text-align: center;
+        }
+      div.center {
+       width: 100%;
+        height:100%;
+       
+        border: 1px solid #000;
+    }
+    div.left {
+        width: 20%;
+        height: 100%;
+        float: left;
+       box-sizing: border-box;
+        
+        background: #ff0;
+    }
+    div.right {
+        width: 80%;
+        float: right;
+         height: 100%;
+       box-sizing: border-box;
+        
+        background: #0ff;
+    }
 
-
+    
+    </style>
+    
 </head>
 <body>
 	<!-- 위쪽 헤더바  -->
@@ -26,8 +57,52 @@ var custId = '${custId}';
 <br><br>
 	<h2>주문 리스트</h2>
 	<br><br>
-		<table  class="type11">
-		<thead>
+		   
+		 <div class="c">
+  <div class="center">
+    <div class="left">
+     <h1>사진넣구</h1> 
+      </div>
+      <div class="right" >
+          <h1>유니네 피자집</h1>
+          <h1>총 가격  ㅣ  결제 일시</h1>
+          <button type="button" class="btn btn-default"><h3>결제 상세 내역 보기</h3></button>  
+      </div>
+    </div>
+    </div>
+    
+		 <div class="c">
+  <div class="center">
+    <div class="left">
+     <h1>사진</h1> 
+      </div>
+      <div class="right" >
+          <span></span>
+          <h1>총 가격  ㅣ  결제 일시</h1>
+          <button type="button" class="btn btn-default"><h3>결제 상세 내역 보기</h3></button>  
+      </div>
+    </div>
+    </div>		
+    <div id="co">
+    <span></span>
+  
+    </div>
+    
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<table  class="type11" id="list">
+		<thead style="display:none">
 			<tr>
 
 				<th>주문 시간</th>
@@ -41,14 +116,14 @@ var custId = '${custId}';
 				
 			</tr>
 			</thead>
-			<tbody>
+			<tbody style="display:none">
 			</tbody>
 		</table>
-		
+	
+<%-- 	var kk = ${list[i].kitchenName}; --%>
 		
 		<script>
 		 var tbody = $('tbody');
-		 
 		$(document).ready(function(){
 	
 			$.getJSON( 'http://localhost/rest/customer/${custId}/mypage/orderinfo', function(list){
@@ -63,11 +138,12 @@ var custId = '${custId}';
 					var optName = $('<td>' + list[i].optName + '</td>');
 					var payAmt = $('<td>' + list[i].payAmt + '</td>');
 					var msg = $('<td>' + list[i].msg + '</td>');
-					
+			
 					tr.append(time).append(kitchenName).append(bizName).append(method).append(menuName)
 					.append(optName).append(payAmt).append(msg);
 					tbody.append(tr);
 					console.log(list[i]);
+			
 				}
 			});
 		 

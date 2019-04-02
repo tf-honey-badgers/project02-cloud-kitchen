@@ -26,14 +26,14 @@ var custId = '${custId}';
 	<jsp:include page="include/background.jsp" flush="false" />
 	<!-- 헤드 끝 -->
 <br><br><br><br><br><br>
-<h2>찜 리스트</h2>
-<div style="row">
-<div></div><div></div><div></div>
+<div style="margin-left:33%;">	
+<h1>찜 리스트</h1>
 </div>
-<table  class="type11">
+
+<table  class="type11" style="margin-left:33%;">
 		<thead>
 			<tr>
-				<th>회원 아이디</th>
+				<th>가게 사진</th>
 				<th>가게 이름</th>
 				<th>키친 이름</th>
 			</tr>
