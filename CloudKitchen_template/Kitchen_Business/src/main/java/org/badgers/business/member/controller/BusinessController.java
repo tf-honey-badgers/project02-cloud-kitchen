@@ -70,7 +70,7 @@ public class BusinessController {
 		return mav;
 	}
 
-	// pw, account, info, minAmt, bizLiveStrm 수정 가능!
+	// pw, account, info, minAmt 수정 가능!
 	@PostMapping("/{bizId}/modify")
 	@ResponseBody
 	public void updateBizMember(@RequestBody BizMemberVOExtend mvo) {
@@ -84,6 +84,26 @@ public class BusinessController {
 		}
 
 		log.info("updateBizMember DONE!!!!!");
+	}
+	
+	// bizLiveStrm 입력!
+	@GetMapping("/livestrm/{bizId}/{bizLiveStrm}")
+	@ResponseBody
+	public ResponseEntity<String> updateBizLiveStrm(@PathVariable("bizId") String bizId, @PathVariable("bizLiveStrm") String bizLiveStrm) {
+		log.info("Kitchen_Business YouTube LiveStreaming 코드 입력...............................");
+
+		String returnVal = "";
+		try {
+			String url = "http://localhost/rest/business/livestrm/" + bizId + "/" + bizLiveStrm;
+			ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
+			returnVal = responseEntity.getBody();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		log.info("updateBizLiveStrm DONE!!!!!");
+		
+		return new ResponseEntity<String>(returnVal, HttpStatus.OK);
 	}
 
 //	로그인 

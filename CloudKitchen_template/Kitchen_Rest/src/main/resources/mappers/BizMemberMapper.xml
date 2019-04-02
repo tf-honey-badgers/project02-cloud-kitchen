@@ -93,6 +93,11 @@
 		where BM.biz_id = BZ.biz_id
 		and BM.biz_id=#{bizId};
 	</update>
+	
+	<update id="inputBizLiveStrm">
+		update honey_badgers.biz set biz_live_strm = #{param2} where biz_id = #{param1}
+	</update>
+	
 
 	<!-- 로그인 -->
 	<select id="login" resultType="org.badgers.rest.model.BizMemberVOExtend">

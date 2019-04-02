@@ -60,7 +60,7 @@
 						<div class="col-md-9 col-sm-9">
 							<div class="desc">
 								<div class="thumb_strip">
-									<a href="detail_page.html"><img src="/customer/resources/img/thumb_restaurant.jpg" alt=""></a>
+									<a href="detail_page.html"><img class="shopImg" src="https://previews.123rf.com/images/cookelma/cookelma1502/cookelma150200141/36986768-%EB%A7%9B%EC%9E%88%EA%B3%A0-%EC%8B%9D%EC%9A%95%EC%9D%84-%EB%8F%8B%EC%9A%B0%EB%8A%94-%ED%96%84%EB%B2%84%EA%B1%B0-%EC%B9%98%EC%A6%88-%EB%B2%84%EA%B1%B0.jpg" alt="없음" title="이거"></a>
 								</div>
 								<div class="rating">
 									<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="#0">98 reviews</a></small>)
@@ -116,6 +116,23 @@
             grid: true
         });
     });
+    
+    var imgArr=[];
+    imgArr[0]='https://previews.123rf.com/images/cookelma/cookelma1502/cookelma150200141/36986768-%EB%A7%9B%EC%9E%88%EA%B3%A0-%EC%8B%9D%EC%9A%95%EC%9D%84-%EB%8F%8B%EC%9A%B0%EB%8A%94-%ED%96%84%EB%B2%84%EA%B1%B0-%EC%B9%98%EC%A6%88-%EB%B2%84%EA%B1%B0.jpg';
+    imgArr[1]='https://media-cdn.tripadvisor.com/media/photo-s/0a/85/0a/ab/2.jpg';
+    imgArr[2]='http://newsimg.hankookilbo.com/2014/08/19/201408191596070672_1.jpg';
+    imgArr[3]='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBLKuH5NAblA06SW3d2qSb21--5e5UsEqL05vQZPYuMdyjm3zF';
+    
+    $(document).ready(function(){
+    	var $IMG = $('.shopImg');
+    	console.log($IMG);
+    	
+    	$('.shopImg').each(function(index,data){
+    		$(data).attr('src',imgArr[index]);
+    	});
+    	
+    })
+    
 </script>
 	
 <script src="/customer/resources/js/menu/menu-functions.js"></script>

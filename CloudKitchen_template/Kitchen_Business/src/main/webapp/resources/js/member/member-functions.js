@@ -28,6 +28,17 @@ $(document).ready(function() {
     		, success : function() { md.showNotification('bottom','right', 'info', '성공적으로 가게 정보를 수정했습니다.'); }
 		});
 	});
+	
+	/* YouTube 생방송 시작하면 iframe player src 속성용 코드 입력하기 (biz테이블 bizLiveStrm컬럼 사용) */
+	$('#changeBizLiveStrm').on('click', function() {
+		$.ajax({
+    		url : 'http://localhost:3000/business/member/livestrm/' + $('#bizId').val() + '/' + $('#bizLiveStrm').val()
+    		, type : 'GET'
+			, contentType : 'application/json'
+    		, error : function() { md.showNotification('bottom', 'right', 'danger', 'YouTube LiveStreaming 코드를 입력하는데 에러가 발생했습니다.'); }
+			, success : function(data) { md.showNotification('bottom','right', 'info', '성공적으로 가게 정보를 수정했습니다.'); }
+		});
+	});
 
 	/* modal의 "X" 버튼을 눌러 닫을 때 modal을 숨기고 초기화하기 */
 	$('body').on('click', '.modal-popup .close-link', function(event){

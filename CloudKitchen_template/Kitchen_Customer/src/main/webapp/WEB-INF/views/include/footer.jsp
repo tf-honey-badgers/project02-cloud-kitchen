@@ -167,6 +167,8 @@
 
     } */
 
+    
+    
     /* 쿠키 삭제 다른방법
     function deleteCookie( name ){
 
@@ -283,4 +285,5 @@
             })
         }
       //]]>
+      
 </script>

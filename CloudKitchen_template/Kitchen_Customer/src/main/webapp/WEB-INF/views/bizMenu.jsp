@@ -42,6 +42,10 @@
 			</div> <!-- End col-md-2 -->
 
 			<div class="col-md-6">
+				<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    			<div style="height:360px;">
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/${bizMember.bizLiveStrm}?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=${bizMember.bizLiveStrm}&mute=1" frameborder="0" allowfullscreen data-autoplay data-keepplaying></iframe>
+    			</div>
 				<div class="box_style_2" id="main_menu" data-biz-id="${bizMember.bizId}" data-kb-id="${bizMember.bizKitchenId}" data-kb-name="${bizMember.bizKitchenName}">
 					<h2 class="inner">Menu</h2>
 					<c:forEach var="menu" items="${bizMember.bizMenuCatVo}" varStatus="loop">
@@ -59,7 +63,7 @@
 									<tr>
 										<td>
 											<figure class="thumb_menu_list">
-												<img src="/customer/resources/img/menu-thumb-1.jpg"	alt="thumb">
+												<img class="foodIMG" src="/customer/resources/img/menu-thumb-1.jpg"	alt="thumb">
 											</figure>
 											<h5 style="padding-top: 10px; width: 220px !important;" data-id="${dish.mcode}">${loop.index+1}. ${dish.mname}</h5>
 										</td>
@@ -171,6 +175,9 @@
 <!-- Footer =============================================== -->
 
 <!-- SPECIFIC SCRIPTS ============================================ -->
+	<script>
+		bizId='${bizMember.bizId}';
+	</script>
 	<script src="/customer/resources/js/cat_nav_mobile.js"></script>
 	<script>
 		$('#cat_nav').mobileMenu();
@@ -200,6 +207,39 @@
 						}
 					}
 				});
+		
+		
+		var imgArr=[];
+		
+		if(bizId=='태주네 떡볶이'){
+		    imgArr[0]='';
+		    imgArr[1]='';
+		    imgArr[2]='';
+		    imgArr[3]='';
+		    imgArr[3]='';
+		    imgArr[3]='';
+		    imgArr[3]='';
+		    imgArr[3]='';
+		    imgArr[3]='';
+		    imgArr[3]='';
+		    imgArr[3]='';
+		    imgArr[3]='';
+			
+		}else{
+			
+		}
+	    
+	    $(document).ready(function(){
+	    	var $IMG = $('.shopImg');
+	    	console.log($IMG);
+	    	
+	    	$('.shopImg').each(function(index,data){
+	    		$(data).attr('src',imgArr[index]);
+	    	});
+	    	
+	    })
+		
+		
 	</script>
 	
 	<script src="/customer/resources/js/menu/menu-functions.js"></script>
