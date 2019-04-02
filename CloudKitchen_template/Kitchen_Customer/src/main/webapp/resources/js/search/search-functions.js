@@ -64,6 +64,29 @@ $(document).ready(function() {
     $(".search-query").catcomplete({
     	delay : 0
         , source : source
+        
     });
+    
+   /* var yuniWith;
+    $(window).resize(function(){
+    	yuniWith=($(".search-query").position().left);   
+    	console.log($(".search-query"));
+    	console.log(yuniWith);
+    	
+    })
+    
+    $(".search-query").autocomplete({
+        source: source,
+        open: function(event, ui) {
+            $(this).autocomplete("widget").css({
+                "width":600
+            });
+        }
+    });*/
+    
+    
+    
+    
+    
 });
 /* End Search =============================================== */
