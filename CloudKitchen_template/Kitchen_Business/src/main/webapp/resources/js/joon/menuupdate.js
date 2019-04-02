@@ -223,7 +223,8 @@ $(document)
 						}
 						insertMenu.menuOptCl = menuOptClArr;
 						console.log(insertMenu);
-						 
+						addPhoto('MenuPhoto');
+		                    
 						$.ajax({
 			        		type : "POST",
 			        		dataType : 'json',
@@ -237,6 +238,7 @@ $(document)
 			        		success(data){
 			        			console.log(data);
 			        			addPhoto(data);
+			        			
 			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
 			        			for(let i=0; i<menuCat.length; i++){
 			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
