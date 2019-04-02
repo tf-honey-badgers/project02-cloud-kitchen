@@ -87,7 +87,7 @@ public class KitchenController {
 		if(!responseEntity.getBody().isEmpty()) {
 			returnVal = responseEntity.getBody();
 		}	
-		log.info(returnVal);
+		//log.info(returnVal);
 		
 		return new ResponseEntity<Map<String,List>>(returnVal, HttpStatus.OK);
 	}
@@ -124,7 +124,7 @@ public class KitchenController {
 		
 		mav.addObject("query", query);
 		mav.addObject("bizCat", bizCatVal);
-		log.info(returnVal);
+		//log.info(returnVal);
 		mav.setViewName("searchList");
 		
 		return mav;
