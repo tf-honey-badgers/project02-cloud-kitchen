@@ -20,24 +20,24 @@
 <!-- Content ================================================== -->
 	<div class="container margin_60_35">
 		<div class="row">
-			<div class="col-md-2">
-				<p>
-					<a href="javascript:history.back()" class="btn_side">Back to search</a>
-				</p>
-				<div class="box_style_1">
-					<ul id="cat_nav">
-						<c:forEach var="menu" items="${bizMember.bizMenuCatVo}" varStatus="loop">
-							<li><a href="#${loop.index + 100}">${menu.mcName}</a></li>
-						</c:forEach>
-					</ul>
-				</div> <!-- End box_style_1 -->
-				<div class="box_style_2 hidden-xs" id="help">
-					<i class="icon_lifesaver"></i>
-					<h4>
-						Need <span>Help?</span>
-					</h4>
-					<a href="tel://004542344599" class="phone">+45 423 445 99</a> <small>Monday
-						to Friday 9.00am - 7.30pm</small>
+			<div class="sidebar col-md-2">
+				<div class="theiaStickySidebar">
+					<p>
+						<a href="javascript:history.back()" class="btn_side">Back to search</a>
+					</p>
+					<div class="box_style_1">
+						<ul id="cat_nav">
+							<c:forEach var="menu" items="${bizMember.bizMenuCatVo}" varStatus="loop">
+								<li><a href="#${loop.index + 100}">${menu.mcName}</a></li>
+							</c:forEach>
+						</ul>
+					</div> <!-- End box_style_1 -->
+					<div class="box_style_2 hidden-xs" id="help">
+						<i class="icon_lifesaver"></i>
+						<h4>도움이</h4>
+						<h4>필요하세요?</h4>
+						<a href="tel://01012349876" class="phone"><span style="font-size:15px;">010-1234-9876</span></a> <small>1년 365일 오전 9시부터 오후 6시까지!</small>
+					</div>
 				</div>
 			</div> <!-- End col-md-2 -->
 
@@ -112,60 +112,57 @@
 					</c:forEach>
 				</div> <!-- End box_style_2 -->
 			</div> <!-- End col-md-6 -->
-			<form action="http://localhost:3001/customer/order/orderinfo" method="post">
-			<div class="col-md-4" id="sidebar">
+			<div class="sidebar col-md-4">
 				<div class="theiaStickySidebar">
-					<div id="cart_box">
-						<h3>
-							Your order <i class="icon_cart_alt pull-right"></i>
-						</h3>
-						<table class="table table_summary">
-							<thead>
-								<tr>
-									<th style="width: 10%;"><input type="checkbox"></th>
-									<th style="width: 90%;">전체선택<a class="btn_intro pull-right" id="deleteCart" >삭제하기</a></th>
-								</tr>
-							</thead>
-							<tbody class="cartTable">
-							<!-- bizName이 다를 때 가게 이름을 출력하기 위한 반복문 -->
-								<!-- 카트 메뉴를 출력하기 위한 반복문  -->
-								<c:forEach var="cart" items="${cart}">
-									<tr class="bizNameRow">
-										<td colspan="3"><strong>${cart.bizName}</strong></td>
-									</tr>
+					<form action="http://localhost:3001/customer/order/orderinfo" method="post">
+						<div id="cart_box">
+							<h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
+							<table class="table table_summary">
+								<thead>
 									<tr>
-										<td style="width: 10%;"><input class="check-order" type="checkbox" name="selectedCart" value="${cart.id}"></td>
-										<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.menuName}<span class="pull-right">${cart.unitPrice}원</span></td>
+										<th style="width: 10%;"><input type="checkbox"></th>
+										<th style="width: 90%;">전체선택<a class="btn_intro pull-right" id="deleteCart" >삭제하기</a></th>
 									</tr>
-									<!-- 옵션을 출력하기 위한 반복문 -->
-									<c:forEach var="options" items="${cart.options}">									
+								</thead>
+								<tbody class="cartTable">
+								<!-- bizName이 다를 때 가게 이름을 출력하기 위한 반복문 -->
+									<!-- 카트 메뉴를 출력하기 위한 반복문  -->
+									<c:forEach var="cart" items="${cart}">
+										<tr class="bizNameRow">
+											<td colspan="3"><strong>${cart.bizName}</strong></td>
+										</tr>
 										<tr>
-											<td style="width: 10%;"></td>
-											<td style="font-size: 11px;">${options.menuOptName} <span class="pull-right">+ ${options.menuOptPrice}원</span></td>
-											<td style="width: 10%;"></td>
+											<td style="width: 10%;"><input class="check-order" type="checkbox" name="selectedCart" value="${cart.id}"></td>
+											<td class="menuData" data-cart-id="${cart.id}"><strong>${cart.quantity}x</strong> ${cart.menuName}<span class="pull-right">${cart.unitPrice}원</span></td>
+										</tr>
+										<!-- 옵션을 출력하기 위한 반복문 -->
+										<c:forEach var="options" items="${cart.options}">									
+											<tr>
+												<td style="width: 10%;"></td>
+												<td style="font-size: 11px;">${options.menuOptName} <span class="pull-right">+ ${options.menuOptPrice}원</span></td>
+												<td style="width: 10%;"></td>
+											</tr>
+										</c:forEach>
+										<tr class="priceRow">
+											<td colspan="2" class="priceData" data-total-price="${cart.totalAmt}"><strong class="pull-right">합계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cart.totalAmt}원</strong></td>
 										</tr>
 									</c:forEach>
-									<tr class="priceRow">
-										<td colspan="2" class="priceData" data-total-price="${cart.totalAmt}"><strong class="pull-right">합계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cart.totalAmt}원</strong></td>
+								</tbody>
+							</table>
+							<hr>
+							<table class="table table_summary">
+								<tbody>
+									<tr>
+										<td class="total">총 금액 <span class="pull-right" data-total=""></span></td>
 									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-						<hr>
-						<table class="table table_summary">
-							<tbody>
-								<tr>
-									<td class="total">총 금액 <span class="pull-right" data-total=""></span>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<hr>
-						<input type="submit" class="btn_full" id="orderNow" value="Order now">
-					</div> <!-- End cart_box -->
+								</tbody>
+							</table>
+							<hr>
+							<input type="submit" class="btn_full" id="orderNow" value="Order now">
+						</div> <!-- End cart_box -->
+					</form>
 				</div> <!-- End theiaStickySidebar -->
 			</div> <!-- End col-md-4 -->
-			</form>
 		</div> <!-- End row -->
 	</div> <!-- End container -->
 <!-- End Content =============================================== -->
@@ -179,13 +176,11 @@
 		bizId='${bizMember.bizId}';
 	</script>
 	<script src="/customer/resources/js/cat_nav_mobile.js"></script>
-	<script>
-		$('#cat_nav').mobileMenu();
-	</script>
+	<script>$('#cat_nav').mobileMenu();</script>
 	<script src="/customer/resources/js/ResizeSensor.min.js"></script>
 	<script src="/customer/resources/js/theia-sticky-sidebar.min.js"></script>
 	<script>
-		jQuery('#sidebar').theiaStickySidebar({
+		jQuery('.sidebar').theiaStickySidebar({ // 중요!! class="sidebar" 안에 class="theiaStickySidebar" 위치해야 한다!!
 			additionalMarginTop : 80
 		});
 	</script>
@@ -231,7 +226,7 @@
 	    
 	    $(document).ready(function(){
 	    	var $IMG = $('.shopImg');
-	    	console.log($IMG);
+//	    	console.log($IMG);
 	    	
 	    	$('.shopImg').each(function(index,data){
 	    		$(data).attr('src',imgArr[index]);
