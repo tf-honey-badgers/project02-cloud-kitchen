@@ -29,11 +29,6 @@ public class BusinessController {
 	@Inject
 	RestTemplate restTemplate;
 	
-	@GetMapping("mypage")
-	public String mypage (@ModelAttribute("bizId")String bizId) {
-		
-		return "redirect:"+bizId+"/main";
-	}
 	
 	@GetMapping("/{bizId}/main")
 	public ModelAndView readBizMember(ModelAndView mav, @PathVariable("bizId") String bizId) {
