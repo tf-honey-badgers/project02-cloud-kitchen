@@ -93,7 +93,7 @@ $(document)
 						$.ajax({
 							type : "GET",
 							dataType : 'json',
-							url : "../menu/main/insertmenucat",
+							url : "../../menu/main/insertmenucat",
 							data : {
 								insertMenuCat : JSON.stringify(menuCat),
 							},
@@ -140,7 +140,7 @@ $(document)
 							$.ajax({
 								type : "GET",
 								dataType : 'json',
-								url : "../menu/main/deletemenuopt",
+								url : "../../menu/main/deletemenuopt",
 								data : {
 									menuOptId : optId.children().eq(0).text()
 								},
@@ -168,7 +168,7 @@ $(document)
 							$.ajax({
 								type : "POST",
 								dataType : 'json',
-								url : "../menu/main/deletemenu",
+								url : "../../menu/main/deletemenu",
 								data : {
 									menuId : deleteMenuId
 								},
@@ -228,7 +228,7 @@ $(document)
 						$.ajax({
 			        		type : "POST",
 			        		dataType : 'json',
-			        		url : "../menu/main/insertMenu",
+			        		url : "../../menu/main/insertMenu",
 			         		data : {
 			         			menuInfo : JSON.stringify(insertMenu)
 			         		},
@@ -339,7 +339,7 @@ $(document)
 						$.ajax({
 			        		type : "GET",
 			        		dataType : 'json',
-			        		url : "../menu/main/getMenuCat",
+			        		url : "../../menu/main/getMenuCat",
 			         		data : {
 			         			bizId : $('#bizId').val()
 			         		},
@@ -360,7 +360,7 @@ $(document)
 						$.ajax({
 			        		type : "GET",
 			        		dataType : 'json',
-			        		url : "../menu/main/getComCode.json",
+			        		url : "../../menu/main/getComCode.json",
 			        		error : function(data){
 //			        			console.log(data);
 			        		},
@@ -420,7 +420,7 @@ $(document)
 						$.ajax({
 			        		type : "POST",
 			        		dataType : 'json',
-			        		url : "../menu/main/menuupdate",
+			        		url : "../../menu/main/menuupdate",
 			         		data : {
 			         			"updateMenu" : JSON.stringify(menu)
 			        		},
@@ -470,7 +470,7 @@ $(document)
 						
 						$.ajax({
 			        		type : "GET",
-			        		url : "../menu/main/update",
+			        		url : "../../menu/main/update",
 			        		dataType : "json",
 			         		data : {
 			         			mIdx : menuInfo.eq(0).text()
@@ -557,7 +557,7 @@ $(document)
 								$.ajax({
 					        		type : "GET",
 					        		dataType : 'json',
-					        		url : "../menu/main/getMenuCat",
+					        		url : "../../menu/main/getMenuCat",
 					         		data : {
 					         			bizId : 'biz_2'
 					         		},
