@@ -158,7 +158,7 @@ $(document)
 //						var bucket = new AWS.S3({ params: { Bucket: 'honeybadgers' } });
 //		                var fileChooser = document.getElementById('menuPhotoInsert');
 //		                var file = fileChooser.files[0];
-//
+//		                
 //		                if (file) {
 //		                    var params = {
 //		                        Key: file.name,
