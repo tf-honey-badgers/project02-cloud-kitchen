@@ -2,14 +2,81 @@ $(document)
 		.ready(
 				function() {
 					
-			        AWS.config.update({
+					// S3 업로드를 위한 초기화작업
+					var albumBucketName = 'honeybadgersfile';
+					var bucketRegion = 'ap-northeast-2';
+					var IdentityPoolId = 'ap-northeast-2:1817daac-6a56-4e36-9a56-9bc772d96a0b';
+					
+					AWS.config.update({
+					  region: bucketRegion,
+					  credentials: new AWS.CognitoIdentityCredentials({
+					    IdentityPoolId: IdentityPoolId
+					  })
+					});
 
-			            accessKeyId: 'AKIA6DOEAM5RBJXDFMUB',
-			            secretAccessKey: '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'
-			        });
+					var s3 = new AWS.S3({
+					  apiVersion: '2006-03-01',
+					  params: {Bucket: 'honeybadgersfile'}
+					}); // S3 초기화 끝
+
+					// 메뉴 추가시 사진파일 업로드
+					function addPhoto(menuId) {
+						  var files = document.getElementById('menuPhotoInsert').files;
+						  if (!files.length) {
+						    return alert('Please choose a file to upload first.');
+						  }
+						  var file = files[0];
+						  var fileName = menuId+'.png';
+						  var albumPhotosKey = encodeURIComponent(albumName) + '/';
+						  var albumName = 'MenuPhoto';
+						  var photoKey = albumPhotosKey + fileName;
+						  
+						  s3.upload({
+						    Key: photoKey,
+						    Body: file,
+						    ACL: 'public-read'
+						  }, function(err, data) {
+						    if (err) {
+						      return alert('There was an error uploading your photo: ', err.message);
+						    }
+						    alert('Successfully uploaded photo.');
+						  });
+						}
+					
+					function updatePhoto(menuId) {
+						  var files = document.getElementById('updatePhoto').files;
+						  if (!files.length) {
+						    return alert('Please choose a file to upload first.');
+						  }
+						  var file = files[0];
+						  var fileName = menuId+'.png';
+						  var albumName = 'MenuPhoto';
+						  var albumPhotosKey = encodeURIComponent(albumName) + '/';
+						  
+						  var photoKey = albumPhotosKey + fileName;
+						  s3.upload({
+						    Key: photoKey,
+						    Body: file,
+						    ACL: 'public-read'
+						  }, function(err, data) {
+						    if (err) {
+						      return alert('There was an error uploading your photo: ', err.message);
+						    }
+//						    alert('사진 업로드 완료');
+						  });
+						}
 			        
-			        AWS.config.region = 'ap-northeast-2';
-			        
+					function deleteMenuPhoto(menuId) {
+						let albumName = 'MenuPhoto';
+						let photoKey = menuId+'.png';
+						  s3.deleteObject({Key: photoKey}, function(err, data) {
+						    if (err) {
+						      return alert('There was an error deleting your photo: ', err.message);
+						    }
+						    alert('Successfully deleted photo.');
+						  });
+						}
+					
 
 					$('.insertMenuCatModalOpt').on('click','#insertMenuCatBtn',function(e){
 						
@@ -55,7 +122,6 @@ $(document)
 							+'<img src="/business/resources/img/baseline_remove_circle_outline_black_18dp.png">'
 							+'</button>'
 							+'</td></tr>'
-						
 						);
 					}); // addMenuCat
 					
@@ -95,14 +161,16 @@ $(document)
 						e.preventDefault();
 						let deleteCheck = confirm("정말 삭제하시겠습니까?");
 						let deleteMenu = $(this).parent().parent();
+						let deleteMenuId = $(this).parent().parent().children().eq(0).text();
 						console.log($(this).parent().parent().children().eq(0).text());
+						
 						if(deleteCheck == true){
 							$.ajax({
 								type : "POST",
 								dataType : 'json',
 								url : "../menu/main/deletemenu",
 								data : {
-									menuId : $(this).parent().parent().children().eq(0).text()
+									menuId : deleteMenuId
 								},
 								error : function(data){
 									console.log(data);
@@ -110,6 +178,7 @@ $(document)
 								success(data){
 									console.log(data);
 									deleteMenu.remove();
+									deleteMenuPhoto(deleteMenuId);
 								}
 							});
 						} else {
@@ -154,27 +223,7 @@ $(document)
 						}
 						insertMenu.menuOptCl = menuOptClArr;
 						console.log(insertMenu);
-
-//						var bucket = new AWS.S3({ params: { Bucket: 'honeybadgers' } });
-//		                var fileChooser = document.getElementById('menuPhotoInsert');
-//		                var file = fileChooser.files[0];
-//
-//		                if (file) {
-//		                    var params = {
-//		                        Key: file.name,
-//		                        ContentType: file.type,
-//		                        Body: file,
-//		                        ACL: 'public-read' // 접근 권한
-//		                    };
-//
-//		                    bucket.putObject(params, function (err, data) {
-//		                    	console.log(err);
-//		                    	console.log(data);
-//		                        // 업로드 성공
-//		                    });
-//		                } 
-//		                alert('사진파일 업로드에 실패하였습니다.');
-//		                return false;
+						addPhoto('MenuPhoto');
 		                    
 						$.ajax({
 			        		type : "POST",
@@ -188,6 +237,8 @@ $(document)
 			        		},
 			        		success(data){
 			        			console.log(data);
+			        			addPhoto(data);
+			        			
 			        			let menuCat = $('#menuCatSelect').children().eq(document.getElementById('menuCatSelect').selectedIndex).text();
 			        			for(let i=0; i<menuCat.length; i++){
 			        				if(menuCat == $('.container-fluid .card-title')[i].innerHTML){
@@ -290,7 +341,7 @@ $(document)
 			        		dataType : 'json',
 			        		url : "../menu/main/getMenuCat",
 			         		data : {
-			         			bizId : 'biz_2'
+			         			bizId : $('#bizId').val()
 			         		},
 			        		error : function(data){
 			        			console.log(data);
@@ -378,18 +429,24 @@ $(document)
 			        		},
 			        		success(data){
 			        			console.log(data);
-
+			        			updatePhoto(menu.mCode);
+			        			let menuCode = $('.menuModalOpt tbody tr').eq(0).children().eq(0).text();
+			        			
 			        			for(let i=0; i<$('.container-fluid .table tbody tr').length; i++){
 			        				if($('.container-fluid .table tbody tr').eq(i).children().eq(0).text()
-			        						== $('.menuModalOpt tbody tr').eq(0).children().eq(0).text()){
+			        						== menuCode){
+			        					
+			        					$('.container-fluid .table tbody tr').eq(i).children().eq(1).innerHTML =  
+			        							'<img src="https://s3.ap-northeast-2.amazonaws.com/honeybadgersfile/MenuPhoto/'+menuCode+'.png" style="width:60px;height:60px;"/>'
+			        							;
 			        					
 			        					$('.container-fluid .table tbody tr').eq(i).children().eq(2).text($('.menuModalOpt tbody tr').eq(0).children().eq(2).children().val());
 			        					
 			        					$('.container-fluid .table tbody tr').eq(i).children().eq(3).text($('.menuModalOpt tbody tr').eq(0).children().eq(3).children().val());
 			        				}
 			        			}
-			        			
 			        			alert('변경되었습니다');
+			        			updatePhoto(menu.mCode);
 			        		}
 						});
 						
@@ -442,7 +499,7 @@ $(document)
 			        						+'<tbody>'
 			        						+'<tr>'
 			        						+'<td>'+data[0].mcode+'</td>'
-			        						+'<td><input type="file" class="" value="파일"></td>'
+			        						+'<td><input type="file" id="updatePhoto" value="파일"></td>'
 			        						+'<td><input type="text" class="" value="'+data[0].mname+'"></td>'
 			        						+'<td><input type="text" class="" value="'+data[0].mbasicPrice+'"></td>'
 			        						+'<td>'+menuCatName+'</td>'

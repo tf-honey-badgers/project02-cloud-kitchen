@@ -168,7 +168,9 @@
 						
 	</div>
 </div>
-
+<!-- Preload -->
+<jsp:include page="include/preload.jsp" flush="false"></jsp:include>
+<!-- End Preload -->
 	<div class="wrapper ">
 		<!-- Sidebar -->
 		<jsp:include page="include/sidebar.jsp" flush="false"></jsp:include>
@@ -204,14 +206,12 @@
 													items="${bizMenu[0].bizMenuCatVo[0].mcMenuVo}">
 													<tr>
 														<td>${menu.mcode}</td>
-														<td>${menu.mphoto}</td>
+														<td><img src="https://s3.ap-northeast-2.amazonaws.com/honeybadgersfile/MenuPhoto/${menu.mcode}.png" style="width:60px;height:60px;"/></td>
 														<td>${menu.mname}</td>
 														<td class="text-primary">${menu.mbasicPrice}</td>
 														<td><a href="" class="menu-option-select">변경</a> / 
 														<a href="" class="menu-option-delete">삭제</a></td>
 													</tr>
-													
-													
 												</c:forEach>
 											</tbody>
 										</table>
@@ -241,7 +241,7 @@
 													<c:forEach var="menu" items="${menucat.mcMenuVo}">
 														<tr>
 															<td>${menu.mcode}</td>
-															<td>${menu.mphoto}</td>
+															<td><img src="https://s3.ap-northeast-2.amazonaws.com/honeybadgersfile/MenuPhoto/${menu.mcode}.png" style="width:60px;height:60px;"/></td>
 															<td>${menu.mname}</td>
 															<td class="text-primary">${menu.mbasicPrice}</td>
 															<td><a href="#" class="menu-option-select">변경</a> / <a
@@ -383,5 +383,11 @@
 	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
 	<script src="/business/resources/js/joon/menuupdate.js"></script>
 	<script src="http://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+	
+	<script type="text/javascript">
+    	/* 사이드바 하이라이트된 바꾸기 */
+    	$('.nav-item').removeClass('active');
+    	$('.nav-item.sidebar-menu').addClass('active');
+    </script>
 </body>
 </html>

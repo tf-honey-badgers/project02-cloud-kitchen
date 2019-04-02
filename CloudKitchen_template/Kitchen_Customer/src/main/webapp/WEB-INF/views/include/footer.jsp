@@ -23,40 +23,43 @@
                 <p><img src="/customer/resources/img/cards.png" alt="" class="img-responsive"></p>
             </div>
             <div class="col-md-3 col-sm-3">
-                <h3>About</h3>
-                <ul>                    
-                    <li><a href="faq.html">Faq</a></li>
-                    <li><a href="contacts.html">Contacts</a></li>
-                    <li><a href="#0" data-toggle="modal" data-target="#login_2">Login</a></li>
-                    <li><a href="#0" data-toggle="modal" data-target="#register">Register</a></li>
-                    <li><a href="#0">Terms and conditions</a></li>
-                    <li><a href="about.html">About us</a></li>
+            	<h3>기타 링크</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contacts.html">연락하기</a></li>
+                    <li><a href="#0" data-toggle="modal" data-target="#login_2">로그인</a></li>
+                    <li><a href="#0" data-toggle="modal" data-target="#register">회원가입</a></li>
+                    <li><a href="#0">이용약관</a></li>
+                    <li><a href="#0">개인정보처리방침</a></li>
+                    <li><a href="about.html">회사소개</a></li>
+                    <li><a href="about.html">고객센터</a></li>
                 </ul>
             </div>
             <div class="col-md-3 col-sm-3" id="newsletter">
-                <h3>Newsletter</h3>
-                <p>Join our newsletter to keep be informed about offers and news.</p>
+                <h3>벌꿀오소리들 소식지</h3>
+                <p>새로운 소식을 전해받고 싶으시면 소식지를 구독해주세요!</p>
                 <div id="message-newsletter_2"></div>
                 <form method="post" action="assets/newsletter.php" name="newsletter_2" id="newsletter_2">
                     <div class="form-group">
-                        <input name="email_newsletter_2" id="email_newsletter_2" type="email" value="" placeholder="Your mail" class="form-control">
+                        <input name="email_newsletter_2" id="email_newsletter_2" type="email" value="" placeholder="이메일 주소" class="form-control">
                     </div>
-                    <input type="submit" value="Subscribe" class="btn_1" id="submit-newsletter_2">
+                    <input type="submit" value="구독하기" class="btn_1" id="submit-newsletter_2">
                 </form>
             </div>
             <div class="col-md-2 col-sm-3">
                 <h3>Settings</h3>
                 <div class="styled-select">
                     <select class="form-control" name="lang" id="lang">
-                        <option value="English" selected>English</option>
-                        <option value="French">French</option>
-                        <option value="Spanish">Spanish</option>
-                        <option value="Russian">Russian</option>
+                    	<option value="한국어" selected>한국어</option>
+                        <option value="English">English</option>
+                        <option value="German">Deutsch</option>
+                        <option value="French">Francais</option>
                     </select>
                 </div>
                 <div class="styled-select">
                     <select class="form-control" name="currency" id="currency">
-                        <option value="USD" selected>USD</option>
+                        <option value="KRW" selected>원화</option>
+                        <option value="USD">USD</option>
                         <option value="EUR">EUR</option>
                         <option value="GBP">GBP</option>
                         <option value="RUB">RUB</option>
@@ -76,7 +79,7 @@
                         <li><a href="#0"><i class="icon-vimeo"></i></a></li>
                         <li><a href="#0"><i class="icon-youtube-play"></i></a></li>
                     </ul>
-                    <p>© Quick Food 2015</p>
+                    <p>© Honey Badgers Cloud Kitchen 2019</p>
                 </div>
             </div>
         </div> <!-- End row -->
@@ -167,6 +170,8 @@
 
     } */
 
+    
+    
     /* 쿠키 삭제 다른방법
     function deleteCookie( name ){
 
@@ -283,4 +288,5 @@
             })
         }
       //]]>
+      
 </script>

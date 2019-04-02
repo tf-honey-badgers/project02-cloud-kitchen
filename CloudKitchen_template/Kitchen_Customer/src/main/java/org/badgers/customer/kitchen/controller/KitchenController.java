@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,7 +34,12 @@ public class KitchenController {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping(value = "/{bizId}/main", produces = "application/json")
-	public ModelAndView readBizMain(ModelAndView mav, @PathVariable("bizId") String bizId) {		
+	public ModelAndView readBizMain(
+				ModelAndView mav,
+				@PathVariable("bizId") String bizId,
+				@RequestParam(value = "auth", required = false) String auth,
+				@RequestParam(value = "custId", required = false) String custId
+			) {		
 		log.info("Kitchen_Customer 메뉴 읽기...............................");
 		
 		List<BizVOExtend> returnBiz = null;
@@ -44,10 +50,15 @@ public class KitchenController {
 			ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, java.util.List.class);
 			returnBiz = responseEntity.getBody();
 			
-			log.info("Kitchen_Customer 카트 읽기");
-			url = "http://localhost/rest/cart/" + "1234"; // 현재 로그인되어 있는 사용자 ID를 사용
-			ResponseEntity<List> readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class);
-			returnCart = readMenuFromCart.getBody();
+			System.out.println(auth);
+			System.out.println(auth.equals("true"));
+			System.out.println(custId);
+			if(auth.equals("true")) {
+				log.info("Kitchen_Customer 카트 읽기");
+				url = "http://localhost/rest/cart/" + custId; // 현재 로그인되어 있는 사용자 ID를 사용
+				ResponseEntity<List> readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class);
+				returnCart = readMenuFromCart.getBody();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

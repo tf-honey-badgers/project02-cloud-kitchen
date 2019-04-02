@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+=======
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+>>>>>>> TJ
 
 <div class="sidebar" data-color="azure" data-background-color="white"
 	data-image="/business/resources/img/sidebar-1.jpg">
@@ -28,11 +32,11 @@
 					<i class="material-icons">person</i>
 					<p>마이페이지</p>
 			</a></li>
-			<li class="nav-item sidebar-menu"><a class="nav-link" href="${pageContext.request.contextPath}/menu/main?bizId=biz_2">
+			<li class="nav-item sidebar-menu"><a class="nav-link" href="${pageContext.request.contextPath}/menu/${sessionScope.bizId}/main">
 					<i class="material-icons">library_books</i>
 					<p>메뉴관리</p>
 			</a></li>
-			<li class="nav-item sidebar-marketing"><a class="nav-link" href="#">
+			<li class="nav-item sidebar-marketing"><a class="nav-link" href="https://www.youtube.com/livestreaming/">
 					<i class="material-icons">camera</i>
 					<p>마케팅관리</p>
 			</a></li>

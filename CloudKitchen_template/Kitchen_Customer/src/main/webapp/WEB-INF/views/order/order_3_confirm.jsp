@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>payment Temp</title>
+<title>주문 내역 확인</title>
 </head>
 <body>
 	<!--헤더 -->
@@ -42,6 +42,8 @@
 				<h4>주문 확인</h4>
 				<div id="orderBox">
                 </div>
+                <a href="javascript:void(0)" class="btn btn-success" style="display:block; text-align: center; margin-bottom:5px;">나의 주문내역으로 가기</a>
+                <a href="/customer/main" class="btn btn-warning" style="display:block; text-align: center;">메인으로 돌아가기</a>
 			</div>
 		</div>
 	</div><!-- End row -->

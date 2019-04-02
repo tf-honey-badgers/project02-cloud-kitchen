@@ -1,6 +1,4 @@
 /* 전역 변수 */
-	/* 사용자 ID */
-	const custId = '1234';
 	/* 가게 ID */
 	const bizId = $('#main_menu').attr('data-biz-id');
 	/* 치킨 지점명 */
@@ -38,7 +36,7 @@ function calcCartTotal(length) {
 		var price = $('.check-order:checked').eq(k).parent().parent().nextAll('.priceRow:eq(0)').children('td').data('total-price');
 		cartTotal += price;
 	}
-	console.log('Cart Total :', cartTotal);
+//	console.log('Cart Total :', cartTotal);
 	$('.total span').text(cartTotal + '원');
 	$('.total span').attr('data-total', cartTotal);
 }
@@ -309,7 +307,5 @@ $(document).ready(function() {
 				}
 			});
 		}
-	});
-	
+	});	
 });
-
