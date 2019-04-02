@@ -11,12 +11,12 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class MemberInterceptor extends HandlerInterceptorAdapter{
 
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-		System.out.println(".........................interceptor : preHandle...................");
-		return super.preHandle(request, response, handler);
-	}
+//	@Override
+//	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+//			throws Exception {
+//		System.out.println(".........................interceptor : preHandle...................");
+//		return super.preHandle(request, response, handler);
+//	}
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
@@ -39,7 +39,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 				session.invalidate();;
 			}
 		}
-		
+		System.out.println("....................................................................");
 		
 		
 		

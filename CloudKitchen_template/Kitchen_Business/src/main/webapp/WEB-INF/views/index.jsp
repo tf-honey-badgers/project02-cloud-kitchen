@@ -762,6 +762,8 @@
 				$('#login_2').modal('show');	
 			}else if(msg=='logout'){
 				md.showNotification('top', 'center', 'success', '로그아웃 되셨습니다');  
+			}else if(msg=='invalidId'){
+				md.showNotification('top', 'center', 'danger', '해당 아이디에 권한이 없습니다.');  
 			}
 			
 		}

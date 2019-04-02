@@ -206,14 +206,12 @@
 													items="${bizMenu[0].bizMenuCatVo[0].mcMenuVo}">
 													<tr>
 														<td>${menu.mcode}</td>
-														<td>${menu.mphoto}</td>
+														<td><img src="https://s3.ap-northeast-2.amazonaws.com/honeybadgersfile/MenuPhoto/${menu.mcode}.png" style="width:60px;height:60px;"/></td>
 														<td>${menu.mname}</td>
 														<td class="text-primary">${menu.mbasicPrice}</td>
 														<td><a href="" class="menu-option-select">변경</a> / 
 														<a href="" class="menu-option-delete">삭제</a></td>
 													</tr>
-													
-													
 												</c:forEach>
 											</tbody>
 										</table>
@@ -243,7 +241,7 @@
 													<c:forEach var="menu" items="${menucat.mcMenuVo}">
 														<tr>
 															<td>${menu.mcode}</td>
-															<td>${menu.mphoto}</td>
+															<td><img src="https://s3.ap-northeast-2.amazonaws.com/honeybadgersfile/MenuPhoto/${menu.mcode}.png" style="width:60px;height:60px;"/></td>
 															<td>${menu.mname}</td>
 															<td class="text-primary">${menu.mbasicPrice}</td>
 															<td><a href="#" class="menu-option-select">변경</a> / <a
@@ -390,11 +388,6 @@
     	/* 사이드바 하이라이트된 바꾸기 */
     	$('.nav-item').removeClass('active');
     	$('.nav-item.sidebar-menu').addClass('active');
-    </script>
-    
-    <script>
-    	
-    
     </script>
 </body>
 </html>

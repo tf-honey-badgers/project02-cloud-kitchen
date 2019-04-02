@@ -65,7 +65,7 @@
 							<a class="dropdown-item" href="#" id="login"  data-toggle="modal" data-target="#login_2">Login</a>
 						</c:if>
 						<c:if test="${!empty sessionScope.bizId }" >
-							<a class="dropdown-item" href="member/logout" id="logout">Logout</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/member/logout" id="logout">Logout</a>
 						</c:if>
 					</div>
 				</li>
