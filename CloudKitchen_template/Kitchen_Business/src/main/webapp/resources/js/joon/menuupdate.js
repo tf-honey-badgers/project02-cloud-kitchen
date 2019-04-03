@@ -52,8 +52,8 @@ $(document)
 						  var fileName = menuId+'.png';
 						  var albumName = 'MenuPhoto';
 						  var albumPhotosKey = encodeURIComponent(albumName) + '/';
-						  
 						  var photoKey = albumPhotosKey + fileName;
+						  console.log(photoKey);
 						  s3.upload({
 						    Key: photoKey,
 						    Body: file,
@@ -429,7 +429,6 @@ $(document)
 			        		},
 			        		success(data){
 			        			console.log(data);
-			        			updatePhoto(menu.mCode);
 			        			let menuCode = $('.menuModalOpt tbody tr').eq(0).children().eq(0).text();
 			        			
 			        			for(let i=0; i<$('.container-fluid .table tbody tr').length; i++){
