@@ -94,6 +94,6 @@ public class KakaoController {
 
 		 System.out.println("로그인 후 반환되는 아이디 : " + node.get("id"));
 		 
-		 return "redirect:/http://localhost:3001/customer/main";
+		 return "redirect:/http://13.209.21.25/rest/main";
 	 }
 }

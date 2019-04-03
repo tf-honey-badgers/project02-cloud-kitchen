@@ -238,7 +238,7 @@
     		const query = 'a';
     		$.ajax({
     	    	type : 'GET'
-    	        , url : 'http://localhost:3001/customer/kitchen/lists.json'
+    	        , url : '${pageContext.request.contextPath}/kitchen/lists.json'
     	        , contentType : 'application/json'
     	        , success : function(data) {
     	        	let readList, category;

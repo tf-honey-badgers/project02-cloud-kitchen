@@ -47,7 +47,7 @@
     			<div style="height:360px;">
 					<iframe width="560" height="315" src="https://www.youtube.com/embed/${bizMember.bizLiveStrm}?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=${bizMember.bizLiveStrm}&mute=1" frameborder="0" allowfullscreen data-autoplay data-keepplaying></iframe>
     			</div>
-				<div class="box_style_2" id="main_menu" data-biz-id="${bizMember.bizId}" data-kb-id="${bizMember.bizKitchenId}" data-kb-name="${bizMember.bizKitchenName}">
+				<div class="box_style_2" id="main_menu" data-biz-id="${bizMember.bizId}" data-biz-name="${bizMember.bizName}" data-kb-id="${bizMember.bizKitchenId}" data-kb-name="${bizMember.bizKitchenName}">
 					<h2 class="inner">Menu</h2>
 					<c:forEach var="menu" items="${bizMember.bizMenuCatVo}" varStatus="loop">
 						<h3 class="nomargin_top" id="${loop.index + 100}">${menu.mcName}</h3>
@@ -115,7 +115,7 @@
 			</div> <!-- End col-md-6 -->
 			<div class="sidebar col-md-4">
 				<div class="theiaStickySidebar">
-					<form action="http://localhost:3001/customer/order/orderinfo" method="post">
+					<form action="${pageContext.request.contextPath}/order/orderinfo" method="post">
 						<div id="cart_box">
 							<h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
 							<c:set var="cid" value="${sessionScope.uid}"></c:set>

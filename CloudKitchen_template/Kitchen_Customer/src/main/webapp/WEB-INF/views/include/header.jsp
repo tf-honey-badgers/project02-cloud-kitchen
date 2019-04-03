@@ -69,11 +69,11 @@
 			    		</c:if>
 						<c:if test="${empty sessionScope.uid and !empty sessionScope.kid}" ><!-- 아이디 없고 카카오 있고  -->
 							<li class="submenu"><a href="#" class="show-submenu">${knikname }님</a></li>
-							<li><a  href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
+							<li><a  href="${pageContext.request.contextPath}/member/logout" id="logout">Logout</a><li>
 						</c:if>
 						<c:if test="${!empty sessionScope.uid and empty sessionScope.kid}" > <!-- 아이디 있고 카카오 없고 -->
 							<li class="submenu"><a href="#" class="show-submenu">${uid }님</a></li>
-							<li><a href="http://localhost:3001/customer/member/logout" id="logout">Logout</a><li>
+							<li><a href="${pageContext.request.contextPath}/member/logout" id="logout">Logout</a><li>
 							<li><a href="${pageContext.request.contextPath}/member/mypage">마이 페이지</a></li>
 						</c:if>
 						<li><a href="${pageContext.request.contextPath}/about">회사 소개</a></li>
@@ -93,7 +93,7 @@
            <div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;
 					text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
                 <a href="javascrpit:void()" class="close-link"><i class="icon_close_alt2"></i></a>
-                <form action="http://localhost:3001/customer/member/login"" class="popup-form" id="myLogin" style="margin: 60px 60px 10px 60px; ">
+                <form action="${pageContext.request.contextPath}/member/login"" class="popup-form" id="myLogin" style="margin: 60px 60px 10px 60px; ">
                     <div class="login_icon"><i class="icon_lock_alt"></i></div>
                     <input type="text" class="form-control form-white" placeholder="아이디">
                     <input type="password" class="form-control form-white" placeholder="비밀번호">
@@ -104,7 +104,7 @@
                     <button type="button" class="btn btn-submit">로그인</button>
                 </form>
           	
-           <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
+           <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=${pageContext.request.contextPath}/main/kakaologin&response_type=code">
            
            <img alt="카카오 로그인" src="/customer/resources/img/kakaobutton.png" style="width:375px; height: 44px;">
            </a>    					

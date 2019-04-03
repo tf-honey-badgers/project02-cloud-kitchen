@@ -42,7 +42,7 @@ public class PaymentController {
 	@SuppressWarnings("rawtypes")
 	@PostMapping("/orderinfo")
 	public ModelAndView orderInfo(int[] selectedCart, ModelAndView mv) {
-		String url = "http://127.0.0.1:80/rest/cust/order/orderinfo";
+		String url = "http://13.209.21.25/rest/cust/order/orderinfo";
 
 		log.info("::::::::::::::::::::::::::::::selectCart의 내용:::::::::::::::::::::::::::::::::::::::::");
 //		for(int i:selectedCart) {
@@ -99,7 +99,7 @@ public class PaymentController {
 		
 		if(status.equals("success")) {
 			log.info("............success");
-			String url = "http://127.0.0.1:80/rest/cust/order/"+order.getId();
+			String url = "http://13.209.21.25/rest/cust/order/"+order.getId();
 			
 			ResponseEntity<String> responses  = restTemplate.postForEntity(url,order, String.class);
 			

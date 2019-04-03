@@ -43,7 +43,7 @@ public class CustomerController {
 		log.info("사용자 개인정보 읽기...............................");
 		
 		CustomerVO returnVal = null;
-		String url = "http://localhost/rest/customer/" + id + "/mypage";
+		String url = "http://13.209.21.25/rest/customer/" + id + "/mypage";
 		
 		ResponseEntity<CustomerVO> responseEntity = restTemplate.getForEntity(url, org.badgers.customer.model.CustomerVO.class);
 		if (responseEntity.getStatusCode() == HttpStatus.OK) {
@@ -76,7 +76,7 @@ public class CustomerController {
 		
 		String msg ="";
 		
-		String url = "http://localhost/rest/customer/login";
+		String url = "http://13.209.21.25/rest/customer/login";
 		
 		System.out.println("폰==============="+ vo);
 		System.out.println("폰==============="+ vo.getPhone());
@@ -126,7 +126,7 @@ public class CustomerController {
 	public void updateCustomer(@RequestBody CustomerVO cvo) {
 		log.info("Kitchen_Business 사용자 개인정보 수정...............................");
 		
-		String url = "http://localhost/rest/customer/" + cvo.getId() + "/mypage/modify";
+		String url = "http://13.209.21.25/rest/customer/" + cvo.getId() + "/mypage/modify";
 		restTemplate.put(url, cvo);
 				
 		log.info("회원 정보 수정 완료 ");
@@ -138,7 +138,7 @@ public class CustomerController {
 	public void deleteCustomer(@RequestBody CustomerVO cvo, HttpSession session) {
 		log.info("Kitchen_Business 사용자 탈퇴...............................");
 	
-		String url = "http://localhost/rest/customer/" + cvo.getId() + "/delete";
+		String url = "http://13.209.21.25/rest/customer/" + cvo.getId() + "/delete";
 		restTemplate.put(url, cvo);
 		
 		session.invalidate();		
@@ -156,7 +156,7 @@ public class CustomerController {
 	@ResponseBody
 	public String register(@RequestBody CustomerVO customer) {
 		String msg = "";
-		String url = "http://localhost/rest/customer/register";
+		String url = "http://13.209.21.25/rest/customer/register";
 		
 		System.out.println("customer");
 		System.out.println(customer);
@@ -174,7 +174,7 @@ public class CustomerController {
 		log.info("사용자 주문 내역 보기================================");
 		
 		List<OrderInfoVO> list = null;
-		String url = "http://localhost/rest/customer/" + custId + "/mypage/orderinfo";
+		String url = "http://13.209.21.25/rest/customer/" + custId + "/mypage/orderinfo";
 		
 		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url,java.util.List.class);
 		if(responseEntity.getStatusCode()==HttpStatus.OK) {
@@ -195,7 +195,7 @@ public class CustomerController {
 		log.info("사용자 찜 내역 보기================================");
 		
 		List<FavoriteVO> favorite = null;
-		String url = "http://localhost/rest/favorite/" + custId + "/mypage";
+		String url = "http://13.209.21.25/rest/favorite/" + custId + "/mypage";
 		
 		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, java.util.List.class);
 		if(responseEntity.getStatusCode()==HttpStatus.OK) {
@@ -217,7 +217,7 @@ public class CustomerController {
 		log.info(custId + "이/가 " + bizId + "를 찜했는지 확인하기 ================================");
 		
 		int favorite = 0;
-		String url = "http://localhost/rest/favorite/" + custId + "/" + bizId;
+		String url = "http://13.209.21.25/rest/favorite/" + custId + "/" + bizId;
 		
 		ResponseEntity<Integer> responseEntity = restTemplate.getForEntity(url, java.lang.Integer.class);
 		if(responseEntity.getStatusCode() == HttpStatus.OK) {
@@ -233,7 +233,7 @@ public class CustomerController {
 		log.info("찜 추가하기 ================================");
 		
 		int favorite = 0;
-		String url = "http://localhost/rest/favorite/add";
+		String url = "http://13.209.21.25/rest/favorite/add";
 		
 		ResponseEntity<Integer> responseEntity = restTemplate.postForEntity(url, fav, Integer.class);
 		favorite = responseEntity.getBody();
@@ -251,7 +251,7 @@ public class CustomerController {
 			) {
 		log.info(custId + "의 " + bizId + " 찜을 삭제하기 ================================");
 
-		String urlDeleteFav = "http://localhost/rest/favorite/delete/" + custId + "/" + bizId + "/" + bizLikeCnt;
+		String urlDeleteFav = "http://13.209.21.25/rest/favorite/delete/" + custId + "/" + bizId + "/" + bizLikeCnt;
 		restTemplate.delete(urlDeleteFav);
 
 		return new ResponseEntity(HttpStatus.OK);
@@ -264,7 +264,7 @@ public class CustomerController {
 		log.info("Kitchen_Business 사용자 ID 찾기...............................");
 
 		String res = "";
-		String url = "http://localhost/rest/customer/verify";
+		String url = "http://13.209.21.25/rest/customer/verify";
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);
 		res = responseEntity.getBody();
@@ -280,7 +280,7 @@ public class CustomerController {
 		map.put("email",email);
 		map.put("key",AuthCode);
 		
-		String url = "http://localhost/rest/customer/emailConfirm/";
+		String url = "http://13.209.21.25/rest/customer/emailConfirm/";
 		int a =0;
 		
 		ResponseEntity<Integer> responseEntity = restTemplate.postForEntity(url,map,Integer.class);
