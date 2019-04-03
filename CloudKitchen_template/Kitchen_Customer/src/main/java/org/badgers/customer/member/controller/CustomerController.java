@@ -152,11 +152,14 @@ public class CustomerController {
 	}
 
 	// 회원 가입 
-	@PostMapping("/register")
+	@PostMapping(value="/register" ,consumes ="application/json")
 	@ResponseBody
 	public String register(@RequestBody CustomerVO customer) {
 		String msg = "";
 		String url = "http://localhost/rest/customer/register";
+		
+		System.out.println("customer");
+		System.out.println(customer);
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
 		msg = responseEntity.getBody();
