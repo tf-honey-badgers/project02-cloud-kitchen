@@ -17,7 +17,7 @@ function removeDuplicateBizNames() {
 function isFavoriteChk() {
 	$.ajax({
 		type : 'GET'
-		, url : 'http://localhost:3001/customer/member/fav/' + custId + '/' + bizId + '.json'
+		, url : 'http://13.124.176.77/customer/member/fav/' + custId + '/' + bizId + '.json'
 		, contentType : 'application/json'
 	  	, success : function(data) {
   			if(data == 1) {
@@ -153,7 +153,7 @@ $(document).ready(function() {
 			};
  		$.ajax({
 			type : 'POST'
-			, url : 'http://localhost:3001/customer/cart/add'
+			, url : 'http://13.124.176.77/customer/cart/add'
 			, dataType : 'json'
 			, contentType : 'application/json'
 			, data : JSON.stringify(inputData)
@@ -200,7 +200,7 @@ $(document).ready(function() {
 		
  		$.ajax({
 			type : 'DELETE'
-			, url : 'http://localhost:3001/customer/cart/delete'
+			, url : 'http://13.124.176.77/customer/cart/delete'
 			, dataType : 'json'
 			, contentType : 'application/json'
 			, data : JSON.stringify({
@@ -278,7 +278,7 @@ $(document).ready(function() {
 		if($('#likeBiz').prop('class') == 'icon-heart-empty') { // 찜하지 않은 상태라면 (if empty heart icon)
 			$.ajax({
 				type : 'POST'
-				, url : 'http://localhost:3001/customer/member/fav/add.json'
+				, url : 'http://13.124.176.77/customer/member/fav/add.json'
 				, contentType : 'application/json'
 				, data : JSON.stringify({
 					custId : custId
@@ -301,7 +301,7 @@ $(document).ready(function() {
 		} else { // 찜한 상태라면 (if full heart icon)
 			$.ajax({
 				type : 'DELETE'
-				, url : 'http://localhost:3001/customer/member/fav/delete/' + custId + '/' + bizId + '/' + parseInt($('#likes').text()) + '.json'
+				, url : 'http://13.124.176.77/customer/member/fav/delete/' + custId + '/' + bizId + '/' + parseInt($('#likes').text()) + '.json'
 				, contentType : 'application/json'
 			  	, success : function() {
 		  			$('#likeBiz').removeClass('icon-heart').addClass('icon-heart-empty').siblings('#likeText').text('찜해주세요!!');
