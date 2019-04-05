@@ -184,7 +184,7 @@ public class CustomerController {
 		 vo.setGender(kgender);
 		 vo.setStatus(kstatus);
 		
-	d
+	
 	
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url,vo,String.class);

@@ -66,7 +66,7 @@ public class KakaoController {
 	    	String gender = "미정";
 	    	
 	    
-	        session.setAttribute("uid", id); // 세션 email(-> 사용자 id) 저장
+	        session.setAttribute("uid", ids); // 세션 email(-> 사용자 id) 저장
 	        session.setAttribute("kpw", kpw); //카톡 로그인 비번 
 	        session.setAttribute("knikname", nickname);
 	        session.setAttribute("kbirthDate", kbirthDate);

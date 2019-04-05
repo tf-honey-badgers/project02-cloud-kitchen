@@ -46,6 +46,7 @@ public class KitchenController {
 		
 		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, java.util.List.class); // 특정 가게의 메뉴 읽어오기
 		returnBiz = responseEntity.getBody();
+		
 			
 		if(auth.equals("true")) {
 			url = "http://13.209.21.25/rest/cart/" + custId; // 현재 로그인되어 있는 사용자 ID를 사용
