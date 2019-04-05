@@ -55,16 +55,13 @@ $(document).ready(function() {
 	});
 	
 	/* 로그인 절차 */
-	$('#myLogin button').on('click', function() {
-		//--------------------------------------------------------------------------
-		
+	$('#myLogin button').on('click', function() {		
 		var cnt=0;
 		var inputCheck= $(this).siblings('span.bmd-form-group').find('input');
 		inputCheck.each(function(i,v){
 			if(v.value===null||v.value===undefined||v.value===''){
 				cnt++;
 				return;
-				
 			}
 		})
 		
@@ -82,33 +79,23 @@ $(document).ready(function() {
 	    			console.log(data);
 	    		}
 	    		, success : function(data) {
-	    			console.log('..............',data)
-	    			
 	    			if(data == "success") {
 	    				window.location.href = "/business/main?msg=success";
-//	    				window.location.reload()
-	    				
 	    			} else {
-	    				if(data==='server disconnected'){
+	    				if(data==='server disconnected') {
 	    					md.showNotification('top', 'center', 'danger', 'server disconnected');  
 	    					$('.modal').modal('hide');	
-	    				}else if(data==='fail'){
+	    				} else if(data==='fail'){
 	    					md.showNotification('top', 'center', 'danger', '아이디 혹은 비밀번호를 다시 확인해 주시기 바랍니다 ');  
 	    				}
-	    				
-	    			//	window.location.href = "/business/main?msg=fail";
-	    							
-	    			}
+	       			}
 	    			$('#myLogin input').val("");
 	    		}
 			});
-			
 		}else{
-			alert('빠트린 입력란이 있는지 확인해 주세요')
+			alert('빠트린 입력란이 있는지 확인해 주세요');
 		}
-		
-	})
-	
+	});
 	
 	/* ID 찾기 인증 절차 */
 	$('#findId').on('click', function(event) {
@@ -248,4 +235,4 @@ $(document).ready(function() {
     		}
 		});
 	});
-})
+});
