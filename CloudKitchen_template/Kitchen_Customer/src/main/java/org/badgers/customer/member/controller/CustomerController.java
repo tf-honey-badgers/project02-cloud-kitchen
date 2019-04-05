@@ -151,13 +151,9 @@ public class CustomerController {
 	
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
-		System.out.println(responseEntity);
-		
-		System.out.println(customer);
-		
+	
 		msg = responseEntity.getBody();
-		
-		System.out.println(msg);		
+			
 		return msg;
 	}
 	
@@ -188,7 +184,7 @@ public class CustomerController {
 		 vo.setGender(kgender);
 		 vo.setStatus(kstatus);
 		
-		 System.out.println(vo);
+	d
 	
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url,vo,String.class);

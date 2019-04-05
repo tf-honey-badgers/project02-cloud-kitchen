@@ -63,11 +63,14 @@
 					<a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
 					<ul>
 						<li class="submenu"><a href="${pageContext.request.contextPath}/main" class="show-submenu"><i class="icon-home-2"></i></a></li>
-						<c:if test="${empty sessionScope.uid}" > <!-- 기본상태 -->
+						<c:if test="${empty sessionScope.uid}" > <!-- 기본상태 세션 X  -->
 							<li><a href="#0" data-toggle="modal" data-target="#login_2">로그인</a></li>
 							<li><a href="#0" data-toggle="modal" data-target="#register">회원가입</a></li>
 			    		</c:if>
-						<c:if test="${!empty sessionScope.uid}"> <!-- 아이디 있고 카카오 없고 -->
+
+				
+
+						<c:if test="${!empty sessionScope.uid}" > <!-- 로그인 되어 세션 있는 상태 -->
 							<li class="submenu"><a href="#" class="show-submenu">${uid }님</a></li>
 							<li><a href="${pageContext.request.contextPath}/member/logout" id="logout">Logout</a><li>
 							<li><a href="${pageContext.request.contextPath}/member/mypage">마이 페이지</a></li>
