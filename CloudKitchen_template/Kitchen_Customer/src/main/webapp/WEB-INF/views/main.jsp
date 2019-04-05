@@ -18,7 +18,7 @@
 <!-- End Headers ================================================== -->
 
 <!-- Content ================================================== -->
-<button class="btn btn-danger" onclick="unlinkApp();">앱 연결 해제</button>
+
     <div class="container margin_60">
 		<div class="main_title">
             <h2 class="nomargin_top" style="padding-top:0">클라우드 키친이란?</h2>

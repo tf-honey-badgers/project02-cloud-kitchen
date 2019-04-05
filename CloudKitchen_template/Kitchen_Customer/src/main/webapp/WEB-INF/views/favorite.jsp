@@ -33,7 +33,7 @@ var custId = '${custId}';
 <table  class="type11" style="margin-left:33%;">
 		<thead>
 			<tr>
-				<th>가게 사진</th>
+				<th>회원 아이디</th>
 				<th>가게 이름</th>
 				<th>키친 이름</th>
 			</tr>

@@ -80,6 +80,7 @@ public class KakaoController {
 
 		
 	
-	      return "redirect:/http://13.209.21.25/rest/member/register2";
+
+	           return "redirect:/member/register2";
 	    }
 }
