@@ -17,8 +17,10 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter {
 			) throws Exception {
 		String url = "", custId = (String) request.getSession().getAttribute("uid");
 		log.info("UID IS : " + custId);
+		
 
 		if(request.getQueryString() == null) {
+			
 			if(custId == null) {
 				log.info("------------------------- 로그인 안 한 상태 -------------------------");
 				url = request.getRequestURI().toString() + "?auth=false";

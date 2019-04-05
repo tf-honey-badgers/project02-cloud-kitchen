@@ -31,8 +31,6 @@ public class FavoriteServiceImpl implements FavoriteService {
 	// 특정 고객(cust_id)이 특정 가게(biz_id)를 찜했는지 확인하기
 	@Override
 	public int isFavoriteChk(String custId, String bizId) throws Exception {
-		System.out.println(custId);
-		System.out.println(bizId);
 		int favorite = mapper.isFavoriteChk(custId, bizId);
 		return favorite;
 	}

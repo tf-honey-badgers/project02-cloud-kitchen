@@ -15,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
 
 @RestController
 @RequestMapping("/business")
-@Log4j
 public class BusinessController {
 
 	@Setter(onMethod_ = { @Autowired })
@@ -36,8 +34,7 @@ public class BusinessController {
 	// 개인정보 수정
 	@PutMapping("/{biz_id}/mypage/modify")
 	public ResponseEntity<Integer> modify(@PathVariable("biz_id")String bizId, @RequestBody BizMemberVOExtend mvo) {
-
-		int returnVal = 0;
+		int returnVal = 0; // 몇 개 행을 수정했는지 표시하는 변수
 
 		try {
 			returnVal = service.modify(mvo);
@@ -66,21 +63,19 @@ public class BusinessController {
 	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend biz) throws Exception {
 		int returnVal = service.login(biz.getBizId(), biz.getPw());
 		
-		 //로그인이 성공했는지 메세지 전송 , httpStatus로 성공 실패구분짓는것은 ..  header에 http프로토콜 상태를 알려주는 것이므로 에러유발... 좋은 코드가 아님 
-		 return (returnVal==1) ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>("fail", HttpStatus.OK);	
+		//로그인이 성공했는지 메세지 전송 , httpStatus로 성공 실패구분짓는것은 ..  header에 http프로토콜 상태를 알려주는 것이므로 에러유발... 좋은 코드가 아님 
+		return (returnVal==1) ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>("fail", HttpStatus.OK);	
 	}
 	
 	// ID 찾기 & 본인인증하기
 	@PostMapping("/verify")
 	public ResponseEntity<String> verify(@RequestBody BizMemberVOExtend mvo) throws Exception {
-		 ResponseEntity<String> entity = null;
-		 
-		 log.info("Kitchen_Rest 사업자 ID 찾기...............................");
-
-		 String returnVal = service.verify(mvo);
-		 if(returnVal == null) { entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST); }
-		 else { entity = new ResponseEntity<String>(returnVal, HttpStatus.OK); }
-		 
-		 return entity;
+		ResponseEntity<String> entity = null;
+		
+		String returnVal = service.verify(mvo);
+		if(returnVal == null) { entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST); }
+		else { entity = new ResponseEntity<String>(returnVal, HttpStatus.OK); }
+		
+		return entity;
 	}
 }
