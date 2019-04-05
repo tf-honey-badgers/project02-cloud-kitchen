@@ -1,6 +1,7 @@
 /* 전역 변수 */
 	/* 가게 ID */
 	const bizId = $('#main_menu').attr('data-biz-id');
+	const bizName = $('#main_menu').attr('data-biz-name');
 	/* 치킨 지점명 */
 	const kbName = $('#main_menu').attr('data-kb-name');
 
@@ -145,7 +146,7 @@ $(document).ready(function() {
 				, quantity : 1
 				, unitPrice : menuPrice
 				, totalAmt : totalPrice
-				, kitchenName : '스톡홀름 1호점'
+				, kitchenName : kbName
 				, bizId : bizId
 				, menuId : menuId
 				, options : inputOptions
@@ -261,7 +262,7 @@ $(document).ready(function() {
 			alert('메뉴를 최소한 하나는 선택해주세요.');
 			return;
 		}
-		if($('.total span').data('total') < minAmt) {
+		if($('.total span').data('total') < $('#minAmt').data('min-amt')) {
 			event.preventDefault();
 			alert('메뉴를 최소한 하나는 선택해주세요.');
 			return;
@@ -282,8 +283,8 @@ $(document).ready(function() {
 				, data : JSON.stringify({
 					custId : custId
 					, bizId : bizId
-					, bizName : '원준이네 통닭집'
-					, kitchenName : '리벨점'
+					, bizName : bizName
+					, kitchenName : kbName
 					, bizLikeCnt : parseInt($('#likes').text())
 				})
 			  	, success : function(data) {
@@ -314,5 +315,11 @@ $(document).ready(function() {
 		}
 	});
 	
-	
+	$('body').on('click', '#orderNow', function(event) {
+		if($('.total span').data('total') < $('#minAmt').data('min-amt')) {
+			event.preventDefault();
+			alert('최소금액보다 적어서 주문할 수 없습니다.');
+			return;
+		}
+	})
 });

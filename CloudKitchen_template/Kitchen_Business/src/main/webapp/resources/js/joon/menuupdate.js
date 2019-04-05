@@ -13,7 +13,7 @@ $(document)
 					    IdentityPoolId: IdentityPoolId
 					  })
 					});
-
+					
 					var s3 = new AWS.S3({
 					  apiVersion: '2006-03-01',
 					  params: {Bucket: 'honeybadgersfile'}
@@ -39,7 +39,7 @@ $(document)
 						    if (err) {
 						      return alert('There was an error uploading your photo: ', err.message);
 						    }
-						    alert('Successfully uploaded photo.');
+//						    alert('Successfully uploaded photo.');
 						  });
 						}
 					
@@ -52,8 +52,8 @@ $(document)
 						  var fileName = menuId+'.png';
 						  var albumName = 'MenuPhoto';
 						  var albumPhotosKey = encodeURIComponent(albumName) + '/';
-						  
 						  var photoKey = albumPhotosKey + fileName;
+						  console.log(photoKey);
 						  s3.upload({
 						    Key: photoKey,
 						    Body: file,
@@ -429,7 +429,6 @@ $(document)
 			        		},
 			        		success(data){
 			        			console.log(data);
-			        			updatePhoto(menu.mCode);
 			        			let menuCode = $('.menuModalOpt tbody tr').eq(0).children().eq(0).text();
 			        			
 			        			for(let i=0; i<$('.container-fluid .table tbody tr').length; i++){

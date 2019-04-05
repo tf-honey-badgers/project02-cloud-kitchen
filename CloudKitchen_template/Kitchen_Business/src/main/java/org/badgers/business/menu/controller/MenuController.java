@@ -3,7 +3,6 @@ package org.badgers.business.menu.controller;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import org.badgers.business.menu.service.MenuServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -23,9 +22,6 @@ import lombok.Setter;
 @Controller
 @RequestMapping("/menu")
 public class MenuController {
-	
-	@Setter(onMethod_ = { @Autowired })
-	private MenuServiceImpl service;
 	
 	@Setter(onMethod_=@Autowired)
 	private RestTemplate restTemplate;

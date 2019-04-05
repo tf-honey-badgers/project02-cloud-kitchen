@@ -160,7 +160,7 @@
             success: function(res) {
             	alert('success!');	
                 console.log(res);
-				window.location.href="http://localhost:3001/customer/member/logout";
+				window.location.href="${pageContext.request.contextPath}/member/logout";
 			},
             fail: function(error) {
             	console.log(error);

@@ -31,7 +31,7 @@ public class CartController {
 		log.info("Kitchen_Customer 카트 DB에 추가하기");
 		
 		List<CartVOExtend> returnVal = null;
-		String url = "http://localhost/rest/cart/";
+		String url = "http://13.209.21.25/rest/cart/";
 		
 //		System.out.println(cart);
 		
@@ -62,7 +62,7 @@ public class CartController {
 		List cartIds = (List) req.get("cartIds");
 		
 		List<CartVOExtend> returnVal = null;
-		String url = "http://localhost/rest/cart/" + custId;
+		String url = "http://13.209.21.25/rest/cart/" + custId;
 		try {
 			for(int i = 0; i < cartIds.size(); i++) {
 				String tempUrl = url + "/" + cartIds.get(i);
