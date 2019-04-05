@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,8 +44,6 @@ public class KakaoController {
 	        
 	        String token = jsonToken.get("access_token").toString();
 
-	        // Get id
-//	        String id = userInfo.path("id").asText();
 	        
 	        JsonNode kakao_account = userInfo.path("kakao_account");
 	        System.out.println(kakao_account);
@@ -56,44 +55,35 @@ public class KakaoController {
 	        System.out.println(properties);
 
 	        
-	        String id = userInfo.get("id").toString();
-	        String email = userInfo.get("kakao_account").get("email").asText();
-	        String image = userInfo.get("properties").get("profile_image").asText();
+	        String ids = userInfo.get("id").toString();
+	        String id = userInfo.get("kakao_account").get("email").asText();
+	        String image = userInfo.get("properties").get("profile_image").toString();
 	        String nickname = userInfo.get("properties").get("nickname").asText();
-
-//	        System.out.println(id + email);
+	       // String gender = userInfo.get("kakao_account").get("gender").asText();
 	        
-	        session.setAttribute("token", token); // 세션 토큰값 저장 
-	        session.setAttribute("kid", id); // 세션 id(임시 브라우저마다 다르다고 함) 저장 
-	        session.setAttribute("kemail", email); // 세션 email 저장 
-	        session.setAttribute("knikname", nickname); // 세션 닉네임 -> 이게id 로 
-	        System.out.println(email);
-	        model.addAttribute("token",token);
-	        model.addAttribute("k_userInfo", userInfo);
-	        model.addAttribute("id", id);
-	        model.addAttribute("email", email);
-	        model.addAttribute("nickname", nickname);
-	        model.addAttribute("image", image);
+	        
+	        String kpw ="kakao";
+	        String kbirthDate = "1992-11-11";
+	        String kphone = "010";
+	    	String kstatus = "MEM002";
+	    	String gender = "미정";
+	    	session.setAttribute("token",token);
+	        session.setAttribute("uid", id); // 세션 email(-> 사용자 id) 저장
+	        session.setAttribute("kpw", kpw); //카톡 로그인 비번 
+	        session.setAttribute("knikname", nickname);
+	        session.setAttribute("kbirthDate", kbirthDate);
+	        session.setAttribute("kphone",kphone);
+	        session.setAttribute("kemail", id);
+	        session.setAttribute("kgender", gender);
+	        session.setAttribute("kstatus", kstatus);
+	        
+	    
+	        
 
-	        return "main";
+		
+	
+	      return "redirect:/member/register2";
 	    }
 	 
-	 @RequestMapping(value="main/test",produces="application/json")
-	 public String test() {
-		 return "test";
-	 }
-	 
-	 @RequestMapping(value = "/logout", produces = "application/json")
-	 public String Logout(HttpSession session) {
-		 KakaoUserInfo ki = new KakaoUserInfo();
 
-		 
-		 JsonNode node = ki.Logout(((JsonNode) session.getAttribute("token")).asText());
-		System.out.println("node==================="+node);
-		
-
-		 System.out.println("로그인 후 반환되는 아이디 : " + node.get("id"));
-		 
-		 return "redirect:/http://localhost:3001/customer/main";
-	 }
 }

@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	var sessionSc1 = $('#kakaoidss').val();
 	var sessionSc2 = $('#kakaoniks').val();
+	var sessionSc3 = $('#kakaopws').val();
 	console.log(sessionSc1);
 	console.log(sessionSc2);
 
@@ -282,7 +283,7 @@ $(document).ready(function(){
 				 JSON.stringify({
 					 
 					    id : sessionSc1
-	    				, pw :"1234"
+	    				, pw : sessionSc3
 	    				, name : sessionSc2
 	    				, birthDate : "1111-11-11"
 	    				, phone : "010-"

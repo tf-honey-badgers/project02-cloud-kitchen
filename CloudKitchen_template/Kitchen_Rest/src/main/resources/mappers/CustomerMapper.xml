@@ -7,9 +7,9 @@
 	<!-- 회원 가입 -->
 	<insert id="register" parameterType="org.badgers.rest.model.CustomerVO">
 		insert into honey_badgers.customer
-			(id, pw, name, birth_date, phone, email, gender,address,address_detail)
+			(id, pw, name, birth_date, phone, email, gender,address,address_detail,status)
 			values
-			(#{id},#{pw},#{name},#{birthDate},#{phone},#{email},#{gender},#{address},#{addressDetail})
+			(#{id},#{pw},#{name},#{birthDate},#{phone},#{email},#{gender},#{address},#{addressDetail},#{status})
 	</insert>
 	
 	<!-- 로그인 -->
@@ -135,4 +135,11 @@ update honey_badgers.customer set auth_code = #{param2} where email = #{param1}
 <![CDATA[	update honey_badgers.customer set status = "MEM002" where email = #{param1} and auth_code = #{param2}]]>
 </update>
 
+
+	<select id="checkKakaoUser"
+		resultType="org.badgers.rest.model.CustomerVO">			
+			select * 
+			from honey_badgers.customer
+			where id=#{id};
+	</select>
 </mapper>

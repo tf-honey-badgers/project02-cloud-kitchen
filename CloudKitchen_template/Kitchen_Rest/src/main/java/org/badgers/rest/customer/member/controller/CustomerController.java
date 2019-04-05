@@ -35,10 +35,22 @@ public class CustomerController {
 	public ResponseEntity<Integer> register(@RequestBody CustomerVO vo) throws Exception {
 		ResponseEntity<Integer> entity = null;
 		
-		int returnVal = service.register(vo);
-		 
-		if(returnVal == 0) { entity = new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST); }
-		 else { entity = new ResponseEntity<Integer>(returnVal, HttpStatus.OK); }
+		
+		if(service.checkKakaoUser(vo.getId()) != null) {
+			// 되어있으면 로그인 처리
+			CustomerVO returnVal = service.login(vo.getId(), vo.getPw());	
+				
+		}
+		
+		else {
+			int returnVal = service.register(vo);
+		
+		
+			if(returnVal == 0) { entity = new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST); }
+			else { entity = new ResponseEntity<Integer>(returnVal, HttpStatus.OK); }
+		}
+		
+		
 		 
 		 return entity;
 	}
@@ -47,7 +59,7 @@ public class CustomerController {
 	@SuppressWarnings("rawtypes")
 	@PostMapping(value="/login" , produces = "application/json; charset=UTF-8")
 	public ResponseEntity login(@RequestBody CustomerVO cvo) throws Exception {
-//		String msg=""; 
+
 		
 		CustomerVO returnVal = service.login(cvo.getId(), cvo.getPw());
 		

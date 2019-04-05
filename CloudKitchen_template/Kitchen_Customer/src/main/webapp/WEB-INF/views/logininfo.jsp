@@ -11,6 +11,7 @@
 <body>
   	<!-- 위쪽 헤더바  -->
     <jsp:include page="include/header.jsp" flush="false"/>
+    <jsp:include page="include/background.jsp" flush="false" />
     <br><br><br><br><br><br>	
     <div style="height:20%; border:5px solid; padding:10px;"></div>
 <span style="margin-left:33%"><h3>카카오톡 로그인 성공 화면</h3></span>
@@ -21,18 +22,13 @@
   <div id="k_id" style="text-align:center"></div>
   <div id="k_email" style="text-align:center"></div>
   <div id="k_nickname" style="text-align:center"></div>
-      <a href = "${pageContext.request.contextPath}/logout">
-      <button type="button" id ="kakaologout" class="btn btn-submit">로그아웃</button>
+      <a href = "${pageContext.request.contextPath}/main">
+      <button type="button" id ="kakaologin123" class="btn btn-submit">클라우드 서비스 이용하러 가기</button>
       </a><br>
-      <a href=" https://developers.kakao.com/logout">dddddd</a>
-      ${sessionScope.token}
+ <input type="hidden" id="kakaoidss" value="${sessionScope.uid}" />
+<input type="hidden" id="kakaoniks" value="${sessionScope.knikname}" />
+<input type ="hidden" id="kakaopws" value="${sessionScope.kpw }"/>
       
-      
-      
-      
-      <button class="api-btn" onclick="unlinkApp()">
-앱 탈퇴하기						
-</button>
 
 	</div>
 	</div>
@@ -42,8 +38,8 @@
   <script>		
   if ('${k_userInfo}') {
 
-    $("#k_id").text("아이디 : " + '${id}');
-    $("#k_email").text("이메일 : " + '${email}');
+    $("#k_id").text("아이디 : " + '${kakaoid}');
+    $("#k_email").text("이메일 : " + '${kakaoemail}');
     $("#k_nickname").text("이름 : " + '${nickname}');
 
     imageURL = ${image};

@@ -58,7 +58,6 @@ public class CustomerController {
 
 		mav.addObject("customer", returnVal);
 		log.info("returnVal");
-		System.out.println("resutnVal================================"+ returnVal);
 		session.setAttribute("login", returnVal);
 		mav.setViewName("modify");
 		
@@ -78,19 +77,11 @@ public class CustomerController {
 		
 		String url = "http://localhost/rest/customer/login";
 		
-		System.out.println("폰==============="+ vo);
-		System.out.println("폰==============="+ vo.getPhone());
 		try {
 		ResponseEntity<CustomerVO> responseEntity = restTemplate.postForEntity(url, vo, CustomerVO.class);
-//		status= responseEntity.getBody();
 		CustomerVO member = responseEntity.getBody();
 		status = responseEntity.getStatusCodeValue();
 		responseHeaders = new HttpHeaders();
-		
-		System.out.println("member=========================" +member);
-		
-		System.out.println("status==========================="+status);
-		
 		
 		if(status==200) {
 			responseHeaders.set("id",member.getId() );
@@ -101,16 +92,15 @@ public class CustomerController {
 		}
 		
 		}catch (Exception e) {
-			System.out.println(e.getMessage());
 			if(e.getMessage().contains("failed: Connection refused: connect")) {
 				msg="로그인 실패";
 				
 			}
-		
 			
 		}
 		return new ResponseEntity<>(msg, responseHeaders,HttpStatus.OK);	
 	}
+	
 	
 	//로그아웃 
 	@GetMapping("/logout")
@@ -158,14 +148,54 @@ public class CustomerController {
 		String msg = "";
 		String url = "http://localhost/rest/customer/register";
 		
-		System.out.println("customer");
-		System.out.println(customer);
+	
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
+		System.out.println(responseEntity);
+		
+		System.out.println(customer);
+		
 		msg = responseEntity.getBody();
-				
+		
+		System.out.println(msg);		
 		return msg;
 	}
+	
+	@GetMapping(value="/register2")
+	public String registers(HttpSession session) {
+		
+		
+		String kid = (String) session.getAttribute("uid");
+		String kpw = (String) session.getAttribute("kpw");	
+		String kname = (String) session.getAttribute("knikname");
+		String kbirthDate = (String) session.getAttribute("kbirthDate");
+		String kphone = (String) session.getAttribute("kphone");
+		String kemail = (String) session.getAttribute("kemail");
+		String kgender = (String) session.getAttribute("kgender");
+		String kstatus = (String) session.getAttribute("kstatus");
+		
+		String url = "http://localhost/rest/customer/register";
+		
+		CustomerVO vo = new CustomerVO();
+		
+		 vo.setId(kid);
+		 vo.setPw(kpw);
+		 vo.setName(kname);
+		 vo.setBirthDate(kbirthDate);
+		 vo.setPhone(kphone);
+		 vo.setEmail(kemail);
+		 vo.setGender(kgender);
+		 vo.setStatus(kstatus);
+		
+		 System.out.println(vo);
+	
+		
+		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url,vo,String.class);
+		
+
+		return "redirect:/main";
+	}
+	
 	
 	// 주문 내역 보기 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -202,7 +232,6 @@ public class CustomerController {
 			favorite = (List<FavoriteVO>) responseEntity.getBody();
 		}		
 		
-		System.out.println("favorite===================="+favorite);
 		mav.addObject("list",favorite); //뷰에 전달할 데이터 지정 
 		
 		mav.setViewName("favorite"); //뷰 이름 지정 
@@ -287,7 +316,6 @@ public class CustomerController {
 		log.info("들어간다");
 		if (responseEntity.getStatusCode() == HttpStatus.OK) {
 			a = responseEntity.getBody();
-			System.out.println("이것은="+a);		
 		}		
 		
 		if(a != 0) { log.info("이메일 인증 완료 ! "); }
@@ -305,6 +333,11 @@ public class CustomerController {
 	@RequestMapping(value = "/card", method = RequestMethod.GET)
 	public String card() {
 		return "card";
+	}
+	
+	@RequestMapping(value = "/logininfo", method = RequestMethod.GET)
+	public String kakaologin() {
+		return "logininfo";
 	}
 
 }

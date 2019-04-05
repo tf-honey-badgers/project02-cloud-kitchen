@@ -145,7 +145,7 @@ $(document).ready(function() {
 				, quantity : 1
 				, unitPrice : menuPrice
 				, totalAmt : totalPrice
-				, kitchenName : '스톡홀름 1호점'
+				, kitchenName : kbName
 				, bizId : bizId
 				, menuId : menuId
 				, options : inputOptions
