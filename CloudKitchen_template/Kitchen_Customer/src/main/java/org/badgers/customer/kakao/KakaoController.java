@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,35 +30,33 @@ public class KakaoController {
 	        // JsonNode 트리형태로 토큰받아온다
 	        JsonNode jsonToken = KakaoAccessToken.getKakaoAccessToken(code);
 	        
-	        System.out.println("jspm토큰==================="+jsonToken);
+	       
 	        // 여러 json객체 중 access_token을 가져온다
 	        JsonNode accessToken = jsonToken.get("access_token");
 	        
-	        System.out.println("access_token : " + accessToken);
+	      
 	        
 	        // access_token을 통해 사용자 정보 요청
 	        JsonNode userInfo = KakaoUserInfo.getKakaoUserInfo(accessToken);
 	        
-	        System.out.println("userInfo 다 ===============" + userInfo);
+	      
 	        
 	        String token = jsonToken.get("access_token").toString();
 
 	        
 	        JsonNode kakao_account = userInfo.path("kakao_account");
-	        System.out.println(kakao_account);
-	        System.out.println();
-	        System.out.println("이거 진짜 : "+kakao_account.get("email").asText());
+	    
 	        
 	        JsonNode  properties = userInfo.path("properties");
 
-	        System.out.println(properties);
+	     
 
 	        
 	        String ids = userInfo.get("id").toString();
 	        String id = userInfo.get("kakao_account").get("email").asText();
 	        String image = userInfo.get("properties").get("profile_image").toString();
 	        String nickname = userInfo.get("properties").get("nickname").asText();
-	       // String gender = userInfo.get("kakao_account").get("gender").asText();
+	      
 	        
 	        
 	        String kpw ="kakao";
@@ -67,7 +64,8 @@ public class KakaoController {
 	        String kphone = "010";
 	    	String kstatus = "MEM002";
 	    	String gender = "미정";
-	    	session.setAttribute("token",token);
+	    	
+	    
 	        session.setAttribute("uid", id); // 세션 email(-> 사용자 id) 저장
 	        session.setAttribute("kpw", kpw); //카톡 로그인 비번 
 	        session.setAttribute("knikname", nickname);
@@ -82,8 +80,6 @@ public class KakaoController {
 
 		
 	
-	      return "redirect:/member/register2";
+	      return "redirect:/http://13.209.21.25/rest/member/register2";
 	    }
-	 
-
 }

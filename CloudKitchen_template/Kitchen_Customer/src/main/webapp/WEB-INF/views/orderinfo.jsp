@@ -87,14 +87,14 @@ var custId = '${custId}';
 	<div class="center">
 	
 	<div class="left2">
-	<a class="strip_list grid" href="http://localhost:3001/customer/member/fav/${uid}/mypage">
+	<a class="strip_list grid" href="${pageContext.request.contextPath}/member/fav/${uid}/mypage">
 	<h2>찜 가게로 이동</h2>
 	 <img class="shopImg"  src="	https://img.lovepik.com/element/40052/1687.png_1200.png" alt="하트" style="width: 200px; height: 150px;">
 	</a>
 	</div>
 	
 	<div class="right2">
-	<a class="strip_list grid" href="http://localhost:3001/customer/member/card">
+	<a class="strip_list grid" href="${pageContext.request.contextPath}/member/card">
 	<h2>카드 관리 이동</h2>
 	 <img class="shopImg"  src="https://circuitree.com/wp-content/uploads/2014/08/credit-card-71.png" alt="카드" style="width: 200px; height: 150px;">
 	</a>
@@ -188,7 +188,7 @@ var custId = '${custId}';
 		 var tbody = $('tbody');
 		$(document).ready(function(){
 	
-			$.getJSON( 'http://localhost/rest/customer/${custId}/mypage/orderinfo', function(list){
+			$.getJSON( 'http://13.209.21.25/rest/customer/${custId}/mypage/orderinfo', function(list){
 				
 				for(var i = 0, len = list.length || 0 ; i < len; i++){
 					var tr = $('<tr></tr>');

@@ -18,7 +18,7 @@
 				
 	<div class="row">
 		<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.1s">
-			<a class="strip_list grid" href="http://localhost:3001/customer/member/${uid}/change">
+			<a class="strip_list grid" href="${pageContext.request.contextPath}/member/${uid}/change">
 
 				<div class="desc">
 					<h3>회원정보 수정</h3>
@@ -29,7 +29,7 @@
 		</div>
 		<!-- End col-md-6-->
 		<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.2s">
-				<a class="strip_list grid" href="http://localhost:3001/customer/member/${uid}/mypage/orderinfo">
+				<a class="strip_list grid" href="${pageContext.request.contextPath}/member/${uid}/mypage/orderinfo">
 
 				<div class="desc">
 					
@@ -44,7 +44,7 @@
 	<!-- End row-->
 <div class="row">
 		<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.1s">
-				<a class="strip_list grid" href="http://localhost:3001/customer/member/fav/${uid}/mypage">
+				<a class="strip_list grid" href="${pageContext.request.contextPath}/member/fav/${uid}/mypage">
 				<div class="desc">
 					
 				
@@ -57,7 +57,7 @@
 		<!-- End col-md-6-->
 		<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.2s">
 		
-			<a class="strip_list grid" href="http://localhost:3001/customer/member/card">
+			<a class="strip_list grid" href="${pageContext.request.contextPath}/member/card">
 
 				<div class="desc">
 					

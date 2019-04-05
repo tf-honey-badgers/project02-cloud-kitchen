@@ -92,7 +92,7 @@ function loginWithKakao(){
             setCookie("kakao_login","done",1); // 쿠키생성 (로그인)
             //alert(cookiedata);
             createLogoutKakao();
-            window.location.href="http://localhost:3001/customer/main/test";
+            window.location.href="${pageContext.request.contextPath}/main/test";
             document.getElementById('unlink-desc').style.display = "block";
             
         },
@@ -111,7 +111,7 @@ function logoutWithKakao(){
     setCookie("kakao_login","",-1);  // 쿠키삭제 (로그아웃)
     //deleteCookie( "kakao_login" ); 쿠키삭제 다른 방법
     createLoginKakao();
-    window.location.href="http://localhost:3001/customer/main/test";
+    window.location.href="${pageContext.request.contextPath}/main/test";
 }
  
  

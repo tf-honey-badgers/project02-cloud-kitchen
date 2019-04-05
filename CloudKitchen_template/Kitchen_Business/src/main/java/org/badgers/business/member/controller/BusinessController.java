@@ -33,10 +33,10 @@ public class BusinessController {
 		log.info("Kitchen_Business 사업자 개인정보 읽기...............................");
 
 		BizMemberVOExtend returnVal = null;
-		String urlBizMember = "http://localhost/rest/business/" + bizId + "/mypage";
+		String urlBizMember = "http://13.209.21.25/rest/business/" + bizId + "/mypage";
 		int likeCnt = 0;
-		String urlCountFav = "http://localhost/rest/favorite/" + bizId;
-
+		String urlCountFav = "http://13.209.21.25/rest/favorite/" + bizId;
+		
 		try {
 			// 사업자 정보 읽어오기
 			ResponseEntity<BizMemberVOExtend> responseEntity = restTemplate.getForEntity(urlBizMember,
@@ -70,7 +70,7 @@ public class BusinessController {
 		log.info("Kitchen_Business 사업자 개인정보 수정...............................");
 
 		try {
-			String url = "http://localhost/rest/business/" + mvo.getBizId() + "/mypage/modify";
+			String url = "http://13.209.21.25/rest/business/" + mvo.getBizId() + "/mypage/modify";
 			restTemplate.put(url, mvo);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -87,7 +87,7 @@ public class BusinessController {
 
 		String returnVal = "";
 		try {
-			String url = "http://localhost/rest/business/livestrm/" + bizId + "/" + bizLiveStrm;
+			String url = "http://13.209.21.25/rest/business/livestrm/" + bizId + "/" + bizLiveStrm;
 			ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
 			returnVal = responseEntity.getBody();
 		} catch (Exception e) {
@@ -107,7 +107,7 @@ public class BusinessController {
 		log.info("Kitchen_Business 사업자 로그인...............................");
 		HttpHeaders responseHeaders=null;
 		String status="";
-		String url = "http://localhost/rest/business/login";
+		String url = "http://13.209.21.25/rest/business/login";
 		try {
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
 			status= responseEntity.getBody();
@@ -140,7 +140,7 @@ public class BusinessController {
 		log.info("Kitchen_Business 사업자 ID 찾기...............................");
 
 		String res = "";
-		String url = "http://localhost/rest/business/verify";
+		String url = "http://13.209.21.25/rest/business/verify";
 
 		try {
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);

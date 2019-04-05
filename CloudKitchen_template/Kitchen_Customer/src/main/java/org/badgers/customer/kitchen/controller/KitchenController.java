@@ -44,7 +44,7 @@ public class KitchenController {
 		
 		List<BizVOExtend> returnBiz = null;
 		List<CartVOExtend> returnCart = null;
-		String url = "http://localhost/rest/kitchenbranch/bizinfo/" + bizId;
+		String url = "http://13.209.21.25/rest/kitchenbranch/bizinfo/" + bizId;
 		
 		try {
 			ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, java.util.List.class);
@@ -55,7 +55,7 @@ public class KitchenController {
 			System.out.println(custId);
 			if(auth.equals("true")) {
 				log.info("Kitchen_Customer 카트 읽기");
-				url = "http://localhost/rest/cart/" + custId; // 현재 로그인되어 있는 사용자 ID를 사용
+				url = "http://13.209.21.25/rest/cart/" + custId; // 현재 로그인되어 있는 사용자 ID를 사용
 				ResponseEntity<List> readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class);
 				returnCart = readMenuFromCart.getBody();
 			}
@@ -81,7 +81,7 @@ public class KitchenController {
 		log.info("Reading lists of kitchen branches, businesses, menus for the autocomplete");
 		
 		Map<String, List> returnVal = null;
-		String url = "http://localhost/rest/kitchenbranch/alllists";
+		String url = "http://13.209.21.25/rest/kitchenbranch/alllists";
 		
 		ResponseEntity<Map> responseEntity = restTemplate.getForEntity(url, Map.class);
 		if(!responseEntity.getBody().isEmpty()) {
@@ -99,9 +99,9 @@ public class KitchenController {
 		System.out.println(query);
 
 		List<BizVOExtend> returnVal = null;
-		String urlSearch = "http://localhost/rest/kitchenbranch/searchlists";
+		String urlSearch = "http://13.209.21.25/rest/kitchenbranch/searchlists";
 		List<CommonCodeVO> bizCatVal = null;
-		String urlBizCat = "http://localhost/rest/kitchenbranch/bizcodes";
+		String urlBizCat = "http://13.209.21.25/rest/kitchenbranch/bizcodes";
 
 		if(query.equals("")) {
 			log.info("query is null");

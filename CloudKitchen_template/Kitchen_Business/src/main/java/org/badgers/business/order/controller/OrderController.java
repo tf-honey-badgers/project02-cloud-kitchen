@@ -32,7 +32,7 @@ public class OrderController {
 			@PathVariable("orderId") String orderId, 
 			@PathVariable("status") String status) {
 		
-		String url = "http://localhost/rest/biz/order/"+bizId+"/"+orderId+"/"+status; 
+		String url = "http://13.209.21.25/rest/biz/order/"+bizId+"/"+orderId+"/"+status; 
 		Object obj = restTemplate.getForEntity(url, String.class);
 		System.out.println("=============================================================");
 		System.out.println(obj);

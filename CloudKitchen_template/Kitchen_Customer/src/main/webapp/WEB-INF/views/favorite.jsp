@@ -47,7 +47,7 @@ var custId = '${custId}';
 		 var tbody = $('tbody');
 		
 		$(document).ready(function(){
-			$.getJSON( 'http://localhost/rest/favorite/${custId}/mypage', function(list){
+			$.getJSON( 'http://13.209.21.25/rest/favorite/${custId}/mypage', function(list){
 				
 				for(var i = 0, len = list.length || 0 ; i < len; i++){
 					var tr = $('<tr></tr>');
