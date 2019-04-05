@@ -738,6 +738,7 @@
     <!-- Business Member 관련 각종 JavaScript 함수 모음 -->
     <script src="/business/resources/js/member/member-functions.js" type="text/javascript"></script>
     
+	<!-- message 속성이 있으면 알림 띄우기 -->
     <c:if test="${not empty message}">
     	<script>
     		$(document).ready(function() { alert("${message}"); });
