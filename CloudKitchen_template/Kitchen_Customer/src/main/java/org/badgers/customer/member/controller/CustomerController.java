@@ -37,14 +37,14 @@ public class CustomerController {
 	@Inject
 	RestTemplate restTemplate;
 	
-	// 조회
+	// 사용자 개인정보 조회
 	@GetMapping("/{id}/change")
 	public ModelAndView readCustomer(ModelAndView mav, @PathVariable("id") String id ,HttpSession session) {
 		log.info("사용자 개인정보 읽기...............................");
 		
-		CustomerVO returnVal = null;
+		CustomerVO returnVal = null; 
 		String url = "http://13.209.21.25/rest/customer/" + id + "/mypage";
-		
+		// 사용자 정보 읽어오기
 		ResponseEntity<CustomerVO> responseEntity = restTemplate.getForEntity(url, org.badgers.customer.model.CustomerVO.class);
 		if (responseEntity.getStatusCode() == HttpStatus.OK) {
 			returnVal = responseEntity.getBody();
@@ -184,7 +184,7 @@ public class CustomerController {
 		 vo.setGender(kgender);
 		 vo.setStatus(kstatus);
 		
-	d
+	
 	
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url,vo,String.class);
