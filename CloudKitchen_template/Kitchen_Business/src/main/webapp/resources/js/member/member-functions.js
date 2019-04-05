@@ -3,7 +3,7 @@ $(document).ready(function() {
 	/* 사용자 정보 중 계좌정보 수정하기 */
 	$('#changeAccount').on('click', function() {
 		$.ajax({
-    		url : 'http://localhost:3000/business/member/' + $('#bizId').val() + '/modify'
+    		url : 'http://13.209.21.25/business/member/' + $('#bizId').val() + '/modify'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({bizId : $('#bizId').val(), account : $('#account').val()})
@@ -15,7 +15,7 @@ $(document).ready(function() {
 	/* 가게 정보 중 최소주문금액, 생방송 키 코드, 가게 소개글 수정하기 */
 	$('#changeBiz').on('click', function() {
 		$.ajax({
-    		url : 'http://localhost:3000/business/member/' + $('#bizId').val() + '/modify'
+    		url : 'http://13.209.21.25/business/member/' + $('#bizId').val() + '/modify'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({
@@ -32,7 +32,7 @@ $(document).ready(function() {
 	/* YouTube 생방송 시작하면 iframe player src 속성용 코드 입력하기 (biz테이블 bizLiveStrm컬럼 사용) */
 	$('#changeBizLiveStrm').on('click', function() {
 		$.ajax({
-    		url : 'http://localhost:3000/business/member/livestrm/' + $('#bizId').val() + '/' + $('#bizLiveStrm').val()
+    		url : 'http://13.209.21.25/business/member/livestrm/' + $('#bizId').val() + '/' + $('#bizLiveStrm').val()
     		, type : 'GET'
 			, contentType : 'application/json'
     		, error : function() { md.showNotification('bottom', 'right', 'danger', 'YouTube LiveStreaming 코드를 입력하는데 에러가 발생했습니다.'); }
@@ -55,22 +55,19 @@ $(document).ready(function() {
 	});
 	
 	/* 로그인 절차 */
-	$('#myLogin button').on('click', function() {
-		//--------------------------------------------------------------------------
-		
+	$('#myLogin button').on('click', function() {		
 		var cnt=0;
 		var inputCheck= $(this).siblings('span.bmd-form-group').find('input');
 		inputCheck.each(function(i,v){
 			if(v.value===null||v.value===undefined||v.value===''){
 				cnt++;
 				return;
-				
 			}
 		})
 		
 		if(cnt===0){
 			$.ajax({
-	    		url : 'http://localhost:3000/business/member/login'
+	    		url : 'http://13.209.21.25/business/member/login'
 	    		, type : 'POST'
 				, contentType : 'application/json'
 				, dataType : 'text'
@@ -82,33 +79,23 @@ $(document).ready(function() {
 	    			console.log(data);
 	    		}
 	    		, success : function(data) {
-	    			console.log('..............',data)
-	    			
 	    			if(data == "success") {
 	    				window.location.href = "/business/main?msg=success";
-//	    				window.location.reload()
-	    				
 	    			} else {
-	    				if(data==='server disconnected'){
+	    				if(data==='server disconnected') {
 	    					md.showNotification('top', 'center', 'danger', 'server disconnected');  
 	    					$('.modal').modal('hide');	
-	    				}else if(data==='fail'){
+	    				} else if(data==='fail'){
 	    					md.showNotification('top', 'center', 'danger', '아이디 혹은 비밀번호를 다시 확인해 주시기 바랍니다 ');  
 	    				}
-	    				
-	    			//	window.location.href = "/business/main?msg=fail";
-	    							
-	    			}
+	       			}
 	    			$('#myLogin input').val("");
 	    		}
 			});
-			
 		}else{
-			alert('빠트린 입력란이 있는지 확인해 주세요')
+			alert('빠트린 입력란이 있는지 확인해 주세요');
 		}
-		
-	})
-	
+	});
 	
 	/* ID 찾기 인증 절차 */
 	$('#findId').on('click', function(event) {
@@ -117,7 +104,7 @@ $(document).ready(function() {
 		$('#finder').modal('show');
     	$('#getId').on('click', function() {
     		$.ajax({
-        		url : 'http://localhost:3000/business/member/verify'
+        		url : 'http://13.209.21.25/business/member/verify'
         		, type : 'POST'
 				, contentType : 'application/json'
         		, data : JSON.stringify({
@@ -157,7 +144,7 @@ $(document).ready(function() {
 		$('#finder').modal('show');
     	$('#getId').on('click', function() {
     		$.ajax({
-        		url : 'http://localhost:3000/business/member/verify'
+        		url : 'http://13.209.21.25/business/member/verify'
         		, type : 'POST'
 				, contentType : 'application/json'
         		, data : JSON.stringify({
@@ -219,7 +206,7 @@ $(document).ready(function() {
 		}
 
 		$.ajax({
-    		url : 'http://localhost:3000/business/member/' + hiddenId + '/modify'
+    		url : 'http://13.209.21.25/business/member/' + hiddenId + '/modify'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({
@@ -248,4 +235,4 @@ $(document).ready(function() {
     		}
 		});
 	});
-})
+});

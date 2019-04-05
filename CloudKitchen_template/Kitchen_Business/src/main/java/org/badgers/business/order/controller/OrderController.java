@@ -35,8 +35,8 @@ public class OrderController {
 			@PathVariable("bizId") String bizId, 
 			@PathVariable("orderId") String orderId, 
 			@PathVariable("status") String status) {
-		log.info("...................주문상태코드 변경  -> "+status);
-		String url = "http://localhost/rest/biz/order/"+bizId+"/"+orderId+"/"+status; 
+		
+		String url = "http://13.209.21.25/rest/biz/order/"+bizId+"/"+orderId+"/"+status; 
 		Object obj = restTemplate.getForEntity(url, String.class);
 		return new ResponseEntity<>(obj, HttpStatus.OK);	
 	}

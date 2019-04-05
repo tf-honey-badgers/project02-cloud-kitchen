@@ -42,5 +42,6 @@ public interface CustomerService {
 	//회원 인증 업데이트
 	public int userAuth(String email, String AuthCode) throws Exception;
 	
-	
+	// 카카오 가입 확인
+	public CustomerVO checkKakaoUser(String id) throws Exception;
 }

@@ -33,7 +33,7 @@ var custId = '${custId}';
 <table  class="type11" style="margin-left:33%;">
 		<thead>
 			<tr>
-				<th>가게 사진</th>
+				<th>회원 아이디</th>
 				<th>가게 이름</th>
 				<th>키친 이름</th>
 			</tr>
@@ -47,7 +47,7 @@ var custId = '${custId}';
 		 var tbody = $('tbody');
 		
 		$(document).ready(function(){
-			$.getJSON( 'http://localhost/rest/favorite/${custId}/mypage', function(list){
+			$.getJSON( 'http://13.209.21.25/rest/favorite/${custId}/mypage', function(list){
 				
 				for(var i = 0, len = list.length || 0 ; i < len; i++){
 					var tr = $('<tr></tr>');

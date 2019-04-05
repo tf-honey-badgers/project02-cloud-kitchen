@@ -150,23 +150,3 @@
 <script src="/customer/resources/js/search/search-functions.js"></script>
 <!-- End Autocomplete =============================================== -->
 
-<script>
-    // 카카오 script key 입력
-    Kakao.init('f974d2d246e51518f4c5d60e83a2ee41');
-
-	function unlinkApp(){
-		Kakao.API.request({
-			url: '/v1/user/unlink',
-            success: function(res) {
-            	alert('success!');	
-                console.log(res);
-				window.location.href="${pageContext.request.contextPath}/member/logout";
-			},
-            fail: function(error) {
-            	console.log(error);
-                document.getElementById('unlink-desc').style.display = "block";
-                document.getElementById('error-desc').innerHTML = JSON.stringify(error);
-			}
-		})
-	}
-</script>

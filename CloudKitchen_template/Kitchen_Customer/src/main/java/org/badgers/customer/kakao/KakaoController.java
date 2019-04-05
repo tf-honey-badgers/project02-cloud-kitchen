@@ -30,70 +30,57 @@ public class KakaoController {
 	        // JsonNode 트리형태로 토큰받아온다
 	        JsonNode jsonToken = KakaoAccessToken.getKakaoAccessToken(code);
 	        
-	        System.out.println("jspm토큰==================="+jsonToken);
+	       
 	        // 여러 json객체 중 access_token을 가져온다
 	        JsonNode accessToken = jsonToken.get("access_token");
 	        
-	        System.out.println("access_token : " + accessToken);
+	      
 	        
 	        // access_token을 통해 사용자 정보 요청
 	        JsonNode userInfo = KakaoUserInfo.getKakaoUserInfo(accessToken);
 	        
-	        System.out.println("userInfo 다 ===============" + userInfo);
+	      
 	        
 	        String token = jsonToken.get("access_token").toString();
 
-	        // Get id
-//	        String id = userInfo.path("id").asText();
 	        
 	        JsonNode kakao_account = userInfo.path("kakao_account");
-	        System.out.println(kakao_account);
-	        System.out.println();
-	        System.out.println("이거 진짜 : "+kakao_account.get("email").asText());
+	    
 	        
 	        JsonNode  properties = userInfo.path("properties");
 
-	        System.out.println(properties);
+	     
 
 	        
-	        String id = userInfo.get("id").toString();
-	        String email = userInfo.get("kakao_account").get("email").asText();
-	        String image = userInfo.get("properties").get("profile_image").asText();
+	        String ids = userInfo.get("id").toString();
+	        String id = userInfo.get("kakao_account").get("email").asText();
+	        String image = userInfo.get("properties").get("profile_image").toString();
 	        String nickname = userInfo.get("properties").get("nickname").asText();
-
-//	        System.out.println(id + email);
+	      
 	        
-	        session.setAttribute("token", token); // 세션 토큰값 저장 
-	        session.setAttribute("kid", id); // 세션 id(임시 브라우저마다 다르다고 함) 저장 
-	        session.setAttribute("kemail", email); // 세션 email 저장 
-	        session.setAttribute("knikname", nickname); // 세션 닉네임 -> 이게id 로 
-	        System.out.println(email);
-	        model.addAttribute("token",token);
-	        model.addAttribute("k_userInfo", userInfo);
-	        model.addAttribute("id", id);
-	        model.addAttribute("email", email);
-	        model.addAttribute("nickname", nickname);
-	        model.addAttribute("image", image);
+	        
+	        String kpw ="kakao";
+	        String kbirthDate = "1992-11-11";
+	        String kphone = "010";
+	    	String kstatus = "MEM002";
+	    	String gender = "미정";
+	    	
+	    
+	        session.setAttribute("uid", ids); // 세션 email(-> 사용자 id) 저장
+	        session.setAttribute("kpw", kpw); //카톡 로그인 비번 
+	        session.setAttribute("knikname", nickname);
+	        session.setAttribute("kbirthDate", kbirthDate);
+	        session.setAttribute("kphone",kphone);
+	        session.setAttribute("kemail", id);
+	        session.setAttribute("kgender", gender);
+	        session.setAttribute("kstatus", kstatus);
+	        
+	    
+	        
 
-	        return "main";
-	    }
-	 
-	 @RequestMapping(value="main/test",produces="application/json")
-	 public String test() {
-		 return "test";
-	 }
-	 
-	 @RequestMapping(value = "/logout", produces = "application/json")
-	 public String Logout(HttpSession session) {
-		 KakaoUserInfo ki = new KakaoUserInfo();
-
-		 
-		 JsonNode node = ki.Logout(((JsonNode) session.getAttribute("token")).asText());
-		System.out.println("node==================="+node);
 		
+	
 
-		 System.out.println("로그인 후 반환되는 아이디 : " + node.get("id"));
-		 
-		 return "redirect:/http://13.209.21.25/rest/main";
-	 }
+	           return "redirect:/member/register2";
+	    }
 }

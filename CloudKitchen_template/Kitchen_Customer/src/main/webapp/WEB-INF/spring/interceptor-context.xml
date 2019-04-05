@@ -36,6 +36,11 @@
 		<mvc:mapping path="/kitchen/*/main"/>
 		<bean class="org.badgers.customer.interceptor.AuthCheckInterceptor"></bean>
 	</mvc:interceptor>
+	
+	<mvc:interceptor>
+		<mvc:mapping path="/main/kakaologin"/>
+		<bean class="org.badgers.customer.interceptor.MemberInterceptor"></bean>
+	</mvc:interceptor>
 
 </mvc:interceptors>
 </beans>

@@ -28,11 +28,11 @@ public class CartController {
 	private CartService service;
 
 	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
-	
+
+/* cart테이블 & cart_detail테이블에 추가하기 */
 	@PostMapping("/")
 	public ResponseEntity<String> addCart(@RequestBody CartVOExtend cart) {
-		logger.info("Adding " + cart.getCustId() + "'s new item to the 'cart' & 'cart_detail' tables!");
-		int result = 0;
+		int result = 0; // 몇 개 행을 수정했는지 표시하는 변수
 		String returnVal = "";
 			
 		try {
@@ -42,13 +42,12 @@ public class CartController {
 			e.printStackTrace();
 		}
 		
-		logger.info(returnVal + "개 행을 추가했습니다!");
 		return new ResponseEntity<String>(returnVal, HttpStatus.OK);
 	}
-	
+
+/* 카트 정보 읽어오기 */
 	@GetMapping(value = "/{custId}", produces="application/json")
 	public ResponseEntity<List<CartVOExtend>> readCart(@PathVariable("custId") String custId) {
-		logger.info("Reading " + custId + "'s items from the 'cart' table!");
 		List<CartVOExtend> returnVal = null;
 		
 		try {
@@ -62,11 +61,11 @@ public class CartController {
 		}
 		return new ResponseEntity<List<CartVOExtend>>(returnVal, HttpStatus.OK);
 	}
-	
+
+/* 카트 정보 업데이트하기 */
 	@PutMapping("/")
 	public ResponseEntity<Integer> updateCart(@RequestBody CartVOExtend cart) {
-		logger.info("Updating " + cart.getCustId() + "'s items in the 'cart' table!");
-		int returnVal = 0;
+		int returnVal = 0; // 몇 개 행을 수정했는지 표시하는 변수
 		
 		try {
 			returnVal = service.updateCart(cart);
@@ -74,15 +73,13 @@ public class CartController {
 			e.printStackTrace();
 		}
 		
-		logger.info(returnVal + "개 행을 수정했습니다!");
 		return new ResponseEntity<>(returnVal, HttpStatus.OK);
 	}
 	
-	// 장바구니 항목 하나만 삭제 (i.e. 장바구니의 특정 custId의 항목 중 특정 cartId를 가진 하나의 항목만 삭제한다)
+/* 장바구니 항목 하나만 삭제 (i.e. 장바구니의 특정 custId의 항목 중 특정 cartId를 가진 하나의 항목만 삭제한다) */
 	@DeleteMapping("/{custId}/{cartId}")
 	public ResponseEntity<Integer> deleteCart(@PathVariable("custId") String custId, @PathVariable("cartId") String cartId) {
-		logger.info("Deleting " + custId + "'s item(s) from the 'cart' & 'cart_detail' tables!");
-		int returnVal = 0;
+		int returnVal = 0; // 몇 개 행을 수정했는지 표시하는 변수
 		
 		try {
 			returnVal = service.deleteCart(custId, cartId);
@@ -90,15 +87,13 @@ public class CartController {
 			e.printStackTrace();
 		}
 		
-		logger.info(returnVal + "개 행을 삭제했습니다!");
 		return new ResponseEntity<>(returnVal, HttpStatus.OK);
 	}
 	
-	// 장바구니 항목 전체 삭제 (i.e. 장바구니의 특정 custId의 항목을 모두 삭제)
+/* 장바구니 항목 전체 삭제 (i.e. 장바구니의 특정 custId의 항목을 모두 삭제) */
 	@DeleteMapping("/{custId}")
 	public ResponseEntity<Integer> deleteAllCart(@PathVariable("custId") String custId) {
-		logger.info("Deleting " + custId + "'s item(s) from the 'cart' & 'cart_detail' tables!");
-		int returnVal = 0;
+		int returnVal = 0; // 몇 개 행을 수정했는지 표시하는 변수
 		
 		try {
 			returnVal = service.deleteCart(custId, null);
@@ -106,8 +101,6 @@ public class CartController {
 			e.printStackTrace();
 		}
 		
-		logger.info(returnVal + "개 행을 삭제했습니다!");
 		return new ResponseEntity<>(returnVal, HttpStatus.OK);
-	}
-	
+	}	
 }

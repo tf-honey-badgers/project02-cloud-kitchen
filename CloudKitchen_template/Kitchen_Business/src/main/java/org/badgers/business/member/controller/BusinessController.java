@@ -28,26 +28,21 @@ public class BusinessController {
 	@Inject
 	RestTemplate restTemplate;
 	
+/* 사업자용 마이페이지에 정보 뿌리기 */
 	@GetMapping("/{bizId}/main")
 	public ModelAndView readBizMember(ModelAndView mav, @PathVariable("bizId") String bizId) {
-		log.info("Kitchen_Business 사업자 개인정보 읽기...............................");
-
 		BizMemberVOExtend returnVal = null;
-		String urlBizMember = "http://localhost/rest/business/" + bizId + "/mypage";
+		String urlBizMember = "http://13.209.21.25/rest/business/" + bizId + "/mypage";
 		int likeCnt = 0;
-		String urlCountFav = "http://localhost/rest/favorite/" + bizId;
-
-		try {
-			// 사업자 정보 읽어오기
-			ResponseEntity<BizMemberVOExtend> responseEntity = restTemplate.getForEntity(urlBizMember,
-					org.badgers.business.model.BizMemberVOExtend.class);
-			returnVal = responseEntity.getBody(); // if not HttpStatus.OK -> 위줄에서 바로 예외 발생하여 실행 안된다.
-			// 사업자가 받은 찜 횟수 읽어오기
-			ResponseEntity<Integer> responseEntityInteger = restTemplate.getForEntity(urlCountFav, Integer.class);
-			likeCnt = responseEntityInteger.getBody();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		String urlCountFav = "http://13.209.21.25/rest/favorite/" + bizId;
+		
+		// 사업자 정보 읽어오기
+		ResponseEntity<BizMemberVOExtend> responseEntity = restTemplate.getForEntity(urlBizMember,
+				org.badgers.business.model.BizMemberVOExtend.class);
+		returnVal = responseEntity.getBody(); // if not HttpStatus.OK -> 위줄에서 바로 예외 발생하여 실행 안된다.
+		// 사업자가 받은 찜 횟수 읽어오기
+		ResponseEntity<Integer> responseEntityInteger = restTemplate.getForEntity(urlCountFav, Integer.class);
+		likeCnt = responseEntityInteger.getBody();
 
 		if (returnVal != null) {
 			log.info("readBizMember DONE!!!!!");
@@ -63,91 +58,71 @@ public class BusinessController {
 		return mav;
 	}
 
-	// pw, account, info, minAmt 수정 가능!
+/* 사업자용 마이페이지에서 pw, account, info, minAmt정보 수정하기 */
 	@PostMapping("/{bizId}/modify")
 	@ResponseBody
 	public void updateBizMember(@RequestBody BizMemberVOExtend mvo) {
-		log.info("Kitchen_Business 사업자 개인정보 수정...............................");
-
-		try {
-			String url = "http://localhost/rest/business/" + mvo.getBizId() + "/mypage/modify";
-			restTemplate.put(url, mvo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		String url = "http://13.209.21.25/rest/business/" + mvo.getBizId() + "/mypage/modify";
+		restTemplate.put(url, mvo); // RestTemplate put()은 반환값이 void
 
 		log.info("updateBizMember DONE!!!!!");
 	}
 	
-	// bizLiveStrm 입력!
+/* 사업자용 마이페이지에서 bizLiveStrm 정보 입력하기 */
 	@GetMapping("/livestrm/{bizId}/{bizLiveStrm}")
 	@ResponseBody
 	public ResponseEntity<String> updateBizLiveStrm(@PathVariable("bizId") String bizId, @PathVariable("bizLiveStrm") String bizLiveStrm) {
-		log.info("Kitchen_Business YouTube LiveStreaming 코드 입력...............................");
-
 		String returnVal = "";
-		try {
-			String url = "http://localhost/rest/business/livestrm/" + bizId + "/" + bizLiveStrm;
-			ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
-			returnVal = responseEntity.getBody();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		String url = "http://13.209.21.25/rest/business/livestrm/" + bizId + "/" + bizLiveStrm;
+		
+		ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
+		returnVal = responseEntity.getBody();
+		
 		log.info("updateBizLiveStrm DONE!!!!!");
 		
 		return new ResponseEntity<String>(returnVal, HttpStatus.OK);
 	}
 
-//	로그인 
+/* 로그인하기 */ 
 	@PostMapping(value ="/login", produces = "text/plain; charset=utf-8")
 	@ResponseBody
 	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend mvo, ModelAndView mov){
-		
-		log.info("Kitchen_Business 사업자 로그인...............................");
 		HttpHeaders responseHeaders=null;
-		String status="";
-		String url = "http://localhost/rest/business/login";
+		String status=""; // 로그인 성공 여부를 알리기 위해 status 문자열 반환
+		String url = "http://13.209.21.25/rest/business/login";
+
 		try {
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
 			status= responseEntity.getBody();
 			responseHeaders = new HttpHeaders();
 			
-			if(status.equals("success")) {
-				responseHeaders.set("RESULT", mvo.getBizId());
-			}
-			
+			if(status.equals("success")) { responseHeaders.set("RESULT", mvo.getBizId()); }	
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 			if(e.getMessage().contains("failed: Connection refused: connect")) {
 				status="server disconnected";
 			}
-
 		}
 			
 		return new ResponseEntity<>(status, responseHeaders,HttpStatus.OK);	
 	}
-	//로그아웃 
+	
+/* 로그아웃하기 */
 	@GetMapping("/logout")
 	public String logout (Model model) {
 		model.addAttribute("msg", "logout");
 		return "redirect:/main";
 	}
 
+/* ID찾기, 비번 재설정을 위한 본인인증하기 */
 	@PostMapping("/verify")
 	@ResponseBody
 	public String verify(@RequestBody BizMemberVOExtend mvo) {
-		log.info("Kitchen_Business 사업자 ID 찾기...............................");
-
 		String res = "";
-		String url = "http://localhost/rest/business/verify";
+		String url = "http://13.209.21.25/rest/business/verify";
 
-		try {
-			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
-			res = responseEntity.getBody();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
+		res = responseEntity.getBody();
 
 		log.info("retrieved BizId");
 		return res;

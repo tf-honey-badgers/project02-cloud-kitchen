@@ -41,4 +41,6 @@ public interface CustomerMapper {
 	//회원 인증 업데이트
 	public int userAuth(String email, String AuthCode);
 
+	//카카오
+	public CustomerVO checkKakaoUser(@Param("id")String id);
 }
