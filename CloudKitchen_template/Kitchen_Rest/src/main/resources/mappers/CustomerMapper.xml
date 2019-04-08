@@ -14,7 +14,7 @@
 	
 	<!-- 로그인 -->
 	<select id="login" resultType="org.badgers.rest.model.CustomerVO">
-		select id, pw , phone,address, address_detail
+		select id, name, pw , phone,address, address_detail
 			from
 			 honey_badgers.customer
 			 

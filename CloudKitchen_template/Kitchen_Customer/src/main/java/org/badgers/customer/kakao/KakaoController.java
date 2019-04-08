@@ -69,7 +69,7 @@ public class KakaoController {
 	    	
 	        session.setAttribute("uid", ids); // 세션 email(-> 사용자 id) 저장
 	        session.setAttribute("kpw", kpw); //카톡 로그인 비번 
-	        session.setAttribute("knikname", nickname);
+	        session.setAttribute("uname", nickname);
 	        session.setAttribute("kbirthDate", kbirthDate);
 	        session.setAttribute("kphone",kphone);
 	        session.setAttribute("kemail", id);
