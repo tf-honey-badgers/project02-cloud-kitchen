@@ -91,7 +91,7 @@ public class BusinessController {
 		HttpHeaders responseHeaders=null;
 		String status=""; // 로그인 성공 여부를 알리기 위해 status 문자열 반환
 		String url =  RestDomain.restDomain+"/business/login";
-		System.out.println(mvo);
+		
 		try {
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
 			status= responseEntity.getBody();

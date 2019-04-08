@@ -564,6 +564,8 @@
     <script src="${pageContext.request.contextPath}/resources/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="${pageContext.request.contextPath}/resources/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
+    <script src="http://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
     <script>
         $(document).ready(function() {
             $().ready(function() {
