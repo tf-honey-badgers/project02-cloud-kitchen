@@ -93,13 +93,10 @@
 <script src="/customer/resources/assets/validate.js"></script>
 
 <!-- Modernizr -->
-<script src="/customer/resources/js/modernizr.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/modernizr.js"></script>
 
 <!-- Customer Member 관련 각종 JavaScript 함수 모음 -->
-<script src="/customer/resources/js/member.js" type="text/javascript"></script>
-
-<!-- 카톡  -->
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/member.js" type="text/javascript"></script>
 
 <!-- 주소  -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -147,6 +144,6 @@
 	.ui-autocomplete-category { font-weight: bold; padding: .2em .4em; margin: .8em 0 .2em; line-height: 1.5; }
 </style>
 	<!-- 자동완성 script -->
-<script src="/customer/resources/js/search/search-functions.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/search/search-functions.js"></script>
 <!-- End Autocomplete =============================================== -->
 

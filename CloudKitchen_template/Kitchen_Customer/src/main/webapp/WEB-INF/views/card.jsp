@@ -27,18 +27,18 @@
       </thead>
         <tbody>
            <tr>
-            <td><img src="/customer/resources/img/nhcard.png" width="300" height="150" alt="nh"></td>
+            <td><img src="${pageContext.request.contextPath}/resources/img/nhcard.png" width="300" height="150" alt="nh"></td>
             <td><h2>농협카드</h2></td>
             <td><h2>*******-1644</h2></td>
              <td><button type="button" class="btn btn-submit">삭제</button></td>
           </tr>
           <tr>
-              <td><img src="/customer/resources/img/kbcard.png" width="300" height="150" alt="kb"></td>
+              <td><img src="${pageContext.request.contextPath}/resources/img/kbcard.png" width="300" height="150" alt="kb"></td>
               <td><h2>국민 카드</h2></td>
               <td><h2>*******-9434</h2></td>
               <td><button type="button" class="btn btn-submit">삭제</button></td>
           <tr>
-              <td><img src="/customer/resources/img/sinhan.png" width="300" height="150" alt="sin"></td>
+              <td><img src="${pageContext.request.contextPath}/resources/img/sinhan.png" width="300" height="150" alt="sin"></td>
               <td><h2>신한 카드</h2></td>
               <td><h2>*******-7514</h2></td>
               <td><button type="button" class="btn btn-submit">삭제</button></td>

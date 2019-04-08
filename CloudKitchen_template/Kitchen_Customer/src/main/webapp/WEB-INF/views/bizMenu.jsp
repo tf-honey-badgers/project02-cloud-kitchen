@@ -179,10 +179,10 @@
 <!-- Footer =============================================== -->
 
 <!-- SPECIFIC SCRIPTS ============================================ -->
-	<script src="/customer/resources/js/cat_nav_mobile.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/cat_nav_mobile.js"></script>
 	<script>$('#cat_nav').mobileMenu();</script>
-	<script src="/customer/resources/js/ResizeSensor.min.js"></script>
-	<script src="/customer/resources/js/theia-sticky-sidebar.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/ResizeSensor.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/theia-sticky-sidebar.min.js"></script>
 	<script>
 		jQuery('.sidebar').theiaStickySidebar({ // 중요!! class="sidebar" 안에 class="theiaStickySidebar" 위치해야 한다!!
 			additionalMarginTop : 80
@@ -211,6 +211,6 @@
 		const custId = '${sessionScope.uid}';
 	</script>
 	
-	<script src="/customer/resources/js/menu/menu-functions.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/menu/menu-functions.js"></script>
 </body>
 </html>
