@@ -48,7 +48,7 @@
 		<div class="row">
 			<div class="col--md-4 col-sm-4 col-xs-4">
 				<a href="${pageContext.request.contextPath}/main" id="logo">
-					<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="190" height="23" alt="" data-retina="true" class="hidden-xs">
+					<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="120" height="" alt="" data-retina="true" class="hidden-xs" style="position:absolute; top:-23px">
 					<img src="${pageContext.request.contextPath}/resources/img/logo_mobile.png" width="59" height="23" alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm">
 				</a>
 			</div>
