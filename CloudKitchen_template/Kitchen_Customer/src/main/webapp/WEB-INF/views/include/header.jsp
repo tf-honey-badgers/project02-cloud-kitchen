@@ -15,41 +15,41 @@
 <!-- End Preload =============================================== -->
 
 <!-- Favicons-->
-<link rel="shortcut icon" href="/customer/resources/img/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" type="/customer/resources/img/x-icon" href="/customer/resources/img/apple-touch-icon-57x57-precomposed.png">
-<link rel="apple-touch-icon" type="/customer/resources/img/x-icon" sizes="72x72" href="/customer/resources/img/apple-touch-icon-72x72-precomposed.png">
-<link rel="apple-touch-icon" type="/customer/resources/img/x-icon" sizes="114x114" href="/customer/resources/img/apple-touch-icon-114x114-precomposed.png">
-<link rel="apple-touch-icon" type="/customer/resources/img/x-icon" sizes="144x144" href="/customer/resources/img/apple-touch-icon-144x144-precomposed.png">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" type="${pageContext.request.contextPath}/resources/img/x-icon" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-57x57-precomposed.png">
+<link rel="apple-touch-icon" type="${pageContext.request.contextPath}/resources/img/x-icon" sizes="72x72" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon" type="${pageContext.request.contextPath}/resources/img/x-icon" sizes="114x114" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon" type="${pageContext.request.contextPath}/resources/img/x-icon" sizes="144x144" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-144x144-precomposed.png">
 
 <!-- GOOGLE WEB FONT -->
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 
 <!-- BASE CSS -->
-<link href="/customer/resources/css/table.css" rel="stylesheet">
-<link href="/customer/resources/css/animate.min.css" rel="stylesheet">
-<link href="/customer/resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="/customer/resources/css/menu.css" rel="stylesheet">
-<link href="/customer/resources/css/style.css" rel="stylesheet">
-<link href="/customer/resources/css/responsive.css" rel="stylesheet">
-<link href="/customer/resources/css/elegant_font/elegant_font.min.css" rel="stylesheet">
-<link href="/customer/resources/css/fontello/css/fontello.min.css" rel="stylesheet">
-<link href="/customer/resources/css/magnific-popup.css" rel="stylesheet">
-<link href="/customer/resources/css/pop_up.css" rel="stylesheet">
-<link href="/customer/resources/css/custom.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/table.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/animate.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/menu.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/responsive.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/elegant_font/elegant_font.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/fontello/css/fontello.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/magnific-popup.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/pop_up.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet">
 
 <!-- Radio and check inputs -->
-<link href="/customer/resources/css/skins/square/grey.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/skins/square/grey.css" rel="stylesheet">
 
 <!-- YOUR CUSTOM CSS -->
-<link href="/customer/resources/css/custom.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet">
 
 <header>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col--md-4 col-sm-4 col-xs-4">
 				<a href="${pageContext.request.contextPath}/main" id="logo">
-					<img src="/customer/resources/img/logo.png" width="190" height="23" alt="" data-retina="true" class="hidden-xs">
-					<img src="/customer/resources/img/logo_mobile.png" width="59" height="23" alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm">
+					<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="190" height="23" alt="" data-retina="true" class="hidden-xs">
+					<img src="${pageContext.request.contextPath}/resources/img/logo_mobile.png" width="59" height="23" alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm">
 				</a>
 			</div>
 			<nav class="col--md-8 col-sm-8 col-xs-8">
@@ -57,7 +57,7 @@
 				<div class="main-menu">
 					<div id="header_menu">
 						<a href="${pageContext.request.contextPath}/main">
-						<img src="/customer/resources/img/logo.png" width="190" height="23" alt="logo" data-retina="true">
+						<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="190" height="23" alt="logo" data-retina="true">
 						</a>
 					</div>
 					<a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
@@ -92,7 +92,7 @@
            <div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;
 					text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
                 <a href="javascrpit:void()" class="close-link"><i class="icon_close_alt2"></i></a>
-                <form action="${pageContext.request.contextPath}/member/login"" class="popup-form" id="myLogin" style="margin: 60px 60px 10px 60px; ">
+                <form action="${pageContext.request.contextPath}/member/login" class="popup-form" id="myLogin" style="margin: 60px 60px 10px 60px; ">
                     <div class="login_icon"><i class="icon_lock_alt"></i></div>
                     <input type="text" class="form-control form-white" placeholder="아이디">
                     <input type="password" class="form-control form-white" placeholder="비밀번호">
@@ -103,9 +103,9 @@
                     <button type="button" class="btn btn-submit">로그인</button>
                 </form>
           	
-           <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
+           <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=customer/main/kakaologin&response_type=code">
            
-           <img alt="카카오 로그인" src="/customer/resources/img/kakaobutton.png" style="width:375px; height: 44px;">
+           <img alt="카카오 로그인" src="${pageContext.request.contextPath}/resources/img/kakaobutton.png" style="width:375px; height: 44px;">
            </a>    					
            
       

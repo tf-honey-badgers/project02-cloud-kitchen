@@ -94,12 +94,12 @@
 <!-- Footer =============================================== -->
 
 <!-- SPECIFIC SCRIPTS -->
-<script src="/customer/resources/js/cat_nav_mobile.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/cat_nav_mobile.js"></script>
 <script>$('#cat_nav').mobileMenu();</script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
-<script src="/customer/resources/js/map.js"></script>
-<script src="/customer/resources/js/infobox.js"></script>
-<script src="/customer/resources/js/ion.rangeSlider.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/map.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/infobox.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/ion.rangeSlider.js"></script>
 <script>
     $(function () {
 		 'use strict';
@@ -135,6 +135,6 @@
     
 </script>
 	
-<script src="/customer/resources/js/menu/menu-functions.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/menu/menu-functions.js"></script>
 </body>
 </html>

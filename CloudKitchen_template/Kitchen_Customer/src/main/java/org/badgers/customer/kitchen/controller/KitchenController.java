@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.badgers.customer.model.BizVOExtend;
 import org.badgers.customer.model.CartVOExtend;
 import org.badgers.customer.model.CommonCodeVO;
+import org.badgers.customer.util.RestDomain;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -42,14 +43,14 @@ public class KitchenController {
 			) {
 		List<BizVOExtend> returnBiz = null;
 		List<CartVOExtend> returnCart = null;
-		String url = "http://13.209.21.25/rest/kitchenbranch/bizinfo/" + bizId;
+		String url = RestDomain.restDomain+"/kitchenbranch/bizinfo/" + bizId;
 		
 		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, java.util.List.class); // 특정 가게의 메뉴 읽어오기
 		returnBiz = responseEntity.getBody();
 		
 			
 		if(auth.equals("true")) {
-			url = "http://13.209.21.25/rest/cart/" + custId; // 현재 로그인되어 있는 사용자 ID를 사용
+			url = RestDomain.restDomain+"/cart/" + custId; // 현재 로그인되어 있는 사용자 ID를 사용
 			ResponseEntity<List> readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class); // 카트에서 특정 회원ID 가진 항목들 읽어오기
 			returnCart = readMenuFromCart.getBody();
 		}
@@ -71,7 +72,7 @@ public class KitchenController {
 	@GetMapping(value = "/lists", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<Map<String, List>> getLists() {
 		Map<String, List> returnVal = null;
-		String url = "http://13.209.21.25/rest/kitchenbranch/alllists";
+		String url = RestDomain.restDomain+"/kitchenbranch/alllists";
 		
 		ResponseEntity<Map> responseEntity = restTemplate.getForEntity(url, Map.class); // 자동완성용, 키친 지점 리스트, 가게 리스트, 메뉴 리스트 읽어오기
 		if(!responseEntity.getBody().isEmpty()) {
@@ -85,9 +86,9 @@ public class KitchenController {
 	@RequestMapping(value = "/search", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ModelAndView searchLists(ModelAndView mav, @ModelAttribute("query") String query) {
 		List<BizVOExtend> returnVal = null;
-		String urlSearch = "http://13.209.21.25/rest/kitchenbranch/searchlists";
+		String urlSearch = RestDomain.restDomain+"/kitchenbranch/searchlists";
 		List<CommonCodeVO> bizCatVal = null;
-		String urlBizCat = "http://13.209.21.25/rest/kitchenbranch/bizcodes";
+		String urlBizCat = RestDomain.restDomain+"/kitchenbranch/bizcodes";
 
 		if(query.equals("")) { // query를 입력했는지 확인하기
 			log.info("query is null");
