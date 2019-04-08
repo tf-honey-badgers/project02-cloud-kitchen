@@ -152,8 +152,8 @@
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
                             </div>
-                            <h3>계정이 안맞대자나 </h3>
-                            <div class="type">아저씨야 변화없으면 500원</div>
+                            <h3>오소리 샌드위치</h3>
+                            <div class="type">한국/패스트푸드</div>
                             <div class="location">
                                 135 Newtownards Road, Belfast, BT4.
                                 <span class="opening">Opens at 17:00</span>
