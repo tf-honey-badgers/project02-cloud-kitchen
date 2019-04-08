@@ -27,6 +27,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 		
 		//상태가 success 여서 header에 bizId가 담겨 있다면 세션 생성 
 		HttpSession session = request.getSession(true);
+		System.out.println(result);
 		if(result!=null) {
 			if(session != null) {
 					System.out.println("로그인 성공");
@@ -41,7 +42,6 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 			}
 		}
 		System.out.println("....................................................................");
-		
 		
 		
 	}

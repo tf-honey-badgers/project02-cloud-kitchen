@@ -1,5 +1,59 @@
 /* 사업자 관련 각종 JavaScript 함수 모음 (로그인, 개인정보 수정 등) */
 $(document).ready(function() {	
+	
+	// S3 업로드를 위한 초기화작업
+	var albumBucketName = 'honeybadgersfile';
+	var bucketRegion = 'ap-northeast-2';
+	var IdentityPoolId = 'ap-northeast-2:1817daac-6a56-4e36-9a56-9bc772d96a0b';
+	
+	AWS.config.update({
+	  region: bucketRegion,
+	  credentials: new AWS.CognitoIdentityCredentials({
+	    IdentityPoolId: IdentityPoolId
+	  })
+	});
+	
+	var s3 = new AWS.S3({
+	  apiVersion: '2006-03-01',
+	  params: {Bucket: 'honeybadgersfile'}
+	}); // S3 초기화 끝
+	
+	function updatePhoto(bizId) {
+		  var files = document.getElementById('bizPhoto').files;
+		  if (!files.length) {
+		    return alert('Please choose a file to upload first.');
+		  }
+		  var file = files[0];
+		  var fileName = bizId+'.png';
+		  var albumName = 'MenuPhoto';
+		  var albumPhotosKey = encodeURIComponent(albumName) + '/';
+		  var photoKey = albumPhotosKey + fileName;
+		  console.log(photoKey);
+		  s3.upload({
+		    Key: photoKey,
+		    Body: file,
+		    ACL: 'public-read'
+		  }, function(err, data) {
+		    if (err) {
+		      return alert('There was an error uploading your photo: ', err.message);
+		    }
+//		    alert('사진 업로드 완료');
+		  });
+		}
+  
+	function deletePhoto(bizId) {
+		let albumPath = 'MenuPhoto/';
+		let extention = '.png';
+		let photoName = albumPath+bizId+extention;
+		  s3.deleteObject({Key: photoName}, function(err, data) {
+		    if (err) {
+		      return alert('There was an error deleting your photo: ', err.message);
+		    }
+		    alert('Successfully deleted photo.');
+		  });
+		}
+	
+	
 	/* 사용자 정보 중 계좌정보 수정하기 */
 	$('#changeAccount').on('click', function() {
 		$.ajax({
@@ -14,11 +68,6 @@ $(document).ready(function() {
 
 	/* 가게 정보 중 최소주문금액, 생방송 키 코드, 가게 소개글 수정하기 */
 	$('#changeBiz').on('click', function() {
-		console.log('명준이 똥--------------------')
-		console.log('/business/member/' + $('#bizId').val() + '/modify')
-		console.log($('#minAmt').val())
-		console.log( $('#bizLiveStrm').val())
-		console.log(  $('#bizInfo').val())
 		$.ajax({
     		url : '/business/member/' + $('#bizId').val() + '/modify'
     		, type : 'POST'
@@ -30,7 +79,14 @@ $(document).ready(function() {
     				, info : $('#bizInfo').val()
     			})
     		, error : function() { md.showNotification('bottom', 'right', 'danger', '가게 정보를 수정하는데 에러가 발생했습니다.'); }
-    		, success : function() { md.showNotification('bottom','right', 'info', '성공적으로 가게 정보를 수정했습니다.'); }
+    		, success : function() { 
+    			md.showNotification('bottom','right', 'info', '성공적으로 가게 정보를 수정했습니다.');
+    			deletePhoto($('#bizId').val());
+    			
+    			setTimeout(function(){
+    				updatePhoto($('#bizId').val());
+    			},1000);
+    		}
 		});
 	});
 	

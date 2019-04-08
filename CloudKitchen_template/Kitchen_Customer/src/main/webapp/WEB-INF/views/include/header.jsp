@@ -71,9 +71,9 @@
 				
 
 						<c:if test="${!empty sessionScope.uid}" > <!-- 로그인 되어 세션 있는 상태 -->
-							<li class="submenu"><a href="#" class="show-submenu">${uid }님</a></li>
+							<li class="submenu"><a href="#" class="show-submenu">${uname }님</a></li>
 							<li><a href="${pageContext.request.contextPath}/member/logout" id="logout">Logout</a><li>
-							<li><a href="${pageContext.request.contextPath}/member/mypage">마이 페이지</a></li>
+							<li><a href="${pageContext.request.contextPath}/member/${uid}/change">회원 정보</a></li>
 						</c:if>
 						<li><a href="${pageContext.request.contextPath}/about">회사 소개</a></li>
 					</ul>
@@ -103,7 +103,8 @@
                     <button type="button" class="btn btn-submit">로그인</button>
                 </form>
           	
-           <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://54.180.97.18/customer/main/kakaologin&response_type=code">
+          <!--  <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://54.180.97.18/customer/main/kakaologin&response_type=code"> -->
+           <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
            
            <img alt="카카오 로그인" src="${pageContext.request.contextPath}/resources/img/kakaobutton.png" style="width:375px; height: 44px;">
            </a>    					

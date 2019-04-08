@@ -1,4 +1,4 @@
-package org.badgers.customer.member.controller;
+﻿package org.badgers.customer.member.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -77,15 +77,19 @@ public class CustomerController {
 		String msg ="";
 		
 		String url = RestDomain.restDomain+"/customer/login";
-		
+
+
 		try {
 		ResponseEntity<CustomerVO> responseEntity = restTemplate.postForEntity(url, vo, CustomerVO.class);
 		CustomerVO member = responseEntity.getBody();
 		status = responseEntity.getStatusCodeValue();
 		responseHeaders = new HttpHeaders();
+			
 		
 		if(status==200) {
 			responseHeaders.set("id",member.getId() );
+			responseHeaders.set("idx",member.getIdx() );
+			responseHeaders.set("name",member.getName() );			
 			responseHeaders.set("phone", member.getPhone());
 			responseHeaders.set("address", member.getAddress());
 			responseHeaders.set("addressDetail", member.getAddressDetail());
@@ -148,6 +152,7 @@ public class CustomerController {
 	public String register(@RequestBody CustomerVO customer) {
 		String msg = "";
 		String url = RestDomain.restDomain+"/customer/register";
+	
 		
 	
 		
@@ -165,14 +170,14 @@ public class CustomerController {
 		
 		String kid = (String) session.getAttribute("uid");
 		String kpw = (String) session.getAttribute("kpw");	
-		String kname = (String) session.getAttribute("knikname");
+		String kname = (String) session.getAttribute("uname");
 		String kbirthDate = (String) session.getAttribute("kbirthDate");
 		String kphone = (String) session.getAttribute("kphone");
 		String kemail = (String) session.getAttribute("kemail");
 		String kgender = (String) session.getAttribute("kgender");
 		String kstatus = (String) session.getAttribute("kstatus");
-		
-		String url = "http://13.209.21.25/rest/customer/register";
+
+		String url = RestDomain.restDomain+"/customer/register";
 		
 		CustomerVO vo = new CustomerVO();
 		
