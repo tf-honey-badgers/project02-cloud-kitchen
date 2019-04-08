@@ -14,11 +14,6 @@ $(document).ready(function() {
 
 	/* 가게 정보 중 최소주문금액, 생방송 키 코드, 가게 소개글 수정하기 */
 	$('#changeBiz').on('click', function() {
-		console.log('명준이 똥--------------------')
-		console.log('/business/member/' + $('#bizId').val() + '/modify')
-		console.log($('#minAmt').val())
-		console.log( $('#bizLiveStrm').val())
-		console.log(  $('#bizInfo').val())
 		$.ajax({
     		url : '/business/member/' + $('#bizId').val() + '/modify'
     		, type : 'POST'
