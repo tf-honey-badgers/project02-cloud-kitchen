@@ -75,6 +75,7 @@ public class CustomerController {
 	}
 	
 	// 개인정보 수정
+	@CrossOrigin("http://localhost:3001")
 	@PutMapping("/{id}/mypage/modify")
 	public int modify(@PathVariable("id")String id, @RequestBody CustomerVO vo) {
 		int returnVal = 0;
