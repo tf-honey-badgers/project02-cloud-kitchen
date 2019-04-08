@@ -25,9 +25,9 @@ public class PaymentServiceImpl implements PaymentService {
 		    params.add("quantity", ""+vo.getOrderDetails().length);
 		    params.add("total_amount", ""+vo.getPayAmt());
 		    params.add("tax_free_amount", "0");
-		    params.add("approval_url", "customer/order/payment/kakaoPay/success");
-		    params.add("cancel_url", "customer/order/payment//kakaoPay/cancel");
-		    params.add("fail_url", "customer/order/payment/kakaoPay/fail");
+		    params.add("approval_url", "http://54.180.97.18/customer/order/payment/kakaoPay/success");
+		    params.add("cancel_url", "http://54.180.97.18/customer/order/payment//kakaoPay/cancel");
+		    params.add("fail_url", "http://54.180.97.18/customer/order/payment/kakaoPay/fail");
 		    
 		    HttpHeaders headers = new HttpHeaders();
 		    headers.add("Authorization", "KakaoAK " + "e0d26cb3e1a4b577fce26f8828fc6a49");
