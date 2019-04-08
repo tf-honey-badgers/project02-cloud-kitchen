@@ -3,7 +3,7 @@ $(document).ready(function() {
 	/* 사용자 정보 중 계좌정보 수정하기 */
 	$('#changeAccount').on('click', function() {
 		$.ajax({
-    		url : 'http://13.209.21.25/business/member/' + $('#bizId').val() + '/modify'
+    		url : '/business/member/' + $('#bizId').val() + '/modify'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({bizId : $('#bizId').val(), account : $('#account').val()})
@@ -14,8 +14,13 @@ $(document).ready(function() {
 
 	/* 가게 정보 중 최소주문금액, 생방송 키 코드, 가게 소개글 수정하기 */
 	$('#changeBiz').on('click', function() {
+		console.log('명준이 똥--------------------')
+		console.log('/business/member/' + $('#bizId').val() + '/modify')
+		console.log($('#minAmt').val())
+		console.log( $('#bizLiveStrm').val())
+		console.log(  $('#bizInfo').val())
 		$.ajax({
-    		url : 'http://13.209.21.25/business/member/' + $('#bizId').val() + '/modify'
+    		url : '/business/member/' + $('#bizId').val() + '/modify'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({
@@ -32,7 +37,7 @@ $(document).ready(function() {
 	/* YouTube 생방송 시작하면 iframe player src 속성용 코드 입력하기 (biz테이블 bizLiveStrm컬럼 사용) */
 	$('#changeBizLiveStrm').on('click', function() {
 		$.ajax({
-    		url : 'http://13.209.21.25/business/member/livestrm/' + $('#bizId').val() + '/' + $('#bizLiveStrm').val()
+    		url : '/business/member/livestrm/' + $('#bizId').val() + '/' + $('#bizLiveStrm').val()
     		, type : 'GET'
 			, contentType : 'application/json'
     		, error : function() { md.showNotification('bottom', 'right', 'danger', 'YouTube LiveStreaming 코드를 입력하는데 에러가 발생했습니다.'); }
@@ -67,7 +72,7 @@ $(document).ready(function() {
 		
 		if(cnt===0){
 			$.ajax({
-	    		url : 'http://13.209.21.25/business/member/login'
+	    		url : '/business/member/login'
 	    		, type : 'POST'
 				, contentType : 'application/json'
 				, dataType : 'text'
@@ -104,7 +109,7 @@ $(document).ready(function() {
 		$('#finder').modal('show');
     	$('#getId').on('click', function() {
     		$.ajax({
-        		url : 'http://13.209.21.25/business/member/verify'
+        		url : '/business/member/verify'
         		, type : 'POST'
 				, contentType : 'application/json'
         		, data : JSON.stringify({
@@ -144,7 +149,7 @@ $(document).ready(function() {
 		$('#finder').modal('show');
     	$('#getId').on('click', function() {
     		$.ajax({
-        		url : 'http://13.209.21.25/business/member/verify'
+        		url : '/business/member/verify'
         		, type : 'POST'
 				, contentType : 'application/json'
         		, data : JSON.stringify({
@@ -206,7 +211,7 @@ $(document).ready(function() {
 		}
 
 		$.ajax({
-    		url : 'http://13.209.21.25/business/member/' + hiddenId + '/modify'
+    		url : '/business/member/' + hiddenId + '/modify'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({
