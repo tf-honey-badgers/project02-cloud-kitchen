@@ -172,7 +172,7 @@ public class CustomerController {
 		String kgender = (String) session.getAttribute("kgender");
 		String kstatus = (String) session.getAttribute("kstatus");
 		
-		String url = "http://13.209.21.25/rest/customer/register";
+		String url = "http://localhost/rest/customer/register";
 		
 		CustomerVO vo = new CustomerVO();
 		
