@@ -155,6 +155,11 @@
                                                     <label class="bmd-label-floating">주소</label>
                                                     <input type="text" id="addr" class="form-control" disabled value="${bizMember.kb.address}">
                                                 </div>
+                                                <div class="">
+                                                	<label class="bmd-label-floating">사진변경</label>
+                                                    <input type="file" id="bizPhoto" value="사진변경"/> 
+                                                    <input type="text" id="addr" class="form-control" disabled value="">
+                                                </div>   
                                             </div>
                                         </div>
                                         <div class="row">
@@ -293,6 +298,8 @@
     <script src="${pageContext.request.contextPath}/resources/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="${pageContext.request.contextPath}/resources/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
+    <script src="http://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
     <script>
     	/* 브라우저 사이즈 변경에 따른 반응형 처리 */
         $(document).ready(function() {

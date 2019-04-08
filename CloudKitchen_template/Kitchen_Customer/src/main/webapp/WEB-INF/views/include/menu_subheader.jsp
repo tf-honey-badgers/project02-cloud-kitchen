@@ -3,11 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- SubHeader =============================================== -->
-<section class="parallax-window HImg" data-parallax="scroll" data-image-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtkLB-Xn3h1aABKa9hBXPfkbTA2NbQWZ1B4r9CP0DlHPXcjfLo" data-natural-width="1400" data-natural-height="470">
+<section class="parallax-window HImg" data-parallax="scroll" data-image-src="https://upload.wikimedia.org/wikipedia/commons/2/29/%EC%A2%85%EA%B0%81%EC%97%AD_131.jpg" data-natural-width="1400" data-natural-height="470">
 	<div id="subheader">
 	<div id="sub_content">
 		<div id="thumb">
-				<img  class='shopImg' src="" alt="">
+			<img  class='shopImg' src="https://s3.ap-northeast-2.amazonaws.com/honeybadgersfile/MenuPhoto/${bizMember.bizId}.png" width="130px" height="130px" alt="">
 		</div>
 		<div class="rating">
 			<i class="icon_star voted"></i>
@@ -28,14 +28,3 @@
 	bizName = '${bizMember.bizName}';
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-	$(document).ready(function(){
-		if(bizName=='유니네 피자집'){
-			$('.shopImg').attr('src','http://newsimg.hankookilbo.com/2014/08/19/201408191596070672_1.jpg');				
-			$('.HImg').attr('data-image-src','https://cbmpress.com/calgary/wp-content/uploads/sites/4/2017/09/pizzaweek.jpg');
-		}else{
-			$('.shopImg').attr('src','https://media-cdn.tripadvisor.com/media/photo-s/0a/85/0a/ab/2.jpg');
-			$('.HImg').attr('data-image-src','http://leegane.co.kr/images/main/visual_01.jpg');
-		}
-	})
-</script>
