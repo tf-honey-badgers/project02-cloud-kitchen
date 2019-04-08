@@ -312,7 +312,7 @@ $(document).ready(function() {
 	
 /* 최소 금액보다 적은 금액의 주문을 할 수 없게 막는다. */
 	$('body').on('click', '#orderNow', function(event) {
-		if($('.total span').data('total') < $('#minAmt').data('min-amt')) {
+		if($('.total span').attr('data-total') < $('#minAmt').data('min-amt')) {
 			event.preventDefault();
 			alert('최소금액보다 적어서 주문할 수 없습니다.');
 			return;
