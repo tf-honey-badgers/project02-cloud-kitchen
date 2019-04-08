@@ -3,6 +3,7 @@ package org.badgers.business.order.controller;
 import javax.inject.Inject;
 
 import org.badgers.business.model.OrderVO;
+import org.badgers.business.util.RestDomain;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -36,7 +37,7 @@ public class OrderController {
 			@PathVariable("orderId") String orderId, 
 			@PathVariable("status") String status) {
 		
-		String url = "http://13.209.21.25/rest/biz/order/"+bizId+"/"+orderId+"/"+status; 
+		String url =  RestDomain.restDomain+"/biz/order/"+bizId+"/"+orderId+"/"+status; 
 		Object obj = restTemplate.getForEntity(url, String.class);
 		return new ResponseEntity<>(obj, HttpStatus.OK);	
 	}

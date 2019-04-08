@@ -65,7 +65,8 @@ public class KakaoController {
 	    	String kstatus = "MEM002";
 	    	String gender = "미정";
 	    	
-	    
+	    	//세션에 사용자 id pw 등 저장
+	    	
 	        session.setAttribute("uid", ids); // 세션 email(-> 사용자 id) 저장
 	        session.setAttribute("kpw", kpw); //카톡 로그인 비번 
 	        session.setAttribute("knikname", nickname);

@@ -3,6 +3,7 @@ package org.badgers.business.member.controller;
 import javax.inject.Inject;
 
 import org.badgers.business.model.BizMemberVOExtend;
+import org.badgers.business.util.RestDomain;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,9 +33,9 @@ public class BusinessController {
 	@GetMapping("/{bizId}/main")
 	public ModelAndView readBizMember(ModelAndView mav, @PathVariable("bizId") String bizId) {
 		BizMemberVOExtend returnVal = null;
-		String urlBizMember = "http://13.209.21.25/rest/business/" + bizId + "/mypage";
+		String urlBizMember = RestDomain.restDomain+"/business/" + bizId + "/mypage";
 		int likeCnt = 0;
-		String urlCountFav = "http://13.209.21.25/rest/favorite/" + bizId;
+		String urlCountFav =  RestDomain.restDomain+"/favorite/" + bizId;
 		
 		// 사업자 정보 읽어오기
 		ResponseEntity<BizMemberVOExtend> responseEntity = restTemplate.getForEntity(urlBizMember,
@@ -62,7 +63,7 @@ public class BusinessController {
 	@PostMapping("/{bizId}/modify")
 	@ResponseBody
 	public void updateBizMember(@RequestBody BizMemberVOExtend mvo) {
-		String url = "http://13.209.21.25/rest/business/" + mvo.getBizId() + "/mypage/modify";
+		String url =  RestDomain.restDomain+"/business/" + mvo.getBizId() + "/mypage/modify";
 		restTemplate.put(url, mvo); // RestTemplate put()은 반환값이 void
 
 		log.info("updateBizMember DONE!!!!!");
@@ -73,7 +74,7 @@ public class BusinessController {
 	@ResponseBody
 	public ResponseEntity<String> updateBizLiveStrm(@PathVariable("bizId") String bizId, @PathVariable("bizLiveStrm") String bizLiveStrm) {
 		String returnVal = "";
-		String url = "http://13.209.21.25/rest/business/livestrm/" + bizId + "/" + bizLiveStrm;
+		String url =  RestDomain.restDomain+"/business/livestrm/" + bizId + "/" + bizLiveStrm;
 		
 		ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
 		returnVal = responseEntity.getBody();
@@ -89,7 +90,7 @@ public class BusinessController {
 	public ResponseEntity<String> login(@RequestBody BizMemberVOExtend mvo, ModelAndView mov){
 		HttpHeaders responseHeaders=null;
 		String status=""; // 로그인 성공 여부를 알리기 위해 status 문자열 반환
-		String url = "http://13.209.21.25/rest/business/login";
+		String url =  RestDomain.restDomain+"/business/login";
 
 		try {
 			ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
@@ -119,7 +120,7 @@ public class BusinessController {
 	@ResponseBody
 	public String verify(@RequestBody BizMemberVOExtend mvo) {
 		String res = "";
-		String url = "http://13.209.21.25/rest/business/verify";
+		String url =  RestDomain.restDomain+"/business/verify";
 
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, mvo, String.class);
 		res = responseEntity.getBody();

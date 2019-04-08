@@ -83,6 +83,8 @@ public class PaymentController {
 		HttpEntity<MultiValueMap<String, String>> request= kakaoservice.kakaopay(order);
 		ResponseEntity<Map> response = restTemplate.exchange("https://kapi.kakao.com/v1/payment/ready", HttpMethod.POST, request, Map.class);
 		Map kakaoRes = response.getBody();
+		log.info("..................카카오 페이...........................");
+		log.info(kakaoRes);
         String url= (String) kakaoRes.get("next_redirect_pc_url");
         return "redirect:"+url;
 	}
@@ -97,15 +99,17 @@ public class PaymentController {
 	@GetMapping("payment/{payMethod}/{status}")
 	public String succeedPayment(@PathVariable("status")String status, @ModelAttribute("order") OrderVOExtend order, RedirectAttributes rttr) {
 		log.info("...............................payment/status...................");
+		log.info(order);
+		log.info("....................카카오페이 응답하라 1987....................");
 		
 		if(status.equals("success")) {
 			log.info("............success");
 			String url = RestDomain.restDomain+"/cust/order/"+order.getId();
-			
+			log.info(url);
 			ResponseEntity<String> responses  = restTemplate.postForEntity(url,order, String.class);
 			
 			String orderconfirm = responses.getBody();
-			
+			log.info(orderconfirm);
 			rttr.addFlashAttribute("orderconfirm", (String)orderconfirm);
 			
 			return "redirect:/order/confirm";
