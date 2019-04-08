@@ -66,9 +66,7 @@ $(document)
 						  });
 						}
 			        
-					function deleteMenuPhoto(menuId) {
-						let albumName = 'MenuPhoto';
-						let photoKey = menuId+'.png';
+					function deletePhoto(photoKey) {
 						  s3.deleteObject({Key: photoKey}, function(err, data) {
 						    if (err) {
 						      return alert('There was an error deleting your photo: ', err.message);
