@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>찜목록 보기</title>
 </head>
-<script src="/customer/resources/js/jquery-2.2.4.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-2.2.4.min.js"></script>
 <script type="text/javascript">
 
 var custId = '${custId}';

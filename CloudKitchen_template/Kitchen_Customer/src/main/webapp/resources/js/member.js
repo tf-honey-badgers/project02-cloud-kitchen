@@ -35,7 +35,7 @@ $(document).ready(function(){
 	    			})
 	    		, error : function() { alert("회원 탈퇴 에러."); }
 	    		, success : function() { alert("성공적으로 탈퇴 하였습니다.");
-	    		location.href = "http://localhost:3001/customer/main";
+	    		location.href = "/customer/main";
 	    		}
 			});
 		});
@@ -64,7 +64,7 @@ $(document).ready(function(){
 	/* 로그인 절차 */
 	$('#myLogin button').on('click', function() {
         $.ajax({
-            url : 'http://localhost:3001/customer/member/login'
+            url : '/customer/member/login'
             , type : 'POST'
             , contentType : 'application/json; charset=UTF-8'
             , data : JSON.stringify({
@@ -90,7 +90,7 @@ $(document).ready(function(){
 	// 회원가입 절차 
 	$('#myRegister button').on('click', function() {
 		$.ajax({
-    		url : 'http://localhost:3001/customer/member/register'
+    		url : '/customer/member/register'
     		, type : 'POST'
     	    , contentType : 'application/json; charset=UTF-8'
 			, dataType : 'text'
@@ -132,7 +132,7 @@ $(document).ready(function(){
 		$('#finder').modal('show');
     	$('#getId').on('click', function() {
     		$.ajax({
-        		url : 'http://localhost:3001/customer/member/verify'
+        		url : '/customer/member/verify'
         		, type : 'POST'
 				, contentType : 'application/json'
         		, data : JSON.stringify({
@@ -190,7 +190,7 @@ $(document).ready(function(){
 		$('#finder').modal('show');
     	$('#getId').on('click', function() {
     		$.ajax({
-        		url : 'http://localhost:3001/customer/member/verify'
+        		url : '/customer/member/verify'
         		, type : 'POST'
 				, contentType : 'application/json'
         		, data : JSON.stringify({
@@ -238,7 +238,7 @@ $(document).ready(function(){
 
 
 		$.ajax({
-    		url : 'http://localhost:3001/customer/member/' + hiddenId + '/modify'
+    		url : '/customer/member/' + hiddenId + '/modify'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({
@@ -268,6 +268,6 @@ $(document).ready(function(){
 		});
 	});
 	
-	
+
 	
 })
