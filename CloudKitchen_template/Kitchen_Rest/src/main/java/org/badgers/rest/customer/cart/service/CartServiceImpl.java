@@ -5,7 +5,6 @@ import java.util.List;
 import org.badgers.rest.customer.cart.persistence.CartMapper;
 import org.badgers.rest.model.CartDetailVO;
 import org.badgers.rest.model.CartVOExtend;
-import org.mortbay.log.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,40 +25,28 @@ public class CartServiceImpl implements CartService {
 		// 새로들어온 메뉴가 Cart 테이블에 있는 메뉴와 동일한지 나타내는 플래그 변수
 		boolean flag = false;
 		
-		Log.info("********************* CHECKING WHETHER THERE'S ALREADY A RECORD IN THE CART TABLE WITH THE EXACT SAME MENU AND OPTIONS *********************");
 		System.out.println(01);
 		if(!readCart.isEmpty()) { // custId를 가진 메뉴가 Cart 테이블에 있는가? (없다면 readCart는 empty List object이다)
-			System.out.println(02);
 			for(int i = 0; i < readCart.size(); i++) {
-				System.out.println(03);
 				CartVOExtend fromCart = readCart.get(i);
 				if(cart.getKitchenName().equals(fromCart.getKitchenName())
 						&& cart.getBizId().equals(fromCart.getBizId())
 						&& cart.getMenuId() == fromCart.getMenuId()) { // 새 메뉴와 Cart에 있는 메뉴가 정보가 같은가?
-					System.out.println(04);
 					if(cart.getOptions() == null && fromCart.getOptions().isEmpty()) { // 새 메뉴와 Cart에 있는 메뉴에게 옵션 정보가 없는가?
-						System.out.println(05);
-						Log.info("********************* THERE IS ALREADY A RECORD IN THE CART TABLE WITH THE EXACT SAME MENU (NO OPTIONS) *********************");
 						flag = true;
 					} else if(cart.getOptions() != null && !fromCart.getOptions().isEmpty()) { // 새 메뉴와 Cart에 있는 메뉴 둘 다 옵션 정보가 있는가?
-						System.out.println(06);
 						List<CartDetailVO> cartOptions = cart.getOptions();
 						List<CartDetailVO> fromOptions = fromCart.getOptions();
 						if(cartOptions.size() == fromOptions.size()) { // 새로들어온 메뉴 옵션과 Cart 테이블에 있는 메뉴 옵션 개수가 같은가?
-							System.out.println(07);
 							for(int j = 0; j < cartOptions.size(); j++) {
-								System.out.println(8);
 								CartDetailVO cartOptDetail = cartOptions.get(j);
 								CartDetailVO fromOptDetail = fromOptions.get(j);
 								if(cartOptDetail.getMenuId() == fromOptDetail.getMenuId()
 										&& cartOptDetail.getMenuOptId() == fromOptDetail.getMenuOptId()
 										&& cartOptDetail.getMenuOptPrice() == fromOptDetail.getMenuOptPrice()
 										&& cartOptDetail.getMenuOptName().equals(fromOptDetail.getMenuOptName())) { // 새로들어온 메뉴 옵션과 Cart 테이블에 있는 메뉴 옵션 정보가 같은가?
-									System.out.println(9);
-									Log.info("********************* THERE IS ALREADY A RECORD IN THE CART TABLE WITH THE EXACT SAME OPTION *********************");
 									flag = true;
 								} else {
-									System.out.println(10);
 									flag = false;
 									break; // 하나라도 옵션 정보가 같지 않다면 옵션 비교 for문을 끝낸다.
 								}
@@ -68,18 +55,14 @@ public class CartServiceImpl implements CartService {
 					}
 				}
 				if(flag) { // 새로들어온 메뉴 정보와 Cart 테이블에 있는 메뉴 정보가 일치한다면 수량을 증가시키고 메서드를 끝낸다.
-					System.out.println("flag is true");
 					cart.setId(fromCart.getId());
 					cart.setQuantity(cart.getQuantity() + fromCart.getQuantity());
 					cart.setTotalAmt(cart.getTotalAmt() + fromCart.getTotalAmt());
-					int updateResult = updateCart(cart);
-					System.out.println("THE RESULT OF UPDATING THE CART SHOULD BE ONE(1) : " + updateResult);
-					return updateResult;
+					return updateCart(cart);
 				}
 			}
 		}
 
-		System.out.println("flag was false");
 		// 새로들어온 메뉴 정보와 Cart 테이블에 있는 메뉴 정보가 다르다면 새로운 메뉴로 취급한다. (Cart 테이블에 새로운 튜플을 추가한다.)
 		int addedCart = 0;
 		int addedOptions = 0;
@@ -127,7 +110,6 @@ public class CartServiceImpl implements CartService {
 		return returnVal;
 	}
 	
-
 	// 메뉴 업데이트 (수량을 0으로 만들 수는 없음) -> 옵션은 업데이트 없다
 	@Override
 	public int updateCart(CartVOExtend cart) throws Exception {
@@ -150,9 +132,7 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public int deleteAllCart(String custId) throws Exception {
-		// TODO Auto-generated method stub
-		mapper.deleteAllCart(custId);
-		
+		mapper.deleteAllCart(custId);	
 		return 0;
 	}
 }

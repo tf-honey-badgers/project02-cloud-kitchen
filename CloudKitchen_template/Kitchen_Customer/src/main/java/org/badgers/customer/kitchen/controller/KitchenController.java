@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.badgers.customer.model.BizVOExtend;
 import org.badgers.customer.model.CartVOExtend;
 import org.badgers.customer.model.CommonCodeVO;
+import org.badgers.customer.util.RestDomain;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +29,10 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/kitchen")
 @Log4j
 public class KitchenController {
-	
 	@Inject
 	RestTemplate restTemplate;
-	
+
+/* 가게 정보 읽어서 view에 뿌리기 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping(value = "/{bizId}/main", produces = "application/json")
 	public ModelAndView readBizMain(
@@ -39,34 +40,26 @@ public class KitchenController {
 				@PathVariable("bizId") String bizId,
 				@RequestParam(value = "auth", required = false) String auth,
 				@RequestParam(value = "custId", required = false) String custId
-			) {		
-		log.info("Kitchen_Customer 메뉴 읽기...............................");
-		
+			) {
 		List<BizVOExtend> returnBiz = null;
 		List<CartVOExtend> returnCart = null;
-		String url = "http://13.209.21.25/rest/kitchenbranch/bizinfo/" + bizId;
+		String url = RestDomain.restDomain+"/kitchenbranch/bizinfo/" + bizId;
 		
-		try {
-			ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, java.util.List.class);
-			returnBiz = responseEntity.getBody();
-			
-			System.out.println(auth);
-			System.out.println(auth.equals("true"));
-			System.out.println(custId);
+		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, java.util.List.class); // 특정 가게의 메뉴 읽어오기
+		returnBiz = responseEntity.getBody();
+
+		if(auth != null) {
 			if(auth.equals("true")) {
-				log.info("Kitchen_Customer 카트 읽기");
-				url = "http://13.209.21.25/rest/cart/" + custId; // 현재 로그인되어 있는 사용자 ID를 사용
-				ResponseEntity<List> readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class);
+				url = RestDomain.restDomain+"/cart/" + custId; // 현재 로그인되어 있는 사용자 ID를 사용
+				ResponseEntity<List> readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class); // 카트에서 특정 회원ID 가진 항목들 읽어오기
 				returnCart = readMenuFromCart.getBody();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+			}			
 		}
 		
 		if(returnBiz != null) {
 			log.info("readBizMain DONE!!!!!");
-			mav.addObject("bizMember", returnBiz.get(0));
-			mav.addObject("cart", returnCart);
+			mav.addObject("bizMember", returnBiz.get(0)); // 메뉴 정보를 model에 추가
+			mav.addObject("cart", returnCart); // 카트 정보를 model에 추가
 		} else {
 			log.info("Failed to readBizMain. REST server may be offline.");
 			mav.addObject("message", "Failed to read biz main data. REST server may be offline.");
@@ -74,43 +67,38 @@ public class KitchenController {
 		mav.setViewName("bizMenu");
 		return mav;
 	}
-	
+
+/* 자동완성용으로 키친 지점, 가게, 메뉴 정보 읽어오기 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@GetMapping(value = "/lists", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<Map<String, List>> getLists() {
-		log.info("Reading lists of kitchen branches, businesses, menus for the autocomplete");
-		
 		Map<String, List> returnVal = null;
-		String url = "http://13.209.21.25/rest/kitchenbranch/alllists";
+		String url = RestDomain.restDomain+"/kitchenbranch/alllists";
 		
-		ResponseEntity<Map> responseEntity = restTemplate.getForEntity(url, Map.class);
+		ResponseEntity<Map> responseEntity = restTemplate.getForEntity(url, Map.class); // 자동완성용, 키친 지점 리스트, 가게 리스트, 메뉴 리스트 읽어오기
 		if(!responseEntity.getBody().isEmpty()) {
 			returnVal = responseEntity.getBody();
 		}	
-		//log.info(returnVal);
-		
 		return new ResponseEntity<Map<String,List>>(returnVal, HttpStatus.OK);
 	}
 	
+/* 검색 시 일치하는 가게 정보 가지고 검색결과 페이지로 넘어가기 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/search", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ModelAndView searchLists(ModelAndView mav, @ModelAttribute("query") String query) {
-		log.info("Searching lists of kitchen branches, businesses, menus");
-		System.out.println(query);
-
 		List<BizVOExtend> returnVal = null;
-		String urlSearch = "http://13.209.21.25/rest/kitchenbranch/searchlists";
+		String urlSearch = RestDomain.restDomain+"/kitchenbranch/searchlists";
 		List<CommonCodeVO> bizCatVal = null;
-		String urlBizCat = "http://13.209.21.25/rest/kitchenbranch/bizcodes";
+		String urlBizCat = RestDomain.restDomain+"/kitchenbranch/bizcodes";
 
-		if(query.equals("")) {
+		if(query.equals("")) { // query를 입력했는지 확인하기
 			log.info("query is null");
 			query = " ";
 		}
 		
-		restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
-		ResponseEntity<List> responseEntity = restTemplate.postForEntity(urlSearch, query, List.class);
-		ResponseEntity<List> responseBizCats = restTemplate.getForEntity(urlBizCat, List.class);
+		restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8"))); // 한글 처리
+		ResponseEntity<List> responseEntity = restTemplate.postForEntity(urlSearch, query, List.class); // query에 일치하는 검색 결과 읽어오기
+		ResponseEntity<List> responseBizCats = restTemplate.getForEntity(urlBizCat, List.class); // 사이드바용으로 가게 분류 (한식 등) 읽어오기
 		bizCatVal = responseBizCats.getBody();
 		
 		if(!responseEntity.getBody().isEmpty()) {

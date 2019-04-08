@@ -66,17 +66,17 @@ $(document)
 						  });
 						}
 			        
-					function deleteMenuPhoto(menuId) {
-						let albumName = 'MenuPhoto';
-						let photoKey = menuId+'.png';
-						  s3.deleteObject({Key: photoKey}, function(err, data) {
+					function deletePhoto(photoKey) {
+						let albumPath = 'MenuPhoto/';
+						let extention = '.png';
+						let photoName = albumPath+photoKey+extention;
+						  s3.deleteObject({Key: photoName}, function(err, data) {
 						    if (err) {
 						      return alert('There was an error deleting your photo: ', err.message);
 						    }
 						    alert('Successfully deleted photo.');
 						  });
 						}
-					
 
 					$('.insertMenuCatModalOpt').on('click','#insertMenuCatBtn',function(e){
 						
@@ -393,7 +393,7 @@ $(document)
 						menu.mPhoto = $('.menuModalOpt tbody').children().eq(0).children().eq(1).children().val();
 						menu.mName = $('.menuModalOpt tbody').children().eq(0).children().eq(2).children().val();
 						menu.mBasicPrice = $('.menuModalOpt tbody').children().eq(0).children().eq(3).children().val();
-						
+						console.log(menu.mPhoto);
 						// 카테고리용
 						let menuOptCl = new Array();
 						
@@ -445,6 +445,7 @@ $(document)
 			        				}
 			        			}
 			        			alert('변경되었습니다');
+			        			deletePhoto(menu.mCode);
 			        			updatePhoto(menu.mCode);
 			        		}
 						});
@@ -459,13 +460,11 @@ $(document)
 						$('.menuModal').css('display', 'block');
 						
 						let menuNo = $(this).parent().parent().children().eq(0).text();
-						let menuPhoto = $(this).parent().parent().children().eq(1).text();
+						let menuPhoto = $(this).parent().parent().children().eq(1).val();
 						let menuName = $(this).parent().parent().children().eq(2).text();
 						let menuPrice = $(this).parent().parent().children().eq(3).text();
 						let menuCatName = $(this).parent().parent().parent().parent().parent().parent().parent().parent().children().eq(0).children().eq(0).children().eq(0).text();
 						let menuInfo = $(this).parent().parent().children();
-						console.log(menuCatName);
-						
 						
 						$.ajax({
 			        		type : "GET",

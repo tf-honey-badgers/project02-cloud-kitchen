@@ -3,6 +3,7 @@ package org.badgers.business.menu.controller;
 import java.nio.charset.Charset;
 import java.util.List;
 
+import org.badgers.business.util.RestDomain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -29,13 +30,11 @@ public class MenuController {
 	@SuppressWarnings("rawtypes")
 	@RequestMapping(value="/{bizId}/main", method=RequestMethod.GET)	
 	public ModelAndView bizGetMenu(ModelAndView mav, @PathVariable("bizId") String bizId) {
-//		System.out.println(bizId);
-		try {
-			String url = "http://localhost:80/";
+		try { 
+			String url =  RestDomain.restDomain;
 			ResponseEntity<List> menuResponseEntity = restTemplate.getForEntity
-					(url+"rest/kitchenbranch/bizinfo/"+bizId, List.class);
+					(url+"/kitchenbranch/bizinfo/"+bizId, List.class);
 			List<?> menuVoEx = menuResponseEntity.getBody();
-//			System.out.println(menuVoEx);
 			mav.addObject("bizMenu", menuVoEx);
 			mav.setViewName("menuupdate");
 			return mav;
@@ -52,9 +51,9 @@ public class MenuController {
 	public List<?> getMenuInfo(@RequestParam("mIdx") int mIdx) {
 		
 		try {
-			String url = "http://localhost:80";
+			String url =  RestDomain.restDomain;
 			ResponseEntity<List> menuResponseEntity = restTemplate.getForEntity
-					(url+"rest/kitchenbranch/menuinfo/"+mIdx, List.class);
+					(url+"/kitchenbranch/menuinfo/"+mIdx, List.class);
 			
 			List<?> menuOptVoEx = menuResponseEntity.getBody();
 			return menuOptVoEx;
@@ -70,11 +69,9 @@ public class MenuController {
 			produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public int updateMenu(@RequestParam("updateMenu") String menuUpdateInfo) {
-		System.out.println(menuUpdateInfo);
 		int result = 0;
 		try {
-			System.out.println("MenuUpdate Front Controller1");
-			String url = "http://localhost:80/rest/bizmenu/menuupdate";
+			String url =  RestDomain.restDomain+"/bizmenu/menuupdate";
 	        
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
@@ -84,10 +81,7 @@ public class MenuController {
 			ResponseEntity updateResponseEntity = restTemplate.postForEntity
 					(url,entity,int.class);
 			
-			System.out.println("MenuUpdate Front Controller2");
-			
 			result = (int) updateResponseEntity.getBody();
-			System.out.println(result);
 			return result;
 			
 		}catch(Exception e){
@@ -103,11 +97,10 @@ public class MenuController {
 	@RequestMapping(value="/main/getMenuCat", method=RequestMethod.GET)
 	@ResponseBody
 	public List<?> getMenuCat(@RequestParam("bizId") String bizId) {
-		System.out.println("FrontController : "+bizId);
 		try {
-			String url = "http://localhost:80";
+			String url =  RestDomain.restDomain;
 			ResponseEntity<List> menuResponseEntity = restTemplate.getForEntity
-					(url+"rest/bizmenu/getMenuCat/"+bizId, List.class);
+					(url+"/bizmenu/getMenuCat/"+bizId, List.class);
 			
 			List<?> menuOptVoEx = menuResponseEntity.getBody();
 			return menuOptVoEx;
@@ -124,9 +117,9 @@ public class MenuController {
 	@ResponseBody
 	public List<?> getComCode() {
 		try {
-			String url = "http://localhost:80";
+			String url =  RestDomain.restDomain;
 			ResponseEntity<List> menuResponseEntity = restTemplate.getForEntity
-					(url+"rest/bizmenu/getComCode", List.class);
+					(url+"/bizmenu/getComCode", List.class);
 			
 			List<?> menuComCode = menuResponseEntity.getBody();
 			return menuComCode;
@@ -145,7 +138,7 @@ public class MenuController {
 	public int insertMenu(@RequestParam("menuInfo") String menuInsertInfo) {
 		int result = 0;
 		try {
-			String url = "http://localhost:80/rest/bizmenu/menuinsert";
+			String url =  RestDomain.restDomain+"/bizmenu/menuinsert";
 	        
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
@@ -155,10 +148,7 @@ public class MenuController {
 			ResponseEntity updateResponseEntity = restTemplate.postForEntity
 					(url,entity,int.class);
 			
-			System.out.println("MenuUpdate Front Controller2");
-			
 			result = (int) updateResponseEntity.getBody();
-			System.out.println(result);
 			return result;
 			
 		}catch(Exception e){
@@ -175,11 +165,10 @@ public class MenuController {
 			produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public int deleteMenu(@RequestParam("menuId") String menuId) {
-		System.out.println("deleteMenu : "+ menuId);
 		int result = 0;
 		try {
 			System.out.println("MenuUpdate Front Controller1");
-			String url = "http://localhost:80/rest/bizmenu/deletemenu";
+			String url =  RestDomain.restDomain+"/bizmenu/deletemenu";
 	        
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
@@ -192,7 +181,6 @@ public class MenuController {
 			System.out.println("MenuUpdate Front Controller2");
 			
 			result = (int) updateResponseEntity.getBody();
-			System.out.println(result);
 			return result;
 			
 		}catch(Exception e){
@@ -211,8 +199,7 @@ public class MenuController {
 	public int deleteMenuOpt(@RequestParam("menuOptId") int menuOptId) {
 		int result = 0;
 		try {
-			System.out.println("MenuUpdate Front Controller1");
-			String url = "http://localhost:80/rest/bizmenu/deletemenuopt";
+			String url =  RestDomain.restDomain+"/bizmenu/deletemenuopt";
 	        
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
@@ -222,10 +209,7 @@ public class MenuController {
 			ResponseEntity updateResponseEntity = restTemplate.postForEntity
 					(url,entity,int.class);
 			
-			System.out.println("MenuUpdate Front Controller2");
-			
 			result = (int) updateResponseEntity.getBody();
-			System.out.println(result);
 			return result;
 			
 		}catch(Exception e){
@@ -244,7 +228,7 @@ public class MenuController {
 		int result = 0;
 		System.out.println(insertMenuCat);
 		try {
-			String url = "http://localhost:80/rest/bizmenu/insertmenucat";
+			String url =  RestDomain.restDomain+"/bizmenu/insertmenucat";
 	        
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
@@ -255,7 +239,6 @@ public class MenuController {
 					(url,entity,int.class);
 			
 			result = (int) updateResponseEntity.getBody();
-			System.out.println(result);
 			return result;
 			
 		}catch(Exception e){
@@ -265,33 +248,5 @@ public class MenuController {
 		return 0;
 		
 	}
-	
-	@RequestMapping(value="/main/photoupload", method=RequestMethod.POST, 
-			produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public int menuPhotoUpload(@RequestParam("menuPhoto") String insertMenuCat) {
-		int result = 0;
-		System.out.println(insertMenuCat);
-//		try {
-//			String url = "http://localhost:80/rest/bizmenu/insertmenucat";
-//	        
-//			HttpHeaders headers = new HttpHeaders();
-//			headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-//
-//			HttpEntity entity = new HttpEntity(insertMenuCat, headers);
-//			
-//			ResponseEntity updateResponseEntity = restTemplate.postForEntity
-//					(url,entity,int.class);
-//			
-//			result = (int) updateResponseEntity.getBody();
-//			System.out.println(result);
-//			return result;
-//			
-//		}catch(Exception e){
-//			e.getStackTrace();
-//		}
-		
-		return 0;
-		
-	}
+
 }

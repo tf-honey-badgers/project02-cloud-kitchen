@@ -26,21 +26,25 @@ public class KitchenServiceImpl implements KitchenService {
 	@Setter(onMethod_=@Autowired)
 	private KitchenMapper mapper;
 	
+/* 자동완성용으로 키친 지점 목록 읽어오기 */
 	@Override
 	public List<KitchenBranchVOExtend> kitchenbranchList(){
 		return mapper.kitchenbranchList();
 	}
-	
+
+/* 자동완성용으로 가게 목록 읽어오기 */
 	@Override
 	public List<BizVOExtend> bizlist(){
 		return mapper.bizList();
 	}
-		
+
+/* 자동완성용으로 메뉴 목록 읽어오기 */
 	@Override
 	public List<MenuVOExtend> menulist(){
 		return mapper.menuList();
 	}
 	
+/* 자동완성용으로 키친 지점, 가게, 메뉴 목록 읽어오기 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public Map<String, List> allLists() {
@@ -57,6 +61,7 @@ public class KitchenServiceImpl implements KitchenService {
 		return returnVal;
 	}
 
+/* 사용자가 입력한 query를 가지고 검색하기 */
 	@Override
 	public List<BizVOExtend> searchLists(String query) {		
 		List<BizVOExtend> returnVal = new ArrayList<>();
@@ -64,7 +69,7 @@ public class KitchenServiceImpl implements KitchenService {
 		List<BizVOExtend> bizList = mapper.bizList();
 		List<MenuVOExtend> menuList = mapper.menuList();
 
-		try { // query 문자열은 한글이니까 encoding하여 들어오기 때문에
+		try { // query 문자열은 한글이니까 encoding하여 들어오기 때문에 처리
 			query = URLDecoder.decode(query, "utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
@@ -83,9 +88,9 @@ public class KitchenServiceImpl implements KitchenService {
 			List<BizVOExtend> targetBizs = new ArrayList<>();
 			List<MenuVOExtend> targetMenus = new ArrayList<>();
 			
-			for(KitchenBranchVOExtend kitchen : kitchenList) {
-				if(kitchen.getKitchenname().contains(token)) {
-					targetKitchens.add(kitchen);
+			for(KitchenBranchVOExtend kitchen : kitchenList) { // 키친 목록 중
+				if(kitchen.getKitchenname().contains(token)) { // token을 포함하는 키친이 있다면
+					targetKitchens.add(kitchen); // 해당 키친을 읽어야할 목록에 추가
 				}
 			}
 			for(BizVOExtend biz : bizList) {
@@ -99,14 +104,9 @@ public class KitchenServiceImpl implements KitchenService {
 				}
 			}
 
-			// target lists 확인용
-//			System.out.println(targetKitchens);
-//			System.out.println(targetBizs);
-//			System.out.println(targetMenus);
-
-			if(!targetKitchens.isEmpty()) {
+			if(!targetKitchens.isEmpty()) { // 읽어야할 키친 목록이 비어있지 않다면
 				for(KitchenBranchVOExtend target : targetKitchens) {
-					List<BizVOExtend> results = mapper.bizInfoByKitchen(target.getKitchenid());
+					List<BizVOExtend> results = mapper.bizInfoByKitchen(target.getKitchenid()); // 키친 정보를 하나씩 읽는다
 					for(BizVOExtend result : results) {
 						boolean flag = false;
 						for(BizVOExtend returnValObject : returnVal) {
@@ -155,8 +155,6 @@ public class KitchenServiceImpl implements KitchenService {
 					}
 				}
 			}
-			System.out.println(returnVal);
-			System.out.println(returnVal.size());
 	    } 
 		
 		log.info("Search complete, returning to controller");

@@ -1,10 +1,12 @@
 /* 전역 변수 */
 	/* 가게 ID */
 	const bizId = $('#main_menu').attr('data-biz-id');
+	/* 가게명 */
 	const bizName = $('#main_menu').attr('data-biz-name');
 	/* 치킨 지점명 */
 	const kbName = $('#main_menu').attr('data-kb-name');
 
+/* 카트에서 항목마다 가게명을 출력하는데, 페이지 로딩 후 다시 삭제하기 */
 function removeDuplicateBizNames() {
 	var bizNames = $('.bizNameRow');
 	for(var i = 1; i < bizNames.size(); i++) {
@@ -14,10 +16,11 @@ function removeDuplicateBizNames() {
 	}
 }
 
+/* 현재 로그인 되어 있는 사용자가 현재 보고 있는 가게를 찜했는지 확인하여 화면에 반영하기 */
 function isFavoriteChk() {
 	$.ajax({
 		type : 'GET'
-		, url : 'http://localhost:3001/customer/member/fav/' + custId + '/' + bizId + '.json'
+		, url : '/customer/member/fav/' + custId + '/' + bizId + '.json'
 		, contentType : 'application/json'
 	  	, success : function(data) {
   			if(data == 1) {
@@ -31,17 +34,18 @@ function isFavoriteChk() {
 	});
 }
 
+/* 동적으로 카트에서 선택한(체크한) 메뉴 총합 계산하기 */
 function calcCartTotal(length) {
 	var cartTotal = 0;
 	for(var k = 0; k < length; k++) {
 		var price = $('.check-order:checked').eq(k).parent().parent().nextAll('.priceRow:eq(0)').children('td').data('total-price');
 		cartTotal += price;
 	}
-//	console.log('Cart Total :', cartTotal);
 	$('.total span').text(cartTotal + '원');
 	$('.total span').attr('data-total', cartTotal);
 }
 
+/* 카트 체크박스 관련 기능들 */
 function cartChkFunctions() {
 /* 전체선택하기 이벤트 걸기 */
 	$('body').on('click', '.table_summary th:eq(0) input', function() {
@@ -125,9 +129,6 @@ $(document).ready(function() {
 	/* 메뉴 가격과 각 옵션의 가격을 더해서 가격 총 합을 구한다 */
 		totalPrice += parseInt(menuPrice);
 		$.each(optArr, function(index, item) { totalPrice += parseInt(item); })
-/* 		console.log(totalPrice); -> 총 금액 확인하기
-		console.log($(this).siblings('div').children().children('input:checked').length); -> 체크한 옵션 개수 확인하기
-*/
 	/* 선택한 옵션의 개수를 cur변수의 값으로 삼는다. */
 		let cur = $(this).siblings('div').children().children('input:checked').length; // 브라우저 콘솔에서 작업용 : $('.add_to_basket').eq(0).siblings('div').children().children('input:checked')
 	/* 옵션 정보를 담을 배열 (List<CartDetailVO>에 매핑) */
@@ -153,7 +154,7 @@ $(document).ready(function() {
 			};
  		$.ajax({
 			type : 'POST'
-			, url : 'http://localhost:3001/customer/cart/add'
+			, url : '/customer/cart/add'
 			, dataType : 'json'
 			, contentType : 'application/json'
 			, data : JSON.stringify(inputData)
@@ -200,7 +201,7 @@ $(document).ready(function() {
 		
  		$.ajax({
 			type : 'DELETE'
-			, url : 'http://localhost:3001/customer/cart/delete'
+			, url : '/customer/cart/delete'
 			, dataType : 'json'
 			, contentType : 'application/json'
 			, data : JSON.stringify({
@@ -239,7 +240,7 @@ $(document).ready(function() {
 	});
 
 	
-/*명준이형의 흔적*/
+/* 주문하기 클릭했을 때 사용하는 함수, form 태그로 PaymentController에 넘기기 때문에 불필요 */
 /* 카트의 id="orderNow" 클릭하면 선택된 항목 주문하기 */
 	/*$('#orderNow').on('click', function() {
 		const checked = $('.cartTable .check-order:checked');
@@ -250,8 +251,6 @@ $(document).ready(function() {
 		 카트의 모든 체크박스 해제 
 		$('.table_summary th:eq(0) input').prop('checked', false);
 		$('.cartTable .check-order').prop('checked', false);
-		
-			
 	});*/
 	
 	/*$('body').on('click', '#orderNow', function(event) {
@@ -266,11 +265,7 @@ $(document).ready(function() {
 			event.preventDefault();
 			alert('메뉴를 최소한 하나는 선택해주세요.');
 			return;
-		}
-		console.log(checkedMenu);
-		console.log(checkedMenu);
-		
-		
+		}	
 	});*/
 	
 /* 찜하기 버튼 누르면 찜을 추가하기 */
@@ -278,7 +273,7 @@ $(document).ready(function() {
 		if($('#likeBiz').prop('class') == 'icon-heart-empty') { // 찜하지 않은 상태라면 (if empty heart icon)
 			$.ajax({
 				type : 'POST'
-				, url : 'http://localhost:3001/customer/member/fav/add.json'
+				, url : '/customer/member/fav/add.json'
 				, contentType : 'application/json'
 				, data : JSON.stringify({
 					custId : custId
@@ -301,7 +296,7 @@ $(document).ready(function() {
 		} else { // 찜한 상태라면 (if full heart icon)
 			$.ajax({
 				type : 'DELETE'
-				, url : 'http://localhost:3001/customer/member/fav/delete/' + custId + '/' + bizId + '/' + parseInt($('#likes').text()) + '.json'
+				, url : '/customer/member/fav/delete/' + custId + '/' + bizId + '/' + parseInt($('#likes').text()) + '.json'
 				, contentType : 'application/json'
 			  	, success : function() {
 		  			$('#likeBiz').removeClass('icon-heart').addClass('icon-heart-empty').siblings('#likeText').text('찜해주세요!!');
@@ -315,8 +310,9 @@ $(document).ready(function() {
 		}
 	});
 	
+/* 최소 금액보다 적은 금액의 주문을 할 수 없게 막는다. */
 	$('body').on('click', '#orderNow', function(event) {
-		if($('.total span').data('total') < $('#minAmt').data('min-amt')) {
+		if($('.total span').attr('data-total') < $('#minAmt').data('min-amt')) {
 			event.preventDefault();
 			alert('최소금액보다 적어서 주문할 수 없습니다.');
 			return;

@@ -52,7 +52,7 @@
 				</div>
 			</div>
 			<!-- End Tools =================================================== -->
-        
+
         	<!-- Search Results =================================================== -->
         	<c:forEach var="biz" items="${searchResults}">
         		<div class="strip_list wow fadeIn" data-wow-delay="0.1s">
@@ -60,11 +60,12 @@
 						<div class="col-md-9 col-sm-9">
 							<div class="desc">
 								<div class="thumb_strip">
-									<a href="detail_page.html"><img class="shopImg" src="https://previews.123rf.com/images/cookelma/cookelma1502/cookelma150200141/36986768-%EB%A7%9B%EC%9E%88%EA%B3%A0-%EC%8B%9D%EC%9A%95%EC%9D%84-%EB%8F%8B%EC%9A%B0%EB%8A%94-%ED%96%84%EB%B2%84%EA%B1%B0-%EC%B9%98%EC%A6%88-%EB%B2%84%EA%B1%B0.jpg" alt="없음" title="이거"></a>
+									<a href="detail_page.html"><img class="shopImg" src="https://s3.ap-northeast-2.amazonaws.com/honeybadgersfile/MenuPhoto/${biz.bizId}.png" alt="없음" title="이거"></a>
 								</div>
 								<div class="rating">
 									<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="#0">98 reviews</a></small>)
 								</div>
+								
 								<h3>${biz.bizName}</h3>
 								<div class="type" data-cat-id="${biz.bizCatId}" data-kitchen-id="${biz.bizKitchenId}">${biz.bizCatName} / ${biz.bizKitchenName}</div>
 							</div>
@@ -94,12 +95,12 @@
 <!-- Footer =============================================== -->
 
 <!-- SPECIFIC SCRIPTS -->
-<script src="/customer/resources/js/cat_nav_mobile.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/cat_nav_mobile.js"></script>
 <script>$('#cat_nav').mobileMenu();</script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
-<script src="/customer/resources/js/map.js"></script>
-<script src="/customer/resources/js/infobox.js"></script>
-<script src="/customer/resources/js/ion.rangeSlider.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/map.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/infobox.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/ion.rangeSlider.js"></script>
 <script>
     $(function () {
 		 'use strict';
@@ -117,7 +118,7 @@
         });
     });
     
-    var imgArr=[];
+/*     var imgArr=[];
     imgArr[0]='https://previews.123rf.com/images/cookelma/cookelma1502/cookelma150200141/36986768-%EB%A7%9B%EC%9E%88%EA%B3%A0-%EC%8B%9D%EC%9A%95%EC%9D%84-%EB%8F%8B%EC%9A%B0%EB%8A%94-%ED%96%84%EB%B2%84%EA%B1%B0-%EC%B9%98%EC%A6%88-%EB%B2%84%EA%B1%B0.jpg';
     imgArr[1]='https://media-cdn.tripadvisor.com/media/photo-s/0a/85/0a/ab/2.jpg';
     imgArr[2]='http://newsimg.hankookilbo.com/2014/08/19/201408191596070672_1.jpg';
@@ -131,13 +132,13 @@
     		$(data).attr('src',imgArr[index]);
     	});
     	
-    })
+    }) */
     
     
     
     
 </script>
 	
-<script src="/customer/resources/js/menu/menu-functions.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/menu/menu-functions.js"></script>
 </body>
 </html>

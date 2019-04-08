@@ -3,7 +3,7 @@ $(document).ready(function() {
 	let source = [];
     $.ajax({
     	type : 'GET'
-        , url : 'http://localhost:3001/customer/kitchen/lists.json'
+        , url : '/customer/kitchen/lists.json'
         , contentType : 'application/json'
         , success : function(data) {
         	let readList, category;

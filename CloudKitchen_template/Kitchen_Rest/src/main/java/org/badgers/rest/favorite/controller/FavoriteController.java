@@ -18,22 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
 
 @RestController
 @RequestMapping("/favorite")
-@Log4j
 public class FavoriteController {
 
 	@Setter(onMethod_ = { @Autowired })
 	private FavoriteService service;
 	
-	// 찜  내역  보기  
-	@CrossOrigin("http://localhost:3001") //크로스 도메인 처리 
+	// 찜  내역  보기 
+	@CrossOrigin("http://localhost:3001")
 	@GetMapping(value = "/{cust_id}/mypage", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<List<FavoriteVO>> readFavorites(@PathVariable("cust_id") String custId) {
-		log.info(">>>>>  찜 내역 구하기  ==============================");
-		
 		List<FavoriteVO> favorite = null;
 		
 		try {
@@ -48,8 +44,6 @@ public class FavoriteController {
 	// 찜 회수 읽기
 	@GetMapping(value = "/{biz_id}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<Integer> countFavorites(@PathVariable("biz_id") String bizId) {
-		log.info(">>>>>  가게 찜 회수 구하기  ==============================");
-		
 		int favorite = 0;
 		
 		try {
@@ -64,8 +58,6 @@ public class FavoriteController {
 	// 특정 고객(cust_id)이 특정 가게(biz_id)를 찜했는지 확인하기
 	@GetMapping(value = "/{cust_id}/{biz_id}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<Integer> isFavoriteChk(@PathVariable("cust_id") String custId, @PathVariable("biz_id") String bizId) {
-		log.info(">>>>>  찜 삭제하기  ==============================");
-
 		int favorite = 0;
 		
 		try {
@@ -80,8 +72,6 @@ public class FavoriteController {
 	// 찜 추가하기
 	@PostMapping(value = "/add", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<Integer> addFavorite(@RequestBody FavoriteVO fav) {
-		log.info(">>>>>  가게 찜하기  ==============================");
-		
 		int favorite = 0;
 		
 		try {
@@ -101,8 +91,6 @@ public class FavoriteController {
 				, @PathVariable("biz_id") String bizId
 				, @PathVariable("biz_like_cnt") int bizLikeCnt
 			) {
-		log.info(">>>>>  찜 삭제하기  ==============================");
-		
 		try {
 			service.deleteFavorite(custId, bizId, bizLikeCnt);
 		} catch (Exception e) {

@@ -18,9 +18,6 @@
 <!-- End Headers ================================================== -->
 
 <!-- Content ================================================== -->
-<input type="hidden" id="kakaoidss" value="${sessionScope.kemail}" />
-<input type="hidden" id="kakaoniks" value="${sessionScope.knikname}" />
-<button type="button" id="kakaologin123" style="display:none;"></button>
 
     <div class="container margin_60">
 		<div class="main_title">
@@ -69,7 +66,7 @@
                     <a href="${pageContext.request.contextPath}/kitchen/biz_2/main" class="strip_list">
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
-                            <div class="thumb_strip"><img src="/customer/resources/img/thumb_restaurant.jpg" alt=""></div>
+                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant.jpg" alt=""></div>
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
                             </div>
@@ -85,7 +82,7 @@
                     <a href="/detail_page.jsp" class="strip_list">
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
-                            <div class="thumb_strip"><img src="/customer/resources/img/thumb_restaurant_2.jpg" alt=""></div>
+                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_2.jpg" alt=""></div>
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
                             </div>
@@ -101,7 +98,7 @@
                     <a href="detail_page.jsp" class="strip_list">
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
-                            <div class="thumb_strip"><img src="/customer/resources/img/thumb_restaurant_3.jpg" alt=""></div>
+                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_3.jpg" alt=""></div>
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
                             </div>
@@ -119,7 +116,7 @@
                     <a href="/detail_page.jsp" class="strip_list">
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
-                            <div class="thumb_strip"><img src="/customer/resources/img/thumb_restaurant_4.jpg" alt=""></div>
+                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_4.jpg" alt=""></div>
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
                             </div>
@@ -135,7 +132,7 @@
                     <a href="/detail_page.jsp" class="strip_list">
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
-                            <div class="thumb_strip"><img src="/customer/resources/img/thumb_restaurant_5.jpg" alt=""></div>
+                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_5.jpg" alt=""></div>
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
                             </div>
@@ -151,12 +148,12 @@
                     <a href="/detail_page.jsp" class="strip_list">
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
-                            <div class="thumb_strip"><img src="/customer/resources/img/thumb_restaurant_6.jpg" alt=""></div>
+                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_6.jpg" alt=""></div>
                             <div class="rating">
                                 <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
                             </div>
-                            <h3>계정이 안맞대자나 </h3>
-                            <div class="type">아저씨야 변화없으면 500원</div>
+                            <h3>오소리 샌드위치</h3>
+                            <div class="type">한국/패스트푸드</div>
                             <div class="location">
                                 135 Newtownards Road, Belfast, BT4.
                                 <span class="opening">Opens at 17:00</span>
@@ -177,7 +174,7 @@
         </div><!-- End container -->
     </div><!-- End hight_light -->
 
-    <section class="parallax-window" data-parallax="scroll" data-image-src="/customer/resources/img/kitchenmain.jpg" data-natural-width="1200" data-natural-height="800">
+    <section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/kitchenmain.jpg" data-natural-width="1200" data-natural-height="800">
         <div class="parallax-content">
             <div class="sub_content">
                 <i class="icon_mug"></i>
@@ -200,15 +197,15 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-2">
                 <a class="box_work" href="submit_restaurant.html">
-                    <img src="/customer/resources/img/submit_restaurant.jpg" width="848" height="480" alt="" class="img-responsive">
-                    <h3>Submit your Restaurant<span>Start to earn customer</span></h3>
+                    <img src="${pageContext.request.contextPath}/resources/img/submit_restaurant.jpg" width="848" height="480" alt="" class="img-responsive">
+                    <h3>Submit your Restaurant<span>Start to earn ${pageContext.request.contextPath} </span></h3>
                     <p>Lorem ipsum dolor sit amet, ut virtute fabellas vix, no pri falli eloquentiam adversarium. Ea legere labore eam. Et eum sumo ocurreret, eos ei saepe oratio omittantur, legere eligendi partiendo pro te.</p>
                     <div class="btn_1">Read more</div>
                 </a>
             </div>
             <div class="col-md-4">
                 <a class="box_work" href="submit_driver.html">
-                    <img src="/customer/resources/img/delivery.jpg" width="848" height="480" alt="" class="img-responsive">
+                    <img src="${pageContext.request.contextPath}/resources/img/delivery.jpg" width="848" height="480" alt="" class="img-responsive">
                     <h3>We are looking for a Driver<span>Start to earn money</span></h3>
                     <p>Lorem ipsum dolor sit amet, ut virtute fabellas vix, no pri falli eloquentiam adversarium. Ea legere labore eam. Et eum sumo ocurreret, eos ei saepe oratio omittantur, legere eligendi partiendo pro te.</p>
                     <div class="btn_1">Read more</div>
@@ -221,7 +218,7 @@
 <jsp:include page="include/footer.jsp" flush="false"/>
 <!-- Footer 끝  -->
 
-<script src="/customer/resources/js/video_header.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/video_header.js"></script>
 <script>
 	$(document).ready(function() {
     	'use strict';
@@ -276,6 +273,8 @@
     	    });
     	});
 	});
+	
+
 </script>
 </body>
 </html>

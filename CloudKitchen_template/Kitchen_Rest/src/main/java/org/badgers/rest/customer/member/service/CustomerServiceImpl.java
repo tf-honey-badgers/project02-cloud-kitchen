@@ -69,7 +69,6 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		int returnVal;
 		CustomerVO vo = mapper.login(id, pw);
-//		return (vo!=null)? (vo) : (returnVal=0);
 		return vo;
 		
 	}
@@ -158,6 +157,14 @@ public class CustomerServiceImpl implements CustomerService {
 	
 
 
+		}
+
+		//카카오
+		@Override
+		public CustomerVO checkKakaoUser(String id) throws Exception {
+			int returnVal;
+			CustomerVO vo = mapper.checkKakaoUser(id);
+			return vo;
 		}
 	
 	

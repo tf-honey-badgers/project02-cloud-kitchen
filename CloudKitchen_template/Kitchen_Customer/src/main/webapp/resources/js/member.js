@@ -1,8 +1,5 @@
 $(document).ready(function(){
-	var sessionSc1 = $('#kakaoidss').val();
-	var sessionSc2 = $('#kakaoniks').val();
-	console.log(sessionSc1);
-	console.log(sessionSc2);
+
 
 	
 	//비번 , 이름 , 이메일,주소
@@ -38,7 +35,7 @@ $(document).ready(function(){
 	    			})
 	    		, error : function() { alert("회원 탈퇴 에러."); }
 	    		, success : function() { alert("성공적으로 탈퇴 하였습니다.");
-	    		location.href = "http://localhost:3001/customer/main";
+	    		location.href = "/customer/main";
 	    		}
 			});
 		});
@@ -67,7 +64,7 @@ $(document).ready(function(){
 	/* 로그인 절차 */
 	$('#myLogin button').on('click', function() {
         $.ajax({
-            url : 'http://localhost:3001/customer/member/login'
+            url : '/customer/member/login'
             , type : 'POST'
             , contentType : 'application/json; charset=UTF-8'
             , data : JSON.stringify({
@@ -82,7 +79,7 @@ $(document).ready(function(){
                          alert('로그인 성공'); 
                          window.location.reload()
                     } else {
-                        alert("로그인 실패");	
+                        alert("이메일 인증 필요.");	
                     }
                     $('.modal').modal('hide');
                     $('#myLogin input').val("");
@@ -93,7 +90,7 @@ $(document).ready(function(){
 	// 회원가입 절차 
 	$('#myRegister button').on('click', function() {
 		$.ajax({
-    		url : 'http://localhost:3001/customer/member/register'
+    		url : '/customer/member/register'
     		, type : 'POST'
     	    , contentType : 'application/json; charset=UTF-8'
 			, dataType : 'text'
@@ -115,10 +112,10 @@ $(document).ready(function(){
     			console.log(data);
     		}
     		, success : function(data) {
-    			if(data == "가입 성공.") {
-    				alert('회원가입 ');    				
+    			if(data == "") {
+    				alert('가입성공');    				
     			} else {
-    				alert('회원가입 성공');  			
+    				alert('가입이 성공 되었으니 이메일 인증을 해주세요.');  			
     			}
     			$('.modal').modal('hide');
     			$('#myRegister input').val("");
@@ -135,7 +132,7 @@ $(document).ready(function(){
 		$('#finder').modal('show');
     	$('#getId').on('click', function() {
     		$.ajax({
-        		url : 'http://localhost:3001/customer/member/verify'
+        		url : '/customer/member/verify'
         		, type : 'POST'
 				, contentType : 'application/json'
         		, data : JSON.stringify({
@@ -193,7 +190,7 @@ $(document).ready(function(){
 		$('#finder').modal('show');
     	$('#getId').on('click', function() {
     		$.ajax({
-        		url : 'http://localhost:3001/customer/member/verify'
+        		url : '/customer/member/verify'
         		, type : 'POST'
 				, contentType : 'application/json'
         		, data : JSON.stringify({
@@ -241,7 +238,7 @@ $(document).ready(function(){
 
 
 		$.ajax({
-    		url : 'http://localhost:3001/customer/member/' + hiddenId + '/modify'
+    		url : '/customer/member/' + hiddenId + '/modify'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({
@@ -271,40 +268,6 @@ $(document).ready(function(){
 		});
 	});
 	
-	
-	$('#kakaologin123').on('click', function() {
-		console.log('sdfsdfsdfd')
-		$.ajax({
-    		url : 'http://localhost:3001/customer/member/register'
-    		, type : 'POST'
-    	    , contentType : 'application/json; charset=UTF-8'
-			, data :            
-				 JSON.stringify({
-					 
-					    id : sessionSc1
-	    				, pw :"1234"
-	    				, name : sessionSc2
-	    				, birthDate : "1111-11-11"
-	    				, phone : "010-"
-	    				, email : sessionSc1
-	    				, gender : "미정"
-	    				, status : "MEM002"
-	    		
-	    		
-    			})
-    		, error : function(data) {
-    			console.log(data);
-    		}
-    		, success : function(data) {
-    			if(data == "가입 성공.") {
-    				alert('회원가입 ');    				
-    			} else {
-    				alert('회원가입 성공');  			
-    			}
-    			
-    		}
-		});
-	})
-	
+
 	
 })

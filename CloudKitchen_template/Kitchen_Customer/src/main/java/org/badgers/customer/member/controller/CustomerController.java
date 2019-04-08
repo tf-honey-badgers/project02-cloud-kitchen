@@ -1,4 +1,4 @@
-package org.badgers.customer.member.controller;
+﻿package org.badgers.customer.member.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.badgers.customer.model.CustomerVO;
 import org.badgers.customer.model.FavoriteVO;
 import org.badgers.customer.model.OrderInfoVO;
+import org.badgers.customer.util.RestDomain;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,14 +38,14 @@ public class CustomerController {
 	@Inject
 	RestTemplate restTemplate;
 	
-	// 조회
+	// 사용자 개인정보 조회
 	@GetMapping("/{id}/change")
 	public ModelAndView readCustomer(ModelAndView mav, @PathVariable("id") String id ,HttpSession session) {
 		log.info("사용자 개인정보 읽기...............................");
 		
-		CustomerVO returnVal = null;
-		String url = "http://13.209.21.25/rest/customer/" + id + "/mypage";
-		
+		CustomerVO returnVal = null; 
+		String url = RestDomain.restDomain+"/customer/" + id + "/mypage";
+		// 사용자 정보 읽어오기
 		ResponseEntity<CustomerVO> responseEntity = restTemplate.getForEntity(url, org.badgers.customer.model.CustomerVO.class);
 		if (responseEntity.getStatusCode() == HttpStatus.OK) {
 			returnVal = responseEntity.getBody();
@@ -58,7 +59,6 @@ public class CustomerController {
 
 		mav.addObject("customer", returnVal);
 		log.info("returnVal");
-		System.out.println("resutnVal================================"+ returnVal);
 		session.setAttribute("login", returnVal);
 		mav.setViewName("modify");
 		
@@ -76,24 +76,20 @@ public class CustomerController {
 		
 		String msg ="";
 		
-		String url = "http://13.209.21.25/rest/customer/login";
-		
-		System.out.println("폰==============="+ vo);
-		System.out.println("폰==============="+ vo.getPhone());
+		String url = RestDomain.restDomain+"/customer/login";
+
+
 		try {
 		ResponseEntity<CustomerVO> responseEntity = restTemplate.postForEntity(url, vo, CustomerVO.class);
-//		status= responseEntity.getBody();
 		CustomerVO member = responseEntity.getBody();
 		status = responseEntity.getStatusCodeValue();
 		responseHeaders = new HttpHeaders();
-		
-		System.out.println("member=========================" +member);
-		
-		System.out.println("status==========================="+status);
-		
+			
 		
 		if(status==200) {
 			responseHeaders.set("id",member.getId() );
+			responseHeaders.set("idx",member.getIdx() );
+			responseHeaders.set("name",member.getName() );			
 			responseHeaders.set("phone", member.getPhone());
 			responseHeaders.set("address", member.getAddress());
 			responseHeaders.set("addressDetail", member.getAddressDetail());
@@ -101,16 +97,15 @@ public class CustomerController {
 		}
 		
 		}catch (Exception e) {
-			System.out.println(e.getMessage());
 			if(e.getMessage().contains("failed: Connection refused: connect")) {
 				msg="로그인 실패";
 				
 			}
-		
 			
 		}
 		return new ResponseEntity<>(msg, responseHeaders,HttpStatus.OK);	
 	}
+	
 	
 	//로그아웃 
 	@GetMapping("/logout")
@@ -126,7 +121,7 @@ public class CustomerController {
 	public void updateCustomer(@RequestBody CustomerVO cvo) {
 		log.info("Kitchen_Business 사용자 개인정보 수정...............................");
 		
-		String url = "http://13.209.21.25/rest/customer/" + cvo.getId() + "/mypage/modify";
+		String url = RestDomain.restDomain+"/customer/" + cvo.getId() + "/mypage/modify";
 		restTemplate.put(url, cvo);
 				
 		log.info("회원 정보 수정 완료 ");
@@ -138,7 +133,7 @@ public class CustomerController {
 	public void deleteCustomer(@RequestBody CustomerVO cvo, HttpSession session) {
 		log.info("Kitchen_Business 사용자 탈퇴...............................");
 	
-		String url = "http://13.209.21.25/rest/customer/" + cvo.getId() + "/delete";
+		String url = RestDomain.restDomain+"/customer/" + cvo.getId() + "/delete";
 		restTemplate.put(url, cvo);
 		
 		session.invalidate();		
@@ -156,16 +151,54 @@ public class CustomerController {
 	@ResponseBody
 	public String register(@RequestBody CustomerVO customer) {
 		String msg = "";
-		String url = "http://13.209.21.25/rest/customer/register";
+		String url = RestDomain.restDomain+"/customer/register";
+	
 		
-		System.out.println("customer");
-		System.out.println(customer);
+	
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
+	
 		msg = responseEntity.getBody();
-				
+	
 		return msg;
 	}
+	
+	//카카오 회원가입
+	@GetMapping(value="/register2")
+	public String registers(HttpSession session) {
+		
+		
+		String kid = (String) session.getAttribute("uid");
+		String kpw = (String) session.getAttribute("kpw");	
+		String kname = (String) session.getAttribute("uname");
+		String kbirthDate = (String) session.getAttribute("kbirthDate");
+		String kphone = (String) session.getAttribute("kphone");
+		String kemail = (String) session.getAttribute("kemail");
+		String kgender = (String) session.getAttribute("kgender");
+		String kstatus = (String) session.getAttribute("kstatus");
+
+		String url = RestDomain.restDomain+"/customer/register";
+		
+		CustomerVO vo = new CustomerVO();
+		
+		 vo.setId(kid);
+		 vo.setPw(kpw);
+		 vo.setName(kname);
+		 vo.setBirthDate(kbirthDate);
+		 vo.setPhone(kphone);
+		 vo.setEmail(kemail);
+		 vo.setGender(kgender);
+		 vo.setStatus(kstatus);
+		
+	
+	
+		
+		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url,vo,String.class);
+		
+
+		return "redirect:/main";
+	}
+	
 	
 	// 주문 내역 보기 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -174,7 +207,7 @@ public class CustomerController {
 		log.info("사용자 주문 내역 보기================================");
 		
 		List<OrderInfoVO> list = null;
-		String url = "http://13.209.21.25/rest/customer/" + custId + "/mypage/orderinfo";
+		String url = RestDomain.restDomain+"/customer/" + custId + "/mypage/orderinfo";
 		
 		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url,java.util.List.class);
 		if(responseEntity.getStatusCode()==HttpStatus.OK) {
@@ -195,14 +228,13 @@ public class CustomerController {
 		log.info("사용자 찜 내역 보기================================");
 		
 		List<FavoriteVO> favorite = null;
-		String url = "http://13.209.21.25/rest/favorite/" + custId + "/mypage";
+		String url = RestDomain.restDomain+"/favorite/" + custId + "/mypage";
 		
 		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, java.util.List.class);
 		if(responseEntity.getStatusCode()==HttpStatus.OK) {
 			favorite = (List<FavoriteVO>) responseEntity.getBody();
 		}		
 		
-		System.out.println("favorite===================="+favorite);
 		mav.addObject("list",favorite); //뷰에 전달할 데이터 지정 
 		
 		mav.setViewName("favorite"); //뷰 이름 지정 
@@ -217,7 +249,7 @@ public class CustomerController {
 		log.info(custId + "이/가 " + bizId + "를 찜했는지 확인하기 ================================");
 		
 		int favorite = 0;
-		String url = "http://13.209.21.25/rest/favorite/" + custId + "/" + bizId;
+		String url = RestDomain.restDomain+"/favorite/" + custId + "/" + bizId;
 		
 		ResponseEntity<Integer> responseEntity = restTemplate.getForEntity(url, java.lang.Integer.class);
 		if(responseEntity.getStatusCode() == HttpStatus.OK) {
@@ -233,7 +265,7 @@ public class CustomerController {
 		log.info("찜 추가하기 ================================");
 		
 		int favorite = 0;
-		String url = "http://13.209.21.25/rest/favorite/add";
+		String url = RestDomain.restDomain+"/favorite/add";
 		
 		ResponseEntity<Integer> responseEntity = restTemplate.postForEntity(url, fav, Integer.class);
 		favorite = responseEntity.getBody();
@@ -251,7 +283,7 @@ public class CustomerController {
 			) {
 		log.info(custId + "의 " + bizId + " 찜을 삭제하기 ================================");
 
-		String urlDeleteFav = "http://13.209.21.25/rest/favorite/delete/" + custId + "/" + bizId + "/" + bizLikeCnt;
+		String urlDeleteFav = RestDomain.restDomain+"/favorite/delete/" + custId + "/" + bizId + "/" + bizLikeCnt;
 		restTemplate.delete(urlDeleteFav);
 
 		return new ResponseEntity(HttpStatus.OK);
@@ -264,7 +296,7 @@ public class CustomerController {
 		log.info("Kitchen_Business 사용자 ID 찾기...............................");
 
 		String res = "";
-		String url = "http://13.209.21.25/rest/customer/verify";
+		String url = RestDomain.restDomain+"/customer/verify";
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);
 		res = responseEntity.getBody();
@@ -280,14 +312,13 @@ public class CustomerController {
 		map.put("email",email);
 		map.put("key",AuthCode);
 		
-		String url = "http://13.209.21.25/rest/customer/emailConfirm/";
+		String url = RestDomain.restDomain+"/customer/emailConfirm/";
 		int a =0;
 		
 		ResponseEntity<Integer> responseEntity = restTemplate.postForEntity(url,map,Integer.class);
 		log.info("들어간다");
 		if (responseEntity.getStatusCode() == HttpStatus.OK) {
 			a = responseEntity.getBody();
-			System.out.println("이것은="+a);		
 		}		
 		
 		if(a != 0) { log.info("이메일 인증 완료 ! "); }
@@ -302,9 +333,12 @@ public class CustomerController {
 		return mav;
 	}	
 	
+	//카드로 이동
 	@RequestMapping(value = "/card", method = RequestMethod.GET)
 	public String card() {
 		return "card";
 	}
+	
+
 
 }
