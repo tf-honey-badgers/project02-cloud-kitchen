@@ -54,7 +54,7 @@ public class BusinessController {
 		mav.addObject("bizMember", returnVal);
 		mav.addObject("favCnt", likeCnt);
 		mav.setViewName("mypage");
-
+		
 		return mav;
 	}
 
