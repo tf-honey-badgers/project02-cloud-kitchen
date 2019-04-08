@@ -30,6 +30,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 			) throws Exception {
 		System.out.println(".........................interceptor : postHandle...................");
 		String uid = response.getHeader("id");
+		String idx = response.getHeader("idx");
 		String uname = response.getHeader("name");
 		String uphone = response.getHeader("phone");
 		String uaddr = response.getHeader("address");
@@ -41,6 +42,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 			if(session != null) {
 					System.out.println("로그인 성공");
 					session.setAttribute("uid", uid );	 // 사용자 id 
+					session.setAttribute("idx", idx );	 // 사용자 idx 
 					session.setAttribute("uname", uname );	 // 사용자  이름 
 					session.setAttribute("phone", uphone );	 // 사용자 전화번호 
 					session.setAttribute("addr1", uaddr );	 // 사용자 주소 1 (지도 주소) 

@@ -14,7 +14,7 @@
 	
 	<!-- 로그인 -->
 	<select id="login" resultType="org.badgers.rest.model.CustomerVO">
-		select id, name, pw , phone,address, address_detail
+		select id, name, pw ,idx, phone,address, address_detail
 			from
 			 honey_badgers.customer
 			 
@@ -107,7 +107,8 @@
 				) as orderoption
 			ON orderdetail.id = orderoption.order_detail_id
 			) as orderdetailoption
-		WHERE
+		group by orders.id
+		HAVING
 			orders.cust_id=#{cust_id}
 			and orders.id=orderpayment.id
 			and orders.status=commoncode.id

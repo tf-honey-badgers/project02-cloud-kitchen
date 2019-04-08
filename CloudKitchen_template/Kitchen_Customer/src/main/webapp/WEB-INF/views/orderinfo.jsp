@@ -100,7 +100,7 @@ var custId = '${custId}';
 		
 		<script>
 		
-	
+		var id = $('<td>'+ list[i].id + '</td>');
 		
 
 		 var tbody = $('#t1');

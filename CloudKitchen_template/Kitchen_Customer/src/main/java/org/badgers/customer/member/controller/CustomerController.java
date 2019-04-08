@@ -88,6 +88,7 @@ public class CustomerController {
 		
 		if(status==200) {
 			responseHeaders.set("id",member.getId() );
+			responseHeaders.set("idx",member.getIdx() );
 			responseHeaders.set("name",member.getName() );			
 			responseHeaders.set("phone", member.getPhone());
 			responseHeaders.set("address", member.getAddress());
