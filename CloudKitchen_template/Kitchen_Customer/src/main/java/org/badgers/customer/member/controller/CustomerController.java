@@ -83,6 +83,7 @@ public class CustomerController {
 		CustomerVO member = responseEntity.getBody();
 		status = responseEntity.getStatusCodeValue();
 		responseHeaders = new HttpHeaders();
+		System.out.println("responseHeaders===================="+responseHeaders);
 		
 		if(status==200) {
 			responseHeaders.set("id",member.getId() );
@@ -147,7 +148,8 @@ public class CustomerController {
 	@ResponseBody
 	public String register(@RequestBody CustomerVO customer) {
 		String msg = "";
-		String url = RestDomain.restDomain+"/customer/register";
+		//String url = RestDomain.restDomain+"/customer/register";
+		String url = "http://localhost/rest/customer/register";
 		
 	
 		
@@ -172,7 +174,7 @@ public class CustomerController {
 		String kgender = (String) session.getAttribute("kgender");
 		String kstatus = (String) session.getAttribute("kstatus");
 		
-		String url = "http://13.209.21.25/rest/customer/register";
+		String url = RestDomain.restDomain+"/customer/register";
 		
 		CustomerVO vo = new CustomerVO();
 		
