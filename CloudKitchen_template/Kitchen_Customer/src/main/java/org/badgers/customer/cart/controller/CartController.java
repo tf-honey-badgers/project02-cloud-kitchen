@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.badgers.customer.model.CartVOExtend;
+import org.badgers.customer.util.RestDomain;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,13 +24,14 @@ import lombok.extern.log4j.Log4j;
 public class CartController {
 	@Inject
 	RestTemplate restTemplate;	
+	
 
 /* 카트에 메뉴 추가하기 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PostMapping(value = "/add", produces = "application/json")
 	public ResponseEntity<List<CartVOExtend>> addCart(@RequestBody CartVOExtend cart) {		
 		List<CartVOExtend> returnVal = null;
-		String url = "http://13.209.21.25/rest/cart/";
+		String url = RestDomain.restDomain+"/cart/";
 		
 		restTemplate.postForEntity(url, cart, String.class); // 카트에 메뉴 추가하기
 		url += cart.getCustId();
@@ -51,7 +53,7 @@ public class CartController {
 		List cartIds = (List) req.get("cartIds");
 		
 		List<CartVOExtend> returnVal = null;
-		String url = "http://13.209.21.25/rest/cart/" + custId;
+		String url = RestDomain.restDomain+"/cart/" + custId;
 		
 		for(int i = 0; i < cartIds.size(); i++) {
 			String tempUrl = url + "/" + cartIds.get(i);

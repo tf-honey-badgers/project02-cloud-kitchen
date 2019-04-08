@@ -29,7 +29,7 @@ public class KakaoAccessToken {
         													
         postParams.add(new BasicNameValuePair("client_id", "3aedd6d785bf068e8df19174bf251262")); //자신의 RESTAPI 코드 
         														
-        postParams.add(new BasicNameValuePair("redirect_uri", "http://localhost:3001/customer/main/kakaologin")); //  리다이렉션주소
+        postParams.add(new BasicNameValuePair("redirect_uri", "customer/main/kakaologin")); //  리다이렉션주소
  
         postParams.add(new BasicNameValuePair("code", code));// 로그인 과정중 얻은 code 값
  

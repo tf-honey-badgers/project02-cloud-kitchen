@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.badgers.customer.model.CartVOExtend;
 import org.badgers.customer.model.OrderVOExtend;
 import org.badgers.customer.order.service.PaymentService;
+import org.badgers.customer.util.RestDomain;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +43,7 @@ public class PaymentController {
 	@SuppressWarnings("rawtypes")
 	@PostMapping("/orderinfo")
 	public ModelAndView orderInfo(int[] selectedCart, ModelAndView mv) {
-		String url = "http://13.209.21.25/rest/cust/order/orderinfo";
+		String url = RestDomain.restDomain+"/cust/order/orderinfo";
 
 		log.info("::::::::::::::::::::::::::::::selectCart의 내용:::::::::::::::::::::::::::::::::::::::::");
 //		for(int i:selectedCart) {
@@ -99,7 +100,7 @@ public class PaymentController {
 		
 		if(status.equals("success")) {
 			log.info("............success");
-			String url = "http://13.209.21.25/rest/cust/order/"+order.getId();
+			String url = RestDomain.restDomain+"/cust/order/"+order.getId();
 			
 			ResponseEntity<String> responses  = restTemplate.postForEntity(url,order, String.class);
 			
