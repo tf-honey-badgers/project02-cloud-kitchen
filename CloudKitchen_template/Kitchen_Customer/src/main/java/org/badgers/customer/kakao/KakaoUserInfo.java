@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class KakaoUserInfo {
-	// 로그인 
+	// 로그인 요청 처리 
 	 public static JsonNode getKakaoUserInfo(JsonNode accessToken) {
 		 final String RequestUrl = "https://kapi.kakao.com/v2/user/me";
 	        final HttpClient client = HttpClientBuilder.create().build();

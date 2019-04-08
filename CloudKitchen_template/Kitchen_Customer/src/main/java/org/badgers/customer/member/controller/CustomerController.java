@@ -153,7 +153,7 @@ public class CustomerController {
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
 	
 		msg = responseEntity.getBody();
-			
+	
 		return msg;
 	}
 	
@@ -327,14 +327,12 @@ public class CustomerController {
 		return mav;
 	}	
 	
+	//카드로 이동
 	@RequestMapping(value = "/card", method = RequestMethod.GET)
 	public String card() {
 		return "card";
 	}
 	
-	@RequestMapping(value = "/logininfo", method = RequestMethod.GET)
-	public String kakaologin() {
-		return "logininfo";
-	}
+
 
 }
