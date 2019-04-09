@@ -54,8 +54,8 @@ public class ReviewServiceImpl implements ReviewService {
 			UserNeighborhood neighbor = new ThresholdUserNeighborhood(0.1, similarity, dm);
 			// 추천기 생성자(DB정보, 그룹군, 비슷한유저)
 			Recommender recommender = new GenericUserBasedRecommender(dm, neighbor, similarity);
-			// 추천기를 돌리면 recommend(추천받을 유저id,추천해주는 메뉴id)
-			List<RecommendedItem> list = recommender.recommend(custIdx, 1);
+			// 추천기를 돌리면 recommend(추천받을 유저id,추천받을 가지수)
+			List<RecommendedItem> list = recommender.recommend(custIdx, 4);
 			
 			return list;
 			

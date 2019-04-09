@@ -1,4 +1,4 @@
-package org.badgers.customer.member.controller;
+﻿package org.badgers.customer.member.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -85,6 +85,9 @@ public class CustomerController {
 		status = responseEntity.getStatusCodeValue();
 		responseHeaders = new HttpHeaders();
 			
+		// 메뉴추천(mahout)
+		String urlRe = RestDomain.restDomain+"/review/recommendation";
+		ResponseEntity<List> responseEntityRe = restTemplate.getForEntity(urlRe, List.class);
 		
 		if(status==200) {
 			responseHeaders.set("id",member.getId() );
@@ -94,6 +97,7 @@ public class CustomerController {
 			responseHeaders.set("address", member.getAddress());
 			responseHeaders.set("addressDetail", member.getAddressDetail());
 			msg="로그인 성공";
+			
 		}
 		
 		}catch (Exception e) {
@@ -176,7 +180,7 @@ public class CustomerController {
 		String kemail = (String) session.getAttribute("kemail");
 		String kgender = (String) session.getAttribute("kgender");
 		String kstatus = (String) session.getAttribute("kstatus");
-		
+
 		String url = RestDomain.restDomain+"/customer/register";
 		
 		CustomerVO vo = new CustomerVO();
