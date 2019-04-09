@@ -50,7 +50,7 @@ var custId = '${custId}';
 				</div>
 			</div> <!-- End col-md-2 -->
 
-
+${list }
 		<table  class="type11" id="list" style="margin: auto;" >
 		<thead>
 			<tr>
@@ -104,9 +104,9 @@ var custId = '${custId}';
 		$(document).ready(function(){
 	
 			$.getJSON( 'http://localhost/rest/customer/${custId}/mypage/orderinfo', function(list){
-				for(var i = 0, len =10  || 0 ; i < len; i++){
+				for(var i = 0, len =5  || 0 ; i < len; i++){
 					var tr = $('<tr></tr>');
-					var id = $('<td id="'+ list[i].id +'">' + list[i].id + '</td>');
+					var id = $('<td id="'+ list[1].id +'">' + list[i].id + '</td>');
 					var kitchenName = $('<td>' + list[i].kitchenName + '</td>');
 					var address = $('<td>' + list[i].address + '</td>');
 					var bizName = $('<td>' + list[i].bizName + '</td>');
@@ -133,12 +133,13 @@ var custId = '${custId}';
 					
 					for(var i = 0, len = 5 || 0 ; i < len; i++){
 						var tr = $('<tr></tr>');
+					
 						var optName =  $('<td id="'+ list2[i].optName +'">' + list2[i].optName + '</td>');
 						var optPrice = $('<td>' + list2[i].optPrice + '</td>');
-
+						var id = $('<td>' + list2[2].id + '</td>');
 				
 						
-						tr.append(optName).append(optPrice);
+						tr.append(optName).append(optPrice).append(id);
 						tbody2.append(tr);
 						console.log(list2[i]);
 					}

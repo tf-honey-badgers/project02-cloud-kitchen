@@ -4,7 +4,7 @@
 
 <!-- SubHeader & Position =============================================== -->
 <section data-parallax="scroll" data-image-src="" data-natural-width="1400" data-natural-height="470">
-		<img alt="대문" id = "introImg" src="http://img1.daumcdn.net/thumb/R720x0/?fname=https://t1.daumcdn.net/liveboard/shopping/6ee2b995fc1b4db6a30753370076786d.JPG" style="-webkit-filter: grayscale(66%);
+		<img alt="대문" id = "introImg"  style="-webkit-filter: grayscale(66%);
 																	filter: gray; width: 100%; height: 470px;">
 
 	
@@ -27,6 +27,7 @@
 <!-- End Position ============================================ -->
 <script>
 //마이페이지 사진 바꾸기 
+$(document).ready(function() {
 var imgArray = new Array();
 imgArray[0] = "http://starbbquiuc.com/wp-content/uploads/2018/11/menu_04.jpg";
 imgArray[1] = "http://img.khan.co.kr/news/2018/04/19/l_2018042001002453300196681.jpg";
@@ -41,5 +42,5 @@ imgArray[6] = "http://애플돈까스.com/skin/img/slide/slide_20170803150176428
 	var objImg = document.getElementById("introImg");
 	objImg.src = imgArray[imgNum];
 
-
+});
 </script>
