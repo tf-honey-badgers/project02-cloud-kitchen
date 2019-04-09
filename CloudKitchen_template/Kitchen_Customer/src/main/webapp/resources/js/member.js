@@ -79,7 +79,7 @@ $(document).ready(function(){
                          alert('로그인 성공'); 
                          window.location.reload()
                     } else {
-                        alert("이메일 인증 필요.");	
+                        alert("로그인 실패");	
                     }
                     $('.modal').modal('hide');
                     $('#myLogin input').val("");

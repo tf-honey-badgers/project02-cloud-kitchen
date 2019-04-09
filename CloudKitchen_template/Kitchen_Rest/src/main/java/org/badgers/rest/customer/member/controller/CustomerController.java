@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,9 @@ public class CustomerController {
 
 	@Setter(onMethod_ = { @Autowired })
 	private CustomerService service;
+	
+	@Autowired
+	BCryptPasswordEncoder passEncoder;
 
 	//회원가입                                                                                                                          
 	@PostMapping(value= "/register")
@@ -43,8 +47,12 @@ public class CustomerController {
 		}
 		
 		else {
+			String inputPass  = vo.getPw();
+			String pass =passEncoder.encode(inputPass);
+			vo.setPw(pass);
+			
 			int returnVal = service.register(vo);
-		
+			
 		
 			if(returnVal == 0) { entity = new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST); }
 			else { entity = new ResponseEntity<Integer>(returnVal, HttpStatus.OK); }
@@ -81,6 +89,9 @@ public class CustomerController {
 		int returnVal = 0;
 
 		try {
+			String inputPass  = vo.getPw();
+			String pass =passEncoder.encode(inputPass);
+			vo.setPw(pass);
 			returnVal 	= service.modify(vo);
 		} catch (Exception e) {
 			e.printStackTrace();

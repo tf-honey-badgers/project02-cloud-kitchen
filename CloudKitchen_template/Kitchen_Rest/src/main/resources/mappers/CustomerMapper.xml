@@ -107,8 +107,8 @@
 				) as orderoption
 			ON orderdetail.id = orderoption.order_detail_id
 			) as orderdetailoption
-		group by orders.id
-		HAVING
+		
+		where
 			orders.cust_id=#{cust_id}
 			and orders.id=orderpayment.id
 			and orders.status=commoncode.id

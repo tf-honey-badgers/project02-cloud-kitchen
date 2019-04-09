@@ -189,13 +189,14 @@ public class CustomerController {
 		 vo.setEmail(kemail);
 		 vo.setGender(kgender);
 		 vo.setStatus(kstatus);
+		 vo.getIdx();
 		
 	
 	
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url,vo,String.class);
 		
-
+		System.out.println("vo=========================="+vo);
 		return "redirect:/main";
 	}
 	
