@@ -67,10 +67,7 @@ public class CustomerController {
 	@SuppressWarnings("rawtypes")
 	@PostMapping(value="/login" , produces = "application/json; charset=UTF-8")
 	public ResponseEntity login(@RequestBody CustomerVO cvo) throws Exception {
-
-		
-		CustomerVO returnVal = service.login(cvo.getId(), cvo.getPw());
-		
+		CustomerVO returnVal = service.login(cvo.getId(), cvo.getPw());		
 		return (returnVal!=null)?new ResponseEntity<>(returnVal, HttpStatus.OK): new ResponseEntity<>(returnVal,HttpStatus.NOT_FOUND);	
 	}
 
