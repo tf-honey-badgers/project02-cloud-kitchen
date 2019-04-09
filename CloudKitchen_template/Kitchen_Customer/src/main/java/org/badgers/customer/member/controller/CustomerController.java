@@ -78,16 +78,11 @@ public class CustomerController {
 		
 		String url = RestDomain.restDomain+"/customer/login";
 
-
 		try {
 		ResponseEntity<CustomerVO> responseEntity = restTemplate.postForEntity(url, vo, CustomerVO.class);
 		CustomerVO member = responseEntity.getBody();
 		status = responseEntity.getStatusCodeValue();
 		responseHeaders = new HttpHeaders();
-			
-		// 메뉴추천(mahout)
-		String urlRe = RestDomain.restDomain+"/review/recommendation";
-		ResponseEntity<List> responseEntityRe = restTemplate.getForEntity(urlRe, List.class);
 		
 		if(status==200) {
 			responseHeaders.set("id",member.getId() );
@@ -97,7 +92,7 @@ public class CustomerController {
 			responseHeaders.set("address", member.getAddress());
 			responseHeaders.set("addressDetail", member.getAddressDetail());
 			msg="로그인 성공";
-			
+			System.out.println("프론트"+member.getIdx());
 		}
 		
 		}catch (Exception e) {
@@ -344,6 +339,22 @@ public class CustomerController {
 		return "card";
 	}
 	
-
+	
+// 메뉴추천(mahout)
+//String urlRe = RestDomain.restDomain+"/review/recommendation";
+//ResponseEntity<List> responseEntityRe = restTemplate.getForEntity(urlRe, List.class);
+	
+	// 찜 추가하기
+	@GetMapping(value = "/recommendation/menu")
+	public List recommendation(@RequestParam("bizIdx") int bizIdx) {
+		log.info("찜 추가하기 ================================");
+		
+		String url = RestDomain.restDomain+"/favorite/add/";
+		
+		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url+bizIdx, List.class);
+		List result = responseEntity.getBody();
+		
+		return result;
+	}
 
 }

@@ -167,7 +167,7 @@
 				<div class="form-group">
 					<input class="form-control" placeholder="상세주소" name="location" id="addr3" type="text"  />
 				</div>
-                <button type="button" class="btn btn-submit">회원가입</button>
+                <button type="button" class="btn btn-submit">회원가입</button><input type="hidden" id="bizIdx" value="${idx}">
 			</form>
 		</div>
 	</div>
@@ -216,3 +216,5 @@ function execPostCode() {
 	}).open();
 }
 </script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/mahout/mahout.js"></script>

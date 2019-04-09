@@ -35,7 +35,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 		String uphone = response.getHeader("phone");
 		String uaddr = response.getHeader("address");
 		String uaddr2 = response.getHeader("addressDetail");
-	
+		System.out.println("인터셉터"+idx);
 		//상태가 success 여서 header에 id가 담겨 있다면 세션 생성 
 		HttpSession session = request.getSession(true);
 		if(uid!=null) {
