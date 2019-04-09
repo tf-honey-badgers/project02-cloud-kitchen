@@ -85,6 +85,9 @@ public class CustomerController {
 		status = responseEntity.getStatusCodeValue();
 		responseHeaders = new HttpHeaders();
 			
+		// 메뉴추천(mahout)
+		String urlRe = RestDomain.restDomain+"/review/recommendation";
+		ResponseEntity<List> responseEntityRe = restTemplate.getForEntity(urlRe, List.class);
 		
 		if(status==200) {
 			responseHeaders.set("id",member.getId() );
@@ -93,6 +96,7 @@ public class CustomerController {
 			responseHeaders.set("address", member.getAddress());
 			responseHeaders.set("addressDetail", member.getAddressDetail());
 			msg="로그인 성공";
+			
 		}
 		
 		}catch (Exception e) {

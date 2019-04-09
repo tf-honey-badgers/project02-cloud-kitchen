@@ -78,7 +78,7 @@ public class MenuController {
 		if(result == 0) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(1, HttpStatus.OK); 
+		return new ResponseEntity<>(result, HttpStatus.OK); 
 //		return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 	}
 	
