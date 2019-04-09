@@ -68,7 +68,11 @@ public class CustomerController {
 	@PostMapping(value="/login" , produces = "application/json; charset=UTF-8")
 	public ResponseEntity login(@RequestBody CustomerVO cvo) throws Exception {
 		CustomerVO returnVal = service.login(cvo.getId(), cvo.getPw());		
-		return (returnVal!=null)?new ResponseEntity<>(returnVal, HttpStatus.OK): new ResponseEntity<>(returnVal,HttpStatus.NOT_FOUND);	
+		
+		
+		boolean passMatch = passEncoder.matches(cvo.getPw(), returnVal.getPw());
+		
+		return (returnVal!=null || passMatch)?new ResponseEntity<>(returnVal, HttpStatus.OK): new ResponseEntity<>(returnVal,HttpStatus.NOT_FOUND);	
 	}
 
 	//개인정보 끌어오기 
