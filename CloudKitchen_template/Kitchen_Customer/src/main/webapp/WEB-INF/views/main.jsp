@@ -18,7 +18,7 @@
 <!-- End Headers ================================================== -->
 
 <!-- Content ================================================== -->
-${idx}
+
     <div class="container margin_60">
 		<div class="main_title">
             <h2 class="nomargin_top" style="padding-top:0">클라우드 키친이란?</h2>
@@ -55,15 +55,15 @@ ${idx}
             <h4>평균 배송 시간 </h4>
         </div>
     </div><!-- End Container -->
-
-    <div class="white_bg">
+	<input type="hidden" id="bizIdx" value="${idx}">
+    <div class="white_bg" id="mahout">
         <div class="container margin_60">
             <div class="main_title">
                 <h2 class="nomargin_top">인기 메뉴 </h2>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <a href="${pageContext.request.contextPath}/kitchen/biz_2/main" class="strip_list">
+<%--                     <a href="${pageContext.request.contextPath}/kitchen/biz_2/main" class="strip_list">
                         <div class="ribbon_1">Popular</div>
                         <div class="desc">
                             <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant.jpg" alt=""></div>
@@ -160,7 +160,7 @@ ${idx}
                             </div>
                             <ul><li>배달<i class="icon_check_alt2 ok"></i></li></ul>
                         </div><!-- End desc-->
-                    </a><!-- End strip_list-->
+                    </a><!-- End strip_list--> --%>
                 </div>
             </div><!-- End row -->
         </div><!-- End container -->

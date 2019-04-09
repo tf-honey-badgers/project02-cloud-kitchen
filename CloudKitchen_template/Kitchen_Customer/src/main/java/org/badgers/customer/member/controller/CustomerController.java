@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -339,20 +340,40 @@ public class CustomerController {
 		return "card";
 	}
 	
-	
-// 메뉴추천(mahout)
-//String urlRe = RestDomain.restDomain+"/review/recommendation";
-//ResponseEntity<List> responseEntityRe = restTemplate.getForEntity(urlRe, List.class);
-	
-	// 찜 추가하기
-	@GetMapping(value = "/recommendation/menu")
-	public List recommendation(@RequestParam("bizIdx") int bizIdx) {
-		log.info("찜 추가하기 ================================");
+	// mahout 메뉴id받아오기
+	@GetMapping(value = "/recommendation/menu/{bizIdx}")
+	@ResponseBody
+	public List recommendation(@PathVariable("bizIdx") long bizIdx) {
+		System.out.println("프론트 추천받기 : "+bizIdx);
+		List result = null;
+		String url = RestDomain.restDomain+"/review/recommendation/";
 		
-		String url = RestDomain.restDomain+"/favorite/add/";
+		try {
+		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url+bizIdx, java.util.List.class);
+		result = responseEntity.getBody();
 		
-		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url+bizIdx, List.class);
-		List result = responseEntity.getBody();
+		} catch (final HttpClientErrorException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	// mahout 메뉴id정보 받아오기
+	@GetMapping(value = "/recommendation/info/{menuId}")
+	@ResponseBody
+	public List menuInfo(@PathVariable("menuId") String bizIdx) {
+		System.out.println("프론트 메뉴id보내기 : "+bizIdx);
+		List result = null;
+		String url = RestDomain.restDomain+"/review/menuRecommendation/";
+		
+		try {
+		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url+bizIdx, java.util.List.class);
+		result = responseEntity.getBody();
+		
+		} catch (final HttpClientErrorException e) {
+			e.printStackTrace();
+		}
 		
 		return result;
 	}
