@@ -61,111 +61,79 @@ public class CustomerServiceImpl implements CustomerService {
 		return returnVal;
 	}
 
-
 	// 로그인 by Yuriel on 2019.03.13(WED)
 	@Override
 	public CustomerVO login(String id, String pw) throws Exception {
-		System.out.println("로그인 ========================================");
-		
-		int returnVal;
-		CustomerVO vo = mapper.login(id, pw);
-		return vo;
-		
+		return mapper.login(id, pw);
 	}
-	 
 
-// 회원정보
+	// 회원정보
 	@Override
 	public CustomerVO selectById(String id) throws Exception {
-		System.out.println("나와라=============");
-		CustomerVO customer = mapper.selectById(id);
-
-		return customer;
+		return mapper.selectById(id);
 	}
 
 	// 수정
 	@Override
 	public int modify(CustomerVO vo) throws Exception {
-
 		return mapper.modify(vo); // customer 테이블에 수정된 행 개수 반환
-
 	}
 
 	// 삭제
 	@Override
 	public int delete(CustomerVO vo) throws Exception {
-
 		return mapper.delete(vo);
-
 	}
 
 	// 비번 변경
 	@Override
 	public int changePwd(String id, String pw) throws Exception {
-
 		return mapper.changePwd(id, pw);
 	}
 
 	// 멤버리스트
 	@Override
 	public List<CustomerVO> readMember(String id) throws Exception {
-		List<CustomerVO> results = null;
-		results = mapper.readMember(id);
-		return results;
-	}
-	
+		return mapper.readMember(id);
+	}	
 	
 	//주문 정보 
 	@Override
 	public List<OrderInfoVO> getOrderInfo(String custId) {
-		System.out.println("오더 정보 나와라=============");
-		List<OrderInfoVO> list = mapper.getOrderInfo(custId);
-
-		return list;
+		return mapper.getOrderInfo(custId);
 	}
 	
 	// ID 찾기 & 본인인증하기
-		public String verify(CustomerVO vo) throws Exception {
-			String returnVal = "";
-			
-			try {
-				returnVal = mapper.verify(vo);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			return returnVal;
-		}
+	public String verify(CustomerVO vo) throws Exception {
+		String returnVal = "";
 
-		//메일
-		@Override
-		public void createAuthKey(String email, String AuthCode) throws Exception {
-			
-			CustomerVO vo = new CustomerVO();
-			
-			vo.setAuthCode(AuthCode);
-			vo.setEmail(email);
-
+		try {
+			returnVal = mapper.verify(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		//회원 인증 업데이트
-		@Override
-		public int userAuth(String email, String AuthCode) throws Exception { // 인증키 일치시 DB칼럼(인증여부) Mem001->Mem002 로 변경
+		return returnVal;
+	}
 
+	//메일
+	@Override
+	public void createAuthKey(String email, String AuthCode) throws Exception {
+		CustomerVO vo = new CustomerVO();
+			
+		vo.setAuthCode(AuthCode);
+		vo.setEmail(email);
+	}
+		
+	//회원 인증 업데이트
+	@Override
+	public int userAuth(String email, String AuthCode) throws Exception { // 인증키 일치시 DB칼럼(인증여부) Mem001->Mem002 로 변경
+		return mapper.userAuth(email, AuthCode);
+	}
 
-			return mapper.userAuth(email, AuthCode);
-	
-
-
-		}
-
-		//카카오
-		@Override
-		public CustomerVO checkKakaoUser(String id) throws Exception {
-			int returnVal;
-			CustomerVO vo = mapper.checkKakaoUser(id);
-			return vo;
-		}
-	
-	
+	//카카오
+	@Override
+	public CustomerVO checkKakaoUser(String id) throws Exception {
+		return mapper.checkKakaoUser(id);
+	}
 }
