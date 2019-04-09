@@ -47,12 +47,13 @@ public class KitchenController {
 		
 		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, java.util.List.class); // 특정 가게의 메뉴 읽어오기
 		returnBiz = responseEntity.getBody();
-		
-			
-		if(auth.equals("true")) {
-			url = RestDomain.restDomain+"/cart/" + custId; // 현재 로그인되어 있는 사용자 ID를 사용
-			ResponseEntity<List> readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class); // 카트에서 특정 회원ID 가진 항목들 읽어오기
-			returnCart = readMenuFromCart.getBody();
+
+		if(auth != null) {
+			if(auth.equals("true")) {
+				url = RestDomain.restDomain+"/cart/" + custId; // 현재 로그인되어 있는 사용자 ID를 사용
+				ResponseEntity<List> readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class); // 카트에서 특정 회원ID 가진 항목들 읽어오기
+				returnCart = readMenuFromCart.getBody();
+			}			
 		}
 		
 		if(returnBiz != null) {

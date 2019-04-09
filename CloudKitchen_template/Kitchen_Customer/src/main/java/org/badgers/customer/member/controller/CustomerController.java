@@ -1,4 +1,4 @@
-package org.badgers.customer.member.controller;
+﻿package org.badgers.customer.member.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -91,6 +91,7 @@ public class CustomerController {
 		
 		if(status==200) {
 			responseHeaders.set("id",member.getId() );
+			responseHeaders.set("idx",member.getIdx() );
 			responseHeaders.set("name",member.getName() );			
 			responseHeaders.set("phone", member.getPhone());
 			responseHeaders.set("address", member.getAddress());
@@ -179,7 +180,7 @@ public class CustomerController {
 		String kemail = (String) session.getAttribute("kemail");
 		String kgender = (String) session.getAttribute("kgender");
 		String kstatus = (String) session.getAttribute("kstatus");
-		
+
 		String url = RestDomain.restDomain+"/customer/register";
 		
 		CustomerVO vo = new CustomerVO();
