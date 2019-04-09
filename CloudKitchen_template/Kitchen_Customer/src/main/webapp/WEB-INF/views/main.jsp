@@ -59,7 +59,7 @@
     <div class="white_bg" id="mahout">
         <div class="container margin_60">
             <div class="main_title">
-                <h2 class="nomargin_top">인기 메뉴 </h2>
+                <h2 class="nomargin_top">고객 맞춤 추천메뉴입니다. </h2>
             </div>
             <div class="row">
                 <div class="col-md-6">
