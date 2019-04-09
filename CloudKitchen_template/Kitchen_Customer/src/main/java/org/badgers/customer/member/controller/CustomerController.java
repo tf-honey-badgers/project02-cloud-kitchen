@@ -188,7 +188,7 @@ public class CustomerController {
 		 vo.setEmail(kemail);
 		 vo.setGender(kgender);
 		 vo.setStatus(kstatus);
-		 vo.getIdx();
+		 
 		
 	
 	

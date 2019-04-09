@@ -54,7 +54,7 @@ var custId = '${custId}';
 		<table  class="type11" id="list" style="margin: auto;" >
 		<thead>
 			<tr>
-
+				<th>주문 아이디</th>
 				<th>키친 위치</th>
 				<th>주소</th>
 				<th>가게 이름</th>
@@ -99,17 +99,15 @@ var custId = '${custId}';
 </table>
 		
 		<script>
-		
-		var id = $('<td>'+ list[i].id + '</td>');
-		
-
+	
 		 var tbody = $('#t1');
 		$(document).ready(function(){
 	
 			$.getJSON( 'http://localhost/rest/customer/${custId}/mypage/orderinfo', function(list){
-				for(var i = 0, len = 5 || 0 ; i < len; i++){
+				for(var i = 0, len =10  || 0 ; i < len; i++){
 					var tr = $('<tr></tr>');
-					var kitchenName = $('<td id="'+ list[i].kitchenName +'">' + list[i].kitchenName + '</td>');
+					var id = $('<td id="'+ list[i].id +'">' + list[i].id + '</td>');
+					var kitchenName = $('<td>' + list[i].kitchenName + '</td>');
 					var address = $('<td>' + list[i].address + '</td>');
 					var bizName = $('<td>' + list[i].bizName + '</td>');
 					var menuName = $('<td>' + list[i].menuName + '</td>');
@@ -119,7 +117,7 @@ var custId = '${custId}';
 
 			
 					
-					tr.append(kitchenName).append(address).append(bizName).append(menuName).append(quantity).append(menuPrice).append(totalAmt);
+					tr.append(id).append(kitchenName).append(address).append(bizName).append(menuName).append(quantity).append(menuPrice).append(totalAmt);
 					tbody.append(tr);
 					console.log(list[i]);
 				}
