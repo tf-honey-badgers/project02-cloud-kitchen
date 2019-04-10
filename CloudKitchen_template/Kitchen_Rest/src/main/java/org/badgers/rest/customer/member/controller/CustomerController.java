@@ -133,9 +133,9 @@ public class CustomerController {
 	
 	//주문 내역  보기 
 	@CrossOrigin("http://localhost:3001") //크로스 도메인 처리 
-	@GetMapping(value = "/{cust_id}/mypage/orderinfo", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<List<OrderInfoVO>>  getOrderInfo(@PathVariable("cust_id")String custId) throws Exception {
-		List<OrderInfoVO> list = service.getOrderInfo(custId);
+	@GetMapping(value = "/{id}/mypage/orderinfo", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<List<OrderInfoVO>>  getOrderInfo(@PathVariable("id")String id) throws Exception {
+		List<OrderInfoVO> list = service.getOrderInfo(id);
 
 		return new ResponseEntity<List<OrderInfoVO>>(list, HttpStatus.OK);
 	}

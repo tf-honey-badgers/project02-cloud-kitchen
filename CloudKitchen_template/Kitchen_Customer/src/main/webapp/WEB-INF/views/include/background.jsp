@@ -38,7 +38,7 @@ imgArray[5] = "http://img1.daumcdn.net/thumb/R720x0/?fname=https://t1.daumcdn.ne
 imgArray[6] = "http://애플돈까스.com/skin/img/slide/slide_201708031501764283_1";
 
 
-	var imgNum = Math.round(Math.random()*10);
+	var imgNum = Math.round(Math.random()*3);
 	var objImg = document.getElementById("introImg");
 	objImg.src = imgArray[imgNum];
 

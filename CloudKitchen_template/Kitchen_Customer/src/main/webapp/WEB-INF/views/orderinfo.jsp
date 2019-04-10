@@ -25,6 +25,8 @@ table{
 	<jsp:include page="include/background.jsp" flush="false" />
 	<!-- 헤드 끝 -->
 	<br><br>
+	<div class="container margin_60_35">
+	<div class="row">
 			<div class="sidebar col-md-2" style="margin: auto;">
 				<div class="theiaStickySidebar">
 					<p>
@@ -56,11 +58,11 @@ table{
 	
 	
 	
-	<h1 style="margin-left:50%;">최근 주문 </h1>
 
-	<div class="col-sm-6">
-	
-	
+	<div class="col-md-8">
+	<div class="box_style_2">
+	<h1 style="margin-left:35%;">최근 주문 내역 </h1>
+	<br>
 	
 <table class="type12" style="margin:auto;">
 		<thead>
@@ -82,8 +84,8 @@ table{
             </tr>
             <tr>
             
-            <td colspan="2">주문번호:<br>${order[0].id}</td>
-                <td colspan="2"><a href=""><button type="button" class="btn btn-submit">상세설명 보기</button></a></td> 
+            <td colspan="2" id="orders">주문번호:<br>${order[0].id}</td>
+                <td colspan="2"><a href="${pageContext.request.contextPath}/member/${order[0].id}/mypage/orderinfoDetail"><button type="button" id ="col" class="btn btn-submit2">상세설명 보기</button></a></td> 
                     
                     
             </tr>
@@ -116,7 +118,7 @@ table{
             <tr>
             
             <td colspan="2">주문번호:<br>${order[1].id}</td>
-                <td colspan="2"><a href=""><button type="button" class="btn btn-submit">상세설명 보기</button></a></td> 
+                <td colspan="2"><a href="${pageContext.request.contextPath}/member/${order[1].id}/mypage/orderinfoDetail"><button type="button" class="btn btn-submit">상세설명 보기</button></a></td> 
                     
                     
             </tr>
@@ -151,7 +153,7 @@ table{
             <tr>
             
             <td colspan="2">주문번호:<br>${order[2].id}</td>
-                <td colspan="2"><a href=""><button type="button" class="btn btn-submit">상세설명 보기</button></a></td> 
+                <td colspan="2"><a href="${pageContext.request.contextPath}/member/${order[2].id}/mypage/orderinfoDetail"><button type="button" class="btn btn-submit">상세설명 보기</button></a></td> 
                     
                     
             </tr>
@@ -162,8 +164,12 @@ table{
                        
 			</tbody>
 	</table>
-	
 	</div>
+	</div>
+	</div>
+	</div>
+	
+	
 	
 		<!-- 위쪽 헤더바  -->
 	<jsp:include page="include/footer.jsp" />

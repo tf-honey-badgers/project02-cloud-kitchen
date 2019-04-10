@@ -204,12 +204,12 @@ public class CustomerController {
 	
 	// 주문 내역 보기 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@GetMapping(value = "/{custId}/mypage/orderinfoDetail")
-	public ModelAndView readOrderinfo(ModelAndView mav, @PathVariable("custId") String custId) {
+	@GetMapping(value = "/{id}/mypage/orderinfoDetail")
+	public ModelAndView readOrderinfo(ModelAndView mav, @PathVariable("id") String id) {
 		log.info("사용자 주문 내역 보기================================");
 		
 		List<OrderInfoVO> list = null;
-		String url = RestDomain.restDomain+"/customer/" + custId + "/mypage/orderinfo";
+		String url = RestDomain.restDomain+"/customer/" + id + "/mypage/orderinfo";
 		
 		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url,java.util.List.class);
 		if(responseEntity.getStatusCode()==HttpStatus.OK) {

@@ -268,6 +268,5 @@ $(document).ready(function(){
 		});
 	});
 	
-
 	
 })

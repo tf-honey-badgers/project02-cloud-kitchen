@@ -1664,6 +1664,26 @@ s.checkbox-holder {
 	background: #444;
 }
 
+.btn.btn-submit2 {
+	width: 100%;
+	margin-top: 30px;
+	color: #85c99d;
+	padding:10px;
+	background: #fff;
+	font-weight:600;
+	outline:none;
+	-webkit-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+	font-size:16px;
+}
+.btn.btn-submit2:focus {
+	outline:none;
+}
+.btn.btn-submit2:hover {
+	color: #fff;
+	background: #444;
+}
+
 /*3.5 Spacing*/
 .add_bottom_15 {margin-bottom:15px;}
 .add_bottom_30 {margin-bottom:30px;}

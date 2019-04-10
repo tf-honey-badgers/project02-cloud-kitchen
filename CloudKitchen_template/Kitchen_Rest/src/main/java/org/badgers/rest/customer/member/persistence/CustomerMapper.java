@@ -31,7 +31,7 @@ public interface CustomerMapper {
 	public List<CustomerVO> readMember(String id) throws Exception;
 	
 	//주문내역 상세
-	public List<OrderInfoVO> getOrderInfo(String custId);
+	public List<OrderInfoVO> getOrderInfo(String id);
 	
 	// ID 찾기
 	public String verify(CustomerVO vo);

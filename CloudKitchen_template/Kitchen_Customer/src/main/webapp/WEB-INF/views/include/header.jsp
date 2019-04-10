@@ -88,11 +88,11 @@
 
 <!-- Login modal -->
 <div class="modal fade" id="login_2" tabindex="-1" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
-       <div class="modal-dialog" style="margin-top: 151px;">
-           <div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;
-					text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
+    	<div class="modal-dialog" style="margin-top: 151px;">
+           <div class="modal-content modal-popup" style="position:relative; padding:1px 30px 10px 30px;
+					text-align:center; background: #78cfcf; border-radius: 0px;border:none;">
                 <a href="javascrpit:void()" class="close-link"><i class="icon_close_alt2"></i></a>
-                <form action="${pageContext.request.contextPath}/member/login" class="popup-form" id="myLogin" style="margin: 60px 60px 10px 60px; ">
+                <form action="${pageContext.request.contextPath}/member/login" class="popup-form" id="myLogin">
                     <div class="login_icon"><i class="icon_lock_alt"></i></div>
                     <input type="text" class="form-control form-white" placeholder="아이디">
                     <input type="password" class="form-control form-white" placeholder="비밀번호">
@@ -102,14 +102,13 @@
                      </div>
                     <button type="button" class="btn btn-submit">로그인</button>
                 </form>
-          	
+          	<div style="margin-top:5%">
           <!--  <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://54.180.97.18/customer/main/kakaologin&response_type=code"> -->
            <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
            
-           <img alt="카카오 로그인" src="${pageContext.request.contextPath}/resources/img/kakaobutton.png" style="width:375px; height: 44px;">
+           <img alt="카카오 로그인" src="${pageContext.request.contextPath}/resources/img/kakaobutton.png" style="max-width: 100%; height: 44px;">
            </a>    					
-           
-      
+           </div>
     	</div>
 	</div>
 </div><!-- End modal -->
@@ -151,14 +150,14 @@
                 <input type="text" class="form-control form-white" placeholder="휴대폰 번호">
                 <input type="email" class="form-control form-white" placeholder="Email">
                 <div>
-					<input type="radio" name="gender" value="남" checked onclick="doIt('남')" id = "r1" style="width:23px;height:15px">
-					<label for = "r1" style="font-size: 15px; color: white; padding-right: 250px;" > 남 </label>
-                    <input type="radio" name="gender" value="여" onclick="doIt('여')" id = "r2" style="width:23px;height:15px">
+					<input type="radio" name="gender" value="남" checked onclick="doIt('남')" id = "r1" style="width:23px;height:18px;">
+					<label for = "r1" style="font-size: 15px; color: white; padding-right: 30%;" > 남 </label>
+                    <input type="radio" name="gender" value="여" onclick="doIt('여')" id = "r2" style="width:23px;height:18px;">
                     <label for = "r2" style="font-size: 15px; color: white; padding-right: 10px;" > 여 </label>
                    	<input type=text name=genders  value="남" style="display:none">
 				</div>				
                 <div class="form-group">                   
-					<input class="form-control" style="width: 50%; margin-right:70px; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" >
+					<input class="form-control" style="width: 50%;  display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" >
     				<button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
 				</div>
 				<div class="form-group">

@@ -100,10 +100,10 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	//주문 정보 상세
 	@Override
-	public List<OrderInfoVO> getOrderInfo(String custId) {
+	public List<OrderInfoVO> getOrderInfo(String id) {
 		
 		
-		return mapper.getOrderInfo(custId);
+		return mapper.getOrderInfo(id);
 	}
 	
 	// ID 찾기 & 본인인증하기

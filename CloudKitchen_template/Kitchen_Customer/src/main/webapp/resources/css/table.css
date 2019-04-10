@@ -6,6 +6,7 @@ table.type11 {
     line-height: 1.5;
     margin: 20px 10px;
     font-size: 0.8em;
+    width:col-md-8;
 }
 table.type11 th {
     text-align: center;
@@ -34,7 +35,7 @@ table.type12 {
     line-height: 1.5;
     margin: 20px 10px;
     font-size: 1.2em;
-    width:700px;
+    width:col-md-8;
     
     
 }

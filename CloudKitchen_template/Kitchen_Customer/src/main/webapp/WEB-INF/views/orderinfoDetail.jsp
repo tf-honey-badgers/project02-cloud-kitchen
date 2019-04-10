@@ -9,11 +9,7 @@
 <meta charset="UTF-8">
 <title>주문 리스트</title>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-2.2.4.min.js"></script>
-<script type="text/javascript">
 
-var custId = '${custId}';
-
-</script>
 </head>
 <body>
 	<!-- 위쪽 헤더바  -->
@@ -57,12 +53,14 @@ var custId = '${custId}';
 				<th>주문 번호</th>
 				<th>주소</th>
 				<th>날짜</th>
-				<th>키친 지점</th>
 				<th>가게</th>
 				<th>결제방법</th>
 				<th>메뉴</th>
 				<th>가격</th>
 				<th>수량</th>
+				<th>옵션</th>
+				<th>옵션 가격</th>
+				<th>총 금액</th>
 				<th>남긴말</th>
 				
 				
@@ -83,23 +81,25 @@ var custId = '${custId}';
 		$(document).ready(function(){
 		
 			
-			$.getJSON( 'http://localhost/rest/customer/${custId}/mypage/orderinfo', function(list){
+			$.getJSON( 'http://localhost/rest/customer/${id}/mypage/orderinfo', function(list){
 				
 				for(var i = 0, len = list.length || 0 ; i < len; i++){
 					var tr = $('<tr></tr>');
 					var id = $('<td id="'+ list[i].id +'">' + list[i].id + '</td>');
 					var address = $('<td>' + list[i].address + '</td>');
 					var time = $('<td>' + list[i].time + '</td>');
-					var kitchenName = $('<td>' + list[i].kitchenName + '</td>');
 					var bizName = $('<td>' + list[i].bizName + '</td>');
 					var method = $('<td>' + list[i].method + '</td>');
 					var menuName = $('<td>' + list[i].menuName + '</td>');
 					var menuPrice = $('<td>' + list[i].menuPrice + '</td>');
 					var quantity = $('<td>' + list[i].quantity + '</td>');
+					var optName = $('<td>' + list[i].optName + '</td>');
+					var optPrice = $('<td>' + list[i].optPrice + '</td>');
+					var payAmt = $('<td>' + list[i].payAmt + '</td>');
 					var msg = $('<td>' + list[i].msg + '</td>');
 					
-					tr.append(id).append(address).append(time).append(kitchenName).append(bizName).append(method).append(menuName).append(menuPrice)
-					.append(quantity).append(msg);
+					tr.append(id).append(address).append(time).append(bizName).append(method).append(menuName).append(menuPrice)
+					.append(quantity).append(optName).append(optPrice).append(payAmt).append(msg);
 					tbody.append(tr);
 					console.log(list[i]);
 				}

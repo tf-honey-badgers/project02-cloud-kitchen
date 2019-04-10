@@ -106,7 +106,7 @@
 			) as orderdetailoption
 		
 		where
-			orders.cust_id=#{cust_id}
+			orders.id=#{id}
 			and orders.id=orderpayment.id
 			and orders.status=commoncode.id
 			and orders.id=orderpayment.id
