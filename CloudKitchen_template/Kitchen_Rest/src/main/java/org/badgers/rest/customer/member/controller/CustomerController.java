@@ -6,10 +6,12 @@ import java.util.Map;
 import org.badgers.rest.customer.member.service.CustomerService;
 import org.badgers.rest.model.CustomerVO;
 import org.badgers.rest.model.OrderInfoVO;
+import org.badgers.rest.model.OrderVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +31,9 @@ public class CustomerController {
 
 	@Setter(onMethod_ = { @Autowired })
 	private CustomerService service;
+	
+	@Autowired
+	BCryptPasswordEncoder passEncoder;
 
 	//회원가입                                                                                                                          
 	@PostMapping(value= "/register")
@@ -43,8 +48,12 @@ public class CustomerController {
 		}
 		
 		else {
+			String inputPass  = vo.getPw();
+			String pass =passEncoder.encode(inputPass);
+			vo.setPw(pass);
+			
 			int returnVal = service.register(vo);
-		
+			
 		
 			if(returnVal == 0) { entity = new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST); }
 			else { entity = new ResponseEntity<Integer>(returnVal, HttpStatus.OK); }
@@ -59,11 +68,12 @@ public class CustomerController {
 	@SuppressWarnings("rawtypes")
 	@PostMapping(value="/login" , produces = "application/json; charset=UTF-8")
 	public ResponseEntity login(@RequestBody CustomerVO cvo) throws Exception {
-
+		CustomerVO returnVal = service.login(cvo.getId(), cvo.getPw());		
 		
-		CustomerVO returnVal = service.login(cvo.getId(), cvo.getPw());
 		
-		return (returnVal!=null)?new ResponseEntity<>(returnVal, HttpStatus.OK): new ResponseEntity<>(returnVal,HttpStatus.NOT_FOUND);	
+		boolean passMatch = passEncoder.matches(cvo.getPw(), returnVal.getPw());
+		
+		return (returnVal!=null && passMatch)?new ResponseEntity<>(returnVal, HttpStatus.OK): new ResponseEntity<>(returnVal,HttpStatus.NOT_FOUND);	
 	}
 
 	//개인정보 끌어오기 
@@ -81,6 +91,9 @@ public class CustomerController {
 		int returnVal = 0;
 
 		try {
+			String inputPass  = vo.getPw();
+			String pass =passEncoder.encode(inputPass);
+			vo.setPw(pass);
 			returnVal 	= service.modify(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -120,9 +133,9 @@ public class CustomerController {
 	
 	//주문 내역  보기 
 	@CrossOrigin("http://localhost:3001") //크로스 도메인 처리 
-	@GetMapping(value = "/{cust_id}/mypage/orderinfo", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<List<OrderInfoVO>>  getOrderInfo(@PathVariable("cust_id")String custId) {
-		List<OrderInfoVO> list = service.getOrderInfo(custId);
+	@GetMapping(value = "/{id}/mypage/orderinfo", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<List<OrderInfoVO>>  getOrderInfo(@PathVariable("id")String id) throws Exception {
+		List<OrderInfoVO> list = service.getOrderInfo(id);
 
 		return new ResponseEntity<List<OrderInfoVO>>(list, HttpStatus.OK);
 	}
@@ -162,4 +175,13 @@ public class CustomerController {
 		   return entity;
 				
 			}
+	
+		//주문 내역상세  보기 
+		@CrossOrigin("http://localhost:3001") //크로스 도메인 처리 
+		@GetMapping(value = "/{cust_id}/mypage/order", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+		public ResponseEntity<List<OrderVO>>  getOrder(@PathVariable("cust_id")String custId) throws Exception {
+			List<OrderVO> list = service.getOrder(custId);
+
+			return new ResponseEntity<List<OrderVO>>(list, HttpStatus.OK);
+		}
 }

@@ -27,4 +27,5 @@
         </ul>
     </div>
 </section> <!-- End Header video -->
+<script src="${pageContext.request.contextPath}/resources/js/mahout/mahout.js"></script>
 <!-- End SubHeader ============================================ -->

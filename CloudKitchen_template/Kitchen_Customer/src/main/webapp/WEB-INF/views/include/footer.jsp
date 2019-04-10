@@ -122,9 +122,11 @@
 				}
 			});
 		});
+	
 	});
 
 </script>
+
 
 <!-- "message" 속성이 있다면 알림창 띄우기 -->
 <%-- <c:if test="${not empty message}">

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.badgers.customer.model.CustomerVO;
 import org.badgers.customer.model.FavoriteVO;
 import org.badgers.customer.model.OrderInfoVO;
+import org.badgers.customer.model.OrderVO;
 import org.badgers.customer.util.RestDomain;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -78,13 +80,11 @@ public class CustomerController {
 		
 		String url = RestDomain.restDomain+"/customer/login";
 
-
 		try {
 		ResponseEntity<CustomerVO> responseEntity = restTemplate.postForEntity(url, vo, CustomerVO.class);
 		CustomerVO member = responseEntity.getBody();
 		status = responseEntity.getStatusCodeValue();
 		responseHeaders = new HttpHeaders();
-			
 		
 		if(status==200) {
 			responseHeaders.set("id",member.getId() );
@@ -94,6 +94,7 @@ public class CustomerController {
 			responseHeaders.set("address", member.getAddress());
 			responseHeaders.set("addressDetail", member.getAddressDetail());
 			msg="로그인 성공";
+			System.out.println("프론트"+member.getIdx());
 		}
 		
 		}catch (Exception e) {
@@ -189,37 +190,59 @@ public class CustomerController {
 		 vo.setEmail(kemail);
 		 vo.setGender(kgender);
 		 vo.setStatus(kstatus);
+		 
 		
 	
 	
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url,vo,String.class);
 		
-
+		System.out.println("vo=========================="+vo);
 		return "redirect:/main";
 	}
 	
 	
 	// 주문 내역 보기 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@GetMapping(value = "/{custId}/mypage/orderinfo")
-	public ModelAndView readOrderinfo(ModelAndView mav, @PathVariable("custId") String custId) {
+	@GetMapping(value = "/{id}/mypage/orderinfoDetail")
+	public ModelAndView readOrderinfo(ModelAndView mav, @PathVariable("id") String id) {
 		log.info("사용자 주문 내역 보기================================");
 		
 		List<OrderInfoVO> list = null;
-		String url = RestDomain.restDomain+"/customer/" + custId + "/mypage/orderinfo";
+		String url = RestDomain.restDomain+"/customer/" + id + "/mypage/orderinfo";
 		
 		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url,java.util.List.class);
 		if(responseEntity.getStatusCode()==HttpStatus.OK) {
 			list = (List<OrderInfoVO>) responseEntity.getBody();
 		}
 		
-		mav.addObject("list",list);
+		mav.addObject("orderinfo",list);
 		
-		mav.setViewName("orderinfo");	
+		mav.setViewName("orderinfoDetail");	
 		
 		return mav;
 	}
+	
+	// 주문 내역 보기 
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		@GetMapping(value = "/{custId}/mypage/orderinfo")
+		public ModelAndView readOrder(ModelAndView mav, @PathVariable("custId") String custId) {
+			log.info("사용자 주문 내역 보기================================");
+			
+			List<OrderVO> list = null;
+			String url = RestDomain.restDomain+"/customer/" + custId + "/mypage/order";
+			
+			ResponseEntity<List> responseEntity = restTemplate.getForEntity(url,java.util.List.class);
+			if(responseEntity.getStatusCode()==HttpStatus.OK) {
+				list = (List<OrderVO>) responseEntity.getBody();
+			}
+			
+			mav.addObject("order",list);
+			
+			mav.setViewName("orderinfo");	
+			
+			return mav;
+		}
 
 	// 찜 내역 보기 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -339,6 +362,42 @@ public class CustomerController {
 		return "card";
 	}
 	
-
+	// mahout 메뉴id받아오기
+	@GetMapping(value = "/recommendation/menu/{bizIdx}")
+	@ResponseBody
+	public List recommendation(@PathVariable("bizIdx") long bizIdx) {
+		System.out.println("프론트 추천받기 : "+bizIdx);
+		List result = null;
+		String url = RestDomain.restDomain+"/review/recommendation/";
+		
+		try {
+		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url+bizIdx, java.util.List.class);
+		result = responseEntity.getBody();
+		
+		} catch (final HttpClientErrorException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	// mahout 메뉴id정보 받아오기
+	@GetMapping(value = "/recommendation/info/{menuId}")
+	@ResponseBody
+	public List menuInfo(@PathVariable("menuId") String bizIdx) {
+		System.out.println("프론트 메뉴id보내기 : "+bizIdx);
+		List result = null;
+		String url = RestDomain.restDomain+"/review/menuRecommendation/";
+		
+		try {
+		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url+bizIdx, java.util.List.class);
+		result = responseEntity.getBody();
+		
+		} catch (final HttpClientErrorException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 }
