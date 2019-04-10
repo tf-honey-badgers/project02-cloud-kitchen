@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.badgers.rest.model.CustomerVO;
 import org.badgers.rest.model.OrderInfoVO;
+import org.badgers.rest.model.OrderVO;
 
 public interface CustomerService {
 
@@ -29,7 +30,7 @@ public interface CustomerService {
 	// 회원 리스트 
 	public List<CustomerVO> readMember(String id) throws Exception;
 	
-	// 주문 내역 
+	// 주문 내역 상세
 	public List<OrderInfoVO> getOrderInfo(String custId);
 	
 	//ID 찾기
@@ -44,4 +45,7 @@ public interface CustomerService {
 	
 	// 카카오 가입 확인
 	public CustomerVO checkKakaoUser(String id) throws Exception;
+	
+	// 주문내역
+	public List<OrderVO> getOrder(String custId);
 }

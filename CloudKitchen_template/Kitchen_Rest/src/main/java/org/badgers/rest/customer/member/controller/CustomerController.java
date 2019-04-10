@@ -6,6 +6,7 @@ import java.util.Map;
 import org.badgers.rest.customer.member.service.CustomerService;
 import org.badgers.rest.model.CustomerVO;
 import org.badgers.rest.model.OrderInfoVO;
+import org.badgers.rest.model.OrderVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -174,4 +175,13 @@ public class CustomerController {
 		   return entity;
 				
 			}
+	
+		//주문 내역상세  보기 
+		@CrossOrigin("http://localhost:3001") //크로스 도메인 처리 
+		@GetMapping(value = "/{cust_id}/mypage/order", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+		public ResponseEntity<List<OrderVO>>  getOrder(@PathVariable("cust_id")String custId) throws Exception {
+			List<OrderVO> list = service.getOrder(custId);
+
+			return new ResponseEntity<List<OrderVO>>(list, HttpStatus.OK);
+		}
 }

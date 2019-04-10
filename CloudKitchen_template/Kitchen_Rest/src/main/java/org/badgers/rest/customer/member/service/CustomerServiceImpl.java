@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.badgers.rest.customer.member.persistence.CustomerMapper;
 import org.badgers.rest.model.CustomerVO;
 import org.badgers.rest.model.OrderInfoVO;
+import org.badgers.rest.model.OrderVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -97,7 +98,7 @@ public class CustomerServiceImpl implements CustomerService {
 		return mapper.readMember(id);
 	}	
 	
-	//주문 정보 
+	//주문 정보 상세
 	@Override
 	public List<OrderInfoVO> getOrderInfo(String custId) {
 		
@@ -137,5 +138,12 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public CustomerVO checkKakaoUser(String id) throws Exception {
 		return mapper.checkKakaoUser(id);
+	}
+	//주문내역
+	@Override
+	public List<OrderVO> getOrder(String custId) {
+		
+		
+		return mapper.getOrder(custId);
 	}
 }

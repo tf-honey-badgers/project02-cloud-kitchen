@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.badgers.rest.model.CustomerVO;
 import org.badgers.rest.model.OrderInfoVO;
+import org.badgers.rest.model.OrderVO;
 
 public interface CustomerMapper {
 
@@ -29,7 +30,7 @@ public interface CustomerMapper {
 	//멤버 
 	public List<CustomerVO> readMember(String id) throws Exception;
 	
-	//주문내역
+	//주문내역 상세
 	public List<OrderInfoVO> getOrderInfo(String custId);
 	
 	// ID 찾기
@@ -43,4 +44,7 @@ public interface CustomerMapper {
 
 	//카카오
 	public CustomerVO checkKakaoUser(@Param("id")String id);
-}
+	
+	//주문내역
+	public List<OrderVO> getOrder(String custId);
+	}

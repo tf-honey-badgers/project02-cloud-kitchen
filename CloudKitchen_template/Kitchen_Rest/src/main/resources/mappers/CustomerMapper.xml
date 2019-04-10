@@ -140,4 +140,13 @@ update honey_badgers.customer set auth_code = #{param2} where email = #{param1}
 			from honey_badgers.customer
 			where id=#{id};
 	</select>
+	
+	<!-- 오더기본 -->
+	<select id="getOrder" parameterType="String" resultType="org.badgers.rest.model.OrderVO">
+	select
+		*
+	 from honey_badgers.order
+	 where cust_id=#{custId};
+	
+	</select>
 </mapper>

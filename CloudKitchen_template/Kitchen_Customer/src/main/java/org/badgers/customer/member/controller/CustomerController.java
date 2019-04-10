@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.badgers.customer.model.CustomerVO;
 import org.badgers.customer.model.FavoriteVO;
 import org.badgers.customer.model.OrderInfoVO;
+import org.badgers.customer.model.OrderVO;
 import org.badgers.customer.util.RestDomain;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -203,7 +204,7 @@ public class CustomerController {
 	
 	// 주문 내역 보기 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@GetMapping(value = "/{custId}/mypage/orderinfo")
+	@GetMapping(value = "/{custId}/mypage/orderinfoDetail")
 	public ModelAndView readOrderinfo(ModelAndView mav, @PathVariable("custId") String custId) {
 		log.info("사용자 주문 내역 보기================================");
 		
@@ -215,12 +216,33 @@ public class CustomerController {
 			list = (List<OrderInfoVO>) responseEntity.getBody();
 		}
 		
-		mav.addObject("list",list);
+		mav.addObject("orderinfo",list);
 		
-		mav.setViewName("orderinfo");	
+		mav.setViewName("orderinfoDetail");	
 		
 		return mav;
 	}
+	
+	// 주문 내역 보기 
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		@GetMapping(value = "/{custId}/mypage/orderinfo")
+		public ModelAndView readOrder(ModelAndView mav, @PathVariable("custId") String custId) {
+			log.info("사용자 주문 내역 보기================================");
+			
+			List<OrderVO> list = null;
+			String url = RestDomain.restDomain+"/customer/" + custId + "/mypage/order";
+			
+			ResponseEntity<List> responseEntity = restTemplate.getForEntity(url,java.util.List.class);
+			if(responseEntity.getStatusCode()==HttpStatus.OK) {
+				list = (List<OrderVO>) responseEntity.getBody();
+			}
+			
+			mav.addObject("order",list);
+			
+			mav.setViewName("orderinfo");	
+			
+			return mav;
+		}
 
 	// 찜 내역 보기 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
