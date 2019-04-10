@@ -100,6 +100,8 @@ public class CustomerServiceImpl implements CustomerService {
 	//주문 정보 
 	@Override
 	public List<OrderInfoVO> getOrderInfo(String custId) {
+		
+		
 		return mapper.getOrderInfo(custId);
 	}
 	
