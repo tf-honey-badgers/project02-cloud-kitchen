@@ -25,6 +25,6 @@ public class HomeController {
 	
 	@RequestMapping(value = "/fcmtest", method = RequestMethod.GET)
 	public String fcmtest() {		
-		return "fcm/fcmtest";
+		return "androidTest";
 	}	
 }
