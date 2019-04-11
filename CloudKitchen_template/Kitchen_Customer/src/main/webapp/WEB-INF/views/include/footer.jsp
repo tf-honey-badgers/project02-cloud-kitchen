@@ -122,8 +122,8 @@
 				}
 			});
 		});
-	
 	});
+
 	history.replaceState({}, null, location.pathname);
 
 </script>

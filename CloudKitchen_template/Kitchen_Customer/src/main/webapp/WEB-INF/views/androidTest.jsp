@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="${pageContext.request.contextPath}/resources/js/android/androidTest.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/android/androidTest.js"></script>
 </head>
 <body>
 	<h2>Hybrid App (WEB+APP)</h2>

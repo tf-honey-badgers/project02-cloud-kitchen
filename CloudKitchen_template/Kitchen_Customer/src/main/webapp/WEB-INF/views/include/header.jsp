@@ -49,7 +49,7 @@
 			<div class="col--md-4 col-sm-4 col-xs-4">
 				<a href="${pageContext.request.contextPath}/main" id="logo">
 					<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="120" height="" alt="" data-retina="true" class="hidden-xs" style="position:absolute; top:-21px">
-					<img src="${pageContext.request.contextPath}/resources/img/logo_mobile.png" width="59" height="23" alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm">
+					<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="120"  alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm" style="position:absolute; top:-20px">
 				</a>
 			</div>
 			<nav class="col--md-8 col-sm-8 col-xs-8">
@@ -57,7 +57,7 @@
 				<div class="main-menu">
 					<div id="header_menu">
 						<a href="${pageContext.request.contextPath}/main">
-						<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="190" height="" alt="logo" data-retina="true" style="position:absolute; top:-23px">
+						<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="120" height="" alt="logo" data-retina="true" style="position:absolute; top:-8px; right:15px">
 						</a>
 					</div>
 					<a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
@@ -76,7 +76,6 @@
 							<li><a href="${pageContext.request.contextPath}/member/${uid}/change">회원 정보</a></li>
 						</c:if>
 						<li><a href="${pageContext.request.contextPath}/about">회사 소개</a></li>
-						<li><a id="QnA" href="${pageContext.request.contextPath}/about">QnA</a></li>
 					</ul>
 				</div> <!-- End main-menu -->
 			</nav>
@@ -102,14 +101,13 @@
 				    	<a class="changePw" href="#" style="font-size: 13px;">비밀번호를 잊으셨나요?</a>
                      </div>
                     <button type="button" class="btn btn-submit">로그인</button>
-                </form>
-          	<div style="margin-top:5%">
-          <!--  <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://54.180.97.18/customer/main/kakaologin&response_type=code"> -->
-           <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
-           
-           <img alt="카카오 로그인" src="${pageContext.request.contextPath}/resources/img/kakaobutton.png" style="max-width: 100%; height: 44px;">
-           </a>    					
-           </div>
+
+					<a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
+						<img alt="카카오 로그인" src="${pageContext.request.contextPath}/resources/img/kakaobutton.png"
+						class="btn" style="width: 100%; padding: 0; height: 44px; margin-top: 3px">
+					</a>
+
+			</form>
     	</div>
 	</div>
 </div><!-- End modal -->
@@ -134,16 +132,40 @@
 	</div>
 </div>
 <!-- End Find Modal -->
+
 <!-- chatbot -->
-<iframe
-	id="QnAbotFrame" 
-    allow="microphone;"
-    width="350"
-    height="430"
-    src="https://console.dialogflow.com/api-client/demo/embedded/d15a26ba-2ee8-4799-884b-6dbce206a063"
-    style="display:none; position:fixed; width:50vh; height:50vh; right:0; bottom:0; z-index:9999;">
-</iframe>
-<!-- End chatbot -->
+<div style="position:fixed; width:50vh; height:50vh; right:0; bottom:0; z-index:9999;">
+	 <div
+	 	class="QnA"
+		style="display:none; width:100%; height:100%;">
+		<span style="
+		font-weight: bolder;
+	    position: relative;
+	    right: 10px;
+	    display: block;
+	    text-align: right;
+	    bottom: 20px;
+	    top: 20px;
+	    color: white;
+	    cursor: default;">
+		X
+		</span>
+		<iframe
+			id="QnAbotFrame"
+		    allow="microphone;"
+		    width="100%"
+		    height="100%"
+		    src="https://console.dialogflow.com/api-client/demo/embedded/d15a26ba-2ee8-4799-884b-6dbce206a063">
+		 </iframe>
+	 </div>
+	 <img 
+	 	class="QnA"
+	 	alt="chatbot_btn"
+	 	src="${pageContext.request.contextPath}/resources/img/bot.png"
+	 	style="display:block; width:9vh; height:9vh; position:inherit; bottom:5vh; right:5vh;">
+</div>
+<!-- chatbot -->
+
 
 <!-- Register modal -->
 <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myRegister" aria-hidden="true">
@@ -229,12 +251,11 @@ function execPostCode() {
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 	$(document).ready(function(){
-		$('#QnA').on('click',function(event){
-			event.preventDefault();
-			$('#QnAbotFrame').toggle();
-			console.log('토글토글');
-		});
 		
+		$('.QnA').on('click',function(){
+			$('.QnA').toggle();
+			console.log('토글토글르');
+		});
 		
 	});
 
