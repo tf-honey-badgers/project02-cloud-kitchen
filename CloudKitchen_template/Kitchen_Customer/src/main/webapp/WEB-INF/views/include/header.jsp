@@ -134,6 +134,40 @@
 </div>
 <!-- End Find Modal -->
 
+<!-- chatbot -->
+<div style="position:fixed; width:50vh; height:50vh; right:0; bottom:0; z-index:9999;">
+	 <div
+	 	class="QnA"
+		style="display:none; width:100%; height:100%;">
+		<span style="
+		font-weight: bolder;
+	    position: relative;
+	    right: 10px;
+	    display: block;
+	    text-align: right;
+	    bottom: 20px;
+	    top: 20px;
+	    color: white;
+	    cursor: default;">
+		X
+		</span>
+		<iframe
+			id="QnAbotFrame"
+		    allow="microphone;"
+		    width="100%"
+		    height="100%"
+		    src="https://console.dialogflow.com/api-client/demo/embedded/d15a26ba-2ee8-4799-884b-6dbce206a063">
+		 </iframe>
+	 </div>
+	 <img 
+	 	class="QnA"
+	 	alt="chatbot_btn"
+	 	src="${pageContext.request.contextPath}/resources/img/bot.png"
+	 	style="display:block; width:9vh; height:9vh; position:inherit; bottom:5vh; right:5vh;">
+</div>
+<!-- chatbot -->
+
+
 <!-- Register modal -->
 <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myRegister" aria-hidden="true">
 	<div class="modal-dialog">
@@ -216,3 +250,14 @@ function execPostCode() {
 }
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		
+		$('.QnA').on('click',function(){
+			$('.QnA').toggle();
+			console.log('토글토글르');
+		});
+		
+	});
+
+</script>

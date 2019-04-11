@@ -85,7 +85,7 @@
 	.table.cart-list, .table.cart-list thead, .table.cart-list tbody, .table.cart-list th, .table.cart-list td, .table.cart-list  tr{ display: block; border:0; }
 	.table.cart-list thead tr { position: absolute;top: -9999px;left: -9999px;}
 	.table.cart-list tr { border: 1px solid #ccc; }
-	.table.cart-list td { border: none;border-bottom: 1px solid #eee; position: relative;padding-left: 70% !important; }
+	.table.cart-list td { border: none;border-bottom: 1px solid #eee; position: relative;padding-left: 50% !important; }
 	.table.cart-list td:before { position: absolute;top: 12px;left: 12px;width: 45%; padding-right: 10px; white-space: nowrap;}
 	.table.cart-list td:nth-of-type(1):before { content: "메뉴"; font-weight: bold; color:#111;}
 	.table.cart-list td:nth-of-type(2):before { content: "가격"; font-weight: bold; color:#111;}
