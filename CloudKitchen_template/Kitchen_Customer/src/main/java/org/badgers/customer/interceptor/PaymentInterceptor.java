@@ -86,7 +86,7 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 			//만약 option이 없는 메뉴라면
 			if(cart.getOptions()==null) {
 				//option 가격이 없으므로 메뉴의 가격만 TotalAmt에 set해준다
-				orderDetail.setTotalAmt(orderDetail.getMenuPrice());
+				orderDetail.setTotalAmt(orderDetail.getMenuPrice()*orderDetail.getQuantity());
 				//orderDetailVO에 set 해줄 orderOption이 없으므로 그대로 List에 넣어준다 
 				orderDetailList.add(orderDetail);
 				
@@ -102,7 +102,7 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 				
 				orderOptionVO.setOptId(cartDetail.getMenuOptId()+"");
 				orderOptionVO.setOptName(cartDetail.getMenuOptName());
-				orderOptionVO.setOptPrice(cartDetail.getMenuOptPrice());
+				orderOptionVO.setOptPrice(cartDetail.getMenuOptPrice()*orderDetail.getQuantity());
 				orderOptionVO.setOrderDetailId(orderDetailId);
 				
 				//생성된 orderOptionVO를 List에 담아준다
