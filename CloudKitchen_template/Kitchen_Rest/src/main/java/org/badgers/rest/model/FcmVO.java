@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class FcmVO {
 	
-	private String custId;
+	private String id;
 	private String fcmToken;
 
 }

@@ -8,7 +8,7 @@
 	<update id="updateFcmToken">
 		UPDATE honey_badgers.customer SET
 		fcmToken = #{fcmToken}
-		WHERE id=#{custId}
+		WHERE id=#{id}
 	</update>
 
 
