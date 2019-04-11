@@ -76,6 +76,7 @@
 							<li><a href="${pageContext.request.contextPath}/member/${uid}/change">회원 정보</a></li>
 						</c:if>
 						<li><a href="${pageContext.request.contextPath}/about">회사 소개</a></li>
+						<li><a id="QnA" href="${pageContext.request.contextPath}/about">QnA</a></li>
 					</ul>
 				</div> <!-- End main-menu -->
 			</nav>
@@ -133,6 +134,16 @@
 	</div>
 </div>
 <!-- End Find Modal -->
+<!-- chatbot -->
+<iframe
+	id="QnAbotFrame" 
+    allow="microphone;"
+    width="350"
+    height="430"
+    src="https://console.dialogflow.com/api-client/demo/embedded/d15a26ba-2ee8-4799-884b-6dbce206a063"
+    style="display:none; position:fixed; width:50vh; height:50vh; right:0; bottom:0; z-index:9999;">
+</iframe>
+<!-- End chatbot -->
 
 <!-- Register modal -->
 <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myRegister" aria-hidden="true">
@@ -216,3 +227,15 @@ function execPostCode() {
 }
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('#QnA').on('click',function(event){
+			event.preventDefault();
+			$('#QnAbotFrame').toggle();
+			console.log('토글토글');
+		});
+		
+		
+	});
+
+</script>
