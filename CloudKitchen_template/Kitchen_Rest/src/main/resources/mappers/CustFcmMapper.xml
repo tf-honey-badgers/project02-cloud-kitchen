@@ -5,12 +5,11 @@
 
 <mapper namespace="org.badgers.rest.customer.fcm.persistence.CustFcmMapper">
 
-	<!-- <update id="updateOrderStatus">
-		UPDATE order_detail SET
-		status = #{arg0}
-		WHERE biz_id=#{arg1}
-		and order_id=#{arg2}
-	</update> -->
+	<update id="updateFcmToken">
+		UPDATE honey_badgers.customer SET
+		fcmToken = #{fcmToken}
+		WHERE id=#{custId}
+	</update>
 
 
 </mapper>

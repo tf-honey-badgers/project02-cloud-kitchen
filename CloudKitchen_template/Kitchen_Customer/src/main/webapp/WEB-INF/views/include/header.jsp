@@ -57,7 +57,7 @@
 				<div class="main-menu">
 					<div id="header_menu">
 						<a href="${pageContext.request.contextPath}/main">
-						<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="190" height="23" alt="logo" data-retina="true" style="position:absolute; top:-23px">
+						<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="190" height="" alt="logo" data-retina="true" style="position:absolute; top:-23px">
 						</a>
 					</div>
 					<a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>

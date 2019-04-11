@@ -11,8 +11,8 @@ public class CustFcmServiceImple implements CustFcmService  {
 	private CustFcmMapper mapper;
 	
 	@Override
-	public int updateFcmPush(FcmVO vo) {
-		return 0;
+	public int updateFcmToken(FcmVO vo) {
+		return mapper.updateFcmToken(vo);
 	}
 
 }

@@ -4,6 +4,6 @@ import org.badgers.rest.model.FcmVO;
 import org.springframework.stereotype.Service;
 
 public interface CustFcmService {
-	public int updateFcmPush(FcmVO vo);
+	public int updateFcmToken(FcmVO vo);
 
 }
