@@ -22,4 +22,9 @@ public class HomeController {
 	public String aboutUs() {		
 		return "about";
 	}	
+	
+	@RequestMapping(value = "/fcmtest", method = RequestMethod.GET)
+	public String fcmtest() {		
+		return "androidTest";
+	}	
 }
