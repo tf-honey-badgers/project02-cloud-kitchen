@@ -60,7 +60,7 @@
 					</div>																		  
 					<div class="form-group">
 						<label>비밀번호</label>
-						<input type="text" class="form-control" id="pw" name="customerPw" value="${customer.pw}">
+						<input type="password" class="form-control" id="pw" name="customerPw" value="${customer.pw}">
 					</div>
 					<div class="form-group">
 						<label>이름</label>
