@@ -76,8 +76,8 @@ $(document).ready(function(){
                 }
                 , success : function(data) {
                     if(data == "로그인 성공") {
-                         alert('로그인 성공');
                          sendMessage($('#myLogin input:eq(0)').val());
+                         alert('로그인 성공');
                          window.location.reload();
                     } else {
                         alert("로그인 실패");	
