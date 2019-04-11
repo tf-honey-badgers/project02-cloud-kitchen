@@ -70,7 +70,7 @@
 										</td>
 										<td data-price="${dish.mbasicPrice}"><strong>${dish.mbasicPrice} 원</strong></td>
 										<td class="options">
-											<div class="dropdown dropdown-options plus-sign">
+											<div class="dropdown dropdown-options">
 												<a href="#" id="addCart" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
 												<div class="dropdown-menu">
 													<c:forEach var="extras" items="${dish.menuOptCl}">
