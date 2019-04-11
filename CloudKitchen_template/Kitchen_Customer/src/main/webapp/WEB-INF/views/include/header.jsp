@@ -49,7 +49,7 @@
 			<div class="col--md-4 col-sm-4 col-xs-4">
 				<a href="${pageContext.request.contextPath}/main" id="logo">
 					<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="120" height="" alt="" data-retina="true" class="hidden-xs" style="position:absolute; top:-21px">
-					<img src="${pageContext.request.contextPath}/resources/img/logo_mobile.png" width="59" height="23" alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm">
+					<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="120"  alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm" style="position:absolute; top:-20px">
 				</a>
 			</div>
 			<nav class="col--md-8 col-sm-8 col-xs-8">
@@ -57,7 +57,7 @@
 				<div class="main-menu">
 					<div id="header_menu">
 						<a href="${pageContext.request.contextPath}/main">
-						<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="190" height="" alt="logo" data-retina="true" style="position:absolute; top:-23px">
+						<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="120" height="" alt="logo" data-retina="true" style="position:absolute; top:-8px; right:15px">
 						</a>
 					</div>
 					<a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
@@ -101,14 +101,13 @@
 				    	<a class="changePw" href="#" style="font-size: 13px;">비밀번호를 잊으셨나요?</a>
                      </div>
                     <button type="button" class="btn btn-submit">로그인</button>
-                </form>
-          	<div style="margin-top:5%">
-          <!--  <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://54.180.97.18/customer/main/kakaologin&response_type=code"> -->
-           <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
-           
-           <img alt="카카오 로그인" src="${pageContext.request.contextPath}/resources/img/kakaobutton.png" style="max-width: 100%; height: 44px;">
-           </a>    					
-           </div>
+
+					<a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
+						<img alt="카카오 로그인" src="${pageContext.request.contextPath}/resources/img/kakaobutton.png"
+						class="btn" style="width: 100%; padding: 0; height: 44px; margin-top: 3px">
+					</a>
+
+			</form>
     	</div>
 	</div>
 </div><!-- End modal -->

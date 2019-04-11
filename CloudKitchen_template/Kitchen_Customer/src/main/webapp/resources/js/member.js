@@ -88,15 +88,7 @@ $(document).ready(function(){
             });
         })
 
-      function sendMessage(msg){
-		console.log(msg);
-		if(window.HybridApp==null){
-			console.log('이건 웹이라서 window.HybridApp 같은 건 없단다');
-			return;
-		}
-		window.HybridApp.setMessage(msg);
-	}
-	
+      
         
 	// 회원가입 절차 
 	$('#myRegister button').on('click', function() {
@@ -281,3 +273,13 @@ $(document).ready(function(){
 	
 	
 })
+
+function sendMessage(msg){
+		console.log(msg);
+		if(window.HybridApp==null){
+			console.log('이건 웹이라서 window.HybridApp 같은 건 없단다');
+			return;
+		}
+		window.HybridApp.setMessage(msg);
+	}
+	
