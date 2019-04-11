@@ -187,7 +187,7 @@
     </section><!-- End section -->
 <!-- End Content =============================================== -->
 
-    <div class="container margin_60">
+<%--     <div class="container margin_60">
         <div class="main_title margin_mobile">
             <h2 class="nomargin_top">Work with Us</h2>
             <p>
@@ -212,7 +212,7 @@
                 </a>
             </div>
         </div><!-- End row -->
-    </div><!-- End container -->
+    </div><!-- End container --> --%>
 
 <!-- Footer 시작  -->
 <jsp:include page="include/footer.jsp" flush="false"/>
