@@ -49,6 +49,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 					session.setAttribute("addr2", uaddr2 );	 // 사용자 주소 2 (상세 주소)
 			}
 		}
+		
 
 		//map에 logout 이라는 키를 가지고 있으면 세션invalidate() 해주기
 		if(mv!=null) {
