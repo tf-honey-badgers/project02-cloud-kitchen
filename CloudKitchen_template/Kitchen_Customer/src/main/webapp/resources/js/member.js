@@ -76,8 +76,9 @@ $(document).ready(function(){
                 }
                 , success : function(data) {
                     if(data == "로그인 성공") {
-                         alert('로그인 성공'); 
-                         window.location.reload()
+                         alert('로그인 성공');
+                         sendMessage($('#myLogin input:eq(0)').val());
+                         window.location.reload();
                     } else {
                         alert("로그인 실패");	
                     }
@@ -87,6 +88,10 @@ $(document).ready(function(){
             });
         })
  
+    function sendMessage(msg){
+		window.HybridApp.setMessage(msg);
+	}
+        
 	// 회원가입 절차 
 	$('#myRegister button').on('click', function() {
 		$.ajax({
