@@ -14,16 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.firebase.FirebaseException;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j;
 
 @RestController
 @RequestMapping("/biz/order")
 @RequiredArgsConstructor
+@Log4j
 public class BizOrderController {
 
 	private final BizOrderService bizOrderService;
 	private final BizFireBaseService fireBaseService;
 	private final StatusChangeService statusChangeService;
-	
+	//주문 상태 변경 
 	@GetMapping("/{bizId}/{orderId}/{status}")
 	public ResponseEntity<?> updateOrderStatus(
 			@PathVariable("bizId") String bizId, 
@@ -35,5 +37,14 @@ public class BizOrderController {
 		bizOrderService.updateOrderStatus(status, bizId, orderId);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@GetMapping("/fcm/{orderId}")
+	public ResponseEntity<String> getFcmToken(@PathVariable String orderId){
+		log.info(orderId);
+		fireBaseService.getToken(orderId);
+		log.info(fireBaseService.getToken(orderId));
+		
+		return  new ResponseEntity<>(HttpStatus.OK);
 	}
 }
