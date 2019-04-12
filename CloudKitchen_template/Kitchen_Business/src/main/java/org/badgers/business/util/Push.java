@@ -1,6 +1,7 @@
 package org.badgers.business.util;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -9,18 +10,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+
+//@Component(value="push")
 public class Push  
 {  
-	public static void main(String[] args) throws IOException 
-	{  
-		Push push = new Push();  
-		try 
-		{  
-			push.send("eLBXgr-xXFY:APA91bETn7493-OKe7Mn25DW_auZkMhd41xkeHCmztzWFO0aX5PQN8VMmb5wAdhLutPk8ZW_UHPdz3cwXiLC1Owqq_leOYEZhpRweZmccZFZD86_kMJbrRZsnXA9FjZyEg4f1bkiPKQC", "잘 갑니다~~");  
-	  } catch (IOException e) {  
-	      e.printStackTrace();  
-	  }  
-	}
+
 	String            endpoint;  
 	List<String>      scope;  
 	String            keyFile;  
@@ -117,3 +114,6 @@ public class Push
 		return http.getResponseMessage();  
 	}  
 }
+
+
+
