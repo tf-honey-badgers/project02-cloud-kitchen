@@ -40,7 +40,7 @@ public class FcmTest {
         
 //        List<MobileTokenVO> tokenList = fcmService.loadFCMInfoList(vo); 
         
-            String token = "fTsvD08oRvU:APA91bFN5Iu4awzj8EFFtpoCOjIsOBRp8tSwpiwv9BRclibMrY4fqSU_zi1lxFj_FadvSwO1zeer41xMwMBCd_TqYzUhiehrbdCA-tUTZ7_mlG3_yn_Yh6qBRZDQgyMPRFvSokND9EHI";
+            String token = "eLBXgr-xXFY:APA91bETn7493-OKe7Mn25DW_auZkMhd41xkeHCmztzWFO0aX5PQN8VMmb5wAdhLutPk8ZW_UHPdz3cwXiLC1Owqq_leOYEZhpRweZmccZFZD86_kMJbrRZsnXA9FjZyEg4f1bkiPKQC";
             
             final String apiKey = "AAAAirDSVJU:APA91bELk-vmeH3kQD2YRm3zrpAueunhkJVop1pF3L-G4mTQtfeAANIhnRBW5-yUcYDpupZ2ByjjzQ4sCXCo0bPNOkehZszbe3eat_SFgpKHsbL8N7gzxcx0Y3lvJsvFMrZ9Ly8fewf3";
             URL url = new URL("https://fcm.googleapis.com/fcm/send");

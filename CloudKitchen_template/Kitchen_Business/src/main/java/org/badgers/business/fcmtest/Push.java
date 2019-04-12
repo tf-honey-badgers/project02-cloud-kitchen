@@ -30,7 +30,7 @@ public class Push
   
 	public Push() throws IOException  
 	{  
-	    this.endpoint = "https://fcm.googleapis.com/v1/projects/my-fcm-project/messages:send";  
+	    this.endpoint = "https://fcm.googleapis.com/v1/projects/honeybadgers-d29cf/messages:send";  
 		this.keyFile = "AAAAirDSVJU:APA91bELk-vmeH3kQD2YRm3zrpAueunhkJVop1pF3L-G4mTQtfeAANIhnRBW5-yUcYDpupZ2ByjjzQ4sCXCo0bPNOkehZszbe3eat_SFgpKHsbL8N7gzxcx0Y3lvJsvFMrZ9Ly8fewf3";  
 	  
 //		String tmp[] = System.getProperty("scope").split(",");  
@@ -71,12 +71,15 @@ public class Push
   
 	public String send(String userToken, String message) throws IOException  
 	{  
+		
+		
 		URL url = new URL(endpoint);  
 		http = (HttpURLConnection) url.openConnection();  
   
 		http.setRequestMethod("POST");  
 		http.setDoInput(true);  
 		http.setRequestProperty("Authorization", "Bearer " + accessToken);  
+		System.out.println(accessToken);
 		http.setRequestProperty("Content-Type", "application/json; UTF-8");  
   
 		http.setDoOutput(true);  
@@ -111,7 +114,6 @@ public class Push
 		}  
   
 		 http.disconnect();  
-  
 		return http.getResponseMessage();  
 	}  
 }
