@@ -55,4 +55,5 @@ table.type12 td {
     vertical-align: top;
     border-bottom: 1px solid #ccc;
     background: #eee;
+    word-break:break-all;
 	 

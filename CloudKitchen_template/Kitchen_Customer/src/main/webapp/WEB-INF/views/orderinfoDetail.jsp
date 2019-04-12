@@ -82,7 +82,7 @@
 		
 			
 			$.getJSON( 'http://localhost/rest/customer/${id}/mypage/orderinfo', function(list){
-				
+			
 				for(var i = 0, len = list.length || 0 ; i < len; i++){
 					var tr = $('<tr></tr>');
 					var id = $('<td id="'+ list[i].id +'">' + list[i].id + '</td>');
@@ -98,11 +98,21 @@
 					var payAmt = $('<td>' + list[i].payAmt + '</td>');
 					var msg = $('<td>' + list[i].msg + '</td>');
 					
+					if(list[i].optName == null){
+						optName = '<td>'+"옵션 없음"+'</td>';
+					
+					
 					tr.append(id).append(address).append(time).append(bizName).append(method).append(menuName).append(menuPrice)
 					.append(quantity).append(optName).append(optPrice).append(payAmt).append(msg);
 					tbody.append(tr);
-					console.log(list[i]);
+					}else{
+						tr.append(id).append(address).append(time).append(bizName).append(method).append(menuName).append(menuPrice)
+						.append(quantity).append(optName).append(optPrice).append(payAmt).append(msg);
+						tbody.append(tr);
+					}
+					
 				}
+					console.log(list[i]);
 			});
 		 
 		
