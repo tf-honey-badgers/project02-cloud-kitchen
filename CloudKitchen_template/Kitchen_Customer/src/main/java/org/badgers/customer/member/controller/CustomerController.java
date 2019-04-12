@@ -163,7 +163,7 @@ public class CustomerController {
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
 	
 		msg = responseEntity.getBody();
-	
+		
 		return msg;
 	}
 	
@@ -226,6 +226,7 @@ public class CustomerController {
 	
 	
 	// 주문 내역 보기 
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping(value = "/{id}/mypage/orderinfoDetail")
 	public ModelAndView readOrderinfo(ModelAndView mav, @PathVariable("id") String id) {

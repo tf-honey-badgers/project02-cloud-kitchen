@@ -109,16 +109,16 @@ $(document).ready(function(){
     				, address : $('#myRegister input:eq(11)').val()
     				, addressDetail : $('#myRegister input:eq(12)').val()
     		
-  
+    			
     			})
     		, error : function(data) {
     			console.log(data);
     		}
     		, success : function(data) {
-    			if(data == "") {
-    				alert('가입성공');    				
+    			if(data == "<Integer>1</Integer>") {
+    				alert('가입이 성공 되었으니 이메일 인증을 해주세요.');    				
     			} else {
-    				alert('가입이 성공 되었으니 이메일 인증을 해주세요.');  			
+    				alert('가입 실패 다시 시도해 주새요.');  			
     			}
     			$('.modal').modal('hide');
     			$('#myRegister input').val("");
