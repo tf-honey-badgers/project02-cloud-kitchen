@@ -1,8 +1,11 @@
 package org.badgers.business.order.controller;
 
+import java.io.IOException;
+
 import javax.inject.Inject;
 
 import org.badgers.business.model.OrderVO;
+import org.badgers.business.util.Push;
 import org.badgers.business.util.RestDomain;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,11 +40,14 @@ public class OrderController {
 	public ResponseEntity<Object> updateStatus(
 			@PathVariable("bizId") String bizId, 
 			@PathVariable("orderId") String orderId, 
-			@PathVariable("status") String status) {
+			@PathVariable("status") String status) throws IOException {
 		
 		String url =  RestDomain.restDomain+"/biz/order/"+bizId+"/"+orderId+"/"+status; 
 		ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 		String userToken=response.getBody();
+		
+		Push messagePush = new Push();
+		messagePush.send(userToken, "가냐?");
 		
 		System.out.println("obj가 뭐냐?------------------------------");
 		System.out.println(response.getBody());
