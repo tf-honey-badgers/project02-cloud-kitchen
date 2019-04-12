@@ -7,7 +7,7 @@
     <div id="subheader">
     	<div id="sub_content">
     	 <h1>About us</h1>
-         <p>Qui debitis meliore ex, tollit debitis conclusionemque te eos.</p>
+         <p>우리를 뽑으십시오.</p>
          <p></p>
         </div><!-- End sub_content -->
 	</div><!-- End subheader -->

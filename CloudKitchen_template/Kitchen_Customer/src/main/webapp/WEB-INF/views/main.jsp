@@ -63,104 +63,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-<%--                     <a href="${pageContext.request.contextPath}/kitchen/biz_2/main" class="strip_list">
-                        <div class="ribbon_1">Popular</div>
-                        <div class="desc">
-                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant.jpg" alt=""></div>
-                            <div class="rating">
-                                <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-                            </div>
-                            <h3>유니네 피자집</h3>
-                            <div class="type">이태리 / 피자</div>
-                            <div class="location">
-                            	주소를 적으세요
-                            	<span class="opening">오픈 09:00</span>
-                            </div>
-                            <ul><li>배달<i class="icon_check_alt2 ok"></i></li></ul>
-                        </div><!-- End desc-->
-                    </a><!-- End strip_list-->
-                    <a href="/detail_page.jsp" class="strip_list">
-                        <div class="ribbon_1">Popular</div>
-                        <div class="desc">
-                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_2.jpg" alt=""></div>
-                            <div class="rating">
-                                <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-                            </div>
-                            <h3>태주네 떡볶이</h3>
-                            <div class="type">한국 / 분식</div>
-                            <div class="location">
-                            	135 Newtownards Road, Belfast, BT4.
-                            	<span class="opening">Opens at 17:00</span>
-                            </div>
-                            <ul><li>배달<i class="icon_check_alt2 ok"></i></li></ul>
-                        </div><!-- End desc-->
-                    </a><!-- End strip_list-->
-                    <a href="detail_page.jsp" class="strip_list">
-                        <div class="ribbon_1">Popular</div>
-                        <div class="desc">
-                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_3.jpg" alt=""></div>
-                            <div class="rating">
-                                <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-                            </div>
-                            <h3>종혀니네 햄버거</h3>
-                            <div class="type">한국 / 패스트 푸드</div>
-                            <div class="location">
-                                135 Newtownards Road, Belfast, BT4.
-                                <span class="opening">Opens at 17:00</span>
-                            </div>
-                            <ul><li>배달<i class="icon_check_alt2 ok"></i></li></ul>
-                        </div><!-- End desc-->
-                    </a><!-- End strip_list-->
-                </div><!-- End col-md-6-->
-                <div class="col-md-6">
-                    <a href="/detail_page.jsp" class="strip_list">
-                        <div class="ribbon_1">Popular</div>
-                        <div class="desc">
-                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_4.jpg" alt=""></div>
-                            <div class="rating">
-                                <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-                            </div>
-                            <h3>원주니네 통닭</h3>
-                            <div class="type">한국 / 치킨</div>
-                            <div class="location">
-                                135 Newtownards Road, Belfast, BT4.
-                                <span class="opening">Opens at 17:00</span>
-                            </div>
-                            <ul><li>배달<i class="icon_close_alt2 no"></i></li></ul>
-                        </div><!-- End desc-->
-                    </a><!-- End strip_list-->
-                    <a href="/detail_page.jsp" class="strip_list">
-                        <div class="ribbon_1">Popular</div>
-                        <div class="desc">
-                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_5.jpg" alt=""></div>
-                            <div class="rating">
-                                <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-                            </div>
-                            <h3>명주니네 카레</h3>
-                            <div class="type">인도 / 카레</div>
-                            <div class="location">
-                                135 Newtownards Road, Belfast, BT4.
-                                <span class="opening">Opens at 17:00</span>
-                            </div>
-                            <ul><li>배달<i class="icon_check_alt2 ok"></i></li></ul>
-                        </div><!-- End desc-->
-                    </a><!-- End strip_list-->
-                    <a href="/detail_page.jsp" class="strip_list">
-                        <div class="ribbon_1">Popular</div>
-                        <div class="desc">
-                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_6.jpg" alt=""></div>
-                            <div class="rating">
-                                <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-                            </div>
-                            <h3>오소리 샌드위치</h3>
-                            <div class="type">한국/패스트푸드</div>
-                            <div class="location">
-                                135 Newtownards Road, Belfast, BT4.
-                                <span class="opening">Opens at 17:00</span>
-                            </div>
-                            <ul><li>배달<i class="icon_check_alt2 ok"></i></li></ul>
-                        </div><!-- End desc-->
-                    </a><!-- End strip_list--> --%>
+
                 </div>
             </div><!-- End row -->
         </div><!-- End container -->
@@ -187,7 +90,8 @@
     </section><!-- End section -->
 <!-- End Content =============================================== -->
 
-<%--     <div class="container margin_60">
+<%--    나중에 본인 프로필 정보 올리면 좋을 곳
+ <div class="container margin_60">
         <div class="main_title margin_mobile">
             <h2 class="nomargin_top">Work with Us</h2>
             <p>
