@@ -83,7 +83,7 @@ public class Push
 		OutputStream os = http.getOutputStream();  
 
 		String body =  
-            "{\n" + "\"message\":{\n" + " \"notification\": {\n" + " \"title\": \"FCM Message\",\n"  
+            "{\n" + "\"message\":{\n" + " \"notification\": {\n" + " \"title\": \"새로운 알림이 도착했습니다!\",\n"  
 			+ " \"body\": \"" + message + "\",\n"  
 			+ "  },\n" + " \"token\": \"" + userToken + "\"\n" + "  }\n" + "}\n";  
   

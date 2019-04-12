@@ -4,9 +4,10 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-import org.badgers.business.fcmtest.Push;
+import org.badgers.business.util.Push;
 import org.badgers.business.model.OrderVO;
 import org.badgers.business.util.RestDomain;
+import org.badgers.business.util.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,8 +50,10 @@ public class OrderController {
 		String url =  RestDomain.restDomain+"/biz/order/"+bizId+"/"+orderId+"/"+status; 
 		ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 		String userToken=response.getBody();
-		
-		push.send(userToken, "가냐?");
+
+		if(!(userToken.equals("noMessage"))) {
+			push.send(userToken, Status.valueOf(status).getmessage());
+		}
 		
 		System.out.println("obj가 뭐냐?------------------------------");
 		System.out.println(response.getBody());

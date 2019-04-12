@@ -12,6 +12,7 @@
 		WHERE
 		biz_id=#{arg1}
 		and order_id=#{arg2}
+				
 	</update>
 
 	<select id="getToken" resultType="java.lang.String">
