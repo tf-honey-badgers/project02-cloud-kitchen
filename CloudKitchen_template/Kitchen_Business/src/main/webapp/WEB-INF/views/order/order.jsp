@@ -164,7 +164,7 @@
             	$(this).parents('div[class="ORD"]').appendTo('.orderListWrap')
             	orderId=$(this).parents('div.ORD').attr('id')
             	status='ORD002'
-            	url=bizId+'/'+orderId+'/'+status
+            	url=bizId+'/'+orderId+'/'+status;
             	updateStatus(url)
             });
             // 조리시작 눌렀을 때
@@ -243,8 +243,6 @@
 			
 			
 		 })/* 알람설정 end */
-		 
-		 
 		 
 		 
 		 /* --------------------------------------------------------------------- */

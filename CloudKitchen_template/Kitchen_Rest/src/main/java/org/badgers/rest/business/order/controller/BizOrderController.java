@@ -36,7 +36,9 @@ public class BizOrderController {
 		fireBaseService.patchOrderStatus(bizId+"/"+orderId, statusChangeService.getNewStatus(status));
 		bizOrderService.updateOrderStatus(status, bizId, orderId);
 		
-		return new ResponseEntity<>(HttpStatus.OK);
+		String userToken=fireBaseService.getToken(orderId);
+		System.out.println("rest가 보내드리는 userToken입니다============"+userToken);
+		return new ResponseEntity<>(userToken,HttpStatus.OK);
 	}
 	
 	@GetMapping("/fcm/{orderId}")

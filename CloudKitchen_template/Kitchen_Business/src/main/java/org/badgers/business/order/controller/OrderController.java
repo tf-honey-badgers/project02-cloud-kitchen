@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
@@ -38,8 +40,13 @@ public class OrderController {
 			@PathVariable("status") String status) {
 		
 		String url =  RestDomain.restDomain+"/biz/order/"+bizId+"/"+orderId+"/"+status; 
-		Object obj = restTemplate.getForEntity(url, String.class);
-		return new ResponseEntity<>(obj, HttpStatus.OK);	
+		ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+		String userToken=response.getBody();
+		
+		System.out.println("obj가 뭐냐?------------------------------");
+		System.out.println(response.getBody());
+		
+		return new ResponseEntity<>(userToken, HttpStatus.OK);	
 	}
 
 }
