@@ -22,14 +22,13 @@ import lombok.extern.log4j.Log4j;
 public class AdminSdkTest {
 	public static void main(String[] args) throws IOException {
 		 AdminSdkTest ad = new AdminSdkTest() ;
-		 String result =ad.getAccessToken();
-		 log.info(result);
+		 log.info(ad.databaseReference());
 		 
 	}
 
 	@Autowired
 	private  ResourceLoader resourceLoader;
-
+	
 	private  InputStream getInputStreamFirebaseKeyFile() {
 		log.info(".....................................1                     .........");
 		InputStream inputStreamFirebaseKeyFile = null;
@@ -44,11 +43,12 @@ public class AdminSdkTest {
 	public DatabaseReference databaseReference() {
 		log.info(".....................................2                     .........");
 		DatabaseReference databaseReference = null;
-		
+	      InputStream resourceAsStream = AccessToken.class  
+	  .getResourceAsStream("/config/" + "honeybadgers-d29cf-firebase-adminsdk-50gtz-6f64e8fc65.json");  
 		try {
 			FirebaseOptions firebaseOptions = FirebaseOptions
 					.builder()
-					.setCredentials(ServiceAccountCredentials.fromStream(getInputStreamFirebaseKeyFile()))
+					.setCredentials(ServiceAccountCredentials.fromStream(resourceAsStream))
 					.setDatabaseUrl("https://honeybadgers-d29cf.firebaseio.com/")
 					.build();
 			databaseReference = FirebaseDatabase.getInstance(FirebaseApp.initializeApp(firebaseOptions)).getReference();
@@ -57,20 +57,7 @@ public class AdminSdkTest {
 		}
 		return databaseReference;
 	}
-	public String getAccessToken() throws IOException {
-		FirebaseOptions firebaseOptions = FirebaseOptions
-				.builder()
-				.setCredentials(ServiceAccountCredentials.fromStream(getInputStreamFirebaseKeyFile()))
-				.setDatabaseUrl("https://honeybadgers-d29cf.firebaseio.com/")
-				.build();
-		FirebaseApp.initializeApp(firebaseOptions);
-		  GoogleCredential googleCredential = GoogleCredential
-		      .fromStream(getInputStreamFirebaseKeyFile());
-//		      .createScoped(Arrays.asList(SCOPES));
-		  googleCredential.refreshToken();
-		  return googleCredential.getAccessToken();
-	}
-	
+
 	
 
 }

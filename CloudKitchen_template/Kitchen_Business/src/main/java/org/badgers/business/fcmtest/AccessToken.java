@@ -14,10 +14,10 @@ public class AccessToken {
 	
 	  public static String getAccessToken() throws IOException  
 	   {  
-	  
+		 
 	      InputStream resourceAsStream = AccessToken.class  
 	  .getResourceAsStream("/config/" + "honeybadgers-d29cf-firebase-adminsdk-50gtz-6f64e8fc65.json");  
-	  
+	      
 		  GoogleCredential googleCredential = GoogleCredential  
 	            .fromStream(resourceAsStream)  
 	            .createScoped(Arrays.asList("https://www.googleapis.com/auth/firebase", 
