@@ -33,12 +33,16 @@ public class BizOrderController {
 			@PathVariable("status") String status
 			) throws Exception, FirebaseException, JacksonUtilityException, org.badgers.rest.firebase.FirebaseException{
 		
-		fireBaseService.patchOrderStatus(bizId+"/"+orderId, statusChangeService.getNewStatus(status));
+		String changedStatus = statusChangeService.getNewStatus(status);
+		
+		fireBaseService.patchOrderStatus(bizId+"/"+orderId, changedStatus);
 		bizOrderService.updateOrderStatus(status, bizId, orderId);
 		
-		String userToken=fireBaseService.getToken(orderId);
-		System.out.println("rest가 보내드리는 userToken입니다============"+userToken);
-		return new ResponseEntity<>(userToken,HttpStatus.OK);
+		if(status.equals("ORD002")||status.equals("ORD003")||status.equals("ORD005")) {
+			String userToken=fireBaseService.getToken(orderId);
+			return new ResponseEntity<>(userToken,HttpStatus.OK);
+		}
+		return new ResponseEntity<>("noMessage",HttpStatus.OK);
 	}
 	
 	@GetMapping("/fcm/{orderId}")
