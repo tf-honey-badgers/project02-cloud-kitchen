@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.badgers.business.model.OrderVO;
 import org.badgers.business.util.Push;
 import org.badgers.business.util.RestDomain;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RequestMapping("/order")
@@ -27,6 +29,10 @@ public class OrderController {
 	
 	@Inject
 	RestTemplate restTemplate;
+	
+	@Autowired
+	Push push;
+	
 	//사업자 주문관리 페이지로 이동
 	@GetMapping("/main")
 	public String test(OrderVO vo) {
@@ -46,8 +52,7 @@ public class OrderController {
 		ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 		String userToken=response.getBody();
 		
-		Push messagePush = new Push();
-		messagePush.send(userToken, "가냐?");
+		push.send(userToken, "가냐?");
 		
 		System.out.println("obj가 뭐냐?------------------------------");
 		System.out.println(response.getBody());
