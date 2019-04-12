@@ -134,10 +134,10 @@
 <!-- End Find Modal -->
 
 <!-- chatbot -->
-<div style="position:fixed; width:50vh; height:50vh; right:0; bottom:0; z-index:9999;">
+
 	 <div
-	 	class="QnA"
-		style="display:none; width:100%; height:100%;">
+	 	class="QnA qnaiframe"
+		style="display:none; width:50vh; height:50vh; position:fixed; right:0; bottom:0; z-index:999 ">
 		<span style="
 		font-weight: bolder;
 	    position: relative;
@@ -147,7 +147,8 @@
 	    bottom: 20px;
 	    top: 20px;
 	    color: white;
-	    cursor: default;">
+	    cursor: default;
+	    ">
 		X
 		</span>
 		<iframe
@@ -159,11 +160,12 @@
 		 </iframe>
 	 </div>
 	 <img 
-	 	class="QnA"
+	 	id="QnAImg"
+	 	class="QnA qnaImg"
 	 	alt="chatbot_btn"
 	 	src="${pageContext.request.contextPath}/resources/img/bot.png"
-	 	style="display:block; width:9vh; height:9vh; position:inherit; bottom:5vh; right:5vh;">
-</div>
+	 	style="display:block; width:9vh; height:9vh; position:fixed; bottom:5vh; right:5vh; z-index:999">
+
 <!-- chatbot -->
 
 
@@ -252,9 +254,10 @@ function execPostCode() {
 <script>
 	$(document).ready(function(){
 		
-		$('.QnA').on('click',function(){
+		$('.QnA').on('click',function(event){
+			console.log(this);
+			
 			$('.QnA').toggle();
-			console.log('토글토글르');
 		});
 		
 	});
