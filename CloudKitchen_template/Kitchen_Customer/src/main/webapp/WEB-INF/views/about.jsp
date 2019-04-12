@@ -105,9 +105,9 @@
 				<div class="feature">
 					<i class="icon_building"></i>
 					<h3>
-						<span>1.</span> 이태주
+						<span></span> 이태주
 					</h3>
-					<p>안녕하십니까. 저는 아주 좋습니다.<br>
+					<p>안녕하십니까. 저는 아주 좋습니다. 챗봇,Firebase, 주문 담당입니다<br>
 					그리고 이거는<br>
 					세줄 쓰십시오</p>
 				</div>
@@ -116,11 +116,11 @@
 				<div class="feature">
 					<i class="icon_documents_alt"></i>
 					<h3>
-						<span>+1000</span> Food Menu
+						<span></span> 손 윤
 					</h3>
-					<p>Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus
-						civibus efficiantur in. Nec id tempor imperdiet deterruisset,
-						doctus volumus explicari qui ex, appareat similique an usu.</p>
+					<p>안녕하십니까. 저는 아주 좋습니다. 챗봇,Firebase, 주문 담당입니다<br>
+					그리고 이거는<br>
+					세줄 쓰십시오</p>
 				</div>
 			</div>
 		</div>
