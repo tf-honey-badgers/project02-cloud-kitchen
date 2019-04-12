@@ -23,6 +23,7 @@ public class KakaoController {
 			 	@RequestParam("code") String code,
 			 	RedirectAttributes ra,
 			 	HttpSession session,
+			 	RedirectAttributes redirectAttr,
 			 	HttpServletResponse response
 			 ) throws IOException {
 		 	System.out.println("kakao code:" +code);
@@ -40,23 +41,15 @@ public class KakaoController {
 	        JsonNode userInfo = KakaoUserInfo.getKakaoUserInfo(accessToken);
 	        
 	      
-	        
-	        String token = jsonToken.get("access_token").toString();
 
-	        
-	        JsonNode kakao_account = userInfo.path("kakao_account");
-	    
-	        
-	        JsonNode  properties = userInfo.path("properties");
 
-	     
 
 	        
 	        String ids = userInfo.get("id").toString();
 	        String id = userInfo.get("kakao_account").get("email").asText();
-	        String image = userInfo.get("properties").get("profile_image").toString();
 	        String nickname = userInfo.get("properties").get("nickname").asText();
 	      
+	     
 	        
 	        
 	        String kpw ="kakao";
@@ -65,22 +58,21 @@ public class KakaoController {
 	    	String kstatus = "MEM002";
 	    	String gender = "미정";
 	    	
-	    	//세션에 사용자 id pw 등 저장
-	    	
-	        session.setAttribute("uid", ids); // 세션 email(-> 사용자 id) 저장
-	        session.setAttribute("kpw", kpw); //카톡 로그인 비번 
-	        session.setAttribute("uname", nickname);
-	        session.setAttribute("kbirthDate", kbirthDate);
-	        session.setAttribute("kphone",kphone);
-	        session.setAttribute("kemail", id);
-	        session.setAttribute("kgender", gender);
-	        session.setAttribute("kstatus", kstatus);
-	        
-	    
-	        
-
-		
 	
+	    	session.setAttribute("uid", ids); // 세션 email(-> 사용자 id) 저장
+	        session.setAttribute("uname", nickname);
+
+	    	redirectAttr.addFlashAttribute("param1", ids);// id
+	    	redirectAttr.addFlashAttribute("param2", kpw); //비번
+	    	redirectAttr.addFlashAttribute("param3", nickname); // 닉네임
+	    	redirectAttr.addFlashAttribute("param4", kbirthDate); // 생일
+	    	redirectAttr.addFlashAttribute("param5", kphone); // 폰
+	    	redirectAttr.addFlashAttribute("param6", id); // 이메일
+	    	redirectAttr.addFlashAttribute("param7", gender); //성별
+	    	redirectAttr.addFlashAttribute("param8", kstatus); // 상태코드
+
+	      
+	        	
 
 	           return "redirect:/member/register2";
 	    }

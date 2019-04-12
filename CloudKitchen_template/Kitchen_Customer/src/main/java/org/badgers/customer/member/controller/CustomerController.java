@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.badgers.customer.model.CustomerVO;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import lombok.extern.log4j.Log4j;
 
@@ -166,38 +169,58 @@ public class CustomerController {
 	
 	//카카오 회원가입
 	@GetMapping(value="/register2")
-	public String registers(HttpSession session) {
+	public String registers(HttpServletRequest request,HttpServletResponse response, Map<String,String> map) {
 		
+		String param1 = "";
+		String param2 = "";
+		String param3 = "";
+		String param4 = "";
+		String param5 = "";
+		String param6 = "";
+		String param7 = "";
+		String param8 = "";
 		
-		String kid = (String) session.getAttribute("uid");
-		String kpw = (String) session.getAttribute("kpw");	
-		String kname = (String) session.getAttribute("uname");
-		String kbirthDate = (String) session.getAttribute("kbirthDate");
-		String kphone = (String) session.getAttribute("kphone");
-		String kemail = (String) session.getAttribute("kemail");
-		String kgender = (String) session.getAttribute("kgender");
-		String kstatus = (String) session.getAttribute("kstatus");
+		Map<String, ?> redirectMap = RequestContextUtils.getInputFlashMap(request);
+		if(redirectMap !=null) {
+			param1 = (String)redirectMap.get("param1");
+			param2 = (String)redirectMap.get("param2");
+			param3 = (String)redirectMap.get("param3");
+			param4 = (String)redirectMap.get("param4");
+			param5 = (String)redirectMap.get("param5");
+			param6 = (String)redirectMap.get("param6");
+			param7 = (String)redirectMap.get("param7");
+			param8 = (String)redirectMap.get("param8");
+			
+			
+		}
+
+		System.out.println("kakao========================="+map);
 
 		String url = RestDomain.restDomain+"/customer/register";
 		
 		CustomerVO vo = new CustomerVO();
 		
-		 vo.setId(kid);
-		 vo.setPw(kpw);
-		 vo.setName(kname);
-		 vo.setBirthDate(kbirthDate);
-		 vo.setPhone(kphone);
-		 vo.setEmail(kemail);
-		 vo.setGender(kgender);
-		 vo.setStatus(kstatus);
+		 vo.setId(param1);
+		 vo.setPw(param2);
+		 vo.setName(param3);
+		 vo.setBirthDate(param4);
+		 vo.setPhone(param5);
+		 vo.setEmail(param6);
+		 vo.setGender(param7);
+		 vo.setStatus(param8);
 		 
 		
-	
+		
+		 System.out.println("vo=========================="+vo);
 	
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url,vo,String.class);
+
 		
+		System.out.println("responseEntity==============="+responseEntity);
 		System.out.println("vo=========================="+vo);
+		
+		
 		return "redirect:/main";
 	}
 	
