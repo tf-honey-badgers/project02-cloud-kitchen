@@ -28,8 +28,8 @@ import lombok.extern.log4j.Log4j;
 public class TJTest {
 	public static void main(String[] args) throws IOException {
 		TJTest ad = new TJTest();
-		
-		//https://fcm.googleapis.com/v1/projects/honeybadgers-d29cf/messages:send
+
+		// https://fcm.googleapis.com/v1/projects/honeybadgers-d29cf/messages:send
 		String result = getAccessToken();
 		log.info(result);
 
@@ -43,7 +43,7 @@ public class TJTest {
 		InputStream inputStreamFirebaseKeyFile = null;
 		try {
 			Resource resource = resourceLoader
-					.getResource("classpath:config/honeybadgers-d29cf-firebase-adminsdk-50gtz-6f64e8fc65.json");
+					.getResource("classpath:honeybadgers-d29cf-firebase-adminsdk-50gtz-6f64e8fc65.json");
 			inputStreamFirebaseKeyFile = resource.getInputStream();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -67,12 +67,16 @@ public class TJTest {
 	}
 
 	private static String getAccessToken() throws IOException {
-		GoogleCredential googleCredential = GoogleCredential
-				.fromStream(new FileInputStream("classpath:/config/honeybadgers-d29cf-firebase-adminsdk-50gtz-6f64e8fc65.json"))
+		InputStream resourceAsStream = AccessToken.class
+				.getResourceAsStream("/config/" + "honeybadgers-d29cf-firebase-adminsdk-50gtz-6f64e8fc65.json");
+
+		GoogleCredential googleCredential = GoogleCredential.fromStream(resourceAsStream)
 				.createScoped(Arrays.asList("https://www.googleapis.com/auth/firebase",
 						"https://www.googleapis.com/auth/cloud-platform",
 						"https://www.googleapis.com/auth/firebase.readonly"));
+
 		googleCredential.refreshToken();
+
 		return googleCredential.getAccessToken();
 	}
 
