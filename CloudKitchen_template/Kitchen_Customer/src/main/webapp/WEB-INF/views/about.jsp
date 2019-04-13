@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>회사 소개</title>
+<title>About Us</title>
 <style>
 .slick div {
 	width: 100%;
@@ -56,27 +56,17 @@
 	<div class="container margin_60_35">
 		<div class="row" style="margin-left:10%; margin-right:10%;">
 			<div class="">
-				<h3 class="nomargin_top">About us Project</h3>
-				<div class="layer">
+				<h3 class="nomargin_top">About Our Project</h3>
+				<div class="layer hidden-sm hidden-xs">
 					<div class="slick">
 						<div class="">
 							<img class="Simg"
-								src="${pageContext.request.contextPath}/resources/img/aboutus/arch.png"
+								src="${pageContext.request.contextPath}/resources/img/aboutus/systemMock.png"
 								alt="architecture">
 						</div>
 						<div class="">
 							<img class="Simg"
-								src="${pageContext.request.contextPath}/resources/img/aboutus/cat.jpg"
-								alt="architecture">
-						</div>
-						<div class="">
-							<img class="Simg"
-								src="${pageContext.request.contextPath}/resources/img/aboutus/9.jpg"
-								alt="architecture">
-						</div>
-						<div class="">
-							<img class="Simg"
-								src="${pageContext.request.contextPath}/resources/img/aboutus/hhh.jpg"
+								src="${pageContext.request.contextPath}/resources/img/aboutus/fcm.png"
 								alt="architecture">
 						</div>
 						<div class="">
@@ -84,14 +74,17 @@
 								src="${pageContext.request.contextPath}/resources/img/aboutus/flow.png"
 								alt="architecture">
 						</div>
+						<div class="">
+							<img class="Simg"
+								src="${pageContext.request.contextPath}/resources/img/aboutus/systemflow.png"
+								alt="architecture">
+						</div>
 					</div>
 				</div>
 
-
-
 			</div>
-			<div class="col-md-7 col-md-offset-1 text-right hidden-sm hidden-xs">
-				<img src="img/devices.jpg" alt="" class="img-responsive">
+			<div class="col-md-8 center hidden-md hidden-lg hidden-xl img-responsive">
+				<img src="${pageContext.request.contextPath}/resources/img/aboutus/cover1.png" alt="" style="width:130%; position:relative; left:-15%">
 			</div>
 		</div>
 		<!-- End row -->
@@ -107,9 +100,9 @@
 					<h3>
 						<span></span> 이태주
 					</h3>
-					<p>안녕하십니까. 저는 아주 좋습니다. 챗봇,Firebase, 주문 담당입니다<br>
-					그리고 이거는<br>
-					세줄 쓰십시오</p>
+					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계<br>
+					주요담당 : 주문시스템 (카카오페이, Firebase Database, FCM 푸시 알림 ), QNA 챗봇<br>
+					Git Hub : <a href="#"></a></p>
 				</div>
 			</div>
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
@@ -118,9 +111,9 @@
 					<h3>
 						<span></span> 손 윤
 					</h3>
-					<p>안녕하십니까. 저는 아주 좋습니다. 챗봇,Firebase, 주문 담당입니다<br>
-					그리고 이거는<br>
-					세줄 쓰십시오</p>
+					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계 <br>
+					주요담당 : 주문시스템 (카카오페이, Firebase Database, FCM 푸시 알림 )<br>
+					Git Hub : <a href="#"><img src=""></a></p></p>
 				</div>
 			</div>
 		</div>
@@ -132,9 +125,9 @@
 					<h3>
 						<span>Delivery</span> or Takeaway
 					</h3>
-					<p>Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus
-						civibus efficiantur in. Nec id tempor imperdiet deterruisset,
-						doctus volumus explicari qui ex, appareat similique an usu.</p>
+					<p>로그인 및 회원가입 경우 Bcrypt와 RSA(Rivest Shamir Adlema)을 이용하여<br>
+					 비밀번호 저장 및 비교를 암호화. <br>
+					또한 Mybatis를 사용하여 Query문과 Code를 분리하였습니다</p>
 				</div>
 			</div>
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.4s">
@@ -143,9 +136,9 @@
 					<h3>
 						<span>Mobile</span> support
 					</h3>
-					<p>Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus
-						civibus efficiantur in. Nec id tempor imperdiet deterruisset,
-						doctus volumus explicari qui ex, appareat similique an usu.</p>
+					<p>JAVA 라이브러리 Apache Maven build tool로 JAVA용 프로젝트 관리<br>
+					 프론트 단은 Bootstrap과  Jquery를 이용하여 좀 더 퀄리티 있는 웹사이트가 만들어지도록 노력하였습니다.<br>
+					 </p>
 				</div>
 			</div>
 		</div>
@@ -182,12 +175,12 @@
 		<div class="row">
 			<div class="col-md-6 nopadding features-intro-img">
 				<div class="features-bg">
-					<div class="features-img"></div>
+					<div class="features-img"><img alt="" src=""></div>
 				</div>
 			</div>
 			<div class="col-md-6 nopadding">
 				<div class="features-content">
-					<h3>"Ex vero mediocrem"</h3>
+					<h3>"Honey Badgers"</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
 						a lorem quis neque interdum consequat ut sed sem. Duis quis tempor
 						nunc. Interdum et malesuada fames ac ante ipsum primis in
@@ -213,7 +206,7 @@
 				$('.slick').slick({
 					sslideToshow : 1,
 					autoplay : true,
-					autoplaySpeed : 2000,
+					autoplaySpeed : 2400,
 					arrows : false,
 					dots : false,
 					puaseOnHover : true

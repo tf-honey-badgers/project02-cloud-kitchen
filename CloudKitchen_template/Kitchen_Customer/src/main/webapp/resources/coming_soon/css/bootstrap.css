@@ -6511,8 +6511,13 @@ button.close {
     display: none !important;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1200px)and (max-width: 1499px) {
   .hidden-lg {
+    display: none !important;
+  }
+}
+@media (min-width: 1500px)and (max-width: 1900px) {
+  .hidden-xl {
     display: none !important;
   }
 }

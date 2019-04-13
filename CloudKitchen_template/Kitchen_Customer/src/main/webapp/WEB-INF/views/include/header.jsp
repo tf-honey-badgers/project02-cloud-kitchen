@@ -73,9 +73,9 @@
 						<c:if test="${!empty sessionScope.uid}" > <!-- 로그인 되어 세션 있는 상태 -->
 							<li class="submenu"><a href="#" class="show-submenu">${uname }님</a></li>
 							<li><a href="${pageContext.request.contextPath}/member/logout" id="logout">Logout</a><li>
-							<li><a href="${pageContext.request.contextPath}/member/${uid}/change">회원 정보</a></li>
+							<li><a href="${pageContext.request.contextPath}/member/${uid}/change">MyPage</a></li>
 						</c:if>
-						<li><a href="${pageContext.request.contextPath}/about">회사 소개</a></li>
+						<li><a href="${pageContext.request.contextPath}/about">About Us</a></li>
 					</ul>
 				</div> <!-- End main-menu -->
 			</nav>
