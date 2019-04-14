@@ -138,8 +138,8 @@
 						손 윤
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계 <br>
-					주요담당 : 주문시스템 (카카오페이, Firebase Database, FCM 푸시 알림 )<br>
-					GitHub : <a target="_blank" href="#"><img src=""></a></p></p>
+					주요담당 : 주문시스템 (카카오페이, Firebase Database, FCM 푸시 알림 ), 사업자 로그인 처리<br>
+					GitHub : <a target="_blank" href="https://github.com/sonyoon7">https://github.com/sonyoon7</a></p></p>
 				</div>
 			</div>
 		</div> <!-- End row -->
