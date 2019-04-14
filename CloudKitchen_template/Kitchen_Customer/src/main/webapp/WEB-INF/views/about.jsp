@@ -81,7 +81,6 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
 			<div class="col-md-8 center hidden-md hidden-lg hidden-xl img-responsive">
 				<img src="${pageContext.request.contextPath}/resources/img/aboutus/cover1.png" alt="" style="width:130%; position:relative; left:-15%">
@@ -93,9 +92,7 @@
 			<h2 class="nomargin_top">클라우드 키친을 만든 사람들</h2>
 			<p>당신은 이것을 읽으십시오.</p>
 		</div>
-		
 		<div class="row">
-		
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
 				<div class="feature">
 					<i class="icon_building"></i>
@@ -103,12 +100,11 @@
 						<span></span> Team. HoneyBadgers
 					</h3>
 					<p><br>
-					Git Hub : <a target="_blank" href="https://github.com/tf-honey-badgers">https://github.com/tf-honey-badgers</a></p>
+					GitHub : <a target="_blank" href="https://github.com/tf-honey-badgers">https://github.com/tf-honey-badgers</a></p>
 					<br>
 					<br>
 				</div>
 			</div>
-			
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
 				<div class="feature">
 					<i class="icon_documents_alt"></i>
@@ -117,13 +113,11 @@
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계 <br>
 					주요담당 : 사용자 검색 기능과 자동완성, 가게 메뉴 선택과 카트 관리, YouTube 실시간 방송 처리, 사업자/가게 정보 수정 기능<br>
-					Git Hub : <a target="_blank" href="https://github.com/yuriel849">https://github.com/yuriel849</a></p></p>
+					GitHub : <a target="_blank" href="https://github.com/yuriel849">https://github.com/yuriel849</a></p></p>
 				</div>
 			</div>
-			
-		</div>
+		</div> <!-- End row -->
 		<div class="row">
-		
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
 				<div class="feature">
 					<i class="icon_building"></i>
@@ -133,7 +127,7 @@
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계<br>
 					주요담당 : 회원가입(카카오 주소 api,이메일 인증 Spring security 
 					회원정보 암호화 bcrypt)로그인, 회원정보 수정 <br>
-					Git Hub : <a target="_blank" href="https://github.com/a4015z">https://github.com/a4015z</a></p>
+					GitHub : <a target="_blank" href="https://github.com/a4015z">https://github.com/a4015z</a></p>
 				</div>
 			</div>
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
@@ -144,11 +138,10 @@
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계 <br>
 					주요담당 : 주문시스템 (카카오페이, Firebase Database, FCM 푸시 알림 )<br>
-					Git Hub : <a target="_blank" href="#"><img src=""></a></p></p>
+					GitHub : <a target="_blank" href="#"><img src=""></a></p></p>
 				</div>
 			</div>
-			
-		</div>
+		</div> <!-- End row -->
 		<div class="row">
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
 				<div class="feature">
@@ -158,10 +151,9 @@
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계<br>
 					주요담당 : 주문시스템 (카카오페이, 카카오주소api, Firebase Database, FCM 푸시 알림 ), QNA 챗봇<br>
-					Git Hub : <a target="_blank" href="https://github.com/cn3085">https://github.com/cn3085</a></p>
+					GitHub : <a target="_blank" href="https://github.com/cn3085">https://github.com/cn3085</a></p>
 				</div>
 			</div>
-			
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
 				<div class="feature">
 					<i class="icon_documents_alt"></i>
@@ -170,15 +162,11 @@
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계 <br>
 					주요담당 : 메뉴등록/삭제/변경과 사진파일(AWS S3)관리 및 메뉴추천(Mahout)<br>
-					Git Hub : <a target="_blank" href="https://github.com/shot013/CloudKitchen"><img src="">https://github.com/shot013/CloudKitchen</a></p></p>
+					GitHub : <a target="_blank" href="https://github.com/shot013/CloudKitchen"><img src="">https://github.com/shot013/CloudKitchen</a></p></p>
 				</div>
 			</div>
-			
-		</div>
-		
-	</div>
-	<!-- End container -->
-
+		</div> <!-- End row -->
+	</div> <!-- End container -->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-6 nopadding features-intro-img">
@@ -199,8 +187,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- End container-fluid  -->
+	</div> <!-- End container-fluid  -->
 	<!-- End Content =============================================== -->
 
 	<!-- Footer 시작  -->
