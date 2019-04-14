@@ -90,16 +90,17 @@
 		<hr class="more_margin">
 		<div class="main_title">
 			<h2 class="nomargin_top">클라우드 키친을 만든 사람들</h2>
-			<p>당신은 이것을 읽으십시오.</p>
+			<p>우리가 누군지 궁금하신가요?</p>
 		</div>
 		<div class="row">
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
 				<div class="feature">
-					<i class="icon_building"></i>
+					<i class="icon-group"></i>
 					<h3>
-						<span></span> Team. HoneyBadgers
+						Team. HoneyBadgers
 					</h3>
-					<p><br>
+					<p>
+					팀원 : 김명준, 김종현, 손윤, 이태주, 정원준<br>
 					GitHub : <a target="_blank" href="https://github.com/tf-honey-badgers">https://github.com/tf-honey-badgers</a></p>
 					<br>
 					<br>
@@ -107,9 +108,9 @@
 			</div>
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
 				<div class="feature">
-					<i class="icon_documents_alt"></i>
+					<i class="icon-user"></i>
 					<h3>
-						<span></span> 김명준
+						김명준
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계 <br>
 					주요담당 : 사용자 검색 기능과 자동완성, 가게 메뉴 선택과 카트 관리, YouTube 실시간 방송 처리, 사업자/가게 정보 수정 기능<br>
@@ -120,9 +121,9 @@
 		<div class="row">
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
 				<div class="feature">
-					<i class="icon_building"></i>
+					<i class="icon-user"></i>
 					<h3>
-						<span></span> 김종현
+						김종현
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계<br>
 					주요담당 : 회원가입(카카오 주소 api,이메일 인증 Spring security 
@@ -132,9 +133,9 @@
 			</div>
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
 				<div class="feature">
-					<i class="icon_documents_alt"></i>
+					<i class="icon-user"></i>
 					<h3>
-						<span></span> 손 윤
+						손 윤
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계 <br>
 					주요담당 : 주문시스템 (카카오페이, Firebase Database, FCM 푸시 알림 )<br>
@@ -145,9 +146,9 @@
 		<div class="row">
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
 				<div class="feature">
-					<i class="icon_building"></i>
+					<i class="icon-user"></i>
 					<h3>
-						<span></span> 이태주
+						이태주
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계<br>
 					주요담당 : 주문시스템 (카카오페이, 카카오주소api, Firebase Database, FCM 푸시 알림 ), QNA 챗봇<br>
@@ -156,9 +157,9 @@
 			</div>
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
 				<div class="feature">
-					<i class="icon_documents_alt"></i>
+					<i class="icon-user"></i>
 					<h3>
-						<span></span> 정원준
+						정원준
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계 <br>
 					주요담당 : 메뉴등록/삭제/변경과 사진파일(AWS S3)관리 및 메뉴추천(Mahout)<br>
