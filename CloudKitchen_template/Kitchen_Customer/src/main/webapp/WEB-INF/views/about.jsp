@@ -177,13 +177,16 @@
 			<div class="col-md-6 nopadding">
 				<div class="features-content">
 					<h3>"Honey Badgers"</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-						a lorem quis neque interdum consequat ut sed sem. Duis quis tempor
-						nunc. Interdum et malesuada fames ac ante ipsum primis in
-						faucibus.</p>
-					<p>Per ea erant aeque corpora, an agam tibique nec. At recusabo
-						expetendis vim. Tractatos principes mel te, dolor solet viderer
-						usu ad.</p>
+					<p>서비스명 & 앱설명  : 클라우드 키친 - 공유 주방을 활용한 실시간 다중 주문 시스템<br>
+						운영 대상 & 구현목표 : CUSTOMER (일반 고객) - 실시간 복수 가맹점 다중 주문 서비스 제공<br>
+						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+						BUSINESS (사업자) - 실시간 주문 관리 및 조리 장면 실시간 스트리밍 서비스 제공
+					</p>
+					<p>개발 툴 : Git, Spring Tool Suite, Eclipse, PuTTY, MySQL Workbench<br>
+						라이브러리 : Kakao Login, KakaoPay, Mahout, AWS S3, Firebase Realtime Database & FCM, <br>
+						 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						 Google Dialogflow (Chatbot) jQuery, Bootstrap
+					</p>
 				</div>
 			</div>
 		</div>
