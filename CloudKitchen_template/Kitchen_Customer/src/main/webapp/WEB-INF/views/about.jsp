@@ -116,8 +116,8 @@
 						<span></span> 김명준
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계 <br>
-					주요담당 : <br>
-					Git Hub : <a target="_blank" href="#"><img src=""></a></p></p>
+					주요담당 : 사용자 검색 기능과 자동완성, 가게 메뉴 선택과 카트 관리, YouTube 실시간 방송 처리, 사업자/가게 정보 수정 기능<br>
+					Git Hub : <a target="_blank" href="https://github.com/yuriel849">https://github.com/yuriel849</a></p></p>
 				</div>
 			</div>
 			
