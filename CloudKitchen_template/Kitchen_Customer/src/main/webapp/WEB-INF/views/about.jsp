@@ -105,6 +105,7 @@
 					<p><br>
 					Git Hub : <a target="_blank" href="https://github.com/tf-honey-badgers">https://github.com/tf-honey-badgers</a></p>
 					<br>
+					<br>
 				</div>
 			</div>
 			
@@ -135,20 +136,6 @@
 					Git Hub : <a target="_blank" href="https://github.com/a4015z">https://github.com/a4015z</a></p>
 				</div>
 			</div>
-			<div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
-				<div class="feature">
-					<i class="icon_building"></i>
-					<h3>
-						<span></span> 이태주
-					</h3>
-					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계<br>
-					주요담당 : 주문시스템 (카카오페이, 카카오주소api, Firebase Database, FCM 푸시 알림 ), QNA 챗봇<br>
-					Git Hub : <a target="_blank" href="https://github.com/cn3085">https://github.com/cn3085</a></p>
-				</div>
-			</div>
-			
-		</div>
-		<div class="row">
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
 				<div class="feature">
 					<i class="icon_documents_alt"></i>
@@ -158,6 +145,20 @@
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계 <br>
 					주요담당 : 주문시스템 (카카오페이, Firebase Database, FCM 푸시 알림 )<br>
 					Git Hub : <a target="_blank" href="#"><img src=""></a></p></p>
+				</div>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
+				<div class="feature">
+					<i class="icon_building"></i>
+					<h3>
+						<span></span> 이태주
+					</h3>
+					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계<br>
+					주요담당 : 주문시스템 (카카오페이, 카카오주소api, Firebase Database, FCM 푸시 알림 ), QNA 챗봇<br>
+					Git Hub : <a target="_blank" href="https://github.com/cn3085">https://github.com/cn3085</a></p>
 				</div>
 			</div>
 			
