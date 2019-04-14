@@ -93,7 +93,47 @@
 			<h2 class="nomargin_top">클라우드 키친을 만든 사람들</h2>
 			<p>당신은 이것을 읽으십시오.</p>
 		</div>
+		
 		<div class="row">
+		
+			<div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
+				<div class="feature">
+					<i class="icon_building"></i>
+					<h3>
+						<span></span> Team. HoneyBadgers
+					</h3>
+					<p><br>
+					Git Hub : <a target="_blank" href="https://github.com/tf-honey-badgers">https://github.com/tf-honey-badgers</a></p>
+					<br>
+				</div>
+			</div>
+			
+			<div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
+				<div class="feature">
+					<i class="icon_documents_alt"></i>
+					<h3>
+						<span></span> 김명준
+					</h3>
+					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계 <br>
+					주요담당 : <br>
+					Git Hub : <a target="_blank" href="#"><img src=""></a></p></p>
+				</div>
+			</div>
+			
+		</div>
+		<div class="row">
+		
+			<div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
+				<div class="feature">
+					<i class="icon_building"></i>
+					<h3>
+						<span></span> 김종현
+					</h3>
+					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계<br>
+					주요담당 : <br>
+					Git Hub : <a target="_blank" href=""></a></p>
+				</div>
+			</div>
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
 				<div class="feature">
 					<i class="icon_building"></i>
@@ -101,10 +141,13 @@
 						<span></span> 이태주
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계<br>
-					주요담당 : 주문시스템 (카카오페이, Firebase Database, FCM 푸시 알림 ), QNA 챗봇<br>
-					Git Hub : <a href="#"></a></p>
+					주요담당 : 주문시스템 (카카오페이, 카카오주소api, Firebase Database, FCM 푸시 알림 ), QNA 챗봇<br>
+					Git Hub : <a target="_blank" href="https://github.com/cn3085">https://github.com/cn3085</a></p>
 				</div>
 			</div>
+			
+		</div>
+		<div class="row">
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
 				<div class="feature">
 					<i class="icon_documents_alt"></i>
@@ -113,61 +156,24 @@
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계 <br>
 					주요담당 : 주문시스템 (카카오페이, Firebase Database, FCM 푸시 알림 )<br>
-					Git Hub : <a href="#"><img src=""></a></p></p>
+					Git Hub : <a target="_blank" href="#"><img src=""></a></p></p>
 				</div>
 			</div>
+			
+			<div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
+				<div class="feature">
+					<i class="icon_documents_alt"></i>
+					<h3>
+						<span></span> 정원준
+					</h3>
+					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계 <br>
+					주요담당 : <br>
+					Git Hub : <a target="_blank" href="#"><img src=""></a></p></p>
+				</div>
+			</div>
+			
 		</div>
-		<!-- End row -->
-		<div class="row">
-			<div class="col-md-6 wow fadeIn" data-wow-delay="0.3s">
-				<div class="feature">
-					<i class="icon_bag_alt"></i>
-					<h3>
-						<span>Delivery</span> or Takeaway
-					</h3>
-					<p>로그인 및 회원가입 경우 Bcrypt와 RSA(Rivest Shamir Adlema)을 이용하여<br>
-					 비밀번호 저장 및 비교를 암호화. <br>
-					또한 Mybatis를 사용하여 Query문과 Code를 분리하였습니다</p>
-				</div>
-			</div>
-			<div class="col-md-6 wow fadeIn" data-wow-delay="0.4s">
-				<div class="feature">
-					<i class="icon_mobile"></i>
-					<h3>
-						<span>Mobile</span> support
-					</h3>
-					<p>JAVA 라이브러리 Apache Maven build tool로 JAVA용 프로젝트 관리<br>
-					 프론트 단은 Bootstrap과  Jquery를 이용하여 좀 더 퀄리티 있는 웹사이트가 만들어지도록 노력하였습니다.<br>
-					 </p>
-				</div>
-			</div>
-		</div>
-		<!-- End row -->
-		<div class="row">
-			<div class="col-md-6 wow fadeIn" data-wow-delay="0.5s">
-				<div class="feature">
-					<i class="icon_wallet"></i>
-					<h3>
-						<span>Cash</span> payment
-					</h3>
-					<p>Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus
-						civibus efficiantur in. Nec id tempor imperdiet deterruisset,
-						doctus volumus explicari qui ex, appareat similique an usu.</p>
-				</div>
-			</div>
-			<div class="col-md-6 wow fadeIn" data-wow-delay="0.6s">
-				<div class="feature">
-					<i class="icon_creditcard"></i>
-					<h3>
-						<span>Secure card</span> payment
-					</h3>
-					<p>Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus
-						civibus efficiantur in. Nec id tempor imperdiet deterruisset,
-						doctus volumus explicari qui ex, appareat similique an usu.</p>
-				</div>
-			</div>
-		</div>
-		<!-- End row -->
+		
 	</div>
 	<!-- End container -->
 
