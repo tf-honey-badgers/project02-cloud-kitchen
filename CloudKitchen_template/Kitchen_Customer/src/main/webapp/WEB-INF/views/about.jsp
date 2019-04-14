@@ -90,7 +90,6 @@
 		<hr class="more_margin">
 		<div class="main_title">
 			<h2 class="nomargin_top">클라우드 키친을 만든 사람들</h2>
-			<p>우리가 누군지 궁금하신가요?</p>
 		</div>
 		<div class="row">
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">

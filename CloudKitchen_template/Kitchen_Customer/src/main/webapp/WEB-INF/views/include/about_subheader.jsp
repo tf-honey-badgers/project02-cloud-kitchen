@@ -7,7 +7,6 @@
     <div id="subheader">
     	<div id="sub_content">
     	 <h1>About us</h1>
-         <p>우리를 뽑으십시오.</p>
          <p></p>
         </div><!-- End sub_content -->
 	</div><!-- End subheader -->
