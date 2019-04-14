@@ -130,8 +130,9 @@
 						<span></span> 김종현
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계<br>
-					주요담당 : <br>
-					Git Hub : <a target="_blank" href=""></a></p>
+					주요담당 : 회원가입(카카오 주소 api,이메일 인증 Spring security 
+					회원정보 암호화 bcrypt)로그인, 회원정보 수정 <br>
+					Git Hub : <a target="_blank" href="https://github.com/a4015z">https://github.com/a4015z</a></p>
 				</div>
 			</div>
 			<div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
