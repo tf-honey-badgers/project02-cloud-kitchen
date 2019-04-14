@@ -83,7 +83,7 @@
                 <i class="icon_mug"></i>
                 <h3>We also deliver to your office</h3>
                 <p>
-                    Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.
+                    
                 </p>
             </div><!-- End sub_content -->
         </div><!-- End subheader -->
