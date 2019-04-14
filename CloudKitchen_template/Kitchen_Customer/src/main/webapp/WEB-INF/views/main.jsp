@@ -90,34 +90,6 @@
     </section><!-- End section -->
 <!-- End Content =============================================== -->
 
-<%--    나중에 본인 프로필 정보 올리면 좋을 곳
- <div class="container margin_60">
-        <div class="main_title margin_mobile">
-            <h2 class="nomargin_top">Work with Us</h2>
-            <p>
-                Cum doctus civibus efficiantur in imperdiet deterruisset.
-            </p>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-md-offset-2">
-                <a class="box_work" href="submit_restaurant.html">
-                    <img src="${pageContext.request.contextPath}/resources/img/submit_restaurant.jpg" width="848" height="480" alt="" class="img-responsive">
-                    <h3>Submit your Restaurant<span>Start to earn ${pageContext.request.contextPath} </span></h3>
-                    <p>Lorem ipsum dolor sit amet, ut virtute fabellas vix, no pri falli eloquentiam adversarium. Ea legere labore eam. Et eum sumo ocurreret, eos ei saepe oratio omittantur, legere eligendi partiendo pro te.</p>
-                    <div class="btn_1">Read more</div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a class="box_work" href="submit_driver.html">
-                    <img src="${pageContext.request.contextPath}/resources/img/delivery.jpg" width="848" height="480" alt="" class="img-responsive">
-                    <h3>We are looking for a Driver<span>Start to earn money</span></h3>
-                    <p>Lorem ipsum dolor sit amet, ut virtute fabellas vix, no pri falli eloquentiam adversarium. Ea legere labore eam. Et eum sumo ocurreret, eos ei saepe oratio omittantur, legere eligendi partiendo pro te.</p>
-                    <div class="btn_1">Read more</div>
-                </a>
-            </div>
-        </div><!-- End row -->
-    </div><!-- End container --> --%>
-
 <!-- Footer 시작  -->
 <jsp:include page="include/footer.jsp" flush="false"/>
 <!-- Footer 끝  -->
