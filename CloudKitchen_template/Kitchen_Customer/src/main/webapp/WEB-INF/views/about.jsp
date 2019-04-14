@@ -169,8 +169,8 @@
 						<span></span> 정원준
 					</h3>
 					<p>공통  : RESTful 아키텍쳐설계, DB설계, 화면설계 <br>
-					주요담당 : <br>
-					Git Hub : <a target="_blank" href="#"><img src=""></a></p></p>
+					주요담당 : 메뉴등록/삭제/변경과 사진파일(AWS S3)관리 및 메뉴추천(Mahout)<br>
+					Git Hub : <a target="_blank" href="https://github.com/shot013/HoneyBadgers.git"><img src="">https://github.com/shot013/HoneyBadgers.git</a></p></p>
 				</div>
 			</div>
 			
