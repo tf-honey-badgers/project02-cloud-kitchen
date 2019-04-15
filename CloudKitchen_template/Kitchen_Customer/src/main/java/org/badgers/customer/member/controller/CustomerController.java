@@ -65,7 +65,7 @@ public class CustomerController {
 		mav.addObject("customer", returnVal);
 		log.info("returnVal");
 		session.setAttribute("login", returnVal);
-		mav.setViewName("modify");
+		mav.setViewName("/member/modify");
 		
 		return mav;
 	}	
@@ -242,7 +242,7 @@ public class CustomerController {
 		
 		mav.addObject("orderinfo",list);
 		
-		mav.setViewName("orderinfoDetail");	
+		mav.setViewName("/member/orderinfoDetail");	
 		
 		return mav;
 	}
@@ -263,7 +263,7 @@ public class CustomerController {
 			
 			mav.addObject("order",list);
 			
-			mav.setViewName("orderinfo");	
+			mav.setViewName("/member/orderinfo");	
 			
 			return mav;
 		}
@@ -284,7 +284,7 @@ public class CustomerController {
 		
 		mav.addObject("list",favorite); //뷰에 전달할 데이터 지정 
 		
-		mav.setViewName("favorite"); //뷰 이름 지정 
+		mav.setViewName("/member/favorite"); //뷰 이름 지정 
 
 		return mav;
 	}
@@ -375,7 +375,7 @@ public class CustomerController {
 		}
 	
 		mav.addObject("customer", map);
-		mav.setViewName("join_success");
+		mav.setViewName("/member/join_success");
 		
 		return mav;
 	}	

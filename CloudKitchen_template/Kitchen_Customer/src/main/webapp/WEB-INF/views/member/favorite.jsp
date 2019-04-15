@@ -22,8 +22,8 @@ var custId = '${custId}';
 <body>
 
 <!-- 위쪽 헤더바  -->
-	<jsp:include page="include/header.jsp" />
-	<jsp:include page="include/background.jsp" flush="false" />
+	<jsp:include page="../include/header.jsp" />
+	<jsp:include page="../include/background.jsp" flush="false" />
 	<!-- 헤드 끝 -->
 <br><br><br>
 	
@@ -99,7 +99,7 @@ var custId = '${custId}';
 			</script>
 <div style="margin-bottom: 50%"></div>
 	<!-- 아래 풋터바  -->
-	<jsp:include page="include/footer.jsp" />
+	<jsp:include page="../include/footer.jsp" />
 	<!-- 풋터 끝 -->
 
 </body>
