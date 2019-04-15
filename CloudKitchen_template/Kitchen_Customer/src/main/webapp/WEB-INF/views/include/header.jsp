@@ -205,6 +205,7 @@
 				<div class="form-group">
 					<input class="form-control" placeholder="상세주소" name="location" id="addr3" type="text"  />
 				</div>
+				<input type="text" value="MEM001" style="display:none">
                 <button type="button" class="btn btn-submit" id="register_btn">회원가입</button><input type="hidden" id="bizIdx" value="${idx}">
 			</form>
 		</div>
