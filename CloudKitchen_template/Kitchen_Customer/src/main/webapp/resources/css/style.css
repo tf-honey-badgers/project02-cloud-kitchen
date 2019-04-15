@@ -1790,7 +1790,7 @@ s.checkbox-holder {
 	color: #CDFFCD;
 	text-shadow: 1px 1px 1px #296429;
 }
-
+/* email 체크  */ 
 #email-info{
 	width: 100%;
 	margin-bottom:15px;
@@ -1811,7 +1811,7 @@ s.checkbox-holder {
 	color: #51926E;
 	text-shadow: 1px 1px 1px #FFF;
 }
-
+/*  id 체크  */ 
 #id-info{
 	width: 100%;
 	margin-bottom:15px;
@@ -1826,6 +1826,26 @@ s.checkbox-holder {
 	text-shadow: 1px 1px 1px #FFF;
 }
 #id-info.strong {
+	border: 1px solid #C4EEC8;
+	background: #E4FFE4;
+	color: #51926E;
+	text-shadow: 1px 1px 1px #FFF;
+}
+/* 생년월일 체크   */
+#birth-info{
+	width: 100%;
+	margin-bottom:15px;
+	color: #829CBD;
+	text-align: center;
+	font: 12px/25px Arial, Helvetica, sans-serif;
+}
+#birth-info.weakpass{
+	border: 1px solid #FF9191;
+	background: #FFC7C7;
+	color: #94546E;
+	text-shadow: 1px 1px 1px #FFF;
+}
+#birth-info.strong {
 	border: 1px solid #C4EEC8;
 	background: #E4FFE4;
 	color: #51926E;

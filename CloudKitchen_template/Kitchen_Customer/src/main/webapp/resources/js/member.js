@@ -9,12 +9,13 @@ $(document).ready(function(){
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({
-    				id : $('#id').val(),
-    				 pw : $('#pw').val()
+    				id : $('#id').val()
+    				, pw : $('#pw').val()
     				, name : $('#name').val()
     				, email : $('#email').val()
     				, address : $('#address').val()
     				, addressDetail :$('#addressDetail').val()
+    				
     			})
     		, error : function() { alert("회원 정보를 수정하는데 에러가 발생했습니다."); }
     		, success : function() { alert("성공적으로 회원 정보를 수정했습니다."); }
@@ -109,6 +110,7 @@ $(document).ready(function(){
     				, gender : $('#myRegister input:eq(9)').val()
     				, address : $('#myRegister input:eq(11)').val()
     				, addressDetail : $('#myRegister input:eq(12)').val()
+    				, status : $('#myRegister input:eq(13)').val()
     		
     			
     			})
@@ -119,7 +121,7 @@ $(document).ready(function(){
     			} else {
     				alert('가입 실패 다시 시도해 주새요.');  			
     			}
-    			$('#myRegister input').val("");
+    			//$('#myRegister input').val("");
     		}
 		, error : function(data) {
 			console.log(data);
