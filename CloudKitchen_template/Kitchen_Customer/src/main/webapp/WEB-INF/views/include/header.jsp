@@ -184,7 +184,7 @@
                 <input type="text" class="form-control form-white" placeholder="생년 월일" id="Rbitrh">
                 <input type="text" class="form-control form-white" placeholder="휴대폰 번호" id="Rphone">
                 <input type="email" class="form-control form-white" placeholder="Email" id="Remail">
-              	 <div id="result-check"></div>
+              
                 <div>
 					<input type="radio" name="gender" value="남" checked onclick="doIt('남')" id = "r1" style="width:23px;height:18px;">
 					<label for = "r1" style="font-size: 15px; color: white; padding-right: 30%;" > 남 </label>
