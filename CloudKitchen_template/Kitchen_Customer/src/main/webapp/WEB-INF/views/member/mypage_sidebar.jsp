@@ -9,16 +9,9 @@
 			
 			
 					<div class="filter_type">
-						<h6>Options</h6>
-						<h6>Options</h6>
-						<h6>Options</h6>
-						<h6>Options</h6>
-						<ul class="nomargin">
-							<li><label>Delivery</label></li>
-							<li><label>Take Away</label></li>
-							<li><label>Distance 10Km</label></li>
-							<li><label>Distance 5Km</label></li>
-						</ul>
+						<h6><a href="${pageContext.request.contextPath}/member/${uid}/change">회원정보 수정</a></h6>
+						<h6><a href="${pageContext.request.contextPath}/member/${uid}/mypage/orderinfo">주문 내역보기</a></h6>
+						<h6><a href="${pageContext.request.contextPath}/member/fav/${uid}/mypage">찜 내역</a></h6>
 					</div>
 				</div><!--End collapse -->
 			</div><!--End filters col-->

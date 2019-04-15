@@ -64,6 +64,7 @@
 				<th>남긴말</th>
 				
 				
+				
 			</tr>
 			</thead>
 			<tbody>
@@ -71,14 +72,14 @@
 		</table>
 		
 	
-	
+	<h1>${orderinfo }</h1>
 
 
 		
 		<script>
 		 var tbody = $('tbody');
 		 
-		$(document).ready(function(){
+	/* 	$(document).ready(function(){
 		
 			
 			$.getJSON( 'http://localhost/rest/customer/${id}/mypage/orderinfo', function(list){
@@ -116,7 +117,7 @@
 			});
 		 
 		
-		});
+		}); */
 		
 		</script>
 		

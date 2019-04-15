@@ -1,9 +1,11 @@
 package org.badgers.rest.customer.member.controller;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.badgers.rest.customer.member.service.CustomerService;
+import org.badgers.rest.customer.order.service.ToOrderInfoForViewService;
 import org.badgers.rest.model.CustomerVO;
 import org.badgers.rest.model.OrderInfoVO;
 import org.badgers.rest.model.OrderVO;
@@ -33,7 +35,9 @@ public class CustomerController {
 	private CustomerService service;
 	
 	@Autowired
-	BCryptPasswordEncoder passEncoder;
+	private BCryptPasswordEncoder passEncoder;
+	@Autowired
+	public ToOrderInfoForViewService toOrderInfoForViewService;
 
 	//회원가입                                                                                                                          
 	@PostMapping(value= "/register")
@@ -86,7 +90,6 @@ public class CustomerController {
 	}
 	
 	// 개인정보 수정
-	@CrossOrigin("http://localhost:3001")
 	@PutMapping("/{id}/mypage/modify")
 	public int modify(@PathVariable("id")String id, @RequestBody CustomerVO vo) {
 		int returnVal = 0;
@@ -133,12 +136,11 @@ public class CustomerController {
 
 	
 	//주문 내역  보기 
-	@CrossOrigin("http://localhost:3001") //크로스 도메인 처리 
-	@GetMapping(value = "/{id}/mypage/orderinfo", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<List<OrderInfoVO>>  getOrderInfo(@PathVariable("id")String id) throws Exception {
-		List<OrderInfoVO> list = service.getOrderInfo(id);
-
-		return new ResponseEntity<List<OrderInfoVO>>(list, HttpStatus.OK);
+	@GetMapping(value = "/{id}/mypage/orderinfo", produces="application/json; charset=utf-8")
+	public ResponseEntity<?>  getOrderInfo(@PathVariable("id")String id) throws Exception {
+		LinkedList<OrderInfoVO> list = (LinkedList<OrderInfoVO>) service.getOrderInfo(id);
+		String jsonOrderInfoForView = toOrderInfoForViewService.toOrderInfoForView(list);
+		return new ResponseEntity(jsonOrderInfoForView, HttpStatus.OK);
 	}
 	
 	// ID 찾기 & 본인인증하기
@@ -178,7 +180,6 @@ public class CustomerController {
 			}
 	
 		//주문 내역상세  보기 
-		@CrossOrigin("http://localhost:3001") //크로스 도메인 처리 
 		@GetMapping(value = "/{cust_id}/mypage/order", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 		public ResponseEntity<List<OrderVO>>  getOrder(@PathVariable("cust_id")String custId) throws Exception {
 			List<OrderVO> list = service.getOrder(custId);

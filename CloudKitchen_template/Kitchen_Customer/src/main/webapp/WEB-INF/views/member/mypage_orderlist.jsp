@@ -18,14 +18,14 @@
   <div class="container margin_60_35">
 	<div class="row">
     
-		<jsp:include page="mypage_sidebar.jsp"></jsp:include>
+		<jsp:include page="mypage_sidebar.jsp"/>
         
 		<div class="col-md-9">
         
  
         <!--  strip_list-->
         <c:if test="${!empty order }">
-        <c:forEach var="order" items="${order}">
+        <c:forEach var="order" items="${order}"  begin="0" end="4">
 			<div class="strip_list wow fadeIn" data-wow-delay="0.1s">
 				
 				<div class="row">
@@ -53,7 +53,7 @@
 					<div class="col-md-3 col-sm-3">
 						<div class="go_to">
 							<div>
-								<a href="detail_page.html" class="btn_1">View Menu</a>
+								<a href="${pageContext.request.contextPath}/member/${order.id}/mypage/orderinfoDetail" class="btn_1">View Menu</a>
 							</div>
 						</div>
 					</div>
