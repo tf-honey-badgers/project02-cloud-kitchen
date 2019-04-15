@@ -36,6 +36,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/magnific-popup.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/pop_up.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/admin.css" rel="stylesheet">
 
 <!-- Radio and check inputs -->
 <link href="${pageContext.request.contextPath}/resources/css/skins/square/grey.css" rel="stylesheet">
