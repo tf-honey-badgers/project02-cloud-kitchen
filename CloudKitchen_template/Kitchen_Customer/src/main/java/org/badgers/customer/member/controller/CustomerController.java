@@ -263,7 +263,8 @@ public class CustomerController {
 			
 			mav.addObject("order",list);
 			
-			mav.setViewName("/member/orderinfo");	
+			mav.setViewName("/member/mypage_orderlist");	
+//			mav.setViewName("orderinfo");	
 			
 			return mav;
 		}
