@@ -119,7 +119,7 @@ $(document).ready(function(){
     			} else {
     				alert('가입 실패 다시 시도해 주새요.');  			
     			}
-    			$('#myRegister input').val("");
+    			//$('#myRegister input').val("");
     		}
 		, error : function(data) {
 			console.log(data);

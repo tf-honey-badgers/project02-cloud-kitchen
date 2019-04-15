@@ -183,7 +183,7 @@
                 <input type="password" class="form-control form-white" placeholder="비밀번호 재확인" id="password2">
                 <div id="pass-info" class="clearfix"></div>
                 <input type="text" class="form-control form-white" placeholder="이름" id="Rname">
-                <input type="text" class="form-control form-white" placeholder="생년 월일" id="Rbirth">
+                <input type="date" class="form-control form-white" placeholder="생년 월일" id="Rbirth">
                  <div id="birth-info" class="clearfix"></div>
                 <input type="text" class="form-control form-white" placeholder="휴대폰 번호" id="Rphone">
                 <input type="email" class="form-control form-white" placeholder="Email" id="Remail">
