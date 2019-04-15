@@ -1,61 +1,43 @@
 $(document).ready(function() {
-	$('#register_btn').on('click', function() {
+
+	var id =$('#Rid');
+	var idInfo =$('#id-info')
+	var email = $('#Remail');
+	var emailInfo = $('#email-info');
+	
+	check(id,idInfo,email,emailInfo);
+});	
+	
+function check(id,idInfo,email,emailInfo){
+	var emailChk = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+	var idChk =/^[a-z]+[a-z0-9]{5,19}$/g;
+
+	$(id).on('keyup',function(e){
+	  if( idChk.test( id.val())) {
+          idInfo.removeClass().addClass('strong').html("id clear!");
+    
+      }
+	  else if(idChk.test(id.val())==false){
+		idInfo.removeClass().addClass('weakpass').html("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다."); 
+	  }
+
+	});
+	$(email).on('keyup',function(e){
 		
+		if(emailChk.test(email.val()))
+			{
+			
+			emailInfo.removeClass().addClass('strong').html("email clear!")
+			}
+		else if(emailChk.test(email.val())==false){
+
+		        
+			emailInfo.removeClass().addClass('weakpass').html("이 메일형식이 올바르지 않습니다. ")	;
+		   
+
+		}
+	});
 	
-	var id = $('#Rid').val();
-	var pass = $('#password1').val(); 
-	var pass2 = $('#password2').val(); 
-	var name = $('#Rname').val();
-	var birth = $('#Rbirth').val();
-	var phone = $('#Rphone').val();
-	var email = $('#Remail').val();
+}	
 	
-	 if(id.length == 0){
-	        alert("아이디를 입력해 주세요"); 
-	        $("#Rid").focus();
-	        return false;
-	    }
-	    
-	    if(pass.length == 0){
-	        alert("비밀번호를 입력해 주세요"); 
-	        $("#password1").focus();
-	        return false;
-	    }
-	 
-	    if(pass != pass2){
-	        alert("비밀번호가 서로 다릅니다. 비밀번호를 확인해 주세요."); 
-	        $("#password2").focus();
-	        return false; 
-	    }
-	 
-	    if(name.length == 0){
-	        alert("이름을 입력해주세요");
-	        $("#Rname").focus();
-	        return false;
-	    }
-	    
-	    if(birth.length == 0){
-	        alert("생년월일을 입력하여 주세요.");
-	        $("#Rbirth").focus();
-	        return false;
-	    }
-	    
-	    if(phone.length == 0){
-	        alert("핸드폰을 입력하여 주세요.");
-	        $("#Rphone").focus();
-	        return false;
-	    }
-	    
-	    if(email.length == 0){
-	        alert("이메일을 입력해주세요");
-	        $("#Remail").focus();
-	        return false;
-	    }
-	    
-	
-	    if(confirm("회원가입을 하시겠습니까?")){
-	        alert("회원가입을 축하합니다");
-	        return true;
-	    }
-	});	
-});
+

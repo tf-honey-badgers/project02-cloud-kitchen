@@ -161,7 +161,10 @@ public class CustomerController {
 	
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
-	
+		System.out.println("responseEntity============"+responseEntity);
+		System.out.println(url);
+		System.out.println(customer);
+		
 		msg = responseEntity.getBody();
 		
 		return msg;
