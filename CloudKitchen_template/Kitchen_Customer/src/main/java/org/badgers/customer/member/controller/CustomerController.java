@@ -65,7 +65,7 @@ public class CustomerController {
 		mav.addObject("customer", returnVal);
 		log.info("returnVal");
 		session.setAttribute("login", returnVal);
-		mav.setViewName("modify");
+		mav.setViewName("/member/modify");
 		
 		return mav;
 	}	
@@ -161,7 +161,10 @@ public class CustomerController {
 	
 		
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, customer, String.class);
-	
+		System.out.println("responseEntity============"+responseEntity);
+		System.out.println(url);
+		System.out.println(customer);
+		
 		msg = responseEntity.getBody();
 		
 		return msg;
@@ -225,24 +228,25 @@ public class CustomerController {
 	}
 	
 	
-	// 주문 내역 보기 
+	// 주문 상세내역 보기 
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@GetMapping(value = "/{id}/mypage/orderinfoDetail")
+	@GetMapping(value = "/{id}/mypage/orderinfoDetail" )
 	public ModelAndView readOrderinfo(ModelAndView mav, @PathVariable("id") String id) {
-		log.info("사용자 주문 내역 보기================================");
+		log.info("사용자 주문 내역 보기==========1======================");
 		
-		List<OrderInfoVO> list = null;
+		String orderdetailList = null;
 		String url = RestDomain.restDomain+"/customer/" + id + "/mypage/orderinfo";
 		
-		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url,java.util.List.class);
+		ResponseEntity<String> responseEntity = restTemplate.getForEntity(url,String.class);
 		if(responseEntity.getStatusCode()==HttpStatus.OK) {
-			list = (List<OrderInfoVO>) responseEntity.getBody();
+			orderdetailList = responseEntity.getBody();
+			System.out.println(orderdetailList);
 		}
 		
-		mav.addObject("orderinfo",list);
+		mav.addObject("orderinfo",orderdetailList);
 		
-		mav.setViewName("orderinfoDetail");	
+		mav.setViewName("/member/mypage_orderDetaliList");	
 		
 		return mav;
 	}
@@ -251,7 +255,7 @@ public class CustomerController {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@GetMapping(value = "/{custId}/mypage/orderinfo")
 		public ModelAndView readOrder(ModelAndView mav, @PathVariable("custId") String custId) {
-			log.info("사용자 주문 내역 보기================================");
+			log.info("사용자 주문 상세내역 보기=============2===================");
 			
 			List<OrderVO> list = null;
 			String url = RestDomain.restDomain+"/customer/" + custId + "/mypage/order";
@@ -263,7 +267,7 @@ public class CustomerController {
 			
 			mav.addObject("order",list);
 			
-			mav.setViewName("orderinfo");	
+			mav.setViewName("/member/mypage_orderlist");	
 			
 			return mav;
 		}
@@ -284,7 +288,7 @@ public class CustomerController {
 		
 		mav.addObject("list",favorite); //뷰에 전달할 데이터 지정 
 		
-		mav.setViewName("favorite"); //뷰 이름 지정 
+		mav.setViewName("/member/favorite"); //뷰 이름 지정 
 
 		return mav;
 	}
@@ -375,7 +379,7 @@ public class CustomerController {
 		}
 	
 		mav.addObject("customer", map);
-		mav.setViewName("join_success");
+		mav.setViewName("/member/join_success");
 		
 		return mav;
 	}	

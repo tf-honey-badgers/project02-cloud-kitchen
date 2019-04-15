@@ -91,7 +91,8 @@ $(document).ready(function(){
       
         
 	// 회원가입 절차 
-	$('#myRegister button').on('click', function() {
+	$('#register_btn').on('click', function() {
+	
 		$.ajax({
     		url : '/customer/member/register'
     		, type : 'POST'
@@ -111,18 +112,18 @@ $(document).ready(function(){
     		
     			
     			})
-    		, error : function(data) {
-    			console.log(data);
-    		}
     		, success : function(data) {
     			if(data == "<Integer>1</Integer>") {
-    				alert('가입이 성공 되었으니 이메일 인증을 해주세요.');    				
+    				alert('가입성공 !  '+$('#myRegister input:eq(6)').val()+'에서 인증 메일을 확인하세요.');  
+    				location.href =  "/customer/main";
     			} else {
     				alert('가입 실패 다시 시도해 주새요.');  			
     			}
-    			$('.modal').modal('hide');
     			$('#myRegister input').val("");
     		}
+		, error : function(data) {
+			console.log(data);
+		}
 		});
 	})
 	
@@ -272,6 +273,7 @@ $(document).ready(function(){
 	});
 	
 	
+	
 })
 
 function sendMessage(msg){
@@ -282,4 +284,8 @@ function sendMessage(msg){
 		}
 		window.HybridApp.setMessage(msg);
 	}
+
+
+
+
 	

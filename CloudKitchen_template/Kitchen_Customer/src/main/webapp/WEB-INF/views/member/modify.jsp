@@ -12,8 +12,8 @@
 </head>
 <body>
 <!-- 위쪽 헤더바  -->
-    <jsp:include page="include/header.jsp"/>
-    <jsp:include page="include/background.jsp" flush="false" />
+    <jsp:include page="../include/header.jsp"/>
+    <jsp:include page="../include/background.jsp" flush="false" />
  	 <!--  -->
     <!-- 헤드 끝 -->
 <br><br><br><br>
@@ -105,7 +105,7 @@
 			</div>
 	</div>
 		<!-- 삭제  -->
-		 <jsp:include page="include/delete.jsp" flush="false"></jsp:include>
+		 <jsp:include page="../include/delete.jsp" flush="false"></jsp:include>
 		
 			<script>
 			function execPostCode() {
@@ -152,7 +152,7 @@
 			</script>
 		 
 			  <!-- Footer -->
-            <jsp:include page="include/footer.jsp" flush="false"></jsp:include>
+            <jsp:include page="../include/footer.jsp" flush="false"></jsp:include>
             <!-- End Footer -->
 </body>
 </html>

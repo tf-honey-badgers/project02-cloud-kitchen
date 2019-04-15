@@ -146,7 +146,9 @@ update honey_badgers.customer set auth_code = #{param2} where email = #{param1}
 	select
 		*
 	 from honey_badgers.order
-	 where cust_id=#{custId};
+	 
+	 where cust_id=#{custId}
+	 order by time desc;
 	
 	</select>
 </mapper>

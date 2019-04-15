@@ -1,5 +1,6 @@
 package org.badgers.rest.customer.member.service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.badgers.rest.model.CustomerVO;
@@ -31,7 +32,7 @@ public interface CustomerService {
 	public List<CustomerVO> readMember(String id) throws Exception;
 	
 	// 주문 내역 상세
-	public List<OrderInfoVO> getOrderInfo(String id);
+	public LinkedList<OrderInfoVO> getOrderInfo(String id);
 	
 	//ID 찾기
 	public String verify(CustomerVO vo)throws Exception;

@@ -1,5 +1,6 @@
 package org.badgers.rest.customer.member.service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -100,7 +101,7 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	//주문 정보 상세
 	@Override
-	public List<OrderInfoVO> getOrderInfo(String id) {
+	public LinkedList<OrderInfoVO> getOrderInfo(String id) {
 		
 		
 		return mapper.getOrderInfo(id);

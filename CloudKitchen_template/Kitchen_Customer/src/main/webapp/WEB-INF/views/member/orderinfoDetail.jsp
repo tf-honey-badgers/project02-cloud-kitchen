@@ -13,8 +13,8 @@
 </head>
 <body>
 	<!-- 위쪽 헤더바  -->
-	<jsp:include page="include/header.jsp" />
-	<jsp:include page="include/background.jsp" flush="false" />
+	<jsp:include page="../include/header.jsp" />
+	<jsp:include page="../include/background.jsp" flush="false" />
 	<!-- 헤드 끝 -->
 	<br><br>
 			<div class="sidebar col-md-2" style="margin: auto;">
@@ -64,6 +64,7 @@
 				<th>남긴말</th>
 				
 				
+				
 			</tr>
 			</thead>
 			<tbody>
@@ -71,14 +72,14 @@
 		</table>
 		
 	
-	
+	<h1>${orderinfo }</h1>
 
 
 		
 		<script>
 		 var tbody = $('tbody');
 		 
-		$(document).ready(function(){
+	/* 	$(document).ready(function(){
 		
 			
 			$.getJSON( 'http://localhost/rest/customer/${id}/mypage/orderinfo', function(list){
@@ -116,7 +117,7 @@
 			});
 		 
 		
-		});
+		}); */
 		
 		</script>
 		
@@ -125,7 +126,7 @@
 		
 		
 		<!-- 위쪽 헤더바  -->
-	<jsp:include page="include/footer.jsp" />
+	<jsp:include page="../include/footer.jsp" />
 	<!-- 헤드 끝 -->
 		
 		

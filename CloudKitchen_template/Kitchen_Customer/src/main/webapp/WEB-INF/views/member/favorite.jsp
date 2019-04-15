@@ -22,41 +22,11 @@ var custId = '${custId}';
 <body>
 
 <!-- 위쪽 헤더바  -->
-	<jsp:include page="include/header.jsp" />
-	<jsp:include page="include/background.jsp" flush="false" />
+	<jsp:include page="../include/header.jsp" />
+	<jsp:include page="../include/background.jsp" flush="false" />
 	<!-- 헤드 끝 -->
-<br><br><br>
-	
 
-		<div class="sidebar col-md-2">
-				<div class="theiaStickySidebar">
-					<p>
-						<a href="javascript:history.back()" class="btn_side">Back to page</a>
-					</p>
-					<div class="box_style_1">
-						<ul id="cat_nav">
-						
-								<li><a href="${pageContext.request.contextPath}/member/${uid}/change">
-								회원정보 수정
-								</a></li>
-								<li><a href="${pageContext.request.contextPath}/member/${uid}/mypage/orderinfo">
-								주문 내역보기
-								</a></li>
-								<li><a 	href="${pageContext.request.contextPath}/member/fav/${uid}/mypage">
-								찜 내역
-								</a></li>
-							
-						</ul>
-					</div> <!-- End box_style_1 -->
-					<div class="box_style_2 hidden-xs" id="help">
-						<i class="icon_lifesaver"></i>
-						<h4>도움이</h4>
-						<h4>필요하세요?</h4>
-						<a href="tel://01012349876" class="phone"><span style="font-size:15px;">010-1234-9876</span></a> <small>1년 365일 오전 9시부터 오후 6시까지!</small>
-					</div>
-				</div>
-			</div> <!-- End col-md-2 -->
-
+<jsp:include page="mypage_sidebar.jsp"/>
 
 
 
@@ -99,7 +69,7 @@ var custId = '${custId}';
 			</script>
 <div style="margin-bottom: 50%"></div>
 	<!-- 아래 풋터바  -->
-	<jsp:include page="include/footer.jsp" />
+	<jsp:include page="../include/footer.jsp" />
 	<!-- 풋터 끝 -->
 
 </body>
