@@ -92,6 +92,7 @@ $(document).ready(function(){
         
 	// 회원가입 절차 
 	$('#register_btn').on('click', function() {
+	    
 		$.ajax({
     		url : '/customer/member/register'
     		, type : 'POST'
@@ -111,9 +112,6 @@ $(document).ready(function(){
     		
     			
     			})
-    		, error : function(data) {
-    			console.log(data);
-    		}
     		, success : function(data) {
     			if(data == "<Integer>1</Integer>") {
     				alert('가입이 성공 되었으니 이메일 인증을 해주세요.');    				
@@ -123,6 +121,9 @@ $(document).ready(function(){
     			$('.modal').modal('hide');
     			$('#myRegister input').val("");
     		}
+		, error : function(data) {
+			console.log(data);
+		}
 		});
 	})
 	
@@ -285,27 +286,6 @@ function sendMessage(msg){
 	}
 
 
-function email_check( email ) {    
-    var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-    return (email != '' && email != 'undefined' && regex.test(email)); 
-}
 
-// check when email input lost foucus
-$(".emailchecking").blur(function(){
-  var email = $(this).val();
-
-  // if value is empty then exit
-  if( email == '' || email == 'undefined') return;
-
-  // valid check
-  if(! email_check(email) ) {
-  	$("#result-check").text('Not valid email.');
-    $(this).focus();
-    return false;
-  }
-  else {
-  	$("#result-check").text('Email address test OK.');
-  }
-});
 
 	

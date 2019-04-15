@@ -182,11 +182,9 @@
                 <input type="password" class="form-control form-white" placeholder="비밀번호 재확인" id="password2">
                 <div id="pass-info" class="clearfix"></div>
                 <input type="text" class="form-control form-white" placeholder="이름" id="Rname">
-                 <div id="name-info" class="clearfix"></div>
-                <input type="text" class="form-control form-white" placeholder="생년 월일" id="Rbitrh">
+                <input type="text" class="form-control form-white" placeholder="생년 월일" id="Rbirth">
                  <div id="birth-info" class="clearfix"></div>
                 <input type="text" class="form-control form-white" placeholder="휴대폰 번호" id="Rphone">
-                 <div id="phone-info" class="clearfix"></div>
                 <input type="email" class="form-control form-white" placeholder="Email" id="Remail">
                  <div id="email-info" class="clearfix"></div>
                 <div>
@@ -268,4 +266,58 @@ function execPostCode() {
 	});
 
 </script>
+<!-- <script>
+$(document).ready(function() {
+	$('#register_btn').on('click', function() {
+	var id = $('#Rid').val();
+	var pass = $('#password1').val(); 
+	var name = $('#Rname').val();
+	var birth = $('#Rbirth').val();
+	var phone = $('#Rphone').val();
+	var email = $('#Remail').val();
 
+	
+	
+	 if(id.length == 0){
+		 alert("아이디를 입력해 주세요"); 
+	        $("#Rid").focus();
+	        return false;
+	    }
+	    
+	    if(pass.length == 0){
+	        alert("비밀번호를 입력해 주세요"); 
+	        $("#password1").focus();
+	        return false;
+	    }
+	 
+	 
+	    if(name.length == 0){
+	        alert("이름을 입력해주세요");
+	        $("#Rname").focus();
+	        return false;
+	    }
+	    
+	    if(birth.length == 0){
+	        alert("생년월일을 입력하여 주세요.");
+	        $("#Rbirth").focus();
+	        return false;
+	    }
+	    
+	    if(phone.length == 0){
+	        alert("핸드폰을 입력하여 주세요.");
+	        $("#Rphone").focus();
+	        return false;
+	    }
+	    
+	    if(email.length == 0){
+	        alert("이메일을 입력해주세요");
+	        $("#Remail").focus();
+	        return false;
+	    }
+	    
+		
+	   
+	});
+});
+
+</script> -->
