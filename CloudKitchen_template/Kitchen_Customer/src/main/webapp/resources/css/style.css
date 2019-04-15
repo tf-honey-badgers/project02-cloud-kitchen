@@ -1791,6 +1791,47 @@ s.checkbox-holder {
 	text-shadow: 1px 1px 1px #296429;
 }
 
+#email-info{
+	width: 100%;
+	margin-bottom:15px;
+	color: #829CBD;
+	text-align: center;
+	font: 12px/25px Arial, Helvetica, sans-serif;
+}
+#email-info.weakpass{
+	border: 1px solid #FF9191;
+	background: #FFC7C7;
+	color: #94546E;
+	text-shadow: 1px 1px 1px #FFF;
+}
+
+#email-info.strong {
+	border: 1px solid #C4EEC8;
+	background: #E4FFE4;
+	color: #51926E;
+	text-shadow: 1px 1px 1px #FFF;
+}
+
+#id-info{
+	width: 100%;
+	margin-bottom:15px;
+	color: #829CBD;
+	text-align: center;
+	font: 12px/25px Arial, Helvetica, sans-serif;
+}
+#id-info.weakpass{
+	border: 1px solid #FF9191;
+	background: #FFC7C7;
+	color: #94546E;
+	text-shadow: 1px 1px 1px #FFF;
+}
+#id-info.strong {
+	border: 1px solid #C4EEC8;
+	background: #E4FFE4;
+	color: #51926E;
+	text-shadow: 1px 1px 1px #FFF;
+}
+
 /* 3.8 Input form style */   
 .loader { margin-left:5px; position:absolute;}
 .error_message { color:#F33; font-weight:600; margin-bottom:4px;}
