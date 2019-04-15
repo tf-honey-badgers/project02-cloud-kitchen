@@ -176,14 +176,15 @@
         	<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
             <form action="#" class="popup-form" id="myRegister" name ="myRegister">
             	<div class="login_icon"><i class="icon_lock_alt"></i></div>
-                <input type="text" class="form-control form-white" placeholder="아이디">
-                <input type="password" class="form-control form-white" placeholder="비밀번호" id="password1">
-                <input type="password" class="form-control form-white" placeholder="비밀번호 재확인" id="password2">
+                <input type="text" class="form-control form-white" placeholder="아이디" id="Rid">
+                <input type="password" class="form-control form-white" placeholder="비밀번호" id="password1" id="Rpw">
+                <input type="password" class="form-control form-white" placeholder="비밀번호 재확인" id="password2" id="Rpw2">
                 <div id="pass-info" class="clearfix"></div>
-                <input type="text" class="form-control form-white" placeholder="이름">
-                <input type="text" class="form-control form-white" placeholder="생년 월일">
-                <input type="text" class="form-control form-white" placeholder="휴대폰 번호">
-                <input type="email" class="form-control form-white" placeholder="Email">
+                <input type="text" class="form-control form-white" placeholder="이름" id="Rname">
+                <input type="text" class="form-control form-white" placeholder="생년 월일" id="Rbitrh">
+                <input type="text" class="form-control form-white" placeholder="휴대폰 번호" id="Rphone">
+                <input type="email" class="form-control form-white" placeholder="Email" id="Remail">
+              	 <div id="result-check"></div>
                 <div>
 					<input type="radio" name="gender" value="남" checked onclick="doIt('남')" id = "r1" style="width:23px;height:18px;">
 					<label for = "r1" style="font-size: 15px; color: white; padding-right: 30%;" > 남 </label>
@@ -201,7 +202,7 @@
 				<div class="form-group">
 					<input class="form-control" placeholder="상세주소" name="location" id="addr3" type="text"  />
 				</div>
-                <button type="button" class="btn btn-submit">회원가입</button><input type="hidden" id="bizIdx" value="${idx}">
+                <button type="button" class="btn btn-submit" id="register_btn">회원가입</button><input type="hidden" id="bizIdx" value="${idx}">
 			</form>
 		</div>
 	</div>
@@ -263,3 +264,4 @@ function execPostCode() {
 	});
 
 </script>
+

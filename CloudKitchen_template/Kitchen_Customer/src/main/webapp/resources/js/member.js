@@ -91,7 +91,7 @@ $(document).ready(function(){
       
         
 	// 회원가입 절차 
-	$('#myRegister button').on('click', function() {
+	$('#register_btn').on('click', function() {
 		$.ajax({
     		url : '/customer/member/register'
     		, type : 'POST'
@@ -272,6 +272,7 @@ $(document).ready(function(){
 	});
 	
 	
+	
 })
 
 function sendMessage(msg){
@@ -282,4 +283,29 @@ function sendMessage(msg){
 		}
 		window.HybridApp.setMessage(msg);
 	}
+
+
+function email_check( email ) {    
+    var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    return (email != '' && email != 'undefined' && regex.test(email)); 
+}
+
+// check when email input lost foucus
+$(".emailchecking").blur(function(){
+  var email = $(this).val();
+
+  // if value is empty then exit
+  if( email == '' || email == 'undefined') return;
+
+  // valid check
+  if(! email_check(email) ) {
+  	$("#result-check").text('Not valid email.');
+    $(this).focus();
+    return false;
+  }
+  else {
+  	$("#result-check").text('Email address test OK.');
+  }
+});
+
 	
