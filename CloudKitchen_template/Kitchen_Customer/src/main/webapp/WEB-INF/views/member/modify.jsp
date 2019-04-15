@@ -14,42 +14,13 @@
 <!-- 위쪽 헤더바  -->
     <jsp:include page="../include/header.jsp"/>
     <jsp:include page="../include/background.jsp" flush="false" />
- 	 <!--  -->
-    <!-- 헤드 끝 -->
-<br><br><br><br>
-	<div class="container margin_60_35">
+
+	<div class="container margin_60">
 		<div class="row">
-			<div class="sidebar col-md-2">
-				<div class="theiaStickySidebar">
-					<p>
-						<a href="javascript:history.back()" class="btn_side">Back to page</a>
-					</p>
-					<div class="box_style_1">
-						<ul id="cat_nav">
-						
-								<li><a href="${pageContext.request.contextPath}/member/${uid}/change">
-								회원정보 수정
-								</a></li>
-								<li><a href="${pageContext.request.contextPath}/member/${uid}/mypage/orderinfo">
-								주문 내역보기
-								</a></li>
-								<li><a 	href="${pageContext.request.contextPath}/member/fav/${uid}/mypage">
-								찜 내역
-								</a></li>
-							
-						</ul>
-					</div> <!-- End box_style_1 -->
-					<div class="box_style_2 hidden-xs" id="help">
-						<i class="icon_lifesaver"></i>
-						<h4>도움이</h4>
-						<h4>필요하세요?</h4>
-						<a href="tel://01012349876" class="phone"><span style="font-size:15px;">010-1234-9876</span></a> <small>1년 365일 오전 9시부터 오후 6시까지!</small>
-					</div>
-				</div>
-			</div> <!-- End col-md-2 -->	
+		<jsp:include page="mypage_sidebar.jsp"/>
+  		<div class="col-md-9">
 	
-			
-<div class="col-md-6">
+
 				<div class="box_style_2" id="order_process">
 					<h2 class="inner">개인정보 수정</h2>
 					<p>비번 , 이름 , 이메일 변경 가능 </p>
@@ -84,7 +55,7 @@
 					</div>
 					<div class="form-group">
 						<label>주소</label> 
-						<button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
+						<button  type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
 						<input type="text" id="address" name="customerLocation" class="form-control"  value="${customer.address}">
 					</div>
 					<div class="form-group">
