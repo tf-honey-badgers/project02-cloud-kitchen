@@ -266,7 +266,7 @@ function execPostCode() {
 	});
 
 </script>
-<!-- <script>
+<script>
 $(document).ready(function() {
 	$('#register_btn').on('click', function() {
 	var id = $('#Rid').val();
@@ -320,4 +320,4 @@ $(document).ready(function() {
 	});
 });
 
-</script> -->
+</script>
