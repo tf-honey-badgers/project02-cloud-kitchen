@@ -106,7 +106,7 @@
 													
 									</div>
 									
-										<div class="form-group">
+										<div class="form-group menudetail">
 											<label>Menu Detail</label>
 											<div class="table-responsive">
 												<table class="table table-striped edit-options">
@@ -117,7 +117,7 @@
 														<tr>
 															<c:forEach items="${menuinner.value }"  var="option">
 																<c:if test="${option.key eq \"option\"}">
-															<td style="width:35%;">
+															<td style="width:35%;" class="menuinfo">
 																<p style="font-weight: bold;font-size: 14px;">${menuinner.key }</p><!-- 메뉴 이름 -->
 																	 <c:forEach  items="${menuinner.value}" var ="menuprice" varStatus="st" >
 																		 <c:if test="${menuprice.key eq  \"menuPrice\"}">
@@ -168,7 +168,18 @@
 	
 	$('.wrapper_indent').each(function(i,f){
 		console.log(i,f)
-		$
+		var n= $('.menudetail')
+		console.log(n)
+		var v= $('.menudetail:eq('+i+')').find('.menuinfo p:eq(3) span')
+			
+			console.log(v)
+		
+		
+		
+		//find('.menuinfo p:eq(3) span')
+		//console.log(v)
+		
+		
 	})
 
 </script>
