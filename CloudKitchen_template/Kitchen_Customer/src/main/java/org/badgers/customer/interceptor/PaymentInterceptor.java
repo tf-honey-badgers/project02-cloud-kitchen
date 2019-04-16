@@ -102,7 +102,7 @@ public class PaymentInterceptor extends HandlerInterceptorAdapter {
 				
 				orderOptionVO.setOptId(cartDetail.getMenuOptId()+"");
 				orderOptionVO.setOptName(cartDetail.getMenuOptName());
-				orderOptionVO.setOptPrice(cartDetail.getMenuOptPrice()*orderDetail.getQuantity());
+				orderOptionVO.setOptPrice(cartDetail.getMenuOptPrice());
 				orderOptionVO.setOrderDetailId(orderDetailId);
 				
 				//생성된 orderOptionVO를 List에 담아준다
