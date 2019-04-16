@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -85,15 +84,15 @@ public class KitchenController {
 /* 검색 시 일치하는 가게 정보 가지고 검색결과 페이지로 넘어가기 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/search", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ModelAndView searchLists(ModelAndView mav, @ModelAttribute("query") String query) {
+	public ModelAndView searchLists(ModelAndView mav, @RequestParam(value = "query", required = false) String query) {		
 		List<BizVOExtend> returnVal = null;
 		String urlSearch = RestDomain.restDomain+"/kitchenbranch/searchlists";
 		List<CommonCodeVO> bizCatVal = null;
 		String urlBizCat = RestDomain.restDomain+"/kitchenbranch/bizcodes";
 
-		if(query.equals("")) { // query를 입력했는지 확인하기
+		if(query == null || query.equals("")) { // query를 입력했는지 확인하기
 			log.info("query is null");
-			query = " ";
+			query = " ";			
 		}
 		
 		restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8"))); // 한글 처리

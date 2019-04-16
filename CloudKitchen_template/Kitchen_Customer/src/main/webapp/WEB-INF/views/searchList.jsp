@@ -43,7 +43,7 @@
 			<!-- Tools =================================================== -->
 			<div id="tools">
 				<div class="row">
-					<form action="${pageContext.request.contextPath}/kitchen/search" method="post">
+					<form action="${pageContext.request.contextPath}/kitchen/search" method="GET">
 						<div class="form-group">
                         	<input type="text" class="search-query form-control" name="query" value="${query}" placeholder="검색어를 자유롭게 입력해주세요." style="display:inline;width:70%;">
 	                    	<input type="submit" id="searchBtn" class="btn_1" value="검색" style="width:28.3%;height:40px;position:absolute;top:1px;">
@@ -137,5 +137,8 @@
 </script>
 	
 <script src="${pageContext.request.contextPath}/resources/js/menu/menu-functions.js"></script>
+<script>
+	localStorage.setItem('query', JSON.stringify('${query}'));
+</script>
 </body>
 </html>
