@@ -2,7 +2,6 @@ package org.badgers.customer.kakao;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.badgers.customer.model.CustomerVO;
@@ -46,9 +45,10 @@ public class KakaoController {
 	        String kphone = "010";
 	    	String kstatus = "MEM002";
 	    	String gender = "미정";
-	
-	    	session.setAttribute("uid", ids); // 세션 email(-> 사용자 id) 저장
-	        session.setAttribute("uname", nickname);
+	  
+	    	
+	    	
+	    
 
 	        CustomerVO vo = new CustomerVO();	        
 	        
@@ -62,7 +62,7 @@ public class KakaoController {
 	        vo.setStatus(kstatus);
 	        
 	        
-
+	        
 	        
 	    	redirectAttr.addFlashAttribute("kakaoVO", vo);// id
 	    	

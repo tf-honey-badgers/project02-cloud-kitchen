@@ -43,7 +43,6 @@
 					<div class="indent_title_in">
 						<i class="icon_document_alt"></i>
 						<h3>주문 상세 내역</h3>
-					 	
 					</div>
                     
                     
@@ -116,7 +115,7 @@
 															<c:forEach items="${menuinner.value }"  var="option">
 																<c:if test="${option.key eq \"option\"}">
 															<td style="width:30%;" class="menuinfo">
-																<p style="font-weight: bold;font-size: 14px;">${menuinner.key }</p><!-- 메뉴 이름 -->
+																<p class="menuN" style="font-weight: bold;font-size: 14px;">${menuinner.key }</p><!-- 메뉴 이름 -->
 																	 <c:forEach  items="${menuinner.value}" var ="menuprice" varStatus="st" >
 																		 <c:if test="${menuprice.key eq  \"menuPrice\"}">
 																			<p>기본 금액 :&nbsp;${menuprice.value } 원</p>
@@ -182,6 +181,13 @@
 		
 	})
 
+	$(document).ready(function(){
+		var menuName = $('.menuN').text();
+		console.log(menuName);
+		$.each(,function(){
+			
+		})
+	})
 </script>
     
   </body> 

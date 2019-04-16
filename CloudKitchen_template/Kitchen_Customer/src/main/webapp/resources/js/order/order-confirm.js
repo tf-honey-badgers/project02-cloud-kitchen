@@ -67,7 +67,7 @@
              StringHTML =StringHTML
                 +'<tr>'
                 +'<td>'
-                +'<strong>'+value2.quantity+'x</strong> <span>'+key+'</span>'
+                +'<strong>'+value2.quantity+'x</strong> <span>'+key.split('@')[1]+'</span>'
                 +'<ul>';
              
             
