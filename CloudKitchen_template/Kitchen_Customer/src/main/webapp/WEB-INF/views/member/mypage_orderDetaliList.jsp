@@ -32,7 +32,10 @@
 					<div class="indent_title_in">
 						<i class="icon_document_alt"></i>
 						<h3>주문 상세 내역</h3>
-						<p></p>
+						<c:choose>
+						<c:if test="${bizName='유니네 떡복이'}"></c:if>
+						<p>${total_Amt }</p>
+						</c:choose>
 					</div>
                     
                     
