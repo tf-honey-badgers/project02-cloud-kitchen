@@ -28,7 +28,7 @@
 	</mvc:interceptor>
 	
 	<mvc:interceptor>
-		<mvc:mapping path="/main/kakaologin"/>
+		<mvc:mapping path="/member/register2"/>
 		<bean class="org.badgers.customer.interceptor.MemberInterceptor"></bean>
 	</mvc:interceptor>
 	<mvc:interceptor>
