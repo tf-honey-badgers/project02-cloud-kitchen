@@ -62,6 +62,7 @@ public class ToOrderInfoForViewService {
 		String jsonOrderInfo = mapper.writeValueAsString(orderInfos);
 		System.out.println("바꾸기 전  : " + jsonOrderInfo);
 		
+
 //		for(OrderInfoVO vo:list) {
 //			jsonOrderInfo = jsonOrderInfo.replace(vo.getOrderdetailId(), vo.getMenuName());
 //			System.out.println(jsonOrderInfo);

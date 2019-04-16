@@ -173,23 +173,19 @@ public class CustomerController {
 
 	// 카카오 회원가입
 	@GetMapping(value = "/register2")
-	public String registers(HttpServletRequest request, HttpServletResponse response) {
+	public String registers(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
 	
-//		CustomerVO vos = (CustomerVO)request.getAttribute("kakaoVO");
-	
-		CustomerVO vos = null;
 		
+		CustomerVO vos = null;
+	
 		Map<String, ?> redirectMap = RequestContextUtils.getInputFlashMap(request);
 		if(redirectMap !=null) {
 		 vos = (CustomerVO)redirectMap.get("kakaoVO");
 			
 		}
 		
-		
-		System.out.println(vos);
-		
-		
+	
 		
 		String url = RestDomain.restDomain + "/customer/register";
 
@@ -199,10 +195,12 @@ public class CustomerController {
 
 
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vos, String.class);
-
-		System.out.println("responseEntity===============" + responseEntity);
-		System.out.println("vo==========================" + vos);
-
+	
+		
+		
+		session.setAttribute("uid", vos.getId());
+		session.setAttribute("uname", vos.getName());
+		
 		return "redirect:/main";
 	}
 
