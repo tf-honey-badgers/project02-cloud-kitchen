@@ -12,21 +12,8 @@
 	<jsp:include page="../include/background.jsp" flush="false" />
 	
   <div class="container margin_60">
-<%--  <h1>${orderinfo}</h1>  --%>
   <div>
-  <%-- 	<c:forEach items="${orderinfo}" var="map">
-		<c:forEach items="${map.value}" var="innerMap">
-		 	<c:if test="${innerMap.key eq \"bizName\"}">
-				<h4>bizName: ${innerMap.value}</h4>
-			</c:if>
-			<c:if test="${innerMap.key eq \"method\"}">
-				<h4>bizName: ${innerMap.value}</h4>
-			</c:if>
-		<h4>주문정보 키 : ${innerMap.key}</h4>
-			<h4>주문정보 내용 : ${innerMap.value}</h4> 
-		</c:forEach>
-		<h1>----------------------------------------------------------</h1>
-  	</c:forEach> --%>
+
   
   </div>
   	<jsp:include page="mypage_sidebar.jsp"/>
@@ -69,14 +56,14 @@
 
 						<div class="strip_menu_items">
 							<div class="row">
-								<div class="col-sm-3">
+							<!-- 	<div class="col-sm-3">
 									<div class="menu-item-pic dropzone">
 										
 										<div class="dz-default dz-message"><span>Click or Drop<br>Images Here</span>
 										</div>
 									</div>
-								</div>
-								<div class="col-sm-9">
+								</div> -->
+								<div class="col-sm-11">
 									<div class="row">
 										<div class="col-md-8">
 											<div class="form-group">
@@ -92,7 +79,7 @@
 										<div class="col-md-4">
 											<div class="form-group">
 												<label>Total Price</label>
-												<p id="total">5000원</p>
+												<p id="total"><span></span>원</p>
 											</div>
 										</div>
 									</div>
@@ -117,7 +104,7 @@
 														<tr>
 															<c:forEach items="${menuinner.value }"  var="option">
 																<c:if test="${option.key eq \"option\"}">
-															<td style="width:35%;" class="menuinfo">
+															<td style="width:30%;" class="menuinfo">
 																<p style="font-weight: bold;font-size: 14px;">${menuinner.key }</p><!-- 메뉴 이름 -->
 																	 <c:forEach  items="${menuinner.value}" var ="menuprice" varStatus="st" >
 																		 <c:if test="${menuprice.key eq  \"menuPrice\"}">
@@ -133,8 +120,11 @@
 															</td>
 																
 																		<td style="width:60%">
-																	 <c:forEach  items="${option.value }" var ="optioninner" >
-																			<span>${optioninner.key}(${optioninner.value}원)&nbsp;</span>
+																	 <c:forEach  items="${option.value }" var ="optioninner" varStatus="comma">
+																			<span>
+																				${optioninner.key}(${optioninner.value}원)
+																				<c:if test="${not comma.last }">,</c:if>
+																			</span>
 																	</c:forEach> 
 																		</td>
 																</c:if>
@@ -166,19 +156,18 @@
 <jsp:include page="../include/footer.jsp" />
 <script>
 	
+	//가게별 총금액 구해주기 
 	$('.wrapper_indent').each(function(i,f){
-		console.log(i,f)
-		var n= $('.menudetail')
-		console.log(n)
-		var v= $('.menudetail:eq('+i+')').find('.menuinfo p:eq(3) span')
-			
-			console.log(v)
+		var total=0;
 		
+		$(this).find('.menuinfo').each(function(x,y){
+			var v= $('.menudetail:eq('+i+')').find('.menuinfo:eq('+x+') p:eq(3) span')
+			money = Number(v.text())
+			total+=money
+		})
+		$(this).find('#total>span').append(total)
 		
-		
-		//find('.menuinfo p:eq(3) span')
-		//console.log(v)
-		
+		total=0;
 		
 	})
 

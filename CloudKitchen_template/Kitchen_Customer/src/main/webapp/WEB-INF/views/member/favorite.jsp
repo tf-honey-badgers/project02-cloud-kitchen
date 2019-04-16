@@ -64,7 +64,7 @@
 	<script>
 		var tbody = $('tbody');
 
-
+<!-- 
 		$(document).ready(function() {
 							$.getJSON('http://localhost/rest/favorite/${custId}/mypage',
 								function(list) {
@@ -88,7 +88,7 @@
 											}
 										});
 						});
-	</script>
+	</script> -->
 
 </body>
 </html>
