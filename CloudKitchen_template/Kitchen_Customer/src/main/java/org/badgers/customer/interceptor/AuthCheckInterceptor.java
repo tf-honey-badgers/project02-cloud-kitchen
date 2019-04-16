@@ -65,7 +65,6 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter{
 //		log.info("uriBizId   : "+uriBizId);
 		log.info("인증 확인 인터셉터---------------------------------------------------");
 		HttpSession session = request.getSession();
-		log.info(session.getAttribute("uid"));
 		//세션에 저장되어 있는 bizId 값
 		String sessionuId = (String) session.getAttribute("uid");
 		

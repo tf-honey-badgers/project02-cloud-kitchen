@@ -2,7 +2,6 @@
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -174,51 +173,35 @@ public class CustomerController {
 
 	// 카카오 회원가입
 	@GetMapping(value = "/register2")
-	public String registers(HttpServletRequest request, HttpServletResponse response, Map<String, String> map) {
+	public String registers(HttpServletRequest request, HttpServletResponse response) {
 
-		String param1 = "";
-		String param2 = "";
-		String param3 = "";
-		String param4 = "";
-		String param5 = "";
-		String param6 = "";
-		String param7 = "";
-		String param8 = "";
-
+	
+//		CustomerVO vos = (CustomerVO)request.getAttribute("kakaoVO");
+	
+		CustomerVO vos = null;
+		
 		Map<String, ?> redirectMap = RequestContextUtils.getInputFlashMap(request);
-		if (redirectMap != null) {
-			param1 = (String) redirectMap.get("param1");
-			param2 = (String) redirectMap.get("param2");
-			param3 = (String) redirectMap.get("param3");
-			param4 = (String) redirectMap.get("param4");
-			param5 = (String) redirectMap.get("param5");
-			param6 = (String) redirectMap.get("param6");
-			param7 = (String) redirectMap.get("param7");
-			param8 = (String) redirectMap.get("param8");
-
+		if(redirectMap !=null) {
+		 vos = (CustomerVO)redirectMap.get("kakaoVO");
+			
 		}
-
-		System.out.println("kakao=========================" + map);
-
+		
+		
+		System.out.println(vos);
+		
+		
+		
 		String url = RestDomain.restDomain + "/customer/register";
 
-		CustomerVO vo = new CustomerVO();
+		
+	
 
-		vo.setId(param1);
-		vo.setPw(param2);
-		vo.setName(param3);
-		vo.setBirthDate(param4);
-		vo.setPhone(param5);
-		vo.setEmail(param6);
-		vo.setGender(param7);
-		vo.setStatus(param8);
 
-		System.out.println("vo==========================" + vo);
 
-		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vo, String.class);
+		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vos, String.class);
 
 		System.out.println("responseEntity===============" + responseEntity);
-		System.out.println("vo==========================" + vo);
+		System.out.println("vo==========================" + vos);
 
 		return "redirect:/main";
 	}
@@ -427,7 +410,8 @@ public class CustomerController {
 			result = responseEntity.getBody();
 
 		} catch (final HttpClientErrorException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			log.warn("Mahout throws HttpClientErrorException ");
 		}
 
 		return result;
