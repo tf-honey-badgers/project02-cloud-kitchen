@@ -135,7 +135,7 @@ public class CustomerController {
 	}
 
 	
-	//주문 내역  보기 
+	//주문 상세 내역  보기 
 	@GetMapping(value = "/{id}/mypage/orderinfo", produces="application/json; charset=utf-8")
 	public ResponseEntity<?>  getOrderInfo(@PathVariable("id")String id) throws Exception {
 		LinkedList<OrderInfoVO> list = (LinkedList<OrderInfoVO>) service.getOrderInfo(id);
@@ -179,7 +179,7 @@ public class CustomerController {
 				
 			}
 	
-		//주문 내역상세  보기 
+		//주문 내역  보기 
 		@GetMapping(value = "/{cust_id}/mypage/order", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 		public ResponseEntity<List<OrderVO>>  getOrder(@PathVariable("cust_id")String custId) throws Exception {
 			List<OrderVO> list = service.getOrder(custId);

@@ -37,6 +37,9 @@ public class PayReadyInterceptor extends HandlerInterceptorAdapter {
 		
 		//모든 setting이 완료된 OrderVOExtend를 session에 저장
 		session.setAttribute("order", order);
+		log.info("OrderExtendsVOOrderExtendsVOOrderExtendsVOOrderExtendsVOOrderExtendsVOOrderExtendsVO");
+		log.info(order);
+		log.info("OrderExtendsVOOrderExtendsVOOrderExtendsVOOrderExtendsVOOrderExtendsVOOrderExtendsVO");
 		
 		return super.preHandle(request, response, handler);
 	}
