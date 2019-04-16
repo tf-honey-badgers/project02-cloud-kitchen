@@ -1,4 +1,4 @@
-package org.badgers.common.error;
+package org.badgers.customer.common.error;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
