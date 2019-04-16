@@ -24,52 +24,50 @@ public class KakaoController {
 			 	@RequestParam("code") String code,
 			 	RedirectAttributes ra,
 			 	HttpSession session,
-			 	RedirectAttributes redirectAttr,
-			 	HttpServletResponse response
+			 	RedirectAttributes redirectAttr
 			 ) throws IOException {
 		 	System.out.println("kakao code:" +code);
 
 	        // JsonNode 트리형태로 토큰받아온다
 	        JsonNode jsonToken = KakaoAccessToken.getKakaoAccessToken(code);
-	        
 	       
 	        // 여러 json객체 중 access_token을 가져온다
 	        JsonNode accessToken = jsonToken.get("access_token");
 	        
-	      
-	        
 	        // access_token을 통해 사용자 정보 요청
 	        JsonNode userInfo = KakaoUserInfo.getKakaoUserInfo(accessToken);
-	        
-	      
-
-
-
 	        
 	        String ids = userInfo.get("id").toString();
 	        String id = userInfo.get("kakao_account").get("email").asText();
 	        String nickname = userInfo.get("properties").get("nickname").asText();
-	      
-	     
-	        
 	        
 	        String kpw ="kakao";
 	        String kbirthDate = "1992-11-11";
 	        String kphone = "010";
 	    	String kstatus = "MEM002";
 	    	String gender = "미정";
-	    	
 	
 	    	session.setAttribute("uid", ids); // 세션 email(-> 사용자 id) 저장
 	        session.setAttribute("uname", nickname);
 
 	        CustomerVO vo = new CustomerVO();	        
 	        
-	    	redirectAttr.addFlashAttribute(vo.getAddress(), ids);// id
-	    	redirectAttr.addFlashAttribute(ids, vo);// id
-	    	redirectAttr.addFlashAttribute(kpw, vo);// id
+	        vo.setId(ids);
+	        vo.setPw(kpw);
+	        vo.setName(nickname);
+	        vo.setBirthDate(kbirthDate);
+	        vo.setPhone(kphone);
+	        vo.setEmail(id);
+	        vo.setGender(gender);
+	        vo.setStatus(kstatus);
+	        
+	        
+
+	        
+	    	redirectAttr.addFlashAttribute("kakaoVO", vo);// id
 	    	
-	        	
+	    	
+	        
 
 	           return "redirect:/member/register2";
 	    }
