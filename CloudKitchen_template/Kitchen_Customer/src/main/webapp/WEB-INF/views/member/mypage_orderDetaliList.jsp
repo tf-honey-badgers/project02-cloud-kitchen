@@ -12,6 +12,17 @@
 	<jsp:include page="../include/background.jsp" flush="false" />
 	
   <div class="container margin_60">
+  	<h1>
+  	
+  	<c:forEach items="${orderinfo }" var="ac">
+  		<h1>${ac.key }</h1>
+  		<h2>====================================================</h2>
+  		<c:forEach items="${ac.value}" var="ac2">
+  		<h1> -------------------------${ac2.key}</h1>
+  		<h1>${ac2.value}</h1>
+  		</c:forEach>
+  	</c:forEach>
+  	</h1>
   <div>
 
   
@@ -32,14 +43,11 @@
 					<div class="indent_title_in">
 						<i class="icon_document_alt"></i>
 						<h3>주문 상세 내역</h3>
-						<c:choose>
-						<c:if test="${bizName='유니네 떡복이'}"></c:if>
-						<p>${total_Amt }</p>
-						</c:choose>
+					 	
 					</div>
                     
                     
-                <c:forEach items="${orderinfo}" var="map" varStatus="status">
+            <c:forEach items="${orderinfo}" var="map" varStatus="status">
 				
                     
 					<div class="wrapper_indent index${status.count }">
@@ -148,7 +156,7 @@
 					</div><!-- End wrapper_indent -->
 					
   					</c:forEach>
-					
+					 
 					
 				</section>
 			</div>

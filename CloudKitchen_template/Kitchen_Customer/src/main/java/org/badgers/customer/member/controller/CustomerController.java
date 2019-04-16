@@ -185,19 +185,7 @@ public class CustomerController {
 		 vos = (CustomerVO)redirectMap.get("kakaoVO");
 			
 		}
-		
-		
-		System.out.println(vos);
-		
-		
-		
 		String url = RestDomain.restDomain + "/customer/register";
-
-		
-	
-
-
-
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, vos, String.class);
 
 		System.out.println("responseEntity===============" + responseEntity);
@@ -251,7 +239,7 @@ public class CustomerController {
 		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, java.util.List.class);
 		if (responseEntity.getStatusCode() == HttpStatus.OK) {
 			list = (List<OrderVO>) responseEntity.getBody();
-			System.out.println(list);
+//			System.out.println(list);
 		}
 
 		mav.addObject("order", list);
