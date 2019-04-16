@@ -427,7 +427,8 @@ public class CustomerController {
 			result = responseEntity.getBody();
 
 		} catch (final HttpClientErrorException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			log.warn("Mahout throws HttpClientErrorException ");
 		}
 
 		return result;
