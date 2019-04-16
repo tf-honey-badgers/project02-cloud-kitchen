@@ -212,5 +212,6 @@
 	</script>
 	
 	<script src="${pageContext.request.contextPath}/resources/js/menu/menu-functions.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/menu/history-stealer.js"></script>
 </body>
 </html>
