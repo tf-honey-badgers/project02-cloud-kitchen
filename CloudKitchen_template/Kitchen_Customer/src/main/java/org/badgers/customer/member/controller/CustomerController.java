@@ -203,7 +203,7 @@ public class CustomerController {
 		String url = RestDomain.restDomain + "/customer/register";
 
 		CustomerVO vo = new CustomerVO();
-
+		
 		vo.setId(param1);
 		vo.setPw(param2);
 		vo.setName(param3);

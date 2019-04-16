@@ -65,7 +65,7 @@ public class KakaoController {
 
 	        CustomerVO vo = new CustomerVO();	        
 	        
-	    	redirectAttr.addFlashAttribute("vo", ids);// id
+	    	redirectAttr.addFlashAttribute(vo.getAddress(), ids);// id
 	    	redirectAttr.addFlashAttribute(ids, vo);// id
 	    	redirectAttr.addFlashAttribute(kpw, vo);// id
 	    	
