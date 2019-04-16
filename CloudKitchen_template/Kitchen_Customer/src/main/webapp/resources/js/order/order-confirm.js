@@ -100,7 +100,7 @@
                 +'금액'
                 +'</td>'
                 +'<td class="stickRight">'
-                +'<strong>'+value2.totalAmt+'원</strong>'
+                +'<strong>'+(value2.totalAmt*value2.quantity)+'원</strong>'
                 +'</td>'
                 +'</tr>';
                 
