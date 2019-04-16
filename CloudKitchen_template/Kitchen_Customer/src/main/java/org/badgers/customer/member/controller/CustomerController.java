@@ -276,7 +276,7 @@ public class CustomerController {
 		}
 
 		mav.addObject("list", favorite); // 뷰에 전달할 데이터 지정
-
+		log.info(favorite);
 		mav.setViewName("/member/favorite"); // 뷰 이름 지정
 
 		return mav;

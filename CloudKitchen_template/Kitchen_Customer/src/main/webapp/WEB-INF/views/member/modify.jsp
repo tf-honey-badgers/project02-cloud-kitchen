@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,10 +73,13 @@
 			</div><!-- End col-md-6 -->
 			</div>
 	</div>
-		<!-- 삭제  -->
+	
+			<!-- Footer -->
+            <jsp:include page="../include/footer.jsp" flush="false"></jsp:include>
+            <!-- End Footer -->
+           <!-- 탈퇴 모달  -->
 		 <jsp:include page="../include/delete.jsp" flush="false"></jsp:include>
-		
-			<script>
+            		<script>
 			function execPostCode() {
 				
 		         new daum.Postcode({
@@ -121,9 +122,5 @@
 		     }
 
 			</script>
-		 
-			  <!-- Footer -->
-            <jsp:include page="../include/footer.jsp" flush="false"></jsp:include>
-            <!-- End Footer -->
 </body>
 </html>
