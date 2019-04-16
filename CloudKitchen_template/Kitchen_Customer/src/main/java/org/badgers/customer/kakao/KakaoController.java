@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.badgers.customer.model.CustomerVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,16 +63,12 @@ public class KakaoController {
 	    	session.setAttribute("uid", ids); // 세션 email(-> 사용자 id) 저장
 	        session.setAttribute("uname", nickname);
 
-	    	redirectAttr.addFlashAttribute("param1", ids);// id
-	    	redirectAttr.addFlashAttribute("param2", kpw); //비번
-	    	redirectAttr.addFlashAttribute("param3", nickname); // 닉네임
-	    	redirectAttr.addFlashAttribute("param4", kbirthDate); // 생일
-	    	redirectAttr.addFlashAttribute("param5", kphone); // 폰
-	    	redirectAttr.addFlashAttribute("param6", id); // 이메일
-	    	redirectAttr.addFlashAttribute("param7", gender); //성별
-	    	redirectAttr.addFlashAttribute("param8", kstatus); // 상태코드
-
-	      
+	        CustomerVO vo = new CustomerVO();	        
+	        
+	    	redirectAttr.addFlashAttribute("vo", ids);// id
+	    	redirectAttr.addFlashAttribute(ids, vo);// id
+	    	redirectAttr.addFlashAttribute(kpw, vo);// id
+	    	
 	        	
 
 	           return "redirect:/member/register2";
