@@ -1,6 +1,6 @@
 
     /*var order = {"태주네 떡볶이":{"id":"order201903160","bizName":"태주네 떡볶이","phone":"010-1111-8888","address":"두식이네집","time":"2019-03-26 01:53:33.0","status":"주문 대기 상태","kitchenName":"종각점","method":"kakaoPay","msg":"빨리오세요","payAmt":10500,"menus":{"찹쌀순대":{"menuPrice":3500,"quantity":1,"totalAmt":3500,"option":{"없음":0}},"모듬 튀김":{"menuPrice":4000,"quantity":1,"totalAmt":4000,"option":{"없음":0}},"떡볶이":{"menuPrice":3000,"quantity":1,"totalAmt":3000,"option":{"매우 매움":0}}}}};*/
-	
+	console.log(order);
 
     var StringHTML="";
 
