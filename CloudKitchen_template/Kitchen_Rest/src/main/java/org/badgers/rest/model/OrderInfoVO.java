@@ -46,7 +46,7 @@ public class OrderInfoVO {
 	/* 사용자 주문 확인 VO */
 		public OrderInfoForViewVO toOrderInfoForViewVO() {
 			Map<String, OrderInfoMenuForViewVO> menus = new HashMap<>();
-			menus.put(this.orderdetailId, toOrderInfoMenuForViewVO());
+			menus.put(this.orderdetailId+"@"+this.getMenuName(), toOrderInfoMenuForViewVO());
 			
 			return new OrderInfoForViewVO(this.id, this.bizName, this.phone, this.address, this.time, this.status, this.kitchenName, this.method, this.msg, this.payAmt, menus);
 		}

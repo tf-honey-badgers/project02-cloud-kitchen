@@ -42,11 +42,11 @@ public class ToOrderInfoForViewService {
 			System.out.println("menus : "+menus);
 			//메뉴 Map에서 메뉴를 가져온다
 //			OrderInfoMenuForViewVO innerOrderInfoMenuForViewVO = menus.get(vo.getMenuName());
-			OrderInfoMenuForViewVO innerOrderInfoMenuForViewVO = menus.get(vo.getOrderdetailId());
-			System.out.println("menus.orderDId" + menus.get(vo.getOrderdetailId()));
+			OrderInfoMenuForViewVO innerOrderInfoMenuForViewVO = menus.get(vo.getOrderdetailId()+"@"+vo.getMenuName());
+			System.out.println("menus.orderDId" + menus.get(vo.getOrderdetailId()+"@"+vo.getMenuName()));
 			//해당 메뉴가 없다면
 			if(innerOrderInfoMenuForViewVO == null) {
-				menus.put(vo.getOrderdetailId(), vo.toOrderInfoMenuForViewVO());
+				menus.put(vo.getOrderdetailId()+"@"+vo.getMenuName(), vo.toOrderInfoMenuForViewVO());
 				continue;
 			}
 			//해당 메뉴가 있다면
