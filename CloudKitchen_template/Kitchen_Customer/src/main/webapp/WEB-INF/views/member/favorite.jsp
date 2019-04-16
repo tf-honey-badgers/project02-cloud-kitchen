@@ -21,34 +21,60 @@
 
 <body>
 
-	<!-- 위쪽 헤더바  -->
-	<jsp:include page="../include/header.jsp" />
-	<jsp:include page="../include/background.jsp" flush="false" />
-	<!-- 헤드 끝 -->
-	<div class="container margin_60">
-		<jsp:include page="mypage_sidebar.jsp" />
-		<div class="col-md-9">
-			<div id="tabs" class="tabs">
-				<nav>
-					<ul>
-						<li><a href="#section-2" class="icon-menut-items"><span>찜 리스트</span></a>
-						</li>
+<!-- 위쪽 헤더바  -->
+<jsp:include page="../include/header.jsp" />
+<jsp:include page="../include/background.jsp" flush="false" />
+<!-- 헤드 끝 -->
+<div class="container margin_60">
+	<jsp:include page="mypage_sidebar.jsp" />
+	<div class="col-md-9">
+		<div id="tabs" class="tabs">
+			<nav>
+				<ul>
+					<li><a href="#section-2" class="icon-menut-items"><span>찜 리스트</span></a>
+					</li>
 
-					</ul>
-				</nav>
-				<div class="content">
-					<section id="section-2">
-						<table class="type11" style="margin-left: 33%;">
-							<thead>
-								<tr>
-									<th>회원 아이디</th>
-									<th>가게 이름</th>
-									<th>키친 이름</th>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-						</table>
+				</ul>
+			</nav>
+			<div class="content">
+				<section id="section-2">
+					<div class="col-md-12">
+					<c:forEach var="biz" items="${list}">
+			        		<div class="strip_list wow fadeIn" data-wow-delay="0.1s">
+							<div class="row">
+								<div class="col-md-9 col-sm-9">
+									<div class="desc">
+										<div class="thumb_strip">
+												<a href="detail_page.html"><img class="shopImg" src="https://s3.ap-northeast-2.amazonaws.com/honeybadgersfile/MenuPhoto/${biz.bizId}.png" alt="없음" title="이거"></a>
+										</div>
+										<div class="rating">
+												<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="#0">98 reviews</a></small>)
+										</div>
+											
+										<h3>${biz.bizName}</h3>
+										<div class="type" data-cat-id="${biz.bizCatId}" data-kitchen-id="${biz.bizKitchenId}">${biz.bizCatName}  ${biz.bizKitchenName}</div>
+										</div>
+								</div>
+								<div class="col-md-3 col-sm-3">
+									<div class="go_to">
+										<div>
+												<a href="${pageContext.request.contextPath}/kitchen/${biz.bizId}/main" class="btn_1">가게 보기</a>
+										</div>
+									</div>
+								</div>
+							</div><!-- End row-->
+						</div><!-- End strip_list-->
+			        	</c:forEach>
+						
+						
+						</div>
+					
+					
+					
+					
+					
+					
+		
 					</section>
 				</div>
 			</div>
@@ -61,34 +87,7 @@
 	<jsp:include page="../include/footer.jsp" />
 	<!-- 풋터 끝 -->
 	
-	<script>
-		var tbody = $('tbody');
 
-<!-- 
-		$(document).ready(function() {
-							$.getJSON('http://localhost/rest/favorite/${custId}/mypage',
-								function(list) {
-
-									for (var i = 0, len = list.length || 0; i < len; i++) {
-										var tr = $('<tr></tr>');
-										var custId = $('<td id="'+ list[i].custId +'">'
-										+ list[i].custId
-										+ '</td>');
-										var bizName = $('<td>'
-										+ list[i].bizName
-										+ '</td>');
-										var kitchenName = $('<td>'
-										+ list[i].kitchenName
-										+ '</td>');
-										tr.append(custId).append(
-												bizName).append(
-												kitchenName);
-											 	tbody.append(tr);
-												console.log(list[i]);
-											}
-										});
-						});
-	</script> -->
 
 </body>
 </html>
