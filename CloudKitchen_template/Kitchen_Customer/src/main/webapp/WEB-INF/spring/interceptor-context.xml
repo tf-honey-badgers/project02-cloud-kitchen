@@ -42,6 +42,26 @@
 		<bean class="org.badgers.customer.interceptor.AuthCheckInterceptor"></bean>
 	</mvc:interceptor>
 	
+	<!-- 회원정보 변경 시 페이지 이동-->
+	<mvc:interceptor>
+		<mvc:mapping path="/member/*/change"/>
+		<bean class="org.badgers.customer.interceptor.AuthCheckInterceptor"></bean>
+	</mvc:interceptor>
+	<!-- 주문내역 보기 클릭 시 페이지 이동 -->
+	<mvc:interceptor>
+		<mvc:mapping path="/member/*/mypage/orderinfo"/>
+		<bean class="org.badgers.customer.interceptor.AuthCheckInterceptor"></bean>
+	</mvc:interceptor>
+	<!-- 찜내역 클릭 시 페이지 이동 -->
+	<mvc:interceptor>
+		<mvc:mapping path="/member/fav/*/mypage"/>
+		<bean class="org.badgers.customer.interceptor.AuthCheckInterceptor"></bean>
+	</mvc:interceptor>
+	<!-- 회원정보변경하기 버튼 -->
+	<mvc:interceptor>
+		<mvc:mapping path="/member/*/delete"/>
+		<bean class="org.badgers.customer.interceptor.AuthCheckInterceptor"></bean>
+	</mvc:interceptor>
 
 </mvc:interceptors>
 </beans>
