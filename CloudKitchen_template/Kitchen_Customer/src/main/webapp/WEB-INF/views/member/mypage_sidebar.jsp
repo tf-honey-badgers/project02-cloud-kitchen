@@ -5,7 +5,7 @@
 			</p>
 			<div id="filters_col">
 				
-				<div class="collapse" id="collapseFilters">
+				<div class="" id="collapseFilters">
 			
 			
 					<div class="filter_type">

@@ -17,7 +17,6 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 				HttpServletResponse response,
 				Object handler
 			) throws Exception {
-		System.out.println(".........................interceptor : preHandle...................");
 		return super.preHandle(request, response, handler);
 	}
 	
@@ -28,7 +27,6 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 				Object handler,
 				ModelAndView mv
 			) throws Exception {
-		System.out.println(".........................interceptor : postHandle...................");
 		String uid = response.getHeader("id");
 		String idx = response.getHeader("idx");
 		String uname = response.getHeader("name");
