@@ -103,7 +103,7 @@
                      </div>
                     <button type="button" class="btn btn-submit">로그인</button>
 
-					<a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
+					<a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=${pageContext.request.contextPath}/main/kakaologin&response_type=code">
 						<img alt="카카오 로그인" src="${pageContext.request.contextPath}/resources/img/kakaobutton.png"
 						class="btn" style="width: 100%; padding: 0; height: 44px; margin-top: 3px">
 					</a>
