@@ -45,7 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
 					.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
 					.append("<div>")
 					.append("<span:style='display:none'>")
-					.append("<a href='http://localhost:3001/customer/member/emailConfirm?email=")
+					.append("<a href='${pageContext.request.contextPath}/member/emailConfirm?email=")
 					.append(vo.getEmail())
 					.append("&key=")
 					.append(key)

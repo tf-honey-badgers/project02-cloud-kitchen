@@ -12,17 +12,7 @@
 	<jsp:include page="../include/background.jsp" flush="false" />
 	
   <div class="container margin_60">
-  	<h1>
-  	
-  	<c:forEach items="${orderinfo }" var="ac">
-  		<h1>${ac.key }</h1>
-  		<h2>====================================================</h2>
-  		<c:forEach items="${ac.value}" var="ac2">
-  		<h1> -------------------------${ac2.key}</h1>
-  		<h1>${ac2.value}</h1>
-  		</c:forEach>
-  	</c:forEach>
-  	</h1>
+
   <div>
 
   
@@ -165,7 +155,7 @@
 
 <jsp:include page="../include/footer.jsp" />
 <script>
-	
+$(document).ready(function(){
 	//가게별 총금액 구해주기 
 	$('.wrapper_indent').each(function(i,f){
 		var total=0;
@@ -180,13 +170,13 @@
 		total=0;
 		
 	})
-
-	$(document).ready(function(){
-		var menuName = $('.menuN').text();
-		console.log(menuName);
-		$.each(,function(){
-			
-		})
+	//메뉴이름 @구분자로 subString 
+		$('.menuN').each(function(){
+			var n= $(this).text().indexOf('@')+1
+			var menuName= $(this).text().substr(n);
+			console.log($(this).text().substr(n))	
+			$(this).text(menuName);
+		});
 	})
 </script>
     

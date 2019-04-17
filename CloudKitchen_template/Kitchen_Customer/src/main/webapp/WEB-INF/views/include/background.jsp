@@ -26,9 +26,9 @@ var imgArray = new Array();
  imgArray[3] ="${pageContext.request.contextPath}/resources/img/mypage/mypage_bg4.jpg";
  imgArray[4] ="${pageContext.request.contextPath}/resources/img/mypage/mypage_bg5.jpg";
  imgArray[5] ="${pageContext.request.contextPath}/resources/img/mypage/mypage_bg6.jpg";
- imgArray[5] ="http://www.koreainus.com/v1/data/file/cook/854108902_qS5lWHQf_5d1f9912549d25db6c166d1372581a93e00520f6.png";
+/*  imgArray[5] ="http://www.koreainus.com/v1/data/file/cook/854108902_qS5lWHQf_5d1f9912549d25db6c166d1372581a93e00520f6.png"; */
 
-	var imgNum = Math.round(Math.random()*7);
+	var imgNum = Math.round(Math.random()*5);
 	var objImg = document.getElementById("introImg");
 	objImg.src = imgArray[imgNum];
  
