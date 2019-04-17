@@ -55,8 +55,7 @@ public class OrderController {
 			push.send(userToken, Status.valueOf(status).getmessage());
 		}
 		
-		System.out.println("obj가 뭐냐?------------------------------");
-		System.out.println(response.getBody());
+		log.info(response.getBody());
 		
 		return new ResponseEntity<>(userToken, HttpStatus.OK);	
 	}

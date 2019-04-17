@@ -76,7 +76,7 @@ public class Push
 		http.setRequestMethod("POST");  
 		http.setDoInput(true);  
 		http.setRequestProperty("Authorization", "Bearer " + accessToken);  
-		System.out.println(accessToken);
+		//System.out.println(accessToken);
 		http.setRequestProperty("Content-Type", "application/json; UTF-8");  
   
 		http.setDoOutput(true);  
@@ -113,6 +113,18 @@ public class Push
 		 http.disconnect();  
 		return http.getResponseMessage();  
 	}  
+//	public static void main(String[] args) {
+//		Push push;
+//		try {
+//			push = new Push();
+//			push.send(
+//					"ez41H0P0-3E:APA91bHLGXq-k0SecGyoOxsruhyFaZ4AQ_ZlB6r2Ck2sUPv0Dq3fZeEsRSChcyyz7-GTs4Kn7O6cXLTB_NOrXZ0Xt6E68fj-nXgpR0ZNAxafX2zqLH0I-Aa15yzWggN9Sp8WcKdm-HcR"
+//					, "push");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 }
 
 
