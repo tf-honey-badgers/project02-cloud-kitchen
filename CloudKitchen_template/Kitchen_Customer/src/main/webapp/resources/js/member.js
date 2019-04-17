@@ -146,8 +146,9 @@ $(document).ready(function(){
         				, email : $('#myId input:eq(1)').val()
         			})
         		, error : function(data) {
+        			console.log(data)
         			$("#myId input").remove();
-	        		$("#myId h2").replaceWith("<h5>에러가 발생했습니다. 조금 있다가 다시 시도해주세요.</h5>");
+	        		$("#myId h2").replaceWith("<h5>본인 인증에 실패하였습니다.</h5>");
 	        		$('#myId h5:eq(1)').remove();
 	        		$('#myId #getId').remove();
         		}
@@ -206,7 +207,7 @@ $(document).ready(function(){
         			})
         		, error : function(data) {
         			$("#myId input").remove();
-	        		$("#myId h2").replaceWith("<h5>에러가 발생했습니다. 조금 있다가 다시 시도해주세요.</h5>");
+	        		$("#myId h2").replaceWith("<h5>사용자 ID를 찾는데 실패했습니다.</h5>");
 	        		$('#myId h5:eq(1)').remove();
 	        		$('#myId #getId').remove();
         		}
