@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.badgers.rest.customer.fcm.persistence.CustFcmMapper">
+
+	<update id="updateFcmToken" parameterType="org.badgers.rest.model.FcmVO">
+		UPDATE honey_badgers.customer SET
+		fcmToken = #{fcmToken}
+		WHERE id=#{id}
+	</update>
+
+
+</mapper>

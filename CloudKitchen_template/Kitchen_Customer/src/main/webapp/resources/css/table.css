@@ -1,0 +1,59 @@
+@charset "UTF-8";
+table.type11 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    margin: 20px 10px;
+    font-size: 0.8em;
+    width:col-md-8;
+}
+table.type11 th {
+    text-align: center;
+    width: 155px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+    background: #ce4869 ;
+ 
+}
+
+table.type11 td {
+    width: 155px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+	
+}
+
+table.type12 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    margin: 20px 10px;
+    font-size: 1.2em;
+    width:col-md-8;
+    
+    
+}
+table.type12 th {
+    text-align: center;
+    width: 155px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+    background: #ce4869 ;
+ 	
+}
+table.type12 td {
+    width: 155px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+    word-break:break-all;
+	 

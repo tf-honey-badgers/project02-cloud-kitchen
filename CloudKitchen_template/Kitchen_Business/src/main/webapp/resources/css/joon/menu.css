@@ -1,0 +1,176 @@
+.addMenuCat{
+	border : none;
+	background-color : white;
+	background: url( "img/baseline_add_circle_outline_black_18dp.png" ) no-repeat;
+}
+
+.deleteMenuCat{
+	border : none;
+	background-color : white;
+	background: url( "img/baseline_add_circle_outline_black_18dp.png" ) no-repeat;
+}
+
+.btnArea {
+	position : block;
+	whidth : 100%;
+	height : 20%;
+	margin : 0% 10% 0% 80%;
+}
+
+.deleteUpdateMenuOpt{
+	border : none;
+	background-color : white;
+ 	background: url( "img/baseline_remove_circle_outline_black_18dp.png" ) no-repeat;
+}
+
+.addOpt{
+	border : none;
+	background-color : white;
+	background: url( "img/baseline_add_circle_outline_black_18dp.png" ) no-repeat;
+}
+
+.deleteOpt{
+	border : none;
+	background-color : white;
+ 	background: url( "img/baseline_remove_circle_outline_black_18dp.png" ) no-repeat;
+}
+
+.deleteMenuOpt{
+	border : none;
+	background-color : white;
+ 	background: url( "img/baseline_remove_circle_outline_black_18dp.png" ) no-repeat;
+}
+
+.addOptBtnArea {
+	margin : 0% 10% 0% 90%;
+	height : 50px!important;
+	}
+
+input { width:120px!important; }
+.modelInsertBtnArea {
+	width: 80px;
+	height : 80px;
+	margin : auto;
+	}
+
+.menuInsertModal {
+	display: none;
+	position: fixed;
+	z-index: 9999; 
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+	overflow-y : scroll;
+}
+
+.menuInsertModalOpt {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 90%;
+	/* height: 90%; */
+	max-height: 2000%;
+}
+
+.menuInsertModalClose {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.menuInsertModalClose:hover, .menuInsertModalClose:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* .menuInsertOpt thead tr th, 
+.menuInsertOpt thead tr td,
+.menuInsertOpt tbody tr th, 
+.menuInsertOpt tbody tr td,{ text-align: right; width : 200px!important; height : 32px; } */
+
+.menuInsertOpt tr th, 
+.menuInsertOpt tr td,{ text-align: right; width : 200px!important; height : 32px; }
+
+
+.modelBtnArea, .modelInsertBtnArea, .insertMenuCatBtnArea{
+	width: 80px;
+	height : 80px;
+	margin : auto;
+	}
+
+.menuModal, .menuInsertModal, .insertMenuCatModal {
+	display: none;
+	position: fixed;
+	z-index: 9999;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+	overflow-y : scroll;
+}
+
+.insertMenuCatModalOpt {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 50%;
+	/* height: 90%; */
+	max-height: 2000%;
+}
+
+.menuModalOpt, .menuInsertModalOpt{
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 90%;
+	/* height: 90%; */
+	max-height: 2000%;
+}
+
+.menuModalClose, .menuInsertModalClose, .insertMenuCatModalClose {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.menuModalClose:hover, .menuModalClose:focus,
+.menuInsertModalClose:hover, .menuInsertModalClose:focus,
+.insertMenuCatModalClose:hover, .insertMenuCatModalClose:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.menuOptSelect tr th, 
+.menuOptSelect tr td{ text-align: right; width : 200px!important; height : 32px; }
+
+.menuSelect tr th, 
+.menuSelect tr td{ text-align: right; width : 200px!important; height : 32px!important; }
+
+.menuOpt tr { width : 200px!important; }
+
+.menuOpt tr th{ border-bottom : 1px solid silver; width : 250px!important; }
+
+.menuOpt { width : 90%; }
+
+.optNo, .optNoCl { width: 150px!important; }
+
+.menuSelect tr th { width: 100px!important; height : 32px;}
+
+
+.menuInsertOpt tr th,
+.menuInsertOpt tr td { text-align: right; width : 200px!important; height : 32px; }
+.menuInsertOpt tr th{ border-bottom : 1px solid silver; width : 250px!important; }
+.menuSelect tr th, 
+.menuSelect tr td{ text-align: right; width : 200px!important; height : 32px!important; }

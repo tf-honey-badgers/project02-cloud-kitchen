@@ -3,6 +3,78 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.badgers.mapper.CustOrderMapper">
+<mapper
+	namespace="org.badgers.rest.customer.order.persistence.CustOrderMapper">
 	
+	<insert id="initOrder"
+		parameterType="org.badgers.rest.model.OrderVOExtend">
+		insert into honey_badgers.order (
+		id ,cust_id, phone,
+		address , msg, kitchen_name, pay_amt)
+		values(#{id},#{custId},#{phone},#{address}, #{msg}, #{kitchenName},
+		#{payAmt});
+	</insert>
+
+	<insert id="addPayment"
+		parameterType="org.badgers.rest.model.OrderPaymentVO">
+		insert into honey_badgers.order_payment (
+		id, amount,
+		method)
+		values (#{id},#{amount},#{method});
+	</insert>
+
+	<insert id="initOrderDetail"
+		parameterType="org.badgers.rest.model.OrderDetailVOExtend">
+		insert into honey_badgers.order_detail
+		(id, menu_id,
+		menu_name, menu_price, add_option_price, quantity,
+		total_amt, biz_id,
+		biz_name, order_id)
+		values
+		(#{id}, #{menuId},
+		#{menuName},#{menuPrice}, #{addOptionPrice},#{quantity},
+		#{totalAmt},
+		#{bizId}, #{bizName}, #{orderId})
+
+	</insert>
+	<insert id="initOrderMenuOption"
+		parameterType="org.badgers.rest.model.OrderOptionVO">
+		insert into order_option
+		(opt_id, opt_name, opt_price,
+		order_detail_id)
+		values
+		(#{optId},#{optName},#{optPrice},#{orderDetailId})
+
+	</insert>
+
+	<select id="getOrderInfo"
+		parameterType="String"
+		resultType="org.badgers.rest.model.OrderInfoVO">
+		select orders.id, cust_id, orderdetailoption.id as orderdetail_id,  biz_name, phone, address, orders.time, commoncode.id as status_code,
+		commoncode.name as status, kitchen_name, biz_id, method, menu_name,
+		menu_price, opt_name, opt_price, quantity, total_amt, pay_amt, msg 
+		FROM honey_badgers.order as orders, order_payment as orderpayment,
+		common_code as commoncode,
+		(
+		select id, menu_id, menu_name, menu_price, add_option_price, quantity,
+		total_amt, biz_id, biz_name, order_id, opt_id, opt_name,
+		opt_price, order_detail_id from order_detail as orderdetail
+		left outer join
+		(
+		select * from honey_badgers.order_option
+		) as orderoption
+		on orderdetail.id = orderoption.order_detail_id
+
+		) as orderdetailoption
+		where
+		orders.id=#{id}
+		and orders.id=orderpayment.id
+		and orders.status=commoncode.id
+		and orders.id=orderpayment.id
+		and orderdetailoption.order_id = orders.id
+		;
+
+	</select>
+
+
 </mapper>

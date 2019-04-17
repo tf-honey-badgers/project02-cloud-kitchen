@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper	namespace="org.badgers.rest.business.member.persistence.BusinessMapper">
+
+	<!-- 마이페이지 정보 -->
+	<select id="selectById" resultMap="BizMemberVOExtend">
+		select
+			BM.biz_id bizId
+			, BM.name bname
+			, BM.reg_no regNo
+			, BM.account account
+			, BZ.info info
+			, BZ.name bizName
+			, BZ.like_cnt likeCnt
+			, BZ.min_amt minAmt
+			, BZ.biz_live_strm bizLiveStrm
+			, KB.name kitchenName
+			, KB.address kitchenAddress
+			, CC.name ccName
+			, CC.description ccDescription
+		from
+			honey_badgers.biz_member BM
+			, honey_badgers.biz BZ
+			, honey_badgers.kitchen_branch KB
+			, honey_badgers.common_code CC
+		where
+			BM.biz_id = BZ.biz_id
+			and BZ.biz_cat_id = CC.id
+			and BZ.kitchen_id =KB.id
+			and BM.biz_id=#{bizId}
+	</select>
+
+	<!-- id="selectById"용 Result Maps 2개 -->
+	<resultMap id="BizMemberVOExtend" type="org.badgers.rest.model.BizMemberVOExtend">
+		<result property="bizId" column="bizId" />
+		<result property="name" column="bname" />
+		<result property="regNo" column="regNo" />
+		<result property="account" column="account" />
+		<collection property="biz" resultMap="BizVO" />
+		<collection property="cc" resultMap="CommonCodeVO" />
+		<collection property="kb" resultMap="KitchenBranchVO" />
+	</resultMap>
+
+	<resultMap id="BizVO" type="org.badgers.rest.model.BizVO">
+		<result property="bizId" column="bizId" />
+		<result property="info" column="info" />
+		<result property="name" column="bizName" />
+		<result property="likeCnt" column="likeCnt" />
+		<result property="minAmt" column="minAmt" />
+		<result property="bizCatId" column="bizCatId" />
+		<result property="kitchenId" column="kitchenId" />
+		<result property="bizLiveStrm" column="bizLiveStrm" />
+	</resultMap>
+
+	<resultMap id="CommonCodeVO" type="org.badgers.rest.model.CommonCodeVO">
+		<result property="id" column="ccId" />
+		<result property="name" column="ccName" />
+		<result property="description" column="ccDescription" />
+	</resultMap>
+
+	<resultMap id="KitchenBranchVO" type="org.badgers.rest.model.KitchenBranchVO">
+		<result property="id" column="kitchenId" />
+		<result property="name" column="kitchenName" />
+		<result property="address" column="kitchenAddress" />
+	</resultMap>
+
+	<!-- 개인정보 수정 -->
+	<update id="modify">
+		update honey_badgers.biz_member as BM join honey_badgers.biz as BZ  
+	<trim prefix="SET" suffixOverrides=",">
+		<if test="bizId != null and bizId != ''"> 
+			BM.biz_id =#{bizId},
+		</if>
+		<if test="pw != null and pw != ''">
+			BM.pw = #{pw},
+		</if>
+		<if test="account != null and account != ''">
+			BM.account = #{account},
+		</if>
+		<if test="info != null and info != ''">
+			BZ.info = #{info},
+		</if>
+		<if test="minAmt != null and minAmt != ''">
+			BZ.min_amt = #{minAmt},
+		</if>
+		<if test="bizLiveStrm != null and bizLiveStrm != ''">
+			BZ.biz_live_strm =#{bizLiveStrm},
+		</if>
+	</trim>
+		where BM.biz_id = BZ.biz_id
+		and BM.biz_id=#{bizId};
+	</update>
+	
+	<update id="inputBizLiveStrm">
+		update honey_badgers.biz set biz_live_strm = #{param2} where biz_id = #{param1}
+	</update>
+	
+
+	<!-- 로그인 -->
+	<select id="login" resultType="org.badgers.rest.model.BizMemberVOExtend">
+		select biz_id, pw
+		from honey_badgers.biz_member
+		where biz_id = #{bizId} and pw =#{pw}
+	</select>
+
+	<select id="verify" resultType="String">
+		select biz_id
+		from honey_badgers.biz_member
+		where reg_no = #{regNo} and account = #{account}
+		<if test="bizId != null and bizId != ''"> 
+			and biz_id =#{bizId}
+		</if>
+	</select>
+</mapper>

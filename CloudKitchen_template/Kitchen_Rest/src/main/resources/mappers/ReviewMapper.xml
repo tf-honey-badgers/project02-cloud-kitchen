@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.badgers.rest.customer.review.persistence.ReviewMapper">
+	
+	<select id="revList" resultType="org.badgers.rest.model.ReviewVOExtend" >
+		select rev_id revId,cust_idx custIdx,menu_id menuId,rev_date revDate,stars,rev_content revContent, biz_id bizId from review
+	</select>
+	
+	<select id="getGpa" resultType="org.badgers.rest.model.GpaVOExtend">
+		select b.biz_id bizId, sum(r.stars) gpa,count(*) cnt from biz b,review r
+		where b.biz_id = r.biz_id and b.biz_id = #{bizId}
+		group by b.biz_id
+	</select>
+	
+	<select id="getRecommendMenu" resultType="org.badgers.rest.model.MenuVOExtend">
+		select idx mCode, name mName, basic_price mBasicPrice, photo mPhoto, category_id menuCatCode from menu where idx=#{menuId}
+	</select>
+	
+</mapper>

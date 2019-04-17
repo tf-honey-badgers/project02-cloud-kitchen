@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+/* YOUR CUSTOM CSS */
+
+
+/* 태주 order_3_confirm Css */
+		.bizName{
+            font-size: 15px;
+            font-weight: bold;
+            border-collapse: separate !important;
+            background-color: antiquewhite;
+        }
+        .options{
+            padding-left: 50px;
+        }
+        .stickRight{
+            display: block;
+            text-align: right;
+        }
+        ul{
+            list-style: circle;
+            margin-bottom: 0;
+        }
+        .ulNone{
+            list-style: none;
+        }
+        .borderSeper tr{
+            border-collapse: separate !important;
+        }
+        .menuCnt{
+            font-size: 15px;
+            background-color: aliceblue;
+        }
+        .th-color{
+            background-color: azure;
+        }
+        .padding-4 th, td{
+            padding: 4px !important;
+        }
+/* >>>끝<<< 태주 order_3_confirm Css */

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.badgers.rest.customer.cart.persistence.CartMapper">	
+	<insert id="insertCart">
+		insert into honey_badgers.cart
+			(id, cust_id, quantity, unit_price, total_amt, kitchen_name, biz_id, menu_id)
+			values
+			(#{id}, #{custId}, #{quantity}, #{unitPrice}, #{totalAmt}, #{kitchenName}, #{bizId}, #{menuId})
+	</insert>
+	
+	<insert id="insertOption">
+		insert into honey_badgers.cart_detail
+			(id, cart_id, menu_opt_id, menu_id, menu_opt_name, menu_opt_price)
+			values
+			(#{id}, #{cartId}, #{menuOptId}, #{menuId}, #{menuOptName}, #{menuOptPrice})
+	</insert>
+	
+	<select id="getCartId" resultType="int">
+		SELECT LAST_INSERT_ID();
+	</select>
+
+	<!-- THIS IS THE ONE AND ONLY REAL TRUE CART MAPPER -->
+	<select id="readCart" resultType="org.badgers.rest.model.CartVOExtend">
+		<include refid="cartReadComm"/>
+			and CA.cust_id = #{custId}
+			order by CA.biz_id asc, CA.id asc
+	</select>
+	
+	<select id="readSelectedCart" resultType="org.badgers.rest.model.CartVOExtend">
+		<include refid="cartReadComm"/>
+			<foreach item="item" index="index" collection="array" open="and (CA.id=" close=")" separator="or CA.id =" >
+				#{item}
+				<!-- and (CA.id = '253' or CA.id ='269' or CA.id ='270' or CA.id ='272' ) -->
+			</foreach>
+			order by CA.biz_id asc, CA.id asc
+	</select>
+	
+	<sql id="cartReadComm">
+		select
+				CA.id
+				, CA.cust_id
+				, CA.quantity
+				, CA.unit_price
+				, CA.total_amt
+				, CA.kitchen_name
+				, CA.biz_id
+				, CA.menu_id
+	            , ME.name as menu_name
+	            , BZ.name as biz_name
+			from
+				honey_badgers.cart CA
+	            , honey_badgers.menu ME
+	            , honey_badgers.biz BZ
+			where
+				CA.menu_id = ME.idx
+				and CA.biz_id = BZ.biz_id
+	</sql>
+	
+	<select id="readOptions" resultType="org.badgers.rest.model.CartDetailVO">
+		select
+			id
+            , cart_id
+            , menu_opt_id
+            , menu_id
+            , menu_opt_name
+            , menu_opt_price
+		from
+			honey_badgers.cart_detail
+		where cart_id = #{cartId}
+	</select>
+	
+	<update id="updateCart">
+		update honey_badgers.cart set quantity = #{quantity}, unit_price = #{unitPrice}, total_amt = #{totalAmt} where id = #{id}
+	</update>
+	
+	<delete id="deleteCart">
+		delete from honey_badgers.cart where id = #{cartId}
+	</delete>
+	
+	<delete id="deleteAllCart">
+		delete from honey_badgers.cart where cust_id = #{custId}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper	namespace="org.badgers.rest.favorite.persistence.FavoriteMapper">
+	<!--찜 내역 보기  -->
+	<select id="readFavorites" resultType="org.badgers.rest.model.FavoriteVO">
+		select * from honey_badgers.favorite where cust_id = #{custId}
+	</select>
+	
+	<!-- 가게 찜 회수 보기 -->
+	<select id="countFavorites" resultType="int">
+		select count(*) from honey_badgers.favorite where biz_id = #{bizId}
+	</select>
+
+	<!-- 특정 고객이 특정 가게를 찜했는지 확인하기 -->
+	<select id="isFavoriteChk" resultType="int">
+		select count(*) from honey_badgers.favorite where cust_id = #{param1} and biz_id = #{param2}
+	</select>
+
+	<!-- 찜 추가하기 -->
+	<insert id="addFavorite">
+		insert into honey_badgers.favorite
+			(cust_id, biz_id, biz_name, kitchen_name)
+			values
+			(#{custId}, #{bizId}, #{bizName}, #{kitchenName})
+	</insert>
+	
+	<update id="updateBizLikes">
+		update honey_badgers.biz set like_cnt = #{bizLikeCnt} where biz_id = #{bizId}
+	</update>
+	
+	<!-- 찜 삭제하기 -->
+	<delete id="deleteFavorite">
+		delete from honey_badgers.favorite where cust_id = #{param1} and biz_id = #{param2}
+	</delete>
+</mapper>
