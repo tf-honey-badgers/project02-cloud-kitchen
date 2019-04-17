@@ -95,9 +95,6 @@ public class CustomerController {
 		int returnVal = 0;
 
 		try {
-			String inputPass  = vo.getPw();
-			String pass =passEncoder.encode(inputPass);
-			vo.setPw(pass);
 			returnVal 	= service.modify(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
