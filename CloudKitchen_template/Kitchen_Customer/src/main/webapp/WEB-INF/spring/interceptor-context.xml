@@ -58,5 +58,10 @@
 		<bean class="org.badgers.customer.interceptor.AuthCheckInterceptor"></bean>
 	</mvc:interceptor>
 
+
+	<mvc:interceptor>
+		<mvc:mapping path="/kitchen/*/main"/>
+		<bean class="org.badgers.customer.interceptor.BizInterceptor"></bean>
+	</mvc:interceptor>
 </mvc:interceptors>
 </beans>

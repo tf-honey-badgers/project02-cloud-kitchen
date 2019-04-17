@@ -45,10 +45,10 @@
 								<div class="col-md-9 col-sm-9">
 									<div class="desc">
 										<div class="thumb_strip">
-												<a href="detail_page.html"><img class="shopImg" src="https://s3.ap-northeast-2.amazonaws.com/honeybadgersfile/MenuPhoto/${biz.bizId}.png" alt="없음" title="이거"></a>
+											<a href="${pageContext.request.contextPath}/kitchen/${biz.bizId}/main"><img class="shopImg" src="https://s3.ap-northeast-2.amazonaws.com/honeybadgersfile/MenuPhoto/${biz.bizId}.png" alt="없음" title="이거"></a>
 										</div>
 										<div class="rating">
-												<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="#0">98 reviews</a></small>)
+											<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="#0">98 reviews</a></small>)
 										</div>
 											
 										<h3>${biz.bizName}</h3>
@@ -68,13 +68,6 @@
 						
 						
 						</div>
-					
-					
-					
-					
-					
-					
-		
 					</section>
 				</div>
 			</div>

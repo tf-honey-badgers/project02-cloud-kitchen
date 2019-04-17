@@ -30,6 +30,7 @@
 					<div class="form-group">
 						<label>비밀번호</label>
 						<input type="password" class="form-control" id="pw" name="customerPw" value="${customer.pw}">
+						<button type="button" id="changepw" class="btn btn-primary" style="align-content: left;">비번변경</button>
 					</div>
 					<div class="form-group">
 						<label>이름</label>

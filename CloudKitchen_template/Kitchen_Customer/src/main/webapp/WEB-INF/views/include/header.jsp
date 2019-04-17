@@ -121,7 +121,7 @@
 			<a href="#" class="close-link"><i class="material-icons">close</i></a>
 			<form action="#" class="popup-form" id="myId">
 				<div class="login_icon" style="margin-top: 20px; margin-bottom: 10px;">
-					<i class="material-icons" style="width: 60px; font-size: 60px;">lock_alt</i>
+					<i class="icon_lock_alt"></i>
 				</div>
 				<h2>ID 찾기</h2>
 				<h5>ID를 찾으려면 본인인증을 해주세요.</h5>

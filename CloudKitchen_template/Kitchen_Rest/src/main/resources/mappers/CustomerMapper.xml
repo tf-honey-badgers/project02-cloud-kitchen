@@ -34,9 +34,6 @@
 	<update id="modify">
 		update honey_badgers.customer
 		<trim prefix="SET" suffixOverrides=",">
-			<if test="pw != null and pw != ''">   <!-- if 에 들어가는 거는 VO 쓰여진대루 -->
-				pw = #{pw}, <!-- 샵 안에는 vo꺼 ~ -->
-			</if>
 			<if test="name != null and name != ''">
 				name = #{name},
 			</if>

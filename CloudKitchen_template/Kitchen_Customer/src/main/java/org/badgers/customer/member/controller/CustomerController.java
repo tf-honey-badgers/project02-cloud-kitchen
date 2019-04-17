@@ -127,9 +127,20 @@ public class CustomerController {
 	@PostMapping("/{id}/modify")
 	@ResponseBody
 	public void updateCustomer(@RequestBody CustomerVO cvo) {
-		log.info("Kitchen_Business 사용자 개인정보 수정...............................");
+		log.info("Kitchen_customer 사용자 개인정보 수정...............................");
 
 		String url = RestDomain.restDomain + "/customer/" + cvo.getId() + "/mypage/modify";
+		restTemplate.put(url, cvo);
+
+		log.info("회원 정보 수정 완료 ");
+	}
+	
+	@PostMapping("/{id}/changepwd")
+	@ResponseBody
+	public void updatePw(@RequestBody CustomerVO cvo) {
+		log.info("Kitchen_customer 사용자 비번 변경...............................");
+
+		String url = RestDomain.restDomain + "/customer/" + cvo.getId() + "/changepwd";
 		restTemplate.put(url, cvo);
 
 		log.info("회원 정보 수정 완료 ");
@@ -139,7 +150,7 @@ public class CustomerController {
 	@PostMapping("/{id}/delete")
 	@ResponseBody
 	public void deleteCustomer(@RequestBody CustomerVO cvo, HttpSession session) {
-		log.info("Kitchen_Business 사용자 탈퇴...............................");
+		log.info("Kitchen_customer 사용자 탈퇴...............................");
 
 		String url = RestDomain.restDomain + "/customer/" + cvo.getId() + "/delete";
 		restTemplate.put(url, cvo);
