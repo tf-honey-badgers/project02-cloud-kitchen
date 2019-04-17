@@ -9,12 +9,16 @@ import org.badgers.rest.customer.member.persistence.CustomerMapper;
 import org.badgers.rest.model.CustomerVO;
 import org.badgers.rest.model.OrderInfoVO;
 import org.badgers.rest.model.OrderVO;
+import org.badgers.rest.util.RestDomain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.extern.log4j.Log4j;
+
 @Service
+@Log4j
 public class CustomerServiceImpl implements CustomerService {
 
 	@Inject
@@ -45,11 +49,11 @@ public class CustomerServiceImpl implements CustomerService {
 					.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
 					.append("<div>")
 					.append("<span:style='display:none'>")
-					.append("<a href='${pageContext.request.contextPath}/member/emailConfirm?email=")
+					.append("<a href='"+RestDomain.customerDomaim+"/member/emailConfirm?email=")
 					.append(vo.getEmail())
 					.append("&key=")
 					.append(key)
-					.append("' target='_blenk'>이메일 인증 확인</a>")
+					.append("' target='_blank'>이메일 인증 확인</a>")
 					.append("</span>")
 					.append("</div>")
 					.toString());

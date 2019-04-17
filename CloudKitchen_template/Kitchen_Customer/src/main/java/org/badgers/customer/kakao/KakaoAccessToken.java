@@ -13,6 +13,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
+import org.badgers.customer.util.RestDomain;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,14 +24,13 @@ public class KakaoAccessToken {
         final String RequestUrl = "https://kauth.kakao.com/oauth/token"; // Host
  
         final List<NameValuePair> postParams = new ArrayList<NameValuePair>();
-
+        
         //포스트 파라미터의 grant_type이라는 명칭에 authorization_code를 추가한다 아래도 동일
         postParams.add(new BasicNameValuePair("grant_type", "authorization_code")); 
         													
         postParams.add(new BasicNameValuePair("client_id", "3aedd6d785bf068e8df19174bf251262")); //자신의 RESTAPI 코드 
 
-    //    postParams.add(new BasicNameValuePair("redirect_uri", "http://54.180.97.18/customer/main/kakaologin")); //  리다이렉션주소
-        postParams.add(new BasicNameValuePair("redirect_uri", "http://localhost:3001/customer/main/kakaologin")); //  리다이렉션주소
+        postParams.add(new BasicNameValuePair("redirect_uri", RestDomain.customerDomaim+"/main/kakaologin")); //  리다이렉션주소
  
         postParams.add(new BasicNameValuePair("code", code));// 로그인 과정중 얻은 code 값
  
