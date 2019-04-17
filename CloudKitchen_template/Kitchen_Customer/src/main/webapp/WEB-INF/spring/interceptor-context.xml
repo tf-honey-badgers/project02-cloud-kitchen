@@ -36,12 +36,7 @@
 		<mvc:mapping path="/member/logout"/>
 		<bean class="org.badgers.customer.interceptor.MemberInterceptor"></bean>
 	</mvc:interceptor>
-	
-	<!-- <mvc:interceptor>
-		<mvc:mapping path="/kitchen/*/main"/>
-		<bean class="org.badgers.customer.interceptor.AuthCheckInterceptor"></bean>
-	</mvc:interceptor> -->
-	
+
 	<!-- 회원정보 변경 시 페이지 이동-->
 	<mvc:interceptor>
 		<mvc:mapping path="/member/*/change"/>
