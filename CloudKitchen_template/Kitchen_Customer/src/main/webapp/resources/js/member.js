@@ -10,7 +10,6 @@ $(document).ready(function(){
 			, contentType : 'application/json'
     		, data : JSON.stringify({
     				id : $('#id').val()
-    				, pw : $('#pw').val()
     				, name : $('#name').val()
     				, email : $('#email').val()
     				, address : $('#address').val()
@@ -21,6 +20,24 @@ $(document).ready(function(){
     		, success : function() { alert("성공적으로 회원 정보를 수정했습니다."); }
 		});
 	});
+	
+	// 비번만 변경 
+	$('#changepw').on('click', function() {
+		$.ajax({
+    		url : '/customer/member/' + $('#id').val() + '/changepwd'
+    		, type : 'POST'
+			, contentType : 'application/json'
+    		, data : JSON.stringify({
+    				id : $('#id').val()
+    				, pw : $('#pw').val()
+    			
+    				
+    			})
+    		, error : function() { alert("비번 변경 실패."); }
+    		, success : function() {alert("비번 변경 성공.")}
+		});
+	});
+	
 	
 	//회원 탈퇴 
 	$('#deleteCustomer').on('click',function(){
@@ -207,7 +224,7 @@ $(document).ready(function(){
         			})
         		, error : function(data) {
         			$("#myId input").remove();
-	        		$("#myId h2").replaceWith("<h5>사용자 ID를 찾는데 실패했습니다.</h5>");
+	        		$("#myId h2").replaceWith("<h5>본인 인증에 실패하였습니다.</h5>");
 	        		$('#myId h5:eq(1)').remove();
 	        		$('#myId #getId').remove();
         		}
@@ -245,7 +262,7 @@ $(document).ready(function(){
 
 
 		$.ajax({
-    		url : '/customer/member/' + hiddenId + '/modify'
+    		url : '/customer/member/' + hiddenId + '/changepwd'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({
@@ -260,7 +277,7 @@ $(document).ready(function(){
         		$('#myId #getId').remove();
     		}
     		, success : function() {
-    			alert('성공적 비번 수행 ')
+    			alert('성공적 으로 비번을 변경하였습니다. ')
     			$('.modal').modal('hide');
     			$('#myLogin input').val("");
     			$('#myId').text("");

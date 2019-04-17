@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -95,6 +94,7 @@ public class CustomerController {
 		int returnVal = 0;
 
 		try {
+			
 			returnVal 	= service.modify(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,11 +104,14 @@ public class CustomerController {
 	}
 
 	// 비번만  변화
-	@PutMapping("/changePwd")
-	public int changePwd(@RequestBody CustomerVO input) {
+	@PutMapping("/{id}/changepwd")
+	public int changePwd(@PathVariable("id") String id,@RequestBody CustomerVO input) {
 		int returnVal = 0;
 
 		try {
+			String inputPass = input.getPw();
+			String pass = passEncoder.encode(inputPass);
+			input.setPw(pass);
 			returnVal = service.changePwd(input.getId(), input.getPw());
 		} catch (Exception e) {
 			e.printStackTrace();
