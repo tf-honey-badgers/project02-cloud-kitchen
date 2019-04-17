@@ -1,5 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--  <%@taglib prefix="fmt" %> --%>
  <!DOCTYPE html> 
  <html> 
   <head> 
@@ -31,10 +32,6 @@
 				<div class="row">
 					<div class="col-md-9 col-sm-9">
 						<div class="desc">
-							<div class="thumb_strip">
-								<a href="detail_page.html"><img src="img/thumb_restaurant.jpg" alt=""></a>
-							</div>
-						
 							<h3>${order.kitchenName }</h3>
 							<div class="type">
 								주문 시간 &nbsp;: &nbsp;<span>${order.time}</span> 

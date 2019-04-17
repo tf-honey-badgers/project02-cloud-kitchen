@@ -30,7 +30,7 @@
   	"아이디,이메일,휴대폰 번호,주문 이력, 찜, 관심 지역,포인트,간단 결제 카드 정보 " 				
 				</pre>
 			</div>
-			<form action="#" class="popup-form" id="delete" onSubmit="return isReady(this)">
+			<form action="#" class="popup-form" id="deletecus" onSubmit="return isReady(this)">
 			<input type="checkbox" id="status" value="MEM004" name="status" onClick="display1()">회원 탈퇴에 동의 합니다.
 			<button type="button" id="deleteCustomer" class="btn btn-submit" style="display:none; background-color: red;">클라우드키친 탈퇴</button>
 			<button type="submit" id="deleteyet" class="btn btn-submit">체크 박스를 클릭하세요.</button>

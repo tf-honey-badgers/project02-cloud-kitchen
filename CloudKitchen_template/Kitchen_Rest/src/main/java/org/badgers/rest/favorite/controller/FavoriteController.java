@@ -27,7 +27,6 @@ public class FavoriteController {
 	private FavoriteService service;
 	
 	// 찜  내역  보기 
-	@CrossOrigin("http://localhost:3001")
 	@GetMapping(value = "/{cust_id}/mypage", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<List<FavoriteVO>> readFavorites(@PathVariable("cust_id") String custId) {
 		List<FavoriteVO> favorite = null;

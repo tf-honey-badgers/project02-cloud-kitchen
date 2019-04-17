@@ -17,7 +17,6 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 				HttpServletResponse response,
 				Object handler
 			) throws Exception {
-		System.out.println(".........................interceptor : preHandle...................");
 		return super.preHandle(request, response, handler);
 	}
 	
@@ -28,14 +27,14 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 				Object handler,
 				ModelAndView mv
 			) throws Exception {
-		System.out.println(".........................interceptor : postHandle...................");
 		String uid = response.getHeader("id");
 		String idx = response.getHeader("idx");
 		String uname = response.getHeader("name");
 		String uphone = response.getHeader("phone");
 		String uaddr = response.getHeader("address");
 		String uaddr2 = response.getHeader("addressDetail");
-		System.out.println("인터셉터"+idx);
+	
+		
 		//상태가 success 여서 header에 id가 담겨 있다면 세션 생성 
 		HttpSession session = request.getSession(true);
 		if(uid!=null) {

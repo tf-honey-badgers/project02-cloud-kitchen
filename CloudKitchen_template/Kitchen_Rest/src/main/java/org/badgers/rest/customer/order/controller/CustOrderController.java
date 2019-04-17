@@ -62,7 +62,9 @@ public class CustOrderController {
 
 		// 2. mysql select
 		LinkedList<OrderInfoVO> list = orderService.getOrderInfo(vo.getId());
-		
+		log.info("---------------------------------------------------------------------------------------list");
+		log.info(list);
+		log.info("---------------------------------------------------------------------------------------list");
 		if(list==null) {throw new Exception();}
 		// 3. firebase insert
 		Map<String, Map<String,OrderAlarmVO>> map = toOrderAlarmVOService.toOrderAlarmVO(list);

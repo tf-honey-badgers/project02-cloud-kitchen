@@ -143,9 +143,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">최소주문금액</label>
-                                                    <input type="text" id="minAmt" class="form-control" value="
-                                                    <fmt:formatNumber value="${bizMember.biz.minAmt}" type="currency" currencySymbol="￦"/>
-                                                   "/>
+                                                    <input type="text" id="minAmt" class="form-control" value="${bizMember.biz.minAmt}"/>
                                                 </div>
                                             </div>
                                         </div>

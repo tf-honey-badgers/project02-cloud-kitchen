@@ -63,9 +63,8 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter{
 //		final String uriBizId=pathVariables.get("bizId");
 //		log.info("URI   : "+pathVariables);
 //		log.info("uriBizId   : "+uriBizId);
-		log.info("인증 확인 인터셉터---------------------------------------------------");
+		log.info("인증 확인 인터셉터");
 		HttpSession session = request.getSession();
-		log.info(session.getAttribute("uid"));
 		//세션에 저장되어 있는 bizId 값
 		String sessionuId = (String) session.getAttribute("uid");
 		
@@ -73,7 +72,7 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter{
 		//세션자체가 null 이면 false 반환
 		
 		if(sessionuId==null) {
-			log.info("--------------------세션 체크 null-------------------------");
+			log.info("--------------------세션  null 체크 메인으로 이동-------------------------");
 			response.sendRedirect("/customer/main");
             return false;
 		}

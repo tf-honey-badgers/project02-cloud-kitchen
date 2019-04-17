@@ -111,7 +111,6 @@ public class KitchenController {
 		
 		mav.addObject("query", query);
 		mav.addObject("bizCat", bizCatVal);
-		log.info(returnVal);
 		mav.setViewName("searchList");
 		
 		return mav;
