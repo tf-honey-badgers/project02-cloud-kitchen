@@ -125,7 +125,6 @@
     <script>
         $(document).ready(function() {
         	
-        	
             //init DateTimePickers
             md.initFormExtendedDatetimepickers();
             
