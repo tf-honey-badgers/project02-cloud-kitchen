@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.extern.log4j.Log4j;
@@ -30,32 +31,37 @@ public class CartController {
 	/* 카트에 메뉴 추가하기 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PostMapping(value = "/add", produces = "application/json")
-	public String addCart(@RequestBody CartVOExtend cart) {
+	public ResponseEntity<List<CartVOExtend>> addCart(@RequestBody CartVOExtend cart) throws Exception{
 
 		String url = RestDomain.restDomain + "/cart/";
 
 		restTemplate.postForEntity(url, cart, String.class); // 카트에 메뉴 추가하기
 
-		return "redirect:get/"+cart.getCustId();
+		// return "redirect:get/"+cart.getCustId();
+
+		return getCart(cart.getCustId());
 	}
 
-	@GetMapping(value="get/{custId}", produces = "application/json")
-	public ResponseEntity<List<CartVOExtend>> getCart(@PathVariable("custId") String custId) {
-		
+	@GetMapping(value = "get/{custId}", produces = "application/json")
+	public ResponseEntity<List<CartVOExtend>> getCart(@PathVariable("custId") String custId) throws Exception{
+
 		String url = RestDomain.restDomain + "/cart/";
 		List<CartVOExtend> returnVal = null;
-		url += custId;
 		
-		ResponseEntity<List> readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class); // 특정 회원ID를 가진 카트
+		url += custId;
+		ResponseEntity<List> readMenuFromCart =
+
+				restTemplate.getForEntity(url, java.util.List.class); // 특정 회원ID를 가진 카트
+
 		// 항목들 읽어오기
 		returnVal = readMenuFromCart.getBody();
-
 		if (returnVal != null) {
 			log.info("Finished adding selected menu to cart!!!!!");
 		} else {
 			log.info("Failed to add selected menu to cart.");
 		}
 		return new ResponseEntity<>(returnVal, HttpStatus.OK);
+
 	}
 
 	/* 카트에서 회원ID & 카트ID 사용해서 삭제하기 */
