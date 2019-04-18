@@ -43,13 +43,10 @@
             <div class="row">
 						<div class="col-md-6 col-md-offset-3">
                         <div id="newsletter_wp" >
-                            <form method="post" action="#" id="newsletter" name="newsletter"  autocomplete="off">
+                            <form method="get" action="${PageContext.request.ContextPath }/customer/main" id="newsletter" name="newsletter"  autocomplete="off">
                                         <div class="row">
-                                            <div class="col-md-9 first-nogutter">
-                                                <input name="email_newsletter" id="email_newsletter" type="email" placeholder="Your Email" class="form-control">
-                                            </div>
-                                            <div class="col-md-3 nogutter">
-                                                    <button type="submit" class="btn-check" id="submit-newsletter">Subscribe</button>
+                                            <div class="col-md-12 nogutter">
+                                                    <button type="submit" class="btn-check" id="submit-newsletter">GO BACK HOME</button>
                                             </div>
                                         </div>
                                 </form> 
