@@ -64,6 +64,7 @@
                     </div>            
 		</div><!-- End container -->
 	</div><!-- End main -->	
+</div>
 
 <div id="slides">
 	<ul class="slides-container">
@@ -90,5 +91,6 @@
 <script src="${pageContext.request.contextPath}/resources/error/js/retina.min.js"></script>
 <script  src="${pageContext.request.contextPath}/resources/error/js/functions.js"></script>
 <script src="${pageContext.request.contextPath}/resources/error/assets/validate.js"></script>
+
   </body>
 </html>
