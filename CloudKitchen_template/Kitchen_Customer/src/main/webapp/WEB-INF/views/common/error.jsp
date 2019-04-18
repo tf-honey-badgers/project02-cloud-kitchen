@@ -43,13 +43,11 @@
             <div class="row">
 						<div class="col-md-6 col-md-offset-3">
                         <div id="newsletter_wp" >
-                            <form method="get" action="${PageContext.request.ContextPath }/customer/main" id="newsletter" name="newsletter"  autocomplete="off">
-                                        <div class="row">
-                                            <div class="col-md-12 nogutter">
-                                                    <button type="submit" class="btn-check" id="submit-newsletter">GO BACK HOME</button>
-                                            </div>
-                                        </div>
-                                </form> 
+                                   <div class="row" id="newsletter" name="newsletter"  autocomplete="off">
+                                       <div class="col-md-12 nogutter">
+                                               <a class="btn-check" id="submit-newsletter" href="${pageContext.request.contextPath}/main">GO BACK HOME</a>
+                                       </div>
+                                   </div>
                                 <div id="message-newsletter"></div>                        
                             </div>
                         </div>	
