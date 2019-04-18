@@ -3,14 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.badgers.rest.business.order.persistence.BizOrderMapper">
+<mapper
+	namespace="org.badgers.rest.business.order.persistence.BizOrderMapper">
 
 	<update id="updateOrderStatus">
 		UPDATE order_detail SET
 		status = #{arg0}
-		WHERE biz_id=#{arg1}
+		WHERE
+		biz_id=#{arg1}
 		and order_id=#{arg2}
+				
 	</update>
+
+	<select id="getToken" resultType="java.lang.String">
+		select fcmToken from customer,
+			( select cust_id from honey_badgers.order where id= #{orderId} ) as orderAuth
+		where orderAuth.cust_id = customer.id;
+
+	</select>
 
 
 </mapper>

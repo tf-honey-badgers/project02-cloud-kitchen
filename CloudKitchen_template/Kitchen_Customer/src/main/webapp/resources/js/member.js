@@ -9,17 +9,35 @@ $(document).ready(function(){
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({
-    				id : $('#id').val(),
-    				 pw : $('#pw').val()
+    				id : $('#id').val()
     				, name : $('#name').val()
     				, email : $('#email').val()
     				, address : $('#address').val()
     				, addressDetail :$('#addressDetail').val()
+    				
     			})
     		, error : function() { alert("회원 정보를 수정하는데 에러가 발생했습니다."); }
     		, success : function() { alert("성공적으로 회원 정보를 수정했습니다."); }
 		});
 	});
+	
+	// 비번만 변경 
+	$('#changepw').on('click', function() {
+		$.ajax({
+    		url : '/customer/member/' + $('#id').val() + '/changepwd'
+    		, type : 'POST'
+			, contentType : 'application/json'
+    		, data : JSON.stringify({
+    				id : $('#id').val()
+    				, pw : $('#pw').val()
+    			
+    				
+    			})
+    		, error : function() { alert("비번 변경 실패."); }
+    		, success : function() {alert("비번 변경 성공.")}
+		});
+	});
+	
 	
 	//회원 탈퇴 
 	$('#deleteCustomer').on('click',function(){
@@ -76,19 +94,23 @@ $(document).ready(function(){
                 }
                 , success : function(data) {
                     if(data == "로그인 성공") {
-                         alert('로그인 성공'); 
-                         window.location.reload()
+                    	 sendMessage($('#myLogin input:eq(0)').val());
+                         alert('로그인 성공');
+                         window.location.reload();
                     } else {
-                        alert("이메일 인증 필요.");	
+                        alert("로그인 실패");	
                     }
                     $('.modal').modal('hide');
                     $('#myLogin input').val("");
                 }
             });
         })
- 
+
+      
+        
 	// 회원가입 절차 
-	$('#myRegister button').on('click', function() {
+	$('#register_btn').on('click', function() {
+	
 		$.ajax({
     		url : '/customer/member/register'
     		, type : 'POST'
@@ -105,21 +127,22 @@ $(document).ready(function(){
     				, gender : $('#myRegister input:eq(9)').val()
     				, address : $('#myRegister input:eq(11)').val()
     				, addressDetail : $('#myRegister input:eq(12)').val()
+    				, status : $('#myRegister input:eq(13)').val()
     		
-  
+    			
     			})
-    		, error : function(data) {
-    			console.log(data);
-    		}
     		, success : function(data) {
-    			if(data == "") {
-    				alert('가입성공');    				
+    			if(data == "<Integer>1</Integer>") {
+    				alert('가입성공 !  '+$('#myRegister input:eq(6)').val()+'에서 인증 메일을 확인하세요.');  
+    				location.href =  "/customer/main";
     			} else {
-    				alert('가입이 성공 되었으니 이메일 인증을 해주세요.');  			
+    				alert('가입 실패 다시 시도해 주새요.');  			
     			}
-    			$('.modal').modal('hide');
-    			$('#myRegister input').val("");
+    			//$('#myRegister input').val("");
     		}
+		, error : function(data) {
+			console.log(data);
+		}
 		});
 	})
 	
@@ -140,8 +163,9 @@ $(document).ready(function(){
         				, email : $('#myId input:eq(1)').val()
         			})
         		, error : function(data) {
+        			console.log(data)
         			$("#myId input").remove();
-	        		$("#myId h2").replaceWith("<h5>에러가 발생했습니다. 조금 있다가 다시 시도해주세요.</h5>");
+	        		$("#myId h2").replaceWith("<h5>본인 인증에 실패하였습니다.</h5>");
 	        		$('#myId h5:eq(1)').remove();
 	        		$('#myId #getId').remove();
         		}
@@ -200,7 +224,7 @@ $(document).ready(function(){
         			})
         		, error : function(data) {
         			$("#myId input").remove();
-	        		$("#myId h2").replaceWith("<h5>에러가 발생했습니다. 조금 있다가 다시 시도해주세요.</h5>");
+	        		$("#myId h2").replaceWith("<h5>본인 인증에 실패하였습니다.</h5>");
 	        		$('#myId h5:eq(1)').remove();
 	        		$('#myId #getId').remove();
         		}
@@ -238,7 +262,7 @@ $(document).ready(function(){
 
 
 		$.ajax({
-    		url : '/customer/member/' + hiddenId + '/modify'
+    		url : '/customer/member/' + hiddenId + '/changepwd'
     		, type : 'POST'
 			, contentType : 'application/json'
     		, data : JSON.stringify({
@@ -253,7 +277,7 @@ $(document).ready(function(){
         		$('#myId #getId').remove();
     		}
     		, success : function() {
-    			alert('성공적 비번 수행 ')
+    			alert('성공적 으로 비번을 변경하였습니다. ')
     			$('.modal').modal('hide');
     			$('#myLogin input').val("");
     			$('#myId').text("");
@@ -268,6 +292,20 @@ $(document).ready(function(){
 		});
 	});
 	
-
+	
 	
 })
+
+function sendMessage(msg){
+		console.log(msg);
+		if(window.HybridApp==null){
+			console.log('이건 웹이라서 window.HybridApp 같은 건 없단다');
+			return;
+		}
+		window.HybridApp.setMessage(msg);
+	}
+
+
+
+
+	

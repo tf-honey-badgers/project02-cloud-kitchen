@@ -91,6 +91,7 @@
 <script src="/customer/resources/js/common_scripts_min.js"></script>
 <script src="/customer/resources/js/functions.js"></script>
 <script src="/customer/resources/assets/validate.js"></script>
+<script src="/customer/resources/js/regfunction.js"></script>
 
 <!-- Modernizr -->
 <script src="${pageContext.request.contextPath}/resources/js/modernizr.js"></script>
@@ -124,7 +125,10 @@
 		});
 	});
 
+	history.replaceState({}, null, location.pathname);
+
 </script>
+
 
 <!-- "message" 속성이 있다면 알림창 띄우기 -->
 <%-- <c:if test="${not empty message}">

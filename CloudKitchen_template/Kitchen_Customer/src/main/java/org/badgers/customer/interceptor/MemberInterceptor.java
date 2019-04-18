@@ -17,7 +17,6 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 				HttpServletResponse response,
 				Object handler
 			) throws Exception {
-		System.out.println(".........................interceptor : preHandle...................");
 		return super.preHandle(request, response, handler);
 	}
 	
@@ -28,7 +27,6 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 				Object handler,
 				ModelAndView mv
 			) throws Exception {
-		System.out.println(".........................interceptor : postHandle...................");
 		String uid = response.getHeader("id");
 		String idx = response.getHeader("idx");
 		String uname = response.getHeader("name");
@@ -36,6 +34,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 		String uaddr = response.getHeader("address");
 		String uaddr2 = response.getHeader("addressDetail");
 	
+		
 		//상태가 success 여서 header에 id가 담겨 있다면 세션 생성 
 		HttpSession session = request.getSession(true);
 		if(uid!=null) {
@@ -49,6 +48,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 					session.setAttribute("addr2", uaddr2 );	 // 사용자 주소 2 (상세 주소)
 			}
 		}
+		
 
 		//map에 logout 이라는 키를 가지고 있으면 세션invalidate() 해주기
 		if(mv!=null) {

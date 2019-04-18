@@ -254,6 +254,7 @@ $(document)
 			        							);
 			        					
 			        					$('.menuInsertModal').css('display', 'none');
+			        					history.go(0);
 			        				}
 			        			}
 			        		}
@@ -447,6 +448,7 @@ $(document)
 			        			alert('변경되었습니다');
 			        			deletePhoto(menu.mCode);
 			        			updatePhoto(menu.mCode);
+			        			history.go(0);
 			        		}
 						});
 						

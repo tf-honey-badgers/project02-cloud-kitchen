@@ -36,6 +36,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/magnific-popup.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/pop_up.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/admin.css" rel="stylesheet">
 
 <!-- Radio and check inputs -->
 <link href="${pageContext.request.contextPath}/resources/css/skins/square/grey.css" rel="stylesheet">
@@ -48,8 +49,8 @@
 		<div class="row">
 			<div class="col--md-4 col-sm-4 col-xs-4">
 				<a href="${pageContext.request.contextPath}/main" id="logo">
-					<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="120" height="" alt="" data-retina="true" class="hidden-xs" style="position:absolute; top:-23px">
-					<img src="${pageContext.request.contextPath}/resources/img/logo_mobile.png" width="59" height="23" alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm">
+					<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="120" height="" alt="" data-retina="true" class="hidden-xs" style="position:absolute; top:-21px">
+					<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="120"  alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm" style="position:absolute; top:-20px">
 				</a>
 			</div>
 			<nav class="col--md-8 col-sm-8 col-xs-8">
@@ -57,7 +58,7 @@
 				<div class="main-menu">
 					<div id="header_menu">
 						<a href="${pageContext.request.contextPath}/main">
-						<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="190" height="23" alt="logo" data-retina="true">
+						<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="120" height="" alt="logo" data-retina="true" style="position:absolute; top:-8px; right:15px">
 						</a>
 					</div>
 					<a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
@@ -73,9 +74,9 @@
 						<c:if test="${!empty sessionScope.uid}" > <!-- 로그인 되어 세션 있는 상태 -->
 							<li class="submenu"><a href="#" class="show-submenu">${uname }님</a></li>
 							<li><a href="${pageContext.request.contextPath}/member/logout" id="logout">Logout</a><li>
-							<li><a href="${pageContext.request.contextPath}/member/${uid}/change">회원 정보</a></li>
+							<li><a href="${pageContext.request.contextPath}/member/${uid}/change">MyPage</a></li>
 						</c:if>
-						<li><a href="${pageContext.request.contextPath}/about">회사 소개</a></li>
+						<li><a href="${pageContext.request.contextPath}/about">About Us</a></li>
 					</ul>
 				</div> <!-- End main-menu -->
 			</nav>
@@ -88,11 +89,11 @@
 
 <!-- Login modal -->
 <div class="modal fade" id="login_2" tabindex="-1" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
-       <div class="modal-dialog" style="margin-top: 151px;">
-           <div class="modal-content modal-popup" style="position: relative;padding:1px 30px 10px 30px;
-					text-align: center;background: #78cfcf;border-radius: 0px;border:none;">
+    	<div class="modal-dialog" style="margin-top: 151px;">
+           <div class="modal-content modal-popup" style="position:relative; padding:1px 30px 10px 30px;
+					text-align:center; background: #78cfcf; border-radius: 0px;border:none;">
                 <a href="javascrpit:void()" class="close-link"><i class="icon_close_alt2"></i></a>
-                <form action="${pageContext.request.contextPath}/member/login" class="popup-form" id="myLogin" style="margin: 60px 60px 10px 60px; ">
+                <form action="${pageContext.request.contextPath}/member/login" class="popup-form" id="myLogin">
                     <div class="login_icon"><i class="icon_lock_alt"></i></div>
                     <input type="text" class="form-control form-white" placeholder="아이디">
                     <input type="password" class="form-control form-white" placeholder="비밀번호">
@@ -101,15 +102,13 @@
 				    	<a class="changePw" href="#" style="font-size: 13px;">비밀번호를 잊으셨나요?</a>
                      </div>
                     <button type="button" class="btn btn-submit">로그인</button>
-                </form>
-          	
-          <!--  <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://54.180.97.18/customer/main/kakaologin&response_type=code"> -->
-           <a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://localhost:3001/customer/main/kakaologin&response_type=code">
-           
-           <img alt="카카오 로그인" src="${pageContext.request.contextPath}/resources/img/kakaobutton.png" style="width:375px; height: 44px;">
-           </a>    					
-           
-      
+
+					<a href="https://kauth.kakao.com/oauth/authorize?client_id=3aedd6d785bf068e8df19174bf251262&redirect_uri=http://54.180.106.143/customer/main/kakaologin&response_type=code">
+						<img alt="카카오 로그인" src="${pageContext.request.contextPath}/resources/img/kakaobutton.png"
+						class="btn" style="width: 100%; padding: 0; height: 44px; margin-top: 3px">
+					</a>
+
+			</form>
     	</div>
 	</div>
 </div><!-- End modal -->
@@ -122,7 +121,7 @@
 			<a href="#" class="close-link"><i class="material-icons">close</i></a>
 			<form action="#" class="popup-form" id="myId">
 				<div class="login_icon" style="margin-top: 20px; margin-bottom: 10px;">
-					<i class="material-icons" style="width: 60px; font-size: 60px;">lock_alt</i>
+					<i class="icon_lock_alt"></i>
 				</div>
 				<h2>ID 찾기</h2>
 				<h5>ID를 찾으려면 본인인증을 해주세요.</h5>
@@ -135,6 +134,42 @@
 </div>
 <!-- End Find Modal -->
 
+<!-- chatbot -->
+
+	 <div
+	 	class="QnA qnaiframe"
+		style="display:none; width:50vh; height:50vh; position:fixed; right:0; bottom:0; z-index:999 ">
+		<span style="
+		font-weight: bolder;
+	    position: relative;
+	    right: 10px;
+	    display: block;
+	    text-align: right;
+	    bottom: 20px;
+	    top: 20px;
+	    color: white;
+	    cursor: default;
+	    ">
+		X
+		</span>
+		<iframe
+			id="QnAbotFrame"
+		    allow="microphone;"
+		    width="100%"
+		    height="100%"
+		    src="https://console.dialogflow.com/api-client/demo/embedded/d15a26ba-2ee8-4799-884b-6dbce206a063">
+		 </iframe>
+	 </div>
+	 <img 
+	 	id="QnAImg"
+	 	class="QnA qnaImg"
+	 	alt="chatbot_btn"
+	 	src="${pageContext.request.contextPath}/resources/img/bot.png"
+	 	style="display:block; width:9vh; height:9vh; position:fixed; bottom:5vh; right:5vh; z-index:999">
+
+<!-- chatbot -->
+
+
 <!-- Register modal -->
 <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myRegister" aria-hidden="true">
 	<div class="modal-dialog">
@@ -142,23 +177,26 @@
         	<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
             <form action="#" class="popup-form" id="myRegister" name ="myRegister">
             	<div class="login_icon"><i class="icon_lock_alt"></i></div>
-                <input type="text" class="form-control form-white" placeholder="아이디">
+                <input type="text" class="form-control form-white" placeholder="아이디" id="Rid">
+                <div id="id-info" class="clearfix"></div>
                 <input type="password" class="form-control form-white" placeholder="비밀번호" id="password1">
                 <input type="password" class="form-control form-white" placeholder="비밀번호 재확인" id="password2">
                 <div id="pass-info" class="clearfix"></div>
-                <input type="text" class="form-control form-white" placeholder="이름">
-                <input type="text" class="form-control form-white" placeholder="생년 월일">
-                <input type="text" class="form-control form-white" placeholder="휴대폰 번호">
-                <input type="email" class="form-control form-white" placeholder="Email">
+                <input type="text" class="form-control form-white" placeholder="이름" id="Rname">
+                <input type="date" class="form-control form-white" placeholder="생년 월일" id="Rbirth">
+                 <div id="birth-info" class="clearfix"></div>
+                <input type="text" class="form-control form-white" placeholder="휴대폰 번호" id="Rphone">
+                <input type="email" class="form-control form-white" placeholder="Email" id="Remail">
+                 <div id="email-info" class="clearfix"></div>
                 <div>
-					<input type="radio" name="gender" value="남" checked onclick="doIt('남')" id = "r1" style="width:23px;height:15px">
-					<label for = "r1" style="font-size: 15px; color: white; padding-right: 250px;" > 남 </label>
-                    <input type="radio" name="gender" value="여" onclick="doIt('여')" id = "r2" style="width:23px;height:15px">
+					<input type="radio" name="gender" value="남" checked onclick="doIt('남')" id = "r1" style="width:23px;height:18px;">
+					<label for = "r1" style="font-size: 15px; color: white; padding-right: 30%;" > 남 </label>
+                    <input type="radio" name="gender" value="여" onclick="doIt('여')" id = "r2" style="width:23px;height:18px;">
                     <label for = "r2" style="font-size: 15px; color: white; padding-right: 10px;" > 여 </label>
                    	<input type=text name=genders  value="남" style="display:none">
 				</div>				
                 <div class="form-group">                   
-					<input class="form-control" style="width: 50%; margin-right:70px; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" >
+					<input class="form-control" style="width: 50%;  display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" >
     				<button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
 				</div>
 				<div class="form-group">
@@ -167,7 +205,8 @@
 				<div class="form-group">
 					<input class="form-control" placeholder="상세주소" name="location" id="addr3" type="text"  />
 				</div>
-                <button type="button" class="btn btn-submit">회원가입</button>
+				<input type="text" value="MEM001" style="display:none">
+                <button type="button" class="btn btn-submit" id="register_btn">회원가입</button><input type="hidden" id="bizIdx" value="${idx}">
 			</form>
 		</div>
 	</div>
@@ -215,4 +254,72 @@ function execPostCode() {
 		}
 	}).open();
 }
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		
+		$('.QnA').on('click',function(event){
+			console.log(this);
+			
+			$('.QnA').toggle();
+		});
+		
+	});
+
+</script>
+<script>
+$(document).ready(function() {
+	$('#register_btn').on('click', function() {
+	var id = $('#Rid').val();
+	var pass = $('#password1').val(); 
+	var name = $('#Rname').val();
+	var birth = $('#Rbirth').val();
+	var phone = $('#Rphone').val();
+	var email = $('#Remail').val();
+
+	
+	
+	 if(id.length == 0){
+		 alert("아이디를 입력해 주세요"); 
+	        $("#Rid").focus();
+	        return false;
+	    }
+	    
+	    if(pass.length == 0){
+	        alert("비밀번호를 입력해 주세요"); 
+	        $("#password1").focus();
+	        return false;
+	    }
+	 
+	 
+	    if(name.length == 0){
+	        alert("이름을 입력해주세요");
+	        $("#Rname").focus();
+	        return false;
+	    }
+	    
+	    if(birth.length == 0){
+	        alert("생년월일을 입력하여 주세요.");
+	        $("#Rbirth").focus();
+	        return false;
+	    }
+	    
+	    if(phone.length == 0){
+	        alert("핸드폰을 입력하여 주세요.");
+	        $("#Rphone").focus();
+	        return false;
+	    }
+	    
+	    if(email.length == 0){
+	        alert("이메일을 입력해주세요");
+	        $("#Remail").focus();
+	        return false;
+	    }
+	    
+		
+	   
+	});
+});
+
 </script>

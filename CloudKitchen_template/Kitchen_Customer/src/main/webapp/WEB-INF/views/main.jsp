@@ -55,112 +55,15 @@
             <h4>평균 배송 시간 </h4>
         </div>
     </div><!-- End Container -->
-
-    <div class="white_bg">
+	<input type="hidden" id="bizIdx" value="${idx}">
+    <div class="white_bg" id="mahout">
         <div class="container margin_60">
             <div class="main_title">
-                <h2 class="nomargin_top">인기 메뉴 </h2>
+                <h2 class="nomargin_top">고객 맞춤 추천메뉴입니다. </h2>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <a href="${pageContext.request.contextPath}/kitchen/biz_2/main" class="strip_list">
-                        <div class="ribbon_1">Popular</div>
-                        <div class="desc">
-                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant.jpg" alt=""></div>
-                            <div class="rating">
-                                <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-                            </div>
-                            <h3>유니네 피자집</h3>
-                            <div class="type">이태리 / 피자</div>
-                            <div class="location">
-                            	주소를 적으세요
-                            	<span class="opening">오픈 09:00</span>
-                            </div>
-                            <ul><li>배달<i class="icon_check_alt2 ok"></i></li></ul>
-                        </div><!-- End desc-->
-                    </a><!-- End strip_list-->
-                    <a href="/detail_page.jsp" class="strip_list">
-                        <div class="ribbon_1">Popular</div>
-                        <div class="desc">
-                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_2.jpg" alt=""></div>
-                            <div class="rating">
-                                <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-                            </div>
-                            <h3>태주네 떡볶이</h3>
-                            <div class="type">한국 / 분식</div>
-                            <div class="location">
-                            	135 Newtownards Road, Belfast, BT4.
-                            	<span class="opening">Opens at 17:00</span>
-                            </div>
-                            <ul><li>배달<i class="icon_check_alt2 ok"></i></li></ul>
-                        </div><!-- End desc-->
-                    </a><!-- End strip_list-->
-                    <a href="detail_page.jsp" class="strip_list">
-                        <div class="ribbon_1">Popular</div>
-                        <div class="desc">
-                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_3.jpg" alt=""></div>
-                            <div class="rating">
-                                <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-                            </div>
-                            <h3>종혀니네 햄버거</h3>
-                            <div class="type">한국 / 패스트 푸드</div>
-                            <div class="location">
-                                135 Newtownards Road, Belfast, BT4.
-                                <span class="opening">Opens at 17:00</span>
-                            </div>
-                            <ul><li>배달<i class="icon_check_alt2 ok"></i></li></ul>
-                        </div><!-- End desc-->
-                    </a><!-- End strip_list-->
-                </div><!-- End col-md-6-->
-                <div class="col-md-6">
-                    <a href="/detail_page.jsp" class="strip_list">
-                        <div class="ribbon_1">Popular</div>
-                        <div class="desc">
-                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_4.jpg" alt=""></div>
-                            <div class="rating">
-                                <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-                            </div>
-                            <h3>원주니네 통닭</h3>
-                            <div class="type">한국 / 치킨</div>
-                            <div class="location">
-                                135 Newtownards Road, Belfast, BT4.
-                                <span class="opening">Opens at 17:00</span>
-                            </div>
-                            <ul><li>배달<i class="icon_close_alt2 no"></i></li></ul>
-                        </div><!-- End desc-->
-                    </a><!-- End strip_list-->
-                    <a href="/detail_page.jsp" class="strip_list">
-                        <div class="ribbon_1">Popular</div>
-                        <div class="desc">
-                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_5.jpg" alt=""></div>
-                            <div class="rating">
-                                <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-                            </div>
-                            <h3>명주니네 카레</h3>
-                            <div class="type">인도 / 카레</div>
-                            <div class="location">
-                                135 Newtownards Road, Belfast, BT4.
-                                <span class="opening">Opens at 17:00</span>
-                            </div>
-                            <ul><li>배달<i class="icon_check_alt2 ok"></i></li></ul>
-                        </div><!-- End desc-->
-                    </a><!-- End strip_list-->
-                    <a href="/detail_page.jsp" class="strip_list">
-                        <div class="ribbon_1">Popular</div>
-                        <div class="desc">
-                            <div class="thumb_strip"><img src="${pageContext.request.contextPath}/resources/img/thumb_restaurant_6.jpg" alt=""></div>
-                            <div class="rating">
-                                <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-                            </div>
-                            <h3>오소리 샌드위치</h3>
-                            <div class="type">한국/패스트푸드</div>
-                            <div class="location">
-                                135 Newtownards Road, Belfast, BT4.
-                                <span class="opening">Opens at 17:00</span>
-                            </div>
-                            <ul><li>배달<i class="icon_check_alt2 ok"></i></li></ul>
-                        </div><!-- End desc-->
-                    </a><!-- End strip_list-->
+
                 </div>
             </div><!-- End row -->
         </div><!-- End container -->
@@ -180,39 +83,12 @@
                 <i class="icon_mug"></i>
                 <h3>We also deliver to your office</h3>
                 <p>
-                    Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.
+                    
                 </p>
             </div><!-- End sub_content -->
         </div><!-- End subheader -->
     </section><!-- End section -->
 <!-- End Content =============================================== -->
-
-    <div class="container margin_60">
-        <div class="main_title margin_mobile">
-            <h2 class="nomargin_top">Work with Us</h2>
-            <p>
-                Cum doctus civibus efficiantur in imperdiet deterruisset.
-            </p>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-md-offset-2">
-                <a class="box_work" href="submit_restaurant.html">
-                    <img src="${pageContext.request.contextPath}/resources/img/submit_restaurant.jpg" width="848" height="480" alt="" class="img-responsive">
-                    <h3>Submit your Restaurant<span>Start to earn ${pageContext.request.contextPath} </span></h3>
-                    <p>Lorem ipsum dolor sit amet, ut virtute fabellas vix, no pri falli eloquentiam adversarium. Ea legere labore eam. Et eum sumo ocurreret, eos ei saepe oratio omittantur, legere eligendi partiendo pro te.</p>
-                    <div class="btn_1">Read more</div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a class="box_work" href="submit_driver.html">
-                    <img src="${pageContext.request.contextPath}/resources/img/delivery.jpg" width="848" height="480" alt="" class="img-responsive">
-                    <h3>We are looking for a Driver<span>Start to earn money</span></h3>
-                    <p>Lorem ipsum dolor sit amet, ut virtute fabellas vix, no pri falli eloquentiam adversarium. Ea legere labore eam. Et eum sumo ocurreret, eos ei saepe oratio omittantur, legere eligendi partiendo pro te.</p>
-                    <div class="btn_1">Read more</div>
-                </a>
-            </div>
-        </div><!-- End row -->
-    </div><!-- End container -->
 
 <!-- Footer 시작  -->
 <jsp:include page="include/footer.jsp" flush="false"/>

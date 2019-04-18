@@ -14,16 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.firebase.FirebaseException;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j;
 
 @RestController
 @RequestMapping("/biz/order")
 @RequiredArgsConstructor
+@Log4j
 public class BizOrderController {
 
 	private final BizOrderService bizOrderService;
 	private final BizFireBaseService fireBaseService;
 	private final StatusChangeService statusChangeService;
-	
+	//주문 상태 변경 
 	@GetMapping("/{bizId}/{orderId}/{status}")
 	public ResponseEntity<?> updateOrderStatus(
 			@PathVariable("bizId") String bizId, 
@@ -31,9 +33,24 @@ public class BizOrderController {
 			@PathVariable("status") String status
 			) throws Exception, FirebaseException, JacksonUtilityException, org.badgers.rest.firebase.FirebaseException{
 		
-		fireBaseService.patchOrderStatus(bizId+"/"+orderId, statusChangeService.getNewStatus(status));
+		String changedStatus = statusChangeService.getNewStatus(status);
+		
+		fireBaseService.patchOrderStatus(bizId+"/"+orderId, changedStatus);
 		bizOrderService.updateOrderStatus(status, bizId, orderId);
 		
-		return new ResponseEntity<>(HttpStatus.OK);
+		if(status.equals("ORD002")||status.equals("ORD003")||status.equals("ORD005")) {
+			String userToken=fireBaseService.getToken(orderId);
+			return new ResponseEntity<>(userToken,HttpStatus.OK);
+		}
+		return new ResponseEntity<>("noMessage",HttpStatus.OK);
+	}
+	
+	@GetMapping("/fcm/{orderId}")
+	public ResponseEntity<String> getFcmToken(@PathVariable String orderId){
+		log.info(orderId);
+		fireBaseService.getToken(orderId);
+		log.info(fireBaseService.getToken(orderId));
+		
+		return  new ResponseEntity<>(HttpStatus.OK);
 	}
 }

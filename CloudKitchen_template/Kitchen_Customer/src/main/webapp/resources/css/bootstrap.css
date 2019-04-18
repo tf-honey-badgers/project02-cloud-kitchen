@@ -1464,6 +1464,9 @@ dd {
   .dl-horizontal dd {
     margin-left: 180px;
   }
+  #introImg{
+  height: 360px
+  }
 }
 abbr[title],
 abbr[data-original-title] {

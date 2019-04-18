@@ -17,9 +17,6 @@ public class PayReadyInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		log.info("object handler 는 무슨 역할을 하는가????????");
-		log.info(handler.toString());
-		log.info("........................................................");
 		//method(결제 방법)
 		String method = (String)request.getParameter("method");
 		
@@ -40,6 +37,9 @@ public class PayReadyInterceptor extends HandlerInterceptorAdapter {
 		
 		//모든 setting이 완료된 OrderVOExtend를 session에 저장
 		session.setAttribute("order", order);
+		log.info("OrderExtendsVOOrderExtendsVOOrderExtendsVOOrderExtendsVOOrderExtendsVOOrderExtendsVO");
+		log.info(order);
+		log.info("OrderExtendsVOOrderExtendsVOOrderExtendsVOOrderExtendsVOOrderExtendsVOOrderExtendsVO");
 		
 		return super.preHandle(request, response, handler);
 	}

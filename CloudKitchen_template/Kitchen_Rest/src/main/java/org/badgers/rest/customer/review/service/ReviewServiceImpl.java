@@ -1,5 +1,6 @@
 package org.badgers.rest.customer.review.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.mahout.cf.taste.common.TasteException;
@@ -14,10 +15,14 @@ import org.apache.mahout.cf.taste.recommender.Recommender;
 import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 import org.badgers.rest.customer.review.persistence.ReviewMapper;
 import org.badgers.rest.model.GpaVOExtend;
+import org.badgers.rest.model.MenuVOExtend;
 import org.badgers.rest.model.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 import lombok.Setter;
@@ -43,7 +48,7 @@ public class ReviewServiceImpl implements ReviewService {
 		dbsource.setPassword("bit");
 		dbsource.setServerName("mysql.cncdtmz2goi0.ap-northeast-2.rds.amazonaws.com");
 		dbsource.setDatabaseName("honey_badgers");
-		
+		dbsource.setUseSSL(false);
 		// 접속할DB정보가 담긴 객체, table이름, 유저ID, 메뉴ID, 선호도 순서
 		JDBCDataModel dm = new MySQLJDBCDataModel(dbsource, "review", "cust_idx", "menu_id", "stars", "");
 		
@@ -54,8 +59,8 @@ public class ReviewServiceImpl implements ReviewService {
 			UserNeighborhood neighbor = new ThresholdUserNeighborhood(0.1, similarity, dm);
 			// 추천기 생성자(DB정보, 그룹군, 비슷한유저)
 			Recommender recommender = new GenericUserBasedRecommender(dm, neighbor, similarity);
-			// 추천기를 돌리면 recommend(추천받을 유저id,추천해주는 메뉴id)
-			List<RecommendedItem> list = recommender.recommend(custIdx, 1);
+			// 추천기를 돌리면 recommend(추천받을 유저id,추천받을 가지수)
+			List<RecommendedItem> list = recommender.recommend(custIdx, 4);
 			
 			return list;
 			
@@ -69,5 +74,17 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public List<GpaVOExtend> getGpa(String bizId) {
 		return review.getGpa(bizId);
+	}
+
+	@Override
+	public List<MenuVOExtend> getRecommendMenu(String menuId) {
+		List<MenuVOExtend> reComMenu = new ArrayList<MenuVOExtend>();
+		String[] menu = menuId.split(",");
+		
+		for(int i=0;i<menu.length;i++) {
+			reComMenu.add(review.getRecommendMenu(menu[i]));
+		}
+		System.out.println(reComMenu);
+		return reComMenu;
 	}
 }

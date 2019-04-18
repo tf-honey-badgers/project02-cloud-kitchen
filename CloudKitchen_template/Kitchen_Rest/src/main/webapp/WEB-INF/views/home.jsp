@@ -312,7 +312,7 @@
 		$('#recommendation').on('click',function(e){
 			console.log($('#cust_Idx').val());
 			$.ajax({
-        		type : "POST", 
+        		type : "GET", 
         		url : "./review/recommendation.json",
         		data : {
         			idx : $('#cust_Idx').val()

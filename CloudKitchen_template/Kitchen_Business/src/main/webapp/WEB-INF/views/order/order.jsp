@@ -117,14 +117,13 @@
     <script src="${pageContext.request.contextPath}/resources/js/plugins/bootstrap-notify2.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="${pageContext.request.contextPath}/resources/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/order.js" type="text/javascript"></script>
+<%--     <script src="${pageContext.request.contextPath}/resources/js/order.js" type="text/javascript"></script> --%>
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/member/member-functions.js" type="text/javascript"></script>
    
     <script>
         $(document).ready(function() {
-        	
         	
             //init DateTimePickers
             md.initFormExtendedDatetimepickers();
@@ -141,7 +140,17 @@
             var orderId='';
             var status='';
             var bizId ='${sessionScope.bizId}';
-            console.log('dnnnnnnnnnnnnnnnnnnnn',bizId)
+            
+          	//취소 눌렀을때
+            $('body').on('click', '.cancel', function(e){
+           	 e.stopPropagation();
+           	 orderId=$(this).parents('div.ORD').attr('id')
+           	 status='ORD005'
+                url=bizId+'/'+orderId+'/'+status
+                updateStatus(url)
+           	 $(this).parents('div.ORD').remove()
+               	 
+            });
             
             //주문 접수 눌렀을 때
             $('body').on('click', '.confirm', function(e){
@@ -154,7 +163,7 @@
             	$(this).parents('div[class="ORD"]').appendTo('.orderListWrap')
             	orderId=$(this).parents('div.ORD').attr('id')
             	status='ORD002'
-            	url=bizId+'/'+orderId+'/'+status
+            	url=bizId+'/'+orderId+'/'+status;
             	updateStatus(url)
             });
             // 조리시작 눌렀을 때
@@ -167,9 +176,6 @@
             	 status='ORD003'
             	 url=bizId+'/'+orderId+'/'+status
             	 updateStatus(url)
-            	 
-            	 
-            	 
              });
              //조리완료 눌렀을때
              $('body').on('click', '.complete', function(e){
@@ -181,6 +187,7 @@
             	 $(this).parents('div.ORD').remove()
                 	 
              });
+            
 		  
             
     
@@ -232,15 +239,9 @@
 		  		  getMenu(orderId, menus);
 				  
 			  } 
-		 	  
- 		 	   
-			  //새로고침하거나 로그아웃 되서 다시 들어 와야 할때 조리중 이거나 접수대기 인 (ORD002,ORD003)주문번호들을 다시 읽어와서 
-			  // 주문 리스트에 뿌려줘야 함 
 			
 			
 		 })/* 알람설정 end */
-		 
-		 
 		 
 		 
 		 /* --------------------------------------------------------------------- */

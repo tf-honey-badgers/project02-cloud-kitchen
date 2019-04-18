@@ -6,7 +6,7 @@
 		<div id="sub_content">
             <h1>주문 & 음식 배달</h1>
             <p>벌꿀오소리 5명이 운영하는 클라우드 키친 홈페이지입니다! 많이 사랑해주세요!</p>
-            <form action="${pageContext.request.contextPath}/kitchen/search" method="post">
+            <form action="${pageContext.request.contextPath}/kitchen/search" method="GET">
 				<div id="custom-search-input">
                     <div class="input-group">
                         <input type="text" class="search-query" name="query" placeholder="검색어를 자유롭게 입력해주세요.">
@@ -27,4 +27,5 @@
         </ul>
     </div>
 </section> <!-- End Header video -->
+<script src="${pageContext.request.contextPath}/resources/js/mahout/mahout.js"></script>
 <!-- End SubHeader ============================================ -->

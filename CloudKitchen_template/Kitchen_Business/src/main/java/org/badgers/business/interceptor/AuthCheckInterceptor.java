@@ -21,7 +21,7 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter{
                     .getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
 		//pathvariable 에서 가져온 bizId 값 
 		final String uriBizId=pathVariables.get("bizId");
-		log.info("uriBizId   : "+uriBizId);
+		//log.info("uriBizId   : "+uriBizId);
 		
 		
 		HttpSession session = request.getSession();
@@ -33,7 +33,7 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter{
 		//세션자체가 null 이면 false 반환
 		
 		if(session.getAttribute("bizId")==null) {
-			log.info("--------------------세션 체크 null-------------------------");
+			log.info("--------------------세션 체크결과  :  null");
 			response.sendRedirect("/business/main?msg=fail");
             return false;
 			

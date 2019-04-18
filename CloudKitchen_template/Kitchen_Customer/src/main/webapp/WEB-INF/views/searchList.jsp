@@ -43,10 +43,10 @@
 			<!-- Tools =================================================== -->
 			<div id="tools">
 				<div class="row">
-					<form action="${pageContext.request.contextPath}/kitchen/search" method="post">
+					<form action="${pageContext.request.contextPath}/kitchen/search" method="GET">
 						<div class="form-group">
-                        	<input type="text" class="search-query form-control" name="query" value="${query}" placeholder="검색어를 자유롭게 입력해주세요." style="display:inline;width:87%;">
-	                    	<input type="submit" id="searchBtn" class="btn_1" value="검색" style="width:100px;height:40px;position:absolute;top:1px;">
+                        	<input type="text" class="search-query form-control" name="query" value="${query}" placeholder="검색어를 자유롭게 입력해주세요." style="display:inline;width:70%;">
+	                    	<input type="submit" id="searchBtn" class="btn_1" value="검색" style="width:28.3%;height:40px;position:absolute;top:1px;">
 	                    </div>
 					</form>
 				</div>
@@ -60,7 +60,7 @@
 						<div class="col-md-9 col-sm-9">
 							<div class="desc">
 								<div class="thumb_strip">
-									<a href="detail_page.html"><img class="shopImg" src="https://s3.ap-northeast-2.amazonaws.com/honeybadgersfile/MenuPhoto/${biz.bizId}.png" alt="없음" title="이거"></a>
+									<a href="${pageContext.request.contextPath}/kitchen/${biz.bizId}/main"><img class="shopImg" src="https://s3.ap-northeast-2.amazonaws.com/honeybadgersfile/MenuPhoto/${biz.bizId}.png" alt="없음" title="이거"></a>
 								</div>
 								<div class="rating">
 									<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="#0">98 reviews</a></small>)
@@ -140,5 +140,8 @@
 </script>
 	
 <script src="${pageContext.request.contextPath}/resources/js/menu/menu-functions.js"></script>
+<script>
+	localStorage.setItem('query', JSON.stringify('${query}'));
+</script>
 </body>
 </html>

@@ -304,6 +304,7 @@ header.sticky{
 	-webkit-box-shadow: 0px 2px 10px -2px rgba(0, 0, 0, 0.41);
 	-moz-box-shadow:0px 2px 10px -2px rgba(0, 0, 0, 0.41);
 	box-shadow:0px 2px 10px -2px rgba(0, 0, 0, 0.41);
+	height:52px;
 }
 #subheader{
 	color:#fff;
@@ -1247,7 +1248,7 @@ ul.opening_list li span{
 .features-bg {
     position: relative;
     min-height: 400px;
-    background: url(../img/features-intro-01.jpg) no-repeat center center;
+    background: url(../img/aboutus/develop1.png) no-repeat center center;
     background-size: cover;
 }
 .features-img {
@@ -1663,6 +1664,26 @@ s.checkbox-holder {
 	background: #444;
 }
 
+.btn.btn-submit2 {
+	width: 100%;
+	margin-top: 30px;
+	color: #85c99d;
+	padding:10px;
+	background: #fff;
+	font-weight:600;
+	outline:none;
+	-webkit-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+	font-size:16px;
+}
+.btn.btn-submit2:focus {
+	outline:none;
+}
+.btn.btn-submit2:hover {
+	color: #fff;
+	background: #444;
+}
+
 /*3.5 Spacing*/
 .add_bottom_15 {margin-bottom:15px;}
 .add_bottom_30 {margin-bottom:30px;}
@@ -1768,6 +1789,67 @@ s.checkbox-holder {
 	background: #48B448;
 	color: #CDFFCD;
 	text-shadow: 1px 1px 1px #296429;
+}
+/* email 체크  */ 
+#email-info{
+	width: 100%;
+	margin-bottom:15px;
+	color: #829CBD;
+	text-align: center;
+	font: 12px/25px Arial, Helvetica, sans-serif;
+}
+#email-info.weakpass{
+	border: 1px solid #FF9191;
+	background: #FFC7C7;
+	color: #94546E;
+	text-shadow: 1px 1px 1px #FFF;
+}
+
+#email-info.strong {
+	border: 1px solid #C4EEC8;
+	background: #E4FFE4;
+	color: #51926E;
+	text-shadow: 1px 1px 1px #FFF;
+}
+/*  id 체크  */ 
+#id-info{
+	width: 100%;
+	margin-bottom:15px;
+	color: #829CBD;
+	text-align: center;
+	font: 12px/25px Arial, Helvetica, sans-serif;
+}
+#id-info.weakpass{
+	border: 1px solid #FF9191;
+	background: #FFC7C7;
+	color: #94546E;
+	text-shadow: 1px 1px 1px #FFF;
+}
+#id-info.strong {
+	border: 1px solid #C4EEC8;
+	background: #E4FFE4;
+	color: #51926E;
+	text-shadow: 1px 1px 1px #FFF;
+}
+/* 생년월일 체크   */
+#birth-info{
+	width: 100%;
+	margin-bottom:15px;
+	color: #829CBD;
+	text-align: center;
+	font: 12px/25px Arial, Helvetica, sans-serif;
+}
+#birth-info.weakpass{
+	border: 1px solid #FF9191;
+	background: #FFC7C7;
+	color: #94546E;
+	text-shadow: 1px 1px 1px #FFF;
+}
+#birth-info.strong {
+	border: 1px solid #C4EEC8;
+	background: #E4FFE4;
+	color: #51926E;
+	text-shadow: 1px 1px 1px #FFF;
 }
 
 /* 3.8 Input form style */   

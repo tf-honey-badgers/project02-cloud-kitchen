@@ -15,4 +15,8 @@
 		group by b.biz_id
 	</select>
 	
+	<select id="getRecommendMenu" resultType="org.badgers.rest.model.MenuVOExtend">
+		select idx mCode, name mName, basic_price mBasicPrice, photo mPhoto, category_id menuCatCode from menu where idx=#{menuId}
+	</select>
+	
 </mapper>

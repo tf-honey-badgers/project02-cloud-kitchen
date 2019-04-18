@@ -10,6 +10,7 @@ public class OrderVO {
 	private String custId;
 	private String phone;
 	private String address;
+	private String time;
 	private String msg;
 	private String kitchenName;
 	private int payAmt;
