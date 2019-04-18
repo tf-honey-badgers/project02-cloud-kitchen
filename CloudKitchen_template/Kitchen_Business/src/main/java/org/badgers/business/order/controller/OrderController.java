@@ -50,12 +50,13 @@ public class OrderController {
 		String url =  RestDomain.restDomain+"/biz/order/"+bizId+"/"+orderId+"/"+status; 
 		ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 		String userToken=response.getBody();
-
+		
+		
 		if(!(userToken.equals("noMessage"))) {
 			push.send(userToken, Status.valueOf(status).getmessage());
 		}
 		
-		log.info(response.getBody());
+		log.info("user Token :  "+response.getBody());
 		
 		return new ResponseEntity<>(userToken, HttpStatus.OK);	
 	}

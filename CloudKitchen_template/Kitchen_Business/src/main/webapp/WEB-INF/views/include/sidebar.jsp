@@ -28,7 +28,13 @@
 					<i class="material-icons">person</i>
 					<p>마이페이지</p>
 			</a></li>
-			<li class="nav-item sidebar-menu"><a class="nav-link" href="${pageContext.request.contextPath}/menu/${sessionScope.bizId}/main">
+			<li class="nav-item sidebar-menu">
+					<c:if test="${!empty sessionScope.bizId }">
+					<a class="nav-link" href="${pageContext.request.contextPath}/menu/${sessionScope.bizId}/main">
+					</c:if>
+					<c:if test="${empty sessionScope.bizId }">
+					<a class="nav-link" href="${pageContext.request.contextPath}/main?msg=fail">
+					</c:if>
 					<i class="material-icons">library_books</i>
 					<p>메뉴관리</p>
 			</a></li>
