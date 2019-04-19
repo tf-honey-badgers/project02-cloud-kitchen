@@ -86,7 +86,7 @@ text-align:center;
 margin-left:3px;
 font-size:12px;
 font-weight:bold;
-width:120px;
+width:97%;
 outline:none;
  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
@@ -254,13 +254,13 @@ ul.slides-container li img{
 /*============================================================================================*/
 
 
-@media (min-width: 768px) and (max-width: 1200px) {
-.btn-check {width:95px;}
+@media (min-width: 768px)  {
+.btn-check {width:97%;}
 
 }
 @media (max-width: 979px) {
 
-.btn-check { position:absolute;  bottom:-75px; left:42%; width:95px; }
+.btn-check { position:absolute;  bottom:-75px;  width:97%; }
 .first-nogutter {padding-right:15px;}
 .loader { position:absolute; right:10px; top:10px;}
 #social_footer {margin-top:95px;}
@@ -298,7 +298,7 @@ h3 {
 .countdown{
 		margin:50px 0 0 0;
 }
-.btn-check {left:38%;}
+.btn-check {}
 
 
 

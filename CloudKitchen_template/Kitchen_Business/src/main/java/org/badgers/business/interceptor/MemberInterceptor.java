@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import lombok.extern.log4j.Log4j;
+@Log4j
 public class MemberInterceptor extends HandlerInterceptorAdapter{
 
 //	@Override
@@ -22,15 +24,14 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView mv) throws Exception {
-		System.out.println(".........................interceptor : postHandle...................");
+		log.info("interceptor : postHandle...................");
 		String result = response.getHeader("RESULT");
 		
 		//상태가 success 여서 header에 bizId가 담겨 있다면 세션 생성 
 		HttpSession session = request.getSession(true);
-		System.out.println(result);
 		if(result!=null) {
 			if(session != null) {
-					System.out.println("로그인 성공");
+					log.info("   로그인 성공");
 					session.setAttribute("bizId", result );	
 			}
 		}
@@ -41,7 +42,6 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 				session.invalidate();;
 			}
 		}
-		System.out.println("....................................................................");
 		
 		
 	}

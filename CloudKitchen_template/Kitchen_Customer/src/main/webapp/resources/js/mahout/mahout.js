@@ -25,6 +25,7 @@ $(document).ready(function() {
 					type : 'GET',
 					url : '/customer/member/recommendation/info/'+menuId+'.json',
 					success : function(dt) {
+						console.log(dt)
 						
 						for(let i=0;i<dt.length;i++){
 							$('.container').eq(1).append(

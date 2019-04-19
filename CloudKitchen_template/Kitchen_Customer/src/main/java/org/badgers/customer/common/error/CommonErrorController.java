@@ -45,7 +45,7 @@ public class CommonErrorController {
 	@GetMapping("/405")
 	public String pageError405 (Model model) {
 		
-		model.addAttribute("msg","예외가 발생하였습니다");
+		model.addAttribute("msg","요청에 의해 식별 되는 리소스에 대 한 요청 라인에 지정 된 메서드가 허용 되지 않습니다");
 		return "common/error";
 	}
 	@GetMapping("/500")

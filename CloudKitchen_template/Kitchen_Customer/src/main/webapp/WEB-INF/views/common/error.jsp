@@ -43,16 +43,11 @@
             <div class="row">
 						<div class="col-md-6 col-md-offset-3">
                         <div id="newsletter_wp" >
-                            <form method="post" action="#" id="newsletter" name="newsletter"  autocomplete="off">
-                                        <div class="row">
-                                            <div class="col-md-9 first-nogutter">
-                                                <input name="email_newsletter" id="email_newsletter" type="email" placeholder="Your Email" class="form-control">
-                                            </div>
-                                            <div class="col-md-3 nogutter">
-                                                    <button type="submit" class="btn-check" id="submit-newsletter">Subscribe</button>
-                                            </div>
-                                        </div>
-                                </form> 
+                                   <div class="row" id="newsletter" name="newsletter"  autocomplete="off">
+                                       <div class="col-md-12 nogutter">
+                                               <a class="btn-check" id="submit-newsletter" href="${pageContext.request.contextPath}/main">GO BACK HOME</a>
+                                       </div>
+                                   </div>
                                 <div id="message-newsletter"></div>                        
                             </div>
                         </div>	
@@ -69,6 +64,7 @@
                     </div>            
 		</div><!-- End container -->
 	</div><!-- End main -->	
+</div>
 
 <div id="slides">
 	<ul class="slides-container">
@@ -95,5 +91,6 @@
 <script src="${pageContext.request.contextPath}/resources/error/js/retina.min.js"></script>
 <script  src="${pageContext.request.contextPath}/resources/error/js/functions.js"></script>
 <script src="${pageContext.request.contextPath}/resources/error/assets/validate.js"></script>
+
   </body>
 </html>

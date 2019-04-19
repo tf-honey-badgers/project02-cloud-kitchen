@@ -64,6 +64,10 @@
 		<error-code>404</error-code>
 		<location>/common/error/404</location>
 	</error-page>
+		<error-page>
+		<error-code>405</error-code>
+		<location>/common/error/405</location>
+	</error-page>
 	<error-page>
 		<error-code>500</error-code>
 		<location>/common/error/500</location>
