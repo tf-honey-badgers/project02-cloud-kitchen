@@ -77,6 +77,9 @@ public class CustomerController {
 		
 		boolean passMatch = passEncoder.matches(cvo.getPw(), returnVal.getPw());
 		
+		log.info("**************************************************" + cvo.getPw() + "**************************************************");
+		log.info("**************************************************" + returnVal.getPw() + "**************************************************");
+		
 		return (returnVal!=null && passMatch)?new ResponseEntity<>(returnVal, HttpStatus.OK): new ResponseEntity<>(returnVal,HttpStatus.NOT_FOUND);	
 	}
 
