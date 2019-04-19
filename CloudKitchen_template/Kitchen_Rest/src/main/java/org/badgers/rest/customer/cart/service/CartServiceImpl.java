@@ -94,14 +94,19 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public List<CartVOExtend> readCart(String custId) throws Exception {
 		List<CartVOExtend> returnVal = null;
+		try {
 		
-		returnVal = mapper.readCart(custId);
-		
-		for(int i = 0; i < returnVal.size(); i++) {
-			List<CartDetailVO> options = mapper.readOptions(returnVal.get(i).getId());
-			returnVal.get(i).setOptions(options);
+			returnVal = mapper.readCart(custId);
+			
+			for(int i = 0; i < returnVal.size(); i++) {
+				List<CartDetailVO> options = mapper.readOptions(returnVal.get(i).getId());
+				returnVal.get(i).setOptions(options);
+			}
+		} catch (Exception e) {
+			log.info("************************************************** ERROR ERROR ERROR ERROR **************************************************");
+			e.printStackTrace();
 		}
-		return returnVal;
+		return returnVal;			
 	}
 	
 	// 선택된 메뉴 읽기(결제로 넘어갈 때)
