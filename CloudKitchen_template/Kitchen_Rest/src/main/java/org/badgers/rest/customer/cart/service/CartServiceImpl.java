@@ -14,13 +14,14 @@ import lombok.extern.log4j.Log4j;
 
 @Service
 @Log4j
+@Transactional
 public class CartServiceImpl implements CartService {
 	
 	@Setter(onMethod_ = @Autowired)
 	private CartMapper mapper;
 
 	// 메뉴 추가 (한 번에 메뉴 하나 BUT 수량은 1개 이상 복수 추가 가능)
-	@Transactional
+	
 	@Override
 	public int addCart(CartVOExtend cart) throws Exception { // controller에서 예외처리
 		try {

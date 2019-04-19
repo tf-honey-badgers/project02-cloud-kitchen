@@ -2,6 +2,8 @@ package org.badgers.rest.customer.cart.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.badgers.rest.customer.cart.service.CartService;
 import org.badgers.rest.model.CartVOExtend;
 import org.slf4j.Logger;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Setter;
@@ -33,7 +36,11 @@ public class CartController {
 
 /* cart테이블 & cart_detail테이블에 추가하기 */
 	@PostMapping("/")
-	public ResponseEntity<String> addCart(@RequestBody CartVOExtend cart) {
+	@ResponseBody
+	public ResponseEntity<String> addCart(HttpServletResponse response,  @RequestBody CartVOExtend cart) {
+		
+		response.setContentType("text/plain");
+		
 		int result = 0; // 몇 개 행을 수정했는지 표시하는 변수
 		String returnVal = "";
 			
@@ -45,7 +52,7 @@ public class CartController {
 			e.printStackTrace();
 		}
 		log.info("************************************************** ADD TO CART HERE HERE HERE **************************************************");
-
+		
 		return new ResponseEntity<String>(returnVal, HttpStatus.OK);
 	}
 

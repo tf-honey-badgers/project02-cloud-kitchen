@@ -22,6 +22,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/cart")
 @Log4j
 public class CartController {
+	
 	@Inject
 	RestTemplate restTemplate;	
 	
@@ -32,14 +33,70 @@ public class CartController {
 	public ResponseEntity<List<CartVOExtend>> addCart(@RequestBody CartVOExtend cart) {		
 		List<CartVOExtend> returnVal = null;
 		String url = RestDomain.restDomain+"/cart/";
-		
-		restTemplate.postForEntity(url, cart, String.class); // 카트에 메뉴 추가하기
-		url += cart.getCustId();
-		ResponseEntity<List> readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class); // 특정 회원ID를 가진 카트 항목들 읽어오기
-		returnVal = readMenuFromCart.getBody();
 
-		if(returnVal != null) { log.info("Finished adding selected menu to cart!!!!!"); }
-		else { log.info("Failed to add selected menu to cart."); }
+		ResponseEntity<String> result = null;
+
+		result = restTemplate.postForEntity(url, cart, String.class); // 카트에 메뉴 추가하기
+		
+		log.info("=========step1...........start=============================");
+		log.info(result);
+		log.info("=========step1...........end =============================");
+		
+		while(true) {
+			
+			try {
+				Thread.sleep(100);
+				if(result != null) {
+					break;
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+					
+			
+		
+		
+		
+		
+		log.info("=========step2...........start=============================");
+		
+		url += cart.getCustId();
+		
+		
+		ResponseEntity<List> readMenuFromCart = null; 
+		
+		readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class); // 특정 회원ID를 가진 카트 항목들 읽어오기
+		
+		while(true) {
+			
+			try {
+				Thread.sleep(100);
+				if(readMenuFromCart != null) {
+					break;
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+				
+		returnVal = readMenuFromCart.getBody();
+		
+		log.info("=========step2...........end=============================");
+		
+		
+		if(returnVal != null) { 
+			log.info("Finished adding selected menu to cart!!!!!"); 
+		}else { 
+			log.info("Failed to add selected menu to cart."); 
+		}
+		
+		log.info("########################################################");
+		log.info("########################################################");
+		
 		
 		return new ResponseEntity<>(returnVal, HttpStatus.OK);
 	}

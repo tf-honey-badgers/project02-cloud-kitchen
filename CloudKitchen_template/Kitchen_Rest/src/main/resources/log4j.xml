@@ -29,22 +29,22 @@
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="info" />
+		<level value="warn" />
 	</logger>
 	
 	<logger name="jdbc.audit">
-		<level value="warn" />
+		<level value="error" />
 	</logger>
 	<logger name="jdbc.resultset">
-		<level value="warn" />
+		<level value="error" />
 	</logger>
 	<logger name="jdbc.connection">
-		<level value="warn" />
+		<level value="error" />
 	</logger>
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="info" />
+		<priority value="warn" />
 		<appender-ref ref="console" />
 	</root>
 	
