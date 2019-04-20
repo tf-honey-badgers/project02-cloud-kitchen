@@ -25,7 +25,6 @@ public class CartController {
 	
 	@Inject
 	RestTemplate restTemplate;	
-	
 
 /* 카트에 메뉴 추가하기 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -38,65 +37,41 @@ public class CartController {
 
 		result = restTemplate.postForEntity(url, cart, String.class); // 카트에 메뉴 추가하기
 		
-		log.info("=========step1...........start=============================");
-		log.info(result);
-		log.info("=========step1...........end =============================");
-		
+		// rest 서버로 요청 보낸 결과값이 돌아올 때까지 busy waiting 실시
 		while(true) {
-			
 			try {
 				Thread.sleep(100);
 				if(result != null) {
 					break;
 				}
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
-					
-			
-		
-		
-		
-		
-		log.info("=========step2...........start=============================");
-		
-		url += cart.getCustId();
-		
-		
+		url += cart.getCustId();		
 		ResponseEntity<List> readMenuFromCart = null; 
-		
 		readMenuFromCart = restTemplate.getForEntity(url, java.util.List.class); // 특정 회원ID를 가진 카트 항목들 읽어오기
-		
+
+		// rest 서버로 요청 보낸 결과값이 돌아올 때까지 busy waiting 실시
 		while(true) {
-			
 			try {
 				Thread.sleep(100);
 				if(readMenuFromCart != null) {
 					break;
 				}
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 				
 		returnVal = readMenuFromCart.getBody();
-		
-		log.info("=========step2...........end=============================");
-		
-		
+				
 		if(returnVal != null) { 
 			log.info("Finished adding selected menu to cart!!!!!"); 
 		}else { 
 			log.info("Failed to add selected menu to cart."); 
 		}
-		
-		log.info("########################################################");
-		log.info("########################################################");
-		
 		
 		return new ResponseEntity<>(returnVal, HttpStatus.OK);
 	}

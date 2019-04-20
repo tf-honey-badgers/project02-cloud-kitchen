@@ -22,11 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
 
 @RestController
 @RequestMapping("/cart")
-@Log4j
 public class CartController {
 	
 	@Setter(onMethod_ = { @Autowired })
@@ -38,7 +36,6 @@ public class CartController {
 	@PostMapping("/")
 	@ResponseBody
 	public ResponseEntity<String> addCart(HttpServletResponse response,  @RequestBody CartVOExtend cart) {
-		
 		response.setContentType("text/plain");
 		
 		int result = 0; // 몇 개 행을 수정했는지 표시하는 변수
@@ -48,10 +45,8 @@ public class CartController {
 			result = service.addCart(cart);
 			returnVal = String.valueOf(result);
 		} catch (Exception e) {
-			log.info("************************************************** ADD TO CART ERROR ERROR ERROR **************************************************");
 			e.printStackTrace();
 		}
-		log.info("************************************************** ADD TO CART HERE HERE HERE **************************************************");
 		
 		return new ResponseEntity<String>(returnVal, HttpStatus.OK);
 	}
@@ -64,7 +59,6 @@ public class CartController {
 		try {
 			returnVal = service.readCart(custId);
 		} catch (Exception e) {
-			log.info("************************************************** READ CART ERROR ERROR ERROR **************************************************");
 			e.printStackTrace();
 		}
 		
@@ -72,7 +66,6 @@ public class CartController {
 			logger.info(value.toString());			
 		}
 		
-		log.info("************************************************** READ CART HERE HERE HERE **************************************************");
 		return new ResponseEntity<List<CartVOExtend>>(returnVal, HttpStatus.OK);
 	}
 
