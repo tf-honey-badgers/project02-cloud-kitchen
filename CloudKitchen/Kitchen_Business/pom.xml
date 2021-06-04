@@ -177,7 +177,7 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.3.6</version>
+			<version>4.5.13</version>
 		</dependency>
 
 		<!-- 외부파서 -> URI에 한글 사용 시 처리에 필요 -->
